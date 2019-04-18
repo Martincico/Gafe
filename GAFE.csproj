@@ -72,7 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsGenCombos.cs" />
     <Compile Include="ClsUtilerias.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -141,21 +140,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="PuiCatTipoMovtos.cs" />
+    <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatMunicipios.cs" />
     <Compile Include="PuiCatImpuestos.cs" />
     <Compile Include="PuiCatClases.cs" />
     <Compile Include="PuiCatAlmacenes.cs" />
     <Compile Include="PuiCatEmpleados.cs" />
     <Compile Include="PuiCatLineas.cs" />
+    <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
-    <Compile Include="RegCatTipoMov.cs" />
+    <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatMunicipio.cs" />
     <Compile Include="RegCatImpuesto.cs" />
     <Compile Include="RegCatClase.cs" />
     <Compile Include="RegCatAlmacen.cs" />
     <Compile Include="RegCatEmpleado.cs" />
     <Compile Include="RegCatLinea.cs" />
+    <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
