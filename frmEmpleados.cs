@@ -267,7 +267,7 @@ namespace GAFE
 
                     sbit.AgregarBitacora();
 
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBox.Show("Registro  agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
