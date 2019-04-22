@@ -109,6 +109,12 @@
     <Compile Include="frmCatMunicipios.designer.cs">
       <DependentUpon>frmCatMunicipios.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatTipoMovtos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatTipoMovtos.designer.cs">
+      <DependentUpon>frmCatTipoMovtos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatUMedidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,12 @@
     </Compile>
     <Compile Include="frmEmpleados.Designer.cs">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegTipoMovtos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegTipoMovtos.Designer.cs">
+      <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +147,7 @@
     <Compile Include="PuiCatAlmacenes.cs" />
     <Compile Include="PuiCatEmpleados.cs" />
     <Compile Include="PuiCatLineas.cs" />
+    <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatMunicipio.cs" />
@@ -143,6 +156,7 @@
     <Compile Include="RegCatAlmacen.cs" />
     <Compile Include="RegCatEmpleado.cs" />
     <Compile Include="RegCatLinea.cs" />
+    <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -162,11 +176,17 @@
     <EmbeddedResource Include="frmCatMunicipios.resx">
       <DependentUpon>frmCatMunicipios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCatTipoMovtos.resx">
+      <DependentUpon>frmCatTipoMovtos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCatUMedidas.resx">
       <DependentUpon>frmCatUMedidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpleados.resx">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegTipoMovtos.resx">
+      <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
