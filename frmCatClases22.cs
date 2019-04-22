@@ -11,13 +11,13 @@ using System.Data.SqlClient;
 using DatSql;
 using System.Xml;
 using System.IO;
-using System.Collections;
 
 namespace GAFE
 {
-    public partial class frmCatTipoMovtos : Form
+    public partial class frmCatClases22 : Form
     {
         private SqlDataAdapter DatosTbl;
+        private int opcion;
         private int idxG;
 
         private MsSql db = null;
@@ -34,13 +34,13 @@ namespace GAFE
         private string Password;
 
 
-        public frmCatTipoMovtos()
+        public frmCatClases22()
         {
             InitializeComponent();
         }
 
 
-        public frmCatTipoMovtos(MsSql Odat, string perfil)
+        public frmCatClases22(MsSql Odat, string perfil)
         {
             InitializeComponent();
             db = Odat;
@@ -49,7 +49,7 @@ namespace GAFE
 
 
 
-        private void frmCatTipoMovtos_Load(object sender, EventArgs e)
+        private void frmCatClases22_Load(object sender, EventArgs e)
         {
             /*
             uT = new clsUtil(db, Perfil);
@@ -87,29 +87,33 @@ namespace GAFE
             }
             this.Size = this.MinimumSize;
             LlenaGridView();
-
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegTipoMovtos Ventana = new frmRegTipoMovtos(db,1);
-            Ventana.ShowDialog();
-            LlenaGridView();
+
+            this.Size = this.MaximumSize;
+            opcion = 1;
         }
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            frmRegTipoMovtos Ventana = new frmRegTipoMovtos(db, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            Ventana.ShowDialog();
-            LlenaGridView();
+
+            this.Size = this.MaximumSize;
+            opcion = 2;
+
+            idxG = grdView.CurrentRow.Index;
+
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
+
+            this.Size = this.MaximumSize;
+            opcion = 3;
+
             idxG = grdView.CurrentRow.Index;
-            frmRegTipoMovtos Ventana = new frmRegTipoMovtos(db, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            Ventana.ShowDialog();
-            LlenaGridView();
+
         }
 
         private void cmdEliminar_Click(object sender, EventArgs e)
@@ -119,9 +123,9 @@ namespace GAFE
                 if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
-                    pui.keyCveTipoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaTipoMov();
+                    PuiCatClases pui = new PuiCatClases(db);
+                    pui.keyCveClase = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EliminaClase();
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -138,8 +142,8 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
-            DatosTbl = pui.BuscaTipoMov(txtBuscar.Text);
+            PuiCatClases pui = new PuiCatClases(db);
+            DatosTbl = pui.BuscaClase(txtBuscar.Text);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
 
@@ -150,19 +154,14 @@ namespace GAFE
                 grdView.Rows.Add(tmp);
             }
         }
-        
-        private void frmCatTipoMovtos_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-        
+
+
+
+
         private void LlenaGridView()
         {
-            PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
-            DatosTbl = pui.ListarTipoMovtos();
+            PuiCatClases pui = new PuiCatClases(db);
+            DatosTbl = pui.ListarClases();
             DataSet Ds = new DataSet();
 
             try
@@ -182,8 +181,7 @@ namespace GAFE
             }
 
         }
-
-
+        
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             cmEditar_Click(sender, e);
@@ -225,11 +223,6 @@ namespace GAFE
         }
 
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
         {
 
         }

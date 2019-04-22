@@ -59,7 +59,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Windows.Forms.Ribbon, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DatSql\bin\Debug\System.Windows.Forms.Ribbon.dll</HintPath>
+      <HintPath>bin\Debug\System.Windows.Forms.Ribbon.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -90,6 +90,12 @@
     </Compile>
     <Compile Include="frmCatClases.designer.cs">
       <DependentUpon>frmCatClases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatClases22.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatClases22.designer.cs">
+      <DependentUpon>frmCatClases22.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatImpuestos.cs">
       <SubType>Form</SubType>
@@ -127,6 +133,12 @@
     <Compile Include="frmEmpleados.Designer.cs">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMenuCatalogos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuCatalogos.Designer.cs">
+      <DependentUpon>frmMenuCatalogos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRegTipoMovtos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +159,7 @@
     <Compile Include="PuiCatAlmacenes.cs" />
     <Compile Include="PuiCatEmpleados.cs" />
     <Compile Include="PuiCatLineas.cs" />
+    <Compile Include="PuiCatInventarioMov.cs" />
     <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
@@ -156,6 +169,7 @@
     <Compile Include="RegCatAlmacen.cs" />
     <Compile Include="RegCatEmpleado.cs" />
     <Compile Include="RegCatLinea.cs" />
+    <Compile Include="RegCatInventarioMov.cs" />
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -166,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatClases.resx">
       <DependentUpon>frmCatClases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatClases22.resx">
+      <DependentUpon>frmCatClases22.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatImpuestos.resx">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
@@ -184,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpleados.resx">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuCatalogos.resx">
+      <DependentUpon>frmMenuCatalogos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegTipoMovtos.resx">
       <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
