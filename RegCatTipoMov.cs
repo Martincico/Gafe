@@ -126,6 +126,8 @@ namespace GAFE
 
 
 
+
+
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
