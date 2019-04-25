@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmCatLineas
+    partial class frmCatMarcas
     {
         /// <summary>
         /// Required designer variable.
@@ -40,15 +40,13 @@
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cboEstatus = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtClaveLinea = new System.Windows.Forms.TextBox();
+            this.txtClaveMarcas = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
-            this.cmdSeleccionar = new System.Windows.Forms.Button();
+            this.chkEstatus = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -60,9 +58,9 @@
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 55);
+            this.panel1.Size = new System.Drawing.Size(495, 58);
             this.panel1.TabIndex = 8;
             // 
             // cmdBuscar
@@ -101,7 +99,7 @@
             // 
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(13, 211);
+            this.cmdConsultar.Location = new System.Drawing.Point(13, 223);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 9;
@@ -114,7 +112,7 @@
             // 
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(403, 211);
+            this.cmdEliminar.Location = new System.Drawing.Point(403, 223);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 12;
@@ -127,7 +125,7 @@
             // 
             this.cmEditar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(303, 211);
+            this.cmEditar.Location = new System.Drawing.Point(303, 223);
             this.cmEditar.Name = "cmEditar";
             this.cmEditar.Size = new System.Drawing.Size(94, 36);
             this.cmEditar.TabIndex = 11;
@@ -140,7 +138,7 @@
             // 
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(206, 211);
+            this.cmdAgregar.Location = new System.Drawing.Point(206, 223);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 10;
@@ -158,7 +156,7 @@
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(12, 58);
+            this.grdView.Location = new System.Drawing.Point(12, 67);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(474, 150);
@@ -182,40 +180,17 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.cboEstatus);
-            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.chkEstatus);
             this.panel2.Controls.Add(this.cmdCancelar);
             this.panel2.Controls.Add(this.cmdAceptar);
             this.panel2.Controls.Add(this.txtDescripcion);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtClaveLinea);
+            this.panel2.Controls.Add(this.txtClaveMarcas);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(1, 267);
+            this.panel2.Location = new System.Drawing.Point(1, 265);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(495, 133);
             this.panel2.TabIndex = 14;
-            // 
-            // cboEstatus
-            // 
-            this.cboEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboEstatus.FormattingEnabled = true;
-            this.cboEstatus.Items.AddRange(new object[] {
-            "Activo",
-            "Baja"});
-            this.cboEstatus.Location = new System.Drawing.Point(95, 74);
-            this.cboEstatus.Name = "cboEstatus";
-            this.cboEstatus.Size = new System.Drawing.Size(147, 28);
-            this.cboEstatus.TabIndex = 9;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(7, 82);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 20);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Estatus";
             // 
             // cmdCancelar
             // 
@@ -263,15 +238,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Descripcion";
             // 
-            // txtClaveLinea
+            // txtClaveMarcas
             // 
-            this.txtClaveLinea.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtClaveLinea.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClaveLinea.Location = new System.Drawing.Point(95, 10);
-            this.txtClaveLinea.MaxLength = 10;
-            this.txtClaveLinea.Name = "txtClaveLinea";
-            this.txtClaveLinea.Size = new System.Drawing.Size(147, 26);
-            this.txtClaveLinea.TabIndex = 7;
+            this.txtClaveMarcas.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtClaveMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClaveMarcas.Location = new System.Drawing.Point(95, 10);
+            this.txtClaveMarcas.MaxLength = 10;
+            this.txtClaveMarcas.Name = "txtClaveMarcas";
+            this.txtClaveMarcas.Size = new System.Drawing.Size(147, 26);
+            this.txtClaveMarcas.TabIndex = 7;
             // 
             // lblCodEmpleado
             // 
@@ -283,26 +258,24 @@
             this.lblCodEmpleado.TabIndex = 1;
             this.lblCodEmpleado.Text = "Codigo";
             // 
-            // cmdSeleccionar
+            // chkEstatus
             // 
-            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
-            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(109, 211);
-            this.cmdSeleccionar.Name = "cmdSeleccionar";
-            this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
-            this.cmdSeleccionar.TabIndex = 15;
-            this.cmdSeleccionar.Text = "Seleccionar";
-            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdSeleccionar.UseVisualStyleBackColor = false;
-            this.cmdSeleccionar.Visible = false;
-            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            this.chkEstatus.AutoSize = true;
+            this.chkEstatus.Checked = true;
+            this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkEstatus.Location = new System.Drawing.Point(95, 82);
+            this.chkEstatus.Name = "chkEstatus";
+            this.chkEstatus.Size = new System.Drawing.Size(71, 24);
+            this.chkEstatus.TabIndex = 20;
+            this.chkEstatus.Text = "Activo";
+            this.chkEstatus.UseVisualStyleBackColor = true;
             // 
-            // frmCatLineas
+            // frmCatMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 410);
-            this.Controls.Add(this.cmdSeleccionar);
+            this.ClientSize = new System.Drawing.Size(499, 420);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -312,13 +285,13 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 449);
+            this.MaximumSize = new System.Drawing.Size(555, 459);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 300);
-            this.Name = "frmCatLineas";
+            this.MinimumSize = new System.Drawing.Size(515, 299);
+            this.Name = "frmCatMarcas";
             this.ShowIcon = false;
             this.Text = "Catálogo de lineas";
-            this.Load += new System.EventHandler(this.frmCatLineas_Load);
+            this.Load += new System.EventHandler(this.frmCatMarcas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
@@ -342,14 +315,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox cboEstatus;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button cmdCancelar;
         private System.Windows.Forms.Button cmdAceptar;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtClaveLinea;
+        private System.Windows.Forms.TextBox txtClaveMarcas;
         private System.Windows.Forms.Label lblCodEmpleado;
-        private System.Windows.Forms.Button cmdSeleccionar;
+        private System.Windows.Forms.CheckBox chkEstatus;
     }
 }

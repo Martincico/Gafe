@@ -48,8 +48,8 @@ namespace GAFE
         private void cmdClases_Click(object sender, EventArgs e)
         {
             lblCabeza.Text = "Catalogo de Clases";
-            BarraSidePanel.Height = cmdClases.Height;
-            BarraSidePanel.Top = cmdClases.Top;
+            BarraSidePanel.Height = btnMenClases.Height;
+            BarraSidePanel.Top = btnMenClases.Top;
             frmCatClases22 home = new frmCatClases22();
             Nav(home, PanContenido);
             txtError.Text = "Bienvenido...";
@@ -61,6 +61,11 @@ namespace GAFE
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

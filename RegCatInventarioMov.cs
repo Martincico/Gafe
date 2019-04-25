@@ -44,46 +44,24 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
-
-	NoMovimiento
-	FechaMovimiento
-	CveAlmacenMov
-	CveTipoMov
-	EntSal
-	NoDoc
-	Documento
-	CveAlmacenDes
-	NoMovimientoDest
-	EntSalDest
-	Modulo
-	TipoDoc
-	SerieDoc
-	FolioDocOrigen
-	Descuento
-	TotalDscto
-	TIva
-	SubTotal
-	TotalDoc
-	CveProveedor
-	CveCliente
-	Cancelado
-	CveUsarioCaptu
-	CveCentroCosto
-	NoMovtoTra
-	DocTra
-
-        NoMovimiento, FechaMovimiento, CveAlmacenMov, CveTipoMov, EntSal,
-        NoDoc, Documento, CveAlmacenDes,CveTipoMovDest, EntSalDest,
-        Modulo, TipoDoc, SerieDoc, FolioDocOrigen, Descuento,
-        TotalDscto, TIva, SubTotal, TotalDoc, CveProveedor,
-        CveCliente, Cancelado, CveUsarioCaptu, CveCentroCosto, NoMovtoTra,
-        DocTra    
-
     */
-
-
-
+     
+        public int AddRegBlanco()
+        {
+            string sql = "Insert into Inv_MovtosMaster (NoMovimiento, FechaMovimiento, CveAlmacenMov, CveTipoMov, EntSal," +
+                        "           NoDoc, Documento, CveAlmacenDes,CveTipoMovDest, EntSalDest," +
+                        "           Modulo, TipoDoc, SerieDoc, FolioDocOrigen, Descuento," +
+                        "           TotalDscto, TIva, SubTotal, TotalDoc, CveProveedor," +
+                        "           CveCliente, Cancelado, CveUsarioCaptu, CveCentroCosto, NoMovtoTra," +
+                        "           DocTra) " +
+                         "values( @NoMovimiento,@FechaMovimiento, @CveAlmacenMov, @CveTipoMov, @EntSal," +
+                        "           @NoDoc, @Documento, @CveAlmacenDes, @CveTipoMovDest, @EntSalDest," +
+                        "           @Modulo, @TipoDoc, @SerieDoc, @FolioDocOrigen, @Descuento," +
+                        "           @TotalDscto, @TIva, @SubTotal, @TotalDoc, @CveProveedor," +
+                        "           @CveCliente, @Cancelado, @CveUsarioCaptu, @CveCentroCosto, @NoMovtoTra," +
+                        "           @DocTra)";
+            return db.InsertarRegistro(sql, ArrParametros);
+        }
 
         public int AddRegInventarioMov()
         {
@@ -94,7 +72,7 @@ namespace GAFE
                         "           CveCliente, Cancelado, CveUsarioCaptu, CveCentroCosto, NoMovtoTra," +
                         "           DocTra) " +
                          "values( @NoMovimiento,@FechaMovimiento, @CveAlmacenMov, @CveTipoMov, @EntSal," +
-                        "           @NoDoc, @Documento, @CveAlmacenDes, @NoMovimientoDest, @EntSalDest," +
+                        "           @NoDoc, @Documento, @CveAlmacenDes, @CveTipoMovDest, @EntSalDest," +
                         "           @Modulo, @TipoDoc, @SerieDoc, @FolioDocOrigen, @Descuento," +
                         "           @TotalDscto, @TIva, @SubTotal, @TotalDoc, @CveProveedor," +
                         "           @CveCliente, @Cancelado, @CveUsarioCaptu, @CveCentroCosto, @NoMovtoTra," +
@@ -106,7 +84,7 @@ namespace GAFE
         public int UpdateInventarioMov()
         {
             string sql = "Update Inv_MovtosMaster set FechaMovimiento=@FechaMovimiento, CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
-                        "           NoDoc=@NoDoc, Documento=@Documento, CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@NoMovimientoDest, EntSalDest=@EntSalDest," +
+                        "           NoDoc=@NoDoc, Documento=@Documento, CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
                         "           Modulo=@Modulo, TipoDoc=@TipoDoc, SerieDoc=@SerieDoc, FolioDocOrigen=@FolioDocOrigen, Descuento=@Descuento," +
                         "           TotalDscto=@TotalDscto, TIva=@TIva, SubTotal=@SubTotal, TotalDoc=@TotalDoc, CveProveedor=@CveProveedor," +
                         "           CveCliente=@CveCliente, Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu, CveCentroCosto=@CveCentroCosto, NoMovtoTra=@NoMovtoTra," +

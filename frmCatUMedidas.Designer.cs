@@ -48,6 +48,7 @@
             this.grdView = new System.Windows.Forms.DataGridView();
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
@@ -287,11 +288,26 @@
             this.Nombre.ReadOnly = true;
             this.Nombre.Width = 350;
             // 
+            // cmdSeleccionar
+            // 
+            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSeleccionar.Location = new System.Drawing.Point(109, 221);
+            this.cmdSeleccionar.Name = "cmdSeleccionar";
+            this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
+            this.cmdSeleccionar.TabIndex = 21;
+            this.cmdSeleccionar.Text = "Seleccionar";
+            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdSeleccionar.UseVisualStyleBackColor = false;
+            this.cmdSeleccionar.Visible = false;
+            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
             // frmCatUMedidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 399);
+            this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -301,9 +317,9 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 459);
+            this.MaximumSize = new System.Drawing.Size(515, 449);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 286);
+            this.MinimumSize = new System.Drawing.Size(515, 300);
             this.Name = "frmCatUMedidas";
             this.ShowIcon = false;
             this.Text = "Catálogo de Medidas";
@@ -339,5 +355,6 @@
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.Button cmdSeleccionar;
     }
 }

@@ -14,12 +14,11 @@ using System.IO;
 
 namespace GAFE
 {
-    public partial class frmCatLineas : Form
+    public partial class frmCatMarcas : Form
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
-        public String KeyCampo = null;
 
         private MsSql db = null;
         //private string Perfil;
@@ -35,23 +34,22 @@ namespace GAFE
         private string Password;
 
 
-        public frmCatLineas()
+        public frmCatMarcas()
         {
             InitializeComponent();
         }
 
 
-        public frmCatLineas(MsSql Odat, string perfil, int op=1)
+        public frmCatMarcas(MsSql Odat, string perfil)
         {
             InitializeComponent();
             db = Odat;
-            opcion = op;
             // Perfil = perfil;
         }
 
 
 
-        private void frmCatLineas_Load(object sender, EventArgs e)
+        private void frmCatMarcas_Load(object sender, EventArgs e)
         {
             /*
             uT = new clsUtil(db, Perfil);
@@ -89,17 +87,6 @@ namespace GAFE
             }
             this.Size = this.MinimumSize;
             LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            cmdSeleccionar.Visible = false;
-            if (opcion>3)
-            {
-                
-                cmdAceptar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdConsultar.Visible = true;
-                cmdSeleccionar.Visible = true;
-            }
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -119,15 +106,15 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatLineas pui = new PuiCatLineas(db);
+            PuiCatMarcas pui = new PuiCatMarcas(db);
 
-            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLinea();
-            txtClaveLinea.Text = pui.keyCveLinea;
+            pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarMarcas();
+            txtClaveMarcas.Text = pui.keyCveMarca;
             txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
 
-            txtClaveLinea.Enabled = false;
+            txtClaveMarcas.Enabled = false;
 
         }
 
@@ -140,13 +127,13 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatLineas pui = new PuiCatLineas(db);
+            PuiCatMarcas pui = new PuiCatMarcas(db);
 
-            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLinea();
-            txtClaveLinea.Text = pui.keyCveLinea;
+            pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarMarcas();
+            txtClaveMarcas.Text = pui.keyCveMarca;
             txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
 
             OpcionControles(false);
         }
@@ -158,9 +145,9 @@ namespace GAFE
                 if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatLineas pui = new PuiCatLineas(db);
-                    pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaLinea();
+                    PuiCatMarcas pui = new PuiCatMarcas(db);
+                    pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EliminaMarcas();
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -177,8 +164,8 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiCatLineas pui = new PuiCatLineas(db);
-            DatosTbl = pui.BuscaLinea(txtBuscar.Text);
+            PuiCatMarcas pui = new PuiCatMarcas(db);
+            DatosTbl = pui.BuscaMarcas(txtBuscar.Text);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
 
@@ -213,7 +200,7 @@ namespace GAFE
             OpcionControles(true);
         }
 
-        private void frmCatLineas_KeyDown(object sender, KeyEventArgs e)
+        private void frmCatMarcas_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -227,8 +214,8 @@ namespace GAFE
 
         private void LlenaGridView()
         {
-            PuiCatLineas pui = new PuiCatLineas(db);
-            DatosTbl = pui.ListarLineas();
+            PuiCatMarcas pui = new PuiCatMarcas(db);
+            DatosTbl = pui.ListarMarcas();
             DataSet Ds = new DataSet();
 
             try
@@ -253,14 +240,14 @@ namespace GAFE
         {
             if (Validar())
             {
-                PuiCatLineas pui = new PuiCatLineas(db);
+                PuiCatMarcas pui = new PuiCatMarcas(db);
 
-                pui.keyCveLinea = txtClaveLinea.Text;
+                pui.keyCveMarca = txtClaveMarcas.Text;
                 pui.cmpDescripcion = txtDescripcion.Text;
-                pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+                pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
 
 
-                if (pui.AgregarLinea() >= 1)
+                if (pui.AgregarMarcas() >= 1)
                 {
                     MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
@@ -277,13 +264,13 @@ namespace GAFE
             {
                 if (Validar())
                 {
-                    PuiCatLineas pui = new PuiCatLineas(db);
+                    PuiCatMarcas pui = new PuiCatMarcas(db);
 
-                    pui.keyCveLinea = txtClaveLinea.Text;
+                    pui.keyCveMarca = txtClaveMarcas.Text;
                     pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+                    pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
 
-                    if (pui.ActualizaLinea() >= 0)
+                    if (pui.ActualizaMarcas() >= 0)
                     {
                         MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
@@ -306,14 +293,14 @@ namespace GAFE
         {
             Boolean dv = true;
             ClsUtilerias Util = new ClsUtilerias();
-            if (String.IsNullOrEmpty(txtClaveLinea.Text))
+            if (String.IsNullOrEmpty(txtClaveMarcas.Text))
             {
                 MessageBox.Show("Código: No puede ir vacío.", "CatLineaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
-                if (!Util.LetrasNum(txtClaveLinea.Text))
+                if (!Util.LetrasNum(txtClaveMarcas.Text))
                 {
                     MessageBox.Show("Código: Contiene caracteres no validos.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
@@ -341,32 +328,25 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            txtClaveLinea.Enabled = Op;
+            txtClaveMarcas.Enabled = Op;
             txtDescripcion.Enabled = Op;
-            cboEstatus.Enabled = Op;
+            chkEstatus.Enabled = Op;
         }
 
         private void LimpiarControles()
         {
-            txtClaveLinea.Text = "";
+            txtClaveMarcas.Text = "";
             txtDescripcion.Text = "";
-            cboEstatus.Text = "";
         }
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (opcion > 3)
-                cmdSeleccionar_Click(sender, e);
-            else
-                cmEditar_Click(sender, e);
+            cmEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            if (opcion > 3)
-                cmdSeleccionar_Click(sender, e);
-            else
-                cmEditar_Click(sender, e);
+            cmEditar_Click(sender, e);
         }
 
 
@@ -398,22 +378,5 @@ namespace GAFE
                 Password = nPassword[i++].InnerText;
             }
         }
-
-        private void cmdSeleccionar_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
-                     MessageBoxIcon.Exclamation);
-            }
-        }
-
-       
     }
 }

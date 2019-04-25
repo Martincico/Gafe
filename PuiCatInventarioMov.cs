@@ -39,7 +39,7 @@ namespace GAFE
         private string DocTra;
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[18, 2];
+        private object[,] MatParam = new object[26, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -150,7 +150,7 @@ namespace GAFE
             set { TotalDscto = value; }
         }
 
-        public double cmpIva
+        public double cmpTIva
         {
             get { return TIva; }
             set { TIva = value; }
@@ -209,9 +209,17 @@ namespace GAFE
             get { return DocTra; }
             set { DocTra = value; }
         }
-        
+
 
         #endregion
+
+        public int AgregarBlanco()
+        {
+            CargaParametroMat();
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
+            return OpRadd.AddRegBlanco();
+        }
+
 
         public int AgregarInventarioMov()
         {
@@ -297,7 +305,6 @@ namespace GAFE
             return OpBsq.BuscaInventarioMov(buscar);
         }
 
-        
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;

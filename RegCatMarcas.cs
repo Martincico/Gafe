@@ -3,23 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using System.Data;
 using System.Data.SqlClient;
 using DatSql;
-using System.Windows.Forms;
-
-
 
 namespace GAFE
 {
-    class RegCatAlmacen
+    class RegCatMarcas
     {
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
         //private string ClaveReg;
 
-        public RegCatAlmacen(object[,] Param, MsSql Odat)
+        public RegCatMarcas(object[,] Param, MsSql Odat)
         {
             ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
             for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
@@ -28,7 +23,7 @@ namespace GAFE
             db = Odat;
         }
 
-        public RegCatAlmacen(MsSql Odat) { db = Odat; }
+        public RegCatMarcas(MsSql Odat) { db = Odat; }
 
         /*
         public void Conn()
@@ -47,37 +42,33 @@ namespace GAFE
         }
     */
 
-        public int AddRegAlmacen()
+        public int AddRegMarcas()
         {
-            string sql = "Insert into Inv_CatAlmacenes (ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo) " +
-                         "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta,@EsDeConsigna,@NumRojo)";
+            string sql = "Insert into Inv_Marcas (CveMarca,Descripción,Estatus) " +
+                         "values(@CveMarca,@Descripcion,@Estatus)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
 
-        public int UpdateAlmacen()
+        public int UpdateMarcas()
         {
-            string sql = "Update Inv_CatAlmacenes set Descripcion = @Descripcion, " +
-                         "Estatus = @Estatus, " +
-                         "EsDeCompra = @EsDeCompra, " +
-                         "EsDeVenta = @EsDeVenta, " +
-                         "EsDeConsigna = @EsDeConsigna, " +
-                         "NumRojo = @NumRojo " +
-                         "Where ClaveAlmacen = @ClaveAlmacen";
+            string sql = "Update Inv_Marcas set Descripcion = @Descripcion, " +
+                         "Estatus = @Estatus " +
+                         "Where CveMarca = @CveMarca";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int DeleteAlmacen()
+        public int DeleteMarcas()
         {
-            string sql = "Delete from Inv_CatAlmacenes where ClaveAlmacen = @ClaveAlmacen";
+            string sql = "Delete from Inv_Marcas where CveMarca = @CveMarca";
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
-        public SqlDataAdapter ListAlmacenes()
+        public SqlDataAdapter ListMarcas()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion " +
-                         "from Inv_CatAlmacenes";
+            string Sql = "Select CveMarca,Descripcion " +
+                         "from Inv_Marcas";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -85,32 +76,22 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo " +
-                          "from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
+            string Sql = "Select CveMarca,Descripcion,Estatus " +
+                          "from Inv_Marcas where CveMarca =@CveMarca";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-        public SqlDataAdapter BuscaAlmacen(string bsq)
+        public SqlDataAdapter BuscaMarcas(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = "Select ClaveAlmacen,Descripcion " +
-               "from Inv_CatAlmacenes " +
-               "where ClaveAlmacen like '%" + bsq + "%' OR " +
+            string sql = "Select CveMarca,Descripcion " +
+               "from Inv_Marcas " +
+               "where CveMarca like '%" + bsq + "%' OR " +
                "Descripcion like '%" + bsq + "%' ";
 
             dt = db.SelectDA(sql);
             return dt;
         }
-
-        public SqlDataAdapter CboInv_CatAlmacenes()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion " +
-                         "from Inv_CatAlmacenes where Estatus ='A' ";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
-
     }
 }

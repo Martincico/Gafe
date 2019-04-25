@@ -9,11 +9,11 @@ using DatSql;
 
 namespace GAFE
 {
-    class PuiCatLineas
+    class PuiCatMarcas
     {
-        private string CveLinea;
+        private string CveMarca;
         private string Descripcion;
-        private string Estatus;
+        private int Estatus;
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
         private object[,] MatParam = new object[3, 2];
@@ -22,7 +22,7 @@ namespace GAFE
         private MsSql db = null;
 
 
-        public PuiCatLineas(MsSql Odat)
+        public PuiCatMarcas(MsSql Odat)
         {
             //MatParam = new object[9,2]; 
             db = Odat;
@@ -31,10 +31,10 @@ namespace GAFE
 
         #region Definicion de propiedades de la Linea
 
-        public string keyCveLinea
+        public string keyCveMarca
         {
-            get { return CveLinea; }
-            set { CveLinea = value; }
+            get { return CveMarca; }
+            set { CveMarca = value; }
         }
 
         public string cmpDescripcion
@@ -43,7 +43,7 @@ namespace GAFE
             set { Descripcion = value; }
         }
 
-        public string cmpEstatus
+        public int cmpEstatus
         {
             get { return Estatus; }
             set { Estatus = value; }
@@ -52,81 +52,73 @@ namespace GAFE
 
         #endregion
 
-        public int AgregarLinea()
+        public int AgregarMarcas()
         {
             CargaParametroMat();
-            RegCatLinea OpRadd = new RegCatLinea(MatParam, db);
-            return OpRadd.AddRegLinea();
+            RegCatMarcas OpRadd = new RegCatMarcas(MatParam, db);
+            return OpRadd.AddRegMarcas();
         }
 
-        public int ActualizaLinea()
+        public int ActualizaMarcas()
         {
             CargaParametroMat();
-            RegCatLinea OpUp = new RegCatLinea(MatParam, db);
-            return OpUp.UpdateLinea();
+            RegCatMarcas OpUp = new RegCatMarcas(MatParam, db);
+            return OpUp.UpdateMarcas();
 
         }
 
-        public int EliminaLinea()
+        public int EliminaMarcas()
         {
             //CargaParametroMat();
             MatParam = new object[1, 2];
-            MatParam[0, 0] = "CveLinea"; MatParam[0, 1] = CveLinea;
-            RegCatLinea OpDel = new RegCatLinea(MatParam, db);
-            return OpDel.DeleteLinea();
+            MatParam[0, 0] = "CveMarca"; MatParam[0, 1] = CveMarca;
+            RegCatMarcas OpDel = new RegCatMarcas(MatParam, db);
+            return OpDel.DeleteMarcas();
         }
 
-        public SqlDataAdapter ListarLineas()
+        public SqlDataAdapter ListarMarcas()
         {
             CargaParametroMat();
-            RegCatLinea OpLst = new RegCatLinea(db);
-            return OpLst.ListLineas();
+            RegCatMarcas OpLst = new RegCatMarcas(db);
+            return OpLst.ListMarcas();
         }
 
-        public void EditarLinea()
+        public void EditarMarcas()
         {
             MatParam = new object[1, 2];
-            MatParam[0, 0] = "CveLinea"; MatParam[0, 1] = CveLinea;
-            RegCatLinea OpEdit = new RegCatLinea(MatParam, db);
+            MatParam[0, 0] = "CveMarca"; MatParam[0, 1] = CveMarca;
+            RegCatMarcas OpEdit = new RegCatMarcas(MatParam, db);
             Datos = OpEdit.RegistroActivo();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
             object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
 
-            CveLinea = ObjA[0].ToString();
+            CveMarca = ObjA[0].ToString();
             Descripcion = ObjA[1].ToString();
-            Estatus = ObjA[2].ToString();
+            Estatus = int.Parse(ObjA[2].ToString());
 
 
         }
 
-        public SqlDataAdapter BuscaLinea(string buscar)
+        public SqlDataAdapter BuscaMarcas(string buscar)
         {
             /* MatParam = new object[4, 2];
              MatParam[0, 0] = "CodLinea"; MatParam[0, 1] = buscar;
              MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
              MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
              MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
-             RegCatLinea OpBsq = new RegCatLinea(MatParam);/
+             RegCatMarcas OpBsq = new RegCatMarcas(MatParam);/
              */
-            RegCatLinea OpBsq = new RegCatLinea(db);
-            return OpBsq.BuscaLinea(buscar);
+            RegCatMarcas OpBsq = new RegCatMarcas(db);
+            return OpBsq.BuscaMarcas(buscar);
         }
-        public DataTable CboLinea()
-        {
-            CargaParametroMat();
-            RegCatLinea OpLst = new RegCatLinea(db);
-            DataSet Cbo = new DataSet();
-            OpLst.ComboLinea().Fill(Cbo);
-            return Cbo.Tables[0];
-        }
+
 
         private void CargaParametroMat()
         {
-            MatParam[0, 0] = "CveLinea"; MatParam[0, 1] = CveLinea;
+            MatParam[0, 0] = "CveMarca"; MatParam[0, 1] = CveMarca;
             MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = Descripcion;
             MatParam[2, 0] = "Estatus"; MatParam[2, 1] = Estatus;
         }
-
     }
 }

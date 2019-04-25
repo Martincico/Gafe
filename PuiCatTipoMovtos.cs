@@ -190,21 +190,11 @@ namespace GAFE
             return OpLst.ListTipoMovtos();
         }
 
-        public DataTable CboLstClaseMov()
+        public DataTable CboInv_TipoMovtos(String cve = "")
         {
-            //CargaParametroMat();
             RegCatTipoMov OpLst = new RegCatTipoMov(db);
             DataSet Cbo = new DataSet();
-            OpLst.CboLstClaseMov().Fill(Cbo);
-            return Cbo.Tables[0];
-        }
-
-        public DataTable CboLstMovRel()
-        {
-            //CargaParametroMat();
-            RegCatTipoMov OpLst = new RegCatTipoMov(db);
-            DataSet Cbo = new DataSet();
-            OpLst.CboLstMovRel().Fill(Cbo);
+            OpLst.CboInv_TipoMovtos(cve).Fill(Cbo);
             return Cbo.Tables[0];
         }
 
