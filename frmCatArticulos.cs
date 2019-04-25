@@ -75,16 +75,15 @@ namespace GAFE
                 Application.Exit();
             }
             // Combos
-            PuiCatLineas lin = new PuiCatLineas(db);
-            cboLinea.DataSource = lin.CboLinea();
-            PuiCatUMedidas UM = new PuiCatUMedidas(db);
-            cboUMedida1.DataSource = UM.CboUMedida();            
-            cboUMedida2.DataSource = UM.CboUMedida();            
-            cboUMedidaEquival.DataSource = UM.CboUMedida();
+            cboLinea.DataSource = Art.Linea.CboLinea();            
+            cboUMedida1.DataSource = Art.UMedida1.CboUMedida();            
+            cboUMedida2.DataSource = Art.UMedida2.CboUMedida();
+            cboUMedidaEquival.DataSource = Art.UMedidaEquiv.CboUMedida();
             cboClase1.DataSource = Art.CboClase();
             cboClase2.DataSource = Art.CboClase();
             cboClase3.DataSource = Art.CboClase();
             cboImpuesto.DataSource = Art.CboImpuesto();
+            cboMarca.DataSource = Art.CboMarca();
 
 
 
@@ -181,7 +180,7 @@ namespace GAFE
             cboClase2.SelectedValue = Art.Clase2.keyCveClase;
             cboClase1.SelectedValue = Art.Clase1.keyCveClase;
             cboImpuesto.SelectedValue = Art.Impuesto.keyCveImpuesto;
-            //Art.= cmdMarca.SelectedValue.ToString();
+            cboMarca.SelectedValue= Art.Marca.keyCveMarca;
             //Art.= cmdModelo.SelectedValue.ToString();
             cboUMedida1.SelectedValue = Art.UMedida1.keyCveUMedida;
             cboUMedida2.SelectedValue = Art.UMedida2.keyCveUMedida;
@@ -221,7 +220,7 @@ namespace GAFE
                 Art.Clase1.keyCveClase = cboClase1.SelectedValue.ToString();
             if (cboImpuesto.SelectedValue != null)
                 Art.Impuesto.keyCveImpuesto = cboImpuesto.SelectedValue.ToString();
-            //Art.= cmdMarca.SelectedValue.ToString();
+            Art.Marca.keyCveMarca= cboMarca.SelectedValue.ToString();
             //Art.= cmdModelo.SelectedValue.ToString();
             if (cboUMedida1.SelectedValue != null)
                 Art.UMedida1.keyCveUMedida = cboUMedida1.SelectedValue.ToString();
@@ -264,8 +263,8 @@ namespace GAFE
             cboClase2.Enabled = Op;
             cboClase1.Enabled = Op;
             cboImpuesto.Enabled = Op;
-            cmdMarca.Enabled = Op;
-            cmdModelo.Enabled = Op;
+            cboMarca.Enabled = Op;
+            //cboModelo.Enabled = Op;
             cboUMedida1.Enabled = Op;
             cboUMedida2.Enabled = Op;
             cboUMedidaEquival.Enabled = Op;
@@ -340,14 +339,9 @@ namespace GAFE
             
             if (opfFoto.ShowDialog() == DialogResult.OK)
             {
-                //Get the path of specified file
                 pbArticulo.Image= Image.FromFile(opfFoto.FileName);
 
-                //Read the contents of the file into a stream
-
-               
-                
-                
+              
             }
         }
     }

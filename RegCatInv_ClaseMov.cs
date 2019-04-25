@@ -3,23 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using System.Data;
 using System.Data.SqlClient;
 using DatSql;
-using System.Windows.Forms;
-
-
 
 namespace GAFE
 {
-    class RegCatAlmacen
+    class RegCatInv_ClaseMov
     {
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
         //private string ClaveReg;
 
-        public RegCatAlmacen(object[,] Param, MsSql Odat)
+        public RegCatInv_ClaseMov(object[,] Param, MsSql Odat)
         {
             ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
             for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
@@ -28,7 +23,7 @@ namespace GAFE
             db = Odat;
         }
 
-        public RegCatAlmacen(MsSql Odat) { db = Odat; }
+        public RegCatInv_ClaseMov(MsSql Odat) { db = Odat; }
 
         /*
         public void Conn()
@@ -47,37 +42,32 @@ namespace GAFE
         }
     */
 
-        public int AddRegAlmacen()
+        public int AddRegInv_ClaseMov()
         {
-            string sql = "Insert into Inv_CatAlmacenes (ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo) " +
-                         "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta,@EsDeConsigna,@NumRojo)";
+            string sql = "Insert into Inv_ClaseMov (CveClsMov,Descripción) " +
+                         "values(@CveClsMov,@Descripcion)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
 
-        public int UpdateAlmacen()
+        public int UpdateInv_ClaseMov()
         {
-            string sql = "Update Inv_CatAlmacenes set Descripcion = @Descripcion, " +
-                         "Estatus = @Estatus, " +
-                         "EsDeCompra = @EsDeCompra, " +
-                         "EsDeVenta = @EsDeVenta, " +
-                         "EsDeConsigna = @EsDeConsigna, " +
-                         "NumRojo = @NumRojo " +
-                         "Where ClaveAlmacen = @ClaveAlmacen";
+            string sql = "Update Inv_ClaseMov set Descripcion = @Descripcion " +
+                         "Where CveClsMov = @CveClsMov";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int DeleteAlmacen()
+        public int DeleteInv_ClaseMov()
         {
-            string sql = "Delete from Inv_CatAlmacenes where ClaveAlmacen = @ClaveAlmacen";
+            string sql = "Delete from Inv_ClaseMov where CveClsMov = @CveClsMov";
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
-        public SqlDataAdapter ListAlmacenes()
+        public SqlDataAdapter ListInv_ClaseMov()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion " +
-                         "from Inv_CatAlmacenes";
+            string Sql = "Select CveClsMov,Descripcion " +
+                         "from Inv_ClaseMov";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -85,29 +75,29 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo " +
-                          "from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
+            string Sql = "Select CveClsMov,Descripcion" +
+                          "from Inv_ClaseMov where CveClsMov =@CveClsMov";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-        public SqlDataAdapter BuscaAlmacen(string bsq)
+        public SqlDataAdapter BuscaInv_ClaseMov(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = "Select ClaveAlmacen,Descripcion " +
-               "from Inv_CatAlmacenes " +
-               "where ClaveAlmacen like '%" + bsq + "%' OR " +
+            string sql = "Select CveClsMov,Descripcion " +
+               "from Inv_ClaseMov " +
+               "where CveClsMov like '%" + bsq + "%' OR " +
                "Descripcion like '%" + bsq + "%' ";
 
             dt = db.SelectDA(sql);
             return dt;
         }
 
-        public SqlDataAdapter CboInv_CatAlmacenes()
+        public SqlDataAdapter CboInv_ClaseMov()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion " +
-                         "from Inv_CatAlmacenes where Estatus ='A' ";
+            string Sql = "SELECT '0' as CveClsMov, 'SELECCIONE' as Descripcion UNION Select CveClsMov, Descripcion " +
+                         "from Inv_ClaseMov";
             dt = db.SelectDA(Sql);
             return dt;
         }

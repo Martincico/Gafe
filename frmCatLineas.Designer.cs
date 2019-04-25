@@ -48,6 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveLinea = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -59,9 +60,9 @@
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 3);
+            this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 58);
+            this.panel1.Size = new System.Drawing.Size(495, 55);
             this.panel1.TabIndex = 8;
             // 
             // cmdBuscar
@@ -100,7 +101,7 @@
             // 
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(13, 223);
+            this.cmdConsultar.Location = new System.Drawing.Point(13, 211);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 9;
@@ -113,7 +114,7 @@
             // 
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(403, 223);
+            this.cmdEliminar.Location = new System.Drawing.Point(403, 211);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 12;
@@ -126,7 +127,7 @@
             // 
             this.cmEditar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(303, 223);
+            this.cmEditar.Location = new System.Drawing.Point(303, 211);
             this.cmEditar.Name = "cmEditar";
             this.cmEditar.Size = new System.Drawing.Size(94, 36);
             this.cmEditar.TabIndex = 11;
@@ -139,7 +140,7 @@
             // 
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(206, 223);
+            this.cmdAgregar.Location = new System.Drawing.Point(206, 211);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 10;
@@ -157,7 +158,7 @@
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(12, 67);
+            this.grdView.Location = new System.Drawing.Point(12, 58);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(474, 150);
@@ -189,7 +190,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveLinea);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(1, 265);
+            this.panel2.Location = new System.Drawing.Point(1, 267);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(495, 133);
             this.panel2.TabIndex = 14;
@@ -282,11 +283,26 @@
             this.lblCodEmpleado.TabIndex = 1;
             this.lblCodEmpleado.Text = "Codigo";
             // 
+            // cmdSeleccionar
+            // 
+            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSeleccionar.Location = new System.Drawing.Point(109, 211);
+            this.cmdSeleccionar.Name = "cmdSeleccionar";
+            this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
+            this.cmdSeleccionar.TabIndex = 15;
+            this.cmdSeleccionar.Text = "Seleccionar";
+            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdSeleccionar.UseVisualStyleBackColor = false;
+            this.cmdSeleccionar.Visible = false;
+            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
             // frmCatLineas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 410);
+            this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -296,9 +312,9 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 459);
+            this.MaximumSize = new System.Drawing.Size(515, 449);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 286);
+            this.MinimumSize = new System.Drawing.Size(515, 300);
             this.Name = "frmCatLineas";
             this.ShowIcon = false;
             this.Text = "Catálogo de lineas";
@@ -334,5 +350,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtClaveLinea;
         private System.Windows.Forms.Label lblCodEmpleado;
+        private System.Windows.Forms.Button cmdSeleccionar;
     }
 }

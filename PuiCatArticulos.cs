@@ -32,7 +32,7 @@ namespace GAFE
 
         public PuiCatLineas Linea;
         public PuiCatImpuestos Impuesto;
-       // public PuiCatMarcas Marca;
+        public PuiCatMarcas Marca;
         public PuiCatClases Clase1;
         public PuiCatClases Clase2;
         public PuiCatClases Clase3;
@@ -43,7 +43,7 @@ namespace GAFE
         private String Modelo;
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[22, 2];
+        private object[,] MatParam = new object[23, 2];
         //private object[,] MatParam = new object[26, 2];
         private SqlDataAdapter Datos;
 
@@ -63,6 +63,7 @@ namespace GAFE
             UMedida1 = new PuiCatUMedidas(db);
             UMedida2=new PuiCatUMedidas(db);
             UMedidaEquiv=new PuiCatUMedidas(db);
+            Marca = new PuiCatMarcas(db);
         }
 
 
@@ -284,7 +285,7 @@ namespace GAFE
             Descripcion = objA[5].ToString();
             Modelo = objA[6].ToString();
             this.Linea.keyCveLinea = objA[7].ToString();
-            //this.Marca.keyClaveMarca = objA[8].ToString();
+            this.Marca.keyCveMarca = objA[8].ToString();
             this.Clase1.keyCveClase = objA[9].ToString();
             this.Clase2.keyCveClase = objA[10].ToString();
             this.Clase3.keyCveClase = objA[11].ToString();
@@ -364,13 +365,13 @@ namespace GAFE
             MatParam[18, 0] = "CveClase1";   MatParam[18, 1] = Clase1.keyCveClase;
             MatParam[19, 0] = "CveClase2";   MatParam[19, 1] = Clase2.keyCveClase;
             MatParam[20, 0] = "CveClase3";   MatParam[20, 1] = Clase3.keyCveClase;
-            MatParam[21, 0] = "Foto"; MatParam[21, 1] = Foto;
-            if (Foto==null)
-                MatParam[21, 1] = DBNull.Value;
-            //MatParam[22, 0] = "Modelo"; MatParam[22, 1] = Modelo;
-            //MatParam[23, 0] = "CveMarca"; MatParam[23, 1] = CveMarca;
+            MatParam[21, 0] = "Foto";        MatParam[21, 1] = Foto;
+            MatParam[22, 0] = "CveMarca";    MatParam[22, 1] = Marca.keyCveMarca;
+
+
             //MatParam[24, 0] = "FecUltCompra"; MatParam[24, 1] = FecUltCompra;
             //MatParam[25, 0] = "CveProveedorUlt"; MatParam[25, 1] = CveProveedorUlt;
+            //MatParam[22, 0] = "Modelo"; MatParam[22, 1] = Modelo;
 
         }
     }

@@ -143,6 +143,13 @@ namespace GAFE
             return OpBsq.BuscaAlmacen(buscar);
         }
 
+        public DataTable CboInv_CatAlmacenes()
+        {
+            RegCatAlmacen OpLst = new RegCatAlmacen(db);
+            DataSet Cbo = new DataSet();
+            OpLst.CboInv_CatAlmacenes().Fill(Cbo);
+            return Cbo.Tables[0];
+        }
 
         private void CargaParametroMat()
         {

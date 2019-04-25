@@ -14,9 +14,48 @@ namespace GAFE
 {
     public partial class frmRegInventarioMovtos : Form
     {
-        private int opcion;
+        private int opcion, TipoVal = 0;
         private MsSql db = null;
         private int folMovto;
+
+        //Configuración de Tipo de Movimiento
+        private string _CveTipoMov;
+        private string _Descripcion;
+        private string _DescCorta;
+        private string _EntSal;
+        private string _CveClsMov;
+        private string _Foliador;
+        private int    _EditaFoli;
+        private int    _EsTraspaso;
+        private string _TipoMovRel;
+        private string _FmtoImpresion;
+        private int    _AfectaCosto;
+        private int    _SugiereCosto;
+        private int    _MuestraCosto;
+        private int    _EditaCosto;
+        private int    _SolicitaCosto;
+        private int    _PideCentroCosto;
+        private int    _CalculaIva;
+
+        //Configuración de Tipo de Movimiento RELACION
+        private string _CveTipoMovRel;
+        private string _DescripcionRel;
+        private string _DescCortaRel;
+        private string _EntSalRel;
+        private string _CveClsMovRel;
+        private string _FoliadorRel;
+        private int _EditaFoliRel;
+        private int _EsTraspasoRel;
+        private string _TipoMovRelRel;
+        private string _FmtoImpresionRel;
+        private int _AfectaCostoRel;
+        private int _SugiereCostoRel;
+        private int _MuestraCostoRel;
+        private int _EditaCostoRel;
+        private int _SolicitaCostoRel;
+        private int _PideCentroCostoRel;
+        private int _CalculaIvaRel;
+
 
 
         public frmRegInventarioMovtos()
@@ -33,6 +72,7 @@ namespace GAFE
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
             pui.keyNoMovimiento = "1";
             pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
+            pui.cmpCveAlmacenMov = "";
             pui.cmpCveTipoMov = "";
             pui.cmpEntSal = "";
             pui.cmpNoDoc = "";
@@ -58,59 +98,18 @@ namespace GAFE
             pui.cmpDocTra = "";
 
 
-            pui.AgregarBlanco();
+//            if(pui.AgregarBlanco() >=1);
+  //          {
+                LleCboClaseMov();
+                LlecboAlmaOri("ALM022");
+                OcultProvee(false);
+                OcultAlmDest(false);
+                
+    //        }
 
-            LimpiarControles();
-            OpcionControles(true);
-            //LleCboClaseMov();
-            switch (opcion)
-            {
-                case 1://Nuevo
-                    OpcionControles(true);
-                break;
-                case 2://Edita
-                    //get_Campos(Cod);
-                    //txtClaveTipoMov.Enabled = false;
-                break;
-                case 3://Consulta
-                    //get_Campos(Cod);
-                    OpcionControles(false);
-                    //cboTipoMovRel.Enabled = false;
-                break;
-
-            }
             
         }
-
-        private void get_Campos(String Cod)
-        {
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            //pui.keyCveTipoMov = Cod;
-            //pui.EditarTipoMov();
-/*
-            txtClaveTipoMov.Text = pui.keyCveTipoMov;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            txtDescCorta.Text = pui.cmpDescCorta;
-            rdbEntrada.Checked = pui.cmpEntSal == "E" ? true : false;
-            rdbSalida.Checked = pui.cmpEntSal == "S" ? true : false;
-            //cboCveClsMov.SelectedIndex = GetCboSelectIndex(cboCveClsMov, pui.cmpCveClsMov);
-            cboCveClsMov.SelectedValue = pui.cmpCveClsMov;
-            cboTipoMovRel.SelectedValue = pui.cmpTipoMovRel; 
-            txtFoliador.Text = pui.cmpFoliador;
-            chkEditaFoli.Checked = pui.cmpEditaFoli == 1 ? true : false;
-            chkEstraspaso.Checked = pui.cmpEsTraspaso == 1 ? true : false;
-            txtFmtoImpresion.Text = pui.cmpFmtoImpresion;
-            chkAfectaCosto.Checked = pui.cmpAfectaCosto == 1 ? true : false;
-            chkSugiereCosto.Checked = pui.cmpSugiereCosto == 1 ? true : false;
-            chkMuestraCosto.Checked = pui.cmpMuestraCosto == 1 ? true : false;
-            chkEditaCosto.Checked = pui.cmpEditaCosto == 1 ? true : false;
-
-            chkSolicitaCosto.Checked = pui.cmpSolicitaCosto == 1 ? true : false;
-            chkCalculaIva.Checked = pui.cmpCalculaIva == 1 ? true : false;
-            //chkEditaCosto.Checked = pui.cmpPideCentroCosto == 1 ? true : false;
-            chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
-            */
-        }
+        
 
 
         private void frmRegInventarioMovtos_KeyDown(object sender, KeyEventArgs e)
@@ -133,181 +132,218 @@ namespace GAFE
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
             this.Close();
         }
 
         private void Agregar()
         {
-            if (Validar())
-            {
-                //PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-
-                //if (pui.AgregarTipoMov() >= 1)
-                if (set_Campos() >= 1)
-                {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                    this.Close();
-                }
-
-            }
-        }
+                    }
 
         private void Editar()
         {
-            try
+
+        }
+
+
+
+        private void CargaInv_TipoMovtos()
+        {
+            PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
+            pui.keyCveTipoMov = Convert.ToString(cboTipoMovtos.SelectedValue);
+            pui.EditarTipoMov();
+
+            _CveTipoMov = pui.keyCveTipoMov;
+            _Descripcion = pui.cmpDescripcion;
+            _DescCorta = pui.cmpDescCorta;
+            _EntSal =  pui.cmpEntSal;
+            _CveClsMov = pui.cmpCveClsMov;
+            _TipoMovRel = pui.cmpTipoMovRel;
+            _Foliador = pui.cmpFoliador;
+            _EditaFoli = pui.cmpEditaFoli;
+            _EsTraspaso = pui.cmpEsTraspaso;
+            _FmtoImpresion = pui.cmpFmtoImpresion;
+            _AfectaCosto = pui.cmpAfectaCosto;
+            _SugiereCosto = pui.cmpSugiereCosto;
+            _MuestraCosto = pui.cmpMuestraCosto;
+            _EditaCosto = pui.cmpEditaCosto;
+            _SolicitaCosto = pui.cmpSolicitaCosto;
+            _CalculaIva = pui.cmpCalculaIva;
+        }
+
+        private void CargaInv_TipoMovtosRel()
+        {
+            PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
+            pui.keyCveTipoMov = Convert.ToString(_TipoMovRel);
+            pui.EditarTipoMov();
+
+            _CveTipoMovRel = pui.keyCveTipoMov;
+            _DescripcionRel = pui.cmpDescripcion;
+            _DescCortaRel = pui.cmpDescCorta;
+            _EntSalRel = pui.cmpEntSal;
+            _CveClsMovRel = pui.cmpCveClsMov;
+            _TipoMovRelRel = pui.cmpTipoMovRel;
+            _FoliadorRel = pui.cmpFoliador;
+            _EditaFoliRel = pui.cmpEditaFoli;
+            _EsTraspasoRel = pui.cmpEsTraspaso;
+            _FmtoImpresionRel = pui.cmpFmtoImpresion;
+            _AfectaCostoRel = pui.cmpAfectaCosto;
+            _SugiereCostoRel = pui.cmpSugiereCosto;
+            _MuestraCostoRel = pui.cmpMuestraCosto;
+            _EditaCostoRel = pui.cmpEditaCosto;
+            _SolicitaCostoRel = pui.cmpSolicitaCosto;
+            _CalculaIvaRel = pui.cmpCalculaIva;
+        }
+
+       
+
+        private void cboTipoMovtos_SelectedValueChanged(object sender, EventArgs e)
+        {
+            OcultProvee(false);
+            if (cboTipoMovtos.SelectedIndex >= 0)
             {
-                if (Validar())
+                CargaInv_TipoMovtos();
+                String CodTipMo = Convert.ToString(cboTipoMovtos.SelectedValue);
+                
+                switch (CodTipMo)
                 {
-                    //if (pui.ActualizaTipoMov() >= 0)
-                    if (set_Campos() >= 0)
-                    {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
-                        this.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
-                    "Error al editar", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    case "003": CargaInv_TipoMovtosRel(); break;
+                    case "502": CargaInv_TipoMovtosRel(); break;
+                    case "001":
+                        OcultProvee(true);
+                        TipoVal = 2;
+                        break;                }
             }
         }
 
 
-        public int set_Campos()
-        {
-            /*
-            string _tipomovrel = (cboCveClsMov.Text == "TRASPASO") ? Convert.ToString(cboTipoMovRel.SelectedValue) : "";
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            pui.keyCveTipoMov = txtClaveTipoMov.Text;
-            pui.cmpDescripcion = txtDescripcion.Text;
-            pui.cmpDescCorta = txtDescCorta.Text;
-            pui.cmpEntSal = rdbEntrada.Checked ? "E" : "S";
-            pui.cmpCveClsMov =  Convert.ToString(cboCveClsMov.SelectedValue);
-            pui.cmpTipoMovRel = _tipomovrel;
-            pui.cmpFoliador = txtFoliador.Text;
-            pui.cmpEditaFoli = chkEditaFoli.Checked ? 1 : 0;
-            pui.cmpEsTraspaso = chkEstraspaso.Checked ? 1 : 0;
-            pui.cmpFmtoImpresion = txtFmtoImpresion.Text;
-            pui.cmpAfectaCosto = chkAfectaCosto.Checked ? 1 : 0;
-            pui.cmpSugiereCosto = chkSugiereCosto.Checked ? 1 : 0;
-            pui.cmpMuestraCosto = chkMuestraCosto.Checked ? 1 : 0;
-            pui.cmpEditaCosto = chkEditaCosto.Checked ? 1 : 0;
-            pui.cmpSolicitaCosto = chkSolicitaCosto.Checked ? 1 : 0;
-            pui.cmpCalculaIva = chkCalculaIva.Checked ? 1 : 0;
-            pui.cmpPideCentroCosto = 0;
-            pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
-
-            return opcion == 1 ? pui.AgregarTipoMov() : pui.ActualizaTipoMov();
-            -*/
-            return 1;
-        }
-
-
-        private Boolean Validar()
-        {
-            Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
-            
-
-            return dv;
-        }
-
-
-
-        private void OpcionControles(Boolean Op)
-        {
-            /*
-            txtClaveTipoMov.Enabled = Op;
-            txtDescripcion.Enabled = Op;
-
-            txtDescCorta.Enabled = Op;
-            rdbEntrada.Enabled = Op;
-            rdbSalida.Enabled = Op;
-            cboCveClsMov.Enabled = Op;
-            txtFoliador.Enabled = Op;
-            chkEditaFoli.Enabled = Op;
-            chkEstraspaso.Enabled = Op;
-            //txtTipoMovRel.Text = pui.cmpTipoMovRel;
-            txtFmtoImpresion.Enabled = Op;
-            chkAfectaCosto.Enabled = Op;
-            chkSugiereCosto.Enabled = Op;
-            chkMuestraCosto.Enabled = Op;
-            chkEditaCosto.Enabled = Op;
-
-            chkSolicitaCosto.Enabled = Op;
-            chkCalculaIva.Enabled = Op;
-            //chkEditaCosto.Enabled = Op;
-            chkEstatus.Enabled = Op;
-            */
-        }
-
-        private void LimpiarControles()
-        {
-            /*
-            txtClaveTipoMov.Text = "";
-            txtDescripcion.Text = "";
-            */
-        }
-
-        private void cmdCancelar_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        /*
         private void LleCboClaseMov()
         {
-            
-            PuiCatInventarioMov lin = new PuiCatInventarioMov(db);
-            cboCveClsMov.DataSource = lin.CboLstClaseMov();
-            cboCveClsMov.ValueMember = "CveClsMov";
-            cboCveClsMov.DisplayMember = "Descripcion";
-        }
-
-        private void LleCboMovRel()
-        {
-            PuiCatInventarioMov lin = new PuiCatInventarioMov(db);
-            cboTipoMovRel.DataSource = lin.CboLstMovRel();
-            cboTipoMovRel.ValueMember = "CveTipoMov";
-            cboTipoMovRel.DisplayMember = "Descripcion";
+            PuiCatInv_ClaseMov lin = new PuiCatInv_ClaseMov(db);
+            cboClaseMov.DataSource = lin.CboInv_ClaseMov();
+            cboClaseMov.ValueMember = "CveClsMov";
+            cboClaseMov.DisplayMember = "Descripcion";
 
         }
 
-        private void cboCveClsMov_SelectedValueChanged(object sender, EventArgs e)
+        private void LlecboAlmaOri(String CveUser)
         {
-            if (cboCveClsMov.Text == "TRASPASO")
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboAlmaOri.DataSource = lin.CboInv_CatAlmacenes();
+            cboAlmaOri.ValueMember = "ClaveAlmacen";
+            cboAlmaOri.DisplayMember = "Descripcion";
+
+            cboAlmaOri.SelectedValue = CveUser;
+        }
+
+        private void LlecboAlmaDest()
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboAlmaDest.DataSource = lin.CboInv_CatAlmacenes();
+            cboAlmaDest.ValueMember = "ClaveAlmacen";
+            cboAlmaDest.DisplayMember = "Descripcion";
+        }
+
+        private void LlecboTipoMovtos(String cve)
+        {
+            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
+            cboTipoMovtos.DataSource = lin.CboInv_TipoMovtos(cve);
+            cboTipoMovtos.ValueMember = "CveTipoMov";
+            cboTipoMovtos.DisplayMember = "Descripcion";
+        }
+
+        private void LlecboProveedor()
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
+            cboProveedor.ValueMember = "ClaveAlmacen";
+            cboProveedor.DisplayMember = "Descripcion";
+        }
+
+
+
+    
+        private void cboClaseMov_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cboTipoMovtos.DataSource = null;
+            String val = Convert.ToString(cboClaseMov.SelectedValue);
+            //MessageBox.Show("Error conn" + "----" + val + "----" + cboClaseMov.SelectedIndex);
+            LlecboTipoMovtos(val);
+            if (cboClaseMov.Text == "TRASPASO")
             {
-                cboTipoMovRel.Enabled = true;
-                LleCboMovRel();
+                OcultAlmDest(true);
+                TipoVal = 1;
             }
             else
             {
-                cboTipoMovRel.Enabled = false;
-                cboTipoMovRel.Text = "";
+                OcultAlmDest(false);
+                TipoVal = 0;
             }
-
         }
-        */
 
-        /*Recorre un cbo y retorna el index
-         * 
-        private static int GetCboSelectIndex(ComboBox combobx, string value)
+        private void OcultProvee(Boolean op)
         {
-            for (int i = 0; i <= combobx.Items.Count - 1; i++)
-            {
-                DataRowView cb = (DataRowView)combobx.Items[i];
-                MessageBox.Show("Registro " + cb.Row.ItemArray[0].ToString(), "Confirmacion", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                if (cb.Row.ItemArray[0].ToString() == value)
-                    return i;
-            }
-            return -1;
+            lblProveedor.Visible = op;
+            cboProveedor.Visible = op;
+            if (op)
+                LlecboProveedor();
+            else
+                cboProveedor.DataSource = null;
         }
-        */
+
+        private void btnAddPartida_Click(object sender, EventArgs e)
+        {
+            if(ValidaTipoMov()==1)
+            {
+                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, 1, "");
+                Addp.ShowDialog();
+            }
+        }
+
+        private int ValidaTipoMov()
+        {
+            int sig = 1;
+
+            if (cboAlmaOri.SelectedIndex < 0)
+            {
+                sig = 0;
+                MessageBox.Show("Almacén Origen es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            if (_EsTraspaso == 1)
+            {
+                String AlmOri = Convert.ToString(cboAlmaOri.SelectedValue);
+                String AlmDest = Convert.ToString(cboAlmaDest.SelectedValue);
+                if(AlmOri.Equals(AlmDest))
+                {
+                    sig = 0;
+                    MessageBox.Show("Almacén Origen y Destino: No puede ser el mismo.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+            if (cboProveedor.Visible)
+            {
+                if (cboProveedor.SelectedIndex < 0) 
+                {
+                    sig = 0;
+                    MessageBox.Show("Proveedor es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+
+            //Validad si Proveedor esta visible haya seleccionado uno
+
+            return sig;
+        }
+
+
+        private void OcultAlmDest(Boolean op)
+        {
+            lblAlmaDest.Visible = op;
+            cboAlmaDest.Visible = op;
+            if (op)
+                LlecboAlmaDest();
+            else
+                cboAlmaDest.DataSource = null;
+        }
     }
 }

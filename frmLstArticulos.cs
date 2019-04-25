@@ -20,7 +20,7 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
-
+        public string KeyCampo = null;
         private MsSql db = null;
         //private string Perfil;
         //private clsUtil uT;
@@ -34,17 +34,17 @@ namespace GAFE
         private string Usuario;
         private string Password;
 
-
         public frmLstArticulos()
         {
             InitializeComponent();
         }
 
 
-        public frmLstArticulos(MsSql Odat, string perfil)
+        public frmLstArticulos(MsSql Odat, string perfil, int op = 1)
         {
             InitializeComponent();
             db = Odat;
+            opcion = op;
             // Perfil = perfil;
         }
 
@@ -52,8 +52,8 @@ namespace GAFE
 
         private void frmLstArticulos_Load(object sender, EventArgs e)
         {
-            
 
+            cmdSeleccionar.Visible = false;
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -62,7 +62,14 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            LlenaGridView();            
+            LlenaGridView();    
+            if(opcion>=3)
+            {
+                cmdAgregar.Visible = false;
+                cmdEliminar.Visible = false;
+                cmdEditar.Visible = false;
+                cmdSeleccionar.Visible = true;
+            }
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -189,12 +196,18 @@ namespace GAFE
         
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion >= 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion >= 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
 
@@ -230,6 +243,16 @@ namespace GAFE
         private void cmdSeleccionar_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
@@ -238,6 +261,6 @@ namespace GAFE
             {
                 cmdBuscar_Click(sender,e);
             }
-        }
+        }       
     }
 }

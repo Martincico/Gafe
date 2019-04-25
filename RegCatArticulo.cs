@@ -46,18 +46,18 @@ namespace GAFE
         {
             string sql = "INSERT INTO inv_CatArticulos (CveArticulo,  CodigoAlterno,  CodigoBarra,  CodigoSat,  Fecha_Alta,  Descripcion,  CveLinea, " +
                 "CveUMedida1,  CveUMedida2,  UMedidaEquiv2,  EsInventa,  DispVenta,  EsServicio,  DispKit,  EsKit,    Observacion,  Estatus," +
-                "  CveImpuesto, CveClase1,  CveClase2,  CveClase3, Foto) " +
-                // "Modelo, FecUltCompra,  CveProveedorUlt, CveMarca)" +
+                "  CveImpuesto, CveClase1,  CveClase2,  CveClase3, Foto, CveMarca ) " +
+                // "Modelo, FecUltCompra,  CveProveedorUlt)" +
                 "VALUES ( @CveArticulo,  @CodigoAlterno,  @CodigoBarra,  @CodigoSat,  @Fecha_Alta,  @Descripcion,  @CveLinea, " +
                 "@CveUMedida1,  @CveUMedida2, @UMedidaEquiv2,  @EsInventa,  @DispVenta,  @EsServicio,  @DispKit,  @EsKit,   @Observacion,  @Estatus,"+
-                "@CveImpuesto, @CveClase1,  @CveClase2,  @CveClase3, @Foto) ";
+                "@CveImpuesto, @CveClase1,  @CveClase2,  @CveClase3, @Foto, @CveMarca) ";
 
-            //"@Modelo, @FecUltCompra,  @CveProveedorUlt,@CveMarca )";
+            //"@Modelo, @FecUltCompra,  @CveProveedorUlt)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
         public int AddRegExistencias()
         {
-            string sql = "Insert into Inv_CatAlmacenes (ClaveArticulo, ClaveAlmacen) values(@CveArticulo,@ClaveAlmacen)";
+            string sql = "Insert into Inv_Existencias (ClaveArticulo, ClaveAlmacen) values(@ClaveArticulo,@ClaveAlmacen)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -87,7 +87,7 @@ namespace GAFE
                         "CveClase1=@CveClase1,  " +
                         "CveClase2=@CveClase2,  " +
                         //"Modelo=@Modelo,  " +
-                        //"CveMarca=@CveMarca,  " +
+                        "CveMarca=@CveMarca,  " +
                         //"FecUltCompra=@FecUltCompra,  " +
                         //"CveProveedorUlt=@CveProveedorUlt, " +
                         "CveClase3=@CveClase3  " +

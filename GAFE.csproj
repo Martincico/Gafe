@@ -163,6 +163,12 @@
     <Compile Include="frmMenuCatalogos.Designer.cs">
       <DependentUpon>frmMenuCatalogos.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPartidaInvMovtos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPartidaInvMovtos.designer.cs">
+      <DependentUpon>AddPartidaInvMovtos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRegTipoMovtos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,7 @@
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatArticulos.cs" />
+    <Compile Include="PuiCatInv_ClaseMov.cs" />
     <Compile Include="PuiCatMarcas.cs" />
     <Compile Include="PuiCatMunicipios.cs" />
     <Compile Include="PuiCatImpuestos.cs" />
@@ -196,6 +203,7 @@
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatArticulo.cs" />
+    <Compile Include="RegCatInv_ClaseMov.cs" />
     <Compile Include="RegCatMarcas.cs" />
     <Compile Include="RegCatMunicipio.cs" />
     <Compile Include="RegCatImpuesto.cs" />
@@ -250,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMenuCatalogos.resx">
       <DependentUpon>frmMenuCatalogos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPartidaInvMovtos.resx">
+      <DependentUpon>AddPartidaInvMovtos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegTipoMovtos.resx">
       <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>

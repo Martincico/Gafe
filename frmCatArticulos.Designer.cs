@@ -51,10 +51,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cboImpuesto = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmdMarca = new System.Windows.Forms.Button();
-            this.txtMarca = new System.Windows.Forms.TextBox();
-            this.txtModelo = new System.Windows.Forms.TextBox();
-            this.cmdModelo = new System.Windows.Forms.Button();
             this.cboUMedida1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cboUMedida2 = new System.Windows.Forms.ComboBox();
@@ -78,6 +74,8 @@
             this.pbArticulo = new System.Windows.Forms.PictureBox();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
+            this.cboMarca = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -306,54 +304,6 @@
             this.label12.Size = new System.Drawing.Size(69, 18);
             this.label12.TabIndex = 49;
             this.label12.Text = "Impuesto";
-            // 
-            // cmdMarca
-            // 
-            this.cmdMarca.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdMarca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdMarca.Location = new System.Drawing.Point(10, 216);
-            this.cmdMarca.Name = "cmdMarca";
-            this.cmdMarca.Size = new System.Drawing.Size(94, 28);
-            this.cmdMarca.TabIndex = 80;
-            this.cmdMarca.Text = "Marca...";
-            this.cmdMarca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdMarca.UseVisualStyleBackColor = false;
-            // 
-            // txtMarca
-            // 
-            this.txtMarca.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMarca.Location = new System.Drawing.Point(123, 216);
-            this.txtMarca.MaxLength = 20;
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.ReadOnly = true;
-            this.txtMarca.Size = new System.Drawing.Size(222, 24);
-            this.txtMarca.TabIndex = 1000;
-            // 
-            // txtModelo
-            // 
-            this.txtModelo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModelo.Location = new System.Drawing.Point(491, 216);
-            this.txtModelo.MaxLength = 20;
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.ReadOnly = true;
-            this.txtModelo.Size = new System.Drawing.Size(222, 24);
-            this.txtModelo.TabIndex = 1100;
-            // 
-            // cmdModelo
-            // 
-            this.cmdModelo.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdModelo.Location = new System.Drawing.Point(375, 216);
-            this.cmdModelo.Name = "cmdModelo";
-            this.cmdModelo.Size = new System.Drawing.Size(94, 28);
-            this.cmdModelo.TabIndex = 90;
-            this.cmdModelo.Text = "Modelo...";
-            this.cmdModelo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdModelo.UseVisualStyleBackColor = false;
             // 
             // cboUMedida1
             // 
@@ -604,11 +554,34 @@
             this.cmdAceptar.UseVisualStyleBackColor = false;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
+            // cboMarca
+            // 
+            this.cboMarca.DisplayMember = "Descripcion";
+            this.cboMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMarca.FormattingEnabled = true;
+            this.cboMarca.Location = new System.Drawing.Point(123, 216);
+            this.cboMarca.Name = "cboMarca";
+            this.cboMarca.Size = new System.Drawing.Size(147, 26);
+            this.cboMarca.TabIndex = 1302;
+            this.cboMarca.ValueMember = "Clave";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(7, 219);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(50, 18);
+            this.label13.TabIndex = 1301;
+            this.label13.Text = "Marca";
+            // 
             // frmCatArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 508);
+            this.Controls.Add(this.cboMarca);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.pbArticulo);
             this.Controls.Add(this.cmdFoto);
             this.Controls.Add(this.chkEstatus);
@@ -629,10 +602,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cboUMedida1);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtModelo);
-            this.Controls.Add(this.cmdModelo);
-            this.Controls.Add(this.txtMarca);
-            this.Controls.Add(this.cmdMarca);
             this.Controls.Add(this.cboImpuesto);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cboClase1);
@@ -693,10 +662,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboImpuesto;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button cmdMarca;
-        private System.Windows.Forms.TextBox txtMarca;
-        private System.Windows.Forms.TextBox txtModelo;
-        private System.Windows.Forms.Button cmdModelo;
         private System.Windows.Forms.ComboBox cboUMedida1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboUMedida2;
@@ -718,5 +683,7 @@
         private System.Windows.Forms.PictureBox pbArticulo;
         private System.Windows.Forms.Button cmdFoto;
         private System.Windows.Forms.OpenFileDialog opfFoto;
+        private System.Windows.Forms.ComboBox cboMarca;
+        private System.Windows.Forms.Label label13;
     }
 }

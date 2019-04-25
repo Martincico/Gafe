@@ -289,16 +289,17 @@ namespace GAFE
 
         private void LleCboClaseMov()
         {
-            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
-            cboCveClsMov.DataSource = lin.CboLstClaseMov();
+            PuiCatInv_ClaseMov lin = new PuiCatInv_ClaseMov(db);
+            cboCveClsMov.DataSource = lin.CboInv_ClaseMov();
             cboCveClsMov.ValueMember = "CveClsMov";
             cboCveClsMov.DisplayMember = "Descripcion";
         }
 
+
         private void LleCboMovRel()
         {
             PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
-            cboTipoMovRel.DataSource = lin.CboLstMovRel();
+            cboTipoMovRel.DataSource = lin.CboInv_TipoMovtos();
             cboTipoMovRel.ValueMember = "CveTipoMov";
             cboTipoMovRel.DisplayMember = "Descripcion";
 
