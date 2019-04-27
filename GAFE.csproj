@@ -196,6 +196,7 @@
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatArticulos.cs" />
+    <Compile Include="PuiAddPartidasMovInv.cs" />
     <Compile Include="PuiCatInv_ClaseMov.cs" />
     <Compile Include="PuiCatMarcas.cs" />
     <Compile Include="PuiCatMunicipios.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatArticulo.cs" />
+    <Compile Include="RegAddPartidasMovInv.cs" />
     <Compile Include="RegCatInv_ClaseMov.cs" />
     <Compile Include="RegCatMarcas.cs" />
     <Compile Include="RegCatMunicipio.cs" />
