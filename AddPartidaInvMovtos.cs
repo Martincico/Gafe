@@ -21,7 +21,6 @@ namespace GAFE
 
         private String PModLlama;
         private String PNoMovimiento;
-        private int NoPartida;
         private String PCveTipoMov;
 
 

@@ -115,10 +115,11 @@ namespace GAFE
 
         public int DeleteInventarioMov()
         {
-            string  sql = "Delete from Inv_MovtosMaster where NoMovimiento = @NoMovimiento";
-            db.UpdateRegistro(sql, ArrParametros);
-            sql = "Delete from Inv_MovtosDetalles where NoMovimiento = @NoMovimiento";
-            return db.UpdateRegistro(sql, ArrParametros);
+            string  sql = "Delete from Inv_MovtosDetalles  where NoMovimiento = @NoMovimiento";
+            int rp = db.UpdateRegistro(sql, ArrParametros);
+            sql = "Delete from Inv_MovtosMaster where NoMovimiento = @NoMovimiento";
+            int rp2 = db.UpdateRegistro(sql, ArrParametros);
+            return rp2;
         }
 
         public SqlDataAdapter ListInventarioMovtos()

@@ -152,12 +152,17 @@ namespace GAFE
                 pui.cmpEntSalDest = _EntSalRel;
                 pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
             }
-
+            db.IniciaTrans();
             if (pui.AgregarInventarioMov(_AfectaCosto, _AfectaCostoRel, _EsTraspaso) >= 1)
             {
                 MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
+                db.TerminaTrans();
                 this.Close();
+            }
+            else
+            {
+                db.CancelaTrans();
             }
 
         }
@@ -462,36 +467,40 @@ namespace GAFE
 
         }
 
-        private void ConfirmarSalir()
+        private void frmRegInventarioMovtos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
-            Boolean rsp = false;
-            if (grdViewPart.RowCount > 0)
-            {
-                if (MessageBox.Show("¿Desea guardar cambios? ",
-                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    OpcionControles(true);
-                }
-                else
-                    rsp = true;
-            }
-            else
-                rsp = true;
 
-
-             if(rsp)
-            {
-                InvMast.keyNoMovimiento = Convert.ToString(folMovto);
-                InvMast.EliminaInventarioMov();
-                this.Close();
-            }
-
-
-            
-            
         }
 
+        private void ConfirmarSalir()
+        {
+            Boolean DellAll = true;
+
+                PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
+                if (grdViewPart.RowCount > 0)
+                {
+                    switch (MessageBox.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            break;
+                        default:
+                            DellAll = false;
+                            if (opcion == 1)
+                            {
+                                Agregar();
+                            }
+                            break;
+                    }
+                }
+
+                if (DellAll)
+                {
+                    InvMast.keyNoMovimiento = Convert.ToString(folMovto);
+                    InvMast.EliminaInventarioMov();
+                }
+
+            this.Close();
+        }
 
         private void OpcionControles(Boolean Op)
         {

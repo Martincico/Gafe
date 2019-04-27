@@ -419,6 +419,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Tipo Movimientos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmRegInventarioMovtos_FormClosing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewPart)).EndInit();
