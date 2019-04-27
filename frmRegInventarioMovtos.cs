@@ -15,6 +15,10 @@ namespace GAFE
     public partial class frmRegInventarioMovtos : Form
     {
         private int opcion, TipoVal = 0;
+
+        private SqlDataAdapter DatosTbl;
+
+        private String Modulo = "M01";
         private MsSql db = null;
         private int folMovto;
 
@@ -48,15 +52,13 @@ namespace GAFE
         private int _EsTraspasoRel;
         private string _TipoMovRelRel;
         private string _FmtoImpresionRel;
-        private int _AfectaCostoRel;
+        private int _AfectaCostoRel = 0;
         private int _SugiereCostoRel;
         private int _MuestraCostoRel;
         private int _EditaCostoRel;
         private int _SolicitaCostoRel;
         private int _PideCentroCostoRel;
         private int _CalculaIvaRel;
-
-
 
         public frmRegInventarioMovtos()
         {
@@ -68,44 +70,28 @@ namespace GAFE
             InitializeComponent();
             opcion = Op;
             db = Odat;
-            
+
+            Random r = new Random();
+            folMovto = r.Next(1, 999);//Jalar el folio de tabla foliadores
+
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            pui.keyNoMovimiento = "1";
+            pui.keyNoMovimiento = Convert.ToString(folMovto);
             pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
-            pui.cmpCveAlmacenMov = "";
-            pui.cmpCveTipoMov = "";
-            pui.cmpEntSal = "";
-            pui.cmpNoDoc = "";
-            pui.cmpDocumento = "";
-            pui.cmpCveAlmacenDes = "";
-            pui.cmpCveTipoMovDest = "";
-            pui.cmpEntSalDest = "";
-            pui.cmpModulo = "";
-            pui.cmpTipoDoc = "";
-            pui.cmpSerieDoc = "";
-            pui.cmpFolioDocOrigen = "";
-            pui.cmpDescuento = 0;
-            pui.cmpTotalDscto = 0;
-            pui.cmpTIva = 0;
-            pui.cmpSubTotal = 0;
-            pui.cmpTotalDoc = 0;
-            pui.cmpCveProveedor = "";
-            pui.cmpCveCliente = "";
-            pui.cmpCancelado = 1;
-            pui.cmpCveUsarioCaptu = "";
-            pui.cmpCveCentroCosto = "";
-            pui.cmpNoMovtoTra = "";
-            pui.cmpDocTra = "";
+            
+
+            //PENDIENTE Jalar el folio de tabla foliadores
+            
+            //PENDIENTE Falta agregar los datos del almacen del usuario
 
 
-//            if(pui.AgregarBlanco() >=1);
-  //          {
+            if(pui.AgregarBlanco() >= 1)
+              {
                 LleCboClaseMov();
                 LlecboAlmaOri("ALM022");
                 OcultProvee(false);
                 OcultAlmDest(false);
                 
-    //        }
+            }
 
             
         }
@@ -116,7 +102,7 @@ namespace GAFE
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                ConfirmarSalir();
             }
         }
 
@@ -126,18 +112,60 @@ namespace GAFE
             {
                 case 1: Agregar(); break;
                 case 2: Editar(); break;
-                case 3: this.Close(); break;
+                case 3: ConfirmarSalir(); break;
             }
         }
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ConfirmarSalir();
         }
 
         private void Agregar()
         {
-                    }
+            String _cveinvmt = Convert.ToString(cboTipoMovtos.SelectedValue);
+            String _AlmO  = Convert.ToString(cboAlmaOri.SelectedValue);
+            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            String CodProve = cboProveedor.Visible ? Convert.ToString(cboProveedor.SelectedValue) : "";
+            pui.keyNoMovimiento = Convert.ToString(folMovto);
+            pui.cmpCveAlmacenMov = _AlmO;
+            pui.cmpCveTipoMov = _cveinvmt;
+            pui.cmpEntSal = _EntSal;
+            pui.cmpNoDoc = _Foliador;
+            pui.cmpModulo = Modulo;
+            pui.cmpNoDoc = "1";
+            pui.cmpDocumento = _cveinvmt + _AlmO+"1";
+            pui.cmpDescuento = Convert.ToDouble(txtDescuento.Text);
+            pui.cmpTotalDscto = Convert.ToDouble(txtTotDesc.Text);
+            pui.cmpTIva = Convert.ToDouble(txtIva.Text);
+            pui.cmpSubTotal = Convert.ToDouble(txtSubTotal.Text);
+            pui.cmpTotalDoc = Convert.ToDouble(txtTotal.Text);
+            pui.cmpCveProveedor = CodProve;
+            pui.cmpCancelado = 1;
+            pui.cmpCveUsarioCaptu = "USUARIO";
+            pui.cmpCveAlmacenDes= "";
+            pui.cmpCveTipoMovDest = "";
+            pui.cmpEntSalDest = "";
+            if (_cveinvmt == "003" || _cveinvmt == "502")
+            {
+                pui.cmpCveTipoMovDest = _CveTipoMovRel;
+                pui.cmpEntSalDest = _EntSalRel;
+                pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
+            }
+            db.IniciaTrans();
+            if (pui.AgregarInventarioMov(_AfectaCosto, _AfectaCostoRel, _EsTraspaso) >= 1)
+            {
+                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                db.TerminaTrans();
+                this.Close();
+            }
+            else
+            {
+                db.CancelaTrans();
+            }
+
+        }
 
         private void Editar()
         {
@@ -294,14 +322,53 @@ namespace GAFE
         {
             if(ValidaTipoMov()==1)
             {
-                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, 1, "");
+                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, Modulo, Convert.ToString(folMovto), 1,
+                    _CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
+                    _SolicitaCosto, _EsTraspaso, _EntSal,_CalculaIva, 
+                    Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)));
                 Addp.ShowDialog();
+                LlenaGridViewPart();
+                OpcionControles(false);
             }
+        }
+
+        private void LlenaGridViewPart()
+        {
+            try
+            {
+                PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                DatosTbl = pui.ListarPartidas(Convert.ToString(folMovto));
+                DataTable dbdataset = new DataTable();
+
+                DatosTbl.Fill(dbdataset);
+                //grdViewPart.Rows.Clear();
+
+                BindingSource bSoucer = new BindingSource();
+
+                bSoucer.DataSource = dbdataset;
+                grdViewPart.DataSource = bSoucer;
+                DatosTbl.Update(dbdataset);
+
+                CalculaTotales();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private int ValidaTipoMov()
         {
             int sig = 1;
+
+            if (cboClaseMov.SelectedIndex <= 0)
+            {
+                sig = 0;
+                MessageBox.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             if (cboAlmaOri.SelectedIndex < 0)
             {
@@ -329,12 +396,51 @@ namespace GAFE
                 }
             }
 
-
-            //Validad si Proveedor esta visible haya seleccionado uno
-
             return sig;
         }
 
+        private void btnEliminarPartida_Click(object sender, EventArgs e)
+        {
+            try { 
+                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString(),
+                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                    pui.keyNoMovimiento = grdViewPart[0, grdViewPart.CurrentRow.Index].Value.ToString();
+                    pui.keyNoPartida = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
+                    pui.EliminaPartida();
+                    LlenaGridViewPart();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+}
+
+        private void CalculaTotales()
+        {
+            double Descuento = 0;
+            double TotalDesc = 0;
+            double TotalIva = 0;
+            double SubTotal = 0;
+            double TotalPartida = 0;
+            foreach (DataGridViewRow row in grdViewPart.Rows)
+            {
+                Descuento = Descuento + Convert.ToDouble(row.Cells["Descuento"].Value.ToString());
+                TotalDesc = TotalDesc + Convert.ToDouble(row.Cells["TotalDscto"].Value.ToString());
+                TotalIva = TotalIva + Convert.ToDouble(row.Cells["TotalIva"].Value.ToString());
+                SubTotal = SubTotal + Convert.ToDouble(row.Cells["SubTotal"].Value.ToString());
+                TotalPartida = TotalPartida + Convert.ToDouble(row.Cells["TotalPartida"].Value.ToString());
+            }
+            txtDescuento.Text = Convert.ToString(Descuento);
+            txtTotDesc.Text = Convert.ToString(TotalDesc);
+            txtIva.Text = Convert.ToString(TotalIva);
+            txtSubTotal.Text = Convert.ToString(SubTotal);
+            txtTotal.Text = Convert.ToString(TotalPartida);
+        }
 
         private void OcultAlmDest(Boolean op)
         {
@@ -345,5 +451,67 @@ namespace GAFE
             else
                 cboAlmaDest.DataSource = null;
         }
+
+        private void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Esta seguro de restablecer? Se eliminarán los registros de la tabla ",
+                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                OpcionControles(true);
+            }
+            
+        }
+
+        private void btnEditaPartida_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmRegInventarioMovtos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void ConfirmarSalir()
+        {
+            Boolean DellAll = true;
+
+                PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
+                if (grdViewPart.RowCount > 0)
+                {
+                    switch (MessageBox.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            break;
+                        default:
+                            DellAll = false;
+                            if (opcion == 1)
+                            {
+                                Agregar();
+                            }
+                            break;
+                    }
+                }
+
+                if (DellAll)
+                {
+                    InvMast.keyNoMovimiento = Convert.ToString(folMovto);
+                    InvMast.EliminaInventarioMov();
+                }
+
+            this.Close();
+        }
+
+        private void OpcionControles(Boolean Op)
+        {
+            cboClaseMov.Enabled =  Op;
+            cboAlmaOri.Enabled = Op;
+            cboAlmaDest.Enabled = Op;
+            cboTipoMovtos.Enabled = Op;
+            cboProveedor.Enabled = Op;
+        }
+
+
+
     }
 }

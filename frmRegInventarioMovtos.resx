@@ -150,42 +150,4 @@
         YII=
 </value>
   </data>
-  <metadata name="CodEmpleado.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Nombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="CodEmpleado.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Nombre.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="btnAddPartida.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
-        TQAAAk0BiG/7GQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFfSURBVFhH7ZdN
-        TsMwEIWNOE8czgErQN0jARIbIM6xuEqcE/AjFHoM2jCO3kTt2KldBxZI+aRRMz/vdVQrkqsWRnp1UjTG
-        lNa8amu+KfoZsdGNuYVzGtrWTwGjObHRtrqDfRwafnPCsq2uVi+rUzZC24P7cm6ntqVIXwKC3h0F8j1j
-        CfflHOd0lA/0OSxRtPU92tOwEOnsBdwzffENPdOvMCzyPAxMsSt0yFzCfTkn8+QlpFDmqYR0OA5X36Lk
-        I4UyT2VKF/WTA/T8xbWM6GAzwj2kPnLgzFYXlK+5fkSsi6Y+h80I95H6RAdmsiywLPB/F8Dr+MH9hHj/
-        1deQah33johPyEe4h9RnaiAqFGT7ZAsF2T7ZQkG2T7ZQkO1Dzb0rGRMVCoLz5In6ofsAX0rNJUoDQcMD
-        hOZ1U18P3nTlR8nnD67lXpS2esTXBcAfExrMee9j0em2ruTxLiwopdQPrxrv7Pwt7BUAAAAASUVORK5C
-        YII=
-</value>
-  </data>
-  <data name="btnEliminarPartida.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAC
-        TQAAAk0BiG/7GQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFfSURBVFhH7ZdN
-        TsMwEIWNOE8czgErQN0jARIbIM6xuEqcE/AjFHoM2jCO3kTt2KldBxZI+aRRMz/vdVQrkqsWRnp1UjTG
-        lNa8amu+KfoZsdGNuYVzGtrWTwGjObHRtrqDfRwafnPCsq2uVi+rUzZC24P7cm6ntqVIXwKC3h0F8j1j
-        CfflHOd0lA/0OSxRtPU92tOwEOnsBdwzffENPdOvMCzyPAxMsSt0yFzCfTkn8+QlpFDmqYR0OA5X36Lk
-        I4UyT2VKF/WTA/T8xbWM6GAzwj2kPnLgzFYXlK+5fkSsi6Y+h80I95H6RAdmsiywLPB/F8Dr+MH9hHj/
-        1deQah33johPyEe4h9RnaiAqFGT7ZAsF2T7ZQkG2T7ZQkO1Dzb0rGRMVCoLz5In6ofsAX0rNJUoDQcMD
-        hOZ1U18P3nTlR8nnD67lXpS2esTXBcAfExrMee9j0em2ruTxLiwopdQPrxrv7Pwt7BUAAAAASUVORK5C
-        YII=
-</value>
-  </data>
 </root>
