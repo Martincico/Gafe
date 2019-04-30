@@ -119,7 +119,7 @@ namespace GAFE
             return OpDel.DeleteExistencia();
         }
 
-        public SqlDataAdapter ListarAlmacenes()
+        public SqlDataAdapter ListarExistencias()
         {
             CargaParametroMat();
             RegExistencias OpLst = new RegExistencias(db);
