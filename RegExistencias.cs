@@ -73,11 +73,13 @@ namespace GAFE
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
-        public SqlDataAdapter ListAlmacenes()
+        public SqlDataAdapter ListExistencias()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion " +
-                         "from Inv_CatAlmacenes";
+            string Sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
+                         "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                         "Ex.CostoUltimo,Ex.CostoActual " +
+                         "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -85,19 +87,22 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo " +
-                          "from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
+            string Sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
+                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                        "Ex.CostoUltimo,Ex.CostoActual " +
+                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-        public SqlDataAdapter BuscaExistencia(string bsq)
+        public SqlDataAdapter BuscaExistencia(string clavealmacen)
         {
             SqlDataAdapter dt = null;
-            string sql = "Select ClaveAlmacen,Descripcion " +
-               "from Inv_CatAlmacenes " +
-               "where ClaveAlmacen like '%" + bsq + "%' OR " +
-               "Descripcion like '%" + bsq + "%' ";
+            string sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
+                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                        "Ex.CostoUltimo,Ex.CostoActual " +
+                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo "+
+                        "where ClaveAlmacen = '" + clavealmacen + "' ";
 
             dt = db.SelectDA(sql);
             return dt;

@@ -123,7 +123,7 @@ namespace GAFE
         {
             CargaParametroMat();
             RegExistencias OpLst = new RegExistencias(db);
-            return OpLst.ListAlmacenes();
+            return OpLst.ListExistencias();
         }
 
         public void EditarExistencia()
@@ -148,7 +148,7 @@ namespace GAFE
             CostoActual     = Convert.ToDouble(ObjA[8]);
         }
 
-        public SqlDataAdapter BuscaAlmacen(string buscar)
+        public SqlDataAdapter BuscaExistencia(string Almacen)
         {
             /* MatParam = new object[4, 2];
              MatParam[0, 0] = "CodAlmacen"; MatParam[0, 1] = buscar;
@@ -158,7 +158,7 @@ namespace GAFE
              RegExistencias OpBsq = new RegExistencias(MatParam);/
              */
             RegExistencias OpBsq = new RegExistencias(db);
-            return OpBsq.BuscaExistencia(buscar);
+            return OpBsq.BuscaExistencia(Almacen);
         }
 
         public DataTable CboInv_CatAlmacenes()

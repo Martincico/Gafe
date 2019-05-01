@@ -35,6 +35,8 @@ namespace GAFE
         private string Usuario;
         private string Password;
 
+        List<clsFillCbo> lp;
+
         public frmExistencias()
         {
             InitializeComponent();
@@ -84,14 +86,38 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            LlenaGridView();
+
+            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 1";
+            SqlDataReader dr = db.SelectDR(Sqlstr);
+            lp = new List<clsFillCbo>();
+
+            clsFillCbo Prv1 = new clsFillCbo();
+            Prv1.Id = "";
+            Prv1.Descripcion = "";
+            lp.Add(Prv1);
+
+            while (dr.Read())
+            {
+                clsFillCbo Prv = new clsFillCbo();
+                Prv.Id = Convert.ToString(dr["ClaveAlmacen"]);
+                Prv.Descripcion = Convert.ToString(dr["Descripcion"]);
+                lp.Add(Prv);
+            }
+            dr.Close();
+            cboAlmacen.DataSource = lp;
+            cboAlmacen.ValueMember = "Id";
+            cboAlmacen.DisplayMember = "Descripcion";
+            //cboAlmacen.SelectedText = "Activo";
+
+
+            LlenaGridView(0);
         }
 
 
-        private void LlenaGridView()
+        private void LlenaGridView(int tieneFiltro)
         {
             PuiExistencias pui = new PuiExistencias(db);
-            DatosTbl = pui.ListarExistencias();
+            DatosTbl = (tieneFiltro == 0) ? pui.ListarExistencias() : pui.BuscaExistencia(cboAlmacen.SelectedValue.ToString());
             DataSet Ds = new DataSet();
 
             try
@@ -141,7 +167,11 @@ namespace GAFE
             }
         }
 
+       
 
-
+        private void cboAlmacen_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LlenaGridView(1);
+        }
     }
 }
