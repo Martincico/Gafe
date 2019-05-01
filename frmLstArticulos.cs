@@ -34,6 +34,8 @@ namespace GAFE
         private string Usuario;
         private string Password;
 
+        public string[] dv = new string[3];
+
         public frmLstArticulos()
         {
             InitializeComponent();
@@ -246,6 +248,8 @@ namespace GAFE
             try
             {
                 KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                dv[0] = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                dv[1] = grdView[2, grdView.CurrentRow.Index].Value.ToString();                
                 this.Close();
             }
             catch (Exception ex)

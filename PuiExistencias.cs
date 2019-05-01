@@ -148,7 +148,7 @@ namespace GAFE
             CostoActual     = Convert.ToDouble(ObjA[8]);
         }
 
-        public SqlDataAdapter BuscaExistencia(string Almacen)
+        public SqlDataAdapter BuscaExistencia(string Articulo,string Almacen,string linea)
         {
             /* MatParam = new object[4, 2];
              MatParam[0, 0] = "CodAlmacen"; MatParam[0, 1] = buscar;
@@ -158,7 +158,7 @@ namespace GAFE
              RegExistencias OpBsq = new RegExistencias(MatParam);/
              */
             RegExistencias OpBsq = new RegExistencias(db);
-            return OpBsq.BuscaExistencia(Almacen);
+            return OpBsq.BuscaExistencia(Articulo,Almacen,linea);
         }
 
         public DataTable CboInv_CatAlmacenes()

@@ -95,9 +95,18 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter BuscaExistencia(string clavealmacen)
+        public SqlDataAdapter BuscaExistencia(string articulo,string clavealmacen,string linea)
         {
             SqlDataAdapter dt = null;
+            string where;
+            int usaAnd = 0;
+            if (articulo.Length > 0)
+            {
+                where = "Ex.ClaveArticulo = '" + articulo + "'";
+                usaAnd = 1;
+            }
+
+
             string sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
                         "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
                         "Ex.CostoUltimo,Ex.CostoActual " +

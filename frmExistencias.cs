@@ -36,6 +36,7 @@ namespace GAFE
         private string Password;
 
         List<clsFillCbo> lp;
+        List<clsFillCbo> ln;
 
         public frmExistencias()
         {
@@ -110,6 +111,28 @@ namespace GAFE
             //cboAlmacen.SelectedText = "Activo";
 
 
+            string Sqlstr2 = " SELECT CveLinea,Descripcion FROM Inv_Lineas WHERE Estatus = 1";
+            SqlDataReader dr2 = db.SelectDR(Sqlstr2);
+            ln = new List<clsFillCbo>();
+
+            clsFillCbo Rln = new clsFillCbo();
+            Rln.Id = "";
+            Rln.Descripcion = "";
+            ln.Add(Rln);
+
+            while (dr2.Read())
+            {
+                clsFillCbo Rlnc = new clsFillCbo();
+                Rlnc.Id = Convert.ToString(dr2["CveLinea"]);
+                Rlnc.Descripcion = Convert.ToString(dr2["Descripcion"]);
+                ln.Add(Rlnc);
+            }
+            dr2.Close();
+            cboLineas.DataSource = ln;
+            cboLineas.ValueMember = "Id";
+            cboLineas.DisplayMember = "Descripcion";
+            //cboAlmacen.SelectedText = "Activo";
+            
             LlenaGridView(0);
         }
 
@@ -117,7 +140,8 @@ namespace GAFE
         private void LlenaGridView(int tieneFiltro)
         {
             PuiExistencias pui = new PuiExistencias(db);
-            DatosTbl = (tieneFiltro == 0) ? pui.ListarExistencias() : pui.BuscaExistencia(cboAlmacen.SelectedValue.ToString());
+            DatosTbl = (tieneFiltro == 0) ? pui.ListarExistencias() : pui.BuscaExistencia(txtClaveArticulo.Text,cboAlmacen.SelectedValue.ToString(),
+                                                                              cboLineas.SelectedValue.ToString());
             DataSet Ds = new DataSet();
 
             try
@@ -172,6 +196,14 @@ namespace GAFE
         private void cboAlmacen_SelectionChangeCommitted(object sender, EventArgs e)
         {
             LlenaGridView(1);
+        }
+
+        private void cmdArticulo_Click(object sender, EventArgs e)
+        {
+            frmLstArticulos la = new frmLstArticulos(db,"",3);
+            la.ShowDialog();
+            txtClaveArticulo.Text = la.dv[0];
+            txtDscArticulo.Text = la.dv[1];           
         }
     }
 }
