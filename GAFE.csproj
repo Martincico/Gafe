@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsFillCbo.cs" />
     <Compile Include="ClsUtilerias.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -90,6 +91,12 @@
     </Compile>
     <Compile Include="frmCatArticulos.Designer.cs">
       <DependentUpon>frmCatArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatCfgCatFoliadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatCfgCatFoliadores.designer.cs">
+      <DependentUpon>frmCatCfgCatFoliadores.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatClases.cs">
       <SubType>Form</SubType>
@@ -205,6 +212,7 @@
     <Compile Include="PuiExistencias.cs" />
     <Compile Include="PuiCatArticulos.cs" />
     <Compile Include="PuiAddPartidasMovInv.cs" />
+    <Compile Include="PuiCatCfgCatFoliadores.cs" />
     <Compile Include="PuiCatInv_ClaseMov.cs" />
     <Compile Include="PuiCatMarcas.cs" />
     <Compile Include="PuiCatMunicipios.cs" />
@@ -221,6 +229,7 @@
     <Compile Include="RegExistencias.cs" />
     <Compile Include="RegCatArticulo.cs" />
     <Compile Include="RegAddPartidasMovInv.cs" />
+    <Compile Include="RegCatCfgCatFoliador.cs" />
     <Compile Include="RegCatInv_ClaseMov.cs" />
     <Compile Include="RegCatMarcas.cs" />
     <Compile Include="RegCatMunicipio.cs" />
@@ -240,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatArticulos.resx">
       <DependentUpon>frmCatArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatCfgCatFoliadores.resx">
+      <DependentUpon>frmCatCfgCatFoliadores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatClases.resx">
       <DependentUpon>frmCatClases.cs</DependentUpon>

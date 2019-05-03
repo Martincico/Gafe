@@ -45,24 +45,7 @@ namespace GAFE
             if (db.Conectar() < 1)
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        CveTipoMov
-      ,Descripcion
-      ,DescCorta
-      ,EntSal
-      ,CveClsMov
-      ,Foliador
-      ,EditaFoli
-      ,EsTraspaso
-      ,TipoMovRel
-      ,FmtoImpresion
-      ,AfectaCosto
-      ,SugiereCosto
-      ,MuestraCosto
-      ,EditaCosto
-      ,SolicitaCosto
-      ,PideCentroCosto
-      ,CalculaIva
-      ,Estatus
+
     */
 
         
@@ -75,9 +58,16 @@ namespace GAFE
                          "          AfectaCosto,SugiereCosto,MuestraCosto,EditaCosto,SolicitaCosto," +
                          "          PideCentroCosto,CalculaIva,Estatus) " +
                          "values( @CveTipoMov,@Descripcion,@DescCorta,@EntSal,@CveClsMov," +
-                         "          @Foliador,@EditaFoli,@EsTraspaso,@TipoMovRel,@FmtoImpresion," +
+                         "          @CveFoliador,@EditaFoli,@EsTraspaso,@TipoMovRel,@FmtoImpresion," +
                          "          @AfectaCosto,@SugiereCosto,@MuestraCosto,@EditaCosto,@SolicitaCosto," +
                          "          @PideCentroCosto,@CalculaIva,@Estatus)";
+            return db.InsertarRegistro(sql, ArrParametros);
+        }
+
+        public int AddRegCfgFoliadores()
+        {
+            string sql = "Insert into CfgFoliadores (CveFoliador,CveAlmacen,FolioActual, FolioSiguiente) " +
+                         "values( @CveFoliador,'',0,1)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -85,7 +75,7 @@ namespace GAFE
         public int UpdateTipoMov()
         {
             string sql = "Update Inv_TipoMovtos set Descripcion = @Descripcion,DescCorta = @DescCorta,EntSal = @EntSal,CveClsMov = @CveClsMov," +
-                         "          Foliador = @Foliador,EditaFoli = @EditaFoli,EsTraspaso = @EsTraspaso,TipoMovRel = @TipoMovRel,FmtoImpresion = @FmtoImpresion," +
+                         "          Foliador = @CveFoliador,EditaFoli = @EditaFoli,EsTraspaso = @EsTraspaso,TipoMovRel = @TipoMovRel,FmtoImpresion = @FmtoImpresion," +
                          "          AfectaCosto = @AfectaCosto,SugiereCosto =  @SugiereCosto,MuestraCosto = @MuestraCosto,EditaCosto = @EditaCosto,SolicitaCosto = @SolicitaCosto," +
                          "          PideCentroCosto = @PideCentroCosto,CalculaIva = @CalculaIva,Estatus = @Estatus " +
                          "Where CveTipoMov = @CveTipoMov";

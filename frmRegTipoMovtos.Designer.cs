@@ -37,7 +37,6 @@
             this.txtFmtoImpresion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtFoliador = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.chkSugiereCosto = new System.Windows.Forms.CheckBox();
@@ -57,12 +56,14 @@
             this.lblCodEmpleado = new System.Windows.Forms.Label();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
+            this.cboCfgCatFoliadores = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cboCfgCatFoliadores);
             this.panel2.Controls.Add(this.cboTipoMovRel);
             this.panel2.Controls.Add(this.rdbSalida);
             this.panel2.Controls.Add(this.rdbEntrada);
@@ -70,7 +71,6 @@
             this.panel2.Controls.Add(this.txtFmtoImpresion);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.txtFoliador);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.chkSugiereCosto);
@@ -168,16 +168,6 @@
             this.label6.Size = new System.Drawing.Size(135, 20);
             this.label6.TabIndex = 21;
             this.label6.Text = "Mov. Relacionado";
-            // 
-            // txtFoliador
-            // 
-            this.txtFoliador.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFoliador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFoliador.Location = new System.Drawing.Point(151, 210);
-            this.txtFoliador.MaxLength = 10;
-            this.txtFoliador.Name = "txtFoliador";
-            this.txtFoliador.Size = new System.Drawing.Size(106, 26);
-            this.txtFoliador.TabIndex = 7;
             // 
             // label5
             // 
@@ -388,6 +378,16 @@
             this.cmdAceptar.UseVisualStyleBackColor = false;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
+            // cboCfgCatFoliadores
+            // 
+            this.cboCfgCatFoliadores.Enabled = false;
+            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboCfgCatFoliadores.FormattingEnabled = true;
+            this.cboCfgCatFoliadores.Location = new System.Drawing.Point(151, 210);
+            this.cboCfgCatFoliadores.Name = "cboCfgCatFoliadores";
+            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(251, 28);
+            this.cboCfgCatFoliadores.TabIndex = 22;
+            // 
             // frmRegTipoMovtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -425,7 +425,6 @@
         private System.Windows.Forms.Label lblCodEmpleado;
         private System.Windows.Forms.Button cmdCancelar;
         private System.Windows.Forms.Button cmdAceptar;
-        private System.Windows.Forms.TextBox txtFoliador;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
@@ -439,5 +438,6 @@
         private System.Windows.Forms.RadioButton rdbSalida;
         private System.Windows.Forms.RadioButton rdbEntrada;
         private System.Windows.Forms.ComboBox cboTipoMovRel;
+        private System.Windows.Forms.ComboBox cboCfgCatFoliadores;
     }
 }

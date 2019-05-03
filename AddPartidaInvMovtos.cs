@@ -43,6 +43,14 @@ namespace GAFE
         private String PEntSal;
         private int PCalcIva;
 
+
+        private int _AlmNumRojo;
+        private int _AlmNumRojoDest;
+        private int ExisNegativa;
+
+
+        private double CantInv;
+
         // PENDIENTE
         //        private int PermiteExiNegativasOri;
         //        private int PermiteExiNegativasDest;
@@ -57,7 +65,8 @@ namespace GAFE
 
         public AddPartidaInvMovtos(MsSql Odat, String P_modulo, String P_folio, int P_operacion,
                 String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
-                 int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, DateTime P_FechaMovimiento)
+                 int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, DateTime P_FechaMovimiento,
+                 int P_AlmNumRojo, int P_AlmNumRojoDest)
         {
             InitializeComponent();
             opcion = P_operacion;
@@ -78,23 +87,23 @@ namespace GAFE
 //            this.PermiteExiNegativasDest = P_PermiteExiNegativasDest;
             PCalcIva = P_CalcIva;
             _FechaMov = P_FechaMovimiento;
+            _AlmNumRojo = P_AlmNumRojo;
+            _AlmNumRojoDest = P_AlmNumRojoDest;
 
 
             if (PEditaCosto == 0)
                 txtPrecio.Enabled = false;
-            /*
-            if (_MuestraCostoTM == 1)
+            
+            if (PMuestraCosto == 1)
             {
-                lblMuesCosto.setVisible(true);
-                txtMuesCosto.setVisible(true);
+                lblMuesCosto.Visible = true;
+                txtMuesCosto.Visible = true;
             }
             else
             {
-                lblMuesCosto.setVisible(false);
-                txtMuesCosto.setVisible(false);
+                lblMuesCosto.Visible = false;
+                txtMuesCosto.Visible = false;
             }
-
-            */
 
             
         }
@@ -216,9 +225,54 @@ namespace GAFE
                 txtCodigo.Text = arti.keyCveArticulo;
                 txtDescripcion.Text = arti.cmpDescripcion;
                 txtUmedida.Text = arti.UMedida1.keyCveUMedida;
-
+                BuscarPrecio(art.KeyCampo);
             }
         }
+
+        private void BuscarPrecio(String CveArt)
+        {
+            PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+            pui.cmpCveArticulo = CveArt;
+            pui.cmpinv_ClaveAlmacen = "ALM022";
+            pui.BuscaPrecio(PModLlama);
+            CantInv = pui.cmpinv_Cantidad;
+
+
+            if (PModLlama.Equals("M01"))
+            {
+                //FALTA sugiere costo
+                //String sugiere = winpadre.parametros.metcosto;
+                if (PSugiereCosto == 1)
+                {
+                    /*
+                    switch(Convert.ToInt32(sugiere))
+                    {
+                        Asignar el costo según sea su parametro
+                    }
+
+                    */
+
+                    txtPrecio.Text = Convert.ToString(pui.cmpinv_CostoUltimo);
+                }
+                else
+                    txtPrecio.Text = "0.0";
+
+                if(PMuestraCosto == 1)
+                {
+                    /*
+                    switch(Convert.ToInt32(sugiere))
+                    {
+                        Asignar el costo según sea su parametro
+                    }
+
+                    */
+                    txtMuesCosto.Text = Convert.ToString(pui.cmpinv_CostoUltimo);
+                }
+
+            }
+            
+        }
+
 
         private Boolean validacion()
         {
@@ -237,14 +291,13 @@ namespace GAFE
                     sig = false;
                 }
             }
-            /*
+            
             if (ExisNegativa == 1)
             {
                 err = err + "La cantidad solicitada es mayor a la exitencia del articulo \n";
-                jLabel3.setForeground(Color.red);
-                sig = 0;
+                sig = false;
             }
-            */
+            
 
             if (PSolicitaCosto == 1)
             {
@@ -318,8 +371,6 @@ namespace GAFE
                     err = err + "Precio: Contiene caracteres no validos. Sugiere: 0)\n";
                     ErrCalc = false;
                 }
-
-                //PENDIENTE validar si es traspaso no se vaya mas de lo que hay de uno a otro almacen
 
                 if (ErrCalc)
                 {
@@ -401,7 +452,7 @@ namespace GAFE
 
         private void txtCantidad_MouseLeave(object sender, EventArgs e)
         {
-            ValidaCalculos();
+            CalcExist(0);
         }
 
         private void txtPrecio_MouseLeave(object sender, EventArgs e)
@@ -413,5 +464,80 @@ namespace GAFE
         {
             ValidaCalculos();
         }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            CalcExist(0);
+        }
+
+        private int CalcExist(int Op)
+        {
+            int r = 1;
+            double CantCapt;
+            String msj = "";
+            /*
+            try
+            {
+            */
+                if (String.IsNullOrEmpty(txtCantidad.Text))
+                {
+                    msj +=  "Cantidad: No debe estar vacío. \n";
+                    r = 0;
+                }
+
+                CantCapt = Convert.ToDouble(txtCantidad.Text);
+                //CantInv
+
+                if (PModLlama.Equals("M01"))
+                {
+                    if (PEsTraspaso == 1 || PEntSal.Equals("S"))
+                    {
+                        if ((CantInv - CantCapt) < 0)
+                        {
+                            if (_AlmNumRojo == 1)
+                            {
+                                Cantidad = Convert.ToDouble(txtCantidad.Text);
+                                ExisNegativa = 0;
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                        " Existencia: " + CantInv + " ",
+                                        "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    ExisNegativa = 1;
+                                }
+
+                            }
+                        }
+                        else
+                            ExisNegativa = 0;
+                    }
+                    else
+                    {
+                        ExisNegativa = 0;
+                        ValidaCalculos();
+                    }
+                }
+                else
+                    ExisNegativa = 0;
+
+            /*
+                        }
+                        catch()
+                        {
+
+                        }
+                        */
+                        /*
+            if (r==0)
+            {
+                MessageBox.Show("Contiene error(es):\n" + msj, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            */
+            return r;
+
+        }
+
     }
 }

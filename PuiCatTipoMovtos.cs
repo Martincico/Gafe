@@ -17,7 +17,7 @@ namespace GAFE
         private string DescCorta;
         private string EntSal;
         private string CveClsMov;
-        private string Foliador;
+        private string CveFoliador;
         private int    EditaFoli;
         private int    EsTraspaso;
         private string TipoMovRel;
@@ -83,10 +83,10 @@ namespace GAFE
             set { CveClsMov = value; }
         }
 
-        public string cmpFoliador
+        public string cmpCveFoliador
         {
-            get { return Foliador; }
-            set { Foliador = value; }
+            get { return CveFoliador; }
+            set { CveFoliador = value; }
         }
 
         public int cmpEditaFoli
@@ -166,6 +166,14 @@ namespace GAFE
             return OpRadd.AddRegTipoMov();
         }
 
+        public int AddRegCfgFoliadores()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "CveFoliador"; MatParam[0, 1] = CveFoliador;
+            RegCatTipoMov OpRadd = new RegCatTipoMov(MatParam, db);
+            return OpRadd.AddRegCfgFoliadores();
+        }
+
         public int ActualizaTipoMov()
         {
             CargaParametroMat();
@@ -214,7 +222,7 @@ namespace GAFE
             DescCorta = ObjA[2].ToString();
             EntSal = ObjA[3].ToString();
             CveClsMov = ObjA[4].ToString();
-            Foliador = ObjA[5].ToString();
+            CveFoliador = ObjA[5].ToString();
             EditaFoli = int.Parse(ObjA[6].ToString());
             EsTraspaso = int.Parse(ObjA[7].ToString());
             TipoMovRel = ObjA[8].ToString();
@@ -250,7 +258,7 @@ namespace GAFE
             MatParam[2, 0] = "DescCorta"; MatParam[2, 1] = DescCorta;
             MatParam[3, 0] = "EntSal"; MatParam[3, 1] = EntSal;
             MatParam[4, 0] = "CveClsMov"; MatParam[4, 1] = CveClsMov;
-            MatParam[5, 0] = "Foliador"; MatParam[5, 1] = Foliador;
+            MatParam[5, 0] = "CveFoliador"; MatParam[5, 1] = CveFoliador;
             MatParam[6, 0] = "EditaFoli"; MatParam[6, 1] = EditaFoli;
             MatParam[7, 0] = "EsTraspaso"; MatParam[7, 1] = EsTraspaso;
             MatParam[8, 0] = "TipoMovRel"; MatParam[8, 1] = TipoMovRel;
