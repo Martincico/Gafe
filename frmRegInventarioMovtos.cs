@@ -153,6 +153,7 @@ namespace GAFE
             pui.cmpCveAlmacenDes= "";
             pui.cmpCveTipoMovDest = "";
             pui.cmpEntSalDest = "";
+
             if (_EsTraspaso == 1)
             {
                 pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
