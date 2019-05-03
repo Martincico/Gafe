@@ -262,7 +262,7 @@ namespace GAFE
         {
             CargaParametroMat();
             RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
-            return OpRadd.AddRegInvMov(;
+            return OpRadd.AddRegInvMov();
         }
 
         public int AgregarInvDet()
