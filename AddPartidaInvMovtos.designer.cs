@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPartidaInvMovtos));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtMuesCosto = new System.Windows.Forms.TextBox();
+            this.lblMuesCosto = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.txtIva = new System.Windows.Forms.TextBox();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
@@ -58,6 +60,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.txtMuesCosto);
+            this.panel2.Controls.Add(this.lblMuesCosto);
             this.panel2.Controls.Add(this.txtTotal);
             this.panel2.Controls.Add(this.txtIva);
             this.panel2.Controls.Add(this.txtSubTotal);
@@ -78,17 +82,38 @@
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(8, 8);
+            this.panel2.Location = new System.Drawing.Point(6, 8);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(577, 191);
+            this.panel2.Size = new System.Drawing.Size(596, 191);
             this.panel2.TabIndex = 13;
+            // 
+            // txtMuesCosto
+            // 
+            this.txtMuesCosto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMuesCosto.Enabled = false;
+            this.txtMuesCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMuesCosto.Location = new System.Drawing.Point(297, 71);
+            this.txtMuesCosto.MaxLength = 100;
+            this.txtMuesCosto.Name = "txtMuesCosto";
+            this.txtMuesCosto.Size = new System.Drawing.Size(80, 22);
+            this.txtMuesCosto.TabIndex = 72;
+            // 
+            // lblMuesCosto
+            // 
+            this.lblMuesCosto.AutoSize = true;
+            this.lblMuesCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMuesCosto.Location = new System.Drawing.Point(224, 74);
+            this.lblMuesCosto.Name = "lblMuesCosto";
+            this.lblMuesCosto.Size = new System.Drawing.Size(43, 16);
+            this.lblMuesCosto.TabIndex = 73;
+            this.lblMuesCosto.Text = "Costo";
             // 
             // txtTotal
             // 
             this.txtTotal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(465, 161);
+            this.txtTotal.Location = new System.Drawing.Point(488, 160);
             this.txtTotal.MaxLength = 100;
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -101,7 +126,7 @@
             this.txtIva.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtIva.Enabled = false;
             this.txtIva.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIva.Location = new System.Drawing.Point(465, 131);
+            this.txtIva.Location = new System.Drawing.Point(488, 123);
             this.txtIva.MaxLength = 100;
             this.txtIva.Name = "txtIva";
             this.txtIva.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -114,7 +139,7 @@
             this.txtSubTotal.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSubTotal.Enabled = false;
             this.txtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubTotal.Location = new System.Drawing.Point(465, 101);
+            this.txtSubTotal.Location = new System.Drawing.Point(488, 86);
             this.txtSubTotal.MaxLength = 100;
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -127,7 +152,7 @@
             this.txtTotDesc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtTotDesc.Enabled = false;
             this.txtTotDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotDesc.Location = new System.Drawing.Point(465, 71);
+            this.txtTotDesc.Location = new System.Drawing.Point(213, 160);
             this.txtTotDesc.MaxLength = 100;
             this.txtTotDesc.Name = "txtTotDesc";
             this.txtTotDesc.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -167,7 +192,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(351, 164);
+            this.label7.Location = new System.Drawing.Point(410, 164);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(39, 15);
             this.label7.TabIndex = 71;
@@ -184,6 +209,7 @@
             this.txtCantidad.TabIndex = 5;
             this.txtCantidad.Text = "0";
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             this.txtCantidad.MouseLeave += new System.EventHandler(this.txtCantidad_MouseLeave);
             // 
@@ -191,7 +217,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(351, 134);
+            this.label6.Location = new System.Drawing.Point(410, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(25, 15);
             this.label6.TabIndex = 71;
@@ -212,7 +238,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(351, 104);
+            this.label5.Location = new System.Drawing.Point(410, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 15);
             this.label5.TabIndex = 71;
@@ -226,14 +252,14 @@
             this.txtDescripcion.Location = new System.Drawing.Point(108, 41);
             this.txtDescripcion.MaxLength = 100;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(456, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(479, 22);
             this.txtDescripcion.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(351, 74);
+            this.label4.Location = new System.Drawing.Point(213, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 71;
@@ -320,7 +346,7 @@
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdCancelar.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancelar.Image")));
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(491, 205);
+            this.cmdCancelar.Location = new System.Drawing.Point(508, 205);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 13;
@@ -334,7 +360,7 @@
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAceptar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAceptar.Image")));
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(386, 205);
+            this.cmdAceptar.Location = new System.Drawing.Point(403, 205);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 12;
@@ -347,7 +373,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 250);
+            this.ClientSize = new System.Drawing.Size(606, 250);
             this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.cmdAceptar);
             this.Controls.Add(this.panel2);
@@ -388,5 +414,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtMuesCosto;
+        private System.Windows.Forms.Label lblMuesCosto;
     }
 }

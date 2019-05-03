@@ -101,5 +101,18 @@ namespace GAFE
             return dt;
         }
 
+        public SqlDataAdapter BusPrecio(String ModLlama)
+        {
+            SqlDataAdapter dt = null;
+            if (ModLlama.Equals("M02") || ModLlama.Equals("M01"))
+            {
+                string Sql = "SELECT ClaveArticulo,ClaveAlmacen,Cantidad,stockMin,stockMax," +
+                            "        CantApartada,CostoPromedio,CostoUltimo,CostoActual " +
+                            " FROM Inv_Existencias WHERE ClaveArticulo = @CveArticulo and ClaveAlmacen=@CveAlmacen";
+                dt = db.SelectDA(Sql, ArrParametros);
+            }
+            return dt;
+        }
+
     }
 }

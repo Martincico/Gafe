@@ -39,7 +39,21 @@ namespace GAFE
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
         private object[,] MatParam = new object[24, 2];
         private object[,] MatParamKeys = new object[2, 2];
+        private object[,] MatParamInvExis = new object[9, 2];
         private SqlDataAdapter Datos;
+
+
+        /* Informacion de Inventarios */
+        private String inv_ClaveAlmacen;
+        private double inv_Cantidad;
+        private double inv_stockMin;
+        private double inv_stockMax;
+        private double inv_CantApartada;
+        private double inv_CostoPromedio;
+        private double inv_CostoUltimo;
+        private double inv_CostoActual;
+
+
 
         private MsSql db = null;
 
@@ -199,13 +213,54 @@ namespace GAFE
             set { PartTra = value; }
         }
 
+        public string cmpinv_ClaveAlmacen
+        {
+            get { return inv_ClaveAlmacen; }
+            set { inv_ClaveAlmacen = value; }
+        }
+        public double cmpinv_Cantidad
+        {
+            get { return inv_Cantidad; }
+            set { inv_Cantidad = value; }
+        }
+        public double cmpinv_stockMin
+        {
+            get { return inv_stockMin; }
+            set { inv_stockMin = value; }
+        }
+        public double cmpinv_stockMax
+        {
+
+            get{return inv_stockMax;}
+            set{inv_stockMax = value; }
+        }
+        public double cmpinv_CantApartada
+        {
+            get { return inv_CantApartada; }
+            set { inv_CantApartada = value; }
+        }
+        public double cmpinv_CostoPromedio
+        {
+            get { return inv_CostoPromedio; }
+            set { inv_CostoPromedio = value; }
+        }
+        public double cmpinv_CostoUltimo
+        {
+            get { return inv_CostoUltimo; }
+            set { inv_CostoUltimo = value; }
+        }
+        public double cmpinv_CostoActual
+        {
+            get { return inv_CostoActual; }
+            set { inv_CostoActual = value; }
+        }
 
 
-        #endregion
+#endregion
 
 
 
-        public int AgregarPartida()
+public int AgregarPartida()
         {
             CargaParametroMat();
             RegAddPartidasMovInv OpRadd = new RegAddPartidasMovInv(MatParam,db);
@@ -274,13 +329,6 @@ namespace GAFE
 
         public SqlDataAdapter BuscaPartida(string buscar)
         {
-            /* MatParam = new object[4, 2];
-             MatParam[0, 0] = "CodTipoMov"; MatParam[0, 1] = buscar;
-             MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
-             MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
-             MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
-             RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(MatParam);/
-             */
             RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(db);
             return OpBsq.BuscaPartida(buscar);
         }
@@ -312,10 +360,48 @@ namespace GAFE
             MatParam[22, 0] = "DocTra"; MatParam[22, 1] = DocTra;
             MatParam[23, 0] = "PartTra"; MatParam[23, 1] = PartTra;
         }
+
         private void CargaParamMatKeys()
         {
             MatParamKeys[0, 0] = "NoMovimiento"; MatParamKeys[0, 1] = NoMovimiento;
             MatParamKeys[1, 0] = "NoPartida"; MatParamKeys[1, 1] = NoPartida;
         }
+
+        private void CargaParamInnExist()
+        {
+            MatParamInvExis[0, 0] = "CveArticulo"; MatParamInvExis[0, 1] = CveArticulo;
+            MatParamInvExis[1, 0] = "CveAlmacen"; MatParamInvExis[1, 1] = inv_ClaveAlmacen;
+            MatParamInvExis[2, 0] = "Cantidad"; MatParamInvExis[2, 1] = inv_Cantidad;
+            MatParamInvExis[3, 0] = "stockMin"; MatParamInvExis[3, 1] = inv_stockMin;
+            MatParamInvExis[4, 0] = "stockMax"; MatParamInvExis[4, 1] = inv_stockMax;
+            MatParamInvExis[5, 0] = "CantApartada"; MatParamInvExis[5, 1] = inv_CantApartada;
+            MatParamInvExis[6, 0] = "CostoPromedio"; MatParamInvExis[6, 1] = inv_CostoPromedio;
+            MatParamInvExis[7, 0] = "CostoUltimo"; MatParamInvExis[7, 1] = inv_CostoUltimo;
+            MatParamInvExis[8, 0] = "CostoActual"; MatParamInvExis[8, 1] = inv_CostoActual;
+        }
+
+
+        public void BuscaPrecio(String PModLlama)
+        {
+            CargaParamInnExist();
+
+            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamInvExis, db);
+            Datos = OpEdit.BusPrecio(PModLlama);
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+
+            inv_ClaveAlmacen = ObjA[0].ToString();
+            inv_Cantidad = Convert.ToDouble(ObjA[2].ToString());
+            inv_stockMin = Convert.ToDouble(ObjA[3].ToString());
+            inv_stockMax = Convert.ToDouble(ObjA[4].ToString());
+            inv_CantApartada = Convert.ToDouble(ObjA[5].ToString());
+            inv_CostoPromedio = Convert.ToDouble(ObjA[6].ToString());
+            inv_CostoUltimo = Convert.ToDouble(ObjA[7].ToString());
+            inv_CostoActual = Convert.ToDouble(ObjA[8].ToString());
+        }
+
+
     }
 }

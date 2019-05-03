@@ -38,10 +38,19 @@ namespace GAFE
         private string NoMovtoTra;
         private string DocTra;
 
+        //Parametros de Almance
+        private int EsDeCompra;
+        private int EsDeVenta;
+        private int EsDeConsigna;
+        private int NumRojo;
+
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
         private object[,] MatParam = new object[18, 2];
         private object[,] MatParamPar = new object[6, 2];
+        private object[,] MatParamAlma = new object[5, 2];
+
+        
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -213,38 +222,54 @@ namespace GAFE
         }
 
 
+        public int cmpEsDeCompra
+        {
+            get { return EsDeCompra; }
+            set { EsDeCompra = value; }
+        }
+        public int cmpEsDeVenta
+        {
+            get { return EsDeVenta; }
+            set { EsDeVenta = value; }
+        }
+        public int cmpEsDeConsigna
+        {
+            get { return EsDeConsigna; }
+            set { EsDeConsigna = value; }
+        }
+        public int cmpNumRojo
+        {
+            get { return NumRojo; }
+            set { NumRojo = value; }
+        }
         #endregion
 
         public int AgregarBlanco()
         {
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
+            NoMovimiento = OpRadd.GetFolio(NoMovimiento);
             MatParam = new object[2, 2];
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
             MatParam[1, 0] = "FechaMovimiento"; MatParam[1, 1] = FechaMovimiento;
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
-            return OpRadd.AddRegBlanco();
+            RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam, db);
+            int rsp = OpRadd2.AddRegBlanco();
+            if (rsp == 1)
+                rsp = Convert.ToInt32(NoMovimiento);
+            return rsp;
         }
 
-        /*
-                public int AgregarInventarioMov(string CveTipoMovAO, string DescripcionAO, string DescCortaAO, string EntSalAO, string CveClsMovAO,
-                    string FoliadorAO, int EditaFoliAO, int EsTraspasoAO, string TipoMovRelAO, string FmtoImpresionAO,
-                    int AfectaCostoAO, int SugiereCostoAO, int MuestraCostoAO, int EditaCostoAO, int SolicitaCostoAO,
-                    int CalculaIvaAO)
-                {
-                    CargaParametroMat();
-                    RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam,db);
-                    return OpRadd.AddRegInvMov(CveTipoMovAO, DescripcionAO, DescCortaAO, EntSalAO, CveClsMovAO, 
-                        FoliadorAO, EditaFoliAO, EsTraspasoAO, TipoMovRelAO, FmtoImpresionAO, 
-                        AfectaCostoAO, SugiereCostoAO, MuestraCostoAO, EditaCostoAO, SolicitaCostoAO, 
-                        CalculaIvaAO);
-                }
-                */
-
-        public int AgregarInventarioMov(int AfectaCostoAO, int AfectaCostoRel, int EsTraspasoAO)
+        public int AgregarInventarioMov()
         {
             CargaParametroMat();
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
+            return OpRadd.AddRegInvMov(;
+        }
+
+        public int AgregarInvDet()
+        {
             CargaParamMatPart();
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, MatParamPar, db);
-            return OpRadd.AddRegInvMov(AfectaCostoAO, AfectaCostoRel, EsTraspasoAO);
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParamPar, db);
+            return OpRadd.UpdateInvDet();
         }
 
         public int ActualizaInventarioMov()
@@ -311,7 +336,27 @@ namespace GAFE
         
         }
 
-        public SqlDataAdapter BuscaInventarioMov(string buscar)
+        public void GetParamAlma()
+        {
+            CargaParamMatAlma();
+
+            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParamAlma, db);
+            Datos = OpEdit.GetParamAlma();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+
+            CveTipoMov = ObjA[0].ToString();
+            EsDeCompra = Convert.ToInt32(ObjA[0].ToString());
+            EsDeVenta = Convert.ToInt32(ObjA[1].ToString());
+            EsDeConsigna = Convert.ToInt32(ObjA[2].ToString());
+            NumRojo = Convert.ToInt32(ObjA[3].ToString());
+
+        }
+
+
+    public SqlDataAdapter BuscaInventarioMov(string buscar)
         {
             /* MatParam = new object[4, 2];
              MatParam[0, 0] = "CodTipoMov"; MatParam[0, 1] = buscar;
@@ -355,5 +400,17 @@ namespace GAFE
             MatParamPar[4, 0] = "NoDoc"; MatParamPar[4, 1] = NoDoc;
             MatParamPar[5, 0] = "Documento"; MatParamPar[5, 1] = Documento;
         }
+
+        private void CargaParamMatAlma()
+        {
+            MatParamAlma[0, 0] = "ClaveAlmacen"; MatParamAlma[0, 1] = CveAlmacenMov;
+            MatParamAlma[1, 0] = "EsDeCompra"; MatParamAlma[1, 1] = EsDeCompra;
+            MatParamAlma[2, 0] = "EsDeVenta"; MatParamAlma[2, 1] = EsDeVenta;
+            MatParamAlma[3, 0] = "EsDeConsigna"; MatParamAlma[3, 1] = EsDeConsigna;
+            MatParamAlma[4, 0] = "NumRojo"; MatParamAlma[4, 1] = NumRojo;
+        }
+
+
+
     }
 }

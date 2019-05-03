@@ -158,6 +158,7 @@
             this.cboAlmaDest.Name = "cboAlmaDest";
             this.cboAlmaDest.Size = new System.Drawing.Size(256, 24);
             this.cboAlmaDest.TabIndex = 4;
+            this.cboAlmaDest.SelectedIndexChanged += new System.EventHandler(this.cboAlmaDest_SelectedIndexChanged);
             // 
             // cboTipoMovtos
             // 
@@ -177,6 +178,7 @@
             this.cboAlmaOri.Name = "cboAlmaOri";
             this.cboAlmaOri.Size = new System.Drawing.Size(264, 24);
             this.cboAlmaOri.TabIndex = 2;
+            this.cboAlmaOri.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
             // 
             // cmdCancelar
             // 
