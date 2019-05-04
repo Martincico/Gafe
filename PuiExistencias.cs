@@ -20,9 +20,10 @@ namespace GAFE
         private double CostoPromedio;
         private double CostoUltimo;
         private double CostoActual;
+        private string Ubicacion;
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[9, 2];
+        private object[,] MatParam = new object[10, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -91,14 +92,23 @@ namespace GAFE
             set { CostoActual = value; }
         }
 
+        public string cmpUbicacion
+        {
+            get { return Ubicacion; }
+            set { Ubicacion = value; }
+        }
+
+
         #endregion
 
+        
         public int AgregarExistencia()
         {
             CargaParametroMat();
             RegExistencias OpRadd = new RegExistencias(MatParam,db);
             return OpRadd.AddRegExistencia();
         }
+        
 
         public int ActualizaExistencia()
         {
@@ -117,6 +127,20 @@ namespace GAFE
 
             RegExistencias OpDel = new RegExistencias(MatParam,db);
             return OpDel.DeleteExistencia();
+        }
+
+
+        public int AsignaPorAlmacen()
+        {
+            MatParam = new object[5, 2];
+            MatParam[0, 0] = "ClaveArticulo"; MatParam[0, 1] = ClaveArticulo;
+            MatParam[1, 0] = "ClaveAlmacen";  MatParam[1, 1] = ClaveAlmacen;
+            MatParam[2, 0] = "Ubicacion";     MatParam[2, 1] = Ubicacion;
+            MatParam[3, 0] = "stockMin";      MatParam[3, 1] = stockMin;
+            MatParam[4, 0] = "stockMax";      MatParam[4, 1] = stockMax;
+
+            RegExistencias OpUp = new RegExistencias(MatParam, db);
+            return OpUp.UpdateAsignaPorAlmacen();
         }
 
         public SqlDataAdapter ListarExistencias()
@@ -146,6 +170,7 @@ namespace GAFE
             CostoPromedio   = Convert.ToDouble(ObjA[6]);
             CostoUltimo     = Convert.ToDouble(ObjA[7]);
             CostoActual     = Convert.ToDouble(ObjA[8]);
+            Ubicacion       = ObjA[9].ToString();
         }
 
         public SqlDataAdapter BuscaExistencia(string Articulo,string Almacen,string linea)
@@ -180,6 +205,7 @@ namespace GAFE
             MatParam[6, 0] = "CostoPromedio";   MatParam[6, 1] = CostoPromedio;
             MatParam[7, 0] = "CostoUltimo";     MatParam[7, 1] = CostoUltimo;
             MatParam[8, 0] = "CostoActual";     MatParam[8, 1] = CostoActual;
+            MatParam[9, 0] = "Ubicaion";        MatParam[9, 1] = Ubicacion;
         }
     }
 }
