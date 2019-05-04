@@ -15,7 +15,6 @@ namespace GAFE
     {
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
-        private SqlParameter[] ArrParamPart;
         //private string ClaveReg;
 
         public RegCatInventarioMov(object[,] Param, MsSql Odat)
@@ -23,19 +22,6 @@ namespace GAFE
             ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
             for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
                 ArrParametros[j] = new SqlParameter(Param[j, 0].ToString(), Param[j, 1]);
-            //Conn();
-            db = Odat;
-        }
-
-        public RegCatInventarioMov(object[,] Param, object[,] ParamPart, MsSql Odat)
-        {
-            ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
-            for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
-                ArrParametros[j] = new SqlParameter(Param[j, 0].ToString(), Param[j, 1]);
-
-            ArrParamPart = new SqlParameter[ParamPart.GetUpperBound(0) + 1];
-            for (int j = 0; j < ParamPart.GetUpperBound(0) + 1; j++)
-                ArrParamPart[j] = new SqlParameter(ParamPart[j, 0].ToString(), ParamPart[j, 1]);
             //Conn();
             db = Odat;
         }
@@ -62,29 +48,34 @@ namespace GAFE
      
         public int AddRegBlanco()
         {
+  
             string sql = "Insert into Inv_MovtosMaster (NoMovimiento, FechaMovimiento) " +
                          "values( @NoMovimiento,@FechaMovimiento)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
-        public int AddRegInvMov(int AfectaCostoAO, int AfectaCostoRel, int EsTraspasoAO)
+        public String GetFolio(String Fol)
         {
-            int rsp = 0;
+            return db.GetFolioMov(Int32.Parse(Fol), "");
+        }
+
+        public int AddRegInvMov()
+        {
             string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
             "           NoDoc=@NoDoc, Documento=@Documento,CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
             "           Modulo=@Modulo, Descuento=@Descuento," +
             "           TotalDscto=@TotalDscto, TIva=@TIva, SubTotal=@SubTotal, TotalDoc=@TotalDoc, CveProveedor=@CveProveedor," +
             "           Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu " +
             " Where NoMovimiento = @NoMovimiento";
-            if(db.DeleteRegistro(sql, ArrParametros)>=1)
-            {
-                sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov, CveTipoMov= @CveTipoMov," +
+            return db.DeleteRegistro(sql, ArrParametros);
+        }
+
+        public int UpdateInvDet()
+        {
+            String sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov, CveTipoMov= @CveTipoMov," +
                       "                      EntSal = @EntSal, NoDoc = @NoDoc, Documento = @Documento" +
                       " Where NoMovimiento = @NoMovimiento";
-               rsp =  db.DeleteRegistro(sql, ArrParamPart);
-            }
-
-            return rsp;
+            return db.DeleteRegistro(sql, ArrParametros);
         }
 
         public int AddRegInvMovRel()
@@ -153,6 +144,16 @@ namespace GAFE
                "NoDoc like '%" + bsq + "%' ";
 
             dt = db.SelectDA(sql);
+            return dt;
+        }
+
+        public SqlDataAdapter GetParamAlma()
+        {
+            SqlDataAdapter dt = null;
+                       
+            string Sql = "SELECT EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo" +
+                         " from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
+            dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 

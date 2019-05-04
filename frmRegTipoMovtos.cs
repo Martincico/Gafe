@@ -32,6 +32,7 @@ namespace GAFE
             LimpiarControles();
             OpcionControles(true);
             LleCboClaseMov();
+            LlecboCfgCatFoliadores();
             switch (opcion)
             {
                 case 1://Nuevo
@@ -64,8 +65,8 @@ namespace GAFE
             rdbSalida.Checked = pui.cmpEntSal == "S" ? true : false;
             //cboCveClsMov.SelectedIndex = GetCboSelectIndex(cboCveClsMov, pui.cmpCveClsMov);
             cboCveClsMov.SelectedValue = pui.cmpCveClsMov;
-            cboTipoMovRel.SelectedValue = pui.cmpTipoMovRel; 
-            txtFoliador.Text = pui.cmpFoliador;
+            cboTipoMovRel.SelectedValue = pui.cmpTipoMovRel;
+            cboCfgCatFoliadores.SelectedValue = pui.cmpCveFoliador;
             chkEditaFoli.Checked = pui.cmpEditaFoli == 1 ? true : false;
             chkEstraspaso.Checked = pui.cmpEsTraspaso == 1 ? true : false;
             txtFmtoImpresion.Text = pui.cmpFmtoImpresion;
@@ -150,6 +151,7 @@ namespace GAFE
 
         public int set_Campos()
         {
+            int rsp = -1;
             string _tipomovrel = (cboCveClsMov.Text == "TRASPASO") ? Convert.ToString(cboTipoMovRel.SelectedValue) : "";
             PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
             pui.keyCveTipoMov = txtClaveTipoMov.Text;
@@ -158,7 +160,7 @@ namespace GAFE
             pui.cmpEntSal = rdbEntrada.Checked ? "E" : "S";
             pui.cmpCveClsMov =  Convert.ToString(cboCveClsMov.SelectedValue);
             pui.cmpTipoMovRel = _tipomovrel;
-            pui.cmpFoliador = txtFoliador.Text;
+            pui.cmpCveFoliador = Convert.ToString(cboCfgCatFoliadores.SelectedValue);
             pui.cmpEditaFoli = chkEditaFoli.Checked ? 1 : 0;
             pui.cmpEsTraspaso = chkEstraspaso.Checked ? 1 : 0;
             pui.cmpFmtoImpresion = txtFmtoImpresion.Text;
@@ -171,7 +173,28 @@ namespace GAFE
             pui.cmpPideCentroCosto = 0;
             pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
 
-            return opcion == 1 ? pui.AgregarTipoMov() : pui.ActualizaTipoMov();
+            if(opcion==1)
+            {
+                db.IniciaTrans();
+                if(pui.AgregarTipoMov()==1)
+                {
+                    //PuiCatTipoMovtos pui2 = new PuiCatTipoMovtos(db);
+                    pui.cmpCveFoliador = Convert.ToString(cboCfgCatFoliadores.SelectedValue);
+                    if(pui.AddRegCfgFoliadores()==1)
+                    {
+                        rsp = 1;
+                        db.TerminaTrans();
+                    }
+                    else
+                        db.CancelaTrans();
+
+                }
+            }
+            else
+                rsp =pui.ActualizaTipoMov();
+
+
+            return rsp;
         }
 
 
@@ -221,18 +244,10 @@ namespace GAFE
                 }
             }
 
-            if (String.IsNullOrEmpty(txtFoliador.Text))
+            if (String.IsNullOrEmpty(cboCfgCatFoliadores.Text))
             {
                 MessageBox.Show("Foliador: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
-            }
-            else
-            {
-                if (!Util.Numeros(txtFoliador.Text))
-                {
-                    MessageBox.Show("Foliador: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
             }
 
             if (!String.IsNullOrEmpty(txtFmtoImpresion.Text))
@@ -259,19 +274,16 @@ namespace GAFE
             rdbEntrada.Enabled = Op;
             rdbSalida.Enabled = Op;
             cboCveClsMov.Enabled = Op;
-            txtFoliador.Enabled = Op;
+            cboCfgCatFoliadores.Enabled = Op;
             chkEditaFoli.Enabled = Op;
             chkEstraspaso.Enabled = Op;
-            //txtTipoMovRel.Text = pui.cmpTipoMovRel;
             txtFmtoImpresion.Enabled = Op;
             chkAfectaCosto.Enabled = Op;
             chkSugiereCosto.Enabled = Op;
             chkMuestraCosto.Enabled = Op;
             chkEditaCosto.Enabled = Op;
-
             chkSolicitaCosto.Enabled = Op;
             chkCalculaIva.Enabled = Op;
-            //chkEditaCosto.Enabled = Op;
             chkEstatus.Enabled = Op;
 
         }
@@ -304,6 +316,15 @@ namespace GAFE
             cboTipoMovRel.DisplayMember = "Descripcion";
 
         }
+
+        private void LlecboCfgCatFoliadores()
+        {
+            PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores();
+            cboCfgCatFoliadores.ValueMember = "CveFoliador";
+            cboCfgCatFoliadores.DisplayMember = "Descripcion";
+        }
+
 
         private void cboCveClsMov_SelectedValueChanged(object sender, EventArgs e)
         {

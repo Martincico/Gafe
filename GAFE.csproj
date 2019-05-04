@@ -98,6 +98,12 @@
     <Compile Include="frmCatArticulos.Designer.cs">
       <DependentUpon>frmCatArticulos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatCfgCatFoliadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatCfgCatFoliadores.designer.cs">
+      <DependentUpon>frmCatCfgCatFoliadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatClases.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,12 @@
     <Compile Include="frmExistencias.Designer.cs">
       <DependentUpon>frmExistencias.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKardex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKardex.Designer.cs">
+      <DependentUpon>frmKardex.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLstArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,9 +214,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
+    <Compile Include="PuiCatKardex.cs" />
     <Compile Include="PuiExistencias.cs" />
     <Compile Include="PuiCatArticulos.cs" />
     <Compile Include="PuiAddPartidasMovInv.cs" />
+    <Compile Include="PuiCatCfgCatFoliadores.cs" />
     <Compile Include="PuiCatInv_ClaseMov.cs" />
     <Compile Include="PuiCatMarcas.cs" />
     <Compile Include="PuiCatMunicipios.cs" />
@@ -217,9 +231,11 @@
     <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
+    <Compile Include="RegCatKardex.cs" />
     <Compile Include="RegExistencias.cs" />
     <Compile Include="RegCatArticulo.cs" />
     <Compile Include="RegAddPartidasMovInv.cs" />
+    <Compile Include="RegCatCfgCatFoliador.cs" />
     <Compile Include="RegCatInv_ClaseMov.cs" />
     <Compile Include="RegCatMarcas.cs" />
     <Compile Include="RegCatMunicipio.cs" />
@@ -242,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatArticulos.resx">
       <DependentUpon>frmCatArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatCfgCatFoliadores.resx">
+      <DependentUpon>frmCatCfgCatFoliadores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatClases.resx">
       <DependentUpon>frmCatClases.cs</DependentUpon>
@@ -275,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmExistencias.resx">
       <DependentUpon>frmExistencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKardex.resx">
+      <DependentUpon>frmKardex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLstArticulos.resx">
       <DependentUpon>frmLstArticulos.cs</DependentUpon>

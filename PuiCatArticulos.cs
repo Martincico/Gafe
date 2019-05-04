@@ -56,7 +56,6 @@ namespace GAFE
             db = Odat;
             Linea = new PuiCatLineas(db);
             Impuesto = new PuiCatImpuestos(db);
-            //Marca= new PuiCatMarcas(db);
             Clase1 = new PuiCatClases(db);
             Clase2 = new PuiCatClases(db);
             Clase3 = new PuiCatClases(db);
