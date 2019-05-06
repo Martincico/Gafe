@@ -227,10 +227,11 @@ namespace GAFE
                                 if (CLASE.AFECTAEXISTENCIA() == 1)
                                 {
                                 */
-                                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                                db.TerminaTrans();
-                                this.Close();
+                                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                                    db.TerminaTrans();
+                                    this.Close();
+
                                 /*
                                 }
                                 else
