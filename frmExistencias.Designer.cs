@@ -29,8 +29,20 @@
         private void InitializeComponent()
         {
             this.grdView = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.cboLineas = new System.Windows.Forms.ComboBox();
+            this.cboAlmacen = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtClaveArticulo = new System.Windows.Forms.TextBox();
+            this.txtDscArticulo = new System.Windows.Forms.TextBox();
+            this.cmdArticulo = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmdConsultar = new System.Windows.Forms.Button();
+            this.cmdAsignaStock = new System.Windows.Forms.Button();
+            this.cmdBuscar = new System.Windows.Forms.Button();
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClaveAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CantApartada = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,19 +52,7 @@
             this.CostoPromedio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostoUltimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CostoActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cboAlmacen = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtClaveArticulo = new System.Windows.Forms.TextBox();
-            this.txtDscArticulo = new System.Windows.Forms.TextBox();
-            this.cmdArticulo = new System.Windows.Forms.Button();
-            this.cmdBuscar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmdConsultar = new System.Windows.Forms.Button();
-            this.cmdEliminar = new System.Windows.Forms.Button();
-            this.cmEditar = new System.Windows.Forms.Button();
-            this.cmdAgregar = new System.Windows.Forms.Button();
-            this.cboLineas = new System.Windows.Forms.ComboBox();
+            this.Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +66,7 @@
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre,
+            this.Linea,
             this.ClaveAlmacen,
             this.Cantidad,
             this.CantApartada,
@@ -74,80 +75,13 @@
             this.stockMax,
             this.CostoPromedio,
             this.CostoUltimo,
-            this.CostoActual});
+            this.CostoActual,
+            this.Ubicacion});
             this.grdView.Location = new System.Drawing.Point(11, 97);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(1039, 324);
             this.grdView.TabIndex = 25;
-            // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Codigo";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
-            // 
-            // ClaveAlmacen
-            // 
-            this.ClaveAlmacen.HeaderText = "Almacen";
-            this.ClaveAlmacen.Name = "ClaveAlmacen";
-            this.ClaveAlmacen.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // CantApartada
-            // 
-            this.CantApartada.HeaderText = "Cant. Apartada";
-            this.CantApartada.Name = "CantApartada";
-            this.CantApartada.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Exitencia";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // stockMin
-            // 
-            this.stockMin.HeaderText = "Min";
-            this.stockMin.Name = "stockMin";
-            this.stockMin.ReadOnly = true;
-            // 
-            // stockMax
-            // 
-            this.stockMax.HeaderText = "Max";
-            this.stockMax.Name = "stockMax";
-            this.stockMax.ReadOnly = true;
-            // 
-            // CostoPromedio
-            // 
-            this.CostoPromedio.HeaderText = "Costo Prom";
-            this.CostoPromedio.Name = "CostoPromedio";
-            this.CostoPromedio.ReadOnly = true;
-            // 
-            // CostoUltimo
-            // 
-            this.CostoUltimo.HeaderText = "Costo. Actual";
-            this.CostoUltimo.Name = "CostoUltimo";
-            this.CostoUltimo.ReadOnly = true;
-            // 
-            // CostoActual
-            // 
-            this.CostoActual.HeaderText = "Costo Actual";
-            this.CostoActual.Name = "CostoActual";
-            this.CostoActual.ReadOnly = true;
             // 
             // panel1
             // 
@@ -164,6 +98,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1057, 90);
             this.panel1.TabIndex = 20;
+            // 
+            // cboLineas
+            // 
+            this.cboLineas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLineas.FormattingEnabled = true;
+            this.cboLineas.Location = new System.Drawing.Point(593, 5);
+            this.cboLineas.Name = "cboLineas";
+            this.cboLineas.Size = new System.Drawing.Size(421, 28);
+            this.cboLineas.TabIndex = 1006;
+            this.cboLineas.SelectionChangeCommitted += new System.EventHandler(this.cboLineas_SelectionChangeCommitted);
             // 
             // cboAlmacen
             // 
@@ -221,19 +165,6 @@
             this.cmdArticulo.UseVisualStyleBackColor = false;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
             // 
-            // cmdBuscar
-            // 
-            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
-            this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(941, 48);
-            this.cmdBuscar.Name = "cmdBuscar";
-            this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
-            this.cmdBuscar.TabIndex = 2;
-            this.cmdBuscar.Text = "Buscar";
-            this.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdBuscar.UseVisualStyleBackColor = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -253,57 +184,119 @@
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 21;
-            this.cmdConsultar.Text = "Consultar";
+            this.cmdConsultar.Text = "Imprimir";
             this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdConsultar.UseVisualStyleBackColor = false;
             // 
-            // cmdEliminar
+            // cmdAsignaStock
             // 
-            this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
-            this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(873, 440);
-            this.cmdEliminar.Name = "cmdEliminar";
-            this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEliminar.TabIndex = 24;
-            this.cmdEliminar.Text = "Eliminar";
-            this.cmdEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdEliminar.UseVisualStyleBackColor = false;
+            this.cmdAsignaStock.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAsignaStock.Image = global::GAFE.Properties.Resources.Nuevo;
+            this.cmdAsignaStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdAsignaStock.Location = new System.Drawing.Point(597, 440);
+            this.cmdAsignaStock.Name = "cmdAsignaStock";
+            this.cmdAsignaStock.Size = new System.Drawing.Size(170, 36);
+            this.cmdAsignaStock.TabIndex = 22;
+            this.cmdAsignaStock.Text = "Asigna Stock por Almacen";
+            this.cmdAsignaStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdAsignaStock.UseVisualStyleBackColor = false;
+            this.cmdAsignaStock.Click += new System.EventHandler(this.cmdAsignaStock_Click);
             // 
-            // cmEditar
+            // cmdBuscar
             // 
-            this.cmEditar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmEditar.Image = global::GAFE.Properties.Resources.Editar;
-            this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(773, 440);
-            this.cmEditar.Name = "cmEditar";
-            this.cmEditar.Size = new System.Drawing.Size(94, 36);
-            this.cmEditar.TabIndex = 23;
-            this.cmEditar.Text = "Editar";
-            this.cmEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmEditar.UseVisualStyleBackColor = false;
+            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
+            this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdBuscar.Location = new System.Drawing.Point(941, 48);
+            this.cmdBuscar.Name = "cmdBuscar";
+            this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
+            this.cmdBuscar.TabIndex = 2;
+            this.cmdBuscar.Text = "Buscar";
+            this.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdBuscar.UseVisualStyleBackColor = false;
             // 
-            // cmdAgregar
+            // CodEmpleado
             // 
-            this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
-            this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(673, 440);
-            this.cmdAgregar.Name = "cmdAgregar";
-            this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
-            this.cmdAgregar.TabIndex = 22;
-            this.cmdAgregar.Text = "Agregar";
-            this.cmdAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdAgregar.UseVisualStyleBackColor = false;
+            this.CodEmpleado.Frozen = true;
+            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.Name = "CodEmpleado";
+            this.CodEmpleado.ReadOnly = true;
+            this.CodEmpleado.Width = 80;
             // 
-            // cboLineas
+            // Nombre
             // 
-            this.cboLineas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLineas.FormattingEnabled = true;
-            this.cboLineas.Location = new System.Drawing.Point(593, 5);
-            this.cboLineas.Name = "cboLineas";
-            this.cboLineas.Size = new System.Drawing.Size(421, 28);
-            this.cboLineas.TabIndex = 1006;
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 350;
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "Linea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            // 
+            // ClaveAlmacen
+            // 
+            this.ClaveAlmacen.HeaderText = "Almacen";
+            this.ClaveAlmacen.Name = "ClaveAlmacen";
+            this.ClaveAlmacen.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // CantApartada
+            // 
+            this.CantApartada.HeaderText = "Cant. Apartada";
+            this.CantApartada.Name = "CantApartada";
+            this.CantApartada.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Exitencia";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // stockMin
+            // 
+            this.stockMin.HeaderText = "Min";
+            this.stockMin.Name = "stockMin";
+            this.stockMin.ReadOnly = true;
+            // 
+            // stockMax
+            // 
+            this.stockMax.HeaderText = "Max";
+            this.stockMax.Name = "stockMax";
+            this.stockMax.ReadOnly = true;
+            // 
+            // CostoPromedio
+            // 
+            this.CostoPromedio.HeaderText = "Costo Prom";
+            this.CostoPromedio.Name = "CostoPromedio";
+            this.CostoPromedio.ReadOnly = true;
+            // 
+            // CostoUltimo
+            // 
+            this.CostoUltimo.HeaderText = "Costo. Ultimo";
+            this.CostoUltimo.Name = "CostoUltimo";
+            this.CostoUltimo.ReadOnly = true;
+            // 
+            // CostoActual
+            // 
+            this.CostoActual.HeaderText = "Costo Actual";
+            this.CostoActual.Name = "CostoActual";
+            this.CostoActual.ReadOnly = true;
+            // 
+            // Ubicacion
+            // 
+            this.Ubicacion.HeaderText = "Ubicacion";
+            this.Ubicacion.Name = "Ubicacion";
+            this.Ubicacion.ReadOnly = true;
+            this.Ubicacion.Visible = false;
             // 
             // frmExistencias
             // 
@@ -311,9 +304,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 503);
             this.Controls.Add(this.cmdConsultar);
-            this.Controls.Add(this.cmdEliminar);
-            this.Controls.Add(this.cmEditar);
-            this.Controls.Add(this.cmdAgregar);
+            this.Controls.Add(this.cmdAsignaStock);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.MaximumSize = new System.Drawing.Size(1078, 542);
@@ -332,9 +323,7 @@
         #endregion
 
         private System.Windows.Forms.Button cmdConsultar;
-        private System.Windows.Forms.Button cmdEliminar;
-        private System.Windows.Forms.Button cmEditar;
-        private System.Windows.Forms.Button cmdAgregar;
+        private System.Windows.Forms.Button cmdAsignaStock;
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cmdBuscar;
@@ -344,8 +333,10 @@
         private System.Windows.Forms.TextBox txtClaveArticulo;
         private System.Windows.Forms.TextBox txtDscArticulo;
         private System.Windows.Forms.Button cmdArticulo;
+        private System.Windows.Forms.ComboBox cboLineas;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClaveAlmacen;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn CantApartada;
@@ -355,6 +346,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoPromedio;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoUltimo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoActual;
-        private System.Windows.Forms.ComboBox cboLineas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ubicacion;
     }
 }

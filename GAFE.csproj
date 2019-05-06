@@ -72,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsignaPorAlmacen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsignaPorAlmacen.Designer.cs">
+      <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsFillCbo.cs" />
     <Compile Include="ClsUtilerias.cs" />
     <Compile Include="Form1.cs">
@@ -241,6 +247,9 @@
     <Compile Include="RegCatInventarioMov.cs" />
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
+    <EmbeddedResource Include="AsignaPorAlmacen.resx">
+      <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

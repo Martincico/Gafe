@@ -203,7 +203,27 @@ namespace GAFE
             frmLstArticulos la = new frmLstArticulos(db,"",3);
             la.ShowDialog();
             txtClaveArticulo.Text = la.dv[0];
-            txtDscArticulo.Text = la.dv[1];           
+            txtDscArticulo.Text = la.dv[1];
+            LlenaGridView(1);
+        }
+
+        private void cboLineas_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LlenaGridView(1);
+        }
+
+        private void cmdAsignaStock_Click(object sender, EventArgs e)
+        {
+            string ClaveArticulo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            string ClaveAlmacen = grdView[3, grdView.CurrentRow.Index].Value.ToString();
+            string Descripcion = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+            string Ubicacion = grdView[12, grdView.CurrentRow.Index].Value.ToString(); ;
+            string stockMin = grdView[7, grdView.CurrentRow.Index].Value.ToString();
+            string stockMax = grdView[8, grdView.CurrentRow.Index].Value.ToString();
+
+            AsignaPorAlmacen fas = new AsignaPorAlmacen(ClaveArticulo,ClaveAlmacen,Descripcion,Ubicacion,stockMin,stockMax,db);
+            fas.ShowDialog();
+            LlenaGridView(1);
         }
     }
 }
