@@ -46,8 +46,8 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[18, 2];
-        private object[,] MatParamPar = new object[6, 2];
+        private object[,] MatParam = new object[20, 2];
+        private object[,] MatParamParti = new object[6, 2];
         private object[,] MatParamAlma = new object[5, 2];
 
         
@@ -246,8 +246,9 @@ namespace GAFE
 
         public int AgregarBlanco()
         {
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
-            NoMovimiento = OpRadd.GetFolio(NoMovimiento);
+            //RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
+
+            NoMovimiento = this.GetFolio(NoMovimiento);
             MatParam = new object[2, 2];
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
             MatParam[1, 0] = "FechaMovimiento"; MatParam[1, 1] = FechaMovimiento;
@@ -258,17 +259,23 @@ namespace GAFE
             return rsp;
         }
 
-        public int AgregarInventarioMov()
+        public String GetFolio(String fol)
+        {
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
+            return OpRadd.GetFolioSql(fol);
+        }
+
+        public int AgregarInvMaster()
         {
             CargaParametroMat();
             RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
-            return OpRadd.AddRegInvMov();
+            return OpRadd.AddRegInvMaster();
         }
 
         public int AgregarInvDet()
         {
             CargaParamMatPart();
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParamPar, db);
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParamParti, db);
             return OpRadd.UpdateInvDet();
         }
 
@@ -389,16 +396,18 @@ namespace GAFE
             MatParam[15, 0] = "CveTipoMovDest"; MatParam[15, 1] = CveTipoMovDest;
             MatParam[16, 0] = "EntSalDest"; MatParam[16, 1] = EntSalDest;
             MatParam[17, 0] = "CveAlmacenDes"; MatParam[17, 1] = CveAlmacenDes;
+            MatParam[18, 0] = "NoMovtoTra"; MatParam[18, 1] = NoMovtoTra;
+            MatParam[19, 0] = "DocTra"; MatParam[19, 1] = DocTra;
         }
         private void CargaParamMatPart()
         {
 
-            MatParamPar[0, 0] = "NoMovimiento"; MatParamPar[0, 1] = NoMovimiento;
-            MatParamPar[1, 0] = "CveAlmacenMov"; MatParamPar[1, 1] = CveAlmacenMov;
-            MatParamPar[2, 0] = "CveTipoMov"; MatParamPar[2, 1] = CveTipoMov;
-            MatParamPar[3, 0] = "EntSal"; MatParamPar[3, 1] = EntSal;
-            MatParamPar[4, 0] = "NoDoc"; MatParamPar[4, 1] = NoDoc;
-            MatParamPar[5, 0] = "Documento"; MatParamPar[5, 1] = Documento;
+            MatParamParti[0, 0] = "NoMovimiento"; MatParamParti[0, 1] = NoMovimiento;
+            MatParamParti[1, 0] = "CveAlmacenMov"; MatParamParti[1, 1] = CveAlmacenMov;
+            MatParamParti[2, 0] = "CveTipoMov"; MatParamParti[2, 1] = CveTipoMov;
+            MatParamParti[3, 0] = "EntSal"; MatParamParti[3, 1] = EntSal;
+            MatParamParti[4, 0] = "NoDoc"; MatParamParti[4, 1] = NoDoc;
+            MatParamParti[5, 0] = "Documento"; MatParamParti[5, 1] = Documento;
         }
 
         private void CargaParamMatAlma()

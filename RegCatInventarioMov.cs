@@ -54,18 +54,18 @@ namespace GAFE
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
-        public String GetFolio(String Fol)
+        public String GetFolioSql(String Fol)
         {
             return db.GetFolioMov(Int32.Parse(Fol), "");
         }
 
-        public int AddRegInvMov()
+        public int AddRegInvMaster()
         {
             string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
             "           NoDoc=@NoDoc, Documento=@Documento,CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
             "           Modulo=@Modulo, Descuento=@Descuento," +
             "           TotalDscto=@TotalDscto, TIva=@TIva, SubTotal=@SubTotal, TotalDoc=@TotalDoc, CveProveedor=@CveProveedor," +
-            "           Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu " +
+            "           Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu, NoMovtoTra = @NoMovtoTra, DocTra = @DocTra " +
             " Where NoMovimiento = @NoMovimiento";
             return db.DeleteRegistro(sql, ArrParametros);
         }
