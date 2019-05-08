@@ -141,7 +141,7 @@ namespace GAFE
         {
             PuiExistencias pui = new PuiExistencias(db);
             DatosTbl = (tieneFiltro == 0) ? pui.ListarExistencias() : pui.BuscaExistencia(txtClaveArticulo.Text,cboAlmacen.SelectedValue.ToString(),
-                                                                              cboLineas.SelectedValue.ToString());
+                                                                              cboLineas.SelectedValue.ToString(),txtBuscar.Text);
             DataSet Ds = new DataSet();
 
             try
@@ -223,6 +223,11 @@ namespace GAFE
 
             AsignaPorAlmacen fas = new AsignaPorAlmacen(ClaveArticulo,ClaveAlmacen,Descripcion,Ubicacion,stockMin,stockMax,db);
             fas.ShowDialog();
+            LlenaGridView(1);
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
             LlenaGridView(1);
         }
     }

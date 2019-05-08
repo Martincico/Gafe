@@ -107,7 +107,7 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter BuscaExistencia(string articulo,string clavealmacen,string linea)
+        public SqlDataAdapter BuscaExistencia(string articulo,string clavealmacen,string linea, string buscar)
         {
             SqlDataAdapter dt = null;
             string where = "where ";
@@ -130,6 +130,12 @@ namespace GAFE
                 usaAnd = 1;
             }
 
+            if (buscar.Length > 0)
+            {
+                where += (usaAnd == 1) ? " AND (Ex.ClaveArticulo like '%" + buscar + "%' OR Ar.Descripcion like '%"+buscar+"%' )" :
+                                         " (Ex.ClaveArticulo like '%" + buscar + "%' OR Ar.Descripcion like '%" + buscar + "%' )";
+                usaAnd = 1;
+            }
             //where =   (usaAnd == 1) ? "AND Ex.ClaveAlmacen = " + clavealmacen + "' " : "Ex.ClaveAlmacen = '" + clavealmacen + "' ";
 
             string sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +

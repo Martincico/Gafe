@@ -43,18 +43,18 @@
             this.CostoActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cboLineas = new System.Windows.Forms.ComboBox();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveArticulo = new System.Windows.Forms.TextBox();
             this.txtDscArticulo = new System.Windows.Forms.TextBox();
             this.cmdArticulo = new System.Windows.Forms.Button();
-            this.cmdBuscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmdBuscar = new System.Windows.Forms.Button();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdAsignaStock = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -171,7 +171,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.cboLineas);
             this.panel1.Controls.Add(this.cboAlmacen);
@@ -183,7 +183,26 @@
             this.panel1.Location = new System.Drawing.Point(2, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1057, 90);
-            this.panel1.TabIndex = 20;
+            this.panel1.TabIndex = 0;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Location = new System.Drawing.Point(66, 19);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(462, 23);
+            this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.Leave += new System.EventHandler(this.txtBuscar_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 17);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Buscar";
             // 
             // cboLineas
             // 
@@ -225,6 +244,7 @@
             this.txtClaveArticulo.ReadOnly = true;
             this.txtClaveArticulo.Size = new System.Drawing.Size(110, 23);
             this.txtClaveArticulo.TabIndex = 1003;
+            this.txtClaveArticulo.TabStop = false;
             // 
             // txtDscArticulo
             // 
@@ -236,6 +256,7 @@
             this.txtDscArticulo.ReadOnly = true;
             this.txtDscArticulo.Size = new System.Drawing.Size(309, 23);
             this.txtDscArticulo.TabIndex = 1002;
+            this.txtDscArticulo.TabStop = false;
             // 
             // cmdArticulo
             // 
@@ -251,6 +272,16 @@
             this.cmdArticulo.UseVisualStyleBackColor = false;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(547, 62);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Lineas";
+            // 
             // cmdBuscar
             // 
             this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
@@ -264,16 +295,6 @@
             this.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdBuscar.UseVisualStyleBackColor = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(547, 62);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lineas";
-            // 
             // cmdConsultar
             // 
             this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
@@ -282,7 +303,7 @@
             this.cmdConsultar.Location = new System.Drawing.Point(483, 440);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
-            this.cmdConsultar.TabIndex = 0;
+            this.cmdConsultar.TabIndex = 3;
             this.cmdConsultar.Text = "Imprimir";
             this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdConsultar.UseVisualStyleBackColor = false;
@@ -300,24 +321,6 @@
             this.cmdAsignaStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAsignaStock.UseVisualStyleBackColor = false;
             this.cmdAsignaStock.Click += new System.EventHandler(this.cmdAsignaStock_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 17);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Buscar";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(66, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(462, 23);
-            this.textBox1.TabIndex = 2;
             // 
             // frmExistencias
             // 
@@ -369,7 +372,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoUltimo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ubicacion;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label3;
     }
 }
