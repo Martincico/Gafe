@@ -386,7 +386,7 @@
             this.btnEditaPartida.Name = "btnEditaPartida";
             this.btnEditaPartida.Size = new System.Drawing.Size(94, 36);
             this.btnEditaPartida.TabIndex = 83;
-            this.btnEditaPartida.Text = "Eliminar";
+            this.btnEditaPartida.Text = "Editar";
             this.btnEditaPartida.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditaPartida.UseVisualStyleBackColor = false;
             this.btnEditaPartida.Click += new System.EventHandler(this.btnEditaPartida_Click);
