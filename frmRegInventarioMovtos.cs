@@ -135,7 +135,7 @@ namespace GAFE
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
             String CodProve = cboProveedor.Visible ? Convert.ToString(cboProveedor.SelectedValue) : "";
             String FolMov = pui.GetFolio(_Foliador);
-            String DocM = _cveinvmt + _AlmO + FolMov;
+            String DocM = _cveinvmt + _AlmO + folMovto;
             pui.keyNoMovimiento = Convert.ToString(folMovto);
             pui.cmpCveAlmacenMov = _AlmO;
             pui.cmpCveTipoMov = _cveinvmt;
@@ -174,96 +174,106 @@ namespace GAFE
             {
                 if (pui.AgregarInvDet() >= 1)
                 {
-                    /*
-                    if(_AfectaCosto==1)
+                    pui.keyNoMovimiento = Convert.ToString(folMovto);
+                    pui.cmpCveAlmacenMov = _AlmO;
+                    int rpp = 1;
+                    if (_AfectaCosto==1)
                     {
-                        CLASE.AfectaCostos();
+                       rpp = pui.AfectaCostos();
                     }
-                    
-                    if (CLASE.AFECTAEXISTENCIA() == 1)
+
+                    if (pui.AfectaExistencias(_CveTipoMov,_EntSal) >= 1 && rpp >= 1)
                     {
-                    */
-                    if (_EsTraspaso == 1)
-                    {
-                        String FolMovMaster = pui.GetFolio(Foliador);
-                        String FolMovDoc = pui.GetFolio(_FoliadorRel);
-                        _AlmO = Convert.ToString(cboAlmaDest.SelectedValue);
-                        _cveinvmt = Convert.ToString(cboTipoMovtos.SelectedValue);
-
-                        pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
-                        pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
-                        pui.cmpCveAlmacenMov = _AlmO;
-                        pui.cmpCveTipoMov = _CveTipoMovRel;
-                        pui.cmpEntSal = _EntSalRel;
-                        pui.cmpNoDoc = FolMovDoc;
-                        pui.cmpDocumento = _cveinvmt + _AlmO + FolMov;
-                        pui.cmpCveAlmacenDes = "";
-                        pui.cmpCveTipoMovDest = "";
-                        pui.cmpEntSalDest = "";
-                        pui.cmpModulo = Modulo;
-
-                        pui.cmpDescuento = Convert.ToDouble(txtDescuento.Text);
-                        pui.cmpTotalDscto = Convert.ToDouble(txtTotDesc.Text);
-                        pui.cmpTIva = Convert.ToDouble(txtIva.Text);
-                        pui.cmpSubTotal = Convert.ToDouble(txtSubTotal.Text);
-                        pui.cmpTotalDoc = Convert.ToDouble(txtTotal.Text);
-
-                        pui.cmpCveProveedor = CodProve;
-                        pui.cmpCancelado = 1;
-                        pui.cmpCveUsarioCaptu = "USUARIO";
-
-                        pui.cmpNoMovtoTra = FolMov;
-                        pui.cmpDocTra = DocM;
-                        if (pui.AgregarInvMaster() >= 1)
+                        if (_EsTraspaso == 1)
                         {
-                            if (pui.AgregarInvDet() >= 1)
+                            pui.keyNoMovimiento = Foliador;
+                            pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
+
+                            int FolMovMaster = pui.AgregarBlanco();
+
+                            if (FolMovMaster >= 1)
                             {
+                                String FolMovDoc = pui.GetFolio(_FoliadorRel);
+                                _AlmO = Convert.ToString(cboAlmaDest.SelectedValue);
+                                _cveinvmt = Convert.ToString(cboTipoMovtos.SelectedValue);
 
-                                /*
-                                if (_AfectaCostoRel == 1)
-                                {
-                                    CLASE.AfectaCostos();
-                                }
-                                if (CLASE.AFECTAEXISTENCIA() == 1)
-                                {
-                                */
-                                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                        MessageBoxIcon.Information);
-                                    db.TerminaTrans();
-                                    this.Close();
+                                pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
+                                pui.cmpCveAlmacenMov = _AlmO;
+                                pui.cmpCveTipoMov = _CveTipoMovRel;
+                                pui.cmpEntSal = _EntSalRel;
+                                pui.cmpNoDoc = FolMovDoc;
+                                pui.cmpDocumento = _cveinvmt + _AlmO + FolMovMaster;
+                                pui.cmpCveAlmacenDes = "";
+                                pui.cmpCveTipoMovDest = "";
+                                pui.cmpEntSalDest = "";
+                                pui.cmpModulo = Modulo;
 
-                                /*
+                                pui.cmpDescuento = Convert.ToDouble(txtDescuento.Text);
+                                pui.cmpTotalDscto = Convert.ToDouble(txtTotDesc.Text);
+                                pui.cmpTIva = Convert.ToDouble(txtIva.Text);
+                                pui.cmpSubTotal = Convert.ToDouble(txtSubTotal.Text);
+                                pui.cmpTotalDoc = Convert.ToDouble(txtTotal.Text);
+
+                                pui.cmpCveProveedor = CodProve;
+                                pui.cmpCancelado = 1;
+                                pui.cmpCveUsarioCaptu = "USUARIO";
+
+                                pui.cmpNoMovtoTra = Convert.ToString(folMovto);
+                                pui.cmpDocTra = DocM;
+                                if (pui.AgregarInvMaster() >= 1)
+                                {
+                                    PuiAddPartidasMovInv PuiPart = new PuiAddPartidasMovInv(db);
+                                    if (PuiPart.MovParttoAlma(folMovto, FolMovMaster) >= 1)
+                                    {
+                                        rpp = 1;
+                                        if (_AfectaCostoRel == 1)
+                                        {
+                                            pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
+                                            pui.cmpCveAlmacenMov = _AlmO;
+                                            rpp = pui.AfectaCostos();
+                                        }
+                                        pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
+                                        pui.cmpCveAlmacenMov = _AlmO;
+                                        if (pui.AfectaExistencias(_CveTipoMovRel, _EntSalRel) >= 1 && rpp == 1)
+                                        {
+                                            if (pui.AgregarInvDet() >= 1)
+                                            {
+                                                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
+                                                db.TerminaTrans();
+                                                this.Close();
+                                            }
+                                            else
+                                                db.CancelaTrans();
+                                        }
+                                        else
+                                            db.CancelaTrans();
+                                    }
+                                    else
+                                        db.CancelaTrans();
                                 }
                                 else
-                                {
-                                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                   MessageBoxIcon.Information);
-                                    db.TerminaTrans();
-                                    this.Close();
-                                }
-                                -*/
-
+                                    db.CancelaTrans();
                             }
                             else
-                                db.CancelaTrans();
+                              db.CancelaTrans();
                         }
                         else
-                            db.CancelaTrans();
+                        {
+                            MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                            db.TerminaTrans();
+                            this.Close();
+                        }
                     }
                     else
-                    {
-                        MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                        db.TerminaTrans();
-                        this.Close();
-                    }
+                        db.CancelaTrans();
                 }
                 else
                     db.CancelaTrans();
             }
             else
                 db.CancelaTrans();
-
         }
 
         private void Editar()
@@ -424,7 +434,7 @@ namespace GAFE
                     _CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
                     _SolicitaCosto, _EsTraspaso, _EntSal,_CalculaIva, 
                     Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)),
-                    _AlmNumRojo,_AlmNumRojoDest);
+                    _AlmNumRojo,_AlmNumRojoDest,0);
                 Addp.ShowDialog();
                 LlenaGridViewPart();
                 OpcionControles(false);
@@ -506,6 +516,8 @@ namespace GAFE
 
         private void btnEliminarPartida_Click(object sender, EventArgs e)
         {
+            
+            int Cp = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
             try { 
                 if (MessageBox.Show("Esta seguro de eliminar el registro " + grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -523,7 +535,7 @@ namespace GAFE
                 MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
-}
+        }
 
         private void CalculaTotales()
         {
@@ -560,16 +572,28 @@ namespace GAFE
 
         private void btnRestablecer_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Esta seguro de restablecer? Se eliminarán los registros de la tabla ",
-                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                OpcionControles(true);
-            }
-            
+
         }
 
         private void btnEditaPartida_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int Cp = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
+                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, Modulo, Convert.ToString(folMovto), 2,
+                        _CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
+                        _SolicitaCosto, _EsTraspaso, _EntSal, _CalculaIva,
+                        Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)),
+                        _AlmNumRojo, _AlmNumRojoDest, Cp);
+                Addp.ShowDialog();
+                LlenaGridViewPart();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                    "Error al editar", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
         }
 
@@ -605,7 +629,7 @@ namespace GAFE
                     InvMast.EliminaInventarioMov();
                 }
 
-            this.Close();
+                this.Close();
         }
 
 

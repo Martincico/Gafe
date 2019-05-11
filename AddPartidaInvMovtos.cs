@@ -16,6 +16,7 @@ namespace GAFE
     {
         private int opcion;
         private MsSql db = null;
+        private int CodPart;
 
         Boolean ErrCalc = true;
 
@@ -66,11 +67,12 @@ namespace GAFE
         public AddPartidaInvMovtos(MsSql Odat, String P_modulo, String P_folio, int P_operacion,
                 String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
                  int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, DateTime P_FechaMovimiento,
-                 int P_AlmNumRojo, int P_AlmNumRojoDest)
+                 int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart)
         {
             InitializeComponent();
             opcion = P_operacion;
             db = Odat;
+            CodPart = P_CodPart;
 
             PModLlama = P_modulo; //dependiendo del modulo que llama esta ventana extrae el precio
             PNoMovimiento = P_folio;
@@ -105,7 +107,30 @@ namespace GAFE
                 txtMuesCosto.Visible = false;
             }
 
-            
+            if (opcion >= 2)
+            {
+                GetRegistro();
+            }
+
+        }
+
+        private void GetRegistro()
+        {
+            PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+            pui.keyNoMovimiento = PNoMovimiento;
+            pui.keyNoPartida = CodPart;
+            pui.EditarPartida();
+            txtCodigo.Text = pui.cmpCveArticulo;
+            txtDescripcion.Text = pui.cmpDescripcion;
+            txtUmedida.Text = pui.cmpCveUMedida;
+            BuscarPrecio(pui.cmpCveArticulo);
+            txtCantidad.Text = Convert.ToString(pui.cmpCantidad);
+            txtDescuento.Text = Convert.ToString(pui.cmpDescuento);
+            txtTotDesc.Text = Convert.ToString(pui.cmpTotalDscto);
+            txtSubTotal.Text = Convert.ToString(pui.cmpSubTotal);
+            txtIva.Text = Convert.ToString(pui.cmpTotalIva);
+            txtTotal.Text = Convert.ToString(pui.cmpTotalPartida);
+
         }
 
         private void AddPartidaInvMovtos_KeyDown(object sender, KeyEventArgs e)
@@ -138,11 +163,10 @@ namespace GAFE
         {
             if (validacion())
             {
-                Random r = new Random();
                 PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
 
                 pui.keyNoMovimiento = PNoMovimiento;
-                pui.keyNoPartida = r.Next(1, 999);
+                pui.keyNoPartida = pui.GetFolioPart(PNoMovimiento);
                 pui.cmpCveAlmacenMov = "";
                 pui.cmpCveTipoMov = PCveTipoMov;
                 pui.cmpEntSal = PEntSal;
@@ -181,15 +205,39 @@ namespace GAFE
             {
                 if (validacion())
                 {
-                    //if (pui.ActualizaTipoMov() >= 0)
-                    /*
-                    if (set_Campos() >= 0)
+                    PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+
+                    pui.keyNoMovimiento = PNoMovimiento;
+                    pui.keyNoPartida = CodPart;
+                    pui.cmpCveAlmacenMov = "";
+                    pui.cmpCveTipoMov = PCveTipoMov;
+                    pui.cmpEntSal = PEntSal;
+                    pui.cmpNoDoc = "";
+                    pui.cmpDocumento = "";
+                    pui.cmpCveArticulo = txtCodigo.Text;
+                    pui.cmpDescripcion = txtDescripcion.Text;
+                    pui.cmpCveUMedida = txtUmedida.Text;
+                    pui.cmpCantidad = Cantidad;
+                    pui.cmpCantidadPkt = Cantidad;
+                    pui.cmpPrecio = Precio;
+                    pui.cmpDescuento = Descuento;
+                    pui.cmpTotalDscto = TotalDesc;
+                    pui.cmpCveImpuesto = "";
+                    pui.cmpTotalIva = TotalIva;
+                    pui.cmpSubTotal = SubTotal;
+                    pui.cmpTotalPartida = TotalPartida;
+                    pui.cmpFolioDocOrigen = "";
+                    pui.cmpFechaMovimiento = _FechaMov;
+                    pui.cmpNoMovtoTra = "";
+                    pui.cmpDocTra = "";
+                    pui.cmpPartTra = "";
+
+                    if (pui.ActualizaPartida() >= 1)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
+                        MessageBox.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
                         this.Close();
                     }
-                    */
                 }
             }
             catch (Exception ex)
@@ -368,8 +416,11 @@ namespace GAFE
                 }
                 if (!Util.Numeros(txtCantidad.Text))
                 {
-                    err = err + "Precio: Contiene caracteres no validos. Sugiere: 0)\n";
-                    ErrCalc = false;
+                    if (txtCantidad.Text.Length >= 1)
+                    {
+                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0)\n";
+                        ErrCalc = false;
+                    }
                 }
 
                 if (ErrCalc)
@@ -473,7 +524,7 @@ namespace GAFE
         private int CalcExist(int Op)
         {
             int r = 1;
-            double CantCapt;
+            double CantCapt = 0;
             String msj = "";
             /*
             try
@@ -481,12 +532,15 @@ namespace GAFE
             */
                 if (String.IsNullOrEmpty(txtCantidad.Text))
                 {
-                    msj +=  "Cantidad: No debe estar vacío. \n";
-                    r = 0;
+                    if (Op == 1)
+                    {
+                        msj += "Cantidad: No debe estar vacío. \n";
+                        r = 0;
+                    }
                 }
+                else
+                    CantCapt = Convert.ToDouble(txtCantidad.Text);
 
-                CantCapt = Convert.ToDouble(txtCantidad.Text);
-                //CantInv
 
                 if (PModLlama.Equals("M01"))
                 {
