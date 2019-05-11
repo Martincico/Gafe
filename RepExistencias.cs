@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace GAFE
 {
-    class RepExistencia
+    class RepExistencias
     {
         public string ClaveArticulo { get; set; }
         public string DscArticulo { get; set; }
         public string DscLinea { get; set; }
         public string ClaveAlmacen { get; set; }
-        public string Cantidad { get; set; }
-        public string CantidaApartada { get; set; }
-        public string ExTotal { get; set; }
-        public string stockMin { get; set; }
-        public string stockMax { get; set; }
-        public string CostoPromedio { get; set; }
-        public string CostoUltimo { get; set; }
-        public string CostoActual { get; set; }
+        public double Cantidad { get; set; }
+        public double CantidaApartada { get; set; }
+        public double ExTotal { get; set; }
+        public double stockMin { get; set; }
+        public double stockMax { get; set; }
+        public double CostoPromedio { get; set; }
+        public double CostoUltimo { get; set; }
+        public double CostoActual { get; set; }
         public string Ubicacion { get; set; }
 
-        public RepExistencia()
+        public RepExistencias()
         {  }
 
-        public RepExistencia(RepExistencia Reg) {
+        public RepExistencias(RepExistencias Reg) {
             ClaveArticulo = Reg.ClaveArticulo;
             DscArticulo = Reg.DscArticulo;
             DscLinea = Reg.DscLinea;

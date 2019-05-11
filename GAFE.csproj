@@ -271,7 +271,7 @@
     <Compile Include="RegCatInventarioMov.cs" />
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
-    <Compile Include="RepExistencia.cs" />
+    <Compile Include="RepExistencias.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
@@ -348,6 +348,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RepExistencias.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RegExistencias.datasource" />
+    <None Include="Properties\DataSources\RepExistencias.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
