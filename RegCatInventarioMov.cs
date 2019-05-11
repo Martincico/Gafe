@@ -56,7 +56,8 @@ namespace GAFE
 
         public String GetFolioSql(String Fol)
         {
-            return db.GetFolioMov(Int32.Parse(Fol), "");
+            //return db.GetFolioMov(Int32.Parse(Fol), "");
+            return "";
         }
 
         public int AddRegInvMaster()
