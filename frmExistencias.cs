@@ -230,5 +230,12 @@ namespace GAFE
         {
             LlenaGridView(1);
         }
+
+        private void cmdConsultar_Click(object sender, EventArgs e)
+        {
+            string Almacen = (cboAlmacen.SelectedValue == null) ? "" : cboAlmacen.SelectedValue.ToString();
+            string Linea = (cboLineas.SelectedValue == null) ? "" : cboLineas.SelectedValue.ToString();
+            
+        }
     }
 }

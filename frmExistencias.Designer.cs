@@ -285,7 +285,6 @@
             // cmdBuscar
             // 
             this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdBuscar.Location = new System.Drawing.Point(885, 440);
             this.cmdBuscar.Name = "cmdBuscar";
@@ -298,7 +297,6 @@
             // cmdConsultar
             // 
             this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdConsultar.Location = new System.Drawing.Point(483, 440);
             this.cmdConsultar.Name = "cmdConsultar";
@@ -307,11 +305,11 @@
             this.cmdConsultar.Text = "Imprimir";
             this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdConsultar.UseVisualStyleBackColor = false;
+            this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
             // cmdAsignaStock
             // 
             this.cmdAsignaStock.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAsignaStock.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAsignaStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAsignaStock.Location = new System.Drawing.Point(597, 440);
             this.cmdAsignaStock.Name = "cmdAsignaStock";
