@@ -94,21 +94,21 @@ namespace GAFE
             return dt;
         }
 
-        public int MovParttoAlmaSql(int NoMovi, int NoMoviNew)
+        public int MovParttoAlmaSql()
         {
             string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
              "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
-            "  SELECT "+ NoMoviNew + ",NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
+            "  SELECT @NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
              "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovimiento,Documento,NoPartida " +
              " FROM Inv_MovtosDetalles" +
-             " WHERE NoMovimiento = " + NoMovi;
-            return db.InsReg_SinParam(sql);
+             " WHERE NoMovimiento = @NoPartida";
+            return db.InsertarRegistro(sql, ArrParametros);
 
         }
 

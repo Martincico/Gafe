@@ -293,10 +293,11 @@ namespace GAFE
             return OpLst.ListPartidas(NoMov);
         }
 
-        public int MovParttoAlma(int NoMovi, int NoMoviNew)
+        public int MovParttoAlma()
         {
-            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(db);
-            return OpEdit.MovParttoAlmaSql(NoMovi, NoMoviNew);
+            CargaParamMatKeys();
+            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys,db);
+            return OpEdit.MovParttoAlmaSql();
         }
 
         public void EditarPartida()

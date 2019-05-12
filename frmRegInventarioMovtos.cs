@@ -223,17 +223,18 @@ namespace GAFE
                                 if (pui.AgregarInvMaster() >= 1)
                                 {
                                     PuiAddPartidasMovInv PuiPart = new PuiAddPartidasMovInv(db);
-                                    if (PuiPart.MovParttoAlma(folMovto, FolMovMaster) >= 1)
+                                    PuiPart.keyNoMovimiento = Convert.ToString(folMovto);
+                                    PuiPart.keyNoPartida = FolMovMaster;
+                                    if (PuiPart.MovParttoAlma() >= 1)
                                     {
                                         rpp = 1;
-                                        if (_AfectaCostoRel == 1)
-                                        {
-                                            pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
-                                            pui.cmpCveAlmacenMov = _AlmO;
-                                            rpp = pui.AfectaCostos();
-                                        }
                                         pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
                                         pui.cmpCveAlmacenMov = _AlmO;
+                                        if (_AfectaCostoRel == 1)
+                                        {
+                                            rpp = pui.AfectaCostos();
+                                        }
+                                        
                                         if (pui.AfectaExistencias(_CveTipoMovRel, _EntSalRel) >= 1 && rpp == 1)
                                         {
                                             if (pui.AgregarInvDet() >= 1)
