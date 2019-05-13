@@ -235,6 +235,11 @@ namespace GAFE
         {
             string Almacen = (cboAlmacen.SelectedValue == null) ? "" : cboAlmacen.SelectedValue.ToString();
             string Linea = (cboLineas.SelectedValue == null) ? "" : cboLineas.SelectedValue.ToString();
+            string Articulo = txtClaveArticulo.Text;
+            string Buscar = txtBuscar.Text;
+
+            frmRepExistencia Rep = new frmRepExistencia(Articulo, Almacen, Linea, Buscar, db);
+            Rep.Show();
             
         }
     }

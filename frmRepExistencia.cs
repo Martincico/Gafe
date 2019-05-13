@@ -73,22 +73,22 @@ namespace GAFE
 
             }
 
-            
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "CtrlAcceso.RepEsEmpleados.rdlc";
-            ReportDataSource rds1 = new ReportDataSource("DtsEsEmpleados", DatEs);
+
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "GAFE.Reportes.RepExistencias.rdlc";
+            ReportDataSource rds1 = new ReportDataSource("RepExistencias", DatEs);
             this.reportViewer1.LocalReport.DataSources.Clear();
             this.reportViewer1.LocalReport.DataSources.Add(rds1);
 
-            ReportParameter F1 = new ReportParameter("FecInicial", String.Format("{0:yyyy-MM-dd}", dtpFecIni.Value));
-            ReportParameter F2 = new ReportParameter("FecFinal", String.Format("{0:yyyy-MM-dd}", dtpFecFin.Value));
-            ReportParameter CodP = new ReportParameter("CodPropietario", codProp);
-            ReportParameter NomP = new ReportParameter("NomPropietario", cboPropietarios.Text);
-            this.reportViewer1.LocalReport.SetParameters(F1);
-            this.reportViewer1.LocalReport.SetParameters(F2);
-            this.reportViewer1.LocalReport.SetParameters(CodP);
-            this.reportViewer1.LocalReport.SetParameters(NomP);
+            ReportParameter Art = new ReportParameter("ClaveArticulo", Articulo);
+            ReportParameter Alm = new ReportParameter("ClaveAlmacen", Almacen);
+            ReportParameter Lin = new ReportParameter("ClaveLinea", Linea);
+            ReportParameter Bsc = new ReportParameter("Buscar", Buscar);
+            this.reportViewer1.LocalReport.SetParameters(Art);
+            this.reportViewer1.LocalReport.SetParameters(Alm);
+            this.reportViewer1.LocalReport.SetParameters(Lin);
+            this.reportViewer1.LocalReport.SetParameters(Bsc);
 
-    
+
             this.reportViewer1.RefreshReport();
         }
     }
