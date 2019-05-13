@@ -79,9 +79,9 @@ namespace GAFE
             this.reportViewer1.LocalReport.DataSources.Clear();
             this.reportViewer1.LocalReport.DataSources.Add(rds1);
 
-            ReportParameter Art = new ReportParameter("Articulo", Articulo);
-            ReportParameter Alm = new ReportParameter("Almacen", Almacen);
-            ReportParameter Lin = new ReportParameter("Linea", Linea);
+            ReportParameter Art = new ReportParameter("ClaveArticulo", Articulo);
+            ReportParameter Alm = new ReportParameter("ClaveAlmacen", Almacen);
+            ReportParameter Lin = new ReportParameter("ClaveLinea", Linea);
             ReportParameter Bsc = new ReportParameter("Buscar", Buscar);
             this.reportViewer1.LocalReport.SetParameters(Art);
             this.reportViewer1.LocalReport.SetParameters(Alm);
