@@ -296,6 +296,7 @@ namespace GAFE
         public int MovParttoAlma()
         {
             CargaParamMatKeys();
+
             RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys,db);
             return OpEdit.MovParttoAlmaSql();
         }

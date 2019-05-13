@@ -225,6 +225,7 @@ namespace GAFE
                                     PuiAddPartidasMovInv PuiPart = new PuiAddPartidasMovInv(db);
                                     PuiPart.keyNoMovimiento = Convert.ToString(folMovto);
                                     PuiPart.keyNoPartida = FolMovMaster;
+
                                     if (PuiPart.MovParttoAlma() >= 1)
                                     {
                                         rpp = 1;

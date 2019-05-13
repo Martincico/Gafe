@@ -109,8 +109,8 @@ namespace GAFE
              "        FechaMovimiento,NoMovimiento,Documento,NoPartida " +
              " FROM Inv_MovtosDetalles" +
              " WHERE NoMovimiento = @NoPartida";
-            return db.InsertarRegistro(sql, ArrParametros);
 
+            return db.InsertarRegistro(sql, ArrParametros);
         }
 
         public SqlDataAdapter RegistroActivo()
