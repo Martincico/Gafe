@@ -43,6 +43,7 @@ namespace GAFE
                          "        @Cantidad,@CantidadPkt,@Precio,@Descuento,@TotalDscto," +
                          "        @CveImpuesto,@TotalIva,@SubTotal,@TotalPartida,@FolioDocOrigen," +
                          "        @FechaMovimiento,@NoMovtoTra,@DocTra,@PartTra)";
+
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
