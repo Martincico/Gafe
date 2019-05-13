@@ -246,8 +246,6 @@ namespace GAFE
 
         public int AgregarBlanco()
         {
-            //RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
-
             NoMovimiento = this.GetFolio(NoMovimiento);
             object[,] MatParam2 = new object[2, 2];
             MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = NoMovimiento;

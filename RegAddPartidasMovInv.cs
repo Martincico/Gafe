@@ -102,13 +102,13 @@ namespace GAFE
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
              "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
-            "  SELECT @NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
+            "  SELECT @NoPartida,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
              "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovimiento,Documento,NoPartida " +
              " FROM Inv_MovtosDetalles" +
-             " WHERE NoMovimiento = @NoPartida";
+             " WHERE NoMovimiento = @NoMovimiento";
 
             return db.InsertarRegistro(sql, ArrParametros);
         }

@@ -147,13 +147,13 @@ namespace GAFE
             try
             {
                 DatosTbl.Fill(Ds);
-                grdView.Rows.Clear();
-
-                for (int j = 0; j < Ds.Tables[0].Rows.Count; j++)
-                {
-                    object[] tmp = Ds.Tables[0].Rows[j].ItemArray;
-                    grdView.Rows.Add(tmp);
-                }
+                grdView.DataSource = Ds.Tables[0];
+                grdView.Columns["NoMovimiento"].Visible = false;
+                grdView.Columns["Cancelado"].Visible = false;
+                grdView.Columns["TotalDoc"].Visible = false;
+                grdView.Columns["CveTipoMov"].Visible = false;
+                grdView.Columns["NoMovtoTra"].Visible = false;
+                grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
             }
             catch (Exception ex)
             {

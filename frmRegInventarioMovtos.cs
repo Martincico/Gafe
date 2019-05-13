@@ -449,6 +449,17 @@ namespace GAFE
             {
                 PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
                 DatosTbl = pui.ListarPartidas(Convert.ToString(folMovto));
+                DataSet Ds = new DataSet();
+
+                DatosTbl.Fill(Ds);
+                //grdView.Rows.Clear();
+                grdViewPart.DataSource = Ds.Tables[0];
+                grdViewPart.Columns["NoMovimiento"].Visible = false;
+                grdViewPart.Columns["Descuento"].Visible = false;
+                grdViewPart.Columns["NoPartida"].Frozen = true;//Inmovilizar columna
+
+
+                /*
                 DataTable dbdataset = new DataTable();
 
                 DatosTbl.Fill(dbdataset);
@@ -459,7 +470,7 @@ namespace GAFE
                 bSoucer.DataSource = dbdataset;
                 grdViewPart.DataSource = bSoucer;
                 DatosTbl.Update(dbdataset);
-
+                */
                 CalculaTotales();
 
 
@@ -676,6 +687,11 @@ namespace GAFE
                     CargaParamAlmaDest(val);
                 }
             }
+        }
+
+        private void frmRegInventarioMovtos_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void CargaParamAlmaDest(String CveAlm)

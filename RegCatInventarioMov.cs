@@ -56,8 +56,7 @@ namespace GAFE
 
         public String GetFolioSql(String Fol)
         {
-            //return db.GetFolioMov(Int32.Parse(Fol), "");
-            return "";
+            return db.GetFolioMov(Int32.Parse(Fol), "");
         }
 
         public int AddRegInvMaster()
@@ -162,8 +161,8 @@ namespace GAFE
         public SqlDataAdapter ListInventarioMovtos()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select NoMovimiento,NoDoc " +
-                         "from Inv_MovtosMaster";
+            string Sql = "SELECT NoMovimiento,Documento,FechaMovimiento,'' AS Almacen, '' AS TipoMov, '' AS Proveedor, Cancelado,TotalDoc,CveTipoMov,NoMovtoTra " +
+                         " from Inv_MovtosMaster";
             dt = db.SelectDA(Sql);
             return dt;
         }

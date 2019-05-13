@@ -73,7 +73,7 @@ namespace GAFE
 
             }
 
-
+            
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "CtrlAcceso.RepEsEmpleados.rdlc";
             ReportDataSource rds1 = new ReportDataSource("DtsEsEmpleados", DatEs);
             this.reportViewer1.LocalReport.DataSources.Clear();
@@ -88,7 +88,7 @@ namespace GAFE
             this.reportViewer1.LocalReport.SetParameters(CodP);
             this.reportViewer1.LocalReport.SetParameters(NomP);
 
-
+    
             this.reportViewer1.RefreshReport();
         }
     }
