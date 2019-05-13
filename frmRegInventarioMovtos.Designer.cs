@@ -55,7 +55,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnRestablecer = new System.Windows.Forms.Button();
             this.btnEditaPartida = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewPart)).BeginInit();
@@ -363,20 +362,6 @@
             this.label1.TabIndex = 81;
             this.label1.Text = "Descuento";
             // 
-            // btnRestablecer
-            // 
-            this.btnRestablecer.BackColor = System.Drawing.SystemColors.Control;
-            this.btnRestablecer.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.btnRestablecer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRestablecer.Location = new System.Drawing.Point(12, 135);
-            this.btnRestablecer.Name = "btnRestablecer";
-            this.btnRestablecer.Size = new System.Drawing.Size(110, 36);
-            this.btnRestablecer.TabIndex = 82;
-            this.btnRestablecer.Text = "Restablecer";
-            this.btnRestablecer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRestablecer.UseVisualStyleBackColor = false;
-            this.btnRestablecer.Click += new System.EventHandler(this.btnRestablecer_Click);
-            // 
             // btnEditaPartida
             // 
             this.btnEditaPartida.BackColor = System.Drawing.SystemColors.Control;
@@ -397,7 +382,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 446);
             this.Controls.Add(this.btnEditaPartida);
-            this.Controls.Add(this.btnRestablecer);
             this.Controls.Add(this.txtDescuento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTotal);
@@ -458,7 +442,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnRestablecer;
         private System.Windows.Forms.Button btnEditaPartida;
     }
 }
