@@ -256,14 +256,13 @@ namespace GAFE
                 rsp = Convert.ToInt32(NoMovimiento);
             return rsp;
         }
-        
+
         public String GetFolio(String fol)
         {
             RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
-            return " ";//OpRadd.GetFolioSql(fol);
-
+            return OpRadd.GetFolioSql(fol);
         }
-        
+
         public int AgregarInvMaster()
         {
             CargaParametroMat();
@@ -490,6 +489,9 @@ namespace GAFE
             MatParamAlma[2, 0] = "EsDeVenta"; MatParamAlma[2, 1] = EsDeVenta;
             MatParamAlma[3, 0] = "EsDeConsigna"; MatParamAlma[3, 1] = EsDeConsigna;
             MatParamAlma[4, 0] = "NumRojo"; MatParamAlma[4, 1] = NumRojo;
-        }               
+        }
+
+
+
     }
 }
