@@ -28,9 +28,6 @@ namespace GAFE
 
         public RegAddPartidasMovInv(MsSql Odat) { db = Odat; }
 
-    
-
-
         public int AddRegPartida()
         {
             string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
@@ -126,37 +123,5 @@ namespace GAFE
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
-
-        /*
-
-                public int UpdatePartida()
-                {
-                    string sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov,v CveTipoMov= @CveTipoMov,EntSal = @EntSal," +
-                                 "        NoDoc = @NoDoc,Documento = @Documento,CveArticulo = @CveArticulo,Descripcion = @Descripcion,CveUMedida = @CveUMedida," +
-                                 "        Cantidad = @Cantidad,CantidadPkt = @CantidadPkt,Precio = @Precio,Descuento = @Descuento,TotalDscto = @TotalDscto," +
-                                 "        CveImpuesto = @CveImpuesto,TotalIva = @TotalIva,SubTotal = @SubTotal,TotalPartida = @TotalPartida,FolioDocOrigen = @FolioDocOrigen," +
-                                 "        FechaMovimiento = @FechaMovimiento,NoMovtoTra = @NoMovtoTra,DocTra = @DocTra,PartTra = @PartTra " +
-                                " Where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
-                    return db.DeleteRegistro(sql, ArrParametros);
-                }
-
-
-
-        
-
-
-                public SqlDataAdapter BuscaPartida(string bsq)
-                {
-                    SqlDataAdapter dt = null;
-                    string sql = "Select NoMovimiento,NoPartida,NoDoc " +
-                       "from Inv_MovtosDetalles " +
-                       "where NoMovimiento like '%" + bsq + "%' OR " +
-                       "NoPartida like '%" + bsq + "%' ";
-
-                    dt = db.SelectDA(sql);
-                    return dt;
-                }
-
-                */
     }
 }

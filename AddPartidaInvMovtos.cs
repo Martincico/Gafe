@@ -590,8 +590,6 @@ namespace GAFE
             }
             */
             return r;
-
         }
-
     }
 }

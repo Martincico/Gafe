@@ -48,7 +48,6 @@ namespace GAFE
      
         public int AddRegBlanco()
         {
-  
             string sql = "Insert into Inv_MovtosMaster (NoMovimiento, FechaMovimiento) " +
                          "values( @NoMovimiento,@FechaMovimiento)";
             return db.InsertarRegistro(sql, ArrParametros);
@@ -177,5 +176,4 @@ namespace GAFE
             return dt;
         }
     }
-
 }

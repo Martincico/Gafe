@@ -338,28 +338,7 @@ namespace GAFE
             PartTra = ObjA[23].ToString();
 
         }
-
-
-        /*
-                public int ActualizaPartida()
-                {
-                    CargaParametroMat();
-                    RegAddPartidasMovInv OpUp = new RegAddPartidasMovInv(MatParam,db);
-                    return OpUp.UpdatePartida();
-
-                }
-
-
-
-
-                
-
-                public SqlDataAdapter BuscaPartida(string buscar)
-                {
-                    RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(db);
-                    return OpBsq.BuscaPartida(buscar);
-                }
-        */
+        
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;

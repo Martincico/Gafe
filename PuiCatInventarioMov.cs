@@ -489,9 +489,6 @@ namespace GAFE
             MatParamAlma[2, 0] = "EsDeVenta"; MatParamAlma[2, 1] = EsDeVenta;
             MatParamAlma[3, 0] = "EsDeConsigna"; MatParamAlma[3, 1] = EsDeConsigna;
             MatParamAlma[4, 0] = "NumRojo"; MatParamAlma[4, 1] = NumRojo;
-        }
-
-
-
+        }               
     }
 }
