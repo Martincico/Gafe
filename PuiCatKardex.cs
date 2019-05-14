@@ -11,28 +11,50 @@ namespace GAFE
 {
     class PuiCatKardex
     {
-        private object[,] MatParam = new object[3, 2];
-        //private object[,] MatParam = new object[26, 2];
-        private SqlDataAdapter Datos;
+        private object[,] MatParam = new object[2, 2];
+
+        //private SqlDataAdapter Datos;
+
+        private String CveArticulo;
+        private String CveAlmacenMov;
+ 
+
+        #region Definicion de propiedades de la Articulo
+
+        public string keyCveArticulo
+        {
+            get { return CveArticulo; }
+            set { CveArticulo = value; }
+        }
+        public String cmpCveAlmacenMov
+        {
+            get { return CveAlmacenMov; }
+            set { CveAlmacenMov = value; }
+        }
+        #endregion
 
         private MsSql db = null;
+
 
         public PuiCatKardex(MsSql Odat)
         {
             db = Odat;
         }
 
-        public SqlDataAdapter verKardex()
+        public DataTable verKardex()
         {
             CargaParametroMat();
-            RegCatArticulo OpLst = new RegCatArticulo(db);
-            return OpLst.ListArticulos();
+            RegCatKardex OpLst = new RegCatKardex(MatParam, db);
+            DataSet Ds = new DataSet();
+            OpLst.Kardex().Fill(Ds);
+            return Ds.Tables[0];
         }
         private void CargaParametroMat()
         {
 
-            MatParam[0, 0] = "CveArticulo"; MatParam[0, 1] = 1;
-            MatParam[1, 0] = "CodigoAlterno"; MatParam[1, 1] = 2;            
-        }
+            MatParam[0, 0] = "CveArticulo"; MatParam[0, 1] = CveArticulo;
+            MatParam[1, 0] = "CveAlmacenMov"; MatParam[1, 1] = CveAlmacenMov;
+
         }
     }
+}

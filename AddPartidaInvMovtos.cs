@@ -166,7 +166,7 @@ namespace GAFE
                 PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
 
                 pui.keyNoMovimiento = PNoMovimiento;
-                pui.keyNoPartida = pui.GetFolioPart(PNoMovimiento);
+                //pui.keyNoPartida = pui.GetFolioPart(PNoMovimiento);
                 pui.cmpCveAlmacenMov = "";
                 pui.cmpCveTipoMov = PCveTipoMov;
                 pui.cmpEntSal = PEntSal;

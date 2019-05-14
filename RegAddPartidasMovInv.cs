@@ -61,13 +61,13 @@ namespace GAFE
                          " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
             return db.UpdateRegistro(sql, ArrParametros);
         }
-
+        /*
         public int GetFolioPart(String NoMov)
         {
             String Sql = "SELECT TOP 1   NoPartida FROM Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' ORDER BY NoPartida DESC ";
             return db.GetRegGenerico(Sql);
         }
-
+        */
         public SqlDataAdapter BusPrecio(String ModLlama)
         {
             SqlDataAdapter dt = null;

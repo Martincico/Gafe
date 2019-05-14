@@ -29,22 +29,18 @@
         private void InitializeComponent()
         {
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmdConsultar = new System.Windows.Forms.Button();
+            this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmdImprimir = new System.Windows.Forms.Button();
+            this.dtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.cboAlmacenes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveArticulo = new System.Windows.Forms.TextBox();
             this.txtDscArticulo = new System.Windows.Forms.TextBox();
             this.cmdArticulo = new System.Windows.Forms.Button();
-            this.cmdConsultar = new System.Windows.Forms.Button();
-            this.cmdEliminar = new System.Windows.Forms.Button();
-            this.cmdEditar = new System.Windows.Forms.Button();
-            this.cmdAgregar = new System.Windows.Forms.Button();
-            this.dtFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,35 +51,20 @@
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CodEmpleado,
-            this.Nombre});
             this.grdView.Location = new System.Drawing.Point(10, 117);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(1039, 330);
+            this.grdView.Size = new System.Drawing.Size(1039, 374);
             this.grdView.TabIndex = 31;
-            // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Codigo";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.cmdConsultar);
             this.panel1.Controls.Add(this.dtFechaFin);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.cmdImprimir);
             this.panel1.Controls.Add(this.dtFechaInicio);
             this.panel1.Controls.Add(this.cboAlmacenes);
             this.panel1.Controls.Add(this.label2);
@@ -95,6 +76,73 @@
             this.panel1.Size = new System.Drawing.Size(1057, 97);
             this.panel1.TabIndex = 26;
             // 
+            // cmdConsultar
+            // 
+            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
+            this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdConsultar.Location = new System.Drawing.Point(716, 37);
+            this.cmdConsultar.Name = "cmdConsultar";
+            this.cmdConsultar.Size = new System.Drawing.Size(94, 53);
+            this.cmdConsultar.TabIndex = 27;
+            this.cmdConsultar.Text = "Consultar";
+            this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdConsultar.UseVisualStyleBackColor = false;
+            this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
+            // 
+            // dtFechaFin
+            // 
+            this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaFin.Location = new System.Drawing.Point(853, 5);
+            this.dtFechaFin.Name = "dtFechaFin";
+            this.dtFechaFin.Size = new System.Drawing.Size(150, 26);
+            this.dtFechaFin.TabIndex = 1009;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(823, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 20);
+            this.label4.TabIndex = 1008;
+            this.label4.Text = "al:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(573, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 20);
+            this.label3.TabIndex = 1007;
+            this.label3.Text = "Periodo del:";
+            // 
+            // cmdImprimir
+            // 
+            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdImprimir.Image = global::GAFE.Properties.Resources.printer;
+            this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdImprimir.Location = new System.Drawing.Point(839, 37);
+            this.cmdImprimir.Name = "cmdImprimir";
+            this.cmdImprimir.Size = new System.Drawing.Size(94, 53);
+            this.cmdImprimir.TabIndex = 28;
+            this.cmdImprimir.Text = "Imprimir";
+            this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdImprimir.UseVisualStyleBackColor = false;
+            this.cmdImprimir.Visible = false;
+            this.cmdImprimir.Click += new System.EventHandler(this.cmdImprimir_Click);
+            // 
+            // dtFechaInicio
+            // 
+            this.dtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaInicio.Location = new System.Drawing.Point(670, 5);
+            this.dtFechaInicio.Name = "dtFechaInicio";
+            this.dtFechaInicio.Size = new System.Drawing.Size(150, 26);
+            this.dtFechaInicio.TabIndex = 1006;
+            // 
             // cboAlmacenes
             // 
             this.cboAlmacenes.DisplayMember = "Descripcion";
@@ -104,7 +152,7 @@
             this.cboAlmacenes.Name = "cboAlmacenes";
             this.cboAlmacenes.Size = new System.Drawing.Size(421, 28);
             this.cboAlmacenes.TabIndex = 1005;
-            this.cboAlmacenes.ValueMember = "Clave";
+            this.cboAlmacenes.ValueMember = "ClaveAlmacen";
             // 
             // label2
             // 
@@ -152,105 +200,11 @@
             this.cmdArticulo.UseVisualStyleBackColor = false;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
             // 
-            // cmdConsultar
-            // 
-            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
-            this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(484, 453);
-            this.cmdConsultar.Name = "cmdConsultar";
-            this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
-            this.cmdConsultar.TabIndex = 27;
-            this.cmdConsultar.Text = "Consultar";
-            this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdConsultar.UseVisualStyleBackColor = false;
-            // 
-            // cmdEliminar
-            // 
-            this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
-            this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(874, 453);
-            this.cmdEliminar.Name = "cmdEliminar";
-            this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEliminar.TabIndex = 30;
-            this.cmdEliminar.Text = "Eliminar";
-            this.cmdEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdEliminar.UseVisualStyleBackColor = false;
-            // 
-            // cmdEditar
-            // 
-            this.cmdEditar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdEditar.Image = global::GAFE.Properties.Resources.Editar;
-            this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEditar.Location = new System.Drawing.Point(774, 453);
-            this.cmdEditar.Name = "cmdEditar";
-            this.cmdEditar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEditar.TabIndex = 29;
-            this.cmdEditar.Text = "Editar";
-            this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdEditar.UseVisualStyleBackColor = false;
-            // 
-            // cmdAgregar
-            // 
-            this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
-            this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(674, 453);
-            this.cmdAgregar.Name = "cmdAgregar";
-            this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
-            this.cmdAgregar.TabIndex = 28;
-            this.cmdAgregar.Text = "Agregar";
-            this.cmdAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdAgregar.UseVisualStyleBackColor = false;
-            // 
-            // dtFechaInicio
-            // 
-            this.dtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaInicio.Location = new System.Drawing.Point(670, 5);
-            this.dtFechaInicio.Name = "dtFechaInicio";
-            this.dtFechaInicio.Size = new System.Drawing.Size(150, 26);
-            this.dtFechaInicio.TabIndex = 1006;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(573, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 20);
-            this.label3.TabIndex = 1007;
-            this.label3.Text = "Periodo del:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(823, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 20);
-            this.label4.TabIndex = 1008;
-            this.label4.Text = "al:";
-            // 
-            // dtFechaFin
-            // 
-            this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaFin.Location = new System.Drawing.Point(853, 5);
-            this.dtFechaFin.Name = "dtFechaFin";
-            this.dtFechaFin.Size = new System.Drawing.Size(150, 26);
-            this.dtFechaFin.TabIndex = 1009;
-            // 
             // frmKardex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 503);
-            this.Controls.Add(this.cmdConsultar);
-            this.Controls.Add(this.cmdEliminar);
-            this.Controls.Add(this.cmdEditar);
-            this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.Name = "frmKardex";
@@ -267,12 +221,8 @@
         #endregion
 
         private System.Windows.Forms.Button cmdConsultar;
-        private System.Windows.Forms.Button cmdEliminar;
-        private System.Windows.Forms.Button cmdEditar;
-        private System.Windows.Forms.Button cmdAgregar;
+        private System.Windows.Forms.Button cmdImprimir;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cboAlmacenes;
         private System.Windows.Forms.Label label2;

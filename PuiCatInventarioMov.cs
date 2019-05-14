@@ -256,13 +256,14 @@ namespace GAFE
                 rsp = Convert.ToInt32(NoMovimiento);
             return rsp;
         }
-
+        
         public String GetFolio(String fol)
         {
             RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
-            return OpRadd.GetFolioSql(fol);
-        }
+            return " ";//OpRadd.GetFolioSql(fol);
 
+        }
+        
         public int AgregarInvMaster()
         {
             CargaParametroMat();
