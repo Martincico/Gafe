@@ -33,6 +33,7 @@ namespace GAFE
             rptKardex.LocalReport.SetParameters(new ReportParameter("FechaIni", FechaIni.ToString("dd/MM/yyy")));
             rptKardex.LocalReport.SetParameters(new ReportParameter("FechaFin", FechaFin.ToString("dd/MM/yyy")));
             rptKardex.LocalReport.SetParameters(new ReportParameter("Almacen", Almacen));
+            rptKardex.SetDisplayMode(DisplayMode.PrintLayout);
             //rptKardex.RefreshReport();
         }
     }
