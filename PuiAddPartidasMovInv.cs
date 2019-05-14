@@ -301,6 +301,24 @@ namespace GAFE
             return OpEdit.MovParttoAlmaSql();
         }
 
+        public int GetDuplicado()
+        {
+            CargaParamMatKeys();
+
+            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys, db);
+            Datos = OpEdit.GetDuplicadoSql();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            int i = Ds.Tables[0].Rows.Count;
+            if(i>=1)
+            {
+                object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+                NoPartida = Convert.ToInt32(ObjA[1].ToString());
+            }
+
+            return i;
+        }
+
         public void EditarPartida()
         {
             CargaParamMatKeys();

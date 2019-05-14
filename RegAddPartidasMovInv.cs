@@ -113,6 +113,16 @@ namespace GAFE
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
+        public SqlDataAdapter GetDuplicadoSql()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select NoMovimiento,NoPartida,CveArticulo " +
+                         " from Inv_MovtosDetalles " +
+                         " where NoMovimiento = @NoPartida  AND CveArticulo = @NoMovimiento";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;

@@ -146,7 +146,24 @@ namespace GAFE
             ValidaCalculos();
             switch (opcion)
             {
-                case 1: AltaPartida(); break;
+                case 1:
+                        PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                        pui.keyNoMovimiento = txtCodigo.Text;
+                        pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
+                        if (pui.GetDuplicado() >= 1)
+                        {
+                            if (MessageBox.Show("¿Desea agregar mas cantidad? ",
+                                "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                opcion = 2;
+                                CodPart = pui.keyNoPartida;
+                                GetRegistro();
+                            }
+
+                        }
+                        else
+                            AltaPartida();
+                    break;
                 case 2: EditarPartida(); break;
                 case 3: this.Close(); break;
             }
@@ -164,12 +181,8 @@ namespace GAFE
             if (validacion())
             {
                 PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
-
                 pui.keyNoMovimiento = PNoMovimiento;
                 pui.keyNoPartida = pui.GetFolioPart(PNoMovimiento);
-
-                //pui.EditarPartida();
-
                 pui.cmpCveAlmacenMov = "";
                 pui.cmpCveTipoMov = PCveTipoMov;
                 pui.cmpEntSal = PEntSal;
