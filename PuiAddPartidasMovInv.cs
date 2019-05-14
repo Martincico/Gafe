@@ -280,12 +280,13 @@ namespace GAFE
             RegAddPartidasMovInv OpDel = new RegAddPartidasMovInv(MatParamKeys, db);
             return OpDel.DeletePartida();
         }
-
+        /*
         public int GetFolioPart(String NoMov)
         {
             RegAddPartidasMovInv OpRadd = new RegAddPartidasMovInv(db);
             return OpRadd.GetFolioPart(NoMov);
         }
+        */
         public SqlDataAdapter ListarPartidas(String NoMov)
         {
             CargaParametroMat();

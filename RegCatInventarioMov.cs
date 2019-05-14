@@ -53,12 +53,12 @@ namespace GAFE
                          "values( @NoMovimiento,@FechaMovimiento)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
-
+        /*
         public String GetFolioSql(String Fol)
         {
-            return db.GetFolioMov(Int32.Parse(Fol), "");
+            //return db.GetFolioMov(Int32.Parse(Fol), "");
         }
-
+        */
         public int AddRegInvMaster()
         {
             string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +

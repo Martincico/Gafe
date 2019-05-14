@@ -24,7 +24,7 @@ namespace GAFE
         private MsSql db = null;
         //private string Perfil;
         //private clsUtil uT;
-
+        DataTable dt;
         private string path;
 
         private string Id;
@@ -121,7 +121,7 @@ namespace GAFE
                 kar.cmpCveAlmacenMov = cboAlmacenes.SelectedValue.ToString();
                // kar.cmpFechaIni = dtFechaInicio.Value;
                 //kar.cmpFechaFin = dtFechaFin.Value;
-                DataTable dt= kar.verKardex();
+                dt= kar.verKardex();
                 decimal CantSaldo = 0.00M, Cantidad = 0.00M;
                 decimal PrecioProm = 0.00M, PrecioEnt = 0.00M;
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -129,24 +129,24 @@ namespace GAFE
                     DataRow row = dt.Rows[i];
                     if (row["Concepto"].ToString() == "Entrada")
                     {
-                        if (!decimal.TryParse(row["Cantidad Entrada"].ToString(), out Cantidad))
+                        if (!decimal.TryParse(row["Cantidad_Entrada"].ToString(), out Cantidad))
                             Cantidad = 0;
-                        if (!decimal.TryParse(row["Precio Entrada"].ToString(), out PrecioEnt))
+                        if (!decimal.TryParse(row["Precio_Entrada"].ToString(), out PrecioEnt))
                             PrecioEnt = 0;
                         PrecioProm = ((Cantidad * PrecioEnt) + (CantSaldo * PrecioProm)) / (Cantidad + CantSaldo);
                         CantSaldo += Cantidad;
                     }
                     else
                     {
-                        if (!decimal.TryParse(row["Cantidad Salida"].ToString(), out Cantidad))
+                        if (!decimal.TryParse(row["Cantidad_Salida"].ToString(), out Cantidad))
                             Cantidad = 0;
                         CantSaldo -= Cantidad;
-                        row["Total Salida"] = Cantidad * PrecioProm;
-                        row["Precio Salida"] = PrecioProm;
+                        row["Total_Salida"] = Cantidad * PrecioProm;
+                        row["Precio_Salida"] = PrecioProm;
                     }
-                    row["Cantidad Saldo"] = CantSaldo;
-                    row["Precio Prom"] = PrecioProm;
-                    row["Total Saldo"] = CantSaldo * PrecioProm;
+                    row["Cantidad_Saldo"] = CantSaldo;
+                    row["Precio_Prom"] = PrecioProm;
+                    row["Total_Saldo"] = CantSaldo * PrecioProm;
                 }
                 
                 DataRow[] dtr = dt.Select("Fecha < #"+dtFechaInicio.Value.ToString("MM/dd/yyyy") +"# OR Fecha > #"+ dtFechaFin.Value.ToString("MM/dd/yyyy")+"#");
@@ -185,6 +185,15 @@ namespace GAFE
                 resp = false;
             }
             return resp;
+        }
+
+        private void cmdImprimir_Click(object sender, EventArgs e)
+        {
+            frmRptKardex print = new frmRptKardex();
+            this.Cursor = Cursors.AppStarting;
+            print.Kardex(dt, txtDscArticulo.Text, cboAlmacenes.Text, dtFechaInicio.Value, dtFechaFin.Value);
+            this.Cursor = Cursors.Default;
+            print.ShowDialog();
         }
     }
 }

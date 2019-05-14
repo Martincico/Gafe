@@ -30,17 +30,17 @@
         {
             this.grdView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmdConsultar = new System.Windows.Forms.Button();
             this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.cmdImprimir = new System.Windows.Forms.Button();
             this.dtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.cboAlmacenes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveArticulo = new System.Windows.Forms.TextBox();
             this.txtDscArticulo = new System.Windows.Forms.TextBox();
             this.cmdArticulo = new System.Windows.Forms.Button();
-            this.cmdConsultar = new System.Windows.Forms.Button();
-            this.cmdImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +76,20 @@
             this.panel1.Size = new System.Drawing.Size(1057, 97);
             this.panel1.TabIndex = 26;
             // 
+            // cmdConsultar
+            // 
+            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
+            this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdConsultar.Location = new System.Drawing.Point(716, 37);
+            this.cmdConsultar.Name = "cmdConsultar";
+            this.cmdConsultar.Size = new System.Drawing.Size(94, 53);
+            this.cmdConsultar.TabIndex = 27;
+            this.cmdConsultar.Text = "Consultar";
+            this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdConsultar.UseVisualStyleBackColor = false;
+            this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
+            // 
             // dtFechaFin
             // 
             this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,6 +118,21 @@
             this.label3.Size = new System.Drawing.Size(92, 20);
             this.label3.TabIndex = 1007;
             this.label3.Text = "Periodo del:";
+            // 
+            // cmdImprimir
+            // 
+            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdImprimir.Image = global::GAFE.Properties.Resources.printer;
+            this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdImprimir.Location = new System.Drawing.Point(839, 37);
+            this.cmdImprimir.Name = "cmdImprimir";
+            this.cmdImprimir.Size = new System.Drawing.Size(94, 53);
+            this.cmdImprimir.TabIndex = 28;
+            this.cmdImprimir.Text = "Imprimir";
+            this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdImprimir.UseVisualStyleBackColor = false;
+            this.cmdImprimir.Visible = false;
+            this.cmdImprimir.Click += new System.EventHandler(this.cmdImprimir_Click);
             // 
             // dtFechaInicio
             // 
@@ -170,34 +199,6 @@
             this.cmdArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdArticulo.UseVisualStyleBackColor = false;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
-            // 
-            // cmdConsultar
-            // 
-            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
-            this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(716, 37);
-            this.cmdConsultar.Name = "cmdConsultar";
-            this.cmdConsultar.Size = new System.Drawing.Size(94, 53);
-            this.cmdConsultar.TabIndex = 27;
-            this.cmdConsultar.Text = "Consultar";
-            this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdConsultar.UseVisualStyleBackColor = false;
-            this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
-            // 
-            // cmdImprimir
-            // 
-            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdImprimir.Image = global::GAFE.Properties.Resources.printer;
-            this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdImprimir.Location = new System.Drawing.Point(839, 37);
-            this.cmdImprimir.Name = "cmdImprimir";
-            this.cmdImprimir.Size = new System.Drawing.Size(94, 53);
-            this.cmdImprimir.TabIndex = 28;
-            this.cmdImprimir.Text = "Imprimir";
-            this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdImprimir.UseVisualStyleBackColor = false;
-            this.cmdImprimir.Visible = false;
             // 
             // frmKardex
             // 
