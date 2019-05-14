@@ -191,7 +191,7 @@ namespace GAFE
         {
             frmRptKardex print = new frmRptKardex();
             this.Cursor = Cursors.AppStarting;
-            print.Kardex(dt, txtDscArticulo.Text, cboAlmacenes.Text, dtFechaInicio.Value, dtFechaFin.Value);
+            print.Kardex(dt, txtClaveArticulo.Text+" - "+txtDscArticulo.Text, cboAlmacenes.Text, dtFechaInicio.Value, dtFechaFin.Value);
             this.Cursor = Cursors.Default;
             print.ShowDialog();
         }
