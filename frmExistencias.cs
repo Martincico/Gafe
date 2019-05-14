@@ -88,7 +88,7 @@ namespace GAFE
                 Application.Exit();
             }
 
-            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 1";
+            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 'A'";
             SqlDataReader dr = db.SelectDR(Sqlstr);
             lp = new List<clsFillCbo>();
 

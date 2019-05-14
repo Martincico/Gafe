@@ -92,7 +92,7 @@ namespace GAFE
             if (folMovto >= 1)
               {
                 LleCboClaseMov();
-                LlecboAlmaOri("ALM022");
+                LlecboAlmaOri("100");
                 OcultProvee(false);
                 OcultAlmDest(false);
             }
@@ -452,7 +452,7 @@ namespace GAFE
                 DataSet Ds = new DataSet();
 
                 DatosTbl.Fill(Ds);
-                //grdView.Rows.Clear();
+                grdViewPart.Columns.Clear();
                 grdViewPart.DataSource = Ds.Tables[0];
                 grdViewPart.Columns["NoMovimiento"].Visible = false;
                 grdViewPart.Columns["Descuento"].Visible = false;

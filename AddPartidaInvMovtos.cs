@@ -281,7 +281,7 @@ namespace GAFE
         {
             PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
             pui.cmpCveArticulo = CveArt;
-            pui.cmpinv_ClaveAlmacen = "ALM022";
+            pui.cmpinv_ClaveAlmacen = "100";
             pui.BuscaPrecio(PModLlama);
             CantInv = pui.cmpinv_Cantidad;
 

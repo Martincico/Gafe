@@ -48,8 +48,6 @@ namespace GAFE
             // Perfil = perfil;
         }
 
-
-
         private void frmCatInventarioMovtos_Load(object sender, EventArgs e)
         {
             /*
@@ -147,6 +145,8 @@ namespace GAFE
             try
             {
                 DatosTbl.Fill(Ds);
+                grdView.Columns.Clear();
+
                 grdView.DataSource = Ds.Tables[0];
                 grdView.Columns["NoMovimiento"].Visible = false;
                 grdView.Columns["Cancelado"].Visible = false;
@@ -172,8 +172,6 @@ namespace GAFE
         {
             cmEditar_Click(sender, e);
         }
-
-
 
         private void CargaDatosConexion()
         {
@@ -208,9 +206,5 @@ namespace GAFE
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
