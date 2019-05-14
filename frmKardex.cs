@@ -111,5 +111,80 @@ namespace GAFE
                 Password = nPassword[i++].InnerText;
             }
         }
+
+        private void cmdConsultar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                PuiCatKardex kar = new PuiCatKardex(db);
+                kar.keyCveArticulo = txtClaveArticulo.Text;
+                kar.cmpCveAlmacenMov = cboAlmacenes.SelectedValue.ToString();
+               // kar.cmpFechaIni = dtFechaInicio.Value;
+                //kar.cmpFechaFin = dtFechaFin.Value;
+                DataTable dt= kar.verKardex();
+                decimal CantSaldo = 0.00M, Cantidad = 0.00M;
+                decimal PrecioProm = 0.00M, PrecioEnt = 0.00M;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    DataRow row = dt.Rows[i];
+                    if (row["Concepto"].ToString() == "Entrada")
+                    {
+                        if (!decimal.TryParse(row["Cantidad Entrada"].ToString(), out Cantidad))
+                            Cantidad = 0;
+                        if (!decimal.TryParse(row["Precio Entrada"].ToString(), out PrecioEnt))
+                            PrecioEnt = 0;
+                        PrecioProm = ((Cantidad * PrecioEnt) + (CantSaldo * PrecioProm)) / (Cantidad + CantSaldo);
+                        CantSaldo += Cantidad;
+                    }
+                    else
+                    {
+                        if (!decimal.TryParse(row["Cantidad Salida"].ToString(), out Cantidad))
+                            Cantidad = 0;
+                        CantSaldo -= Cantidad;
+                        row["Total Salida"] = Cantidad * PrecioProm;
+                        row["Precio Salida"] = PrecioProm;
+                    }
+                    row["Cantidad Saldo"] = CantSaldo;
+                    row["Precio Prom"] = PrecioProm;
+                    row["Total Saldo"] = CantSaldo * PrecioProm;
+                }
+                
+                DataRow[] dtr = dt.Select("Fecha < #"+dtFechaInicio.Value.ToString("MM/dd/yyyy") +"# OR Fecha > #"+ dtFechaFin.Value.ToString("MM/dd/yyyy")+"#");
+                foreach (var drow in dtr)
+                {
+                    drow.Delete();
+                }
+                dt.AcceptChanges();
+                
+                grdView.DataSource = dt;
+                cmdImprimir.Visible = true;
+            }
+            
+        }
+
+        private Boolean Validar()
+        {
+            Boolean resp = true;
+            
+            if(String.IsNullOrEmpty(txtClaveArticulo.Text))
+            {
+                MessageBox.Show("Clave de Artículo: Debe seleccionar un artículo.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmdArticulo.Focus();
+                resp = false;
+            }
+            if(cboAlmacenes.SelectedIndex<0)
+            {
+                MessageBox.Show("Clave de Almacen: Debe seleccionar un Almacen.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboAlmacenes.Focus();
+                resp = false;
+            }
+            if(dtFechaInicio.Value>dtFechaFin.Value)
+            {
+                MessageBox.Show("Fecha Inicio: La Fecha de Inicio debe ser mayor a la Fecha Final.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtFechaInicio.Focus();
+                resp = false;
+            }
+            return resp;
+        }
     }
 }

@@ -14,25 +14,25 @@ namespace GAFE
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
         //private string ClaveReg
-
-
-        public SqlDataAdapter ListArticulos()
+        public RegCatKardex(object[,] Param, MsSql Odat)
         {
-            SqlDataAdapter dt = null;
-            string Sql = "Select CveArticulo as Clave,CodigoBarra as Codigo,A.Descripcion,CodigoSat as 'Codigo SAT',Modelo," +
-                         "L.Descripcion as Linea,M.Descripcion as Marca,C.Descripcion as Clase,UM.Descripcion as 'U Medida',Observacion " +
-                         "FROM inv_CatArticulos A Left join Inv_Lineas L on A.CveLinea = L.CveLinea " +
-                         "Left join Inv_Clases C on A.CveClase1 = C.CveClase " +
-                         "Left Join Inv_UMedidas UM on A.CveUMedida1 = UM.CveUMedida  " +
-                         "Left Join Inv_Marcas M on A.CveMarca = M.Descripción";
-            dt = db.SelectDA(Sql);
-            return dt;
+            ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
+            for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
+                ArrParametros[j] = new SqlParameter(Param[j, 0].ToString(), Param[j, 1]);
+            //Conn();
+            db = Odat;
         }
-        public SqlDataAdapter RegistroActivo()
+
+        public SqlDataAdapter Kardex()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select * " +
-                          "from Inv_CatArticulos where CveArticulo =@CveArticulo";
+            string Sql = "SELECT  D.FechaMovimiento as Fecha, IIF(D.EntSal='E','Entrada', '       '+A.Descripcion)  as 'Concepto', " +
+                "IIF(D.EntSal='E',D.Cantidad, null) as 'Cantidad Entrada', IIF(D.EntSal='E',D.Precio, null) as 'Precio Entrada', IIF(D.EntSal='E',D.Precio*D.Cantidad, null) as 'Total Entrada'," +
+                "IIF(D.EntSal='S',D.Cantidad, null) as 'Cantidad Salida', null as 'Precio Salida', IIF(D.EntSal='S',D.Precio*D.Cantidad, null) as 'Total Salida'," +
+                "null as 'Cantidad Saldo', null as 'Precio Prom', null as 'Total Saldo' " +
+                "FROM Inv_MovtosDetalles D JOIN Inv_CatAlmacenes A ON D.CveAlmacenMov=A.ClaveAlmacen " +
+                "WHERE D.CveArticulo = @CveArticulo AND D.CveAlmacenMov = @CveAlmacenMov " +
+                "ORDER BY Fecha ASC";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
