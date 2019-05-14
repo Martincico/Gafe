@@ -173,7 +173,7 @@ namespace GAFE
             Ubicacion       = ObjA[9].ToString();
         }
 
-        public SqlDataAdapter BuscaExistencia(string Articulo,string Almacen,string linea)
+        public SqlDataAdapter BuscaExistencia(string Articulo,string Almacen,string linea, string buscar)
         {
             /* MatParam = new object[4, 2];
              MatParam[0, 0] = "CodAlmacen"; MatParam[0, 1] = buscar;
@@ -183,7 +183,7 @@ namespace GAFE
              RegExistencias OpBsq = new RegExistencias(MatParam);/
              */
             RegExistencias OpBsq = new RegExistencias(db);
-            return OpBsq.BuscaExistencia(Articulo,Almacen,linea);
+            return OpBsq.BuscaExistencia(Articulo,Almacen,linea,buscar);
         }
 
         public DataTable CboInv_CatAlmacenes()

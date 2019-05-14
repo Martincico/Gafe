@@ -88,7 +88,7 @@ namespace GAFE
                 Application.Exit();
             }
 
-            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 1";
+            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 'A'";
             SqlDataReader dr = db.SelectDR(Sqlstr);
             lp = new List<clsFillCbo>();
 
@@ -141,7 +141,7 @@ namespace GAFE
         {
             PuiExistencias pui = new PuiExistencias(db);
             DatosTbl = (tieneFiltro == 0) ? pui.ListarExistencias() : pui.BuscaExistencia(txtClaveArticulo.Text,cboAlmacen.SelectedValue.ToString(),
-                                                                              cboLineas.SelectedValue.ToString());
+                                                                              cboLineas.SelectedValue.ToString(),txtBuscar.Text);
             DataSet Ds = new DataSet();
 
             try
@@ -224,6 +224,23 @@ namespace GAFE
             AsignaPorAlmacen fas = new AsignaPorAlmacen(ClaveArticulo,ClaveAlmacen,Descripcion,Ubicacion,stockMin,stockMax,db);
             fas.ShowDialog();
             LlenaGridView(1);
+        }
+
+        private void txtBuscar_Leave(object sender, EventArgs e)
+        {
+            LlenaGridView(1);
+        }
+
+        private void cmdConsultar_Click(object sender, EventArgs e)
+        {
+            string Almacen = (cboAlmacen.SelectedValue == null) ? "" : cboAlmacen.SelectedValue.ToString();
+            string Linea = (cboLineas.SelectedValue == null) ? "" : cboLineas.SelectedValue.ToString();
+            string Articulo = txtClaveArticulo.Text;
+            string Buscar = txtBuscar.Text;
+
+            frmRepExistencia Rep = new frmRepExistencia(Articulo, Almacen, Linea, Buscar, db);
+            Rep.Show();
+            
         }
     }
 }

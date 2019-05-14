@@ -260,17 +260,16 @@ namespace GAFE
 
 
 
-public int AgregarPartida()
+        public int AgregarPartida()
         {
             CargaParametroMat();
             RegAddPartidasMovInv OpRadd = new RegAddPartidasMovInv(MatParam,db);
             return OpRadd.AddRegPartida();
         }
-
         public int ActualizaPartida()
         {
             CargaParametroMat();
-            RegAddPartidasMovInv OpUp = new RegAddPartidasMovInv(MatParam,db);
+            RegAddPartidasMovInv OpUp = new RegAddPartidasMovInv(MatParam, db);
             return OpUp.UpdatePartida();
 
         }
@@ -278,15 +277,28 @@ public int AgregarPartida()
         public int EliminaPartida()
         {
             CargaParamMatKeys();
-            RegAddPartidasMovInv OpDel = new RegAddPartidasMovInv(MatParamKeys,db);
+            RegAddPartidasMovInv OpDel = new RegAddPartidasMovInv(MatParamKeys, db);
             return OpDel.DeletePartida();
         }
 
+        public int GetFolioPart(String NoMov)
+        {
+            RegAddPartidasMovInv OpRadd = new RegAddPartidasMovInv(db);
+            return OpRadd.GetFolioPart(NoMov);
+        }
         public SqlDataAdapter ListarPartidas(String NoMov)
         {
             CargaParametroMat();
             RegAddPartidasMovInv OpLst = new RegAddPartidasMovInv(db);
             return OpLst.ListPartidas(NoMov);
+        }
+
+        public int MovParttoAlma()
+        {
+            CargaParamMatKeys();
+
+            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys,db);
+            return OpEdit.MovParttoAlmaSql();
         }
 
         public void EditarPartida()
@@ -327,12 +339,27 @@ public int AgregarPartida()
 
         }
 
-        public SqlDataAdapter BuscaPartida(string buscar)
-        {
-            RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(db);
-            return OpBsq.BuscaPartida(buscar);
-        }
 
+        /*
+                public int ActualizaPartida()
+                {
+                    CargaParametroMat();
+                    RegAddPartidasMovInv OpUp = new RegAddPartidasMovInv(MatParam,db);
+                    return OpUp.UpdatePartida();
+
+                }
+
+
+
+
+                
+
+                public SqlDataAdapter BuscaPartida(string buscar)
+                {
+                    RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(db);
+                    return OpBsq.BuscaPartida(buscar);
+                }
+        */
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;

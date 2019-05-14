@@ -43,13 +43,13 @@ namespace GAFE
                          "        @Cantidad,@CantidadPkt,@Precio,@Descuento,@TotalDscto," +
                          "        @CveImpuesto,@TotalIva,@SubTotal,@TotalPartida,@FolioDocOrigen," +
                          "        @FechaMovimiento,@NoMovtoTra,@DocTra,@PartTra)";
+
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
-
         public int UpdatePartida()
         {
-            string sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov,v CveTipoMov= @CveTipoMov,EntSal = @EntSal," +
+            string sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov, CveTipoMov= @CveTipoMov,EntSal = @EntSal," +
                          "        NoDoc = @NoDoc,Documento = @Documento,CveArticulo = @CveArticulo,Descripcion = @Descripcion,CveUMedida = @CveUMedida," +
                          "        Cantidad = @Cantidad,CantidadPkt = @CantidadPkt,Precio = @Precio,Descuento = @Descuento,TotalDscto = @TotalDscto," +
                          "        CveImpuesto = @CveImpuesto,TotalIva = @TotalIva,SubTotal = @SubTotal,TotalPartida = @TotalPartida,FolioDocOrigen = @FolioDocOrigen," +
@@ -65,40 +65,10 @@ namespace GAFE
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
-        public SqlDataAdapter ListPartidas(String NoMov)
+        public int GetFolioPart(String NoMov)
         {
-            SqlDataAdapter dt = null;
-            string Sql = "Select  NoMovimiento,NoPartida,CveArticulo,Descripcion,CveUMedida," +
-                         "        Cantidad,Precio,Descuento,TotalDscto," +
-                         "        TotalIva,SubTotal,TotalPartida " +
-                         "from Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' ";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
-        public SqlDataAdapter RegistroActivo()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "Select NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
-                         "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
-                         "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
-                         "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
-                         "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
-                         " from Inv_MovtosDetalles " +
-                         " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
-            dt = db.SelectDA(Sql, ArrParametros);
-            return dt;
-        }
-
-        public SqlDataAdapter BuscaPartida(string bsq)
-        {
-            SqlDataAdapter dt = null;
-            string sql = "Select NoMovimiento,NoPartida,NoDoc " +
-               "from Inv_MovtosDetalles " +
-               "where NoMovimiento like '%" + bsq + "%' OR " +
-               "NoPartida like '%" + bsq + "%' ";
-
-            dt = db.SelectDA(sql);
-            return dt;
+            String Sql = "SELECT TOP 1   NoPartida FROM Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' ORDER BY NoPartida DESC ";
+            return db.GetRegGenerico(Sql);
         }
 
         public SqlDataAdapter BusPrecio(String ModLlama)
@@ -114,5 +84,79 @@ namespace GAFE
             return dt;
         }
 
+        public SqlDataAdapter ListPartidas(String NoMov)
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select  NoMovimiento,NoPartida,CveArticulo,Descripcion,CveUMedida," +
+                         "        Cantidad,Precio,Descuento,TotalDscto," +
+                         "        TotalIva,SubTotal,TotalPartida " +
+                         "from Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' ";
+            dt = db.SelectDA(Sql);
+            return dt;
+        }
+
+        public int MovParttoAlmaSql()
+        {
+            string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
+             "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
+             "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
+             "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+             "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
+            "  SELECT @NoPartida,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
+             "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
+             "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
+             "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+             "        FechaMovimiento,NoMovimiento,Documento,NoPartida " +
+             " FROM Inv_MovtosDetalles" +
+             " WHERE NoMovimiento = @NoMovimiento";
+
+            return db.InsertarRegistro(sql, ArrParametros);
+        }
+
+        public SqlDataAdapter RegistroActivo()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
+                         "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
+                         "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
+                         "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+                         "        FechaMovimiento,NoMovtoTra,DocTra,PartTra " +
+                         " from Inv_MovtosDetalles " +
+                         " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        /*
+
+                public int UpdatePartida()
+                {
+                    string sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov,v CveTipoMov= @CveTipoMov,EntSal = @EntSal," +
+                                 "        NoDoc = @NoDoc,Documento = @Documento,CveArticulo = @CveArticulo,Descripcion = @Descripcion,CveUMedida = @CveUMedida," +
+                                 "        Cantidad = @Cantidad,CantidadPkt = @CantidadPkt,Precio = @Precio,Descuento = @Descuento,TotalDscto = @TotalDscto," +
+                                 "        CveImpuesto = @CveImpuesto,TotalIva = @TotalIva,SubTotal = @SubTotal,TotalPartida = @TotalPartida,FolioDocOrigen = @FolioDocOrigen," +
+                                 "        FechaMovimiento = @FechaMovimiento,NoMovtoTra = @NoMovtoTra,DocTra = @DocTra,PartTra = @PartTra " +
+                                " Where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
+                    return db.DeleteRegistro(sql, ArrParametros);
+                }
+
+
+
+        
+
+
+                public SqlDataAdapter BuscaPartida(string bsq)
+                {
+                    SqlDataAdapter dt = null;
+                    string sql = "Select NoMovimiento,NoPartida,NoDoc " +
+                       "from Inv_MovtosDetalles " +
+                       "where NoMovimiento like '%" + bsq + "%' OR " +
+                       "NoPartida like '%" + bsq + "%' ";
+
+                    dt = db.SelectDA(sql);
+                    return dt;
+                }
+
+                */
     }
 }

@@ -32,8 +32,6 @@
             this.cmEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmdResetear = new System.Windows.Forms.Button();
             this.cmdConsultar = new System.Windows.Forms.Button();
@@ -76,31 +74,14 @@
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CodEmpleado,
-            this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(12, 102);
+            this.grdView.Location = new System.Drawing.Point(9, 78);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 205);
+            this.grdView.Size = new System.Drawing.Size(573, 322);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
-            // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Codigo";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
             // 
             // panel1
             // 
@@ -108,7 +89,7 @@
             this.panel1.Controls.Add(this.cmdResetear);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 71);
+            this.panel1.Size = new System.Drawing.Size(594, 71);
             this.panel1.TabIndex = 7;
             // 
             // cmdResetear
@@ -116,7 +97,7 @@
             this.cmdResetear.BackColor = System.Drawing.SystemColors.Control;
             this.cmdResetear.Image = ((System.Drawing.Image)(resources.GetObject("cmdResetear.Image")));
             this.cmdResetear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdResetear.Location = new System.Drawing.Point(394, 7);
+            this.cmdResetear.Location = new System.Drawing.Point(471, 9);
             this.cmdResetear.Name = "cmdResetear";
             this.cmdResetear.Size = new System.Drawing.Size(94, 36);
             this.cmdResetear.TabIndex = 2;
@@ -156,7 +137,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 462);
+            this.ClientSize = new System.Drawing.Size(594, 461);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmEditar);
@@ -165,9 +146,9 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 500);
+            this.MaximumSize = new System.Drawing.Size(610, 500);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 500);
+            this.MinimumSize = new System.Drawing.Size(610, 500);
             this.Name = "frmCatInventarioMovtos";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -185,8 +166,6 @@
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cmdResetear;
         private System.Windows.Forms.Button button1;

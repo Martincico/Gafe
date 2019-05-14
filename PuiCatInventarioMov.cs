@@ -246,13 +246,11 @@ namespace GAFE
 
         public int AgregarBlanco()
         {
-            //RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
-
             NoMovimiento = this.GetFolio(NoMovimiento);
-            MatParam = new object[2, 2];
-            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
-            MatParam[1, 0] = "FechaMovimiento"; MatParam[1, 1] = FechaMovimiento;
-            RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam, db);
+            object[,] MatParam2 = new object[2, 2];
+            MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = NoMovimiento;
+            MatParam2[1, 0] = "FechaMovimiento"; MatParam2[1, 1] = FechaMovimiento;
+            RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam2, db);
             int rsp = OpRadd2.AddRegBlanco();
             if (rsp == 1)
                 rsp = Convert.ToInt32(NoMovimiento);
@@ -278,7 +276,14 @@ namespace GAFE
             RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParamParti, db);
             return OpRadd.UpdateInvDet();
         }
-
+        /*
+        public int AddRegInvMasterRel()
+        {
+            CargaParametroMat();
+            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
+            return OpRadd.AddRegInvMasterRel();
+        }
+        
         public int ActualizaInventarioMov()
         {
             CargaParametroMat();
@@ -287,14 +292,15 @@ namespace GAFE
 
         }
 
+
+        */
         public int EliminaInventarioMov()
         {
             MatParam = new object[1, 2];
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
-            RegCatInventarioMov OpDel = new RegCatInventarioMov(MatParam,db);
+            RegCatInventarioMov OpDel = new RegCatInventarioMov(MatParam, db);
             return OpDel.DeleteInventarioMov();
         }
-
 
         public SqlDataAdapter ListarInventarioMovtos()
         {
@@ -303,6 +309,67 @@ namespace GAFE
             return OpLst.ListInventarioMovtos();
         }
 
+        public int AfectaCostos()
+        {
+            object[,] MatParAfec = new object[2, 2];
+            MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
+            MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
+            RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
+            return Afe.AfectaCostosSql();
+        }
+
+        public int AfectaExistencias(String _CveTipoMov, String _EntSal)
+        {
+            object[,] MatParAfec = new object[2, 2];
+            MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
+            MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
+            RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
+            return Afe.AfectaExistenciasSql(_CveTipoMov, _EntSal);
+        }
+
+        /*
+        public void EditarInventarioMov()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
+            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParam, db);
+            Datos = OpEdit.RegistroActivo();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+
+            NoMovimiento = ObjA[0].ToString();
+            FechaMovimiento = Convert.ToDateTime(ObjA[1].ToString());
+            CveAlmacenMov = ObjA[2].ToString();
+            CveTipoMov = ObjA[3].ToString();
+            EntSal = ObjA[4].ToString();
+            NoDoc = ObjA[5].ToString();
+            Documento = ObjA[6].ToString();
+            CveAlmacenDes = ObjA[7].ToString();
+            CveTipoMovDest = ObjA[8].ToString();
+            EntSalDest = ObjA[9].ToString();
+            Modulo = ObjA[10].ToString();
+            TipoDoc = ObjA[11].ToString();
+            SerieDoc = ObjA[12].ToString();
+            FolioDocOrigen = ObjA[13].ToString();
+            Descuento = Convert.ToDouble(ObjA[14].ToString());
+            TotalDscto = Convert.ToDouble(ObjA[15].ToString());
+            TIva = Convert.ToDouble(ObjA[16].ToString());
+            SubTotal = Convert.ToDouble(ObjA[17].ToString());
+            TotalDoc = Convert.ToDouble(ObjA[18].ToString());
+            CveProveedor = ObjA[19].ToString();
+            CveCliente = ObjA[20].ToString();
+            Cancelado = Convert.ToInt32(ObjA[21].ToString());
+            CveUsarioCaptu = ObjA[22].ToString();
+            CveCentroCosto = ObjA[23].ToString();
+            NoMovtoTra = ObjA[24].ToString();
+            DocTra = ObjA[25].ToString();
+
+        }
+        */
+
+        /*
         public void EditarInventarioMov()
         {
             MatParam = new object[1, 2];
@@ -342,6 +409,7 @@ namespace GAFE
             DocTra = ObjA[25].ToString();
         
         }
+        */
 
         public void GetParamAlma()
         {
@@ -362,19 +430,23 @@ namespace GAFE
 
         }
 
-
+/*
     public SqlDataAdapter BuscaInventarioMov(string buscar)
         {
-            /* MatParam = new object[4, 2];
+            //
+             MatParam = new object[4, 2];
              MatParam[0, 0] = "CodTipoMov"; MatParam[0, 1] = buscar;
              MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
              MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
              MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
              RegCatInventarioMov OpBsq = new RegCatInventarioMov(MatParam);/
-             */
+            
+
+            //
             RegCatInventarioMov OpBsq = new RegCatInventarioMov(db);
             return OpBsq.BuscaInventarioMov(buscar);
         }
+*/
 
         private void CargaParametroMat()
         {
