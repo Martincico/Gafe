@@ -114,6 +114,9 @@
     </Compile>
     <Compile Include="clsFillCbo.cs" />
     <Compile Include="ClsUtilerias.cs" />
+    <Compile Include="DatosGafe.cs">
+      <DependentUpon>DatosGafe.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DatosGafe.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
