@@ -16,7 +16,7 @@ namespace GAFE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmKardex());
+            Application.Run(new frmCatInventarioMovtos());
         }
     }
 }

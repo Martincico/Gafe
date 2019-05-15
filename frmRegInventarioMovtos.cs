@@ -448,7 +448,8 @@ namespace GAFE
             try
             {
                 PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
-                DatosTbl = pui.ListarPartidas(Convert.ToString(folMovto));
+                pui.keyNoMovimiento = Convert.ToString(folMovto);
+                DatosTbl = pui.ListarPartidas();
                 DataSet Ds = new DataSet();
 
                 DatosTbl.Fill(Ds);
@@ -536,10 +537,17 @@ namespace GAFE
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                    db.IniciaTrans();
                     pui.keyNoMovimiento = grdViewPart[0, grdViewPart.CurrentRow.Index].Value.ToString();
                     pui.keyNoPartida = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
-                    pui.EliminaPartida();
-                    LlenaGridViewPart();
+                    if (pui.EliminaPartida() >= 0)
+                        db.TerminaTrans();
+                    else
+                    {
+                        db.CancelaTrans();
+                        MessageBox.Show("Existe un error al eliminar registro\n" , "Alerta", MessageBoxButtons.OK,
+                            MessageBoxIcon.Exclamation);
+                    }
                 }
 
             }
@@ -548,6 +556,7 @@ namespace GAFE
                 MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
+            LlenaGridViewPart();
         }
 
         private void CalculaTotales()

@@ -161,8 +161,13 @@ namespace GAFE
         public SqlDataAdapter ListInventarioMovtos()
         {
             SqlDataAdapter dt = null;
-            string Sql = "SELECT NoMovimiento,Documento,FechaMovimiento,'' AS Almacen, '' AS TipoMov, '' AS Proveedor, Cancelado,TotalDoc,CveTipoMov,NoMovtoTra " +
-                         " from Inv_MovtosMaster";
+            string Sql = "SELECT MM.NoMovimiento,MM.Documento,MM.FechaMovimiento,Alm.Descripcion AS Almacen, " +
+                         "       TMvto.Descripcion AS TipoMov, Prov.Nombre AS Proveedor, MM.Cancelado,MM.TotalDoc, " +
+                         "        MM.CveTipoMov,MM.NoMovtoTra " +
+                         " FROM Inv_MovtosMaster MM " +
+                         " INNER JOIN Inv_CatAlmacenes Alm ON Alm.ClaveAlmacen = mm.CveAlmacenMov " +
+                         " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
+                         " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = MM.CveTipoMov";
             dt = db.SelectDA(Sql);
             return dt;
         }

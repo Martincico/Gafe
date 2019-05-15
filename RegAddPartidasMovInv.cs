@@ -62,7 +62,21 @@ namespace GAFE
         {
             string sql = "Delete from Inv_MovtosDetalles " +
                          " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
-            return db.UpdateRegistro(sql, ArrParametros);
+            int dv = db.UpdateRegistro(sql, ArrParametros);
+            if (dv >= 1)
+            {
+                sql = "Update Inv_MovtosDetalles set NoPartida = (NoPartida * -1)" +
+                       " Where NoMovimiento = @NoMovimiento";
+                dv = db.DeleteRegistro(sql, ArrParametros);
+            }
+            return dv;
+        }
+
+        public int UpdateIdxPart()
+        {
+            string sql = "Update Inv_MovtosDetalles set NoPartida = @PartNew" +
+                        " Where NoMovimiento = @NoMovimiento AND NoPartida = @PartAnt";
+            return db.DeleteRegistro(sql, ArrParametros);
         }
 
         public int GetFolioPart(String NoMov)
@@ -84,14 +98,14 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter ListPartidas(String NoMov)
-        {
+        public SqlDataAdapter ListPartidas()
+        {//Se usa en otro metodo
             SqlDataAdapter dt = null;
             string Sql = "Select  NoMovimiento,NoPartida,CveArticulo,Descripcion,CveUMedida," +
                          "        Cantidad,Precio,Descuento,TotalDscto," +
                          "        TotalIva,SubTotal,TotalPartida " +
-                         "from Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' ";
-            dt = db.SelectDA(Sql);
+                         "from Inv_MovtosDetalles where NoMovimiento = @NoMovimiento Order by NoPartida Desc ";
+            dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
@@ -111,6 +125,16 @@ namespace GAFE
              " WHERE NoMovimiento = @NoMovimiento";
 
             return db.InsertarRegistro(sql, ArrParametros);
+        }
+
+        public SqlDataAdapter GetDuplicadoSql()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select NoMovimiento,NoPartida,CveArticulo " +
+                         " from Inv_MovtosDetalles " +
+                         " where NoMovimiento = @NoPartida  AND CveArticulo = @NoMovimiento";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
         }
 
         public SqlDataAdapter RegistroActivo()

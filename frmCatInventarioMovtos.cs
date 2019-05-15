@@ -96,16 +96,8 @@ namespace GAFE
             LlenaGridView();
         }
 
-        private void cmEditar_Click(object sender, EventArgs e)
-        {
-            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            Ventana.ShowDialog();
-            //LlenaGridView();
-        }
-
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            idxG = grdView.CurrentRow.Index;
             frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
             Ventana.ShowDialog();
             //LlenaGridView();
@@ -154,6 +146,12 @@ namespace GAFE
                 grdView.Columns["CveTipoMov"].Visible = false;
                 grdView.Columns["NoMovtoTra"].Visible = false;
                 grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
+
+                for (int i = 0; i < grdView.Columns.Count; i++)
+                {
+                    grdView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -165,12 +163,12 @@ namespace GAFE
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmEditar_Click(sender, e);
+            cmdConsultar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmEditar_Click(sender, e);
+            cmdConsultar_Click(sender, e);
         }
 
         private void CargaDatosConexion()
@@ -206,5 +204,11 @@ namespace GAFE
 
         }
 
+        private void cmEliminar_Click(object sender, EventArgs e)
+        {
+            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+            Ventana.ShowDialog();
+            LlenaGridView();
+        }
     }
 }
