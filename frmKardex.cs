@@ -141,8 +141,8 @@ namespace GAFE
                         if (!decimal.TryParse(row["Cantidad_Salida"].ToString(), out Cantidad))
                             Cantidad = 0;
                         CantSaldo -= Cantidad;
+                        row["Precio_Salida"] =PrecioProm;
                         row["Total_Salida"] = Cantidad * PrecioProm;
-                        row["Precio_Salida"] = PrecioProm;
                     }
                     row["Cantidad_Saldo"] = CantSaldo;
                     row["Precio_Prom"] = PrecioProm;

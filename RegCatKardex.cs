@@ -32,6 +32,7 @@ namespace GAFE
                 "null as 'Cantidad_Saldo', null as 'Precio_Prom', null as 'Total_Saldo' " +
                 "FROM Inv_MovtosDetalles D JOIN Inv_CatAlmacenes A ON D.CveAlmacenMov=A.ClaveAlmacen " +
                 "WHERE D.CveArticulo = @CveArticulo AND D.CveAlmacenMov = @CveAlmacenMov " +
+                "AND D.Cantidad>0 " +
                 "ORDER BY Fecha ASC";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;

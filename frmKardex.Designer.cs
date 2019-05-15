@@ -50,6 +50,7 @@
             this.grdView.AllowUserToAddRows = false;
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
+            this.grdView.BackgroundColor = System.Drawing.Color.White;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Location = new System.Drawing.Point(10, 117);
             this.grdView.Name = "grdView";
