@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatInventarioMovtos));
-            this.cmEditar = new System.Windows.Forms.Button();
+            this.cmEliminar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -40,26 +40,26 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // cmEditar
+            // cmEliminar
             // 
-            this.cmEditar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmEditar.Image = ((System.Drawing.Image)(resources.GetObject("cmEditar.Image")));
-            this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(401, 420);
-            this.cmEditar.Name = "cmEditar";
-            this.cmEditar.Size = new System.Drawing.Size(94, 36);
-            this.cmEditar.TabIndex = 5;
-            this.cmEditar.Text = "Editar";
-            this.cmEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmEditar.UseVisualStyleBackColor = false;
-            this.cmEditar.Click += new System.EventHandler(this.cmEditar_Click);
+            this.cmEliminar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
+            this.cmEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmEliminar.Location = new System.Drawing.Point(358, 420);
+            this.cmEliminar.Name = "cmEliminar";
+            this.cmEliminar.Size = new System.Drawing.Size(94, 36);
+            this.cmEliminar.TabIndex = 5;
+            this.cmEliminar.Text = "Eliminar";
+            this.cmEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmEliminar.UseVisualStyleBackColor = false;
+            this.cmEliminar.Click += new System.EventHandler(this.cmEliminar_Click);
             // 
             // cmdAgregar
             // 
             this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAgregar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAgregar.Image")));
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(301, 420);
+            this.cmdAgregar.Location = new System.Drawing.Point(578, 420);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 4;
@@ -77,7 +77,7 @@
             this.grdView.Location = new System.Drawing.Point(9, 78);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(573, 322);
+            this.grdView.Size = new System.Drawing.Size(673, 322);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
@@ -89,7 +89,7 @@
             this.panel1.Controls.Add(this.cmdResetear);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(594, 71);
+            this.panel1.Size = new System.Drawing.Size(693, 71);
             this.panel1.TabIndex = 7;
             // 
             // cmdResetear
@@ -97,7 +97,7 @@
             this.cmdResetear.BackColor = System.Drawing.SystemColors.Control;
             this.cmdResetear.Image = ((System.Drawing.Image)(resources.GetObject("cmdResetear.Image")));
             this.cmdResetear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdResetear.Location = new System.Drawing.Point(471, 9);
+            this.cmdResetear.Location = new System.Drawing.Point(576, 9);
             this.cmdResetear.Name = "cmdResetear";
             this.cmdResetear.Size = new System.Drawing.Size(94, 36);
             this.cmdResetear.TabIndex = 2;
@@ -111,7 +111,7 @@
             this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdConsultar.Image = ((System.Drawing.Image)(resources.GetObject("cmdConsultar.Image")));
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(146, 420);
+            this.cmdConsultar.Location = new System.Drawing.Point(178, 420);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 3;
@@ -137,18 +137,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 461);
+            this.ClientSize = new System.Drawing.Size(694, 461);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cmdConsultar);
-            this.Controls.Add(this.cmEditar);
+            this.Controls.Add(this.cmEliminar);
             this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(610, 500);
+            this.MaximumSize = new System.Drawing.Size(710, 500);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(610, 500);
+            this.MinimumSize = new System.Drawing.Size(710, 500);
             this.Name = "frmCatInventarioMovtos";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -163,7 +163,7 @@
         #endregion
 
         private System.Windows.Forms.Button cmdConsultar;
-        private System.Windows.Forms.Button cmEditar;
+        private System.Windows.Forms.Button cmEliminar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.Panel panel1;

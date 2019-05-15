@@ -276,9 +276,35 @@ namespace GAFE
 
         public int EliminaPartida()
         {
+            int dv = 1;
+            RegAddPartidasMovInv OpDel = null;
             CargaParamMatKeys();
-            RegAddPartidasMovInv OpDel = new RegAddPartidasMovInv(MatParamKeys, db);
-            return OpDel.DeletePartida();
+            OpDel = new RegAddPartidasMovInv(MatParamKeys, db);
+            dv = OpDel.DeletePartida();
+            OpDel = new RegAddPartidasMovInv(MatParamKeys, db);
+            if (dv >= 1)
+            {
+                Datos = OpDel.ListPartidas();
+                DataSet Ds = new DataSet();
+                Datos.Fill(Ds);
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    object[,] MatParam2 = new object[3, 2];
+
+                    for (int j = 0; j < Ds.Tables[0].Rows.Count; j++)
+                    {
+                        object[] ObjA = Ds.Tables[0].Rows[j].ItemArray;
+                        MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = keyNoMovimiento;
+                        MatParam2[1, 0] = "PartAnt"; MatParam2[1, 1] = Convert.ToInt32(ObjA[1].ToString());
+                        MatParam2[2, 0] = "PartNew"; MatParam2[2, 1] = j + 1;
+                        OpDel = new RegAddPartidasMovInv(MatParam2, db);
+                        dv = OpDel.UpdateIdxPart();
+                        if (dv < 0)
+                            break;
+                    }
+                }
+            }
+            return dv;
         }
 
         public int GetFolioPart(String NoMov)
@@ -286,11 +312,11 @@ namespace GAFE
             RegAddPartidasMovInv OpRadd = new RegAddPartidasMovInv(db);
             return OpRadd.GetFolioPart(NoMov);
         }
-        public SqlDataAdapter ListarPartidas(String NoMov)
+        public SqlDataAdapter ListarPartidas()
         {
-            CargaParametroMat();
-            RegAddPartidasMovInv OpLst = new RegAddPartidasMovInv(db);
-            return OpLst.ListPartidas(NoMov);
+            CargaParamMatKeys();
+            RegAddPartidasMovInv OpLst = new RegAddPartidasMovInv(MatParamKeys,db);
+            return OpLst.ListPartidas();
         }
 
         public int MovParttoAlma()
@@ -438,13 +464,13 @@ namespace GAFE
 
 
             inv_ClaveAlmacen = ObjA[0].ToString();
-            inv_Cantidad = Convert.ToDouble(ObjA[2].ToString());
-            inv_stockMin = Convert.ToDouble(ObjA[3].ToString());
-            inv_stockMax = Convert.ToDouble(ObjA[4].ToString());
-            inv_CantApartada = Convert.ToDouble(ObjA[5].ToString());
-            inv_CostoPromedio = Convert.ToDouble(ObjA[6].ToString());
-            inv_CostoUltimo = Convert.ToDouble(ObjA[7].ToString());
-            inv_CostoActual = Convert.ToDouble(ObjA[8].ToString());
+            inv_Cantidad = Convert.ToDouble(ObjA[2].ToString().Equals("")?"0": ObjA[2].ToString());
+            inv_stockMin = Convert.ToDouble(ObjA[3].ToString().Equals("") ? "0" : ObjA[3].ToString());
+            inv_stockMax = Convert.ToDouble(ObjA[4].ToString().Equals("") ? "0" : ObjA[4].ToString());
+            inv_CantApartada = Convert.ToDouble(ObjA[5].ToString().Equals("") ? "0" : ObjA[5].ToString());
+            inv_CostoPromedio = Convert.ToDouble(ObjA[6].ToString().Equals("") ? "0" : ObjA[6].ToString());
+            inv_CostoUltimo = Convert.ToDouble(ObjA[7].ToString().Equals("") ? "0" : ObjA[7].ToString());
+            inv_CostoActual = Convert.ToDouble(ObjA[8].ToString().Equals("") ? "0" : ObjA[8].ToString());
         }
 
 
