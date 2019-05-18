@@ -38,6 +38,9 @@ namespace GAFE
         private string NoMovtoTra;
         private string DocTra;
 
+        //Se usa en consultar
+        private string CveClaseTipoMov;
+
         //Parametros de Almance
         private int EsDeCompra;
         private int EsDeVenta;
@@ -81,6 +84,12 @@ namespace GAFE
         {
             get { return CveAlmacenMov; }
             set { CveAlmacenMov = value; }
+        }
+
+        public string cmpCveClaseTipoMov
+        {
+            get { return CveClaseTipoMov; }
+            set { CveClaseTipoMov = value; }
         }
 
         public string cmpCveTipoMov
@@ -309,25 +318,25 @@ namespace GAFE
             return OpLst.ListInventarioMovtos();
         }
 
-        public int AfectaCostos()
+        public int AfectaCostos(int Op)
         {
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
-            return Afe.AfectaCostosSql();
+            return Afe.AfectaCostosSql(Op);
         }
 
-        public int AfectaExistencias(String _CveTipoMov, String _EntSal)
+        public int AfectaExistencias(String _CveTipoMov, String _EntSal, int Op)
         {
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
-            return Afe.AfectaExistenciasSql(_CveTipoMov, _EntSal);
+            return Afe.AfectaExistenciasSql(_CveTipoMov, _EntSal, Op);
         }
 
-        /*
+
         public void EditarInventarioMov()
         {
             MatParam = new object[1, 2];
@@ -365,51 +374,10 @@ namespace GAFE
             CveCentroCosto = ObjA[23].ToString();
             NoMovtoTra = ObjA[24].ToString();
             DocTra = ObjA[25].ToString();
+            CveClaseTipoMov = ObjA[26].ToString();
+
 
         }
-        */
-
-        /*
-        public void EditarInventarioMov()
-        {
-            MatParam = new object[1, 2];
-            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
-            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParam,db);
-            Datos = OpEdit.RegistroActivo();
-            DataSet Ds = new DataSet();
-            Datos.Fill(Ds);
-            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
-
-
-            NoMovimiento  = ObjA[0].ToString();
-            FechaMovimiento = Convert.ToDateTime(ObjA[1].ToString());
-            CveAlmacenMov = ObjA[2].ToString();
-            CveTipoMov = ObjA[3].ToString();
-            EntSal = ObjA[4].ToString();
-            NoDoc = ObjA[5].ToString();
-            Documento = ObjA[6].ToString();
-            CveAlmacenDes = ObjA[7].ToString();
-            CveTipoMovDest = ObjA[8].ToString();
-            EntSalDest = ObjA[9].ToString();
-            Modulo = ObjA[10].ToString();
-            TipoDoc = ObjA[11].ToString();
-            SerieDoc = ObjA[12].ToString();
-            FolioDocOrigen = ObjA[13].ToString();
-            Descuento = Convert.ToDouble(ObjA[14].ToString());
-            TotalDscto = Convert.ToDouble(ObjA[15].ToString());
-            TIva = Convert.ToDouble(ObjA[16].ToString());
-            SubTotal = Convert.ToDouble(ObjA[17].ToString());
-            TotalDoc = Convert.ToDouble(ObjA[18].ToString());
-            CveProveedor = ObjA[19].ToString();
-            CveCliente = ObjA[20].ToString();
-            Cancelado = Convert.ToInt32(ObjA[21].ToString());
-            CveUsarioCaptu = ObjA[22].ToString(); 
-            CveCentroCosto = ObjA[23].ToString();
-            NoMovtoTra = ObjA[24].ToString();
-            DocTra = ObjA[25].ToString();
-        
-        }
-        */
 
         public void GetParamAlma()
         {

@@ -22,6 +22,8 @@ namespace GAFE
         private MsSql db = null;
         private String Foliador;
 
+        private Boolean isDataSaved = false;
+
         //Configuración de Tipo de Movimiento
         private string _CveTipoMov;
         private string _Descripcion;
@@ -85,9 +87,11 @@ namespace GAFE
             pui.keyNoMovimiento = Foliador;
             pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
 
+            lblFecha.Text = Convert.ToString(pui.cmpFechaMovimiento);
             //PENDIENTE Falta agregar los datos del almacen del usuario
 
             folMovto = pui.AgregarBlanco();
+            OcultTitulos(false);
 
             if (folMovto >= 1)
               {
@@ -100,10 +104,32 @@ namespace GAFE
             {
                 MessageBox.Show("Movimiento Inventario: Ha ocurrido un error.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            
         }
-        
+
+        //Para Editar
+        public frmRegInventarioMovtos(MsSql Odat, int Op, String TipoDocInv, String Cod)
+        {
+            InitializeComponent();
+            opcion = Op;
+            db = Odat;
+
+
+            //PENDIENTE Falta agregar los datos del almacen del usuario
+
+            folMovto = Convert.ToInt32(Cod);
+
+            LleCboClaseMov();
+            LlenaGridViewPart();
+            OpcionControles(false);
+            isDataSaved = true;
+            GetRegistro();
+
+            btnAddPartida.Enabled = false;
+            btnEditaPartida.Enabled = false;
+            btnEliminarPartida.Enabled = false;
+            OcultTitulos(true);
+
+        }
 
         private void frmRegInventarioMovtos_KeyDown(object sender, KeyEventArgs e)
         {
@@ -118,8 +144,8 @@ namespace GAFE
             switch (opcion)
             {
                 case 1: Agregar(); break;
-                case 2: Editar(); break;
-                case 3: ConfirmarSalir(); break;
+                case 2: ConfirmarSalir(); break;
+                case 3: this.Close(); break;
             }
         }
 
@@ -179,10 +205,10 @@ namespace GAFE
                     int rpp = 1;
                     if (_AfectaCosto==1)
                     {
-                       rpp = pui.AfectaCostos();
+                       rpp = pui.AfectaCostos(1);
                     }
 
-                    if (pui.AfectaExistencias(_CveTipoMov,_EntSal) >= 1 && rpp >= 1)
+                    if (pui.AfectaExistencias(_CveTipoMov,_EntSal,1) >= 1 && rpp >= 1)
                     {
                         if (_EsTraspaso == 1)
                         {
@@ -233,16 +259,17 @@ namespace GAFE
                                         pui.cmpCveAlmacenMov = _AlmO;
                                         if (_AfectaCostoRel == 1)
                                         {
-                                            rpp = pui.AfectaCostos();
+                                            rpp = pui.AfectaCostos(1);
                                         }
                                         
-                                        if (pui.AfectaExistencias(_CveTipoMovRel, _EntSalRel) >= 1 && rpp == 1)
+                                        if (pui.AfectaExistencias(_CveTipoMovRel, _EntSalRel,1) >= 1 && rpp == 1)
                                         {
                                             if (pui.AgregarInvDet() >= 1)
                                             {
                                                 MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
                                                 db.TerminaTrans();
+                                                isDataSaved = true;
                                                 this.Close();
                                             }
                                             else
@@ -265,6 +292,7 @@ namespace GAFE
                             MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                             db.TerminaTrans();
+                            isDataSaved = true;
                             this.Close();
                         }
                     }
@@ -278,13 +306,7 @@ namespace GAFE
                 db.CancelaTrans();
         }
 
-        private void Editar()
-        {
-
-        }
-
-
-
+   
         private void CargaInv_TipoMovtos()
         {
             PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
@@ -454,10 +476,12 @@ namespace GAFE
 
                 DatosTbl.Fill(Ds);
                 grdViewPart.Columns.Clear();
+                
                 grdViewPart.DataSource = Ds.Tables[0];
+                grdViewPart.Columns["NoPartida"].Frozen = true;//Inmovilizar columna
                 grdViewPart.Columns["NoMovimiento"].Visible = false;
                 grdViewPart.Columns["Descuento"].Visible = false;
-                grdViewPart.Columns["NoPartida"].Frozen = true;//Inmovilizar columna
+
 
 
                 /*
@@ -592,10 +616,14 @@ namespace GAFE
             cboAlmaDest.Visible = op;
         }
 
-        private void btnRestablecer_Click(object sender, EventArgs e)
+        private void OcultTitulos(Boolean op)
         {
-
+            lblTitFolio.Visible = op;
+            lblFolio.Visible = op;
+            lblTitDocumento.Visible = op;
+            lblDocumento.Visible = op;
         }
+
 
         private void btnEditaPartida_Click(object sender, EventArgs e)
         {
@@ -619,14 +647,12 @@ namespace GAFE
 
         }
 
-        private void frmRegInventarioMovtos_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
 
         private void ConfirmarSalir()
         {
-            Boolean DellAll = true;
+            if (opcion != 3)
+            {
+                Boolean DellAll = true;
 
                 PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
                 if (grdViewPart.RowCount > 0)
@@ -650,8 +676,15 @@ namespace GAFE
                     InvMast.keyNoMovimiento = Convert.ToString(folMovto);
                     InvMast.EliminaInventarioMov();
                 }
-
+                isDataSaved = true;
                 this.Close();
+            }
+            else
+            {
+                isDataSaved = true;
+                this.Close();
+            }
+
         }
 
 
@@ -698,9 +731,18 @@ namespace GAFE
             }
         }
 
-        private void frmRegInventarioMovtos_Load(object sender, EventArgs e)
+        private void frmRegInventarioMovtos_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (!isDataSaved)
+            {
+                ConfirmarSalir();
+                e.Cancel = true;
+            }
+            else
+            {
+                //MessageBox.Show("Goodbye.");
+                e.Cancel = false;
+            }
         }
 
         private void CargaParamAlmaDest(String CveAlm)
@@ -715,7 +757,32 @@ namespace GAFE
             _AlmNumRojoDest = pui.cmpNumRojo;
         }
 
+  
 
+        private void GetRegistro()
+        {
+            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+
+            pui.keyNoMovimiento = Convert.ToString(folMovto);
+            pui.EditarInventarioMov();
+
+            LlecboAlmaOri(pui.cmpCveAlmacenMov);
+            cboClaseMov.SelectedValue = pui.cmpCveClaseTipoMov;
+
+            LlecboTipoMovtos(pui.cmpCveClaseTipoMov);
+            cboTipoMovtos.SelectedValue = pui.cmpCveTipoMov;
+
+            LlecboAlmaDest();
+            cboAlmaDest.SelectedValue = pui.cmpCveAlmacenDes;
+
+            LlecboProveedor();
+            cboProveedor.SelectedValue = pui.cmpCveProveedor;
+
+            
+            lblFecha.Text =Convert.ToString(pui.cmpFechaMovimiento);
+            lblFolio.Text = pui.cmpNoDoc;
+            lblDocumento.Text = pui.cmpDocumento ;
+        }
 
     }
 }

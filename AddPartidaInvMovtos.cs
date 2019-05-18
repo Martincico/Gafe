@@ -143,27 +143,9 @@ namespace GAFE
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            ValidaCalculos();
             switch (opcion)
             {
-                case 1:
-                        PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
-                        pui.keyNoMovimiento = txtCodigo.Text;
-                        pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
-                        if (pui.GetDuplicado() >= 1)
-                        {
-                            if (MessageBox.Show("¿Desea agregar mas cantidad? ",
-                                "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                opcion = 2;
-                                CodPart = pui.keyNoPartida;
-                                GetRegistro();
-                            }
-
-                        }
-                        else
-                            AltaPartida();
-                    break;
+                case 1: AltaPartida();   break;
                 case 2: EditarPartida(); break;
                 case 3: this.Close(); break;
             }
@@ -283,13 +265,30 @@ namespace GAFE
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
-                PuiCatArticulos arti = new PuiCatArticulos(db);
-                arti.keyCveArticulo = art.KeyCampo;
-                arti.EditarArticulo();
-                txtCodigo.Text = arti.keyCveArticulo;
-                txtDescripcion.Text = arti.cmpDescripcion;
-                txtUmedida.Text = arti.UMedida1.keyCveUMedida;
-                BuscarPrecio(art.KeyCampo);
+                PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                pui.keyNoMovimiento = art.KeyCampo;
+                pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
+                if (pui.GetDuplicado() >= 1)
+                {
+                    if (MessageBox.Show("¿Desea agregar mas cantidad? ",
+                        "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        opcion = 2;
+                        CodPart = pui.keyNoPartida;
+                        GetRegistro();
+                    }
+
+                }
+                else
+                {
+                    PuiCatArticulos arti = new PuiCatArticulos(db);
+                    arti.keyCveArticulo = art.KeyCampo;
+                    arti.EditarArticulo();
+                    txtCodigo.Text = arti.keyCveArticulo;
+                    txtDescripcion.Text = arti.cmpDescripcion;
+                    txtUmedida.Text = arti.UMedida1.keyCveUMedida;
+                    BuscarPrecio(art.KeyCampo);
+                }
             }
         }
 
@@ -341,143 +340,260 @@ namespace GAFE
         private Boolean validacion()
         {
             String err = "";
-            Boolean sig = true;
-            if (String.IsNullOrEmpty(txtCodigo.Text))
+            ValidaCalculos(1);
+            if (ErrCalc)
             {
-                err = "Código: No puede ir vacío. \n";
-                sig = false;
+                if (String.IsNullOrEmpty(txtCodigo.Text))
+                {
+                    err = "Código: No puede ir vacío. \n";
+                    ErrCalc = false;
+                }
+                else
+                {
+                    if (!Util.LetrasNum(txtCodigo.Text))
+                    {
+                        err = "Código: Contiene caracteres no validos. \n";
+                        ErrCalc = false;
+                    }
+                }
+
+                if (ExisNegativa == 1)
+                {
+                    err = err + "La cantidad solicitada es mayor a la exitencia del articulo \n";
+                    ErrCalc = false;
+                }
+
+
+                if (PSolicitaCosto == 1)
+                {
+                    if (String.IsNullOrEmpty(txtPrecio.Text))
+                    {
+                        err = err + "Precio: No puede ir vacío\n";
+                        ErrCalc = false;
+                    }
+                    else
+                    {
+                        if (!Util.Decimal(txtPrecio.Text))
+                        {
+                            err = err + "Precio: Contiene caracteres no validos. Sugiere: 0,000 0.0 0000\n";
+                            ErrCalc = false;
+                        }
+
+                    }
+
+                    if (String.IsNullOrEmpty(txtTotal.Text))
+                    {
+                        err = err + "Total: Existe un error calculo.\n";
+                        ErrCalc = false;
+                    }
+                    else
+                    {
+                        if (!Util.Decimal(txtTotal.Text))
+                        {
+                            err = err + "Total: Contiene caracteres no validos. Sugiere: 0,000 0.0 0000\n";
+                            ErrCalc = false;
+                        }
+                        else
+                        {
+                            double tt = Double.Parse(txtTotal.Text);
+                            if (tt <= 0)
+                            {
+                                err = err + "Total: Existe un error calculo.\n";
+                                ErrCalc = false;
+                            }
+                        }
+                    }
+
+
+                }
+
+                if (!ErrCalc)
+                {
+                    MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return ErrCalc;
+        }
+
+        private void ValidaCalculos(int Op)
+        {
+            
+            String err = "";
+            if (String.IsNullOrEmpty(txtCantidad.Text))
+            {
+                if (Op == 1)
+                {
+                    err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                    ErrCalc = false;
+                }
+                else
+                    Cantidad = 0;
             }
             else
             {
-                if (!Util.LetrasNum(txtCodigo.Text))
+                if (txtCantidad.Text.Length >= 1)
                 {
-                    err = "Código: Contiene caracteres no validos. \n";
-                    sig = false;
+                    if (!Util.Decimal(txtCantidad.Text))
+                    {
+                        err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0)\n";
+                        ErrCalc = false;
+                    }
+                    else
+                        Cantidad = Convert.ToDouble(txtCantidad.Text);
                 }
-            }
-            
-            if (ExisNegativa == 1)
-            {
-                err = err + "La cantidad solicitada es mayor a la exitencia del articulo \n";
-                sig = false;
-            }
-            
-
-            if (PSolicitaCosto == 1)
-            {
-                if (String.IsNullOrEmpty(txtPrecio.Text))
+                else
                 {
-                    err = err + "Precio: No puede ir vacío\n";
-                    sig = false;
+                    if (Op == 1)
+                    {
+                        err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                        ErrCalc = false;
+                    }
+                    else
+                        Cantidad = 0;
+                }
+
+            }
+
+            if (String.IsNullOrEmpty(txtPrecio.Text))
+            {
+                if (Op == 1)
+                {
+                    err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                    ErrCalc = false;
+                }
+                else
+                    Precio = 0;
+            }
+            else
+            {
+                if (txtPrecio.Text.Length >= 1)
+                {
+                    if (!Util.Decimal(txtPrecio.Text))
+                    {
+                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                        ErrCalc = false;
+                    }
+                    else
+                        Precio = Convert.ToDouble(txtPrecio.Text);
                 }
                 else
                 {
                     if (!Util.Decimal(txtPrecio.Text))
                     {
-                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0,000 0.0 0000\n";
-                        sig = false;
-                    }
-
-                }
-
-                if (String.IsNullOrEmpty(txtTotal.Text))
-                {
-                    err = err + "Total: Existe un error calculo.\n";
-                    sig = false;
-                }
-                else
-                {
-                    if (!Util.Decimal(txtTotal.Text))
-                    {
-                        err = err + "Total: Contiene caracteres no validos. Sugiere: 0,000 0.0 0000\n";
-                        sig = false;
+                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                        ErrCalc = false;
                     }
                     else
-                    {
-                        double tt = Double.Parse(txtTotal.Text);
-                        if (tt <= 0)
-                        {
-                            err = err + "Total: Existe un error calculo.\n";
-                            sig = false;
-                        }
-                    }
+                        Precio = 0;
                 }
-
-
             }
 
-            if (!sig)
+            if (String.IsNullOrEmpty(txtDescuento.Text))
             {
-                MessageBox.Show("Contiene error(es):\n"+err,"Error de captura", MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-
-            return sig;
-        }
-
-        private void ValidaCalculos()
-        {
-            if (ErrCalc)
-            {
-                String err = "";
-                if (!Util.Decimal(txtPrecio.Text))
-                {
-                    err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
-                    ErrCalc = false;
-                }
-
-                if (!Util.Decimal(txtDescuento.Text))
+                if (Op == 1)
                 {
                     err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                     ErrCalc = false;
                 }
-                if (!Util.Numeros(txtCantidad.Text))
+                else
+                    Descuento = 0;
+            }
+            else
+            {
+                if (txtDescuento.Text.Length >= 1)
                 {
-                    if (txtCantidad.Text.Length >= 1)
+                    if (!Util.Decimal(txtDescuento.Text))
                     {
-                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0)\n";
+                        err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                         ErrCalc = false;
                     }
-                }
-
-                if (ErrCalc)
-                {
-                    Cantidad =  Convert.ToDouble(txtCantidad.Text);
-                    Precio =  Convert.ToDouble(txtPrecio.Text);
-                    Descuento = Convert.ToDouble(txtDescuento.Text);
-
-                    SubTotal = 0; txtSubTotal.Text = "0.0";
-                    TotalDesc = 0; txtTotDesc.Text = "0.0";
-                    TotalIva = 0; txtIva.Text = "0.0";
-                    TotalPartida = 0; txtTotal.Text = "0.0";
-
-
-                    //002 eNTRADA - 501 - SALIDA por ajuste de inventario
-                    if (!PCveTipoMov.Equals("002") || !PCveTipoMov.Equals("501"))
-                    {
-                        SubTotal = Cantidad * Precio;
-                        TotalDesc = SubTotal * (Descuento / 100);
-                        txtTotDesc.Text = Convert.ToString(TotalDesc);
-                        SubTotal = SubTotal - TotalDesc;
-
-                        //PENDIENTE: Valida una matrz y dentro de un else va lo siguiente
-                        if (PCalcIva == 1)
-                            TotalIva = SubTotal * 16 / 100;
-
-                        TotalPartida = SubTotal + TotalIva;
-
-
-                    }
-
-
-                    txtSubTotal.Text = Convert.ToString(SubTotal);
-                    txtIva.Text = Convert.ToString(TotalIva);
-                    txtTotal.Text = Convert.ToString(TotalPartida);
-
+                    else
+                        Descuento = Convert.ToDouble(txtDescuento.Text);
                 }
                 else
                 {
-                    MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!Util.Decimal(txtDescuento.Text))
+                    {
+                        err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                        ErrCalc = false;
+                    }
+                    else
+                        Descuento = 0;
                 }
+
+            }
+                
+            if (ErrCalc)
+            {
+
+                if (PModLlama.Equals("M01"))
+                {
+                    if (PEsTraspaso == 1 || PEntSal.Equals("S"))
+                    {
+                        if ((CantInv - Cantidad) < 0)
+                        {
+                            if (_AlmNumRojo == 1)
+                            {
+                                Cantidad = Convert.ToDouble(txtCantidad.Text);
+                                ExisNegativa = 0;
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                        " Existencia: " + CantInv + " ",
+                                        "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    ExisNegativa = 1;
+                                }
+                                else
+                                    ExisNegativa = 0;
+
+                            }
+                        }
+                        else
+                            ExisNegativa = 0;
+                    }
+                    else
+                    {
+                        ExisNegativa = 0;
+                        //ValidaCalculos(Op);
+                    }
+                }
+                else
+                    ExisNegativa = 0;
+
+                SubTotal = 0; txtSubTotal.Text = "0.0";
+                TotalDesc = 0; txtTotDesc.Text = "0.0";
+                TotalIva = 0; txtIva.Text = "0.0";
+                TotalPartida = 0; txtTotal.Text = "0.0";
+
+
+                //002 eNTRADA - 501 - SALIDA por ajuste de inventario
+                if (!PCveTipoMov.Equals("002") || !PCveTipoMov.Equals("501"))
+                {
+                    SubTotal = Cantidad * Precio;
+                    TotalDesc = SubTotal * (Descuento / 100);
+                    txtTotDesc.Text = Convert.ToString(TotalDesc);
+                    SubTotal = SubTotal - TotalDesc;
+
+                    //PENDIENTE: Valida una matrz y dentro de un else va lo siguiente
+                    if (PCalcIva == 1)
+                        TotalIva = SubTotal * 16 / 100;
+
+                    TotalPartida = SubTotal + TotalIva;
+
+
+                }
+
+                txtSubTotal.Text = Convert.ToString(SubTotal);
+                txtIva.Text = Convert.ToString(TotalIva);
+                txtTotal.Text = Convert.ToString(TotalPartida);
+
+            }
+            else
+            {
+                MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -517,97 +633,19 @@ namespace GAFE
                 ErrCalc = true;
         }
 
-        private void txtCantidad_MouseLeave(object sender, EventArgs e)
-        {
-            CalcExist(0);
-        }
-
-        private void txtPrecio_MouseLeave(object sender, EventArgs e)
-        {
-            ValidaCalculos();
-        }
-
-        private void txtDescuento_MouseLeave(object sender, EventArgs e)
-        {
-            ValidaCalculos();
-        }
-
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
-            CalcExist(0);
+            ValidaCalculos(0);
         }
 
-        private int CalcExist(int Op)
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
         {
-            int r = 1;
-            double CantCapt = 0;
-            String msj = "";
-            /*
-            try
-            {
-            */
-                if (String.IsNullOrEmpty(txtCantidad.Text))
-                {
-                    if (Op == 1)
-                    {
-                        msj += "Cantidad: No debe estar vacío. \n";
-                        r = 0;
-                    }
-                }
-                else
-                    CantCapt = Convert.ToDouble(txtCantidad.Text);
-
-
-                if (PModLlama.Equals("M01"))
-                {
-                    if (PEsTraspaso == 1 || PEntSal.Equals("S"))
-                    {
-                        if ((CantInv - CantCapt) < 0)
-                        {
-                            if (_AlmNumRojo == 1)
-                            {
-                                Cantidad = Convert.ToDouble(txtCantidad.Text);
-                                ExisNegativa = 0;
-                            }
-                            else
-                            {
-                                if (MessageBox.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
-                                        " Existencia: " + CantInv + " ",
-                                        "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                {
-                                    ExisNegativa = 1;
-                                }
-
-                            }
-                        }
-                        else
-                            ExisNegativa = 0;
-                    }
-                    else
-                    {
-                        ExisNegativa = 0;
-                        ValidaCalculos();
-                    }
-                }
-                else
-                    ExisNegativa = 0;
-
-            /*
-                        }
-                        catch()
-                        {
-
-                        }
-                        */
-                        /*
-            if (r==0)
-            {
-                MessageBox.Show("Contiene error(es):\n" + msj, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            */
-            return r;
-
+            ValidaCalculos(0);
         }
 
+        private void txtDescuento_TextChanged(object sender, EventArgs e)
+        {
+            ValidaCalculos(0);
+        }
     }
 }

@@ -171,8 +171,8 @@
             this.txtDescuento.TabIndex = 7;
             this.txtDescuento.Text = "0";
             this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDescuento.TextChanged += new System.EventHandler(this.txtDescuento_TextChanged);
             this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
-            this.txtDescuento.MouseLeave += new System.EventHandler(this.txtDescuento_MouseLeave);
             // 
             // txtPrecio
             // 
@@ -185,8 +185,8 @@
             this.txtPrecio.TabIndex = 6;
             this.txtPrecio.Text = "0";
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
-            this.txtPrecio.MouseLeave += new System.EventHandler(this.txtPrecio_MouseLeave);
             // 
             // label7
             // 
@@ -211,7 +211,6 @@
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
-            this.txtCantidad.MouseLeave += new System.EventHandler(this.txtCantidad_MouseLeave);
             // 
             // label6
             // 

@@ -87,26 +87,33 @@ namespace GAFE
             return rp2;
         }
 
-        public int AfectaCostosSql()
+        public int AfectaCostosSql(int Op)
         {
+            String Opera = (Op==1)?"+":"-"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
             string sql = " UPDATE Inv_Existencias SET Inv_Existencias.CostoPromedio = Rsp.CtoProm " +
                          " FROM Inv_Existencias t1, " +
                          "      (SELECT MDet.CveArticulo, " +
-                         "             ((Exis.Cantidad*Exis.CostoPromedio)+(MDet.Cantidad*MDet.Precio))/(Exis.Cantidad+MDet.Cantidad) as CtoProm  " +
+                         "            ( ( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0)) " +
+                         Opera+ 
+                         "              ( MDet.Cantidad * MDet.Precio )/ ( CASE WHEN " +
+                         "                                                       (ISNULL(Exis.Cantidad,0) " + Opera + "  MDet.Cantidad) = 0 THEN 1 " +
+                         "                                                      ELSE (ISNULL(Exis.Cantidad,0) " + Opera + "  MDet.Cantidad) END ) " +
+                         "            ) as CtoProm" +
+                         //"(ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad) as CtoProm  " +
                          "       FROM Inv_MovtosDetalles MDet" +
-                         "       INNER JOIN  Inv_Existencias Exis ON MDet.CveArticulo =  Exis.ClaveArticulo " +
+                         "       INNER JOIN  Inv_Existencias Exis ON MDet.CveArticulo =  Exis.ClaveArticulo and MDet.CveAlmacenMov = Exis.ClaveAlmacen " +
                          "       WHERE MDet.NoMovimiento = @NoMovimiento) AS Rsp" +
                          " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int AfectaExistenciasSql(String _CveTipoMov, String _EntSal)
+        public int AfectaExistenciasSql(String _CveTipoMov, String _EntSal, int Op)
         {
-            String Opera = (_EntSal.Equals("E")) ? "+" : "-";
+            String Opera = (Op == 1) ? (_EntSal.Equals("E")) ? "+" : "-" : (_EntSal.Equals("E")) ? "-" : "+"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
             String Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , CostoUltimo = Rsp.Precio ";
             //002 - 501 = Entrada o Salida por ajuste de inventarios
 
-            string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = t1.Cantidad "+ Opera + " Rsp.Cant" + Add_UltPrecio+
+            string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" + Add_UltPrecio+
                          " FROM Inv_Existencias t1, " +
                          "     (SELECT MDet.CveArticulo, MDet.Cantidad as Cant, MDet.Precio" +
                          "      FROM Inv_MovtosDetalles MDet" +
@@ -114,6 +121,24 @@ namespace GAFE
                          " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);
         }
+
+        public SqlDataAdapter RegistroActivo()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select MM.NoMovimiento, MM.FechaMovimiento, MM.CveAlmacenMov, MM.CveTipoMov, MM.EntSal," +
+                         "       MM.NoDoc, MM.Documento, MM.CveAlmacenDes,CveTipoMovDest, MM.EntSalDest," +
+                         "       MM.Modulo, MM.TipoDoc, MM.SerieDoc, MM.FolioDocOrigen, MM.Descuento," +
+                         "       MM.TotalDscto, MM.TIva, MM.SubTotal, MM.TotalDoc, MM.CveProveedor," +
+                         "       MM.CveCliente, MM.Cancelado, MM.CveUsarioCaptu, MM.CveCentroCosto, MM.NoMovtoTra," +
+                         "       MM.DocTra, TM.CveClsMov " +
+                         "from Inv_MovtosMaster AS MM " +
+                         "INNER JOIN Inv_TipoMovtos as TM ON TM.CveTipoMov = MM.CveTipoMov " +
+                         "where NoMovimiento = @NoMovimiento";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+
 
         /*
                 public int UpdateInventarioMov()
@@ -131,19 +156,6 @@ namespace GAFE
 
 
 
-                public SqlDataAdapter RegistroActivo()
-                {
-                    SqlDataAdapter dt = null;
-                    string Sql = "Select NoMovimiento, FechaMovimiento, CveAlmacenMov, CveTipoMov, EntSal," +
-                                "           NoDoc, Documento, CveAlmacenDes,CveTipoMovDest, EntSalDest," +
-                                "           Modulo, TipoDoc, SerieDoc, FolioDocOrigen, Descuento," +
-                                "           TotalDscto, TIva, SubTotal, TotalDoc, CveProveedor," +
-                                "           CveCliente, Cancelado, CveUsarioCaptu, CveCentroCosto, NoMovtoTra," +
-                                "           DocTra " +
-                                 " from Inv_MovtosMaster where NoMovimiento =@NoMovimiento";
-                    dt = db.SelectDA(Sql, ArrParametros);
-                    return dt;
-                }
 
                 public SqlDataAdapter BuscaInventarioMov(string bsq)
                 {

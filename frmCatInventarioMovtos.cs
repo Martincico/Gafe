@@ -98,9 +98,18 @@ namespace GAFE
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            Ventana.ShowDialog();
-            //LlenaGridView();
+            try
+            {
+                frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 3, TipoDocProv, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.ShowDialog();
+                LlenaGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tienes que seleccionar un registro ",
+                    "Error al consultar", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void cmdBuscar_Click(object sender, EventArgs e)
@@ -206,9 +215,82 @@ namespace GAFE
 
         private void cmEliminar_Click(object sender, EventArgs e)
         {
-            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            Ventana.ShowDialog();
-            LlenaGridView();
+            try
+            {
+                String NoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String IdTipMov = grdView[8, grdView.CurrentRow.Index].Value.ToString();
+                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+
+                    pui.keyNoMovimiento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EditarInventarioMov();
+
+                    PuiCatTipoMovtos PuiTM = new PuiCatTipoMovtos(db);
+                    PuiTM.keyCveTipoMov = IdTipMov; 
+                    PuiTM.EditarTipoMov();
+                    int rpp = 1;
+                    if (PuiTM.cmpAfectaCosto == 1)
+                    {
+                        rpp = pui.AfectaCostos(0);
+                    }
+                    if (pui.AfectaExistencias(pui.cmpCveTipoMov, pui.cmpEntSal,0) >= 1 && rpp >= 1)
+                    {
+                        if (PuiTM.cmpEsTraspaso == 1)
+                        {
+                            PuiCatInventarioMov puiRel = new PuiCatInventarioMov(db);
+
+                            puiRel.keyNoMovimiento = pui.cmpNoMovtoTra;
+                            puiRel.EditarInventarioMov();
+
+                            PuiCatTipoMovtos PuiTMRel = new PuiCatTipoMovtos(db);
+                            PuiTMRel.keyCveTipoMov = puiRel.cmpCveTipoMov;
+                            PuiTMRel.EditarTipoMov();
+
+                            rpp = 1;
+                            if (PuiTMRel.cmpAfectaCosto == 1)
+                            {
+                                rpp = puiRel.AfectaCostos(0);
+                            }
+                            if (puiRel.AfectaExistencias(puiRel.cmpCveTipoMov, puiRel.cmpEntSal,0) >= 1 && rpp >= 1)
+                            {
+                                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                                MessageBoxIcon.Information);
+                                db.TerminaTrans();
+                                this.Close();
+
+                            }
+                            else
+                                db.CancelaTrans();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                            //db.TerminaTrans();
+                            this.Close();
+                        }
+
+                    }
+                    else
+                       db.CancelaTrans();
+                }
+                LlenaGridView();
+                   
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
