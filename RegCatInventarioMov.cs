@@ -87,19 +87,34 @@ namespace GAFE
             return rp2;
         }
 
-        public int AfectaCostosSql(int Op)
+        public int AfectaCostosSql( String _CveTipoMov, int Op)
         {
-            String Opera = (Op==1)?"+":"-"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
-            string sql = " UPDATE Inv_Existencias SET Inv_Existencias.CostoPromedio = Rsp.CtoProm " +
+            String Opera =" ";
+            String Add_UltPrecio = "";
+            //002 - 501 = Entrada o Salida por ajuste de inventarios
+
+            if (Op == 1)
+            {
+                Opera = "+";
+                Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = Rsp.Precio ";
+            }
+            else
+            {
+                Opera = "-";
+                Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = ( SELECT TOP 1 Precio " +
+                                                                                                                                  " FROM Inv_MovtosDetalles " +
+                                                                                                                                  " WHERE CveTipoMov = Rsp.CveTipoMov " +
+                                                                                                                                  "   AND NoMovimiento != @NoMovimiento " +
+                                                                                                                                  "   AND CveArticulo = Rsp.CveArticulo " +
+                                                                                                                                  " ORDER BY NoMovimiento DESC) ";
+            }
+
+
+            string sql = " UPDATE Inv_Existencias SET Inv_Existencias.CostoPromedio = Rsp.CtoProm " + Add_UltPrecio +
                          " FROM Inv_Existencias t1, " +
-                         "      (SELECT MDet.CveArticulo, " +
-                         "            ( ( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0)) " +
-                         Opera+ 
-                         "              ( MDet.Cantidad * MDet.Precio )/ ( CASE WHEN " +
-                         "                                                       (ISNULL(Exis.Cantidad,0) " + Opera + "  MDet.Cantidad) = 0 THEN 1 " +
-                         "                                                      ELSE (ISNULL(Exis.Cantidad,0) " + Opera + "  MDet.Cantidad) END ) " +
-                         "            ) as CtoProm" +
-                         //"(ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad) as CtoProm  " +
+                         "      (SELECT MDet.CveArticulo, MDet.CveTipoMov, " +
+                         "          ((( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0))"+Opera+"( MDet.Cantidad * MDet.Precio ))/ (ISNULL(Exis.Cantidad,0) "+ Opera + " MDet.Cantidad)) as CtoProm, " +
+                         "          MDet.Precio  " +
                          "       FROM Inv_MovtosDetalles MDet" +
                          "       INNER JOIN  Inv_Existencias Exis ON MDet.CveArticulo =  Exis.ClaveArticulo and MDet.CveAlmacenMov = Exis.ClaveAlmacen " +
                          "       WHERE MDet.NoMovimiento = @NoMovimiento) AS Rsp" +
@@ -107,15 +122,13 @@ namespace GAFE
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int AfectaExistenciasSql(String _CveTipoMov, String _EntSal, int Op)
+        public int AfectaExistenciasSql( String _EntSal, int Op)
         {
             String Opera = (Op == 1) ? (_EntSal.Equals("E")) ? "+" : "-" : (_EntSal.Equals("E")) ? "-" : "+"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
-            String Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , CostoUltimo = Rsp.Precio ";
-            //002 - 501 = Entrada o Salida por ajuste de inventarios
 
-            string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" + Add_UltPrecio+
+            string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" + 
                          " FROM Inv_Existencias t1, " +
-                         "     (SELECT MDet.CveArticulo, MDet.Cantidad as Cant, MDet.Precio" +
+                         "     (SELECT MDet.CveArticulo, MDet.Cantidad as Cant " +
                          "      FROM Inv_MovtosDetalles MDet" +
                          "       WHERE MDet.NoMovimiento = @NoMovimiento) AS Rsp" +
                          " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
