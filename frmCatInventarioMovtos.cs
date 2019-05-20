@@ -215,17 +215,15 @@ namespace GAFE
 
         private void cmEliminar_Click(object sender, EventArgs e)
         {
-            Boolean Rsp = false;
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            String err = "";
             try
             {
                 String NoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String IdTipMov = grdView[8, grdView.CurrentRow.Index].Value.ToString();
-                db.IniciaTrans();
                 if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+
                     pui.keyNoMovimiento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     pui.EditarInventarioMov();
 
@@ -235,9 +233,9 @@ namespace GAFE
                     int rpp = 1;
                     if (PuiTM.cmpAfectaCosto == 1)
                     {
-                        rpp = pui.AfectaCostos(pui.cmpCveTipoMov, 0);
+                        rpp = pui.AfectaCostos(0);
                     }
-                    if (pui.AfectaExistencias(pui.cmpEntSal, 0) >= 1 && rpp >= 1)
+                    if (pui.AfectaExistencias(pui.cmpCveTipoMov, pui.cmpEntSal,0) >= 1 && rpp >= 1)
                     {
                         if (PuiTM.cmpEsTraspaso == 1)
                         {
@@ -253,54 +251,31 @@ namespace GAFE
                             rpp = 1;
                             if (PuiTMRel.cmpAfectaCosto == 1)
                             {
-                                rpp = puiRel.AfectaCostos(puiRel.cmpCveTipoMov, 0);
+                                rpp = puiRel.AfectaCostos(0);
                             }
-                            if (puiRel.AfectaExistencias(puiRel.cmpEntSal, 0) >= 1 && rpp >= 1)
+                            if (puiRel.AfectaExistencias(puiRel.cmpCveTipoMov, puiRel.cmpEntSal,0) >= 1 && rpp >= 1)
                             {
-                                Rsp = true;
+                                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                                MessageBoxIcon.Information);
+                                db.TerminaTrans();
+                                this.Close();
+
                             }
                             else
-                            {
-                                err = "Existe un error al afectar existencias de relación";
-                            }
+                                db.CancelaTrans();
                         }
                         else
                         {
-                            Rsp = true;
-                        }
-                    }
-                    else
-                        err = "Existe un error al afectar existencias";
-
-                    if (Rsp)
-                    {
-                        if (pui.EliminaInventarioMov() >= 1)
-                        {
-                            MessageBox.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
-                                            MessageBoxIcon.Information);
-                            db.TerminaTrans();
+                            MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                            //db.TerminaTrans();
                             this.Close();
                         }
-                        else
-                        {
-                            MessageBox.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            db.CancelaTrans();
-                        }
 
                     }
                     else
-                    {
-                        MessageBox.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        db.CancelaTrans();
-                    }
-
-
-
+                       db.CancelaTrans();
                 }
-
-
-
-                
                 LlenaGridView();
                    
 
