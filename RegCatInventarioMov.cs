@@ -45,10 +45,10 @@ namespace GAFE
         }
 
     */
-     
+
         public int AddRegBlanco()
         {
-  
+
             string sql = "Insert into Inv_MovtosMaster (NoMovimiento, FechaMovimiento) " +
                          "values( @NoMovimiento,@FechaMovimiento)";
             return db.InsertarRegistro(sql, ArrParametros);
@@ -87,9 +87,9 @@ namespace GAFE
             return rp2;
         }
 
-        public int AfectaCostosSql(int Op)
+        public int AfectaCostosSql(String _CveTipoMov, int Op)
         {
-            String Opera =" ";
+            String Opera = " ";
             String Add_UltPrecio = "";
             //002 - 501 = Entrada o Salida por ajuste de inventarios
 
@@ -109,7 +109,7 @@ namespace GAFE
             string sql = " UPDATE Inv_Existencias SET Inv_Existencias.CostoPromedio = Rsp.CtoProm " + Add_UltPrecio +
                          " FROM Inv_Existencias t1, " +
                          "      (SELECT MDet.CveArticulo, MDet.CveTipoMov, " +
-                         "          ((( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0))"+Opera+"( MDet.Cantidad * MDet.Precio ))/ (ISNULL(Exis.Cantidad,0) "+ Opera + " MDet.Cantidad)) as CtoProm, " +
+                         "          ((( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0))" + Opera + "( MDet.Cantidad * MDet.Precio ))/ (ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad)) as CtoProm, " +
                          "          MDet.Precio  " +
                          "       FROM Inv_MovtosDetalles MDet" +
                          "       INNER JOIN  Inv_Existencias Exis ON MDet.CveArticulo =  Exis.ClaveArticulo and MDet.CveAlmacenMov = Exis.ClaveAlmacen " +
@@ -118,11 +118,11 @@ namespace GAFE
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int AfectaExistenciasSql( String _EntSal, int Op)
+        public int AfectaExistenciasSql(String _EntSal, int Op)
         {
             String Opera = (Op == 1) ? (_EntSal.Equals("E")) ? "+" : "-" : (_EntSal.Equals("E")) ? "-" : "+"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
 
-            string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" + 
+            string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" +
                          " FROM Inv_Existencias t1, " +
                          "     (SELECT MDet.CveArticulo, MDet.Cantidad as Cant " +
                          "      FROM Inv_MovtosDetalles MDet" +
@@ -182,9 +182,9 @@ namespace GAFE
         public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             String StrSql = "";
-            if(!CodAlm.Equals("0"))
+            if (!CodAlm.Equals("0"))
             {
-                StrSql += " AND Alm.ClaveAlmacen = '"+CodAlm+"'";
+                StrSql += " AND Alm.ClaveAlmacen = '" + CodAlm + "'";
             }
             if (!CodProve.Equals("0"))
             {
@@ -205,7 +205,7 @@ namespace GAFE
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
                          " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = mm.CveTipoMov" +
                         //" WHERE MM.Cancelado = 1 " + StrSql;
-                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '" + FIni + "' AND '"+ FFin+ "')" + StrSql;
+                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '" + FIni + "' AND '" + FFin + "')" + StrSql;
             dt = db.SelectDA(Sql);
             return dt;
         }

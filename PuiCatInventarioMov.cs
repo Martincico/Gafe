@@ -318,22 +318,22 @@ namespace GAFE
             return OpLst.ListInventarioMovtos( CodProve,  CodAlm,  CodTipoMov, FIni, FFin);
         }
 
-        public int AfectaCostos(int Op)
+        public int AfectaCostos(String _CveTipoMov,int Op)
         {
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
-            return Afe.AfectaCostosSql(Op);
+            return Afe.AfectaCostosSql(_CveTipoMov,Op);
         }
 
-        public int AfectaExistencias(String _CveTipoMov, String _EntSal, int Op)
+        public int AfectaExistencias( String _EntSal, int Op)
         {
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
-            return Afe.AfectaExistenciasSql(_CveTipoMov, _EntSal, Op);
+            return Afe.AfectaExistenciasSql(_EntSal, Op);
         }
 
 
