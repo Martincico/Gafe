@@ -188,6 +188,12 @@
     <Compile Include="frmCatMunicipios.designer.cs">
       <DependentUpon>frmCatMunicipios.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatPerfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatPerfiles.Designer.cs">
+      <DependentUpon>frmCatPerfiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatTipoMovtos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,12 @@
     </Compile>
     <Compile Include="frmCatUMedidas.designer.cs">
       <DependentUpon>frmCatUMedidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatUsuarios.Designer.cs">
+      <DependentUpon>frmCatUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEmpleados.cs">
       <SubType>Form</SubType>
@@ -217,6 +229,12 @@
     </Compile>
     <Compile Include="frmKardex.Designer.cs">
       <DependentUpon>frmKardex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLstArticulos.cs">
       <SubType>Form</SubType>
@@ -284,6 +302,8 @@
     <Compile Include="PuiCatInventarioMov.cs" />
     <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
+    <Compile Include="PuiSegPerfiles.cs" />
+    <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatKardex.cs" />
     <Compile Include="RegExistencias.cs" />
@@ -301,6 +321,8 @@
     <Compile Include="RegCatInventarioMov.cs" />
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
+    <Compile Include="RegSegPerfiles.cs" />
+    <Compile Include="RegSegUsuarios.cs" />
     <Compile Include="RepExistencias.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
@@ -339,11 +361,17 @@
     <EmbeddedResource Include="frmCatMunicipios.resx">
       <DependentUpon>frmCatMunicipios.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCatPerfiles.resx">
+      <DependentUpon>frmCatPerfiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCatTipoMovtos.resx">
       <DependentUpon>frmCatTipoMovtos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatUMedidas.resx">
       <DependentUpon>frmCatUMedidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatUsuarios.resx">
+      <DependentUpon>frmCatUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmpleados.resx">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
@@ -353,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmKardex.resx">
       <DependentUpon>frmKardex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLstArticulos.resx">
       <DependentUpon>frmLstArticulos.cs</DependentUpon>
