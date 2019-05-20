@@ -311,11 +311,11 @@ namespace GAFE
             return OpDel.DeleteInventarioMov();
         }
 
-        public SqlDataAdapter ListarInventarioMovtos()
+        public SqlDataAdapter ListarInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             CargaParametroMat();
             RegCatInventarioMov OpLst = new RegCatInventarioMov(db);
-            return OpLst.ListInventarioMovtos();
+            return OpLst.ListInventarioMovtos( CodProve,  CodAlm,  CodTipoMov, FIni, FFin);
         }
 
         public int AfectaCostos(int Op)
