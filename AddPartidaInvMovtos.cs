@@ -434,7 +434,7 @@ namespace GAFE
             {
                 if (txtCantidad.Text.Length >= 1)
                 {
-                    if (!Util.Numeros(txtCantidad.Text))
+                    if (!Util.Decimal(txtCantidad.Text))
                     {
                         err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0)\n";
                         ErrCalc = false;
@@ -469,7 +469,7 @@ namespace GAFE
             {
                 if (txtPrecio.Text.Length >= 1)
                 {
-                    if (!Util.Decimal(txtPrecio.Text) && Op == 1)
+                    if (!Util.Decimal(txtPrecio.Text))
                     {
                         err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                         ErrCalc = false;
