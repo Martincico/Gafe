@@ -205,10 +205,10 @@ namespace GAFE
                     int rpp = 1;
                     if (_AfectaCosto==1)
                     {
-                       rpp = pui.AfectaCostos(1);
+                       rpp = pui.AfectaCostos(_CveTipoMov,1);
                     }
 
-                    if (pui.AfectaExistencias(_CveTipoMov,_EntSal,1) >= 1 && rpp >= 1)
+                    if (pui.AfectaExistencias(_EntSal,1) >= 1 && rpp >= 1)
                     {
                         if (_EsTraspaso == 1)
                         {
@@ -259,10 +259,10 @@ namespace GAFE
                                         pui.cmpCveAlmacenMov = _AlmO;
                                         if (_AfectaCostoRel == 1)
                                         {
-                                            rpp = pui.AfectaCostos(1);
+                                            rpp = pui.AfectaCostos(_CveTipoMovRel,1);
                                         }
                                         
-                                        if (pui.AfectaExistencias(_CveTipoMovRel, _EntSalRel,1) >= 1 && rpp == 1)
+                                        if (pui.AfectaExistencias(_EntSalRel,1) >= 1 && rpp == 1)
                                         {
                                             if (pui.AgregarInvDet() >= 1)
                                             {

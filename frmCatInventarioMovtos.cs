@@ -77,7 +77,7 @@ namespace GAFE
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
             */
-           
+
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -96,7 +96,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db,1,TipoDocProv);
+            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 1, TipoDocProv);
             Ventana.ShowDialog();
             LlenaGridView();
         }
@@ -133,7 +133,7 @@ namespace GAFE
             }
             */
         }
-        
+
         private void frmCatInventarioMovtos_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -141,7 +141,7 @@ namespace GAFE
                 this.Close();
             }
         }
-        
+
         private void LlenaGridView()
         {
             String CodProve = Convert.ToString(cboProveedor.SelectedValue);
@@ -152,7 +152,7 @@ namespace GAFE
 
 
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            DatosTbl = pui.ListarInventarioMovtos( CodProve, AlmOri,  CodTipoMov, FIni, FFin);
+            DatosTbl = pui.ListarInventarioMovtos(CodProve, AlmOri, CodTipoMov, FIni, FFin);
             DataSet Ds = new DataSet();
 
             try
@@ -178,7 +178,7 @@ namespace GAFE
             {
                 MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
 
         }
 
@@ -243,7 +243,7 @@ namespace GAFE
                     pui.EditarInventarioMov();
 
                     PuiCatTipoMovtos PuiTM = new PuiCatTipoMovtos(db);
-                    PuiTM.keyCveTipoMov = IdTipMov; 
+                    PuiTM.keyCveTipoMov = IdTipMov;
                     PuiTM.EditarTipoMov();
                     int rpp = 1;
                     if (PuiTM.cmpAfectaCosto == 1)
@@ -294,6 +294,11 @@ namespace GAFE
                             db.TerminaTrans();
                             this.Close();
                         }
+                        else
+                        {
+                            MessageBox.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            db.CancelaTrans();
+                        }
 
                     }
                     else
@@ -310,15 +315,15 @@ namespace GAFE
                 MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
-            
+
         }
 
         private void LlecboProveedor()
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-//            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
+            //            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
 
-            dt =  lin.CboInv_CatAlmacenes();
+            dt = lin.CboInv_CatAlmacenes();
             row = dt.NewRow();
             row["ClaveAlmacen"] = "0";
             row["Descripcion"] = "TODOS ";
