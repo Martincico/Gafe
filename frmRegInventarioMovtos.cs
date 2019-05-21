@@ -156,9 +156,6 @@ namespace GAFE
 
         private void Agregar()
         {
-            Boolean Rsp = false;
-            String err = "";
-
             String _cveinvmt = Convert.ToString(cboTipoMovtos.SelectedValue);
             String _AlmO  = Convert.ToString(cboAlmaOri.SelectedValue);
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
@@ -185,14 +182,13 @@ namespace GAFE
             pui.cmpEntSalDest = "";
             pui.cmpNoMovtoTra= "";
             pui.cmpDocTra = "";
-            /*
+
             if (_EsTraspaso == 1)
             {
                 pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
                 pui.cmpCveTipoMovDest = _CveClsMovRel;
                 pui.cmpEntSalDest = _EntSalRel;
             }
-            */
             if (_cveinvmt == "003" || _cveinvmt == "502")
             {
                 pui.cmpCveTipoMovDest = _CveTipoMovRel;
@@ -209,10 +205,10 @@ namespace GAFE
                     int rpp = 1;
                     if (_AfectaCosto==1)
                     {
-                       rpp = pui.AfectaCostos(_CveTipoMov,1);
+                       rpp = pui.AfectaCostos(1);
                     }
 
-                    if (pui.AfectaExistencias(_EntSal,1) >= 1 && rpp >= 1)
+                    if (pui.AfectaExistencias(_CveTipoMov,_EntSal,1) >= 1 && rpp >= 1)
                     {
                         if (_EsTraspaso == 1)
                         {
@@ -263,73 +259,51 @@ namespace GAFE
                                         pui.cmpCveAlmacenMov = _AlmO;
                                         if (_AfectaCostoRel == 1)
                                         {
-                                            rpp = pui.AfectaCostos(_CveTipoMovRel, 1);
+                                            rpp = pui.AfectaCostos(1);
                                         }
-
-                                        if (pui.AfectaExistencias(_EntSalRel, 1) >= 1 && rpp == 1)
+                                        
+                                        if (pui.AfectaExistencias(_CveTipoMovRel, _EntSalRel,1) >= 1 && rpp == 1)
                                         {
                                             if (pui.AgregarInvDet() >= 1)
                                             {
-                                                Rsp = true;
+                                                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
+                                                db.TerminaTrans();
+                                                isDataSaved = true;
+                                                this.Close();
                                             }
                                             else
-                                            {
-                                                err = "Error de traspaso al agregar complementos a detalles ";
-                                            }
-
+                                                db.CancelaTrans();
                                         }
                                         else
-                                        {
-                                            err = "Error de traspaso al afectar existencias";
-                                        }
+                                            db.CancelaTrans();
                                     }
                                     else
-                                        err = "Error de traspaso al agregar en Detalles";
+                                        db.CancelaTrans();
                                 }
                                 else
-                                {
-                                    err = "Error de traspaso al agregar en Master";
-                                }
+                                    db.CancelaTrans();
                             }
                             else
-                            {
-                                err = "Error de traspaso al obtener el folio";
-                            }
+                              db.CancelaTrans();
                         }
                         else
                         {
-                            Rsp = true;
+                            MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                            db.TerminaTrans();
+                            isDataSaved = true;
+                            this.Close();
                         }
                     }
                     else
-                    {
-                        err = "Existe un error al afectar existencias";
-                    }
+                        db.CancelaTrans();
                 }
                 else
-                {
-                    err = "Existe un error al afectar Detalles";
-                }
+                    db.CancelaTrans();
             }
             else
-                err = "Existe un error al afectar Master";
-
-
-            if (Rsp)
-            {
-                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                                        MessageBoxIcon.Information);
-                db.TerminaTrans();
-                isDataSaved = true;
-                this.Close();
-
-            }
-            else
-            {
-                MessageBox.Show(err, "Error de insertar registro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 db.CancelaTrans();
-            }
-
         }
 
    

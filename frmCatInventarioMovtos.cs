@@ -19,9 +19,11 @@ namespace GAFE
     {
         private String TipoDocProv = "MINV"; //MINV aun no sta registrado
         private SqlDataAdapter DatosTbl;
-        private int idxG;
 
         private MsSql db = null;
+        DataTable dt = null;
+        DataRow row = null;
+
         //private string Perfil;
         //private clsUtil uT;
 
@@ -85,6 +87,9 @@ namespace GAFE
                 Application.Exit();
             }
             this.Size = this.MinimumSize;
+            LlecboProveedor();
+            LlecboAlmaOri("100");
+            LlecboTipoMovtos();
             LlenaGridView();
 
         }
@@ -139,8 +144,15 @@ namespace GAFE
         
         private void LlenaGridView()
         {
+            String CodProve = Convert.ToString(cboProveedor.SelectedValue);
+            String AlmOri = Convert.ToString(cboAlmaOri.SelectedValue);
+            String CodTipoMov = Convert.ToString(cboTipoMovtos.SelectedValue);
+            String FIni = dtFechaInicio.Value.ToString("dd/MM/yyyy");
+            String FFin = dtFechaInicio.Value.ToString("dd/MM/yyyy");
+
+
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            DatosTbl = pui.ListarInventarioMovtos();
+            DatosTbl = pui.ListarInventarioMovtos( CodProve, AlmOri,  CodTipoMov, FIni, FFin);
             DataSet Ds = new DataSet();
 
             try
@@ -160,12 +172,13 @@ namespace GAFE
                 {
                     grdView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
 
         }
 
@@ -281,11 +294,6 @@ namespace GAFE
                             db.TerminaTrans();
                             this.Close();
                         }
-                        else
-                        {
-                            MessageBox.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            db.CancelaTrans();
-                        }
 
                     }
                     else
@@ -293,17 +301,9 @@ namespace GAFE
                         MessageBox.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         db.CancelaTrans();
                     }
-
-
-
                 }
 
-
-
-                
                 LlenaGridView();
-                   
-
             }
             catch (Exception ex)
             {
@@ -313,9 +313,97 @@ namespace GAFE
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LlecboProveedor()
         {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+//            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
 
+            dt =  lin.CboInv_CatAlmacenes();
+            row = dt.NewRow();
+            row["ClaveAlmacen"] = "0";
+            row["Descripcion"] = "TODOS ";
+            dt.Rows.Add(row);
+
+            cboProveedor.DataSource = dt;
+
+
+            cboProveedor.ValueMember = "ClaveAlmacen";
+            cboProveedor.DisplayMember = "Descripcion";
+
+            cboProveedor.SelectedValue = "0";
+        }
+        private void LlecboAlmaOri(String CveUser)
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboAlmaOri.DataSource = lin.CboInv_CatAlmacenes();
+
+            cboAlmaOri.ValueMember = "ClaveAlmacen";
+            cboAlmaOri.DisplayMember = "Descripcion";
+
+            cboAlmaOri.SelectedValue = CveUser;
+        }
+
+        private void LlecboTipoMovtos()
+        {
+            /*
+            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
+            cboTipoMovtos.DataSource = lin.CboInv_TipoMovtos();
+            cboTipoMovtos.ValueMember = "CveTipoMov";
+            cboTipoMovtos.DisplayMember = "Descripcion";
+            */
+            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
+
+            dt = lin.CboInv_TipoMovtos();
+            row = dt.NewRow();
+            row["CveTipoMov"] = "0";
+            row["Descripcion"] = "TODOS ";
+            dt.Rows.Add(row);
+
+            cboTipoMovtos.DataSource = dt;
+
+
+            cboTipoMovtos.ValueMember = "CveTipoMov";
+            cboTipoMovtos.DisplayMember = "Descripcion";
+
+            cboTipoMovtos.SelectedValue = "0";
+
+        }
+
+        private void dtFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtFechaInicio.Value > dtFechaFin.Value)
+            {
+                dtFechaInicio.Focus();
+                MessageBox.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+                LlenaGridView();
+        }
+
+        private void dtFechaFin_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtFechaInicio.Value > dtFechaFin.Value)
+            {
+                dtFechaFin.Focus();
+                MessageBox.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+                LlenaGridView();
+        }
+
+        private void cboProveedor_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LlenaGridView();
+        }
+
+        private void cboAlmaOri_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LlenaGridView();
+        }
+
+        private void cboTipoMovtos_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LlenaGridView();
         }
     }
 }

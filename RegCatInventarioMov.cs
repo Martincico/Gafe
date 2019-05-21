@@ -87,7 +87,7 @@ namespace GAFE
             return rp2;
         }
 
-        public int AfectaCostosSql( String _CveTipoMov, int Op)
+        public int AfectaCostosSql(int Op)
         {
             String Opera =" ";
             String Add_UltPrecio = "";
@@ -102,11 +102,7 @@ namespace GAFE
             {
                 Opera = "-";
                 Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = ( SELECT TOP 1 Precio " +
-                                                                                                                                  " FROM Inv_MovtosDetalles " +
-                                                                                                                                  " WHERE CveTipoMov = Rsp.CveTipoMov " +
-                                                                                                                                  "   AND NoMovimiento != @NoMovimiento " +
-                                                                                                                                  "   AND CveArticulo = Rsp.CveArticulo " +
-                                                                                                                                  " ORDER BY NoMovimiento DESC) ";
+                                                                                                                                 " ORDER BY NoMovimiento DESC) ";
             }
 
 
@@ -183,8 +179,23 @@ namespace GAFE
                 }
 
             */
-        public SqlDataAdapter ListInventarioMovtos()
+        public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
+            String StrSql = "";
+            if(!CodAlm.Equals("0"))
+            {
+                StrSql += " AND Alm.ClaveAlmacen = '"+CodAlm+"'";
+            }
+            if (!CodProve.Equals("0"))
+            {
+                StrSql += " AND Prov.CveProveedor = '" + CodProve + "'";
+            }
+
+            if (!CodTipoMov.Equals("0"))
+            {
+                StrSql += " AND TMvto.CveTipoMov = '" + CodProve + "'";
+            }
+
             SqlDataAdapter dt = null;
             string Sql = "SELECT MM.NoMovimiento,MM.Documento,MM.FechaMovimiento,Alm.Descripcion AS Almacen, " +
                          "       TMvto.Descripcion AS TipoMov, Prov.Nombre AS Proveedor, MM.Cancelado,MM.TotalDoc, " +
@@ -192,7 +203,9 @@ namespace GAFE
                          " FROM Inv_MovtosMaster MM " +
                          " INNER JOIN Inv_CatAlmacenes Alm ON Alm.ClaveAlmacen = mm.CveAlmacenMov " +
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
-                         " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = MM.CveTipoMov";
+                         " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = mm.CveTipoMov" +
+                        //" WHERE MM.Cancelado = 1 " + StrSql;
+                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '" + FIni + "' AND '"+ FFin+ "')" + StrSql;
             dt = db.SelectDA(Sql);
             return dt;
         }
