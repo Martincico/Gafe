@@ -311,20 +311,20 @@ namespace GAFE
             return OpDel.DeleteInventarioMov();
         }
 
-        public SqlDataAdapter ListarInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
+        public SqlDataAdapter ListarInventarioMovtos()
         {
             CargaParametroMat();
             RegCatInventarioMov OpLst = new RegCatInventarioMov(db);
-            return OpLst.ListInventarioMovtos( CodProve,  CodAlm,  CodTipoMov, FIni, FFin);
+            return OpLst.ListInventarioMovtos();
         }
 
-        public int AfectaCostos(String _CveTipoMov,int Op)
+        public int AfectaCostos(String _CveTipoMov, int Op)
         {
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
-            return Afe.AfectaCostosSql(_CveTipoMov,Op);
+            return Afe.AfectaCostosSql(_CveTipoMov, Op);
         }
 
         public int AfectaExistencias( String _EntSal, int Op)
@@ -333,7 +333,7 @@ namespace GAFE
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
-            return Afe.AfectaExistenciasSql(_EntSal, Op);
+            return Afe.AfectaExistenciasSql( _EntSal, Op);
         }
 
 
