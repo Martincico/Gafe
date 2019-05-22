@@ -116,5 +116,24 @@ namespace GAFE
             frmCatMarcas fm = new frmCatMarcas(db, Perfil);
             fm.ShowDialog();
         }
+
+        private void CatClase_Click(object sender, EventArgs e)
+        {
+            //lblCabeza.Text = "Catalogo de Clases";
+            //BarraSidePanel.Height = btnMenClases.Height;
+            //BarraSidePanel.Top = btnMenClases.Top;
+            frmCatClases22 home = new frmCatClases22();
+            Nav(home, PanelContenido);
+        }
+
+        private void Nav(Form form, Panel panel)
+        {
+            form.TopLevel = false;
+            panel.Controls.Clear();
+            panel.Controls.Add(form);
+            form.Show();
+
+        }
+
     }
 }

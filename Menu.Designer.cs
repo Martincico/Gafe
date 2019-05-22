@@ -54,13 +54,16 @@
             this.catsAlmacenes = new System.Windows.Forms.RibbonButton();
             this.CatAlmacen = new System.Windows.Forms.RibbonButton();
             this.ProcInven = new System.Windows.Forms.RibbonPanel();
-            this.RepInven = new System.Windows.Forms.RibbonPanel();
-            this.ModProveedores = new System.Windows.Forms.RibbonTab();
             this.OpInventarios = new System.Windows.Forms.RibbonButton();
-            this.OpInvFisicos = new System.Windows.Forms.RibbonButton();
             this.OpMovInv = new System.Windows.Forms.RibbonButton();
             this.OpKardex = new System.Windows.Forms.RibbonButton();
             this.OpExistencia = new System.Windows.Forms.RibbonButton();
+            this.OpInvFisicos = new System.Windows.Forms.RibbonButton();
+            this.RepInven = new System.Windows.Forms.RibbonPanel();
+            this.ModProveedores = new System.Windows.Forms.RibbonTab();
+            this.PanelContenido = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.CatClase = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // Clientes
@@ -210,6 +213,7 @@
             this.CatsArticulos.DropDownItems.Add(this.CatUMedidas);
             this.CatsArticulos.DropDownItems.Add(this.CatLineas);
             this.CatsArticulos.DropDownItems.Add(this.CatMarcas);
+            this.CatsArticulos.DropDownItems.Add(this.CatClase);
             this.CatsArticulos.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CatsArticulos.LargeImage = global::GAFE.Properties.Resources.Cancelar;
             this.CatsArticulos.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.DropDown;
@@ -291,16 +295,6 @@
             this.ProcInven.Name = "ProcInven";
             this.ProcInven.Text = "Procesos";
             // 
-            // RepInven
-            // 
-            this.RepInven.Name = "RepInven";
-            this.RepInven.Text = "Reportes";
-            // 
-            // ModProveedores
-            // 
-            this.ModProveedores.Name = "ModProveedores";
-            this.ModProveedores.Text = "Proveedores";
-            // 
             // OpInventarios
             // 
             this.OpInventarios.DropDownItems.Add(this.OpMovInv);
@@ -312,15 +306,6 @@
             this.OpInventarios.SmallImage = global::GAFE.Properties.Resources.Cancelar;
             this.OpInventarios.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
             this.OpInventarios.Text = "Inventarios";
-            // 
-            // OpInvFisicos
-            // 
-            this.OpInvFisicos.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.OpInvFisicos.LargeImage = global::GAFE.Properties.Resources.Cancelar;
-            this.OpInvFisicos.Name = "OpInvFisicos";
-            this.OpInvFisicos.SmallImage = global::GAFE.Properties.Resources.Cancelar;
-            this.OpInvFisicos.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
-            this.OpInvFisicos.Text = "Inv. Fisicos";
             // 
             // OpMovInv
             // 
@@ -349,11 +334,58 @@
             this.OpExistencia.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpExistencia.SmallImage")));
             this.OpExistencia.Text = "Existencia  Art. por Alm.";
             // 
+            // OpInvFisicos
+            // 
+            this.OpInvFisicos.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInvFisicos.LargeImage = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInvFisicos.Name = "OpInvFisicos";
+            this.OpInvFisicos.SmallImage = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInvFisicos.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
+            this.OpInvFisicos.Text = "Inv. Fisicos";
+            // 
+            // RepInven
+            // 
+            this.RepInven.Name = "RepInven";
+            this.RepInven.Text = "Reportes";
+            // 
+            // ModProveedores
+            // 
+            this.ModProveedores.Name = "ModProveedores";
+            this.ModProveedores.Text = "Proveedores";
+            // 
+            // PanelContenido
+            // 
+            this.PanelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelContenido.Location = new System.Drawing.Point(0, 157);
+            this.PanelContenido.Name = "PanelContenido";
+            this.PanelContenido.Size = new System.Drawing.Size(800, 293);
+            this.PanelContenido.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 401);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 49);
+            this.panel2.TabIndex = 2;
+            // 
+            // CatClase
+            // 
+            this.CatClase.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.CatClase.Image = ((System.Drawing.Image)(resources.GetObject("CatClase.Image")));
+            this.CatClase.LargeImage = ((System.Drawing.Image)(resources.GetObject("CatClase.LargeImage")));
+            this.CatClase.Name = "CatClase";
+            this.CatClase.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatClase.SmallImage")));
+            this.CatClase.Text = "Clases";
+            this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.PanelContenido);
             this.Controls.Add(this.ribbon1);
             this.KeyPreview = true;
             this.Name = "Menu";
@@ -397,6 +429,9 @@
         private System.Windows.Forms.RibbonButton OpKardex;
         private System.Windows.Forms.RibbonButton OpExistencia;
         private System.Windows.Forms.RibbonButton OpInvFisicos;
+        private System.Windows.Forms.Panel PanelContenido;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RibbonButton CatClase;
     }
 }
 
