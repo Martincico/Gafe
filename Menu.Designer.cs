@@ -39,25 +39,28 @@
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
             this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
-            this.ModInventario = new System.Windows.Forms.RibbonTab();
-            this.CatInven = new System.Windows.Forms.RibbonPanel();
-            this.ProcInven = new System.Windows.Forms.RibbonPanel();
-            this.RepInven = new System.Windows.Forms.RibbonPanel();
-            this.ModProveedores = new System.Windows.Forms.RibbonTab();
             this.ribbonSeparator1 = new System.Windows.Forms.RibbonSeparator();
             this.sUsuarios = new System.Windows.Forms.RibbonOrbMenuItem();
             this.sPerfiles = new System.Windows.Forms.RibbonOrbMenuItem();
             this.sAsignaPermisos = new System.Windows.Forms.RibbonOrbMenuItem();
+            this.ModInventario = new System.Windows.Forms.RibbonTab();
+            this.CatInven = new System.Windows.Forms.RibbonPanel();
             this.CatsArticulos = new System.Windows.Forms.RibbonButton();
-            this.cmdAlmacenes = new System.Windows.Forms.RibbonButton();
             this.CatArticulo = new System.Windows.Forms.RibbonButton();
             this.CatUMedidas = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton7 = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton8 = new System.Windows.Forms.RibbonButton();
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
             this.CatLineas = new System.Windows.Forms.RibbonButton();
             this.CatMarcas = new System.Windows.Forms.RibbonButton();
-            this.ribbonButton5 = new System.Windows.Forms.RibbonButton();
+            this.catsAlmacenes = new System.Windows.Forms.RibbonButton();
+            this.CatAlmacen = new System.Windows.Forms.RibbonButton();
+            this.ProcInven = new System.Windows.Forms.RibbonPanel();
+            this.RepInven = new System.Windows.Forms.RibbonPanel();
+            this.ModProveedores = new System.Windows.Forms.RibbonTab();
+            this.OpInventarios = new System.Windows.Forms.RibbonButton();
+            this.OpInvFisicos = new System.Windows.Forms.RibbonButton();
+            this.OpMovInv = new System.Windows.Forms.RibbonButton();
+            this.OpKardex = new System.Windows.Forms.RibbonButton();
+            this.OpExistencia = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // Clientes
@@ -153,36 +156,6 @@
             this.ribbon1.Text = "ribbon1";
             this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.JellyBelly;
             // 
-            // ModInventario
-            // 
-            this.ModInventario.Name = "ModInventario";
-            this.ModInventario.Panels.Add(this.CatInven);
-            this.ModInventario.Panels.Add(this.ProcInven);
-            this.ModInventario.Panels.Add(this.RepInven);
-            this.ModInventario.Text = "Inventarios";
-            // 
-            // CatInven
-            // 
-            this.CatInven.Items.Add(this.CatsArticulos);
-            this.CatInven.Items.Add(this.cmdAlmacenes);
-            this.CatInven.Name = "CatInven";
-            this.CatInven.Text = "Catalogos";
-            // 
-            // ProcInven
-            // 
-            this.ProcInven.Name = "ProcInven";
-            this.ProcInven.Text = "Procesos";
-            // 
-            // RepInven
-            // 
-            this.RepInven.Name = "RepInven";
-            this.RepInven.Text = "Reportes";
-            // 
-            // ModProveedores
-            // 
-            this.ModProveedores.Name = "ModProveedores";
-            this.ModProveedores.Text = "Proveedores";
-            // 
             // ribbonSeparator1
             // 
             this.ribbonSeparator1.Name = "ribbonSeparator1";
@@ -214,6 +187,22 @@
             this.sAsignaPermisos.Name = "sAsignaPermisos";
             this.sAsignaPermisos.SmallImage = ((System.Drawing.Image)(resources.GetObject("sAsignaPermisos.SmallImage")));
             this.sAsignaPermisos.Text = "Asignar Permisos";
+            this.sAsignaPermisos.Click += new System.EventHandler(this.sAsignaPermisos_Click);
+            // 
+            // ModInventario
+            // 
+            this.ModInventario.Name = "ModInventario";
+            this.ModInventario.Panels.Add(this.CatInven);
+            this.ModInventario.Panels.Add(this.ProcInven);
+            this.ModInventario.Panels.Add(this.RepInven);
+            this.ModInventario.Text = "Inventarios";
+            // 
+            // CatInven
+            // 
+            this.CatInven.Items.Add(this.CatsArticulos);
+            this.CatInven.Items.Add(this.catsAlmacenes);
+            this.CatInven.Name = "CatInven";
+            this.CatInven.Text = "Catalogos";
             // 
             // CatsArticulos
             // 
@@ -221,7 +210,6 @@
             this.CatsArticulos.DropDownItems.Add(this.CatUMedidas);
             this.CatsArticulos.DropDownItems.Add(this.CatLineas);
             this.CatsArticulos.DropDownItems.Add(this.CatMarcas);
-            this.CatsArticulos.DropDownItems.Add(this.ribbonButton5);
             this.CatsArticulos.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CatsArticulos.LargeImage = global::GAFE.Properties.Resources.Cancelar;
             this.CatsArticulos.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.DropDown;
@@ -229,18 +217,6 @@
             this.CatsArticulos.SmallImage = global::GAFE.Properties.Resources.Cancelar;
             this.CatsArticulos.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
             this.CatsArticulos.Text = "Articulos";
-            // 
-            // cmdAlmacenes
-            // 
-            this.cmdAlmacenes.DropDownItems.Add(this.ribbonButton7);
-            this.cmdAlmacenes.DropDownItems.Add(this.ribbonButton8);
-            this.cmdAlmacenes.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.cmdAlmacenes.LargeImage = global::GAFE.Properties.Resources.Cancelar;
-            this.cmdAlmacenes.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
-            this.cmdAlmacenes.Name = "cmdAlmacenes";
-            this.cmdAlmacenes.SmallImage = global::GAFE.Properties.Resources.Cancelar;
-            this.cmdAlmacenes.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
-            this.cmdAlmacenes.Text = "Almacenes";
             // 
             // CatArticulo
             // 
@@ -260,24 +236,6 @@
             this.CatUMedidas.Name = "CatUMedidas";
             this.CatUMedidas.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatUMedidas.SmallImage")));
             this.CatUMedidas.Text = "Unidades de medida";
-            // 
-            // ribbonButton7
-            // 
-            this.ribbonButton7.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonButton7.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.Image")));
-            this.ribbonButton7.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.LargeImage")));
-            this.ribbonButton7.Name = "ribbonButton7";
-            this.ribbonButton7.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton7.SmallImage")));
-            this.ribbonButton7.Text = "ribbonButton7";
-            // 
-            // ribbonButton8
-            // 
-            this.ribbonButton8.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonButton8.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton8.Image")));
-            this.ribbonButton8.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton8.LargeImage")));
-            this.ribbonButton8.Name = "ribbonButton8";
-            this.ribbonButton8.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton8.SmallImage")));
-            this.ribbonButton8.Text = "ribbonButton8";
             // 
             // ribbonButton3
             // 
@@ -304,15 +262,92 @@
             this.CatMarcas.Name = "CatMarcas";
             this.CatMarcas.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatMarcas.SmallImage")));
             this.CatMarcas.Text = "Marcas";
+            this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
-            // ribbonButton5
+            // catsAlmacenes
             // 
-            this.ribbonButton5.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonButton5.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.Image")));
-            this.ribbonButton5.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.LargeImage")));
-            this.ribbonButton5.Name = "ribbonButton5";
-            this.ribbonButton5.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton5.SmallImage")));
-            this.ribbonButton5.Text = "ribbonButton5";
+            this.catsAlmacenes.DropDownItems.Add(this.CatAlmacen);
+            this.catsAlmacenes.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.catsAlmacenes.LargeImage = global::GAFE.Properties.Resources.Cancelar;
+            this.catsAlmacenes.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Large;
+            this.catsAlmacenes.Name = "catsAlmacenes";
+            this.catsAlmacenes.SmallImage = global::GAFE.Properties.Resources.Cancelar;
+            this.catsAlmacenes.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
+            this.catsAlmacenes.Text = "Almacenes";
+            // 
+            // CatAlmacen
+            // 
+            this.CatAlmacen.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.CatAlmacen.Image = ((System.Drawing.Image)(resources.GetObject("CatAlmacen.Image")));
+            this.CatAlmacen.LargeImage = ((System.Drawing.Image)(resources.GetObject("CatAlmacen.LargeImage")));
+            this.CatAlmacen.Name = "CatAlmacen";
+            this.CatAlmacen.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatAlmacen.SmallImage")));
+            this.CatAlmacen.Text = "Almacenes";
+            // 
+            // ProcInven
+            // 
+            this.ProcInven.Items.Add(this.OpInventarios);
+            this.ProcInven.Items.Add(this.OpInvFisicos);
+            this.ProcInven.Name = "ProcInven";
+            this.ProcInven.Text = "Procesos";
+            // 
+            // RepInven
+            // 
+            this.RepInven.Name = "RepInven";
+            this.RepInven.Text = "Reportes";
+            // 
+            // ModProveedores
+            // 
+            this.ModProveedores.Name = "ModProveedores";
+            this.ModProveedores.Text = "Proveedores";
+            // 
+            // OpInventarios
+            // 
+            this.OpInventarios.DropDownItems.Add(this.OpMovInv);
+            this.OpInventarios.DropDownItems.Add(this.OpKardex);
+            this.OpInventarios.DropDownItems.Add(this.OpExistencia);
+            this.OpInventarios.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInventarios.LargeImage = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInventarios.Name = "OpInventarios";
+            this.OpInventarios.SmallImage = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInventarios.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
+            this.OpInventarios.Text = "Inventarios";
+            // 
+            // OpInvFisicos
+            // 
+            this.OpInvFisicos.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInvFisicos.LargeImage = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInvFisicos.Name = "OpInvFisicos";
+            this.OpInvFisicos.SmallImage = global::GAFE.Properties.Resources.Cancelar;
+            this.OpInvFisicos.Style = System.Windows.Forms.RibbonButtonStyle.DropDown;
+            this.OpInvFisicos.Text = "Inv. Fisicos";
+            // 
+            // OpMovInv
+            // 
+            this.OpMovInv.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.OpMovInv.Image = ((System.Drawing.Image)(resources.GetObject("OpMovInv.Image")));
+            this.OpMovInv.LargeImage = ((System.Drawing.Image)(resources.GetObject("OpMovInv.LargeImage")));
+            this.OpMovInv.Name = "OpMovInv";
+            this.OpMovInv.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpMovInv.SmallImage")));
+            this.OpMovInv.Text = "Movimientos de Inventario";
+            // 
+            // OpKardex
+            // 
+            this.OpKardex.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.OpKardex.Image = ((System.Drawing.Image)(resources.GetObject("OpKardex.Image")));
+            this.OpKardex.LargeImage = ((System.Drawing.Image)(resources.GetObject("OpKardex.LargeImage")));
+            this.OpKardex.Name = "OpKardex";
+            this.OpKardex.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpKardex.SmallImage")));
+            this.OpKardex.Text = "Kardex por Articulo";
+            // 
+            // OpExistencia
+            // 
+            this.OpExistencia.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.OpExistencia.Image = ((System.Drawing.Image)(resources.GetObject("OpExistencia.Image")));
+            this.OpExistencia.LargeImage = ((System.Drawing.Image)(resources.GetObject("OpExistencia.LargeImage")));
+            this.OpExistencia.Name = "OpExistencia";
+            this.OpExistencia.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpExistencia.SmallImage")));
+            this.OpExistencia.Text = "Existencia  Art. por Alm.";
             // 
             // Menu
             // 
@@ -323,6 +358,8 @@
             this.KeyPreview = true;
             this.Name = "Menu";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Menu_FormClosed);
+            this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
 
         }
@@ -353,10 +390,13 @@
         private System.Windows.Forms.RibbonButton ribbonButton3;
         private System.Windows.Forms.RibbonButton CatLineas;
         private System.Windows.Forms.RibbonButton CatMarcas;
-        private System.Windows.Forms.RibbonButton ribbonButton5;
-        private System.Windows.Forms.RibbonButton cmdAlmacenes;
-        private System.Windows.Forms.RibbonButton ribbonButton7;
-        private System.Windows.Forms.RibbonButton ribbonButton8;
+        private System.Windows.Forms.RibbonButton catsAlmacenes;
+        private System.Windows.Forms.RibbonButton CatAlmacen;
+        private System.Windows.Forms.RibbonButton OpInventarios;
+        private System.Windows.Forms.RibbonButton OpMovInv;
+        private System.Windows.Forms.RibbonButton OpKardex;
+        private System.Windows.Forms.RibbonButton OpExistencia;
+        private System.Windows.Forms.RibbonButton OpInvFisicos;
     }
 }
 

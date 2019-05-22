@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using DatSql;
 
-namespace CtrlAcceso
+namespace GAFE
 {
     class PuiSegAccesos
     {

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 
 
-namespace CtrlAcceso
+namespace GAFE
 {
     class RegSegAccesos
     {

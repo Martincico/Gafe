@@ -21,8 +21,8 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
         private string path;
 
@@ -44,39 +44,46 @@ namespace GAFE
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
 
 
         private void frmCatMarcas_Load(object sender, EventArgs e)
         {
-            /*
+            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv004A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
+            up = uT.BuscarIdNodo("1Inv004B");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmEditar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv004C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv004D");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv004F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
+
+
 
 
             this.Size = this.MinimumSize;
             LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
-
+            
+            
+            /*
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -86,7 +93,7 @@ namespace GAFE
                 Application.Exit();
             }
             this.Size = this.MinimumSize;
-            LlenaGridView();
+            LlenaGridView();*/
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -350,7 +357,7 @@ namespace GAFE
         }
 
 
-
+        /*
         private void CargaDatosConexion()
         {
             System.Xml.XmlDocument xDoc = new XmlDocument();
@@ -378,5 +385,7 @@ namespace GAFE
                 Password = nPassword[i++].InnerText;
             }
         }
+        */
+
     }
 }

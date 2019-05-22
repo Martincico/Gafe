@@ -40,13 +40,13 @@
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkEstatus = new System.Windows.Forms.CheckBox();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveMarcas = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
-            this.chkEstatus = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -192,6 +192,19 @@
             this.panel2.Size = new System.Drawing.Size(495, 133);
             this.panel2.TabIndex = 14;
             // 
+            // chkEstatus
+            // 
+            this.chkEstatus.AutoSize = true;
+            this.chkEstatus.Checked = true;
+            this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkEstatus.Location = new System.Drawing.Point(95, 82);
+            this.chkEstatus.Name = "chkEstatus";
+            this.chkEstatus.Size = new System.Drawing.Size(71, 24);
+            this.chkEstatus.TabIndex = 20;
+            this.chkEstatus.Text = "Activo";
+            this.chkEstatus.UseVisualStyleBackColor = true;
+            // 
             // cmdCancelar
             // 
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
@@ -258,19 +271,6 @@
             this.lblCodEmpleado.TabIndex = 1;
             this.lblCodEmpleado.Text = "Codigo";
             // 
-            // chkEstatus
-            // 
-            this.chkEstatus.AutoSize = true;
-            this.chkEstatus.Checked = true;
-            this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEstatus.Location = new System.Drawing.Point(95, 82);
-            this.chkEstatus.Name = "chkEstatus";
-            this.chkEstatus.Size = new System.Drawing.Size(71, 24);
-            this.chkEstatus.TabIndex = 20;
-            this.chkEstatus.Text = "Activo";
-            this.chkEstatus.UseVisualStyleBackColor = true;
-            // 
             // frmCatMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -290,7 +290,7 @@
             this.MinimumSize = new System.Drawing.Size(515, 299);
             this.Name = "frmCatMarcas";
             this.ShowIcon = false;
-            this.Text = "Catálogo de lineas";
+            this.Text = "Catálogo de marcas";
             this.Load += new System.EventHandler(this.frmCatMarcas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

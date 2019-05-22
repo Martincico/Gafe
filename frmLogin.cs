@@ -118,13 +118,13 @@ namespace GAFE
                 if (String.Equals(us.keySusuario, txtUsuario.Text) == true)
                 {
                     if (String.Equals(us.cmpPassword, txtPassword.Text) == true)
-                    {/*
-                        MenuSys mn = new MenuSys(db, this, us.cmpCodPerfil);
+                    {
+                        Menu mn = new Menu(db, this, us.cmpCodPerfil);
                         this.Hide();
                         mn.Show();
-                        */
-                        MessageBox.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation);
+                        
+                        //MessageBox.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
+                        //MessageBoxIcon.Exclamation);
                     }
                     else
                     {
@@ -139,5 +139,9 @@ namespace GAFE
                 }
             }
         }
+
+
+
+
     }
 }

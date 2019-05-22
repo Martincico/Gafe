@@ -59,6 +59,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCancelar.Location = new System.Drawing.Point(258, 98);
@@ -75,6 +76,7 @@
             // cmdAceptar
             // 
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(134, 98);
@@ -163,9 +165,11 @@
             // 
             // frmLogin
             // 
+            this.AcceptButton = this.cmdAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.CancelButton = this.cmdCancelar;
             this.ClientSize = new System.Drawing.Size(452, 238);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.panel2);
