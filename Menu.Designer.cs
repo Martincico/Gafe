@@ -51,6 +51,7 @@
             this.ribbonButton3 = new System.Windows.Forms.RibbonButton();
             this.CatLineas = new System.Windows.Forms.RibbonButton();
             this.CatMarcas = new System.Windows.Forms.RibbonButton();
+            this.CatClase = new System.Windows.Forms.RibbonButton();
             this.catsAlmacenes = new System.Windows.Forms.RibbonButton();
             this.CatAlmacen = new System.Windows.Forms.RibbonButton();
             this.ProcInven = new System.Windows.Forms.RibbonPanel();
@@ -61,9 +62,8 @@
             this.OpInvFisicos = new System.Windows.Forms.RibbonButton();
             this.RepInven = new System.Windows.Forms.RibbonPanel();
             this.ModProveedores = new System.Windows.Forms.RibbonTab();
-            this.PanelContenido = new System.Windows.Forms.Panel();
+            this.panelContenedor = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.CatClase = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // Clientes
@@ -151,7 +151,7 @@
             this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 224);
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(800, 157);
+            this.ribbon1.Size = new System.Drawing.Size(767, 143);
             this.ribbon1.TabIndex = 0;
             this.ribbon1.Tabs.Add(this.ModInventario);
             this.ribbon1.Tabs.Add(this.ModProveedores);
@@ -230,6 +230,7 @@
             this.CatArticulo.Name = "CatArticulo";
             this.CatArticulo.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatArticulo.SmallImage")));
             this.CatArticulo.Text = "Articulos";
+            this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
@@ -240,6 +241,7 @@
             this.CatUMedidas.Name = "CatUMedidas";
             this.CatUMedidas.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatUMedidas.SmallImage")));
             this.CatUMedidas.Text = "Unidades de medida";
+            this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // ribbonButton3
             // 
@@ -257,6 +259,7 @@
             this.CatLineas.Name = "CatLineas";
             this.CatLineas.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatLineas.SmallImage")));
             this.CatLineas.Text = "Lineas";
+            this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
@@ -267,6 +270,16 @@
             this.CatMarcas.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatMarcas.SmallImage")));
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
+            // 
+            // CatClase
+            // 
+            this.CatClase.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
+            this.CatClase.Image = ((System.Drawing.Image)(resources.GetObject("CatClase.Image")));
+            this.CatClase.LargeImage = ((System.Drawing.Image)(resources.GetObject("CatClase.LargeImage")));
+            this.CatClase.Name = "CatClase";
+            this.CatClase.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatClase.SmallImage")));
+            this.CatClase.Text = "Clases";
+            this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
             // catsAlmacenes
             // 
@@ -287,6 +300,7 @@
             this.CatAlmacen.Name = "CatAlmacen";
             this.CatAlmacen.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatAlmacen.SmallImage")));
             this.CatAlmacen.Text = "Almacenes";
+            this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
             // 
             // ProcInven
             // 
@@ -315,6 +329,7 @@
             this.OpMovInv.Name = "OpMovInv";
             this.OpMovInv.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpMovInv.SmallImage")));
             this.OpMovInv.Text = "Movimientos de Inventario";
+            this.OpMovInv.Click += new System.EventHandler(this.OpMovInv_Click);
             // 
             // OpKardex
             // 
@@ -324,6 +339,7 @@
             this.OpKardex.Name = "OpKardex";
             this.OpKardex.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpKardex.SmallImage")));
             this.OpKardex.Text = "Kardex por Articulo";
+            this.OpKardex.Click += new System.EventHandler(this.OpKardex_Click);
             // 
             // OpExistencia
             // 
@@ -333,6 +349,7 @@
             this.OpExistencia.Name = "OpExistencia";
             this.OpExistencia.SmallImage = ((System.Drawing.Image)(resources.GetObject("OpExistencia.SmallImage")));
             this.OpExistencia.Text = "Existencia  Art. por Alm.";
+            this.OpExistencia.Click += new System.EventHandler(this.OpExistencia_Click);
             // 
             // OpInvFisicos
             // 
@@ -353,39 +370,29 @@
             this.ModProveedores.Name = "ModProveedores";
             this.ModProveedores.Text = "Proveedores";
             // 
-            // PanelContenido
+            // panelContenedor
             // 
-            this.PanelContenido.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContenido.Location = new System.Drawing.Point(0, 157);
-            this.PanelContenido.Name = "PanelContenido";
-            this.PanelContenido.Size = new System.Drawing.Size(800, 293);
-            this.PanelContenido.TabIndex = 1;
+            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenedor.Location = new System.Drawing.Point(0, 143);
+            this.panelContenedor.Name = "panelContenedor";
+            this.panelContenedor.Size = new System.Drawing.Size(767, 307);
+            this.panelContenedor.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 401);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 49);
+            this.panel2.Size = new System.Drawing.Size(767, 49);
             this.panel2.TabIndex = 2;
-            // 
-            // CatClase
-            // 
-            this.CatClase.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.CatClase.Image = ((System.Drawing.Image)(resources.GetObject("CatClase.Image")));
-            this.CatClase.LargeImage = ((System.Drawing.Image)(resources.GetObject("CatClase.LargeImage")));
-            this.CatClase.Name = "CatClase";
-            this.CatClase.SmallImage = ((System.Drawing.Image)(resources.GetObject("CatClase.SmallImage")));
-            this.CatClase.Text = "Clases";
-            this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(767, 450);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.PanelContenido);
+            this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.ribbon1);
             this.KeyPreview = true;
             this.Name = "Menu";
@@ -429,7 +436,7 @@
         private System.Windows.Forms.RibbonButton OpKardex;
         private System.Windows.Forms.RibbonButton OpExistencia;
         private System.Windows.Forms.RibbonButton OpInvFisicos;
-        private System.Windows.Forms.Panel PanelContenido;
+        private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RibbonButton CatClase;
     }

@@ -190,6 +190,8 @@
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmLstArticulos";
             this.ShowIcon = false;
             this.Text = "Catálogo de Artículos";

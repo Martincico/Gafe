@@ -22,8 +22,8 @@ namespace GAFE
         private int idxG;
         public string KeyCampo = null;
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
         private string path;
 
@@ -47,7 +47,7 @@ namespace GAFE
             InitializeComponent();
             db = Odat;
             opcion = op;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
 
@@ -55,7 +55,35 @@ namespace GAFE
         private void frmLstArticulos_Load(object sender, EventArgs e)
         {
 
+            uT = new clsUtil(db, Perfil);
+            uT.CargaArbolAcceso();
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001B");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001C");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
             cmdSeleccionar.Visible = false;
+            /*
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -64,8 +92,10 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            LlenaGridView();    
-            if(opcion>=3)
+            
+            */
+            LlenaGridView();
+            if (opcion>=3)
             {
                 cmdAgregar.Visible = false;
                 cmdEliminar.Visible = false;

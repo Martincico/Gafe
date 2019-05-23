@@ -24,8 +24,8 @@ namespace GAFE
         DataTable dt = null;
         DataRow row = null;
 
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
         private string path;
 
@@ -47,37 +47,42 @@ namespace GAFE
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
         private void frmCatInventarioMovtos_Load(object sender, EventArgs e)
         {
-            /*
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv011A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv011B");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv011C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv011D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv011E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
 
             this.Size = this.MinimumSize;
             LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
+            //cboEstatus.SelectedText = "Activo";
+            
 
+
+            /*
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -86,10 +91,14 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+            
             this.Size = this.MinimumSize;
+            */
+            
             LlecboProveedor();
             LlecboAlmaOri("100");
             LlecboTipoMovtos();
+            
             LlenaGridView();
 
         }
@@ -159,14 +168,14 @@ namespace GAFE
             {
                 DatosTbl.Fill(Ds);
                 grdView.Columns.Clear();
-
                 grdView.DataSource = Ds.Tables[0];
+                grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
                 grdView.Columns["NoMovimiento"].Visible = false;
                 grdView.Columns["Cancelado"].Visible = false;
                 grdView.Columns["TotalDoc"].Visible = false;
                 grdView.Columns["CveTipoMov"].Visible = false;
                 grdView.Columns["NoMovtoTra"].Visible = false;
-                grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
+                
 
                 for (int i = 0; i < grdView.Columns.Count; i++)
                 {

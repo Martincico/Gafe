@@ -23,8 +23,8 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
         private string path;
 
@@ -48,37 +48,32 @@ namespace GAFE
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
         private void frmExistencias_Load(object sender, EventArgs e)
         {
-            /*
+            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv013A");
             int AcCOP = (up != null) ? up.Acceso : 0;
-            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+            cmdAsignaStock.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
+            up = uT.BuscarIdNodo("1Inv013B");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv013C");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Vis001D");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
 
             this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
-            this.Size = this.MinimumSize;
+            
+
+            /*
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -87,7 +82,7 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-
+            */
             string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 'A'";
             SqlDataReader dr = db.SelectDR(Sqlstr);
             lp = new List<clsFillCbo>();

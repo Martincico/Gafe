@@ -22,8 +22,8 @@ namespace GAFE
         public String KeyCampo = null;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
         private string path;
 
@@ -46,38 +46,46 @@ namespace GAFE
             InitializeComponent();
             db = Odat;
             opcion = op;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
 
 
         private void frmCatLineas_Load(object sender, EventArgs e)
         {
-            /*
+            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv003A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
+            up = uT.BuscarIdNodo("1Inv003B");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv003C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv003D");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
 
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
-            */
+            /*
 
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
@@ -90,6 +98,7 @@ namespace GAFE
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
+            */
             cmdSeleccionar.Visible = false;
             if (opcion>3)
             {
@@ -100,6 +109,7 @@ namespace GAFE
                 cmdConsultar.Visible = true;
                 cmdSeleccionar.Visible = true;
             }
+            
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)

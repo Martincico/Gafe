@@ -58,7 +58,7 @@
             this.grdView.Location = new System.Drawing.Point(10, 68);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(878, 342);
+            this.grdView.Size = new System.Drawing.Size(871, 294);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
@@ -88,6 +88,8 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(226)))), ((int)(((byte)(233)))));
             this.panel2.Controls.Add(this.cmdBuscar);
             this.panel2.Controls.Add(this.cmdAgregar);
@@ -95,18 +97,19 @@
             this.panel2.Controls.Add(this.cmdConsultar);
             this.panel2.Controls.Add(this.cmEditar);
             this.panel2.Controls.Add(this.cmdEliminar);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(900, 51);
+            this.panel2.Size = new System.Drawing.Size(893, 51);
             this.panel2.TabIndex = 9;
             // 
             // cmdBuscar
             // 
+            this.cmdBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdBuscar.Image = ((System.Drawing.Image)(resources.GetObject("cmdBuscar.Image")));
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(784, 7);
+            this.cmdBuscar.Location = new System.Drawing.Point(777, 7);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
             this.cmdBuscar.TabIndex = 2;
@@ -175,12 +178,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 422);
+            this.ClientSize = new System.Drawing.Size(893, 374);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.grdView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(893, 374);
             this.Name = "frmCatClases22";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

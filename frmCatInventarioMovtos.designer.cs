@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatInventarioMovtos));
-            this.cmEliminar = new System.Windows.Forms.Button();
+            this.cmdEliminar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -47,26 +47,26 @@
             this.cboAlmaOri = new System.Windows.Forms.ComboBox();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.cboProveedor = new System.Windows.Forms.ComboBox();
-            this.cmdResetear = new System.Windows.Forms.Button();
+            this.cmdBuscar = new System.Windows.Forms.Button();
             this.cmdConsultar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cmdImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // cmEliminar
+            // cmdEliminar
             // 
-            this.cmEliminar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
-            this.cmEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEliminar.Location = new System.Drawing.Point(358, 420);
-            this.cmEliminar.Name = "cmEliminar";
-            this.cmEliminar.Size = new System.Drawing.Size(94, 36);
-            this.cmEliminar.TabIndex = 5;
-            this.cmEliminar.Text = "Eliminar";
-            this.cmEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmEliminar.UseVisualStyleBackColor = false;
-            this.cmEliminar.Click += new System.EventHandler(this.cmEliminar_Click);
+            this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
+            this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdEliminar.Location = new System.Drawing.Point(358, 420);
+            this.cmdEliminar.Name = "cmdEliminar";
+            this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
+            this.cmdEliminar.TabIndex = 5;
+            this.cmdEliminar.Text = "Eliminar";
+            this.cmdEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdEliminar.UseVisualStyleBackColor = false;
+            this.cmdEliminar.Click += new System.EventHandler(this.cmEliminar_Click);
             // 
             // cmdAgregar
             // 
@@ -115,7 +115,7 @@
             this.panel1.Controls.Add(this.cboAlmaOri);
             this.panel1.Controls.Add(this.lblProveedor);
             this.panel1.Controls.Add(this.cboProveedor);
-            this.panel1.Controls.Add(this.cmdResetear);
+            this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(693, 134);
@@ -259,18 +259,18 @@
             this.cboProveedor.TabIndex = 7;
             this.cboProveedor.SelectedValueChanged += new System.EventHandler(this.cboProveedor_SelectedValueChanged);
             // 
-            // cmdResetear
+            // cmdBuscar
             // 
-            this.cmdResetear.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdResetear.Image = ((System.Drawing.Image)(resources.GetObject("cmdResetear.Image")));
-            this.cmdResetear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdResetear.Location = new System.Drawing.Point(527, 77);
-            this.cmdResetear.Name = "cmdResetear";
-            this.cmdResetear.Size = new System.Drawing.Size(94, 36);
-            this.cmdResetear.TabIndex = 2;
-            this.cmdResetear.Text = "Buscar";
-            this.cmdResetear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdResetear.UseVisualStyleBackColor = false;
+            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdBuscar.Image = ((System.Drawing.Image)(resources.GetObject("cmdBuscar.Image")));
+            this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdBuscar.Location = new System.Drawing.Point(527, 77);
+            this.cmdBuscar.Name = "cmdBuscar";
+            this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
+            this.cmdBuscar.TabIndex = 2;
+            this.cmdBuscar.Text = "Buscar";
+            this.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdBuscar.UseVisualStyleBackColor = false;
             // 
             // cmdConsultar
             // 
@@ -286,27 +286,27 @@
             this.cmdConsultar.UseVisualStyleBackColor = false;
             this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
-            // button1
+            // cmdImprimir
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(9, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 36);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Imprimir";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
+            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdImprimir.Image = ((System.Drawing.Image)(resources.GetObject("cmdImprimir.Image")));
+            this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdImprimir.Location = new System.Drawing.Point(9, 420);
+            this.cmdImprimir.Name = "cmdImprimir";
+            this.cmdImprimir.Size = new System.Drawing.Size(94, 36);
+            this.cmdImprimir.TabIndex = 9;
+            this.cmdImprimir.Text = "Imprimir";
+            this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdImprimir.UseVisualStyleBackColor = false;
             // 
             // frmCatInventarioMovtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 461);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmdImprimir);
             this.Controls.Add(this.cmdConsultar);
-            this.Controls.Add(this.cmEliminar);
+            this.Controls.Add(this.cmdEliminar);
             this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
@@ -330,12 +330,12 @@
         #endregion
 
         private System.Windows.Forms.Button cmdConsultar;
-        private System.Windows.Forms.Button cmEliminar;
+        private System.Windows.Forms.Button cmdEliminar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button cmdResetear;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cmdBuscar;
+        private System.Windows.Forms.Button cmdImprimir;
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.ComboBox cboProveedor;
         private System.Windows.Forms.Label lblAlmaOri;

@@ -39,7 +39,7 @@
             this.txtClaveClase = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
             this.cmdEliminar = new System.Windows.Forms.Button();
-            this.cmEditar = new System.Windows.Forms.Button();
+            this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -174,19 +174,19 @@
             this.cmdEliminar.UseVisualStyleBackColor = false;
             this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
             // 
-            // cmEditar
+            // cmdEditar
             // 
-            this.cmEditar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmEditar.Image = ((System.Drawing.Image)(resources.GetObject("cmEditar.Image")));
-            this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(301, 221);
-            this.cmEditar.Name = "cmEditar";
-            this.cmEditar.Size = new System.Drawing.Size(94, 36);
-            this.cmEditar.TabIndex = 5;
-            this.cmEditar.Text = "Editar";
-            this.cmEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmEditar.UseVisualStyleBackColor = false;
-            this.cmEditar.Click += new System.EventHandler(this.cmEditar_Click);
+            this.cmdEditar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdEditar.Image = ((System.Drawing.Image)(resources.GetObject("cmdEditar.Image")));
+            this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdEditar.Location = new System.Drawing.Point(301, 221);
+            this.cmdEditar.Name = "cmdEditar";
+            this.cmdEditar.Size = new System.Drawing.Size(94, 36);
+            this.cmdEditar.TabIndex = 5;
+            this.cmdEditar.Text = "Editar";
+            this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdEditar.UseVisualStyleBackColor = false;
+            this.cmdEditar.Click += new System.EventHandler(this.cmEditar_Click);
             // 
             // cmdAgregar
             // 
@@ -295,11 +295,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 411);
+            this.ClientSize = new System.Drawing.Size(499, 410);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
-            this.Controls.Add(this.cmEditar);
+            this.Controls.Add(this.cmdEditar);
             this.Controls.Add(this.cmdAgregar);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
@@ -335,7 +335,7 @@
         private System.Windows.Forms.TextBox txtClaveClase;
         private System.Windows.Forms.Label lblCodEmpleado;
         private System.Windows.Forms.Button cmdEliminar;
-        private System.Windows.Forms.Button cmEditar;
+        private System.Windows.Forms.Button cmdEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;

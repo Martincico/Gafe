@@ -22,8 +22,8 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
         DataTable dt;
         private string path;
 
@@ -44,12 +44,12 @@ namespace GAFE
             
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, "perfil", 3);
+            frmLstArticulos art = new frmLstArticulos(db, Perfil, 3);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
@@ -63,7 +63,7 @@ namespace GAFE
 
         private void frmKardex_Load(object sender, EventArgs e)
         {
-            
+            /*
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
@@ -72,6 +72,19 @@ namespace GAFE
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
+            */
+            uT = new clsUtil(db, Perfil);
+            uT.CargaArbolAcceso();
+
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv012A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv012B");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
+
             PuiCatAlmacenes alm = new PuiCatAlmacenes(db);
             cboAlmacenes.DataSource = alm.CboInv_CatAlmacenes();
         }

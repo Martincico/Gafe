@@ -51,8 +51,9 @@ namespace GAFE
 
         private void sAsignaPermisos_Click(object sender, EventArgs e)
         {
-            frmSegAccesos fac = new frmSegAccesos(db);
-            fac.Show();
+            frmSegAccesos fm = new frmSegAccesos(db);
+            Nav(fm, panelContenedor);
+
         }
 
         private void Menu_Load(object sender, EventArgs e)
@@ -110,30 +111,87 @@ namespace GAFE
 
             }
         }
-
         private void CatMarcas_Click(object sender, EventArgs e)
         {
             frmCatMarcas fm = new frmCatMarcas(db, Perfil);
-            fm.ShowDialog();
+            Nav(fm, panelContenedor);
         }
+
 
         private void CatClase_Click(object sender, EventArgs e)
         {
-            //lblCabeza.Text = "Catalogo de Clases";
-            //BarraSidePanel.Height = btnMenClases.Height;
-            //BarraSidePanel.Top = btnMenClases.Top;
-            frmCatClases22 home = new frmCatClases22();
-            Nav(home, PanelContenido);
-        }
+            frmCatClases fm = new frmCatClases(db, Perfil);
+            Nav(fm, panelContenedor);
 
+        }
+        /*
+        private void AddFormInPanel(object formHijo)
+        {
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+            Form fh = formHijo as Form;
+            fh.TopLevel = false;
+            //fh.FormBorderStyle = FormBorderStyle.None;
+            fh.Dock = DockStyle.Fill;
+
+            this.panelContenedor.Controls.Add(fh);
+            this.panelContenedor.Tag = fh;
+            fh.Show();
+
+        }
+        */
+        
         private void Nav(Form form, Panel panel)
         {
+
             form.TopLevel = false;
-            panel.Controls.Clear();
+            //panel.Controls.Clear();
             panel.Controls.Add(form);
             form.Show();
+            form.StartPosition = FormStartPosition.CenterScreen;
+
+        }
+        private void CatLineas_Click(object sender, EventArgs e)
+        {
+            frmCatLineas fm = new frmCatLineas(db, Perfil);
+            Nav(fm, panelContenedor);
 
         }
 
+        private void CatUMedidas_Click(object sender, EventArgs e)
+        {
+            frmCatUMedidas fm = new frmCatUMedidas(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void CatArticulo_Click(object sender, EventArgs e)
+        {
+            frmLstArticulos fm = new frmLstArticulos(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void CatAlmacen_Click(object sender, EventArgs e)
+        {
+            frmCatAlmacenes fm = new frmCatAlmacenes(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void OpMovInv_Click(object sender, EventArgs e)
+        {
+            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void OpKardex_Click(object sender, EventArgs e)
+        {
+            frmKardex fm = new frmKardex(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void OpExistencia_Click(object sender, EventArgs e)
+        {
+            frmExistencias fm = new frmExistencias(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
     }
 }

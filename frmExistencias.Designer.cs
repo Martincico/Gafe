@@ -53,7 +53,7 @@
             this.cmdArticulo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdBuscar = new System.Windows.Forms.Button();
-            this.cmdConsultar = new System.Windows.Forms.Button();
+            this.cmdImprimir = new System.Windows.Forms.Button();
             this.cmdAsignaStock = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -294,18 +294,18 @@
             this.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdBuscar.UseVisualStyleBackColor = false;
             // 
-            // cmdConsultar
+            // cmdImprimir
             // 
-            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(483, 440);
-            this.cmdConsultar.Name = "cmdConsultar";
-            this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
-            this.cmdConsultar.TabIndex = 3;
-            this.cmdConsultar.Text = "Imprimir";
-            this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdConsultar.UseVisualStyleBackColor = false;
-            this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
+            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdImprimir.Location = new System.Drawing.Point(483, 440);
+            this.cmdImprimir.Name = "cmdImprimir";
+            this.cmdImprimir.Size = new System.Drawing.Size(94, 36);
+            this.cmdImprimir.TabIndex = 3;
+            this.cmdImprimir.Text = "Imprimir";
+            this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdImprimir.UseVisualStyleBackColor = false;
+            this.cmdImprimir.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
             // cmdAsignaStock
             // 
@@ -325,12 +325,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 503);
-            this.Controls.Add(this.cmdConsultar);
+            this.Controls.Add(this.cmdImprimir);
             this.Controls.Add(this.cmdAsignaStock);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cmdBuscar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1078, 542);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1078, 542);
             this.Name = "frmExistencias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -345,7 +348,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdConsultar;
+        private System.Windows.Forms.Button cmdImprimir;
         private System.Windows.Forms.Button cmdAsignaStock;
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.Panel panel1;

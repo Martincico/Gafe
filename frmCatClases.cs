@@ -21,8 +21,8 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
         private string path;
 
@@ -44,14 +44,14 @@ namespace GAFE
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
 
 
         private void frmCatClases_Load(object sender, EventArgs e)
         {
-            /*
+            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
@@ -61,7 +61,7 @@ namespace GAFE
 
             up = uT.BuscarIdNodo("1Vis001B");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Vis001C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -75,7 +75,7 @@ namespace GAFE
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
-            */
+            /*
            
             path = Directory.GetCurrentDirectory();
             CargaDatosConexion();
@@ -88,6 +88,7 @@ namespace GAFE
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
+            */
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
