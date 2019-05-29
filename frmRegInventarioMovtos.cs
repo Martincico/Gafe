@@ -547,7 +547,7 @@ namespace GAFE
                         }
                     }
 
-                    if(cboTipoMovtos.SelectedIndex <= 0)
+                    if(cboTipoMovtos.SelectedIndex < 0)
                     {
                         sig = 0;
                         MessageBox.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
