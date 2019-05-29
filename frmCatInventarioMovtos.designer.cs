@@ -47,7 +47,7 @@
             this.cboAlmaOri = new System.Windows.Forms.ComboBox();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.cboProveedor = new System.Windows.Forms.ComboBox();
-            this.cmdBuscar = new System.Windows.Forms.Button();
+            this.cmdRestablecer = new System.Windows.Forms.Button();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
@@ -73,7 +73,7 @@
             this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAgregar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAgregar.Image")));
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(578, 420);
+            this.cmdAgregar.Location = new System.Drawing.Point(559, 420);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 4;
@@ -91,7 +91,7 @@
             this.grdView.Location = new System.Drawing.Point(9, 141);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(673, 273);
+            this.grdView.Size = new System.Drawing.Size(644, 273);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
@@ -115,10 +115,10 @@
             this.panel1.Controls.Add(this.cboAlmaOri);
             this.panel1.Controls.Add(this.lblProveedor);
             this.panel1.Controls.Add(this.cboProveedor);
-            this.panel1.Controls.Add(this.cmdBuscar);
+            this.panel1.Controls.Add(this.cmdRestablecer);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(693, 134);
+            this.panel1.Size = new System.Drawing.Size(672, 134);
             this.panel1.TabIndex = 7;
             // 
             // lblTipoMovtos
@@ -185,7 +185,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(562, 42);
+            this.label2.Location = new System.Drawing.Point(420, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(14, 15);
             this.label2.TabIndex = 13;
@@ -195,7 +195,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(517, 9);
+            this.label1.Location = new System.Drawing.Point(435, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 15);
             this.label1.TabIndex = 12;
@@ -204,7 +204,7 @@
             // dtFechaFin
             // 
             this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaFin.Location = new System.Drawing.Point(582, 38);
+            this.dtFechaFin.Location = new System.Drawing.Point(440, 70);
             this.dtFechaFin.Name = "dtFechaFin";
             this.dtFechaFin.Size = new System.Drawing.Size(104, 20);
             this.dtFechaFin.TabIndex = 11;
@@ -213,7 +213,7 @@
             // dtFechaInicio
             // 
             this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaInicio.Location = new System.Drawing.Point(452, 38);
+            this.dtFechaInicio.Location = new System.Drawing.Point(440, 36);
             this.dtFechaInicio.Name = "dtFechaInicio";
             this.dtFechaInicio.Size = new System.Drawing.Size(104, 20);
             this.dtFechaInicio.TabIndex = 10;
@@ -259,18 +259,19 @@
             this.cboProveedor.TabIndex = 7;
             this.cboProveedor.SelectedValueChanged += new System.EventHandler(this.cboProveedor_SelectedValueChanged);
             // 
-            // cmdBuscar
+            // cmdRestablecer
             // 
-            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdBuscar.Image = ((System.Drawing.Image)(resources.GetObject("cmdBuscar.Image")));
-            this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(527, 77);
-            this.cmdBuscar.Name = "cmdBuscar";
-            this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
-            this.cmdBuscar.TabIndex = 2;
-            this.cmdBuscar.Text = "Buscar";
-            this.cmdBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdBuscar.UseVisualStyleBackColor = false;
+            this.cmdRestablecer.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdRestablecer.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.cmdRestablecer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.cmdRestablecer.Location = new System.Drawing.Point(566, 36);
+            this.cmdRestablecer.Name = "cmdRestablecer";
+            this.cmdRestablecer.Size = new System.Drawing.Size(85, 54);
+            this.cmdRestablecer.TabIndex = 2;
+            this.cmdRestablecer.Text = "Restablacer";
+            this.cmdRestablecer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.cmdRestablecer.UseVisualStyleBackColor = false;
+            this.cmdRestablecer.Click += new System.EventHandler(this.cmdRestablecer_Click);
             // 
             // cmdConsultar
             // 
@@ -303,7 +304,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 461);
+            this.ClientSize = new System.Drawing.Size(669, 461);
             this.Controls.Add(this.cmdImprimir);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -312,9 +313,9 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(710, 500);
+            this.MaximumSize = new System.Drawing.Size(685, 500);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(710, 500);
+            this.MinimumSize = new System.Drawing.Size(685, 500);
             this.Name = "frmCatInventarioMovtos";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -334,7 +335,7 @@
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button cmdBuscar;
+        private System.Windows.Forms.Button cmdRestablecer;
         private System.Windows.Forms.Button cmdImprimir;
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.ComboBox cboProveedor;
