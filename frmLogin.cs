@@ -28,13 +28,26 @@ namespace GAFE
         private string Usuario;
         private string Password;
 
+        Form Flg;
+
         public frmLogin()
         {
             InitializeComponent();
             path = Directory.GetCurrentDirectory();
         }
 
-
+        public frmLogin(string id, string empresa, string servidor, string datos, string usr, string pwd,Form emp)
+        {
+            InitializeComponent();
+            Id = id;
+            Empresa = empresa;
+            Servidor = servidor;
+            Datos = datos;
+            Usuario = usr;
+            Password = pwd;
+            Flg = emp;
+            // path = Directory.GetCurrentDirectory();
+        }
 
 
         private void cmdCancelar_Click(object sender, EventArgs e)
@@ -46,7 +59,7 @@ namespace GAFE
         {
             hoy = DateTime.Now;
             lblFecha.Text = hoy.ToLongDateString() + " " + hoy.ToShortTimeString();
-            CargaDatosConexion();
+            //CargaDatosConexion();
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
@@ -140,8 +153,9 @@ namespace GAFE
             }
         }
 
-
-
-
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Flg.Close();
+        }
     }
 }

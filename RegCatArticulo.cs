@@ -128,18 +128,18 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string sql = "Select CveArticulo as Clave,CodigoBarra as Codigo,A.Descripcion,CodigoSat as 'Codigo SAT',Modelo," +
                          "L.Descripcion as Linea,M.Descripcion as Marca,C.Descripcion as Clase,UM.Descripcion as 'U Medida',Observacion" +
-               "FROM inv_CatArticulos A Left join Inv_Lineas L on A.CveLinea = L.CveLinea " +
-                         "Left join Inv_Clases C on A.CveClase1 = C.CveClase " +
-                         "Left Join Inv_UMedidas UM on A.CveUMedida1 = UM.CveUMedida  " +
-                         "Left Join Inv_Marcas M on A.CveMarca = M.Descripción"+
-               "where CveArticulo like '%" + bsq + "%' OR " +
-               "A.Descripcion  like '%" + bsq + "%' OR " +
-               "CodigoBarra    like '%" + bsq + "%' OR " +
-               "M.Descripcion  like '%" + bsq + "%' OR " +
-               "L.Descripcion  like '%" + bsq + "%' OR " +
-               "C.Descripcion  like '%" + bsq + "%' OR " +
-               "UM.Descripcion like '%" + bsq + "%' OR " +
-               "CodigoSat like '%" + bsq + "%'";
+               " FROM inv_CatArticulos A Left join Inv_Lineas L on A.CveLinea = L.CveLinea " +
+                         " Left join Inv_Clases C on A.CveClase1 = C.CveClase " +
+                         " Left Join Inv_UMedidas UM on A.CveUMedida1 = UM.CveUMedida  " +
+                         " Left Join Inv_Marcas M on A.CveMarca = M.Descripción"+
+               " where CveArticulo like '%" + bsq + "%' OR " +
+               " A.Descripcion  like '%" + bsq + "%' OR " +
+               " CodigoBarra    like '%" + bsq + "%' OR " +
+               " M.Descripcion  like '%" + bsq + "%' OR " +
+               " L.Descripcion  like '%" + bsq + "%' OR " +
+               " C.Descripcion  like '%" + bsq + "%' OR " +
+               " UM.Descripcion like '%" + bsq + "%' OR " +
+               " CodigoSat like '%" + bsq + "%'";
 
 
             dt = db.SelectDA(sql);

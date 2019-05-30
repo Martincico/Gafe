@@ -112,6 +112,7 @@
     <Compile Include="AsignaPorAlmacen.Designer.cs">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsEncripta.cs" />
     <Compile Include="clsFillCbo.cs" />
     <Compile Include="clsUsPerfil.cs" />
     <Compile Include="clsUtil.cs" />
@@ -219,6 +220,12 @@
     </Compile>
     <Compile Include="frmEmpleados.Designer.cs">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmpresas.Designer.cs">
+      <DependentUpon>frmEmpresas.cs</DependentUpon>
     </Compile>
     <Compile Include="frmExistencias.cs">
       <SubType>Form</SubType>
