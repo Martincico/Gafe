@@ -546,6 +546,12 @@ namespace GAFE
                             MessageBox.Show("Proveedor es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
+
+                    if(cboTipoMovtos.SelectedIndex < 0)
+                    {
+                        sig = 0;
+                        MessageBox.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
 

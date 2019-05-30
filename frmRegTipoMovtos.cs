@@ -78,6 +78,7 @@ namespace GAFE
             chkSolicitaCosto.Checked = pui.cmpSolicitaCosto == 1 ? true : false;
             chkCalculaIva.Checked = pui.cmpCalculaIva == 1 ? true : false;
             //chkEditaCosto.Checked = pui.cmpPideCentroCosto == 1 ? true : false;
+            chkInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
 
         }
@@ -170,6 +171,7 @@ namespace GAFE
             pui.cmpEditaCosto = chkEditaCosto.Checked ? 1 : 0;
             pui.cmpSolicitaCosto = chkSolicitaCosto.Checked ? 1 : 0;
             pui.cmpCalculaIva = chkCalculaIva.Checked ? 1 : 0;
+            pui.cmpEsInterno = chkInterno.Checked ? 1 : 0;
             pui.cmpPideCentroCosto = 0;
             pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
 
@@ -284,6 +286,7 @@ namespace GAFE
             chkEditaCosto.Enabled = Op;
             chkSolicitaCosto.Enabled = Op;
             chkCalculaIva.Enabled = Op;
+            chkInterno.Enabled = Op;
             chkEstatus.Enabled = Op;
 
         }

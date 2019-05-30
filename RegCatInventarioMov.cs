@@ -182,18 +182,20 @@ namespace GAFE
         public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             String StrSql = "";
-            if (!CodAlm.Equals("0"))
+
+
+            if (!CodAlm.Equals("0") && !CodAlm.Equals(""))
             {
                 StrSql += " AND Alm.ClaveAlmacen = '" + CodAlm + "'";
             }
-            if (!CodProve.Equals("0"))
+            if (!CodProve.Equals("0") && !CodProve.Equals(""))
             {
                 StrSql += " AND Prov.CveProveedor = '" + CodProve + "'";
             }
 
-            if (!CodTipoMov.Equals("0"))
+            if (!CodTipoMov.Equals("0") && !CodTipoMov.Equals(""))
             {
-                StrSql += " AND TMvto.CveTipoMov = '" + CodProve + "'";
+                StrSql += " AND TMvto.CveTipoMov = '" + CodTipoMov + "'";
             }
 
             SqlDataAdapter dt = null;
@@ -205,7 +207,7 @@ namespace GAFE
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
                          " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = mm.CveTipoMov" +
                         //" WHERE MM.Cancelado = 1 " + StrSql;
-                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '" + FIni + "' AND '" + FFin + "')" + StrSql;
+                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '"+FIni+"' AND '"+FFin+ "') AND TMvto.EsInterno = 0 " + StrSql;
             dt = db.SelectDA(Sql);
             return dt;
         }

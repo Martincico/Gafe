@@ -73,11 +73,10 @@ namespace GAFE
 
             up = uT.BuscarIdNodo("1Inv011E");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            cmdRestablecer.Enabled = (AcCOP == 1) ? true : false;
 
 
             this.Size = this.MinimumSize;
-            LlenaGridView();
             //cboEstatus.SelectedText = "Activo";
             
 
@@ -157,7 +156,7 @@ namespace GAFE
             String AlmOri = Convert.ToString(cboAlmaOri.SelectedValue);
             String CodTipoMov = Convert.ToString(cboTipoMovtos.SelectedValue);
             String FIni = dtFechaInicio.Value.ToString("dd/MM/yyyy");
-            String FFin = dtFechaInicio.Value.ToString("dd/MM/yyyy");
+            String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
 
 
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
@@ -330,8 +329,6 @@ namespace GAFE
         private void LlecboProveedor()
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            //            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
-
             dt = lin.CboInv_CatAlmacenes();
             row = dt.NewRow();
             row["ClaveAlmacen"] = "0";
@@ -339,8 +336,6 @@ namespace GAFE
             dt.Rows.Add(row);
 
             cboProveedor.DataSource = dt;
-
-
             cboProveedor.ValueMember = "ClaveAlmacen";
             cboProveedor.DisplayMember = "Descripcion";
 
@@ -349,7 +344,13 @@ namespace GAFE
         private void LlecboAlmaOri(String CveUser)
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboAlmaOri.DataSource = lin.CboInv_CatAlmacenes();
+            dt = lin.CboInv_CatAlmacenes();
+            row = dt.NewRow();
+            row["ClaveAlmacen"] = "0";
+            row["Descripcion"] = "TODOS ";
+            dt.Rows.Add(row);
+
+            cboAlmaOri.DataSource = dt;
 
             cboAlmaOri.ValueMember = "ClaveAlmacen";
             cboAlmaOri.DisplayMember = "Descripcion";
@@ -359,18 +360,22 @@ namespace GAFE
 
         private void LlecboTipoMovtos()
         {
-            /*
-            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
-            cboTipoMovtos.DataSource = lin.CboInv_TipoMovtos();
-            cboTipoMovtos.ValueMember = "CveTipoMov";
-            cboTipoMovtos.DisplayMember = "Descripcion";
-            */
+
             PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
 
             dt = lin.CboInv_TipoMovtos();
             row = dt.NewRow();
-            row["CveTipoMov"] = "0";
-            row["Descripcion"] = "TODOS ";
+            if (dt.Rows.Count > 1)
+            {
+                row["CveTipoMov"] = "0";
+                row["Descripcion"] = "TODOS ";
+            }
+            else
+            {
+                row["CveTipoMov"] = "";
+                row["Descripcion"] = "";
+
+            }
             dt.Rows.Add(row);
 
             cboTipoMovtos.DataSource = dt;
@@ -385,6 +390,23 @@ namespace GAFE
 
         private void dtFechaInicio_ValueChanged(object sender, EventArgs e)
         {
+            /*
+            DateTime date1 = dtFechaInicio.Value;
+            DateTime date2 = dtFechaFin.Value;
+            int result = DateTime.Compare(date1, date2);
+
+            if (result < 0)//Date1 Menor que Date2
+                LlenaGridView();
+            else if (result == 0)//Iguales
+                LlenaGridView();
+            else//Date1 Mayor que Date2
+            {
+                dtFechaInicio.Focus();
+                MessageBox.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+             */
+
+
             if (dtFechaInicio.Value > dtFechaFin.Value)
             {
                 dtFechaInicio.Focus();
@@ -392,6 +414,7 @@ namespace GAFE
             }
             else
                 LlenaGridView();
+
         }
 
         private void dtFechaFin_ValueChanged(object sender, EventArgs e)
@@ -407,17 +430,41 @@ namespace GAFE
 
         private void cboProveedor_SelectedValueChanged(object sender, EventArgs e)
         {
-            LlenaGridView();
+            string val = Convert.ToString(cboProveedor.SelectedValue);
+            if (!val.Equals("System.Data.DataRowView") && !val.Equals(""))
+            {
+                LlenaGridView();
+            }
         }
 
         private void cboAlmaOri_SelectedValueChanged(object sender, EventArgs e)
         {
-            LlenaGridView();
+            string val = Convert.ToString(cboAlmaOri.SelectedValue);
+            if (!val.Equals("System.Data.DataRowView") && !val.Equals(""))
+            {
+                LlenaGridView();
+            }
         }
 
         private void cboTipoMovtos_SelectedValueChanged(object sender, EventArgs e)
         {
-            LlenaGridView();
+            string val = Convert.ToString(cboTipoMovtos.SelectedValue);
+            if (!val.Equals("System.Data.DataRowView") && !val.Equals(""))
+            {
+                LlenaGridView();
+            }
+        }
+
+        private void cmdRestablecer_Click(object sender, EventArgs e)
+        {
+            dtFechaFin.Value = dtFechaFin.MaxDate;
+
+            dtFechaInicio.Value = DateTime.Now;
+            cboTipoMovtos.SelectedValue = "0";
+            cboAlmaOri.SelectedValue = "100";
+            cboProveedor.SelectedValue = "0";
+            dtFechaFin.Value =  DateTime.Now;
+
         }
     }
 }

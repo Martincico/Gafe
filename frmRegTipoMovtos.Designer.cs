@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegTipoMovtos));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkInterno = new System.Windows.Forms.CheckBox();
+            this.cboCfgCatFoliadores = new System.Windows.Forms.ComboBox();
             this.cboTipoMovRel = new System.Windows.Forms.ComboBox();
             this.rdbSalida = new System.Windows.Forms.RadioButton();
             this.rdbEntrada = new System.Windows.Forms.RadioButton();
@@ -56,13 +58,13 @@
             this.lblCodEmpleado = new System.Windows.Forms.Label();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
-            this.cboCfgCatFoliadores = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.chkInterno);
             this.panel2.Controls.Add(this.cboCfgCatFoliadores);
             this.panel2.Controls.Add(this.cboTipoMovRel);
             this.panel2.Controls.Add(this.rdbSalida);
@@ -90,8 +92,29 @@
             this.panel2.Controls.Add(this.lblCodEmpleado);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(561, 364);
+            this.panel2.Size = new System.Drawing.Size(561, 397);
             this.panel2.TabIndex = 13;
+            // 
+            // chkInterno
+            // 
+            this.chkInterno.AutoSize = true;
+            this.chkInterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInterno.Location = new System.Drawing.Point(433, 333);
+            this.chkInterno.Name = "chkInterno";
+            this.chkInterno.Size = new System.Drawing.Size(100, 24);
+            this.chkInterno.TabIndex = 23;
+            this.chkInterno.Text = "Es interno";
+            this.chkInterno.UseVisualStyleBackColor = true;
+            // 
+            // cboCfgCatFoliadores
+            // 
+            this.cboCfgCatFoliadores.Enabled = false;
+            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboCfgCatFoliadores.FormattingEnabled = true;
+            this.cboCfgCatFoliadores.Location = new System.Drawing.Point(151, 210);
+            this.cboCfgCatFoliadores.Name = "cboCfgCatFoliadores";
+            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(251, 28);
+            this.cboCfgCatFoliadores.TabIndex = 22;
             // 
             // cboTipoMovRel
             // 
@@ -195,9 +218,9 @@
             this.chkSugiereCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSugiereCosto.Location = new System.Drawing.Point(10, 303);
             this.chkSugiereCosto.Name = "chkSugiereCosto";
-            this.chkSugiereCosto.Size = new System.Drawing.Size(129, 24);
+            this.chkSugiereCosto.Size = new System.Drawing.Size(126, 24);
             this.chkSugiereCosto.TabIndex = 12;
-            this.chkSugiereCosto.Text = "Sugiere Costo";
+            this.chkSugiereCosto.Text = "Sugiere costo";
             this.chkSugiereCosto.UseVisualStyleBackColor = true;
             // 
             // chkAfectaCosto
@@ -217,7 +240,7 @@
             this.chkEstatus.Checked = true;
             this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEstatus.Location = new System.Drawing.Point(433, 333);
+            this.chkEstatus.Location = new System.Drawing.Point(9, 363);
             this.chkEstatus.Name = "chkEstatus";
             this.chkEstatus.Size = new System.Drawing.Size(71, 24);
             this.chkEstatus.TabIndex = 17;
@@ -230,9 +253,9 @@
             this.chkCalculaIva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkCalculaIva.Location = new System.Drawing.Point(220, 333);
             this.chkCalculaIva.Name = "chkCalculaIva";
-            this.chkCalculaIva.Size = new System.Drawing.Size(105, 24);
+            this.chkCalculaIva.Size = new System.Drawing.Size(111, 24);
             this.chkCalculaIva.TabIndex = 16;
-            this.chkCalculaIva.Text = "Calcula Iva";
+            this.chkCalculaIva.Text = "Calcula IVA";
             this.chkCalculaIva.UseVisualStyleBackColor = true;
             // 
             // chkSolicitaCosto
@@ -241,9 +264,9 @@
             this.chkSolicitaCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSolicitaCosto.Location = new System.Drawing.Point(10, 333);
             this.chkSolicitaCosto.Name = "chkSolicitaCosto";
-            this.chkSolicitaCosto.Size = new System.Drawing.Size(125, 24);
+            this.chkSolicitaCosto.Size = new System.Drawing.Size(122, 24);
             this.chkSolicitaCosto.TabIndex = 15;
-            this.chkSolicitaCosto.Text = "Solicita Costo";
+            this.chkSolicitaCosto.Text = "Solicita costo";
             this.chkSolicitaCosto.UseVisualStyleBackColor = true;
             // 
             // chkEditaCosto
@@ -252,9 +275,9 @@
             this.chkEditaCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkEditaCosto.Location = new System.Drawing.Point(433, 303);
             this.chkEditaCosto.Name = "chkEditaCosto";
-            this.chkEditaCosto.Size = new System.Drawing.Size(111, 24);
+            this.chkEditaCosto.Size = new System.Drawing.Size(108, 24);
             this.chkEditaCosto.TabIndex = 14;
-            this.chkEditaCosto.Text = "Edita Costo";
+            this.chkEditaCosto.Text = "Edita costo";
             this.chkEditaCosto.UseVisualStyleBackColor = true;
             // 
             // chkMuestraCosto
@@ -263,9 +286,9 @@
             this.chkMuestraCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkMuestraCosto.Location = new System.Drawing.Point(220, 303);
             this.chkMuestraCosto.Name = "chkMuestraCosto";
-            this.chkMuestraCosto.Size = new System.Drawing.Size(132, 24);
+            this.chkMuestraCosto.Size = new System.Drawing.Size(129, 24);
             this.chkMuestraCosto.TabIndex = 13;
-            this.chkMuestraCosto.Text = "Muestra Costo";
+            this.chkMuestraCosto.Text = "Muestra costo";
             this.chkMuestraCosto.UseVisualStyleBackColor = true;
             // 
             // chkEstraspaso
@@ -355,7 +378,7 @@
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdCancelar.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancelar.Image")));
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(470, 382);
+            this.cmdCancelar.Location = new System.Drawing.Point(460, 415);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 19;
@@ -369,7 +392,7 @@
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAceptar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAceptar.Image")));
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(365, 382);
+            this.cmdAceptar.Location = new System.Drawing.Point(355, 415);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 18;
@@ -378,21 +401,11 @@
             this.cmdAceptar.UseVisualStyleBackColor = false;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
-            // cboCfgCatFoliadores
-            // 
-            this.cboCfgCatFoliadores.Enabled = false;
-            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cboCfgCatFoliadores.FormattingEnabled = true;
-            this.cboCfgCatFoliadores.Location = new System.Drawing.Point(151, 210);
-            this.cboCfgCatFoliadores.Name = "cboCfgCatFoliadores";
-            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(251, 28);
-            this.cboCfgCatFoliadores.TabIndex = 22;
-            // 
             // frmRegTipoMovtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 426);
+            this.ClientSize = new System.Drawing.Size(588, 457);
             this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.cmdAceptar);
             this.Controls.Add(this.panel2);
@@ -439,5 +452,6 @@
         private System.Windows.Forms.RadioButton rdbEntrada;
         private System.Windows.Forms.ComboBox cboTipoMovRel;
         private System.Windows.Forms.ComboBox cboCfgCatFoliadores;
+        private System.Windows.Forms.CheckBox chkInterno;
     }
 }

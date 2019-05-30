@@ -56,11 +56,11 @@ namespace GAFE
             string sql = "Insert into Inv_TipoMovtos (CveTipoMov,Descripcion,DescCorta,EntSal,CveClsMov," +
                          "          Foliador,EditaFoli,EsTraspaso,TipoMovRel,FmtoImpresion," +
                          "          AfectaCosto,SugiereCosto,MuestraCosto,EditaCosto,SolicitaCosto," +
-                         "          PideCentroCosto,CalculaIva,Estatus) " +
+                         "          PideCentroCosto,CalculaIva,EsInterno,Estatus) " +
                          "values( @CveTipoMov,@Descripcion,@DescCorta,@EntSal,@CveClsMov," +
                          "          @CveFoliador,@EditaFoli,@EsTraspaso,@TipoMovRel,@FmtoImpresion," +
                          "          @AfectaCosto,@SugiereCosto,@MuestraCosto,@EditaCosto,@SolicitaCosto," +
-                         "          @PideCentroCosto,@CalculaIva,@Estatus)";
+                         "          @PideCentroCosto,@CalculaIva,@EsInterno,@Estatus)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -77,7 +77,7 @@ namespace GAFE
             string sql = "Update Inv_TipoMovtos set Descripcion = @Descripcion,DescCorta = @DescCorta,EntSal = @EntSal,CveClsMov = @CveClsMov," +
                          "          Foliador = @CveFoliador,EditaFoli = @EditaFoli,EsTraspaso = @EsTraspaso,TipoMovRel = @TipoMovRel,FmtoImpresion = @FmtoImpresion," +
                          "          AfectaCosto = @AfectaCosto,SugiereCosto =  @SugiereCosto,MuestraCosto = @MuestraCosto,EditaCosto = @EditaCosto,SolicitaCosto = @SolicitaCosto," +
-                         "          PideCentroCosto = @PideCentroCosto,CalculaIva = @CalculaIva,Estatus = @Estatus " +
+                         "          PideCentroCosto = @PideCentroCosto,CalculaIva = @CalculaIva,EsInterno=@EsInterno,Estatus = @Estatus " +
                          "Where CveTipoMov = @CveTipoMov";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -124,7 +124,7 @@ namespace GAFE
             string Sql = "Select CveTipoMov,Descripcion,DescCorta,EntSal,CveClsMov," +
                          "          Foliador,EditaFoli,EsTraspaso,TipoMovRel,FmtoImpresion," +
                          "          AfectaCosto,SugiereCosto,MuestraCosto,EditaCosto,SolicitaCosto," +
-                         "          PideCentroCosto,CalculaIva,Estatus "+
+                         "          PideCentroCosto,CalculaIva,EsInterno, Estatus "+
                          " from Inv_TipoMovtos where CveTipoMov =@CveTipoMov";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
@@ -145,9 +145,8 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             String Str = (!cve.Equals(""))? (" AND CveClsMov = '" + cve+"'"):" ";
-
             string Sql = "Select CveTipoMov, Descripcion " +
-                         "from Inv_TipoMovtos WHERE estatus = 1" + Str;
+                         "from Inv_TipoMovtos WHERE estatus = 1 AND EsInterno =  0 " + Str;
             dt = db.SelectDA(Sql);
             return dt;
         }
