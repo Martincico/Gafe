@@ -398,5 +398,10 @@ namespace GAFE
         {
 
         }
+
+        private void txtCveMunicipio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
     }
 }

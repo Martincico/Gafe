@@ -163,7 +163,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
             this.label2.TabIndex = 1004;
-            this.label2.Text = "Almacen";
+            this.label2.Text = "Almacén";
             // 
             // txtClaveArticulo
             // 
@@ -196,7 +196,7 @@
             this.cmdArticulo.Name = "cmdArticulo";
             this.cmdArticulo.Size = new System.Drawing.Size(94, 28);
             this.cmdArticulo.TabIndex = 1001;
-            this.cmdArticulo.Text = "Articulo...";
+            this.cmdArticulo.Text = "Artículo...";
             this.cmdArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdArticulo.UseVisualStyleBackColor = false;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
@@ -210,7 +210,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmKardex";
             this.ShowIcon = false;
-            this.Text = "Kardex de Articulos";
+            this.Text = "Kardex de Artículos";
             this.Load += new System.EventHandler(this.frmKardex_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);

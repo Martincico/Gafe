@@ -272,6 +272,7 @@
             this.txtClaveLinea.Name = "txtClaveLinea";
             this.txtClaveLinea.Size = new System.Drawing.Size(147, 26);
             this.txtClaveLinea.TabIndex = 7;
+            this.txtClaveLinea.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveLinea_KeyPress);
             // 
             // lblCodEmpleado
             // 

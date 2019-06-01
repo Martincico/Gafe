@@ -88,13 +88,7 @@ namespace GAFE
             
            /*
             path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
+            
             
             this.Size = this.MinimumSize;
             LlenaGridView();
@@ -388,35 +382,9 @@ namespace GAFE
         }
 
 
-
-        private void CargaDatosConexion()
+        private void txtClaveAlmacen_KeyPress(object sender, KeyPressEventArgs e)
         {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
+            ClsUtilerias.LetrasNumeros(e);
         }
-
-
     }
 }

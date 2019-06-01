@@ -389,7 +389,14 @@ namespace GAFE
             }
         }
 
+        private void txtCodEmpleado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
 
-
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.Numeros(e);
+        }
     }
 }

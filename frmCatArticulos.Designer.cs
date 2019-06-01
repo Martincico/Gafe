@@ -97,7 +97,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 18);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripción";
             // 
             // txtClaveArticulo
             // 
@@ -108,6 +108,7 @@
             this.txtClaveArticulo.Name = "txtClaveArticulo";
             this.txtClaveArticulo.Size = new System.Drawing.Size(147, 24);
             this.txtClaveArticulo.TabIndex = 10;
+            this.txtClaveArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveArticulo_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -128,6 +129,8 @@
             this.txtCodigoBarras.Name = "txtCodigoBarras";
             this.txtCodigoBarras.Size = new System.Drawing.Size(208, 24);
             this.txtCodigoBarras.TabIndex = 20;
+            this.txtCodigoBarras.TextChanged += new System.EventHandler(this.txtCodigoBarras_TextChanged);
+            this.txtCodigoBarras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoBarras_KeyPress);
             // 
             // label1
             // 
@@ -137,7 +140,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 18);
             this.label1.TabIndex = 30;
-            this.label1.Text = "Codigo Barras";
+            this.label1.Text = "Código Barras";
             // 
             // txtCodigoAlterno
             // 
@@ -148,6 +151,7 @@
             this.txtCodigoAlterno.Name = "txtCodigoAlterno";
             this.txtCodigoAlterno.Size = new System.Drawing.Size(239, 24);
             this.txtCodigoAlterno.TabIndex = 30;
+            this.txtCodigoAlterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoAlterno_KeyPress);
             // 
             // label3
             // 
@@ -157,7 +161,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 18);
             this.label3.TabIndex = 32;
-            this.label3.Text = "Codigo Alterno";
+            this.label3.Text = "Código Alterno";
             // 
             // txtCodigoSAT
             // 
@@ -168,6 +172,7 @@
             this.txtCodigoSAT.Name = "txtCodigoSAT";
             this.txtCodigoSAT.Size = new System.Drawing.Size(208, 24);
             this.txtCodigoSAT.TabIndex = 40;
+            this.txtCodigoSAT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoSAT_KeyPress);
             // 
             // label4
             // 
@@ -219,7 +224,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 18);
             this.label6.TabIndex = 39;
-            this.label6.Text = "Linea";
+            this.label6.Text = "Línea";
             // 
             // cboClase3
             // 
@@ -431,7 +436,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(95, 18);
             this.label15.TabIndex = 69;
-            this.label15.Text = "Ultima Comp";
+            this.label15.Text = "Última Comp";
             // 
             // txtUltimaCompra
             // 

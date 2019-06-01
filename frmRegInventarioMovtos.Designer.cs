@@ -112,9 +112,9 @@
             this.lblAlmaDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlmaDest.Location = new System.Drawing.Point(395, 38);
             this.lblAlmaDest.Name = "lblAlmaDest";
-            this.lblAlmaDest.Size = new System.Drawing.Size(100, 15);
+            this.lblAlmaDest.Size = new System.Drawing.Size(112, 15);
             this.lblAlmaDest.TabIndex = 2;
-            this.lblAlmaDest.Text = "Almacén Destino";
+            this.lblAlmaDest.Text = "Almacén     Destino";
             // 
             // lblAlmaOri
             // 

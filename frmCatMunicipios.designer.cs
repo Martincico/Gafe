@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatMunicipios));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtPais = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtEstado = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cboEstatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cmdCancelar = new System.Windows.Forms.Button();
@@ -49,10 +53,6 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdConsultar = new System.Windows.Forms.Button();
-            this.txtEstado = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtPais = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,6 +77,46 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(495, 229);
             this.panel2.TabIndex = 12;
+            // 
+            // txtPais
+            // 
+            this.txtPais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPais.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPais.Location = new System.Drawing.Point(95, 140);
+            this.txtPais.MaxLength = 10;
+            this.txtPais.Name = "txtPais";
+            this.txtPais.Size = new System.Drawing.Size(147, 26);
+            this.txtPais.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(5, 143);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 20);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "País";
+            // 
+            // txtEstado
+            // 
+            this.txtEstado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEstado.Location = new System.Drawing.Point(95, 108);
+            this.txtEstado.MaxLength = 10;
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(197, 26);
+            this.txtEstado.TabIndex = 21;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(5, 111);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 20);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Estado";
             // 
             // cboEstatus
             // 
@@ -157,6 +197,7 @@
             this.txtCveMunicipio.Name = "txtCveMunicipio";
             this.txtCveMunicipio.Size = new System.Drawing.Size(147, 26);
             this.txtCveMunicipio.TabIndex = 7;
+            this.txtCveMunicipio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCveMunicipio_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -166,7 +207,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdEliminar
             // 
@@ -230,7 +271,7 @@
             // 
             // CodEmpleado
             // 
-            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
             this.CodEmpleado.Width = 80;
@@ -299,51 +340,11 @@
             this.cmdConsultar.UseVisualStyleBackColor = false;
             this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
-            // txtEstado
-            // 
-            this.txtEstado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstado.Location = new System.Drawing.Point(95, 108);
-            this.txtEstado.MaxLength = 10;
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(197, 26);
-            this.txtEstado.TabIndex = 21;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 111);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 20);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Estado";
-            // 
-            // txtPais
-            // 
-            this.txtPais.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPais.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPais.Location = new System.Drawing.Point(95, 140);
-            this.txtPais.MaxLength = 10;
-            this.txtPais.Name = "txtPais";
-            this.txtPais.Size = new System.Drawing.Size(147, 26);
-            this.txtPais.TabIndex = 23;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 143);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 20);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Pais";
-            // 
             // frmCatMunicipios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 494);
+            this.ClientSize = new System.Drawing.Size(499, 493);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
@@ -386,8 +387,6 @@
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
@@ -396,5 +395,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }

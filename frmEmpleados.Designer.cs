@@ -114,7 +114,7 @@
             // 
             // CodEmpleado
             // 
-            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
             this.CodEmpleado.Width = 80;
@@ -224,6 +224,7 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(405, 26);
             this.txtTelefono.TabIndex = 5;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // lblTelefono
             // 
@@ -233,7 +234,7 @@
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(71, 20);
             this.lblTelefono.TabIndex = 5;
-            this.lblTelefono.Text = "Telefono";
+            this.lblTelefono.Text = "Teléfono";
             // 
             // txtNombre
             // 
@@ -262,6 +263,7 @@
             this.txtCodEmpleado.Name = "txtCodEmpleado";
             this.txtCodEmpleado.Size = new System.Drawing.Size(147, 26);
             this.txtCodEmpleado.TabIndex = 2;
+            this.txtCodEmpleado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodEmpleado_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -271,7 +273,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdConsultar
             // 
@@ -322,8 +324,6 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdEliminar;
@@ -339,5 +339,7 @@
         private System.Windows.Forms.Button cmdConsultar;
         private System.Windows.Forms.ComboBox cboEstatus;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }

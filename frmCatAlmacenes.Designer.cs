@@ -60,7 +60,7 @@
             // cmdConsultar
             // 
             this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdConsultar.Location = new System.Drawing.Point(12, 221);
+            this.cmdConsultar.Location = new System.Drawing.Point(12, 195);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 3;
@@ -83,16 +83,16 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveAlmacen);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(2, 263);
+            this.panel2.Location = new System.Drawing.Point(2, 235);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 249);
+            this.panel2.Size = new System.Drawing.Size(495, 268);
             this.panel2.TabIndex = 12;
             // 
             // chkNumRojo
             // 
             this.chkNumRojo.AutoSize = true;
             this.chkNumRojo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkNumRojo.Location = new System.Drawing.Point(95, 192);
+            this.chkNumRojo.Location = new System.Drawing.Point(95, 190);
             this.chkNumRojo.Name = "chkNumRojo";
             this.chkNumRojo.Size = new System.Drawing.Size(175, 22);
             this.chkNumRojo.TabIndex = 13;
@@ -103,18 +103,18 @@
             // 
             this.chkEsDeConsigna.AutoSize = true;
             this.chkEsDeConsigna.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEsDeConsigna.Location = new System.Drawing.Point(95, 164);
+            this.chkEsDeConsigna.Location = new System.Drawing.Point(95, 161);
             this.chkEsDeConsigna.Name = "chkEsDeConsigna";
             this.chkEsDeConsigna.Size = new System.Drawing.Size(118, 22);
             this.chkEsDeConsigna.TabIndex = 12;
-            this.chkEsDeConsigna.Text = "Consignacion";
+            this.chkEsDeConsigna.Text = "Consignación";
             this.chkEsDeConsigna.UseVisualStyleBackColor = true;
             // 
             // chkEsDeVenta
             // 
             this.chkEsDeVenta.AutoSize = true;
             this.chkEsDeVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkEsDeVenta.Location = new System.Drawing.Point(95, 136);
+            this.chkEsDeVenta.Location = new System.Drawing.Point(95, 133);
             this.chkEsDeVenta.Name = "chkEsDeVenta";
             this.chkEsDeVenta.Size = new System.Drawing.Size(68, 22);
             this.chkEsDeVenta.TabIndex = 11;
@@ -157,7 +157,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdCancelar.Location = new System.Drawing.Point(402, 220);
+            this.cmdCancelar.Location = new System.Drawing.Point(402, 210);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 15;
@@ -168,7 +168,7 @@
             // cmdAceptar
             // 
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAceptar.Location = new System.Drawing.Point(321, 220);
+            this.cmdAceptar.Location = new System.Drawing.Point(321, 210);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 14;
@@ -200,11 +200,12 @@
             // 
             this.txtClaveAlmacen.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtClaveAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClaveAlmacen.Location = new System.Drawing.Point(95, 10);
+            this.txtClaveAlmacen.Location = new System.Drawing.Point(95, 9);
             this.txtClaveAlmacen.MaxLength = 10;
             this.txtClaveAlmacen.Name = "txtClaveAlmacen";
             this.txtClaveAlmacen.Size = new System.Drawing.Size(147, 26);
             this.txtClaveAlmacen.TabIndex = 7;
+            this.txtClaveAlmacen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveAlmacen_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -214,12 +215,12 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdEliminar
             // 
             this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdEliminar.Location = new System.Drawing.Point(402, 221);
+            this.cmdEliminar.Location = new System.Drawing.Point(402, 195);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 6;
@@ -230,7 +231,7 @@
             // cmdEditar
             // 
             this.cmdEditar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdEditar.Location = new System.Drawing.Point(321, 221);
+            this.cmdEditar.Location = new System.Drawing.Point(321, 195);
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.Size = new System.Drawing.Size(94, 36);
             this.cmdEditar.TabIndex = 5;
@@ -241,7 +242,7 @@
             // cmdAgregar
             // 
             this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAgregar.Location = new System.Drawing.Point(240, 221);
+            this.cmdAgregar.Location = new System.Drawing.Point(240, 195);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 4;
@@ -258,17 +259,17 @@
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(11, 65);
+            this.grdView.Location = new System.Drawing.Point(12, 64);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 150);
+            this.grdView.Size = new System.Drawing.Size(474, 125);
             this.grdView.TabIndex = 8;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
             // CodEmpleado
             // 
-            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
             this.CodEmpleado.Width = 80;
@@ -324,7 +325,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 515);
+            this.ClientSize = new System.Drawing.Size(504, 495);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
@@ -333,9 +334,9 @@
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 554);
+            this.MaximumSize = new System.Drawing.Size(520, 554);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 286);
+            this.MinimumSize = new System.Drawing.Size(515, 270);
             this.Name = "frmCatAlmacenes";
             this.Text = "Catálogo de almacenes";
             this.Load += new System.EventHandler(this.frmCatAlmacenes_Load);
@@ -364,8 +365,6 @@
         private System.Windows.Forms.Button cmdEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
@@ -374,5 +373,7 @@
         private System.Windows.Forms.CheckBox chkEsDeConsigna;
         private System.Windows.Forms.CheckBox chkEsDeVenta;
         private System.Windows.Forms.CheckBox chkEsDeCompra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }

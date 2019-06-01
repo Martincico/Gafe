@@ -260,6 +260,7 @@
             this.txtClaveMarcas.Name = "txtClaveMarcas";
             this.txtClaveMarcas.Size = new System.Drawing.Size(147, 26);
             this.txtClaveMarcas.TabIndex = 7;
+            this.txtClaveMarcas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveMarcas_KeyPress);
             // 
             // lblCodEmpleado
             // 

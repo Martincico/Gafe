@@ -415,5 +415,9 @@ namespace GAFE
 
         }
 
+        private void txtClaveClase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
     }
 }

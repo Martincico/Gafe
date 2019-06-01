@@ -24,16 +24,6 @@ namespace GAFE
         private string Perfil;
         private clsUtil uT;
 
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
-
         public frmCatClases()
         {
             InitializeComponent();
@@ -75,20 +65,7 @@ namespace GAFE
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
-            /*
-           
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
+
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -352,39 +329,14 @@ namespace GAFE
             cmEditar_Click(sender, e);
         }
 
-
-
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
-        }
-
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void txtClaveClase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
         }
     }
 }

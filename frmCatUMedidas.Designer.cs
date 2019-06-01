@@ -46,9 +46,9 @@
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
@@ -181,7 +181,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 20);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripción";
             // 
             // txtClaveUMedida
             // 
@@ -192,6 +192,7 @@
             this.txtClaveUMedida.Name = "txtClaveUMedida";
             this.txtClaveUMedida.Size = new System.Drawing.Size(147, 26);
             this.txtClaveUMedida.TabIndex = 7;
+            this.txtClaveUMedida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveUMedida_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -201,7 +202,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdConsultar
             // 
@@ -274,20 +275,6 @@
             this.grdView.Size = new System.Drawing.Size(474, 150);
             this.grdView.TabIndex = 19;
             // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Codigo";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
-            // 
             // cmdSeleccionar
             // 
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
@@ -301,6 +288,20 @@
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Visible = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
+            // CodEmpleado
+            // 
+            this.CodEmpleado.HeaderText = "Código";
+            this.CodEmpleado.Name = "CodEmpleado";
+            this.CodEmpleado.ReadOnly = true;
+            this.CodEmpleado.Width = 80;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 350;
             // 
             // frmCatUMedidas
             // 
@@ -353,8 +354,8 @@
         private System.Windows.Forms.Button cmdEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
+        private System.Windows.Forms.Button cmdSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.Button cmdSeleccionar;
     }
 }

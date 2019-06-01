@@ -403,6 +403,9 @@ namespace GAFE
             }
         }
 
-
+        private void txtClaveImpuesto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
     }
 }

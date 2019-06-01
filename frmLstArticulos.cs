@@ -21,18 +21,10 @@ namespace GAFE
         private int opcion;
         private int idxG;
         public string KeyCampo = null;
+
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
-
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
 
         public string[] dv = new string[3];
 
@@ -83,17 +75,7 @@ namespace GAFE
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
             cmdSeleccionar.Visible = false;
-            /*
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            
-            */
+
             LlenaGridView();
             if (opcion>=3)
             {
@@ -106,7 +88,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmCatArticulos art = new frmCatArticulos(db, "perfil");
+            frmCatArticulos art = new frmCatArticulos(db, Perfil);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -115,7 +97,7 @@ namespace GAFE
         {
             try
             {
-                frmCatArticulos art = new frmCatArticulos(db, "perfil",2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmCatArticulos art = new frmCatArticulos(db, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 art.ShowDialog();
                 LlenaGridView();
             }
@@ -132,7 +114,7 @@ namespace GAFE
         {
             try
             {
-                frmCatArticulos art = new frmCatArticulos(db, "perfil", 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmCatArticulos art = new frmCatArticulos(db, Perfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 art.ShowDialog();
             }
             catch (Exception ex)
@@ -173,7 +155,7 @@ namespace GAFE
             DatosTbl = pui.BuscaArticulo(txtBuscar.Text);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
-            grdView.Rows.Clear();
+            //grdView.Rows.Clear();
             grdView.DataSource = ds.Tables[0];
             /*
             for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
@@ -240,36 +222,6 @@ namespace GAFE
                 cmdSeleccionar_Click(sender, e);
             else
                 cmEditar_Click(sender, e);
-        }
-
-
-
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
         }
 
         private void cmdSeleccionar_Click(object sender, EventArgs e)

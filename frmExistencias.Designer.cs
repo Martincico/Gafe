@@ -29,19 +29,6 @@
         private void InitializeComponent()
         {
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClaveAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CantApartada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostoPromedio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostoUltimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CostoActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,6 +42,19 @@
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.cmdImprimir = new System.Windows.Forms.Button();
             this.cmdAsignaStock = new System.Windows.Forms.Button();
+            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Linea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClaveAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CantApartada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockMin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockMax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostoPromedio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostoUltimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostoActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ubicacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -84,89 +84,6 @@
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(1039, 324);
             this.grdView.TabIndex = 4;
-            // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.Frozen = true;
-            this.CodEmpleado.HeaderText = "Codigo";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.Frozen = true;
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
-            // 
-            // Linea
-            // 
-            this.Linea.HeaderText = "Linea";
-            this.Linea.Name = "Linea";
-            this.Linea.ReadOnly = true;
-            // 
-            // ClaveAlmacen
-            // 
-            this.ClaveAlmacen.HeaderText = "Almacen";
-            this.ClaveAlmacen.Name = "ClaveAlmacen";
-            this.ClaveAlmacen.ReadOnly = true;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // CantApartada
-            // 
-            this.CantApartada.HeaderText = "Cant. Apartada";
-            this.CantApartada.Name = "CantApartada";
-            this.CantApartada.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Exitencia";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // stockMin
-            // 
-            this.stockMin.HeaderText = "Min";
-            this.stockMin.Name = "stockMin";
-            this.stockMin.ReadOnly = true;
-            // 
-            // stockMax
-            // 
-            this.stockMax.HeaderText = "Max";
-            this.stockMax.Name = "stockMax";
-            this.stockMax.ReadOnly = true;
-            // 
-            // CostoPromedio
-            // 
-            this.CostoPromedio.HeaderText = "Costo Prom";
-            this.CostoPromedio.Name = "CostoPromedio";
-            this.CostoPromedio.ReadOnly = true;
-            // 
-            // CostoUltimo
-            // 
-            this.CostoUltimo.HeaderText = "Costo. Ultimo";
-            this.CostoUltimo.Name = "CostoUltimo";
-            this.CostoUltimo.ReadOnly = true;
-            // 
-            // CostoActual
-            // 
-            this.CostoActual.HeaderText = "Costo Actual";
-            this.CostoActual.Name = "CostoActual";
-            this.CostoActual.ReadOnly = true;
-            // 
-            // Ubicacion
-            // 
-            this.Ubicacion.HeaderText = "Ubicacion";
-            this.Ubicacion.Name = "Ubicacion";
-            this.Ubicacion.ReadOnly = true;
-            this.Ubicacion.Visible = false;
             // 
             // panel1
             // 
@@ -232,7 +149,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
             this.label2.TabIndex = 1004;
-            this.label2.Text = "Almacen";
+            this.label2.Text = "Almacén";
             // 
             // txtClaveArticulo
             // 
@@ -267,7 +184,7 @@
             this.cmdArticulo.Name = "cmdArticulo";
             this.cmdArticulo.Size = new System.Drawing.Size(73, 25);
             this.cmdArticulo.TabIndex = 3;
-            this.cmdArticulo.Text = "Articulo...";
+            this.cmdArticulo.Text = "Artículo...";
             this.cmdArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdArticulo.UseVisualStyleBackColor = false;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
@@ -280,7 +197,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(50, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Lineas";
+            this.label1.Text = "Líneas";
             // 
             // cmdBuscar
             // 
@@ -315,10 +232,93 @@
             this.cmdAsignaStock.Name = "cmdAsignaStock";
             this.cmdAsignaStock.Size = new System.Drawing.Size(170, 36);
             this.cmdAsignaStock.TabIndex = 1;
-            this.cmdAsignaStock.Text = "Asigna Stock por Almacen";
+            this.cmdAsignaStock.Text = "Asigna Stock por Almacén";
             this.cmdAsignaStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAsignaStock.UseVisualStyleBackColor = false;
             this.cmdAsignaStock.Click += new System.EventHandler(this.cmdAsignaStock_Click);
+            // 
+            // CodEmpleado
+            // 
+            this.CodEmpleado.Frozen = true;
+            this.CodEmpleado.HeaderText = "Código";
+            this.CodEmpleado.Name = "CodEmpleado";
+            this.CodEmpleado.ReadOnly = true;
+            this.CodEmpleado.Width = 80;
+            // 
+            // Nombre
+            // 
+            this.Nombre.Frozen = true;
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 350;
+            // 
+            // Linea
+            // 
+            this.Linea.HeaderText = "Línea";
+            this.Linea.Name = "Linea";
+            this.Linea.ReadOnly = true;
+            // 
+            // ClaveAlmacen
+            // 
+            this.ClaveAlmacen.HeaderText = "Almacén";
+            this.ClaveAlmacen.Name = "ClaveAlmacen";
+            this.ClaveAlmacen.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // CantApartada
+            // 
+            this.CantApartada.HeaderText = "Cant. Apartada";
+            this.CantApartada.Name = "CantApartada";
+            this.CantApartada.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Exitencia";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // stockMin
+            // 
+            this.stockMin.HeaderText = "Min";
+            this.stockMin.Name = "stockMin";
+            this.stockMin.ReadOnly = true;
+            // 
+            // stockMax
+            // 
+            this.stockMax.HeaderText = "Max";
+            this.stockMax.Name = "stockMax";
+            this.stockMax.ReadOnly = true;
+            // 
+            // CostoPromedio
+            // 
+            this.CostoPromedio.HeaderText = "Costo Prom";
+            this.CostoPromedio.Name = "CostoPromedio";
+            this.CostoPromedio.ReadOnly = true;
+            // 
+            // CostoUltimo
+            // 
+            this.CostoUltimo.HeaderText = "Costo. Ultimo";
+            this.CostoUltimo.Name = "CostoUltimo";
+            this.CostoUltimo.ReadOnly = true;
+            // 
+            // CostoActual
+            // 
+            this.CostoActual.HeaderText = "Costo Actual";
+            this.CostoActual.Name = "CostoActual";
+            this.CostoActual.ReadOnly = true;
+            // 
+            // Ubicacion
+            // 
+            this.Ubicacion.HeaderText = "Ubicación";
+            this.Ubicacion.Name = "Ubicacion";
+            this.Ubicacion.ReadOnly = true;
+            this.Ubicacion.Visible = false;
             // 
             // frmExistencias
             // 
@@ -360,6 +360,8 @@
         private System.Windows.Forms.TextBox txtDscArticulo;
         private System.Windows.Forms.Button cmdArticulo;
         private System.Windows.Forms.ComboBox cboLineas;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Linea;
@@ -373,7 +375,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoUltimo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CostoActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ubicacion;
-        private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Label label3;
     }
 }

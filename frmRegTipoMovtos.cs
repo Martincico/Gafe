@@ -344,6 +344,11 @@ namespace GAFE
 
         }
 
+        private void txtClaveTipoMov_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
+
         /*Recorre un cbo y retorna el index
          * 
         private static int GetCboSelectIndex(ComboBox combobx, string value)

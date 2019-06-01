@@ -362,6 +362,7 @@
             this.txtClaveTipoMov.Name = "txtClaveTipoMov";
             this.txtClaveTipoMov.Size = new System.Drawing.Size(147, 26);
             this.txtClaveTipoMov.TabIndex = 1;
+            this.txtClaveTipoMov.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveTipoMov_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -371,7 +372,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdCancelar
             // 

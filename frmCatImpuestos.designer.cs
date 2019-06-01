@@ -186,6 +186,7 @@
             this.txtClaveImpuesto.Name = "txtClaveImpuesto";
             this.txtClaveImpuesto.Size = new System.Drawing.Size(147, 26);
             this.txtClaveImpuesto.TabIndex = 7;
+            this.txtClaveImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveImpuesto_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -195,7 +196,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdEliminar
             // 
@@ -258,7 +259,7 @@
             // 
             // CodEmpleado
             // 
-            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
             this.CodEmpleado.Width = 80;
@@ -317,7 +318,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 436);
+            this.ClientSize = new System.Drawing.Size(499, 435);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
@@ -360,13 +361,13 @@
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }

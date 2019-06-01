@@ -30,9 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatCfgCatFoliadores));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtUso = new System.Windows.Forms.TextBox();
+            this.cboCfgModuloSys = new System.Windows.Forms.ComboBox();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveClase = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
@@ -47,10 +51,6 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdConsultar = new System.Windows.Forms.Button();
-            this.cboCfgModuloSys = new System.Windows.Forms.ComboBox();
-            this.txtUso = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -73,6 +73,35 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(495, 186);
             this.panel2.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(4, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 20);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Módulo";
+            // 
+            // txtUso
+            // 
+            this.txtUso.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUso.Location = new System.Drawing.Point(95, 74);
+            this.txtUso.MaxLength = 100;
+            this.txtUso.Name = "txtUso";
+            this.txtUso.Size = new System.Drawing.Size(392, 26);
+            this.txtUso.TabIndex = 9;
+            // 
+            // cboCfgModuloSys
+            // 
+            this.cboCfgModuloSys.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboCfgModuloSys.FormattingEnabled = true;
+            this.cboCfgModuloSys.Location = new System.Drawing.Point(95, 106);
+            this.cboCfgModuloSys.Name = "cboCfgModuloSys";
+            this.cboCfgModuloSys.Size = new System.Drawing.Size(203, 28);
+            this.cboCfgModuloSys.TabIndex = 10;
             // 
             // cmdCancelar
             // 
@@ -112,6 +141,16 @@
             this.txtDescripcion.Size = new System.Drawing.Size(392, 26);
             this.txtDescripcion.TabIndex = 8;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Uso";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -131,6 +170,7 @@
             this.txtClaveClase.Name = "txtClaveClase";
             this.txtClaveClase.Size = new System.Drawing.Size(147, 26);
             this.txtClaveClase.TabIndex = 7;
+            this.txtClaveClase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveClase_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -140,7 +180,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdEliminar
             // 
@@ -204,7 +244,7 @@
             // 
             // CodEmpleado
             // 
-            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
             this.CodEmpleado.Width = 80;
@@ -273,45 +313,6 @@
             this.cmdConsultar.UseVisualStyleBackColor = false;
             this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
-            // cboCfgModuloSys
-            // 
-            this.cboCfgModuloSys.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.cboCfgModuloSys.FormattingEnabled = true;
-            this.cboCfgModuloSys.Location = new System.Drawing.Point(95, 106);
-            this.cboCfgModuloSys.Name = "cboCfgModuloSys";
-            this.cboCfgModuloSys.Size = new System.Drawing.Size(203, 28);
-            this.cboCfgModuloSys.TabIndex = 10;
-            // 
-            // txtUso
-            // 
-            this.txtUso.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUso.Location = new System.Drawing.Point(95, 74);
-            this.txtUso.MaxLength = 100;
-            this.txtUso.Name = "txtUso";
-            this.txtUso.Size = new System.Drawing.Size(392, 26);
-            this.txtUso.TabIndex = 9;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 20);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Uso";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(4, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 20);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Módulo";
-            // 
             // frmCatCfgCatFoliadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -357,8 +358,6 @@
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button cmdBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
@@ -367,5 +366,7 @@
         private System.Windows.Forms.ComboBox cboCfgModuloSys;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }
