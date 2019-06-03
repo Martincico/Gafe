@@ -12,9 +12,11 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatLineas : Form
+    public partial class frmCatLineas : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
@@ -76,20 +78,7 @@ namespace GAFE
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
-            /*
 
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
             cmdSeleccionar.Visible = false;
             if (opcion>3)
             {
@@ -388,6 +377,11 @@ namespace GAFE
         private void txtClaveLinea_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void frmCatLineas_CaptionBarPaint(object sender, PaintEventArgs e)
+        {
+//            e.Graphics.FillRectangle(new LinearGradientBrush(e.ClipRectangle, Color.AliceBlue, Color.Blue, LinearGradientMode.BackwardDiagonal), e.ClipRectangle);
         }
     }
 }

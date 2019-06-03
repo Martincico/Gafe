@@ -12,27 +12,20 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatUMedidas : Form
+    public partial class frmCatUMedidas : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
         public string KeyCampo;
+
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
-
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
 
         public frmCatUMedidas()
         {
@@ -51,7 +44,6 @@ namespace GAFE
 
         private void frmCatUMedidas_Load(object sender, EventArgs e)
         {
-            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
@@ -84,19 +76,6 @@ namespace GAFE
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
             
-            /*
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
             cmdSeleccionar.Visible = false;
             if (opcion > 3)
             {
