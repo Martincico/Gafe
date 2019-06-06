@@ -186,6 +186,12 @@
     <Compile Include="frmCatClases.designer.cs">
       <DependentUpon>frmCatClases.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatGeografia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatGeografia.Designer.cs">
+      <DependentUpon>frmCatGeografia.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatImpuestos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
+    <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
     <Compile Include="PuiExistencias.cs" />
     <Compile Include="PuiCatArticulos.cs" />
@@ -346,6 +353,7 @@
     <Compile Include="PuiSegPerfiles.cs" />
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
+    <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
     <Compile Include="RegExistencias.cs" />
     <Compile Include="RegCatArticulo.cs" />
@@ -387,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatClases.resx">
       <DependentUpon>frmCatClases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatGeografia.resx">
+      <DependentUpon>frmCatGeografia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatImpuestos.resx">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>

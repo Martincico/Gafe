@@ -40,10 +40,6 @@
             this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
             this.RibMenu = new Syncfusion.Windows.Forms.Tools.RibbonControlAdv();
             this.ModInventario = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.toolStripTabItem2 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.toolStripTabItem3 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.toolStripTabItem4 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.CatsArticulos = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CtnArticulos = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatArticulo = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,26 +47,31 @@
             this.CatLineas = new System.Windows.Forms.ToolStripMenuItem();
             this.CatMarcas = new System.Windows.Forms.ToolStripMenuItem();
             this.CatClase = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelContenedor = new Syncfusion.Windows.Forms.Tools.GradientPanel();
-            this.panel2 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
-            this.ProcInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.catsAlmacenes = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatAlmacen = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProcInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.OpInventarios = new System.Windows.Forms.ToolStripDropDownButton();
             this.OpMovInv = new System.Windows.Forms.ToolStripMenuItem();
             this.OpKardex = new System.Windows.Forms.ToolStripMenuItem();
             this.OpExistencia = new System.Windows.Forms.ToolStripMenuItem();
             this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.toolStripTabItem2 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.toolStripTabItem3 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.toolStripTabItem4 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.CatsArticulos = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.panelContenedor = new Syncfusion.Windows.Forms.Tools.GradientPanel();
+            this.panel2 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
             this.toolStripTabItem1 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.toolStripTabItem5 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.CatGeografia = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.RibMenu)).BeginInit();
             this.RibMenu.SuspendLayout();
             this.ModInventario.Panel.SuspendLayout();
             this.CatInven.SuspendLayout();
+            this.ProcInven.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelContenedor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel2)).BeginInit();
-            this.ProcInven.SuspendLayout();
             this.SuspendLayout();
             // 
             // Clientes
@@ -183,66 +184,6 @@
             this.ModInventario.Tag = "1";
             this.ModInventario.Text = "Inventarios";
             // 
-            // toolStripTabItem2
-            // 
-            this.toolStripTabItem2.Name = "toolStripTabItem2";
-            // 
-            // RibMenu.ribbonPanel6
-            // 
-            this.toolStripTabItem2.Panel.Name = "ribbonPanel6";
-            this.toolStripTabItem2.Panel.ScrollPosition = 0;
-            this.toolStripTabItem2.Panel.TabIndex = 3;
-            this.toolStripTabItem2.Panel.Text = "Proveedores";
-            this.toolStripTabItem2.Position = 1;
-            this.toolStripTabItem2.Size = new System.Drawing.Size(86, 30);
-            this.toolStripTabItem2.Tag = "2";
-            this.toolStripTabItem2.Text = "Proveedores";
-            // 
-            // toolStripTabItem3
-            // 
-            this.toolStripTabItem3.Name = "toolStripTabItem3";
-            // 
-            // 
-            // 
-            this.toolStripTabItem3.Panel.Name = "";
-            this.toolStripTabItem3.Panel.ScrollPosition = 0;
-            this.toolStripTabItem3.Panel.TabIndex = 4;
-            this.toolStripTabItem3.Panel.Text = "toolStripTabItem3";
-            this.toolStripTabItem3.Position = -1;
-            this.toolStripTabItem3.Size = new System.Drawing.Size(113, 30);
-            this.toolStripTabItem3.Tag = "3";
-            this.toolStripTabItem3.Text = "toolStripTabItem3";
-            // 
-            // toolStripTabItem4
-            // 
-            this.toolStripTabItem4.Name = "New Tab1";
-            // 
-            // 
-            // 
-            this.toolStripTabItem4.Panel.Name = "";
-            this.toolStripTabItem4.Panel.ScrollPosition = 0;
-            this.toolStripTabItem4.Panel.TabIndex = 4;
-            this.toolStripTabItem4.Panel.Text = "New Tab1";
-            this.toolStripTabItem4.Position = -1;
-            this.toolStripTabItem4.Size = new System.Drawing.Size(72, 30);
-            this.toolStripTabItem4.Text = "New Tab1";
-            // 
-            // CatsArticulos
-            // 
-            this.CatsArticulos.AutoSize = false;
-            this.CatsArticulos.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
-            this.CatsArticulos.Dock = System.Windows.Forms.DockStyle.None;
-            this.CatsArticulos.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.CatsArticulos.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CatsArticulos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.CatsArticulos.Image = null;
-            this.CatsArticulos.Location = new System.Drawing.Point(0, 1);
-            this.CatsArticulos.Name = "CatsArticulos";
-            this.CatsArticulos.Office12Mode = false;
-            this.CatsArticulos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatsArticulos.Size = new System.Drawing.Size(100, 96);
-            this.CatsArticulos.TabIndex = 0;
-            // 
             // CatInven
             // 
             this.CatInven.AutoSize = false;
@@ -269,7 +210,8 @@
             this.CatUMedidas,
             this.CatLineas,
             this.CatMarcas,
-            this.CatClase});
+            this.CatClase,
+            this.CatGeografia});
             this.CtnArticulos.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CtnArticulos.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CtnArticulos.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -314,21 +256,26 @@
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
-            // panelContenedor
+            // catsAlmacenes
             // 
-            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(1, 165);
-            this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(798, 318);
-            this.panelContenedor.TabIndex = 1;
+            this.catsAlmacenes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CatAlmacen});
+            this.catsAlmacenes.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.catsAlmacenes.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.catsAlmacenes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.catsAlmacenes.Name = "catsAlmacenes";
+            this.catsAlmacenes.Size = new System.Drawing.Size(74, 79);
+            this.catsAlmacenes.Text = "Almacenes";
+            this.catsAlmacenes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.catsAlmacenes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.catsAlmacenes.ToolTipText = "Almacenes";
             // 
-            // panel2
+            // CatAlmacen
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(1, 403);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(798, 80);
-            this.panel2.TabIndex = 2;
+            this.CatAlmacen.Name = "CatAlmacen";
+            this.CatAlmacen.Size = new System.Drawing.Size(117, 22);
+            this.CatAlmacen.Text = "Almacen";
+            this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
             // 
             // ProcInven
             // 
@@ -348,27 +295,6 @@
             this.ProcInven.Size = new System.Drawing.Size(173, 96);
             this.ProcInven.TabIndex = 1;
             this.ProcInven.Text = "Procesos";
-            // 
-            // catsAlmacenes
-            // 
-            this.catsAlmacenes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatAlmacen});
-            this.catsAlmacenes.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.catsAlmacenes.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.catsAlmacenes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.catsAlmacenes.Name = "catsAlmacenes";
-            this.catsAlmacenes.Size = new System.Drawing.Size(74, 79);
-            this.catsAlmacenes.Text = "Almacenes";
-            this.catsAlmacenes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.catsAlmacenes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.catsAlmacenes.ToolTipText = "Almacenes";
-            // 
-            // CatAlmacen
-            // 
-            this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
-            this.CatAlmacen.Text = "Almacen";
-            this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
             // 
             // OpInventarios
             // 
@@ -435,6 +361,82 @@
             this.RepInven.TabIndex = 2;
             this.RepInven.Text = "Reportes";
             // 
+            // toolStripTabItem2
+            // 
+            this.toolStripTabItem2.Name = "toolStripTabItem2";
+            // 
+            // RibMenu.ribbonPanel6
+            // 
+            this.toolStripTabItem2.Panel.Name = "ribbonPanel6";
+            this.toolStripTabItem2.Panel.ScrollPosition = 0;
+            this.toolStripTabItem2.Panel.TabIndex = 3;
+            this.toolStripTabItem2.Panel.Text = "Proveedores";
+            this.toolStripTabItem2.Position = 1;
+            this.toolStripTabItem2.Size = new System.Drawing.Size(86, 30);
+            this.toolStripTabItem2.Tag = "2";
+            this.toolStripTabItem2.Text = "Proveedores";
+            // 
+            // toolStripTabItem3
+            // 
+            this.toolStripTabItem3.Name = "toolStripTabItem3";
+            // 
+            // 
+            // 
+            this.toolStripTabItem3.Panel.Name = "";
+            this.toolStripTabItem3.Panel.ScrollPosition = 0;
+            this.toolStripTabItem3.Panel.TabIndex = 4;
+            this.toolStripTabItem3.Panel.Text = "toolStripTabItem3";
+            this.toolStripTabItem3.Position = -1;
+            this.toolStripTabItem3.Size = new System.Drawing.Size(113, 30);
+            this.toolStripTabItem3.Tag = "3";
+            this.toolStripTabItem3.Text = "toolStripTabItem3";
+            // 
+            // toolStripTabItem4
+            // 
+            this.toolStripTabItem4.Name = "toolStripTabItem4";
+            // 
+            // 
+            // 
+            this.toolStripTabItem4.Panel.Name = "";
+            this.toolStripTabItem4.Panel.ScrollPosition = 0;
+            this.toolStripTabItem4.Panel.TabIndex = 4;
+            this.toolStripTabItem4.Panel.Text = "New Tab1";
+            this.toolStripTabItem4.Position = -1;
+            this.toolStripTabItem4.Size = new System.Drawing.Size(72, 30);
+            this.toolStripTabItem4.Text = "New Tab1";
+            // 
+            // CatsArticulos
+            // 
+            this.CatsArticulos.AutoSize = false;
+            this.CatsArticulos.CaptionTextStyle = Syncfusion.Windows.Forms.Tools.CaptionTextStyle.Plain;
+            this.CatsArticulos.Dock = System.Windows.Forms.DockStyle.None;
+            this.CatsArticulos.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.CatsArticulos.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatsArticulos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.CatsArticulos.Image = null;
+            this.CatsArticulos.Location = new System.Drawing.Point(0, 1);
+            this.CatsArticulos.Name = "CatsArticulos";
+            this.CatsArticulos.Office12Mode = false;
+            this.CatsArticulos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.CatsArticulos.Size = new System.Drawing.Size(100, 96);
+            this.CatsArticulos.TabIndex = 0;
+            // 
+            // panelContenedor
+            // 
+            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenedor.Location = new System.Drawing.Point(1, 165);
+            this.panelContenedor.Name = "panelContenedor";
+            this.panelContenedor.Size = new System.Drawing.Size(798, 318);
+            this.panelContenedor.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(1, 403);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(798, 80);
+            this.panel2.TabIndex = 2;
+            // 
             // toolStripTabItem1
             // 
             this.toolStripTabItem1.Name = "toolStripTabItem1";
@@ -465,6 +467,13 @@
             this.toolStripTabItem5.Tag = "5";
             this.toolStripTabItem5.Text = "toolStripTabItem5";
             // 
+            // CatGeografia
+            // 
+            this.CatGeografia.Name = "CatGeografia";
+            this.CatGeografia.Size = new System.Drawing.Size(180, 22);
+            this.CatGeografia.Text = "Geografia";
+            this.CatGeografia.Click += new System.EventHandler(this.CatGeografia_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -486,10 +495,10 @@
             this.ModInventario.Panel.ResumeLayout(false);
             this.CatInven.ResumeLayout(false);
             this.CatInven.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelContenedor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panel2)).EndInit();
             this.ProcInven.ResumeLayout(false);
             this.ProcInven.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelContenedor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panel2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -530,6 +539,7 @@
         private Syncfusion.Windows.Forms.Tools.ToolStripEx RepInven;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem1;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem5;
+        private System.Windows.Forms.ToolStripMenuItem CatGeografia;
     }
 }
 

@@ -166,6 +166,10 @@ namespace GAFE
             Nav(fm, panelContenedor);
         }
 
-        
+        private void CatGeografia_Click(object sender, EventArgs e)
+        {
+            frmCatGeografia fm = new frmCatGeografia(db, Perfil);
+            Nav(fm, panelContenedor);
+        }
     }
 }
