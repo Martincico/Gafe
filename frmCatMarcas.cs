@@ -44,6 +44,7 @@ namespace GAFE
 
         private void frmCatMarcas_Load(object sender, EventArgs e)
         {
+
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
@@ -68,7 +69,12 @@ namespace GAFE
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
 
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
+            MessageBoxAdv.MetroColorTable.YesButtonBackColor = Color.FromArgb(215, 30, 30);
+            MessageBoxAdv.MetroColorTable.YesButtonForeColor = Color.FromArgb(255, 255, 255);
 
+            MessageBoxAdv.MetroColorTable.OKButtonBackColor = Color.FromArgb(0, 114, 198);
+            MessageBoxAdv.MetroColorTable.OKButtonForeColor = Color.FromArgb(255, 255, 255);
 
 
             this.Size = this.MinimumSize;
@@ -129,8 +135,8 @@ namespace GAFE
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
-                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+                if (MessageBoxAdv.Show(this, "Esta seguro de eliminar el registro?" + grdView[0, grdView.CurrentRow.Index].Value.ToString(), "Confirmar ", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatMarcas pui = new PuiCatMarcas(db);
                     pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();

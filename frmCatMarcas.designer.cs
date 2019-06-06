@@ -127,7 +127,7 @@
             // cmEditar
             // 
             this.cmEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmEditar.Image = global::GAFE.Properties.Resources.Consultar;
+            this.cmEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmEditar.Location = new System.Drawing.Point(203, 223);
             this.cmEditar.Name = "cmEditar";
@@ -170,7 +170,7 @@
             // 
             // CodEmpleado
             // 
-            this.CodEmpleado.HeaderText = "Codigo";
+            this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
             this.CodEmpleado.Width = 80;
@@ -192,7 +192,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveMarcas);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(1, 265);
+            this.panel2.Location = new System.Drawing.Point(1, 268);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(495, 143);
             this.panel2.TabIndex = 14;
@@ -215,7 +215,7 @@
             this.cmdCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(390, 92);
+            this.cmdCancelar.Location = new System.Drawing.Point(390, 99);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 11;
@@ -229,7 +229,7 @@
             this.cmdAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(275, 92);
+            this.cmdAceptar.Location = new System.Drawing.Point(290, 99);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 10;
@@ -256,7 +256,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 18);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripción";
             // 
             // txtClaveMarcas
             // 
@@ -288,7 +288,7 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(503, 423);
+            this.ClientSize = new System.Drawing.Size(503, 413);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -298,11 +298,12 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 459);
+            this.MaximumSize = new System.Drawing.Size(515, 449);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(515, 299);
             this.Name = "frmCatMarcas";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo de marcas";
             this.Load += new System.EventHandler(this.frmCatMarcas_Load);
             this.panel1.ResumeLayout(false);
@@ -325,8 +326,6 @@
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button cmdCancelar;
         private System.Windows.Forms.Button cmdAceptar;
@@ -335,5 +334,7 @@
         private System.Windows.Forms.TextBox txtClaveMarcas;
         private System.Windows.Forms.Label lblCodEmpleado;
         private System.Windows.Forms.CheckBox chkEstatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }
