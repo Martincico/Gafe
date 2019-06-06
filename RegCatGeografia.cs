@@ -44,15 +44,16 @@ namespace GAFE
 
         public int AddRegGeografia()
         {
-            string sql = "Insert into CatGeografia (Descripción,Estatus,Padre) " +
-                         "values(@Descripción,@Estatus,@Padre)";
+            string sql = "Insert into CatGeografia (Descripcion, Estatus, Padre) " +
+                         "values(@Descripcion, @Estatus, @Padre)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
 
         public int UpdateGeografia()
         {
-            string sql = "Update CatGeografia set Descripcion = @Descripcion, " +
+            string sql = "Update CatGeografia set " +
+                         "Descripcion = @Descripcion, " +
                          "Estatus = @Estatus, " +
                          "Padre = @Padre " +
                          "Where id = @id";
@@ -70,8 +71,8 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select id as Clave,Descripcion " +
-                         "from CatGeografia" +
-                         "where Padre=@Padre" +
+                         "from CatGeografia " +
+                         "where Padre = @Padre " +
                          "order by Descripcion";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
