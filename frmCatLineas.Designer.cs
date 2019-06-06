@@ -37,8 +37,6 @@
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cboEstatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -49,6 +47,8 @@
             this.txtClaveLinea = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
             this.cmdSeleccionar = new System.Windows.Forms.Button();
+            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel2.SuspendLayout();
@@ -174,20 +174,6 @@
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Codigo";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
-            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -274,7 +260,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 21);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Descripcion";
+            this.label2.Text = "Descripción";
             // 
             // txtClaveLinea
             // 
@@ -295,7 +281,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(60, 21);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // cmdSeleccionar
             // 
@@ -311,6 +297,20 @@
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Visible = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
+            // CodEmpleado
+            // 
+            this.CodEmpleado.HeaderText = "Código";
+            this.CodEmpleado.Name = "CodEmpleado";
+            this.CodEmpleado.ReadOnly = true;
+            this.CodEmpleado.Width = 80;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            this.Nombre.Width = 350;
             // 
             // frmCatLineas
             // 
@@ -362,8 +362,6 @@
         private System.Windows.Forms.Button cmdEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cboEstatus;
         private System.Windows.Forms.Label label8;
@@ -374,5 +372,7 @@
         private System.Windows.Forms.TextBox txtClaveLinea;
         private System.Windows.Forms.Label lblCodEmpleado;
         private System.Windows.Forms.Button cmdSeleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }

@@ -171,5 +171,20 @@ namespace GAFE
             frmCatGeografia fm = new frmCatGeografia(db, Perfil);
             Nav(fm, panelContenedor);
         }
+
+        private void RibMenu_OfficeMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void RibMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RibbonPanel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -12,9 +12,11 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatImpuestos : Form
+    public partial class frmCatImpuestos : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;

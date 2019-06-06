@@ -60,7 +60,7 @@
             this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(12, 221);
+            this.cmdConsultar.Location = new System.Drawing.Point(403, 223);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 3;
@@ -82,50 +82,50 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveImpuesto);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(2, 263);
+            this.panel2.Location = new System.Drawing.Point(2, 265);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 171);
+            this.panel2.Size = new System.Drawing.Size(495, 173);
             this.panel2.TabIndex = 12;
             // 
             // txtValor
             // 
             this.txtValor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtValor.Location = new System.Drawing.Point(95, 74);
             this.txtValor.MaxLength = 20;
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(147, 26);
+            this.txtValor.Size = new System.Drawing.Size(147, 24);
             this.txtValor.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label3.Location = new System.Drawing.Point(5, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 20);
+            this.label3.Size = new System.Drawing.Size(42, 18);
             this.label3.TabIndex = 20;
             this.label3.Text = "Valor";
             // 
             // cboEstatus
             // 
-            this.cboEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboEstatus.FormattingEnabled = true;
             this.cboEstatus.Items.AddRange(new object[] {
             "Activo",
             "Baja"});
             this.cboEstatus.Location = new System.Drawing.Point(95, 106);
             this.cboEstatus.Name = "cboEstatus";
-            this.cboEstatus.Size = new System.Drawing.Size(147, 28);
+            this.cboEstatus.Size = new System.Drawing.Size(147, 26);
             this.cboEstatus.TabIndex = 10;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label8.Location = new System.Drawing.Point(5, 109);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 20);
+            this.label8.Size = new System.Drawing.Size(58, 18);
             this.label8.TabIndex = 19;
             this.label8.Text = "Estatus";
             // 
@@ -148,7 +148,7 @@
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(279, 130);
+            this.cmdAceptar.Location = new System.Drawing.Point(290, 130);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 11;
@@ -160,41 +160,41 @@
             // txtTipo
             // 
             this.txtTipo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtTipo.Location = new System.Drawing.Point(95, 42);
             this.txtTipo.MaxLength = 100;
             this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(243, 26);
+            this.txtTipo.Size = new System.Drawing.Size(243, 24);
             this.txtTipo.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label2.Location = new System.Drawing.Point(5, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.Size = new System.Drawing.Size(37, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Tipo";
             // 
             // txtClaveImpuesto
             // 
             this.txtClaveImpuesto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtClaveImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClaveImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtClaveImpuesto.Location = new System.Drawing.Point(95, 10);
             this.txtClaveImpuesto.MaxLength = 10;
             this.txtClaveImpuesto.Name = "txtClaveImpuesto";
-            this.txtClaveImpuesto.Size = new System.Drawing.Size(147, 26);
+            this.txtClaveImpuesto.Size = new System.Drawing.Size(147, 24);
             this.txtClaveImpuesto.TabIndex = 7;
             this.txtClaveImpuesto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveImpuesto_KeyPress);
             // 
             // lblCodEmpleado
             // 
             this.lblCodEmpleado.AutoSize = true;
-            this.lblCodEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.lblCodEmpleado.Location = new System.Drawing.Point(5, 13);
             this.lblCodEmpleado.Name = "lblCodEmpleado";
-            this.lblCodEmpleado.Size = new System.Drawing.Size(59, 20);
+            this.lblCodEmpleado.Size = new System.Drawing.Size(56, 18);
             this.lblCodEmpleado.TabIndex = 1;
             this.lblCodEmpleado.Text = "Código";
             // 
@@ -203,7 +203,7 @@
             this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(401, 221);
+            this.cmdEliminar.Location = new System.Drawing.Point(303, 223);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 6;
@@ -217,7 +217,7 @@
             this.cmEditar.BackColor = System.Drawing.SystemColors.Control;
             this.cmEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(301, 221);
+            this.cmEditar.Location = new System.Drawing.Point(203, 223);
             this.cmEditar.Name = "cmEditar";
             this.cmEditar.Size = new System.Drawing.Size(94, 36);
             this.cmEditar.TabIndex = 5;
@@ -231,7 +231,7 @@
             this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(201, 221);
+            this.cmdAgregar.Location = new System.Drawing.Point(103, 223);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 4;
@@ -249,10 +249,10 @@
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(11, 65);
+            this.grdView.Location = new System.Drawing.Point(12, 62);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 150);
+            this.grdView.Size = new System.Drawing.Size(474, 154);
             this.grdView.TabIndex = 8;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
@@ -277,9 +277,9 @@
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(0, 1);
+            this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 58);
+            this.panel1.Size = new System.Drawing.Size(495, 55);
             this.panel1.TabIndex = 7;
             // 
             // cmdBuscar
@@ -287,7 +287,7 @@
             this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(394, 7);
+            this.cmdBuscar.Location = new System.Drawing.Point(390, 7);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
             this.cmdBuscar.TabIndex = 2;
@@ -298,19 +298,19 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtBuscar.Location = new System.Drawing.Point(59, 11);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(324, 26);
+            this.txtBuscar.Size = new System.Drawing.Size(325, 24);
             this.txtBuscar.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label1.Location = new System.Drawing.Point(3, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 20);
+            this.label1.Size = new System.Drawing.Size(55, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar";
             // 
@@ -318,7 +318,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 435);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.CaptionButtonColor = System.Drawing.Color.White;
+            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
+            this.CaptionForeColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(503, 438);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
