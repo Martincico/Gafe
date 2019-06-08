@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,9 +80,9 @@
             // 
             // Id
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Id.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
             this.Id.FillWeight = 80F;
             this.Id.HeaderText = "Clave";
             this.Id.Name = "Id";
@@ -303,6 +303,7 @@
             this.cmdEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEliminar.UseVisualStyleBackColor = false;
             this.cmdEliminar.Visible = false;
+            this.cmdEliminar.Click += new System.EventHandler(this.cmdEliminar_Click);
             // 
             // cmdEditar
             // 
@@ -319,6 +320,7 @@
             this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEditar.UseVisualStyleBackColor = false;
             this.cmdEditar.Visible = false;
+            this.cmdEditar.Click += new System.EventHandler(this.cmdEditar_Click);
             // 
             // cmdInsertar
             // 
@@ -335,6 +337,7 @@
             this.cmdInsertar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdInsertar.UseVisualStyleBackColor = false;
             this.cmdInsertar.Visible = false;
+            this.cmdInsertar.Click += new System.EventHandler(this.cmdInsertar_Click);
             // 
             // cmdCancelar
             // 
@@ -350,6 +353,7 @@
             this.cmdCancelar.Text = "Cancelar";
             this.cmdCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdCancelar.UseVisualStyleBackColor = false;
+            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
             // 
             // cmdSeleccionar
             // 
