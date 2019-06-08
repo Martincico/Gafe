@@ -186,5 +186,26 @@ namespace GAFE
         {
 
         }
+
+        private void RibMenu_OfficeMenu_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CatsUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CatsAsignaPer_Click(object sender, EventArgs e)
+        {
+            frmSegAccesos fm = new frmSegAccesos(db);
+            Nav(fm, panelContenedor);
+        }
     }
 }

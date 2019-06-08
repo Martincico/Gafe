@@ -12,10 +12,11 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 
+using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmEmpresas : Form
+    public partial class frmEmpresas : MetroForm
     {
         private string path;
         private int opcion;
@@ -296,6 +297,5 @@ namespace GAFE
 
             return dv;
         }
-
     }
 }

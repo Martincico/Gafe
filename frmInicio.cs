@@ -16,7 +16,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmLogin : MetroForm
+    public partial class frmInicio : MetroForm
     {
 
         DateTime hoy;
@@ -33,15 +33,16 @@ namespace GAFE
         Form Flg;
 
 
-        public frmLogin()
+        public frmInicio()
         {
             InitializeComponent();
-            path = Directory.GetCurrentDirectory();
+            //path = Directory.GetCurrentDirectory();
         }
 
-        public frmLogin(string id, string empresa, string servidor, string datos, string usr, string pwd,Form emp)
+        public frmInicio(string id, string empresa, string servidor, string datos, string usr, string pwd,Form emp)
         {
             InitializeComponent();
+            /*
             Id = id;
             Empresa = empresa;
             Servidor = servidor;
@@ -49,6 +50,7 @@ namespace GAFE
             Usuario = usr;
             Password = pwd;
             Flg = emp;
+            */
             // path = Directory.GetCurrentDirectory();
 
         }
@@ -59,18 +61,18 @@ namespace GAFE
             this.Close();
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
+        private void frmInicio_Load(object sender, EventArgs e)
         {
             hoy = DateTime.Now;
             lblFecha.Text = hoy.ToLongDateString() + " " + hoy.ToShortTimeString();
-
+            /*
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
                 MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-
+            */
         }
 
 
@@ -132,7 +134,7 @@ namespace GAFE
             }
         }
 
-        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmInicio_FormClosed(object sender, FormClosedEventArgs e)
         {
             Flg.Close();
         }
