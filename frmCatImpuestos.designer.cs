@@ -82,7 +82,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveImpuesto);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(2, 265);
+            this.panel2.Location = new System.Drawing.Point(1, 265);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(495, 173);
             this.panel2.TabIndex = 12;

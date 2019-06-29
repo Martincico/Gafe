@@ -13,6 +13,8 @@ using System.Xml;
 using System.IO;
 using System.Net;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 { 
     public partial class frmEmpleados : Form
@@ -46,7 +48,10 @@ namespace GAFE
         {
             InitializeComponent();
             db = Odat;
-           // Perfil = perfil;
+            // Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
 
@@ -84,7 +89,7 @@ namespace GAFE
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
         }
@@ -143,7 +148,7 @@ namespace GAFE
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatEmpleados pui = new PuiCatEmpleados(db);
@@ -156,7 +161,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }
@@ -231,7 +236,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -267,7 +272,7 @@ namespace GAFE
 
                     sbit.AgregarBitacora();
 
-                    MessageBox.Show("Registro  agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro  agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
@@ -291,7 +296,7 @@ namespace GAFE
 
                     if (pui.ActualizaEmpleado() >= 0)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Size = this.MinimumSize;
                     }                   
@@ -301,7 +306,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -313,12 +318,12 @@ namespace GAFE
             Boolean dv = true;
             if (String.IsNullOrEmpty(txtCodEmpleado.Text))
             {
-                MessageBox.Show("Tienes que capturar el codigo del Operador", "CatOperador", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Tienes que capturar el codigo del Operador", "CatOperador", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             if (String.IsNullOrEmpty(txtNombre.Text))
             {
-                MessageBox.Show("Tienes que capturar el nombre del Operador", "CatOperador", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Tienes que capturar el nombre del Operador", "CatOperador", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             return dv;

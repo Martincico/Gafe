@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatInventarioMovtos));
             this.cmdEliminar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
@@ -56,10 +55,10 @@
             // 
             // cmdEliminar
             // 
-            this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(358, 420);
+            this.cmdEliminar.Location = new System.Drawing.Point(468, 420);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 5;
@@ -70,10 +69,10 @@
             // 
             // cmdAgregar
             // 
-            this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAgregar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAgregar.Image")));
+            this.cmdAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(559, 420);
+            this.cmdAgregar.Location = new System.Drawing.Point(368, 420);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 4;
@@ -88,10 +87,10 @@
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdView.Location = new System.Drawing.Point(9, 141);
+            this.grdView.Location = new System.Drawing.Point(4, 135);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(644, 273);
+            this.grdView.Size = new System.Drawing.Size(663, 279);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
@@ -99,7 +98,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.lblTipoMovtos);
             this.panel1.Controls.Add(this.cboTipoMovtos);
@@ -118,26 +117,26 @@
             this.panel1.Controls.Add(this.cmdRestablecer);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(672, 134);
+            this.panel1.Size = new System.Drawing.Size(672, 128);
             this.panel1.TabIndex = 7;
             // 
             // lblTipoMovtos
             // 
             this.lblTipoMovtos.AutoSize = true;
-            this.lblTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipoMovtos.Location = new System.Drawing.Point(9, 70);
             this.lblTipoMovtos.Name = "lblTipoMovtos";
-            this.lblTipoMovtos.Size = new System.Drawing.Size(98, 15);
+            this.lblTipoMovtos.Size = new System.Drawing.Size(108, 16);
             this.lblTipoMovtos.TabIndex = 17;
             this.lblTipoMovtos.Text = "Tipo Movimiento";
             // 
             // cboTipoMovtos
             // 
-            this.cboTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMovtos.FormattingEnabled = true;
             this.cboTipoMovtos.Location = new System.Drawing.Point(141, 67);
             this.cboTipoMovtos.Name = "cboTipoMovtos";
-            this.cboTipoMovtos.Size = new System.Drawing.Size(264, 23);
+            this.cboTipoMovtos.Size = new System.Drawing.Size(264, 24);
             this.cboTipoMovtos.TabIndex = 18;
             this.cboTipoMovtos.SelectedValueChanged += new System.EventHandler(this.cboTipoMovtos_SelectedValueChanged);
             // 
@@ -145,10 +144,10 @@
             // 
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(241, 96);
+            this.textBox1.Location = new System.Drawing.Point(264, 96);
             this.textBox1.MaxLength = 100;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(58, 22);
+            this.textBox1.Size = new System.Drawing.Size(84, 22);
             this.textBox1.TabIndex = 16;
             // 
             // txtCodigo
@@ -158,113 +157,115 @@
             this.txtCodigo.Location = new System.Drawing.Point(141, 96);
             this.txtCodigo.MaxLength = 100;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(58, 22);
+            this.txtCodigo.Size = new System.Drawing.Size(95, 22);
             this.txtCodigo.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(9, 99);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 15);
+            this.label3.Size = new System.Drawing.Size(57, 16);
             this.label3.TabIndex = 14;
             this.label3.Text = "Folio de";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(213, 99);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(242, 99);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 15);
+            this.label4.Size = new System.Drawing.Size(16, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "a";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(420, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 15);
+            this.label2.Size = new System.Drawing.Size(16, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "a";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(435, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 15);
+            this.label1.Size = new System.Drawing.Size(115, 16);
             this.label1.TabIndex = 12;
             this.label1.Text = "Fecha expedición";
             // 
             // dtFechaFin
             // 
+            this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaFin.Location = new System.Drawing.Point(440, 70);
             this.dtFechaFin.Name = "dtFechaFin";
-            this.dtFechaFin.Size = new System.Drawing.Size(104, 20);
+            this.dtFechaFin.Size = new System.Drawing.Size(104, 22);
             this.dtFechaFin.TabIndex = 11;
             this.dtFechaFin.ValueChanged += new System.EventHandler(this.dtFechaFin_ValueChanged);
             // 
             // dtFechaInicio
             // 
+            this.dtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtFechaInicio.Location = new System.Drawing.Point(440, 36);
             this.dtFechaInicio.Name = "dtFechaInicio";
-            this.dtFechaInicio.Size = new System.Drawing.Size(104, 20);
+            this.dtFechaInicio.Size = new System.Drawing.Size(104, 22);
             this.dtFechaInicio.TabIndex = 10;
             this.dtFechaInicio.ValueChanged += new System.EventHandler(this.dtFechaInicio_ValueChanged);
             // 
             // lblAlmaOri
             // 
             this.lblAlmaOri.AutoSize = true;
-            this.lblAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlmaOri.Location = new System.Drawing.Point(9, 41);
             this.lblAlmaOri.Name = "lblAlmaOri";
-            this.lblAlmaOri.Size = new System.Drawing.Size(95, 15);
+            this.lblAlmaOri.Size = new System.Drawing.Size(104, 16);
             this.lblAlmaOri.TabIndex = 8;
             this.lblAlmaOri.Text = "Almacén Origen";
             // 
             // cboAlmaOri
             // 
-            this.cboAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAlmaOri.FormattingEnabled = true;
             this.cboAlmaOri.Location = new System.Drawing.Point(141, 38);
             this.cboAlmaOri.Name = "cboAlmaOri";
-            this.cboAlmaOri.Size = new System.Drawing.Size(264, 23);
+            this.cboAlmaOri.Size = new System.Drawing.Size(264, 24);
             this.cboAlmaOri.TabIndex = 9;
             this.cboAlmaOri.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
             // 
             // lblProveedor
             // 
             this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProveedor.Location = new System.Drawing.Point(9, 12);
             this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(63, 15);
+            this.lblProveedor.Size = new System.Drawing.Size(72, 16);
             this.lblProveedor.TabIndex = 6;
             this.lblProveedor.Text = "Proveedor";
             // 
             // cboProveedor
             // 
-            this.cboProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProveedor.FormattingEnabled = true;
             this.cboProveedor.Location = new System.Drawing.Point(141, 9);
             this.cboProveedor.Name = "cboProveedor";
-            this.cboProveedor.Size = new System.Drawing.Size(264, 23);
+            this.cboProveedor.Size = new System.Drawing.Size(264, 24);
             this.cboProveedor.TabIndex = 7;
             this.cboProveedor.SelectedValueChanged += new System.EventHandler(this.cboProveedor_SelectedValueChanged);
             // 
             // cmdRestablecer
             // 
-            this.cmdRestablecer.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdRestablecer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdRestablecer.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdRestablecer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.cmdRestablecer.Location = new System.Drawing.Point(566, 36);
+            this.cmdRestablecer.Location = new System.Drawing.Point(566, 25);
             this.cmdRestablecer.Name = "cmdRestablecer";
             this.cmdRestablecer.Size = new System.Drawing.Size(85, 54);
             this.cmdRestablecer.TabIndex = 2;
@@ -275,10 +276,10 @@
             // 
             // cmdConsultar
             // 
-            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdConsultar.Image = ((System.Drawing.Image)(resources.GetObject("cmdConsultar.Image")));
+            this.cmdConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(178, 420);
+            this.cmdConsultar.Location = new System.Drawing.Point(568, 420);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 3;
@@ -289,8 +290,8 @@
             // 
             // cmdImprimir
             // 
-            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdImprimir.Image = ((System.Drawing.Image)(resources.GetObject("cmdImprimir.Image")));
+            this.cmdImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdImprimir.Image = global::GAFE.Properties.Resources.printer;
             this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdImprimir.Location = new System.Drawing.Point(9, 420);
             this.cmdImprimir.Name = "cmdImprimir";
@@ -304,7 +305,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 461);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.CaptionButtonColor = System.Drawing.Color.White;
+            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
+            this.CaptionForeColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(673, 464);
             this.Controls.Add(this.cmdImprimir);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);

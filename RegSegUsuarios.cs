@@ -47,6 +47,22 @@ namespace GAFE
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
+        public int UpdTemaUsuario()
+        {
+            string sql = "Update SUsuarios set  " +
+                         "StiloTema = @StiloTema  " +
+                         "Where Usuario = @Usuario";
+            return db.DeleteRegistro(sql, ArrParametros);
+        }
+
+        public int UpdFondoUsuario()
+        {
+            string sql = "Update SUsuarios set  " +
+                         "Fondo = @Fondo  " +
+                         "Where Usuario = @Usuario";
+            return db.DeleteRegistro(sql, ArrParametros);
+        }
+
         public int DeleteUsuario()
         {
             string sql = "Delete from SUsuarios where Usuario = @Usuario";
@@ -65,7 +81,7 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select Usuario,Nombre,Password,CodPerfil " +
+            string Sql = "Select Usuario,Nombre,Password,CodPerfil,ClaveAlmacen,StiloTema, Fondo " +
                           "from SUsuarios where Usuario =@Usuario";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
@@ -89,6 +105,15 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "Select  CodPerfil,idNodo,idPadre,Acceso " +
                           "from SAccesos where CodPerfil =@CodPerfil";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        public SqlDataAdapter EstiloUser()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select Encabezado,HoverEncabezado,FontColor " +
+                          "from CfgEstilos where CveStilo =@Usuario";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }

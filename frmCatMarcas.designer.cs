@@ -194,7 +194,7 @@
             this.panel2.Controls.Add(this.lblCodEmpleado);
             this.panel2.Location = new System.Drawing.Point(1, 268);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 143);
+            this.panel2.Size = new System.Drawing.Size(495, 135);
             this.panel2.TabIndex = 14;
             // 
             // chkEstatus
@@ -215,7 +215,7 @@
             this.cmdCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(390, 99);
+            this.cmdCancelar.Location = new System.Drawing.Point(390, 92);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 11;
@@ -229,7 +229,7 @@
             this.cmdAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(290, 99);
+            this.cmdAceptar.Location = new System.Drawing.Point(290, 92);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 10;
@@ -277,7 +277,7 @@
             this.lblCodEmpleado.Name = "lblCodEmpleado";
             this.lblCodEmpleado.Size = new System.Drawing.Size(56, 18);
             this.lblCodEmpleado.TabIndex = 1;
-            this.lblCodEmpleado.Text = "Codigo";
+            this.lblCodEmpleado.Text = "Código";
             // 
             // frmCatMarcas
             // 
@@ -288,7 +288,7 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(503, 413);
+            this.ClientSize = new System.Drawing.Size(503, 403);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -298,7 +298,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 449);
+            this.MaximumSize = new System.Drawing.Size(515, 439);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(515, 299);
             this.Name = "frmCatMarcas";

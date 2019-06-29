@@ -16,18 +16,19 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmEmpresas : MetroForm
+    public partial class frmSlcEmpresas : MetroForm
     {
         private string path;
         private int opcion;
         String Err;
-        string clave_secreta = "necesitounaprostitutaoatuhermana";
+        string clave_secreta;
         clsEncripta Seg;
 
-        public frmEmpresas()
+        public frmSlcEmpresas(String ph, String clave)
         {
             InitializeComponent();
-            path = Directory.GetCurrentDirectory()+ "\\SrvConfig.xml";
+            path = ph;
+            clave_secreta = clave;
             Seg = new clsEncripta();
         }
 
@@ -86,13 +87,13 @@ namespace GAFE
                     this.cargaDataGrid();
                     this.LimpiarControles();
                     this.Size = this.MinimumSize;
-                    //MessageBox.Show("Cliente agregado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //MessageBoxAdv.Show("Cliente agregado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
-                    MessageBox.Show("El codigo del cliente ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxAdv.Show("El codigo del cliente ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show(Err, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(Err, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 
@@ -149,7 +150,7 @@ namespace GAFE
         private void cmdEliminar_Click(object sender, EventArgs e)
         {
             string ClaveEmp = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            if (MessageBox.Show("Esta seguro de eliminar la empresa  " + ClaveEmp + " " + grdView[1, grdView.CurrentRow.Index].Value.ToString(),
+            if (MessageBoxAdv.Show("Esta seguro de eliminar la empresa  " + ClaveEmp + " " + grdView[1, grdView.CurrentRow.Index].Value.ToString(),
                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 XElement xEle = XElement.Load(path);
@@ -173,7 +174,7 @@ namespace GAFE
                 cmdEditar.Visible = (cmdEditar.Visible == false) ? true : false;
                 cmdEliminar.Visible = (cmdEliminar.Visible == false) ? true : false;
             }
-                
+               
         }
 
         private void cmdInsertar_Click(object sender, EventArgs e)
@@ -242,6 +243,7 @@ namespace GAFE
 
         private void cmdSeleccionar_Click(object sender, EventArgs e)
         {
+            /*
             string id = grdView[0, grdView.CurrentRow.Index].Value.ToString();
             string emp = grdView[1, grdView.CurrentRow.Index].Value.ToString();
             string srv = grdView[2, grdView.CurrentRow.Index].Value.ToString();
@@ -250,12 +252,12 @@ namespace GAFE
             string pwd = Seg.desencriptar(grdView[5, grdView.CurrentRow.Index].Value.ToString(),clave_secreta);
             char[] charsToTrim = { '\0' };
             pwd = pwd.Trim(charsToTrim);
-            
+            */
             
 
-            frmLogin flg = new frmLogin(id, emp, srv, dat, usr, pwd,this);
-            this.Hide();
-            flg.Show();
+            //frmLogin flg = new frmLogin(id, emp, srv, dat, usr, pwd,this);
+            this.Close();
+            //flg.Show();
             
         }
 

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatArticulos));
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtClaveArticulo = new System.Windows.Forms.TextBox();
@@ -534,7 +533,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdCancelar.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancelar.Image")));
+            this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCancelar.Location = new System.Drawing.Point(606, 460);
             this.cmdCancelar.Name = "cmdCancelar";
@@ -548,7 +547,7 @@
             // cmdAceptar
             // 
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdAceptar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAceptar.Image")));
+            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Aceptar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(501, 460);
             this.cmdAceptar.Name = "cmdAceptar";
@@ -584,6 +583,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.CaptionButtonColor = System.Drawing.Color.White;
+            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
+            this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(722, 508);
             this.Controls.Add(this.cboMarca);
             this.Controls.Add(this.label13);
@@ -632,6 +636,8 @@
             this.Controls.Add(this.txtClaveArticulo);
             this.Controls.Add(this.lblCodEmpleado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCatArticulos";
             this.ShowIcon = false;
             this.Text = "Artículos";

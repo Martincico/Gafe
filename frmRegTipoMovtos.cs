@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
     public partial class frmRegTipoMovtos : Form
@@ -28,7 +30,10 @@ namespace GAFE
             InitializeComponent();
             opcion = Op;
             db = Odat;
-            
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
             LimpiarControles();
             OpcionControles(true);
             LleCboClaseMov();
@@ -118,7 +123,7 @@ namespace GAFE
                 //if (pui.AgregarTipoMov() >= 1)
                 if (set_Campos() >= 1)
                 {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -135,7 +140,7 @@ namespace GAFE
                     //if (pui.ActualizaTipoMov() >= 0)
                     if (set_Campos() >= 0)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Close();
                     }
@@ -143,7 +148,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -206,49 +211,49 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
-                MessageBox.Show("Código: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveTipoMov.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Descripción: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Descripción: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescCorta.Text))
             {
-                MessageBox.Show("Descripción Corta: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción Corta: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtDescCorta.Text))
                 {
-                    MessageBox.Show("Descripción Corta: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción Corta: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(cboCfgCatFoliadores.Text))
             {
-                MessageBox.Show("Foliador: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Foliador: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
 
@@ -256,7 +261,7 @@ namespace GAFE
             {
                 if (!Util.Letras(txtFmtoImpresion.Text))
                 {
-                    MessageBox.Show("Nombre Fmto Impr: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Nombre Fmto Impr: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -356,7 +361,7 @@ namespace GAFE
             for (int i = 0; i <= combobx.Items.Count - 1; i++)
             {
                 DataRowView cb = (DataRowView)combobx.Items[i];
-                MessageBox.Show("Registro " + cb.Row.ItemArray[0].ToString(), "Confirmacion", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Registro " + cb.Row.ItemArray[0].ToString(), "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                 if (cb.Row.ItemArray[0].ToString() == value)
                     return i;

@@ -13,9 +13,11 @@ using System.Xml;
 using System.IO;
 using System.Net;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmKardex : Form
+    public partial class frmKardex : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
@@ -128,19 +130,19 @@ namespace GAFE
             
             if(String.IsNullOrEmpty(txtClaveArticulo.Text))
             {
-                MessageBox.Show("Clave de Artículo: Debe seleccionar un artículo.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Clave de Artículo: Debe seleccionar un artículo.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmdArticulo.Focus();
                 resp = false;
             }
             if(cboAlmacenes.SelectedIndex<0)
             {
-                MessageBox.Show("Clave de Almacen: Debe seleccionar un Almacen.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Clave de Almacen: Debe seleccionar un Almacen.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboAlmacenes.Focus();
                 resp = false;
             }
             if(dtFechaInicio.Value>dtFechaFin.Value)
             {
-                MessageBox.Show("Fecha Inicio: La Fecha de Inicio debe ser mayor a la Fecha Final.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Fecha Inicio: La Fecha de Inicio debe ser mayor a la Fecha Final.", "Kardex", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dtFechaInicio.Focus();
                 resp = false;
             }
@@ -154,6 +156,26 @@ namespace GAFE
             print.Kardex(dt, txtClaveArticulo.Text+" - "+txtDscArticulo.Text, cboAlmacenes.Text, dtFechaInicio.Value, dtFechaFin.Value);
             this.Cursor = Cursors.Default;
             print.ShowDialog();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtFechaFin_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

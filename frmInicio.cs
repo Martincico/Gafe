@@ -3,76 +3,86 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.IO;
 using System.Xml;
+using System.Xml.Linq;
 using DatSql;
 
 using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmInicio : MetroForm
-    {
+    public partial class frmInicio : Form    {
 
         DateTime hoy;
         private MsSql db = null;
         private string path;
 
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
+        private string Servidor = "";
 
-        Form Flg;
-
+        string clave_secreta = "necesitounaprostitutaoatuhermana";
+        clsEncripta Seg;
+        public DatCfgUsuario user;
 
         public frmInicio()
         {
             InitializeComponent();
-            //path = Directory.GetCurrentDirectory();
+            path = Directory.GetCurrentDirectory() + "\\SrvConfig.xml";
+            Seg = new clsEncripta();
         }
 
-        public frmInicio(string id, string empresa, string servidor, string datos, string usr, string pwd,Form emp)
-        {
-            InitializeComponent();
-            /*
-            Id = id;
-            Empresa = empresa;
-            Servidor = servidor;
-            Datos = datos;
-            Usuario = usr;
-            Password = pwd;
-            Flg = emp;
-            */
-            // path = Directory.GetCurrentDirectory();
-
-        }
-
-
-        private void cmdCancelar_Click(object sender, EventArgs e)
+       private void cmdCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void frmInicio_Load(object sender, EventArgs e)
         {
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
+
             hoy = DateTime.Now;
             lblFecha.Text = hoy.ToLongDateString() + " " + hoy.ToShortTimeString();
-            /*
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
+            LoadCboEmpresas();
+            this.KeyPress += new KeyPressEventHandler(this.keypressed);
+
+
+        }
+
+        private void keypressed(Object o, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 9)//assci table = ctrl-I
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                frmSlcEmpresas Ventana = new frmSlcEmpresas(path, clave_secreta);
+                Ventana.ShowDialog();
+                LoadCboEmpresas();
             }
-            */
+            
+        }
+
+        public void LoadCboEmpresas()
+        {
+            XElement xelement = XElement.Load(path);
+            IEnumerable<XElement> Servidores = xelement.Elements();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id", typeof(string));
+            dt.Columns.Add("Empresa", typeof(string));
+
+            foreach (var Servidor in Servidores)
+            {
+                dt.Rows.Add(Servidor.Element("Id").Value, Servidor.Element("Empresa").Value);
+            }
+            
+            cboEmpresas.DataSource = dt;
+            cboEmpresas.ValueMember = "Id";
+            cboEmpresas.DisplayMember = "Empresa";
+            ;
         }
 
 
@@ -99,47 +109,123 @@ namespace GAFE
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
+            string Id ="";
+            string Empresa = "";
+            
+            string Datos = "";
+            string Usuario = "";
+            string Password = "";
             if (txtUsuario.Text.Length == 0 || txtPassword.Text.Length == 0)
             {
-                MessageBox.Show("No puedes iniciar accesar con esas credenciales", "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("No puedes iniciar accesar con esas credenciales", "Alerta", MessageBoxButtons.OK,
                  MessageBoxIcon.Exclamation);
             }
             else
             {
-                PuiSegUsuarios us = new PuiSegUsuarios(db);
-                us.keySusuario = txtUsuario.Text;
-                us.getUsuario();
-                if (String.Equals(us.keySusuario, txtUsuario.Text) == true)
+                string ClaveEmp = Convert.ToString(cboEmpresas.SelectedValue);
+
+                if (cboEmpresas.SelectedIndex < 0 || ClaveEmp.Equals("System.Data.DataRowView"))
                 {
-                    if (String.Equals(us.cmpPassword, txtPassword.Text) == true)
-                    {
-                        Menu mn = new Menu(db, this, us.cmpCodPerfil);
-                        this.Hide();
-                        mn.Show();
-                        
-                        //MessageBox.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
-                        //MessageBoxIcon.Exclamation);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Contraseña incorrecta", "Alerta", MessageBoxButtons.OK,
-                     MessageBoxIcon.Exclamation);
-                    }
+                    MessageBoxAdv.Show("No ha seleccionado ningún servidor", "Alerta", MessageBoxButtons.OK,
+                      MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    MessageBox.Show("El usuario no esta registrado en el sistema", "Alerta", MessageBoxButtons.OK,
-                      MessageBoxIcon.Exclamation);
+                    XElement xEle = XElement.Load(path);
+                    var qr = from Servidor in xEle.Elements("Servidor")
+                             where Servidor.Element("Id").Value == ClaveEmp
+                             select new
+                             {
+                                 Id = (string)Servidor.Element("Id"),
+                                 Empresa = (string)Servidor.Element("Empresa"),
+                                 Nombre = (string)Servidor.Element("Nombre"),
+                                 Datos = (string)Servidor.Element("Datos"),
+                                 Usuario = (string)Servidor.Element("Usuario"),
+                                 Password = (string)Servidor.Element("Password")
+                             };
+                    foreach (var itm in qr)
+                    {
+                        Id = itm.Id;
+                        Empresa = itm.Empresa;
+                        Servidor = itm.Nombre;
+                        Datos = itm.Datos;
+                        Usuario = itm.Usuario;
+                        Password = Seg.desencriptar(itm.Password, clave_secreta); //desenciptar
+                        char[] charsToTrim = { '\0' };
+                        Password = Password.Trim(charsToTrim);
+                    }
+
+                    db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
+                    if (db.Conectar() < 1)
+                    {
+                        MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+//                        Application.Exit();
+                    }
+                    else
+                    {
+
+                        PuiSegUsuarios us = new PuiSegUsuarios(db);
+                        us.keySusuario = txtUsuario.Text;
+                        Object[] reg = us.getUsuario();
+                        if (reg.Length >= 1)
+                        {
+                            if (String.Equals(us.keySusuario, txtUsuario.Text) == true)
+                            {
+                                if (String.Equals(us.cmpPassword, txtPassword.Text) == true)
+                                {
+                                    user = new DatCfgUsuario(reg);
+                                    Menu mn = new Menu(db, this, user);
+                                    this.Hide();
+                                    mn.Show();
+
+                                    //MessageBoxAdv.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
+                                    //MessageBoxIcon.Exclamation);
+                                }
+                                else
+                                {
+                                    MessageBoxAdv.Show("Contraseña incorrecta", "Alerta", MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            else
+                            {
+                                MessageBoxAdv.Show("El usuario no esta registrado en el sistema", "Alerta", MessageBoxButtons.OK,
+                                  MessageBoxIcon.Exclamation);
+                            }
+                        }
+                        else
+                        {
+                            MessageBoxAdv.Show("El usuario no esta registrado en el sistema", "Alerta", MessageBoxButtons.OK,
+                              MessageBoxIcon.Exclamation);
+                        }
+                    }
                 }
             }
         }
 
-        private void frmInicio_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Flg.Close();
-        }
+  
 
         private void lblFecha_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboEmpresas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

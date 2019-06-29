@@ -13,9 +13,11 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatTipoMovtos : Form
+    public partial class frmCatTipoMovtos : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int idxG;
@@ -45,6 +47,9 @@ namespace GAFE
             InitializeComponent();
             db = Odat;
             // Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
 
@@ -82,7 +87,7 @@ namespace GAFE
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             this.Size = this.MinimumSize;
@@ -116,7 +121,7 @@ namespace GAFE
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
@@ -130,7 +135,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }
@@ -178,7 +183,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

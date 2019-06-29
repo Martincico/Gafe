@@ -142,7 +142,7 @@ namespace GAFE
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatUMedidas pui = new PuiCatUMedidas(db);
@@ -156,7 +156,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }
@@ -231,7 +231,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -249,7 +249,7 @@ namespace GAFE
 
                 if (pui.AgregarUMedida() >= 1)
                 {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
@@ -272,7 +272,7 @@ namespace GAFE
 
                     if (pui.ActualizaUMedida() >= 0)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Size = this.MinimumSize;
                     }
@@ -282,7 +282,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -295,28 +295,28 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveUMedida.Text))
             {
-                MessageBox.Show("Código: No puede ir vacío.", "CatUMedidaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatUMedidaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveUMedida.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatUMedidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatUMedidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Descripción: No puede ir vacío.", "CatUMedidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatUMedidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Descripción: Contiene caracteres no validos.", "CatUMedidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatUMedidas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -366,7 +366,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }

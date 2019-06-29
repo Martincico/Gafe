@@ -12,10 +12,11 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmExistencias : Form
+    public partial class frmExistencias : MetroForm
     {
 
         private SqlDataAdapter DatosTbl;
@@ -79,7 +80,7 @@ namespace GAFE
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             */
@@ -152,7 +153,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -205,6 +206,11 @@ namespace GAFE
             frmRepExistencia Rep = new frmRepExistencia(Articulo, Almacen, Linea, Buscar, db);
             Rep.Show();
             
+        }
+
+        private void cmdBuscar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

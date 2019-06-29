@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
     class ClsUtilerias
@@ -75,7 +77,7 @@ namespace GAFE
 
             {
                 e.Handled = true;
-                MessageBox.Show("Solo letras y números", "Carácter no válido", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Solo letras y números", "Carácter no válido", MessageBoxButtons.OK,
                                        MessageBoxIcon.Warning);
             }
         }
@@ -87,7 +89,7 @@ namespace GAFE
                 || (e.KeyChar) > 122)
             {
                 e.Handled = true;
-                MessageBox.Show("Solo letras", "Carácter no válido", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Solo letras", "Carácter no válido", MessageBoxButtons.OK,
                                        MessageBoxIcon.Warning);
             }
         }
@@ -99,7 +101,7 @@ namespace GAFE
 
             {
                 e.Handled = true;
-                MessageBox.Show("Solo números", "Carácter no válido", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Solo números", "Carácter no válido", MessageBoxButtons.OK,
                                       MessageBoxIcon.Warning);
             }
         }

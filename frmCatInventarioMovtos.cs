@@ -13,9 +13,11 @@ using System.Xml;
 using System.IO;
 using System.Collections;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatInventarioMovtos : Form
+    public partial class frmCatInventarioMovtos : MetroForm
     {
         private String TipoDocProv = "MINV"; //MINV aun no sta registrado
         private SqlDataAdapter DatosTbl;
@@ -87,7 +89,7 @@ namespace GAFE
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             
@@ -119,7 +121,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro ",
+                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -184,7 +186,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -244,7 +246,7 @@ namespace GAFE
                 String NoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String IdTipMov = grdView[8, grdView.CurrentRow.Index].Value.ToString();
                 db.IniciaTrans();
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     pui.keyNoMovimiento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
@@ -297,21 +299,21 @@ namespace GAFE
                     {
                         if (pui.EliminaInventarioMov() >= 1)
                         {
-                            MessageBox.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
+                            MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
                                             MessageBoxIcon.Information);
                             db.TerminaTrans();
                             this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBoxAdv.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             db.CancelaTrans();
                         }
 
                     }
                     else
                     {
-                        MessageBox.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBoxAdv.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         db.CancelaTrans();
                     }
                 }
@@ -320,7 +322,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
 
@@ -402,7 +404,7 @@ namespace GAFE
             else//Date1 Mayor que Date2
             {
                 dtFechaInicio.Focus();
-                MessageBox.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
              */
 
@@ -410,7 +412,7 @@ namespace GAFE
             if (dtFechaInicio.Value > dtFechaFin.Value)
             {
                 dtFechaInicio.Focus();
-                MessageBox.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
                 LlenaGridView();
@@ -422,7 +424,7 @@ namespace GAFE
             if (dtFechaInicio.Value > dtFechaFin.Value)
             {
                 dtFechaFin.Focus();
-                MessageBox.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
                 LlenaGridView();

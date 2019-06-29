@@ -73,38 +73,39 @@
             this.panel2.Controls.Add(this.txtNombre);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtUsuario);
-            this.panel2.Location = new System.Drawing.Point(1, 263);
+            this.panel2.Location = new System.Drawing.Point(1, 268);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 185);
+            this.panel2.Size = new System.Drawing.Size(495, 182);
             this.panel2.TabIndex = 28;
             // 
             // cboPerfil
             // 
             this.cboPerfil.DisplayMember = "Descripcion";
-            this.cboPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPerfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboPerfil.FormattingEnabled = true;
             this.cboPerfil.Location = new System.Drawing.Point(95, 106);
             this.cboPerfil.Name = "cboPerfil";
-            this.cboPerfil.Size = new System.Drawing.Size(214, 28);
+            this.cboPerfil.Size = new System.Drawing.Size(214, 26);
             this.cboPerfil.TabIndex = 10;
             this.cboPerfil.ValueMember = "Clave";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label4.Location = new System.Drawing.Point(7, 114);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 20);
+            this.label4.Size = new System.Drawing.Size(41, 18);
             this.label4.TabIndex = 24;
             this.label4.Text = "Perfil";
             // 
             // cbVerPassword
             // 
             this.cbVerPassword.AutoSize = true;
+            this.cbVerPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cbVerPassword.Location = new System.Drawing.Point(315, 83);
             this.cbVerPassword.Name = "cbVerPassword";
-            this.cbVerPassword.Size = new System.Drawing.Size(91, 17);
+            this.cbVerPassword.Size = new System.Drawing.Size(120, 22);
             this.cbVerPassword.TabIndex = 22;
             this.cbVerPassword.Text = "Ver Password";
             this.cbVerPassword.UseVisualStyleBackColor = true;
@@ -113,32 +114,32 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label3.Location = new System.Drawing.Point(6, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 20);
+            this.label3.Size = new System.Drawing.Size(75, 18);
             this.label3.TabIndex = 21;
             this.label3.Text = "Password";
             // 
             // txtPassword
             // 
             this.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtPassword.Location = new System.Drawing.Point(95, 74);
             this.txtPassword.MaxLength = 10;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(214, 26);
+            this.txtPassword.Size = new System.Drawing.Size(214, 24);
             this.txtPassword.TabIndex = 9;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label8.Location = new System.Drawing.Point(6, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 20);
+            this.label8.Size = new System.Drawing.Size(60, 18);
             this.label8.TabIndex = 19;
             this.label8.Text = "Usuario";
             // 
@@ -174,31 +175,31 @@
             // txtNombre
             // 
             this.txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtNombre.Location = new System.Drawing.Point(95, 42);
             this.txtNombre.MaxLength = 100;
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(392, 26);
+            this.txtNombre.Size = new System.Drawing.Size(392, 24);
             this.txtNombre.TabIndex = 8;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label2.Location = new System.Drawing.Point(5, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 20);
+            this.label2.Size = new System.Drawing.Size(87, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Descripcion";
             // 
             // txtUsuario
             // 
             this.txtUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtUsuario.Location = new System.Drawing.Point(95, 10);
             this.txtUsuario.MaxLength = 10;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(214, 26);
+            this.txtUsuario.Size = new System.Drawing.Size(214, 24);
             this.txtUsuario.TabIndex = 7;
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -213,10 +214,10 @@
             this.Nombre,
             this.Perfil,
             this.Estatus});
-            this.grdView.Location = new System.Drawing.Point(12, 65);
+            this.grdView.Location = new System.Drawing.Point(12, 62);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 150);
+            this.grdView.Size = new System.Drawing.Size(474, 155);
             this.grdView.TabIndex = 27;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
@@ -253,9 +254,9 @@
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 2);
+            this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 58);
+            this.panel1.Size = new System.Drawing.Size(495, 55);
             this.panel1.TabIndex = 22;
             // 
             // cmdBuscar
@@ -263,7 +264,7 @@
             this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(389, 3);
+            this.cmdBuscar.Location = new System.Drawing.Point(390, 7);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
             this.cmdBuscar.TabIndex = 2;
@@ -274,19 +275,19 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtBuscar.Location = new System.Drawing.Point(59, 11);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(324, 26);
+            this.txtBuscar.Size = new System.Drawing.Size(325, 24);
             this.txtBuscar.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label1.Location = new System.Drawing.Point(3, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 20);
+            this.label1.Size = new System.Drawing.Size(55, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar";
             // 
@@ -294,11 +295,10 @@
             // 
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(108, 221);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(9, 223);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
-            this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
+            this.cmdSeleccionar.Size = new System.Drawing.Size(38, 36);
             this.cmdSeleccionar.TabIndex = 29;
-            this.cmdSeleccionar.Text = "Seleccionar";
             this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Visible = false;
@@ -309,7 +309,7 @@
             this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(13, 221);
+            this.cmdConsultar.Location = new System.Drawing.Point(403, 223);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 23;
@@ -323,7 +323,7 @@
             this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(403, 221);
+            this.cmdEliminar.Location = new System.Drawing.Point(303, 223);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 26;
@@ -337,7 +337,7 @@
             this.cmEditar.BackColor = System.Drawing.SystemColors.Control;
             this.cmEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(303, 221);
+            this.cmEditar.Location = new System.Drawing.Point(203, 223);
             this.cmEditar.Name = "cmEditar";
             this.cmEditar.Size = new System.Drawing.Size(94, 36);
             this.cmEditar.TabIndex = 25;
@@ -351,7 +351,7 @@
             this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(203, 221);
+            this.cmdAgregar.Location = new System.Drawing.Point(103, 223);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 24;
@@ -365,8 +365,13 @@
             this.AcceptButton = this.cmdAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.CancelButton = this.cmdCancelar;
-            this.ClientSize = new System.Drawing.Size(499, 450);
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.CaptionButtonColor = System.Drawing.Color.White;
+            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
+            this.CaptionForeColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(503, 450);
             this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdConsultar);
@@ -382,7 +387,7 @@
             this.MinimumSize = new System.Drawing.Size(515, 300);
             this.Name = "frmCatUsuarios";
             this.ShowIcon = false;
-            this.Text = "Catálogo de Usuarios";
+            this.Text = "Catálogo de usuarios";
             this.Load += new System.EventHandler(this.frmCatUsuarios_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

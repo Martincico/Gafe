@@ -136,14 +136,14 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Descripción: No puede ir vacío.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Descripción: Contiene caracteres no válidos.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no válidos.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
             }
@@ -166,7 +166,7 @@ namespace GAFE
             idxG = -1;
             if (resp >= 0)
             {
-                MessageBox.Show("Operación realizada con éxito", "Confirmacion", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Operación realizada con éxito", "Confirmacion", MessageBoxButtons.OK,
                                    MessageBoxIcon.Information);
                 switch (combo)
                 {
@@ -237,7 +237,7 @@ namespace GAFE
             int aux = 0;
             if (!int.TryParse(cboPaises.SelectedValue.ToString(), out aux))
             {
-                MessageBox.Show("Pais: Seleccione un Pais.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Pais: Seleccione un Pais.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboPaises.Focus();
                 return;
             }
@@ -256,7 +256,7 @@ namespace GAFE
             int aux = 0;
             if (!int.TryParse(cboEstados.SelectedValue.ToString(), out aux))
             {
-                MessageBox.Show("Estado: Seleccione un Estado.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Estado: Seleccione un Estado.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboEstados.Focus();
                 return;
             }
@@ -274,7 +274,7 @@ namespace GAFE
             int aux = 0;
             if (!int.TryParse(cboMunicipios.SelectedValue.ToString(), out aux))
             {
-                MessageBox.Show("Municipio: Seleccione un Municipio.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Municipio: Seleccione un Municipio.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboMunicipios.Focus();
                 return;
             }
@@ -293,7 +293,7 @@ namespace GAFE
             {
                 int aux = int.Parse(cboPaises.SelectedValue.ToString());
 
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + cboPaises.Text,
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + cboPaises.Text,
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatGeografia pui = new PuiCatGeografia(db);
@@ -304,7 +304,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Pais: Seleccione un Pais. \n " +ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Pais: Seleccione un Pais. \n " +ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboPaises.Focus();
             }
@@ -316,7 +316,7 @@ namespace GAFE
             {
                 int aux = int.Parse(cboEstados.SelectedValue.ToString());
 
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + cboEstados.Text,
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + cboEstados.Text,
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatGeografia pui = new PuiCatGeografia(db);
@@ -328,7 +328,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Estado: Seleccione un Estado. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Estado: Seleccione un Estado. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboEstados.Focus();
             }
@@ -340,7 +340,7 @@ namespace GAFE
             {
                 int aux = int.Parse(cboMunicipios.SelectedValue.ToString());
 
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + cboMunicipios.Text,
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + cboMunicipios.Text,
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatGeografia pui = new PuiCatGeografia(db);
@@ -352,7 +352,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Pais: Seleccione un Pais. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Pais: Seleccione un Pais. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboMunicipios.Focus();
             }
@@ -364,7 +364,7 @@ namespace GAFE
             {
                 int aux = int.Parse(cboLocalidad.SelectedValue.ToString());
 
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + cboLocalidad.Text,
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + cboLocalidad.Text,
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatGeografia pui = new PuiCatGeografia(db);
@@ -376,7 +376,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Pais: Seleccione un Pais. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Pais: Seleccione un Pais. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboLocalidad.Focus();
             }
@@ -393,7 +393,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Pais: Seleccione un Pais. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Pais: Seleccione un Pais. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboPaises.Focus();
             }
@@ -411,7 +411,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Estado: Seleccione un Estado. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Estado: Seleccione un Estado. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboEstados.Focus();
             }
@@ -428,7 +428,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Municipio: Seleccione un Municipio. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Municipio: Seleccione un Municipio. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboMunicipios.Focus();
             }
@@ -446,7 +446,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Localidad: Seleccione un Localidad. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Localidad: Seleccione un Localidad. \n " + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                 cboMunicipios.Focus();
             }

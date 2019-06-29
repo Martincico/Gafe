@@ -55,7 +55,7 @@
             this.grdView.Location = new System.Drawing.Point(10, 117);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(1039, 374);
+            this.grdView.Size = new System.Drawing.Size(815, 374);
             this.grdView.TabIndex = 31;
             // 
             // panel1
@@ -79,10 +79,11 @@
             // 
             // cmdConsultar
             // 
-            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(716, 37);
+            this.cmdConsultar.Location = new System.Drawing.Point(608, 5);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 53);
             this.cmdConsultar.TabIndex = 27;
@@ -93,39 +94,43 @@
             // 
             // dtFechaFin
             // 
-            this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaFin.Location = new System.Drawing.Point(853, 5);
+            this.dtFechaFin.Location = new System.Drawing.Point(302, 67);
             this.dtFechaFin.Name = "dtFechaFin";
-            this.dtFechaFin.Size = new System.Drawing.Size(150, 26);
+            this.dtFechaFin.Size = new System.Drawing.Size(150, 24);
             this.dtFechaFin.TabIndex = 1009;
+            this.dtFechaFin.ValueChanged += new System.EventHandler(this.dtFechaFin_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(823, 8);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label4.Location = new System.Drawing.Point(272, 70);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 20);
+            this.label4.Size = new System.Drawing.Size(23, 18);
             this.label4.TabIndex = 1008;
             this.label4.Text = "al:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(573, 8);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label3.Location = new System.Drawing.Point(7, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 20);
+            this.label3.Size = new System.Drawing.Size(87, 18);
             this.label3.TabIndex = 1007;
             this.label3.Text = "Periodo del:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // cmdImprimir
             // 
-            this.cmdImprimir.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdImprimir.Image = global::GAFE.Properties.Resources.printer;
             this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdImprimir.Location = new System.Drawing.Point(839, 37);
+            this.cmdImprimir.Location = new System.Drawing.Point(726, 5);
             this.cmdImprimir.Name = "cmdImprimir";
             this.cmdImprimir.Size = new System.Drawing.Size(94, 53);
             this.cmdImprimir.TabIndex = 28;
@@ -137,38 +142,39 @@
             // 
             // dtFechaInicio
             // 
-            this.dtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaInicio.Location = new System.Drawing.Point(670, 5);
+            this.dtFechaInicio.Location = new System.Drawing.Point(105, 67);
             this.dtFechaInicio.Name = "dtFechaInicio";
-            this.dtFechaInicio.Size = new System.Drawing.Size(150, 26);
+            this.dtFechaInicio.Size = new System.Drawing.Size(150, 24);
             this.dtFechaInicio.TabIndex = 1006;
+            this.dtFechaInicio.ValueChanged += new System.EventHandler(this.dtFechaInicio_ValueChanged);
             // 
             // cboAlmacenes
             // 
             this.cboAlmacenes.DisplayMember = "Descripcion";
-            this.cboAlmacenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAlmacenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboAlmacenes.FormattingEnabled = true;
             this.cboAlmacenes.Location = new System.Drawing.Point(104, 33);
             this.cboAlmacenes.Name = "cboAlmacenes";
-            this.cboAlmacenes.Size = new System.Drawing.Size(421, 28);
+            this.cboAlmacenes.Size = new System.Drawing.Size(421, 26);
             this.cboAlmacenes.TabIndex = 1005;
             this.cboAlmacenes.ValueMember = "ClaveAlmacen";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 34);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label2.Location = new System.Drawing.Point(7, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.Size = new System.Drawing.Size(65, 18);
             this.label2.TabIndex = 1004;
             this.label2.Text = "Almacén";
             // 
             // txtClaveArticulo
             // 
             this.txtClaveArticulo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtClaveArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClaveArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtClaveArticulo.Location = new System.Drawing.Point(104, 5);
             this.txtClaveArticulo.MaxLength = 20;
             this.txtClaveArticulo.Name = "txtClaveArticulo";
@@ -179,7 +185,7 @@
             // txtDscArticulo
             // 
             this.txtDscArticulo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDscArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDscArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtDscArticulo.Location = new System.Drawing.Point(216, 5);
             this.txtDscArticulo.MaxLength = 20;
             this.txtDscArticulo.Name = "txtDscArticulo";
@@ -189,8 +195,8 @@
             // 
             // cmdArticulo
             // 
-            this.cmdArticulo.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdArticulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cmdArticulo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdArticulo.Location = new System.Drawing.Point(5, 3);
             this.cmdArticulo.Name = "cmdArticulo";
@@ -205,9 +211,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 503);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.CaptionButtonColor = System.Drawing.Color.White;
+            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
+            this.CaptionForeColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(834, 503);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmKardex";
             this.ShowIcon = false;
             this.Text = "Kardex de Artículos";

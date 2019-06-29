@@ -47,7 +47,7 @@
             // 
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(133, 402);
+            this.cmdConsultar.Location = new System.Drawing.Point(702, 408);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 15;
@@ -60,7 +60,7 @@
             // 
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(523, 402);
+            this.cmdEliminar.Location = new System.Drawing.Point(602, 408);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 18;
@@ -73,7 +73,7 @@
             // 
             this.cmdEditar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEditar.Location = new System.Drawing.Point(423, 402);
+            this.cmdEditar.Location = new System.Drawing.Point(502, 408);
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.Size = new System.Drawing.Size(94, 36);
             this.cmdEditar.TabIndex = 17;
@@ -86,7 +86,7 @@
             // 
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(326, 402);
+            this.cmdAgregar.Location = new System.Drawing.Point(402, 408);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 16;
@@ -104,10 +104,10 @@
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Clave});
-            this.grdView.Location = new System.Drawing.Point(23, 76);
+            this.grdView.Location = new System.Drawing.Point(12, 76);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(765, 320);
+            this.grdView.Size = new System.Drawing.Size(776, 326);
             this.grdView.TabIndex = 19;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
@@ -126,9 +126,9 @@
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(3, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(768, 58);
+            this.panel1.Size = new System.Drawing.Size(794, 58);
             this.panel1.TabIndex = 14;
             // 
             // cmdBuscar
@@ -136,7 +136,7 @@
             this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(652, 7);
+            this.cmdBuscar.Location = new System.Drawing.Point(689, 7);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
             this.cmdBuscar.TabIndex = 2;
@@ -147,20 +147,20 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtBuscar.Location = new System.Drawing.Point(59, 11);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(574, 26);
+            this.txtBuscar.Size = new System.Drawing.Size(624, 24);
             this.txtBuscar.TabIndex = 1;
             this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label1.Location = new System.Drawing.Point(3, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 20);
+            this.label1.Size = new System.Drawing.Size(55, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar";
             // 
@@ -168,7 +168,7 @@
             // 
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(694, 402);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(3, 408);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
             this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
             this.cmdSeleccionar.TabIndex = 20;
@@ -181,6 +181,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
+            this.CaptionButtonColor = System.Drawing.Color.White;
+            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
+            this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.cmdConsultar);

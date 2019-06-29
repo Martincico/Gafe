@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmEmpresas
+    partial class frmSlcEmpresas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,7 +37,6 @@
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cmdCancelar2 = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -54,7 +53,6 @@
             this.cmdEliminar = new System.Windows.Forms.Button();
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdInsertar = new System.Windows.Forms.Button();
-            this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -80,9 +78,9 @@
             // 
             // Id
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Id.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle4;
             this.Id.FillWeight = 80F;
             this.Id.HeaderText = "Clave";
             this.Id.Name = "Id";
@@ -127,7 +125,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.cmdCancelar2);
             this.panel1.Controls.Add(this.cmdAceptar);
             this.panel1.Controls.Add(this.txtPwd);
             this.panel1.Controls.Add(this.label6);
@@ -147,29 +144,18 @@
             this.panel1.Size = new System.Drawing.Size(663, 160);
             this.panel1.TabIndex = 6;
             // 
-            // cmdCancelar2
-            // 
-            this.cmdCancelar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdCancelar2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cmdCancelar2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdCancelar2.Location = new System.Drawing.Point(562, 111);
-            this.cmdCancelar2.Name = "cmdCancelar2";
-            this.cmdCancelar2.Size = new System.Drawing.Size(94, 36);
-            this.cmdCancelar2.TabIndex = 13;
-            this.cmdCancelar2.Text = "Cancelar";
-            this.cmdCancelar2.UseVisualStyleBackColor = false;
-            this.cmdCancelar2.Click += new System.EventHandler(this.cmdCancelar2_Click);
-            // 
             // cmdAceptar
             // 
             this.cmdAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdAceptar.Location = new System.Drawing.Point(456, 111);
+            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
+            this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdAceptar.Location = new System.Drawing.Point(562, 114);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 12;
             this.cmdAceptar.Text = "Aceptar";
+            this.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAceptar.UseVisualStyleBackColor = false;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
@@ -339,38 +325,22 @@
             this.cmdInsertar.Visible = false;
             this.cmdInsertar.Click += new System.EventHandler(this.cmdInsertar_Click);
             // 
-            // cmdCancelar
-            // 
-            this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(575, 216);
-            this.cmdCancelar.Name = "cmdCancelar";
-            this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
-            this.cmdCancelar.TabIndex = 7;
-            this.cmdCancelar.Text = "Cancelar";
-            this.cmdCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdCancelar.UseVisualStyleBackColor = false;
-            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
-            // 
             // cmdSeleccionar
             // 
             this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdSeleccionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(475, 216);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(569, 216);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
             this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
             this.cmdSeleccionar.TabIndex = 6;
-            this.cmdSeleccionar.Text = "Seleccionar";
+            this.cmdSeleccionar.Text = "Regresar";
             this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
-            // frmEmpresas
+            // frmSclEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -384,16 +354,15 @@
             this.Controls.Add(this.cmdEditar);
             this.Controls.Add(this.cmdInsertar);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.cmdSeleccionar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(687, 545);
+            this.MaximumSize = new System.Drawing.Size(687, 468);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(687, 298);
-            this.Name = "frmEmpresas";
+            this.Name = "frmSclEmpresas";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".:Bienvenidos:.";
@@ -418,7 +387,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button cmdCancelar2;
         private System.Windows.Forms.Button cmdAceptar;
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Label label6;
@@ -433,7 +401,6 @@
         private System.Windows.Forms.Button cmdEliminar;
         private System.Windows.Forms.Button cmdEditar;
         private System.Windows.Forms.Button cmdInsertar;
-        private System.Windows.Forms.Button cmdCancelar;
         private System.Windows.Forms.Button cmdSeleccionar;
     }
 }

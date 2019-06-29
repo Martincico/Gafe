@@ -94,6 +94,8 @@
     <Reference Include="Syncfusion.Core.WinForms, Version=17.1460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>packages\Syncfusion.Core.WinForms.17.1.0.49\lib\net46\Syncfusion.Core.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Diagram.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Diagram.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Grid.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Licensing, Version=17.1460.0.49, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
@@ -106,9 +108,6 @@
     <Reference Include="Syncfusion.SpellChecker.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Tools.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Tools.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
-    <Reference Include="Syncfusion_Azul">
-      <HintPath>..\..\..\Desktop\Syncfusion_Azul.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -137,6 +136,8 @@
     <Compile Include="AsignaPorAlmacen.Designer.cs">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsStiloTemas.cs" />
+    <Compile Include="DatCfgUsuario.cs" />
     <Compile Include="clsEncripta.cs" />
     <Compile Include="clsFillCbo.cs" />
     <Compile Include="clsUsPerfil.cs" />
@@ -150,11 +151,35 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosGafe.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmCatClases2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatClases2.designer.cs">
+      <DependentUpon>frmCatClases2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatProveedores.Designer.cs">
+      <DependentUpon>frmCatProveedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInicio.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmInicio.Designer.cs">
       <DependentUpon>frmInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLstProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLstProveedores.Designer.cs">
+      <DependentUpon>frmLstProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu2.Designer.cs">
+      <DependentUpon>Menu2.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -222,12 +247,6 @@
     <Compile Include="frmCatMarcas.designer.cs">
       <DependentUpon>frmCatMarcas.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatMunicipios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCatMunicipios.designer.cs">
-      <DependentUpon>frmCatMunicipios.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmCatPerfiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,11 +277,11 @@
     <Compile Include="frmEmpleados.Designer.cs">
       <DependentUpon>frmEmpleados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmEmpresas.cs">
+    <Compile Include="frmSlcEmpresas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEmpresas.Designer.cs">
-      <DependentUpon>frmEmpresas.cs</DependentUpon>
+    <Compile Include="frmSlcEmpresas.Designer.cs">
+      <DependentUpon>frmSlcEmpresas.cs</DependentUpon>
     </Compile>
     <Compile Include="frmExistencias.cs">
       <SubType>Form</SubType>
@@ -324,12 +343,6 @@
     <Compile Include="frmSegAccesos.Designer.cs">
       <DependentUpon>frmSegAccesos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menu2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu2.Designer.cs">
-      <DependentUpon>Menu2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -340,13 +353,13 @@
     <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
+    <Compile Include="PuiCatProveedores.cs" />
     <Compile Include="PuiExistencias.cs" />
     <Compile Include="PuiCatArticulos.cs" />
     <Compile Include="PuiAddPartidasMovInv.cs" />
     <Compile Include="PuiCatCfgCatFoliadores.cs" />
     <Compile Include="PuiCatInv_ClaseMov.cs" />
     <Compile Include="PuiCatMarcas.cs" />
-    <Compile Include="PuiCatMunicipios.cs" />
     <Compile Include="PuiCatImpuestos.cs" />
     <Compile Include="PuiCatClases.cs" />
     <Compile Include="PuiCatAlmacenes.cs" />
@@ -361,13 +374,13 @@
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
+    <Compile Include="RegCatProveedores.cs" />
     <Compile Include="RegExistencias.cs" />
     <Compile Include="RegCatArticulo.cs" />
     <Compile Include="RegAddPartidasMovInv.cs" />
     <Compile Include="RegCatCfgCatFoliador.cs" />
     <Compile Include="RegCatInv_ClaseMov.cs" />
     <Compile Include="RegCatMarcas.cs" />
-    <Compile Include="RegCatMunicipio.cs" />
     <Compile Include="RegCatImpuesto.cs" />
     <Compile Include="RegCatClase.cs" />
     <Compile Include="RegCatAlmacen.cs" />
@@ -384,11 +397,23 @@
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEmpresas.resx">
-      <DependentUpon>frmEmpresas.cs</DependentUpon>
+    <EmbeddedResource Include="frmCatClases2.resx">
+      <DependentUpon>frmCatClases2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatProveedores.resx">
+      <DependentUpon>frmCatProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLstProveedores.resx">
+      <DependentUpon>frmLstProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSlcEmpresas.resx">
+      <DependentUpon>frmSlcEmpresas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu2.resx">
+      <DependentUpon>Menu2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
@@ -422,9 +447,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatMarcas.resx">
       <DependentUpon>frmCatMarcas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCatMunicipios.resx">
-      <DependentUpon>frmCatMunicipios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatPerfiles.resx">
       <DependentUpon>frmCatPerfiles.cs</DependentUpon>
@@ -471,11 +493,9 @@
     <EmbeddedResource Include="frmSegAccesos.resx">
       <DependentUpon>frmSegAccesos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu2.resx">
-      <DependentUpon>Menu2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RepExistencias.rdlc">
@@ -546,10 +566,14 @@
     <None Include="Resources\Seleccionar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Image.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\fondo_login.png" />
+    <None Include="Resources\Logotipo.png" />
+    <None Include="Resources\Aceptar.png" />
+    <None Include="Resources\Image.png" />
+    <None Include="Resources\Fondos\Fondo3.png" />
+    <None Include="Resources\Fondos\Fondo4.png" />
+    <None Include="Resources\Fondos\Fondo1.png" />
+    <None Include="Resources\Fondos\Fondo2.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

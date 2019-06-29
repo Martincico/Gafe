@@ -57,7 +57,7 @@
             // 
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
+            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Aceptar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(156, 120);
             this.cmdAceptar.Name = "cmdAceptar";

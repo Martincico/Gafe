@@ -12,9 +12,11 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatUsuarios : Form
+    public partial class frmCatUsuarios : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
@@ -43,6 +45,9 @@ namespace GAFE
             InitializeComponent();
             db = Odat;
             // Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void frmCatUsuarios_Load(object sender, EventArgs e)
@@ -52,7 +57,7 @@ namespace GAFE
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             this.Size = this.MinimumSize;
@@ -133,7 +138,7 @@ namespace GAFE
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiSegUsuarios pui = new PuiSegUsuarios(db);
@@ -147,7 +152,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }
@@ -217,7 +222,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -237,7 +242,7 @@ namespace GAFE
 
                 if (pui.AgregarUsuario() >= 1)
                 {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
@@ -265,7 +270,7 @@ namespace GAFE
 
                     if (pui.ActualizaUsuario() >= 0)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Size = this.MinimumSize;
                     }
@@ -275,7 +280,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -288,47 +293,47 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
-                MessageBox.Show("Usuario: No puede ir vacío.", "CatUsuarioes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Usuario: No puede ir vacío.", "CatUsuarioes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtUsuario.Text))
                 {
-                    MessageBox.Show("Usuario: Contiene caracteres no validos.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Usuario: Contiene caracteres no validos.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtNombre.Text))
             {
-                MessageBox.Show("Nombre: No puede ir vacío.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Nombre: No puede ir vacío.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtNombre.Text))
                 {
-                    MessageBox.Show("Nombre: Contiene caracteres no validos.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Nombre: Contiene caracteres no validos.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
             if (String.IsNullOrEmpty(txtPassword.Text))
             {
-                MessageBox.Show("Password: No puede ir vacío.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Password: No puede ir vacío.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtPassword.Text))
                 {
-                    MessageBox.Show("Password: Contiene caracteres no validos.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Password: Contiene caracteres no validos.", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
             if (cboPerfil.SelectedValue == null)
             {  
-               MessageBox.Show("Perfil: Seleccione un perfil", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+               MessageBoxAdv.Show("Perfil: Seleccione un perfil", "CatUsuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             
@@ -405,7 +410,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }

@@ -12,46 +12,38 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatMunicipios : Form
+    public partial class frmCatClases2 : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string Perfil;
+        private clsUtil uT;
 
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
-
-        public frmCatMunicipios()
+        public frmCatClases2()
         {
             InitializeComponent();
         }
 
 
-        public frmCatMunicipios(MsSql Odat, string perfil)
+        public frmCatClases2(MsSql Odat, string perfil)
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
         }
 
 
 
-        private void frmCatMunicipios_Load(object sender, EventArgs e)
+        private void frmCatClases2_Load(object sender, EventArgs e)
         {
-            /*
+            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
@@ -61,7 +53,7 @@ namespace GAFE
 
             up = uT.BuscarIdNodo("1Vis001B");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Vis001C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -75,19 +67,7 @@ namespace GAFE
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
-            */
-           
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
+
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -107,17 +87,15 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatMunicipios pui = new PuiCatMunicipios(db);
+            PuiCatClases pui = new PuiCatClases(db);
 
-            pui.keyCveMunicipio= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarMunicipio();
-            txtCveMunicipio.Text = pui.keyCveMunicipio;
+            pui.keyCveClase= grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarClase();
+            txtClaveClase.Text = pui.keyCveClase;
             txtDescripcion.Text = pui.cmpDescripcion;
             cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-            txtEstado.Text = pui.cmpCveEstado;
-            txtPais.Text = pui.cmpCvePais;
 
-            txtCveMunicipio.Enabled = false;
+            txtClaveClase.Enabled = false;
 
         }
 
@@ -130,15 +108,13 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatMunicipios pui = new PuiCatMunicipios(db);
+            PuiCatClases pui = new PuiCatClases(db);
 
-            pui.keyCveMunicipio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarMunicipio();
-            txtCveMunicipio.Text = pui.keyCveMunicipio;
+            pui.keyCveClase = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarClase();
+            txtClaveClase.Text = pui.keyCveClase;
             txtDescripcion.Text = pui.cmpDescripcion;
             cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-            txtEstado.Text = pui.cmpCveEstado;
-            txtPais.Text = pui.cmpCvePais;
 
             OpcionControles(false);
         }
@@ -147,12 +123,12 @@ namespace GAFE
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatMunicipios pui = new PuiCatMunicipios(db);
-                    pui.keyCveMunicipio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaMunicipio();
+                    PuiCatClases pui = new PuiCatClases(db);
+                    pui.keyCveClase = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EliminaClase();
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -161,7 +137,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }
@@ -169,8 +145,8 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiCatMunicipios pui = new PuiCatMunicipios(db);
-            DatosTbl = pui.BuscaMunicipio(txtBuscar.Text);
+            PuiCatClases pui = new PuiCatClases(db);
+            DatosTbl = pui.BuscaClase(txtBuscar.Text);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
 
@@ -205,7 +181,7 @@ namespace GAFE
             OpcionControles(true);
         }
 
-        private void frmCatMunicipios_KeyDown(object sender, KeyEventArgs e)
+        private void frmCatClases2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -219,8 +195,8 @@ namespace GAFE
 
         private void LlenaGridView()
         {
-            PuiCatMunicipios pui = new PuiCatMunicipios(db);
-            DatosTbl = pui.ListarMunicipios();
+            PuiCatClases pui = new PuiCatClases(db);
+            DatosTbl = pui.ListarClases();
             DataSet Ds = new DataSet();
 
             try
@@ -236,7 +212,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -245,18 +221,16 @@ namespace GAFE
         {
             if (Validar())
             {
-                PuiCatMunicipios pui = new PuiCatMunicipios(db);
+                PuiCatClases pui = new PuiCatClases(db);
                                 
-                pui.keyCveMunicipio = txtCveMunicipio.Text;
+                pui.keyCveClase = txtClaveClase.Text;
                 pui.cmpDescripcion = txtDescripcion.Text;
                 pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-                pui.cmpCveEstado = txtEstado.Text;
-                pui.cmpCvePais = txtPais.Text;
             
 
-                if (pui.AgregarMunicipio() >= 1)
+                if (pui.AgregarClase() >= 1)
                 {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
@@ -271,17 +245,15 @@ namespace GAFE
             {
                 if (Validar())
                 {
-                    PuiCatMunicipios pui = new PuiCatMunicipios(db);
+                    PuiCatClases pui = new PuiCatClases(db);
 
-                    pui.keyCveMunicipio = txtCveMunicipio.Text;
+                    pui.keyCveClase = txtClaveClase.Text;
                     pui.cmpDescripcion = txtDescripcion.Text;
                     pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-                    pui.cmpCveEstado = txtEstado.Text;
-                    pui.cmpCvePais = txtPais.Text;
 
-                    if (pui.ActualizaMunicipio() >= 0)
+                    if (pui.ActualizaClase() >= 0)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Size = this.MinimumSize;
                     }
@@ -291,7 +263,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -302,30 +274,30 @@ namespace GAFE
         {
             Boolean dv = true;
             ClsUtilerias Util = new ClsUtilerias();
-            if (String.IsNullOrEmpty(txtCveMunicipio.Text))
+            if (String.IsNullOrEmpty(txtClaveClase.Text))
             {                
-                MessageBox.Show("Código: No puede ir vacío.", "CatMunicipios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatClasees", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
-                if (!Util.LetrasNum(txtCveMunicipio.Text))
+                if (!Util.LetrasNum(txtClaveClase.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatMunicipios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Descripción: No puede ir vacío.", "CatMunicipios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Descripción: Contiene caracteres no validos.", "CatMunicipios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -337,21 +309,16 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            txtCveMunicipio.Enabled = Op;
+            txtClaveClase.Enabled = Op;
             txtDescripcion.Enabled = Op;
             cboEstatus.Enabled = Op;
-            txtPais.Enabled = Op;
-            txtEstado.Enabled = Op;
         }
 
         private void LimpiarControles()
         {
-            txtCveMunicipio.Text = "";
+            txtClaveClase.Text = "";
             txtDescripcion.Text = "";
             cboEstatus.Text = "";
-            txtPais.Text = "";
-            txtEstado.Text = "";
-
         }
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -364,42 +331,12 @@ namespace GAFE
             cmEditar_Click(sender, e);
         }
 
-
-
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
-        }
-
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void txtCveMunicipio_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtClaveClase_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
         }

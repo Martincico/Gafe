@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
     public partial class AddPartidaInvMovtos : Form
@@ -112,6 +114,8 @@ namespace GAFE
                 GetRegistro();
             }
 
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void GetRegistro()
@@ -190,7 +194,7 @@ namespace GAFE
 
                 if (pui.AgregarPartida() >= 1)
                 {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -232,7 +236,7 @@ namespace GAFE
 
                     if (pui.ActualizaPartida() >= 1)
                     {
-                        MessageBox.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                         this.Close();
                     }
@@ -240,7 +244,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -270,7 +274,7 @@ namespace GAFE
                 pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
                 if (pui.GetDuplicado() >= 1)
                 {
-                    if (MessageBox.Show("¿Desea agregar mas cantidad? ",
+                    if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",
                         "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         opcion = 2;
@@ -409,7 +413,7 @@ namespace GAFE
 
                 if (!ErrCalc)
                 {
-                    MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBoxAdv.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -540,7 +544,7 @@ namespace GAFE
                             }
                             else
                             {
-                                if (MessageBox.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                if (MessageBoxAdv.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
                                         " Existencia: " + CantInv + " ",
                                         "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
@@ -593,7 +597,7 @@ namespace GAFE
             }
             else
             {
-                MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

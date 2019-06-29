@@ -12,9 +12,11 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmCatClases : Form
+    public partial class frmCatClases : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
@@ -59,7 +61,7 @@ namespace GAFE
 
             up = uT.BuscarIdNodo("1Vis001D");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+            //cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
 
 
             this.Size = this.MinimumSize;
@@ -97,31 +99,12 @@ namespace GAFE
 
         }
 
-        private void cmdConsultar_Click(object sender, EventArgs e)
-        {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 3;
-
-            idxG = grdView.CurrentRow.Index;
-
-            PuiCatClases pui = new PuiCatClases(db);
-
-            pui.keyCveClase = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarClase();
-            txtClaveClase.Text = pui.keyCveClase;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-
-            OpcionControles(false);
-        }
 
         private void cmdEliminar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiCatClases pui = new PuiCatClases(db);
@@ -135,7 +118,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }
@@ -210,7 +193,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -228,7 +211,7 @@ namespace GAFE
 
                 if (pui.AgregarClase() >= 1)
                 {
-                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
@@ -251,7 +234,7 @@ namespace GAFE
 
                     if (pui.ActualizaClase() >= 0)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Size = this.MinimumSize;
                     }
@@ -261,7 +244,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -274,28 +257,28 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveClase.Text))
             {                
-                MessageBox.Show("Código: No puede ir vacío.", "CatClasees", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatClasees", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveClase.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Descripción: No puede ir vacío.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Descripción: Contiene caracteres no validos.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatClases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -337,6 +320,26 @@ namespace GAFE
         private void txtClaveClase_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void cmdConsultar_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
+            OpcionControles(true);
+            this.Size = this.MaximumSize;
+            opcion = 3;
+
+            idxG = grdView.CurrentRow.Index;
+
+            PuiCatClases pui = new PuiCatClases(db);
+
+            pui.keyCveClase = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarClase();
+            txtClaveClase.Text = pui.keyCveClase;
+            txtDescripcion.Text = pui.cmpDescripcion;
+            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+
+            OpcionControles(false);
         }
     }
 }

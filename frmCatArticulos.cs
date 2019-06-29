@@ -12,10 +12,11 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
+using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatArticulos : Form
+    public partial class frmCatArticulos : MetroForm
     {
         private int _Opcion;
         private String _KeyCampo;
@@ -125,56 +126,56 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveArticulo.Text))
             {
-                MessageBox.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveArticulo.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtCodigoBarras.Text))
             {
-                MessageBox.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtCodigoBarras.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtCodigoSAT.Text))
             {
-                MessageBox.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtCodigoSAT.Text))
                 {
-                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBox.Show("Descripción: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBox.Show("Descripción: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -309,14 +310,14 @@ namespace GAFE
                 {
                     if (Art.AgregarArticulo() >= 1)
                     {
-                        MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                        MessageBoxIcon.Information);
                     }
                 }
                 else if (_Opcion == 2)
                     if (Art.ActualizaArticulo() >= 1)
                     {
-                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                        MessageBoxIcon.Information);
                     }
                 this.Close();

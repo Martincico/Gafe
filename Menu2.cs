@@ -1,62 +1,50 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Syncfusion.Windows.Forms.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DatSql;
+using System.Xml;
 
+using DatSql;
 
 namespace GAFE
 {
-    public partial class Menu2 : Form
+    public partial class Menu2 : Syncfusion.Windows.Forms.Tools.RibbonForm
     {
-
         clsUtil ut;
         private MsSql db = null;
         Form Flg;
-        private string Perfil;
-
+        public DatCfgUsuario user;
 
         public Menu2()
         {
             InitializeComponent();
         }
-        
 
-
-        public Menu2(MsSql Odat, Form lg, string perfil)
+        public Menu2(MsSql Odat, Form lg, DatCfgUsuario DatUsr)
         {
             InitializeComponent();
             db = Odat;
             Flg = lg;
-            Perfil = perfil;
-            ut = new clsUtil(db, Perfil);
+            user = DatUsr;
+            ut = new clsUtil(db, user.CodPerfil);
             ut.CargaArbolAcceso();
         }
 
-        private void ribbonButton2_Click(object sender, EventArgs e)
-        {
-            frmCatAlmacenes falm = new frmCatAlmacenes();
-            falm.ShowDialog();
-        }
-
-        private void Menu2_FormClosed(object sender, FormClosedEventArgs e)
+        private void Menu8_FormClosed(object sender, FormClosedEventArgs e)
         {
             Flg.Close();
         }
 
-        private void sAsignaPermisos_Click(object sender, EventArgs e)
-        {
-            frmSegAccesos fm = new frmSegAccesos(db);
-            Nav(fm, panelContenedor);
-
-        }
-
-        private void Menu2_Load(object sender, EventArgs e)
+        private void Menu8_Load(object sender, EventArgs e)
         {
             try
             {
@@ -66,7 +54,7 @@ namespace GAFE
                 int CatInve = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv01");
                 int OpeInv = up.Acceso;
-                
+
                 /*
                     Carga la seguridad del modulo de Inventarios.
                  */
@@ -86,10 +74,10 @@ namespace GAFE
                 int CatMarca = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv005");
                 int CatAlm = up.Acceso;
-                
+
                 CatArticulo.Enabled = (CatArt == 1) ? true : false;
                 CatUMedidas.Enabled = (CatUMed == 1) ? true : false;
-                CatLineas.Enabled = (CatLinea == 1)  ? true : false;
+                CatLineas.Enabled = (CatLinea == 1) ? true : false;
                 CatMarcas.Enabled = (CatMarca == 1) ? true : false;
                 CatAlmacen.Enabled = (CatAlm == 1) ? true : false;
 
@@ -105,42 +93,16 @@ namespace GAFE
                 int Exst = up.Acceso;
                 OpExistencia.Enabled = (Exst == 1) ? true : false;
 
+
+
             }
             catch (Exception ex)
             {
 
             }
         }
-        private void CatMarcas_Click(object sender, EventArgs e)
-        {
-            frmCatMarcas fm = new frmCatMarcas(db, Perfil);
-            Nav(fm, panelContenedor);
-        }
 
 
-        private void CatClase_Click(object sender, EventArgs e)
-        {
-            frmCatClases fm = new frmCatClases(db, Perfil);
-            Nav(fm, panelContenedor);
-
-        }
-        /*
-        private void AddFormInPanel(object formHijo)
-        {
-            if (this.panelContenedor.Controls.Count > 0)
-                this.panelContenedor.Controls.RemoveAt(0);
-            Form fh = formHijo as Form;
-            fh.TopLevel = false;
-            //fh.FormBorderStyle = FormBorderStyle.None;
-            fh.Dock = DockStyle.Fill;
-
-            this.panelContenedor.Controls.Add(fh);
-            this.panelContenedor.Tag = fh;
-            fh.Show();
-
-        }
-        */
-        
         private void Nav(Form form, Panel panel)
         {
 
@@ -151,46 +113,100 @@ namespace GAFE
             form.StartPosition = FormStartPosition.CenterScreen;
 
         }
+
         private void CatLineas_Click(object sender, EventArgs e)
         {
-            frmCatLineas fm = new frmCatLineas(db, Perfil);
+            frmCatLineas fm = new frmCatLineas(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+        private void CatMarcas_Click(object sender, EventArgs e)
+        {
+            frmCatMarcas fm = new frmCatMarcas(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+
+
+        private void CatClase_Click(object sender, EventArgs e)
+        {
+            frmCatClases fm = new frmCatClases(db, user.CodPerfil);
             Nav(fm, panelContenedor);
 
         }
-
         private void CatUMedidas_Click(object sender, EventArgs e)
         {
-            frmCatUMedidas fm = new frmCatUMedidas(db, Perfil);
+            frmCatUMedidas fm = new frmCatUMedidas(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
         private void CatArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos fm = new frmLstArticulos(db, Perfil);
+            frmLstArticulos fm = new frmLstArticulos(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
         private void CatAlmacen_Click(object sender, EventArgs e)
         {
-            frmCatAlmacenes fm = new frmCatAlmacenes(db, Perfil);
+            frmCatAlmacenes fm = new frmCatAlmacenes(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
         private void OpMovInv_Click(object sender, EventArgs e)
         {
-            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, Perfil);
+            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
         private void OpKardex_Click(object sender, EventArgs e)
         {
-            frmKardex fm = new frmKardex(db, Perfil);
+            frmKardex fm = new frmKardex(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
         private void OpExistencia_Click(object sender, EventArgs e)
         {
-            frmExistencias fm = new frmExistencias(db, Perfil);
+            frmExistencias fm = new frmExistencias(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void CatGeografia_Click(object sender, EventArgs e)
+        {
+            frmCatGeografia fm = new frmCatGeografia(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void RibMenu8_OfficeMenu8_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void RibMenu8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RibbonPanel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RibMenu8_OfficeMenu8_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void panelContenedor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CatsUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CatsAsignaPer_Click(object sender, EventArgs e)
+        {
+            frmSegAccesos fm = new frmSegAccesos(db);
             Nav(fm, panelContenedor);
         }
     }

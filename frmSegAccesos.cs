@@ -11,9 +11,11 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmSegAccesos : Form
+    public partial class frmSegAccesos : MetroForm
     {
         private MsSql db = null;
         private SqlDataAdapter dtA = null;
@@ -171,7 +173,7 @@ namespace GAFE
             ac.cmpIdPadre = (n.Parent == null) ? "0" : n.Parent.Name;
             int Vacceso = ac.ValorDeAcceso();
 
-            //MessageBox.Show("Nodo " + ac.cmpIdNodo + " padre " + ac.cmpIdPadre + " Acceso " + Vacceso.ToString());
+            //MessageBoxAdv.Show("Nodo " + ac.cmpIdNodo + " padre " + ac.cmpIdPadre + " Acceso " + Vacceso.ToString());
 
             chk = (Vacceso == 1) ? true : false;
 
@@ -196,7 +198,7 @@ namespace GAFE
                 {
                     RecorrerRecursivo(n);
                 }
-                MessageBox.Show("Accesos Asignados al Perfil " + cboPerfiles.SelectedValue.ToString(),"Cinfirmacion",MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Accesos Asignados al Perfil " + cboPerfiles.SelectedValue.ToString(),"Cinfirmacion",MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 tSeg.Nodes.Clear();
                 btnActualizaSeg.Enabled = false;
@@ -208,7 +210,7 @@ namespace GAFE
         private void RecorrerRecursivo(TreeNode treeNode)
         {
             // Print the node.             
-            /*MessageBox.Show(treeNode.Text+" Nombre = "+treeNode.Name +
+            /*MessageBoxAdv.Show(treeNode.Text+" Nombre = "+treeNode.Name +
                     " Padre = "+ ((treeNode.Parent == null)?"Raiz": treeNode.Parent.Name) );*/
             PuiSegAccesos ac = new PuiSegAccesos(db);
             ac.keySAcceso = cboPerfiles.SelectedValue.ToString();

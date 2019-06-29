@@ -67,7 +67,7 @@ namespace GAFE
             db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
             if (db.Conectar() < 1)
             {
-                MessageBox.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
 
@@ -99,7 +99,7 @@ namespace GAFE
         {
             if (txtUsuario.Text.Length == 0 || txtPassword.Text.Length == 0)
             {
-                MessageBox.Show("No puedes iniciar accesar con esas credenciales", "Alerta", MessageBoxButtons.OK,
+                MessageBoxAdv.Show("No puedes iniciar accesar con esas credenciales", "Alerta", MessageBoxButtons.OK,
                  MessageBoxIcon.Exclamation);
             }
             else
@@ -111,22 +111,23 @@ namespace GAFE
                 {
                     if (String.Equals(us.cmpPassword, txtPassword.Text) == true)
                     {
-                        Menu mn = new Menu(db, this, us.cmpCodPerfil);
+                        //Menu mn = new Menu(db, this, us.cmpCodPerfil);
+                        Menu mn = new Menu(db, this, null);
                         this.Hide();
                         mn.Show();
                         
-                        //MessageBox.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
+                        //MessageBoxAdv.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
                         //MessageBoxIcon.Exclamation);
                     }
                     else
                     {
-                        MessageBox.Show("Contraseña incorrecta", "Alerta", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Contraseña incorrecta", "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("El usuario no esta registrado en el sistema", "Alerta", MessageBoxButtons.OK,
+                    MessageBoxAdv.Show("El usuario no esta registrado en el sistema", "Alerta", MessageBoxButtons.OK,
                       MessageBoxIcon.Exclamation);
                 }
             }

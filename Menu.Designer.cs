@@ -28,17 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
-            this.Clientes = new System.Windows.Forms.RibbonTab();
-            this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
-            this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonButton2 = new System.Windows.Forms.RibbonButton();
-            this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
-            this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
-            this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.ribbonPanel4 = new System.Windows.Forms.RibbonPanel();
-            this.RibMenu = new Syncfusion.Windows.Forms.Tools.RibbonControlAdv();
+            this.ribMenu = new Syncfusion.Windows.Forms.Tools.RibbonControlAdv();
             this.ModInventario = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsArticulos = new System.Windows.Forms.ToolStripDropDownButton();
@@ -58,135 +48,98 @@
             this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.CatProvee = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.CatsProveedores = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CatProveedores = new System.Windows.Forms.ToolStripMenuItem();
             this.MovSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsUsuarios = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatsPerfiles = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatsAsignaPer = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripTabItem3 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.toolStripTabItem4 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.panelContenedor = new Syncfusion.Windows.Forms.Tools.GradientPanel();
-            this.toolStripTabItem1 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.toolStripTabItem5 = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.panel2 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.RibMenu)).BeginInit();
-            this.RibMenu.SuspendLayout();
+            this.CatPersonalizar = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.CatsTemas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.stilDefault = new System.Windows.Forms.ToolStripMenuItem();
+            this.stilClaro = new System.Windows.Forms.ToolStripMenuItem();
+            this.stilVerde = new System.Windows.Forms.ToolStripMenuItem();
+            this.stilNegro = new System.Windows.Forms.ToolStripMenuItem();
+            this.stilAzul = new System.Windows.Forms.ToolStripMenuItem();
+            this.stilRosado = new System.Windows.Forms.ToolStripMenuItem();
+            this.CatsFondos = new System.Windows.Forms.ToolStripDropDownButton();
+            this.PerFondo1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PerFondo2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PerFondo3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PerFondo4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.PerFondoNone = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelPie = new System.Windows.Forms.Panel();
+            this.panelContenedor = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
+            this.ribMenu.SuspendLayout();
             this.ModInventario.Panel.SuspendLayout();
             this.CatInven.SuspendLayout();
             this.ProcInven.SuspendLayout();
+            this.ModProveedores.Panel.SuspendLayout();
+            this.CatProvee.SuspendLayout();
             this.MovSeguridad.Panel.SuspendLayout();
             this.CatSeguridad.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelContenedor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panel2)).BeginInit();
+            this.CatPersonalizar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Clientes
+            // ribMenu
             // 
-            this.Clientes.Name = "Clientes";
-            this.Clientes.Text = "Clientes";
-            this.Clientes.Visible = false;
+            this.ribMenu.BackStageNavigationButtonStyle = Syncfusion.Windows.Forms.Tools.BackStageNavigationButtonStyles.Office2013;
+            this.ribMenu.CaptionFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ribMenu.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.ribMenu.Header.AddMainItem(ModInventario);
+            this.ribMenu.Header.AddMainItem(ModProveedores);
+            this.ribMenu.Header.AddMainItem(MovSeguridad);
+            this.ribMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ribMenu.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
+            this.ribMenu.Location = new System.Drawing.Point(1, 0);
+            this.ribMenu.MenuButtonFont = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.ribMenu.MenuButtonImage = global::GAFE.Properties.Resources.Logotipo;
+            this.ribMenu.MenuButtonText = "GAFE";
+            this.ribMenu.MenuButtonWidth = 56;
+            this.ribMenu.MenuColor = System.Drawing.Color.Transparent;
+            this.ribMenu.Name = "ribMenu";
+            this.ribMenu.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Managed;
             // 
-            // ribbonTab1
+            // ribMenu.OfficeMenu
             // 
-            this.ribbonTab1.Name = "ribbonTab1";
-            this.ribbonTab1.Panels.Add(this.ribbonPanel1);
-            this.ribbonTab1.Panels.Add(this.ribbonPanel2);
-            this.ribbonTab1.Panels.Add(this.ribbonPanel3);
-            this.ribbonTab1.Text = "Inventarios";
-            this.ribbonTab1.Visible = false;
-            // 
-            // ribbonPanel1
-            // 
-            this.ribbonPanel1.Items.Add(this.ribbonButton2);
-            this.ribbonPanel1.Name = "ribbonPanel1";
-            this.ribbonPanel1.Text = "Catalogos";
-            this.ribbonPanel1.Visible = false;
-            // 
-            // ribbonButton2
-            // 
-            this.ribbonButton2.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.Image")));
-            this.ribbonButton2.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.LargeImage")));
-            this.ribbonButton2.Name = "ribbonButton2";
-            this.ribbonButton2.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton2.SmallImage")));
-            // 
-            // ribbonPanel2
-            // 
-            this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Text = "Procesos";
-            this.ribbonPanel2.Visible = false;
-            // 
-            // ribbonPanel3
-            // 
-            this.ribbonPanel3.Name = "ribbonPanel3";
-            this.ribbonPanel3.Text = "Reportes";
-            this.ribbonPanel3.Visible = false;
-            // 
-            // ribbonTab2
-            // 
-            this.ribbonTab2.Name = "ribbonTab2";
-            this.ribbonTab2.Text = "Proveedores";
-            this.ribbonTab2.Visible = false;
-            // 
-            // ribbonButton1
-            // 
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
-            this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
-            // 
-            // ribbonPanel4
-            // 
-            this.ribbonPanel4.Name = "ribbonPanel4";
-            this.ribbonPanel4.Text = null;
-            // 
-            // RibMenu
-            // 
-            this.RibMenu.BackStageNavigationButtonStyle = Syncfusion.Windows.Forms.Tools.BackStageNavigationButtonStyles.Office2013;
-            this.RibMenu.CaptionFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RibMenu.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.RibMenu.Header.AddMainItem(ModInventario);
-            this.RibMenu.Header.AddMainItem(ModProveedores);
-            this.RibMenu.Header.AddMainItem(MovSeguridad);
-            this.RibMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.RibMenu.Location = new System.Drawing.Point(1, 0);
-            this.RibMenu.MenuButtonFont = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.RibMenu.MenuButtonImage = global::GAFE.Properties.Resources.Eliminar;
-            this.RibMenu.MenuButtonText = "GAFE";
-            this.RibMenu.MenuButtonWidth = 56;
-            this.RibMenu.MenuColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
-            this.RibMenu.Name = "RibMenu";
-            this.RibMenu.OfficeColorScheme = Syncfusion.Windows.Forms.Tools.ToolStripEx.ColorScheme.Managed;
-            // 
-            // RibMenu.OfficeMenu
-            // 
-            this.RibMenu.OfficeMenu.Name = "OfficeMenu";
-            this.RibMenu.OfficeMenu.ShowItemToolTips = true;
-            this.RibMenu.OfficeMenu.Size = new System.Drawing.Size(12, 65);
-            this.RibMenu.QuickPanelImageLayout = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RibMenu.QuickPanelVisible = false;
-            this.RibMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
-            this.RibMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.RibMenu.SelectedTab = this.ModInventario;
-            this.RibMenu.ShowRibbonDisplayOptionButton = true;
-            this.RibMenu.Size = new System.Drawing.Size(798, 165);
-            this.RibMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
-            this.RibMenu.SystemText.RenameDisplayLabelText = "&Display Name:";
-            this.RibMenu.TabIndex = 0;
-            this.RibMenu.Text = "ribbonControlAdv1";
-            this.RibMenu.ThemeName = "Office2016";
-            this.RibMenu.TitleColor = System.Drawing.Color.Black;
+            this.ribMenu.OfficeMenu.Name = "OfficeMenu";
+            this.ribMenu.OfficeMenu.ShowItemToolTips = true;
+            this.ribMenu.OfficeMenu.Size = new System.Drawing.Size(12, 65);
+            this.ribMenu.QuickPanelImageLayout = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ribMenu.QuickPanelVisible = false;
+            this.ribMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
+            this.ribMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
+            this.ribMenu.SelectedTab = this.MovSeguridad;
+            this.ribMenu.ShowRibbonDisplayOptionButton = true;
+            this.ribMenu.Size = new System.Drawing.Size(799, 148);
+            this.ribMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
+            this.ribMenu.SystemText.RenameDisplayLabelText = "&Display Name:";
+            this.ribMenu.TabIndex = 0;
+            this.ribMenu.Text = "ribbonControlAdv1";
+            this.ribMenu.ThemeName = "Office2016";
+            this.ribMenu.ThemeStyle.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
+            this.ribMenu.ThemeStyle.MoreCommandsStyle.PropertyGridViewBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
+            this.ribMenu.ThemeStyle.QuickDropDownPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(158)))));
+            this.ribMenu.ThemeStyle.TabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.ribMenu.ThemeStyle.TabGroupColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(158)))));
+            this.ribMenu.TitleColor = System.Drawing.Color.White;
+            this.ribMenu.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ribMenu.Click += new System.EventHandler(this.ribMenu_Click);
             // 
             // ModInventario
             // 
             this.ModInventario.Name = "ModInventario";
             // 
-            // RibMenu.ribbonPanel5
+            // ribMenu.ribbonPanel1
             // 
             this.ModInventario.Panel.Controls.Add(this.CatInven);
             this.ModInventario.Panel.Controls.Add(this.ProcInven);
             this.ModInventario.Panel.Controls.Add(this.RepInven);
             this.ModInventario.Panel.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007;
-            this.ModInventario.Panel.Name = "ribbonPanel5";
+            this.ModInventario.Panel.Name = "ribbonPanel1";
             this.ModInventario.Panel.ScrollPosition = 0;
             this.ModInventario.Panel.TabIndex = 2;
             this.ModInventario.Panel.Text = "Inventarios";
@@ -200,7 +153,7 @@
             this.CatInven.AutoSize = false;
             this.CatInven.Dock = System.Windows.Forms.DockStyle.None;
             this.CatInven.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.CatInven.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.CatInven.ForeColor = System.Drawing.Color.Black;
             this.CatInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CatInven.Image = null;
             this.CatInven.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -210,7 +163,7 @@
             this.CatInven.Name = "CatInven";
             this.CatInven.Office12Mode = false;
             this.CatInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatInven.Size = new System.Drawing.Size(165, 96);
+            this.CatInven.Size = new System.Drawing.Size(165, 79);
             this.CatInven.TabIndex = 0;
             this.CatInven.Text = "Catálgos";
             // 
@@ -227,7 +180,7 @@
             this.CatsArticulos.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CatsArticulos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsArticulos.Name = "CatsArticulos";
-            this.CatsArticulos.Size = new System.Drawing.Size(65, 79);
+            this.CatsArticulos.Size = new System.Drawing.Size(65, 61);
             this.CatsArticulos.Text = "Artículos";
             this.CatsArticulos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CatsArticulos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -237,7 +190,7 @@
             this.CatArticulo.Name = "CatArticulo";
             this.CatArticulo.Size = new System.Drawing.Size(180, 22);
             this.CatArticulo.Text = "Artículos";
-            this.CatArticulo.Click += new System.EventHandler(this.CatUMedidas_Click);
+            this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
@@ -282,7 +235,7 @@
             this.catsAlmacenes.Image = global::GAFE.Properties.Resources.Cancelar;
             this.catsAlmacenes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.catsAlmacenes.Name = "catsAlmacenes";
-            this.catsAlmacenes.Size = new System.Drawing.Size(74, 79);
+            this.catsAlmacenes.Size = new System.Drawing.Size(74, 61);
             this.catsAlmacenes.Text = "Almacenes";
             this.catsAlmacenes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.catsAlmacenes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -293,6 +246,7 @@
             this.CatAlmacen.Name = "CatAlmacen";
             this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
             this.CatAlmacen.Text = "Almacén";
+            this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
             // 
             // ProcInven
@@ -300,7 +254,7 @@
             this.ProcInven.AutoSize = false;
             this.ProcInven.Dock = System.Windows.Forms.DockStyle.None;
             this.ProcInven.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.ProcInven.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.ProcInven.ForeColor = System.Drawing.Color.Black;
             this.ProcInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ProcInven.Image = null;
             this.ProcInven.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -310,8 +264,8 @@
             this.ProcInven.Name = "ProcInven";
             this.ProcInven.Office12Mode = false;
             this.ProcInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.ProcInven.Size = new System.Drawing.Size(177, 96);
-            this.ProcInven.TabIndex = 1;
+            this.ProcInven.Size = new System.Drawing.Size(177, 79);
+            this.ProcInven.TabIndex = 4;
             this.ProcInven.Text = "Procesos";
             // 
             // OpInventarios
@@ -324,11 +278,11 @@
             this.OpInventarios.Image = global::GAFE.Properties.Resources.Cancelar;
             this.OpInventarios.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpInventarios.Name = "OpInventarios";
-            this.OpInventarios.Size = new System.Drawing.Size(77, 79);
+            this.OpInventarios.Size = new System.Drawing.Size(77, 61);
             this.OpInventarios.Text = "Inventarios";
             this.OpInventarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.OpInventarios.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.OpInventarios.ToolTipText = "Almacenes";
+            this.OpInventarios.ToolTipText = "Inventarios";
             // 
             // OpMovInv
             // 
@@ -357,35 +311,36 @@
             this.OpInvFisicos.Image = global::GAFE.Properties.Resources.Cancelar;
             this.OpInvFisicos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpInvFisicos.Name = "OpInvFisicos";
-            this.OpInvFisicos.Size = new System.Drawing.Size(73, 79);
+            this.OpInvFisicos.Size = new System.Drawing.Size(73, 61);
             this.OpInvFisicos.Text = "Inv. físicos";
             this.OpInvFisicos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.OpInvFisicos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.OpInvFisicos.ToolTipText = "Almacenes";
+            this.OpInvFisicos.ToolTipText = "Inv. físicos";
             // 
             // RepInven
             // 
             this.RepInven.AutoSize = false;
             this.RepInven.Dock = System.Windows.Forms.DockStyle.None;
             this.RepInven.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.RepInven.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
+            this.RepInven.ForeColor = System.Drawing.Color.Black;
             this.RepInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.RepInven.Image = null;
             this.RepInven.Location = new System.Drawing.Point(346, 1);
             this.RepInven.Name = "RepInven";
             this.RepInven.Office12Mode = false;
             this.RepInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.RepInven.Size = new System.Drawing.Size(100, 96);
-            this.RepInven.TabIndex = 2;
+            this.RepInven.Size = new System.Drawing.Size(100, 79);
+            this.RepInven.TabIndex = 5;
             this.RepInven.Text = "Reportes";
             // 
             // ModProveedores
             // 
             this.ModProveedores.Name = "ModProveedores";
             // 
-            // RibMenu.ribbonPanel6
+            // ribMenu.ribbonPanel2
             // 
-            this.ModProveedores.Panel.Name = "ribbonPanel6";
+            this.ModProveedores.Panel.Controls.Add(this.CatProvee);
+            this.ModProveedores.Panel.Name = "ribbonPanel2";
             this.ModProveedores.Panel.ScrollPosition = 0;
             this.ModProveedores.Panel.TabIndex = 3;
             this.ModProveedores.Panel.Text = "Proveedores";
@@ -394,20 +349,60 @@
             this.ModProveedores.Tag = "2";
             this.ModProveedores.Text = "Proveedores";
             // 
+            // CatProvee
+            // 
+            this.CatProvee.AutoSize = false;
+            this.CatProvee.Dock = System.Windows.Forms.DockStyle.None;
+            this.CatProvee.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.CatProvee.ForeColor = System.Drawing.Color.Black;
+            this.CatProvee.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.CatProvee.Image = null;
+            this.CatProvee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CatsProveedores});
+            this.CatProvee.Location = new System.Drawing.Point(0, 1);
+            this.CatProvee.Name = "CatProvee";
+            this.CatProvee.Office12Mode = false;
+            this.CatProvee.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.CatProvee.Size = new System.Drawing.Size(121, 79);
+            this.CatProvee.TabIndex = 1;
+            this.CatProvee.Text = "Catálgos";
+            // 
+            // CatsProveedores
+            // 
+            this.CatsProveedores.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CatProveedores});
+            this.CatsProveedores.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatsProveedores.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.CatsProveedores.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatsProveedores.Name = "CatsProveedores";
+            this.CatsProveedores.Size = new System.Drawing.Size(83, 61);
+            this.CatsProveedores.Text = "Proveedores";
+            this.CatsProveedores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.CatsProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            // 
+            // CatProveedores
+            // 
+            this.CatProveedores.Name = "CatProveedores";
+            this.CatProveedores.Size = new System.Drawing.Size(126, 22);
+            this.CatProveedores.Text = "Proveedor";
+            this.CatProveedores.ToolTipText = "Proveedor";
+            this.CatProveedores.Click += new System.EventHandler(this.CatProveedores_Click);
+            // 
             // MovSeguridad
             // 
             this.MovSeguridad.Name = "MovSeguridad";
             // 
-            // RibMenu.ribbonPanel7
+            // ribMenu.ribbonPanel3
             // 
             this.MovSeguridad.Panel.Controls.Add(this.CatSeguridad);
-            this.MovSeguridad.Panel.Name = "ribbonPanel7";
+            this.MovSeguridad.Panel.Controls.Add(this.CatPersonalizar);
+            this.MovSeguridad.Panel.Name = "ribbonPanel3";
             this.MovSeguridad.Panel.ScrollPosition = 0;
             this.MovSeguridad.Panel.TabIndex = 4;
             this.MovSeguridad.Panel.Text = "Seguridad";
             this.MovSeguridad.Position = 2;
             this.MovSeguridad.Size = new System.Drawing.Size(76, 30);
-            this.MovSeguridad.Tag = "6";
+            this.MovSeguridad.Tag = "3";
             this.MovSeguridad.Text = "Seguridad";
             // 
             // CatSeguridad
@@ -415,7 +410,7 @@
             this.CatSeguridad.AutoSize = false;
             this.CatSeguridad.Dock = System.Windows.Forms.DockStyle.None;
             this.CatSeguridad.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.CatSeguridad.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatSeguridad.ForeColor = System.Drawing.Color.Black;
             this.CatSeguridad.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CatSeguridad.Image = null;
             this.CatSeguridad.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -426,8 +421,8 @@
             this.CatSeguridad.Name = "CatSeguridad";
             this.CatSeguridad.Office12Mode = false;
             this.CatSeguridad.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatSeguridad.Size = new System.Drawing.Size(287, 96);
-            this.CatSeguridad.TabIndex = 0;
+            this.CatSeguridad.Size = new System.Drawing.Size(251, 79);
+            this.CatSeguridad.TabIndex = 1;
             this.CatSeguridad.Text = "Usuarios";
             // 
             // CatsUsuarios
@@ -436,12 +431,11 @@
             this.CatsUsuarios.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CatsUsuarios.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsUsuarios.Name = "CatsUsuarios";
-            this.CatsUsuarios.Size = new System.Drawing.Size(65, 79);
+            this.CatsUsuarios.Size = new System.Drawing.Size(65, 61);
             this.CatsUsuarios.Text = "Usuarios";
             this.CatsUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CatsUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CatsUsuarios.ToolTipText = "Almacenes";
-            this.CatsUsuarios.Click += new System.EventHandler(this.CatsUsuarios_Click);
+            this.CatsUsuarios.ToolTipText = "Usuarios";
             // 
             // CatsPerfiles
             // 
@@ -449,11 +443,11 @@
             this.CatsPerfiles.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CatsPerfiles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsPerfiles.Name = "CatsPerfiles";
-            this.CatsPerfiles.Size = new System.Drawing.Size(57, 79);
+            this.CatsPerfiles.Size = new System.Drawing.Size(57, 61);
             this.CatsPerfiles.Text = "Perfiles";
             this.CatsPerfiles.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CatsPerfiles.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CatsPerfiles.ToolTipText = "Almacenes";
+            this.CatsPerfiles.ToolTipText = "Perfiles";
             // 
             // CatsAsignaPer
             // 
@@ -461,97 +455,170 @@
             this.CatsAsignaPer.Image = global::GAFE.Properties.Resources.Cancelar;
             this.CatsAsignaPer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsAsignaPer.Name = "CatsAsignaPer";
-            this.CatsAsignaPer.Size = new System.Drawing.Size(104, 79);
+            this.CatsAsignaPer.Size = new System.Drawing.Size(104, 61);
             this.CatsAsignaPer.Text = "Asigna permisos";
             this.CatsAsignaPer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CatsAsignaPer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CatsAsignaPer.ToolTipText = "Almacenes";
+            this.CatsAsignaPer.ToolTipText = "Asigna permisos";
             this.CatsAsignaPer.Click += new System.EventHandler(this.CatsAsignaPer_Click);
             // 
-            // toolStripTabItem3
+            // CatPersonalizar
             // 
-            this.toolStripTabItem3.Name = "toolStripTabItem3";
+            this.CatPersonalizar.AutoSize = false;
+            this.CatPersonalizar.Dock = System.Windows.Forms.DockStyle.None;
+            this.CatPersonalizar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.CatPersonalizar.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatPersonalizar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.CatPersonalizar.Image = null;
+            this.CatPersonalizar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CatsTemas,
+            this.CatsFondos});
+            this.CatPersonalizar.Location = new System.Drawing.Point(253, 1);
+            this.CatPersonalizar.Name = "CatPersonalizar";
+            this.CatPersonalizar.Office12Mode = false;
+            this.CatPersonalizar.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.CatPersonalizar.Size = new System.Drawing.Size(136, 79);
+            this.CatPersonalizar.TabIndex = 2;
+            this.CatPersonalizar.Text = "Personalizar";
             // 
+            // CatsTemas
             // 
+            this.CatsTemas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stilDefault,
+            this.stilClaro,
+            this.stilVerde,
+            this.stilNegro,
+            this.stilAzul,
+            this.stilRosado});
+            this.CatsTemas.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatsTemas.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.CatsTemas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatsTemas.Name = "CatsTemas";
+            this.CatsTemas.Size = new System.Drawing.Size(50, 61);
+            this.CatsTemas.Text = "Temas";
+            this.CatsTemas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.CatsTemas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.CatsTemas.ToolTipText = "Temas";
             // 
-            this.toolStripTabItem3.Panel.Name = "";
-            this.toolStripTabItem3.Panel.ScrollPosition = 0;
-            this.toolStripTabItem3.Panel.TabIndex = 4;
-            this.toolStripTabItem3.Panel.Text = "toolStripTabItem3";
-            this.toolStripTabItem3.Position = -1;
-            this.toolStripTabItem3.Size = new System.Drawing.Size(113, 30);
-            this.toolStripTabItem3.Tag = "3";
-            this.toolStripTabItem3.Text = "toolStripTabItem3";
+            // stilDefault
             // 
-            // toolStripTabItem4
+            this.stilDefault.Name = "stilDefault";
+            this.stilDefault.Size = new System.Drawing.Size(113, 22);
+            this.stilDefault.Text = "Default";
+            this.stilDefault.Click += new System.EventHandler(this.stilDefault_Click);
             // 
-            this.toolStripTabItem4.Name = "toolStripTabItem4";
+            // stilClaro
             // 
+            this.stilClaro.Name = "stilClaro";
+            this.stilClaro.Size = new System.Drawing.Size(113, 22);
+            this.stilClaro.Text = "Claro";
+            this.stilClaro.Click += new System.EventHandler(this.stilClaro_Click);
             // 
+            // stilVerde
             // 
-            this.toolStripTabItem4.Panel.Name = "";
-            this.toolStripTabItem4.Panel.ScrollPosition = 0;
-            this.toolStripTabItem4.Panel.TabIndex = 4;
-            this.toolStripTabItem4.Panel.Text = "New Tab1";
-            this.toolStripTabItem4.Position = -1;
-            this.toolStripTabItem4.Size = new System.Drawing.Size(72, 30);
-            this.toolStripTabItem4.Text = "New Tab1";
+            this.stilVerde.Name = "stilVerde";
+            this.stilVerde.Size = new System.Drawing.Size(113, 22);
+            this.stilVerde.Text = "Verde";
+            this.stilVerde.Click += new System.EventHandler(this.stilVerde_Click);
+            // 
+            // stilNegro
+            // 
+            this.stilNegro.Name = "stilNegro";
+            this.stilNegro.Size = new System.Drawing.Size(113, 22);
+            this.stilNegro.Text = "Negro";
+            this.stilNegro.Click += new System.EventHandler(this.stilNegro_Click);
+            // 
+            // stilAzul
+            // 
+            this.stilAzul.Name = "stilAzul";
+            this.stilAzul.Size = new System.Drawing.Size(113, 22);
+            this.stilAzul.Text = "Azul";
+            this.stilAzul.Click += new System.EventHandler(this.stilAzul_Click);
+            // 
+            // stilRosado
+            // 
+            this.stilRosado.Name = "stilRosado";
+            this.stilRosado.Size = new System.Drawing.Size(113, 22);
+            this.stilRosado.Text = "Rosado";
+            this.stilRosado.Click += new System.EventHandler(this.stilRosado_Click);
+            // 
+            // CatsFondos
+            // 
+            this.CatsFondos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PerFondo1,
+            this.PerFondo2,
+            this.PerFondo3,
+            this.PerFondo4,
+            this.PerFondoNone});
+            this.CatsFondos.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.CatsFondos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatsFondos.Name = "CatsFondos";
+            this.CatsFondos.Size = new System.Drawing.Size(59, 61);
+            this.CatsFondos.Text = "Fondos";
+            this.CatsFondos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.CatsFondos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            // 
+            // PerFondo1
+            // 
+            this.PerFondo1.Name = "PerFondo1";
+            this.PerFondo1.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo1.Text = "Fondo1";
+            this.PerFondo1.Click += new System.EventHandler(this.PerFondo1_Click);
+            // 
+            // PerFondo2
+            // 
+            this.PerFondo2.Name = "PerFondo2";
+            this.PerFondo2.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo2.Text = "Fondo2";
+            this.PerFondo2.Click += new System.EventHandler(this.PerFondo2_Click);
+            // 
+            // PerFondo3
+            // 
+            this.PerFondo3.Name = "PerFondo3";
+            this.PerFondo3.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo3.Text = "Fondo3";
+            this.PerFondo3.Click += new System.EventHandler(this.PerFondo3_Click);
+            // 
+            // PerFondo4
+            // 
+            this.PerFondo4.Name = "PerFondo4";
+            this.PerFondo4.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo4.Text = "Fondo4";
+            this.PerFondo4.Click += new System.EventHandler(this.PerFondo4_Click);
+            // 
+            // PerFondoNone
+            // 
+            this.PerFondoNone.Name = "PerFondoNone";
+            this.PerFondoNone.Size = new System.Drawing.Size(120, 22);
+            this.PerFondoNone.Text = "Ninguno";
+            this.PerFondoNone.Click += new System.EventHandler(this.PerFondoNone_Click);
+            // 
+            // panelPie
+            // 
+            this.panelPie.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPie.Location = new System.Drawing.Point(1, 394);
+            this.panelPie.Name = "panelPie";
+            this.panelPie.Size = new System.Drawing.Size(799, 30);
+            this.panelPie.TabIndex = 2;
             // 
             // panelContenedor
             // 
+            this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
+            this.panelContenedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(1, 165);
+            this.panelContenedor.Location = new System.Drawing.Point(1, 148);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(798, 318);
-            this.panelContenedor.TabIndex = 1;
-            this.panelContenedor.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContenedor_Paint);
-            // 
-            // toolStripTabItem1
-            // 
-            this.toolStripTabItem1.Name = "toolStripTabItem1";
-            // 
-            // 
-            // 
-            this.toolStripTabItem1.Panel.Name = "";
-            this.toolStripTabItem1.Panel.ScrollPosition = 0;
-            this.toolStripTabItem1.Panel.TabIndex = 4;
-            this.toolStripTabItem1.Panel.Text = "toolStripTabItem1";
-            this.toolStripTabItem1.Position = -1;
-            this.toolStripTabItem1.Size = new System.Drawing.Size(103, 19);
-            this.toolStripTabItem1.Tag = "1";
-            this.toolStripTabItem1.Text = "toolStripTabItem1";
-            // 
-            // toolStripTabItem5
-            // 
-            this.toolStripTabItem5.Name = "toolStripTabItem5";
-            // 
-            // 
-            // 
-            this.toolStripTabItem5.Panel.Name = "";
-            this.toolStripTabItem5.Panel.ScrollPosition = 0;
-            this.toolStripTabItem5.Panel.TabIndex = 4;
-            this.toolStripTabItem5.Panel.Text = "toolStripTabItem5";
-            this.toolStripTabItem5.Position = -1;
-            this.toolStripTabItem5.Size = new System.Drawing.Size(103, 19);
-            this.toolStripTabItem5.Tag = "5";
-            this.toolStripTabItem5.Text = "toolStripTabItem5";
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(1, 421);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(798, 62);
-            this.panel2.TabIndex = 2;
+            this.panelContenedor.Size = new System.Drawing.Size(799, 246);
+            this.panelContenedor.TabIndex = 4;
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 484);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(801, 425);
+            this.Controls.Add(this.ribMenu);
             this.Controls.Add(this.panelContenedor);
-            this.Controls.Add(this.RibMenu);
+            this.Controls.Add(this.panelPie);
             this.KeyPreview = true;
             this.Name = "Menu";
             this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
@@ -559,38 +626,36 @@
             this.Text = "Menu Principal";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Menu_FormClosed);
             this.Load += new System.EventHandler(this.Menu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.RibMenu)).EndInit();
-            this.RibMenu.ResumeLayout(false);
-            this.RibMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).EndInit();
+            this.ribMenu.ResumeLayout(false);
+            this.ribMenu.PerformLayout();
             this.ModInventario.Panel.ResumeLayout(false);
             this.CatInven.ResumeLayout(false);
             this.CatInven.PerformLayout();
             this.ProcInven.ResumeLayout(false);
             this.ProcInven.PerformLayout();
+            this.ModProveedores.Panel.ResumeLayout(false);
+            this.CatProvee.ResumeLayout(false);
+            this.CatProvee.PerformLayout();
             this.MovSeguridad.Panel.ResumeLayout(false);
             this.CatSeguridad.ResumeLayout(false);
             this.CatSeguridad.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelContenedor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panel2)).EndInit();
+            this.CatPersonalizar.ResumeLayout(false);
+            this.CatPersonalizar.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.RibbonTab Clientes;
-        private System.Windows.Forms.RibbonTab ribbonTab1;
-        private System.Windows.Forms.RibbonTab ribbonTab2;
-        private System.Windows.Forms.RibbonPanel ribbonPanel1;
-        private System.Windows.Forms.RibbonPanel ribbonPanel2;
-        private System.Windows.Forms.RibbonPanel ribbonPanel3;
-        private System.Windows.Forms.RibbonButton ribbonButton1;
-        private System.Windows.Forms.RibbonPanel ribbonPanel4;
-        private System.Windows.Forms.RibbonButton ribbonButton2;
-        private Syncfusion.Windows.Forms.Tools.RibbonControlAdv RibMenu;
+
+        private Syncfusion.Windows.Forms.Tools.RibbonControlAdv ribMenu;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModInventario;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModProveedores;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem3;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem4;
+        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem MovSeguridad;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx CatSeguridad;
+        private System.Windows.Forms.ToolStripDropDownButton CatsUsuarios;
+        private System.Windows.Forms.ToolStripDropDownButton CatsPerfiles;
+        private System.Windows.Forms.ToolStripDropDownButton CatsAsignaPer;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx CatInven;
         private System.Windows.Forms.ToolStripDropDownButton CatsArticulos;
         private System.Windows.Forms.ToolStripMenuItem CatArticulo;
@@ -598,25 +663,35 @@
         private System.Windows.Forms.ToolStripMenuItem CatLineas;
         private System.Windows.Forms.ToolStripMenuItem CatMarcas;
         private System.Windows.Forms.ToolStripMenuItem CatClase;
-        private Syncfusion.Windows.Forms.Tools.GradientPanel panelContenedor;
-        private Syncfusion.Windows.Forms.Tools.ToolStripEx ProcInven;
+        private System.Windows.Forms.ToolStripMenuItem CatGeografia;
         private System.Windows.Forms.ToolStripDropDownButton catsAlmacenes;
         private System.Windows.Forms.ToolStripMenuItem CatAlmacen;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx ProcInven;
         private System.Windows.Forms.ToolStripDropDownButton OpInventarios;
         private System.Windows.Forms.ToolStripMenuItem OpMovInv;
         private System.Windows.Forms.ToolStripMenuItem OpKardex;
         private System.Windows.Forms.ToolStripMenuItem OpExistencia;
         private System.Windows.Forms.ToolStripDropDownButton OpInvFisicos;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx RepInven;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem1;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem toolStripTabItem5;
-        private System.Windows.Forms.ToolStripMenuItem CatGeografia;
-        private Syncfusion.Windows.Forms.Tools.GradientPanel panel2;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem MovSeguridad;
-        private Syncfusion.Windows.Forms.Tools.ToolStripEx CatSeguridad;
-        private System.Windows.Forms.ToolStripDropDownButton CatsUsuarios;
-        private System.Windows.Forms.ToolStripDropDownButton CatsPerfiles;
-        private System.Windows.Forms.ToolStripDropDownButton CatsAsignaPer;
+        private System.Windows.Forms.ToolStripDropDownButton CatsTemas;
+        private System.Windows.Forms.ToolStripMenuItem stilDefault;
+        private System.Windows.Forms.ToolStripMenuItem stilClaro;
+        private System.Windows.Forms.Panel panelPie;
+        private System.Windows.Forms.ToolStripMenuItem stilVerde;
+        private System.Windows.Forms.ToolStripMenuItem stilNegro;
+        private System.Windows.Forms.ToolStripMenuItem stilAzul;
+        private System.Windows.Forms.Panel panelContenedor;
+        private System.Windows.Forms.ToolStripMenuItem stilRosado;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx CatPersonalizar;
+        private System.Windows.Forms.ToolStripDropDownButton CatsFondos;
+        private System.Windows.Forms.ToolStripMenuItem PerFondo1;
+        private System.Windows.Forms.ToolStripMenuItem PerFondo2;
+        private System.Windows.Forms.ToolStripMenuItem PerFondo3;
+        private System.Windows.Forms.ToolStripMenuItem PerFondo4;
+        private System.Windows.Forms.ToolStripMenuItem PerFondoNone;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx CatProvee;
+        private System.Windows.Forms.ToolStripDropDownButton CatsProveedores;
+        private System.Windows.Forms.ToolStripMenuItem CatProveedores;
     }
 }
 
