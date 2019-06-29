@@ -38,6 +38,9 @@ namespace GAFE
             db = Odat;
             opcion = op;
             Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void frmCatGeografia_Load(object sender, EventArgs e)

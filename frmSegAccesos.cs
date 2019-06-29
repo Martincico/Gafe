@@ -30,6 +30,9 @@ namespace GAFE
         {
             InitializeComponent();
             db = Odat;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
 

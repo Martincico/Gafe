@@ -50,6 +50,9 @@ namespace GAFE
             InitializeComponent();
             db = Odat;
             Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void frmCatInventarioMovtos_Load(object sender, EventArgs e)
@@ -79,22 +82,6 @@ namespace GAFE
 
 
             this.Size = this.MinimumSize;
-            //cboEstatus.SelectedText = "Activo";
-            
-
-
-            /*
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            
-            this.Size = this.MinimumSize;
-            */
             
             LlecboProveedor();
             LlecboAlmaOri("100");

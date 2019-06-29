@@ -30,6 +30,9 @@ namespace GAFE
             path = ph;
             clave_secreta = clave;
             Seg = new clsEncripta();
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void frmEmpresas_Load(object sender, EventArgs e)

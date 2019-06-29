@@ -68,15 +68,6 @@ namespace GAFE
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
-
-            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Metro;
-            MessageBoxAdv.MetroColorTable.YesButtonBackColor = Color.FromArgb(215, 30, 30);
-            MessageBoxAdv.MetroColorTable.YesButtonForeColor = Color.FromArgb(255, 255, 255);
-
-            MessageBoxAdv.MetroColorTable.OKButtonBackColor = Color.FromArgb(0, 114, 198);
-            MessageBoxAdv.MetroColorTable.OKButtonForeColor = Color.FromArgb(255, 255, 255);
-
-
             this.Size = this.MinimumSize;
             LlenaGridView();
             

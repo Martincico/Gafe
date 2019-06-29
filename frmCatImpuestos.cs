@@ -47,6 +47,9 @@ namespace GAFE
             InitializeComponent();
             db = Odat;
             // Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
 

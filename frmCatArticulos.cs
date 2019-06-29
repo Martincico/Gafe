@@ -39,6 +39,10 @@ namespace GAFE
             _KeyCampo = Key;
             db = Odat;
             Perfil = perfil;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
             switch (op)
             {
                 case 1:
@@ -54,7 +58,8 @@ namespace GAFE
                     cmdAceptar.Text = "Aceptar";
                     break;
 
-            }            
+            }   
+            
         }
 
         private void frmCatArticulos_Load(object sender, EventArgs e)
