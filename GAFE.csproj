@@ -151,6 +151,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosGafe.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frmCatLstPrecios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatLstPrecios.designer.cs">
+      <DependentUpon>frmCatLstPrecios.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatClases2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,6 +357,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
+    <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
     <Compile Include="PuiCatProveedores.cs" />
@@ -372,6 +379,7 @@
     <Compile Include="PuiSegPerfiles.cs" />
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
+    <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
     <Compile Include="RegCatProveedores.cs" />
@@ -396,6 +404,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatLstPrecios.resx">
+      <DependentUpon>frmCatLstPrecios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatClases2.resx">
       <DependentUpon>frmCatClases2.cs</DependentUpon>

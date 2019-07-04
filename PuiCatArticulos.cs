@@ -230,7 +230,6 @@ namespace GAFE
         {
             int resp = 0;
             CargaParametroMat();
-            db.IniciaTrans();
             RegCatArticulo OpRadd = new RegCatArticulo(MatParam, db);
             resp = OpRadd.AddRegArticulo();
             MatParam = new object[2, 2];
@@ -238,9 +237,19 @@ namespace GAFE
             MatParam[1, 0] = "ClaveAlmacen"; MatParam[1, 1] = "100";  //insertar aca clave almacen usuario ***********************************************************
             RegCatArticulo OpRaddExis = new RegCatArticulo(MatParam, db);
             resp = OpRaddExis.AddRegExistencias();
-            db.TerminaTrans();
             return resp;
         }
+
+        public int AddArticulo_LstPrecio()
+        {
+            int resp = 0;
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "CveArticulo"; MatParam[0, 1] = CveArticulo;
+            RegCatArticulo OpRaddExis = new RegCatArticulo(MatParam, db);
+            resp = OpRaddExis.AddRegLstPrecios();
+            return resp;
+        }
+
 
         public int ActualizaArticulo()
         {

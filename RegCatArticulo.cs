@@ -60,6 +60,11 @@ namespace GAFE
             string sql = "Insert into Inv_Existencias (ClaveArticulo, ClaveAlmacen) values(@ClaveArticulo,@ClaveAlmacen)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
+        public int AddRegLstPrecios()
+        {
+            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo, FechaModifacion) (SELECT CveLstPrecio, @CveArticulo, GETDATE() FROM Inv_LstPreciosMast WHERE ESTATUS = 1) ";
+            return db.InsertarRegistro(sql, ArrParametros);
+        }
 
 
         public int UpdateArticulo()

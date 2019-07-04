@@ -307,5 +307,11 @@ namespace GAFE
             frmLstProveedores fm = new frmLstProveedores(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
+
+        private void CatListaPrecios_Click(object sender, EventArgs e)
+        {
+            frmCatLstPrecios fm = new frmCatLstPrecios(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
     }
 }

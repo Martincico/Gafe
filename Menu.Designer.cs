@@ -40,6 +40,7 @@
             this.CatGeografia = new System.Windows.Forms.ToolStripMenuItem();
             this.catsAlmacenes = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatAlmacen = new System.Windows.Forms.ToolStripMenuItem();
+            this.CatListaPrecios = new System.Windows.Forms.ToolStripMenuItem();
             this.ProcInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.OpInventarios = new System.Windows.Forms.ToolStripDropDownButton();
             this.OpMovInv = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,7 +113,7 @@
             this.ribMenu.QuickPanelVisible = false;
             this.ribMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribMenu.SelectedTab = this.MovSeguridad;
+            this.ribMenu.SelectedTab = this.ModInventario;
             this.ribMenu.ShowRibbonDisplayOptionButton = true;
             this.ribMenu.Size = new System.Drawing.Size(799, 148);
             this.ribMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
@@ -188,49 +189,50 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(180, 22);
+            this.CatLineas.Size = new System.Drawing.Size(169, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(180, 22);
+            this.CatClase.Size = new System.Drawing.Size(169, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
             // CatGeografia
             // 
             this.CatGeografia.Name = "CatGeografia";
-            this.CatGeografia.Size = new System.Drawing.Size(180, 22);
+            this.CatGeografia.Size = new System.Drawing.Size(169, 22);
             this.CatGeografia.Text = "Geografía";
             this.CatGeografia.Click += new System.EventHandler(this.CatGeografia_Click);
             // 
             // catsAlmacenes
             // 
             this.catsAlmacenes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatAlmacen});
+            this.CatAlmacen,
+            this.CatListaPrecios});
             this.catsAlmacenes.ForeColor = System.Drawing.Color.MidnightBlue;
             this.catsAlmacenes.Image = global::GAFE.Properties.Resources.Cancelar;
             this.catsAlmacenes.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -248,6 +250,13 @@
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
+            // 
+            // CatListaPrecios
+            // 
+            this.CatListaPrecios.Name = "CatListaPrecios";
+            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
+            this.CatListaPrecios.Text = "Lista de Precios";
+            this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
             // ProcInven
             // 
@@ -692,6 +701,7 @@
         private Syncfusion.Windows.Forms.Tools.ToolStripEx CatProvee;
         private System.Windows.Forms.ToolStripDropDownButton CatsProveedores;
         private System.Windows.Forms.ToolStripMenuItem CatProveedores;
+        private System.Windows.Forms.ToolStripMenuItem CatListaPrecios;
     }
 }
 

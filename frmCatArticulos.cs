@@ -52,10 +52,12 @@ namespace GAFE
                 case 2:
                     this.Text = "Modificando el Articulo con Clave: " + _KeyCampo;
                     cmdAceptar.Text = "Actualizar";
+                    LlenaGridUbiArt();
                     break;
                 default:
                     this.Text = "Datos del Articulo con Clave: " + _KeyCampo;
                     cmdAceptar.Text = "Aceptar";
+                    LlenaGridUbiArt();
                     break;
 
             }   
@@ -313,10 +315,26 @@ namespace GAFE
                 LlenarArticulo();
                 if (_Opcion == 1)
                 {
+                    db.IniciaTrans();
                     if (Art.AgregarArticulo() >= 1)
                     {
-                        MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                        if (Art.AddArticulo_LstPrecio() >= 1)
+                        {
+                            db.TerminaTrans();
+                            MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                        MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                        {
+                            db.CancelaTrans();
+                            MessageBoxAdv.Show("Existe un problema al registrar en listas.", "Artículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        db.CancelaTrans();
+                        MessageBoxAdv.Show("Existe un problema al guardar.", "Artículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else if (_Opcion == 2)
@@ -324,8 +342,9 @@ namespace GAFE
                     {
                         MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                        MessageBoxIcon.Information);
+                        this.Close();
                     }
-                this.Close();
+                
             }
         }
 
@@ -365,5 +384,76 @@ namespace GAFE
         {
             ClsUtilerias.LetrasNumeros(e);
         }
+
+        private void dtFechaAlta_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboUMedidaEquival_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboUMedida1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LlenaGridUbiArt()
+        {
+
+            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
+            pui.keyCveLstPrecio = _KeyCampo;
+            DatosTbl = pui.ListadoPrecioArticulo();
+            DataSet Ds = new DataSet();
+
+            try
+            {
+                DatosTbl.Fill(Ds);
+                grdViewUbicacion.Columns.Clear();
+                grdViewUbicacion.DataSource = Ds.Tables[0];
+                //grdViewUbicacion.Columns["Documento"].Frozen = true;//Inmovilizar columna
+                //grdViewUbicacion.Columns["NoMovimiento"].Visible = false;
+
+                for (int i = 0; i < grdViewUbicacion.Columns.Count; i++)
+                {
+                    grdViewUbicacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
     }
 }
