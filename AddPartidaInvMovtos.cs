@@ -14,7 +14,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class AddPartidaInvMovtos : Form
+    public partial class AddPartidaInvMovtos : MetroForm
     {
         private int opcion;
         private MsSql db = null;
@@ -265,7 +265,7 @@ namespace GAFE
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, "perfil", 3);
+            frmLstArticulos art = new frmLstArticulos(db, "ADMIN", 3);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {

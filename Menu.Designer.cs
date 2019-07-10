@@ -46,6 +46,7 @@
             this.OpMovInv = new System.Windows.Forms.ToolStripMenuItem();
             this.OpKardex = new System.Windows.Forms.ToolStripMenuItem();
             this.OpExistencia = new System.Windows.Forms.ToolStripMenuItem();
+            this.InvRequisicion = new System.Windows.Forms.ToolStripMenuItem();
             this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
@@ -246,7 +247,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -254,7 +255,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
@@ -282,7 +283,8 @@
             this.OpInventarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpMovInv,
             this.OpKardex,
-            this.OpExistencia});
+            this.OpExistencia,
+            this.InvRequisicion});
             this.OpInventarios.ForeColor = System.Drawing.Color.MidnightBlue;
             this.OpInventarios.Image = global::GAFE.Properties.Resources.Cancelar;
             this.OpInventarios.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -313,6 +315,13 @@
             this.OpExistencia.Size = new System.Drawing.Size(216, 22);
             this.OpExistencia.Text = "Existencia Art - Almacén";
             this.OpExistencia.Click += new System.EventHandler(this.OpExistencia_Click);
+            // 
+            // InvRequisicion
+            // 
+            this.InvRequisicion.Name = "InvRequisicion";
+            this.InvRequisicion.Size = new System.Drawing.Size(216, 22);
+            this.InvRequisicion.Text = "Requicisión";
+            this.InvRequisicion.Click += new System.EventHandler(this.InvRequisicion_Click);
             // 
             // OpInvFisicos
             // 
@@ -633,6 +642,7 @@
             this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.ShowApplicationIcon = false;
             this.Text = "Menu Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Menu_FormClosed);
             this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).EndInit();
@@ -702,6 +712,7 @@
         private System.Windows.Forms.ToolStripDropDownButton CatsProveedores;
         private System.Windows.Forms.ToolStripMenuItem CatProveedores;
         private System.Windows.Forms.ToolStripMenuItem CatListaPrecios;
+        private System.Windows.Forms.ToolStripMenuItem InvRequisicion;
     }
 }
 

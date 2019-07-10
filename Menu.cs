@@ -313,5 +313,11 @@ namespace GAFE
             frmCatLstPrecios fm = new frmCatLstPrecios(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
+
+        private void InvRequisicion_Click(object sender, EventArgs e)
+        {
+            DocLstRequisiciones flsRq = new DocLstRequisiciones(db, user, NewColor);
+            Nav(flsRq, panelContenedor);
+        }
     }
 }

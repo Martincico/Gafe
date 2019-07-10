@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace GAFE
 {
-    class clsStiloTemas
+    public class clsStiloTemas
     {
         public string Encabezado { get; set; }
         public string HoverEncabezado { get; set; }

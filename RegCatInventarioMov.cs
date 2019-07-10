@@ -147,38 +147,7 @@ namespace GAFE
             return dt;
         }
 
-
-
-        /*
-                public int UpdateInventarioMov()
-                {
-                    string sql = "Update Inv_MovtosMaster set FechaMovimiento=@FechaMovimiento, CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
-                                "           NoDoc=@NoDoc, Documento=@Documento, CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
-                                "           Modulo=@Modulo, TipoDoc=@TipoDoc, SerieDoc=@SerieDoc, FolioDocOrigen=@FolioDocOrigen, Descuento=@Descuento," +
-                                "           TotalDscto=@TotalDscto, TIva=@TIva, SubTotal=@SubTotal, TotalDoc=@TotalDoc, CveProveedor=@CveProveedor," +
-                                "           CveCliente=@CveCliente, Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu, CveCentroCosto=@CveCentroCosto, NoMovtoTra=@NoMovtoTra," +
-                                "           DocTra=@DocTra " +
-                                " Where NoMovimiento = @NoMovimiento";
-                    return db.DeleteRegistro(sql, ArrParametros);
-                }
-
-
-
-
-
-                public SqlDataAdapter BuscaInventarioMov(string bsq)
-                {
-                    SqlDataAdapter dt = null;
-                    string sql = "Select NoMovimiento,NoDoc " +
-                       "from Inv_MovtosMaster " +
-                       "where NoMovimiento like '%" + bsq + "%' OR " +
-                       "NoDoc like '%" + bsq + "%' ";
-
-                    dt = db.SelectDA(sql);
-                    return dt;
-                }
-
-            */
+       
         public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             String StrSql = "";
