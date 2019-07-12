@@ -115,6 +115,13 @@ namespace GAFE
 
             if (db.UpdateRegistro(sql, ArrParametros) > 0)
             {
+                if (op == 2)
+                {
+                    sql = "Delete from ReqDetalle  where idMov = @idMov";
+                    int rp = db.UpdateRegistro(sql, ArrParametros);
+                    
+                }
+
                 int j = 0;
                 foreach (DocPartidasReq lst in Partidas)
                 {
@@ -122,15 +129,6 @@ namespace GAFE
                                   "CveUmedida1,CveImpuesto,ImpuestoValor,Precio,Descuento,PrecioNeto,Impuesto,SubTotal,Total)" +
                              "  values(@idMov,@Documento,@Serie,@Numdoc,@ClaveAlmacen,@Partida,@CveArticulo,@Descripcion,@Cantidad," +
                                        "@CveUmedida1,@CveImpuesto,@ImpuestoValor,@Precio,@Descuento,@PrecioNeto,@Impuesto,@SubTotal,@Total)";
-                    if(op ==2)
-                    {
-                        SqlP = " Update ReqDetalle SET Serie = @Serie,Numdoc = @Numdoc," +
-                            "       ClaveAlmacen = @ClaveAlmacen,CveArticulo = @CveArticulo," +
-                            "       Descripcion = @Descripcion,Cantidad = @Cantidad,CveUmedida1 = @CveUmedida1,CveImpuesto = @CveImpuesto," +
-                            "       ImpuestoValor = @ImpuestoValor,Precio = @Precio,Descuento = @Descuento,PrecioNeto = @PrecioNeto," +
-                            "       Impuesto = @Impuesto,SubTotal = @SubTotal,Total = @Total " +
-                            " where idMov = @idMov AND Partida = @Partida";
-                    }
 
                     MatParamP[0, 0] = "idMov"; MatParamP[0, 1] = lst.idMov;
                     MatParamP[1, 0] = "Documento"; MatParamP[1, 1] = lst.Documento;
@@ -151,11 +149,7 @@ namespace GAFE
                     MatParamP[16, 0] = "SubTotal"; MatParamP[16, 1] = lst.SubTotal;
                     MatParamP[17, 0] = "Total"; MatParamP[17, 1] = lst.Total;
                     ParamPartidas(MatParamP);
-                    int rps = -1;
-                    if (op == 1)
-                        rps = db.InsertarRegistro(SqlP, ArrParametrosP);
-                    else
-                        rps = db.UpdateRegistro(SqlP, ArrParametrosP);
+                    int rps = db.InsertarRegistro(SqlP, ArrParametrosP);
 
                     if (rps <=0)
                     {
@@ -182,9 +176,9 @@ namespace GAFE
             string Sql = " SELECT RM.idMov,RM.Documento,RM.Serie,RM.NumDoc,RM.ClaveAlmacen," +
                          "       RM.FechaExpedicion,RM.ClaveImpuesto,RM.Impuesto,RM.Descuento, RM.SubTotal," +
                          "       RM.Total,RM.Observaciones,RM.Estatus,RM.Autorizado,RM.Cancelado," +
-                         "       Alm.Descripcion,Imp.Tipo,Imp.Valor " +
-                         " FROM dbo.ReqMaster AS RM INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON RM.ClaveAlmacen = Alm.ClaveAlmacen " +
-                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON RM.ClaveImpuesto = Imp.CveImpuesto" +
+                         "       Alm.Descripcion " +
+                         " FROM dbo.ReqMaster AS RM " +
+                         " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON RM.ClaveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE RM.idMov = @idMov";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
@@ -196,11 +190,9 @@ namespace GAFE
             string Sql = " SELECT RD.idMov, RD.Documento, RD.Serie, RD.Numdoc, RD.ClaveAlmacen, RD.Partida, " +
                          "        RD.CveArticulo, RD.Descripcion, RD.Cantidad, RD.CveUmedida1, RD.CveImpuesto, " +
                          "        RD.ImpuestoValor, RD.Precio, RD.Descuento, RD.PrecioNeto, RD.Impuesto, " +
-                         "        RD.SubTotal, RD.Total, Art.CveArticulo, Art.Descripcion as DescArticulo, Imp.CveImpuesto, " +
-                         "       Imp.Tipo, Imp.Valor, Umed.Descripción as DescUmed " +
+                         "        RD.SubTotal, RD.Total, Art.CveArticulo, Art.Descripcion as DescArticulo "+
                          " FROM dbo.ReqDetalle AS RD " +
                          " INNER JOIN dbo.inv_CatArticulos AS Art ON RD.CveArticulo = Art.CveArticulo " +
-                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON RD.CveImpuesto = Imp.CveImpuesto " +
                          " INNER JOIN dbo.Inv_UMedidas AS Umed ON RD.CveUmedida1 = Umed.CveUMedida" +
                          " WHERE RD.idMov = '" + Doc+"'";
             dt = db.SelectDA(Sql);

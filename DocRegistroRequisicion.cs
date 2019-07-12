@@ -93,6 +93,8 @@ namespace GAFE
             cboAlmacen.DataSource = lp;
             cboAlmacen.ValueMember = "Id";
             cboAlmacen.DisplayMember = "Descripcion";
+
+            cboAlmacen.SelectedValue = user.AlmacenUsa;
         }
 
 
@@ -180,11 +182,12 @@ namespace GAFE
 
         private void AddPartida_Click(object sender, EventArgs e)
         {
-            DocPartidaRequisiciones DP = new DocPartidaRequisiciones(db, user, StiloColor,1);
+            DocPartidasReq par = new DocPartidasReq();
+            DocPartidaRequisiciones DP = new DocPartidaRequisiciones(db, user, StiloColor,1, par);
             DP.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             DP.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-            //DocPartidasReq  partida = pr.AbrirPArtidas();
             DP.ShowDialog();
+            
             DocPartidasReq partida = DP.partida;
             double subTotal = 0, impuesto = 0, total = 0;
 
@@ -217,7 +220,6 @@ namespace GAFE
                 grdViewD.Columns["CveArticulo"].HeaderText = "Clave";
                 grdViewD.Columns["CveUmedida1"].HeaderText = "U.Medida";
 
-
             }
                
         }
@@ -230,7 +232,6 @@ namespace GAFE
             {
                 double subTotal = 0, impuesto = 0, total = 0;
                 int partida = Convert.ToInt32(grdViewD[5, grdViewD.CurrentRow.Index].Value);
-                //string idMv = grdViewD[0, grdViewD.CurrentRow.Index].Value.ToString();
 
                 DocPartidasReq pr = PARTIDAS.Find(x => x.Partida.Equals(partida));
                 int idx = PARTIDAS.IndexOf(pr);
@@ -239,10 +240,13 @@ namespace GAFE
                 DocPartidaRequisiciones prV = new DocPartidaRequisiciones(db, user, StiloColor,2,pr);
                 prV.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 prV.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-                //pr = prV.AbrirPArtidas(pr);
+
                 prV.ShowDialog();
-                //PARTIDAS.Insert(idx,pr);
-                PARTIDAS.Insert(idx, prV.partida);
+
+                if (prV.partida != null)
+                    PARTIDAS.Insert(idx, prV.partida);
+                else
+                    PARTIDAS.Insert(idx, pr);
 
                 for (int i = 0; i < PARTIDAS.Count; i++)
                 {
@@ -278,7 +282,6 @@ namespace GAFE
             {
                 double subTotal = 0, impuesto = 0, total = 0;
                 int partida = Convert.ToInt32(grdViewD[5, grdViewD.CurrentRow.Index].Value);
-                //string idMv = grdViewD[0, grdViewD.CurrentRow.Index].Value.ToString();
 
                 DocPartidasReq pr = PARTIDAS.Find(x => x.Partida.Equals(partida));
                 int idx = PARTIDAS.IndexOf(pr);
@@ -396,5 +399,6 @@ namespace GAFE
         {
 
         }
+
     }
 }

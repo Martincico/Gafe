@@ -109,12 +109,18 @@ namespace GAFE
         public SqlDataAdapter ListArticulos()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select CveArticulo as Clave,CodigoBarra as Codigo,A.Descripcion,CodigoSat as 'Codigo SAT',Modelo,"+
-                         "L.Descripcion as Linea,M.Descripcion as Marca,C.Descripcion as Clase,UM.Descripcion as 'U Medida',Observacion " +
-                         "FROM inv_CatArticulos A Left join Inv_Lineas L on A.CveLinea = L.CveLinea " +
-                         "Left join Inv_Clases C on A.CveClase1 = C.CveClase " +
-                         "Left Join Inv_UMedidas UM on A.CveUMedida1 = UM.CveUMedida  " +
-                         "Left Join Inv_Marcas M on A.CveMarca = M.Descripción";
+            string Sql = "SELECT A.CveArticulo AS Clave,A.CodigoBarra AS Codigo,A.Descripcion,A.CodigoSat AS [Codigo SAT],A.Modelo,A.Observacion, " +
+                         "       L.CveLinea, L.Descripcion AS Linea, " +
+                         "       M.CveMarca, M.Descripcion AS Marca, " +
+                         "       C.CveClase, C.Descripcion AS Clase, " +
+                         "       UM.CveUMedida, UM.Descripcion AS UMedida, " +
+                         "       Imp.CveImpuesto, Imp.Tipo, Imp.Valor " +
+                         " FROM dbo.inv_CatArticulos AS A " +
+                         " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
+                         " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
+                         " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
+                         " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
+                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  ";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -131,20 +137,26 @@ namespace GAFE
         public SqlDataAdapter BuscaArticulo(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = "Select CveArticulo as Clave,CodigoBarra as Codigo,A.Descripcion,CodigoSat as 'Codigo SAT',Modelo," +
-                         "L.Descripcion as Linea,M.Descripcion as Marca,C.Descripcion as Clase,UM.Descripcion as 'U Medida',Observacion" +
-               " FROM inv_CatArticulos A Left join Inv_Lineas L on A.CveLinea = L.CveLinea " +
-                         " Left join Inv_Clases C on A.CveClase1 = C.CveClase " +
-                         " Left Join Inv_UMedidas UM on A.CveUMedida1 = UM.CveUMedida  " +
-                         " Left Join Inv_Marcas M on A.CveMarca = M.Descripción"+
-               " where CveArticulo like '%" + bsq + "%' OR " +
-               " A.Descripcion  like '%" + bsq + "%' OR " +
-               " CodigoBarra    like '%" + bsq + "%' OR " +
-               " M.Descripcion  like '%" + bsq + "%' OR " +
-               " L.Descripcion  like '%" + bsq + "%' OR " +
-               " C.Descripcion  like '%" + bsq + "%' OR " +
-               " UM.Descripcion like '%" + bsq + "%' OR " +
-               " CodigoSat like '%" + bsq + "%'";
+            string sql = "SELECT A.CveArticulo AS Clave,A.CodigoBarra AS Codigo,A.Descripcion,A.CodigoSat AS [Codigo SAT],A.Modelo,A.Observacion, " +
+                         "       L.CveLinea, L.Descripcion AS Linea, " +
+                         "       M.CveMarca, M.Descripcion AS Marca, " +
+                         "       C.CveClase, C.Descripcion AS Clase, " +
+                         "       UM.CveUMedida, UM.Descripcion AS UMedida, " +
+                         "       Imp.CveImpuesto, Imp.Tipo, Imp.Valor " +
+                         " FROM dbo.inv_CatArticulos AS A " +
+                         " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
+                         " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
+                         " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
+                         " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
+                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  "+
+                         " where CveArticulo like '%" + bsq + "%' OR " +
+                        " A.Descripcion  like '%" + bsq + "%' OR " +
+                        " CodigoBarra    like '%" + bsq + "%' OR " +
+                        " M.Descripcion  like '%" + bsq + "%' OR " +
+                        " L.Descripcion  like '%" + bsq + "%' OR " +
+                        " C.Descripcion  like '%" + bsq + "%' OR " +
+                        " UM.Descripcion like '%" + bsq + "%' OR " +
+                        " CodigoSat like '%" + bsq + "%'";
 
 
             dt = db.SelectDA(sql);

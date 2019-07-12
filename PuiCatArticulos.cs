@@ -275,42 +275,49 @@ namespace GAFE
             return OpLst.ListArticulos();
         }
 
-        public void EditarArticulo()
+        public int EditarArticulo()
         {
+            int Nreg = 0;
             MatParam = new object[1, 2];
             MatParam[0, 0] = "CveArticulo"; MatParam[0, 1] = CveArticulo;
             RegCatArticulo OpEdit = new RegCatArticulo(MatParam, db);
             Datos = OpEdit.RegistroActivo();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
-            object[] objA = Ds.Tables[0].Rows[0].ItemArray;
+            Nreg = Ds.Tables[0].Rows.Count;
+            if (Nreg > 0)
+            {
+                object[] objA = Ds.Tables[0].Rows[0].ItemArray;
 
-            CveArticulo = objA[0].ToString();
-            CodigoAlterno = objA[1].ToString();
-            CodigoBarra = objA[2].ToString();
-            CodigoSat = objA[3].ToString();
-            Fecha_Alta = DateTime.Parse(objA[4].ToString());
-            Descripcion = objA[5].ToString();
-            Modelo = objA[6].ToString();
-            this.Linea.keyCveLinea = objA[7].ToString();
-            this.Marca.keyCveMarca = objA[8].ToString();
-            this.Clase1.keyCveClase = objA[9].ToString();
-            this.Clase2.keyCveClase = objA[10].ToString();
-            this.Clase3.keyCveClase = objA[11].ToString();
-            this.Impuesto.keyCveImpuesto  = objA[12].ToString();
-            this.UMedida1.keyCveUMedida = objA[13].ToString();
-            this.UMedida2.keyCveUMedida  = objA[14].ToString();
-            this.UMedidaEquiv.keyCveUMedida  = objA[15].ToString();
-            EsInventa = int.Parse(objA[16].ToString());
-            DispVenta = int.Parse(objA[17].ToString());
-            EsServicio = int.Parse(objA[18].ToString());
-            DispKit = int.Parse(objA[19].ToString());
-            EsKit = int.Parse(objA[20].ToString());
-            FecUltCompra = objA[21].ToString();
-            CveProveedorUlt = objA[22].ToString();
-            Foto = (byte[])objA[23];
-            Observacion = objA[24].ToString();
-            Estatus = int.Parse(objA[25].ToString());
+                CveArticulo = objA[0].ToString();
+                CodigoAlterno = objA[1].ToString();
+                CodigoBarra = objA[2].ToString();
+                CodigoSat = objA[3].ToString();
+                Fecha_Alta = DateTime.Parse(objA[4].ToString());
+                Descripcion = objA[5].ToString();
+                Modelo = objA[6].ToString();
+                this.Linea.keyCveLinea = objA[7].ToString();
+                this.Marca.keyCveMarca = objA[8].ToString();
+                this.Clase1.keyCveClase = objA[9].ToString();
+                this.Clase2.keyCveClase = objA[10].ToString();
+                this.Clase3.keyCveClase = objA[11].ToString();
+                this.Impuesto.keyCveImpuesto = objA[12].ToString();
+                this.UMedida1.keyCveUMedida = objA[13].ToString();
+                this.UMedida2.keyCveUMedida = objA[14].ToString();
+                this.UMedidaEquiv.keyCveUMedida = objA[15].ToString();
+                EsInventa = int.Parse(objA[16].ToString());
+                DispVenta = int.Parse(objA[17].ToString());
+                EsServicio = int.Parse(objA[18].ToString());
+                DispKit = int.Parse(objA[19].ToString());
+                EsKit = int.Parse(objA[20].ToString());
+                FecUltCompra = objA[21].ToString();
+                CveProveedorUlt = objA[22].ToString();
+                Foto = (byte[])objA[23];
+                Observacion = objA[24].ToString();
+                Estatus = int.Parse(objA[25].ToString());
+            }
+
+            return Nreg;
         }
 
         public SqlDataAdapter BuscaArticulo(string buscar)

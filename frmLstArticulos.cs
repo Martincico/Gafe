@@ -27,7 +27,7 @@ namespace GAFE
         private string Perfil;
         private clsUtil uT;
 
-        public string[] dv = new string[3];
+        public string[] dv = new string[13];
 
         public frmLstArticulos()
         {
@@ -161,13 +161,14 @@ namespace GAFE
             DatosTbl.Fill(ds);
             //grdView.Rows.Clear();
             grdView.DataSource = ds.Tables[0];
-            /*
-            for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
-            {
-                object[] tmp = ds.Tables[0].Rows[j].ItemArray;
-                grdView.Rows.Add(tmp);
-            }
-            */
+            //grdViewPart.Columns["NoPartida"].Frozen = true;//Inmovilizar columna
+            grdView.Columns["CveLinea"].Visible = false;// 6
+            grdView.Columns["CveMarca"].Visible = false;// 8
+            grdView.Columns["CveClase"].Visible = false;//10
+            grdView.Columns["CveUMedida"].Visible = false;//12
+            grdView.Columns["CveImpuesto"].Visible = false;//14
+            grdView.Columns["Tipo"].Visible = false;//14
+            grdView.Columns["Valor"].Visible = false;//16
         }
 
 
@@ -196,13 +197,14 @@ namespace GAFE
                 DatosTbl.Fill(Ds);
                 //grdView.Rows.Clear();
                 grdView.DataSource = Ds.Tables[0];
-                /*
-                for (int j = 0; j < Ds.Tables[0].Rows.Count; j++)
-                {
-                    object[] tmp = Ds.Tables[0].Rows[j].ItemArray;
-                    grdView.Rows.Add(tmp);
-                }
-                */
+                //grdViewPart.Columns["NoPartida"].Frozen = true;//Inmovilizar columna
+                grdView.Columns["CveLinea"].Visible = false;// 6
+                grdView.Columns["CveMarca"].Visible = false;// 8
+                grdView.Columns["CveClase"].Visible = false;//10
+                grdView.Columns["CveUMedida"].Visible = false;//12
+                grdView.Columns["CveImpuesto"].Visible = false;//14
+                grdView.Columns["Tipo"].Visible = false;//14
+                grdView.Columns["Valor"].Visible = false;//16
             }
             catch (Exception ex)
             {
@@ -235,7 +237,25 @@ namespace GAFE
             {
                 KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 dv[0] = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                dv[1] = grdView[2, grdView.CurrentRow.Index].Value.ToString();                
+                dv[1] = grdView[2, grdView.CurrentRow.Index].Value.ToString();
+
+                dv[2] = grdView[6, grdView.CurrentRow.Index].Value.ToString();//CveLinea
+                dv[3] = grdView[7, grdView.CurrentRow.Index].Value.ToString();//DesLinea
+
+                dv[4] = grdView[8, grdView.CurrentRow.Index].Value.ToString();//CveMarca
+                dv[5] = grdView[9, grdView.CurrentRow.Index].Value.ToString();//Desc CveMarca
+
+                dv[6] = grdView[10, grdView.CurrentRow.Index].Value.ToString();//CveClase
+                dv[7] = grdView[11, grdView.CurrentRow.Index].Value.ToString();//Desc CveClase
+
+                dv[8] = grdView[12, grdView.CurrentRow.Index].Value.ToString();//CveUMedida
+                dv[9] = grdView[13, grdView.CurrentRow.Index].Value.ToString();//Desc CveUMedida
+
+                dv[10] = grdView[14, grdView.CurrentRow.Index].Value.ToString();//CveImpuesto
+                dv[11] = grdView[15, grdView.CurrentRow.Index].Value.ToString();//Desc Tipo
+                dv[12] = grdView[16, grdView.CurrentRow.Index].Value.ToString();//Valor
+
+
                 this.Close();
             }
             catch (Exception ex)

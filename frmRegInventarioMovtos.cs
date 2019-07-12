@@ -14,7 +14,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmRegInventarioMovtos : Form
+    public partial class frmRegInventarioMovtos : MetroForm
     {
         private int opcion, folMovto;
 

@@ -446,6 +446,7 @@ namespace GAFE
                     else
                         Cantidad = Convert.ToDouble(txtCantidad.Text);
                 }
+                /*
                 else
                 {
                     if (Op == 1)
@@ -456,6 +457,7 @@ namespace GAFE
                     else
                         Cantidad = 0;
                 }
+                */
 
             }
 
@@ -481,6 +483,7 @@ namespace GAFE
                     else
                         Precio = Convert.ToDouble(txtPrecio.Text);
                 }
+                /*
                 else
                 {
                     if (!Util.Decimal(txtPrecio.Text))
@@ -491,6 +494,7 @@ namespace GAFE
                     else
                         Precio = 0;
                 }
+                */
             }
 
             if (String.IsNullOrEmpty(txtDescuento.Text))
@@ -515,6 +519,7 @@ namespace GAFE
                     else
                         Descuento = Convert.ToDouble(txtDescuento.Text);
                 }
+                /*
                 else
                 {
                     if (!Util.Decimal(txtDescuento.Text))
@@ -525,6 +530,7 @@ namespace GAFE
                     else
                         Descuento = 0;
                 }
+                */
 
             }
                 

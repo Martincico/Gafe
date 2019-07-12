@@ -187,7 +187,6 @@
             // 
             // DelPartida
             // 
-            this.DelPartida.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.DelPartida, "DelPartida");
             this.DelPartida.Image = global::GAFE.Properties.Resources.Eliminar;
             this.DelPartida.Name = "DelPartida";
@@ -196,7 +195,6 @@
             // 
             // EditPartida
             // 
-            this.EditPartida.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.EditPartida, "EditPartida");
             this.EditPartida.Image = global::GAFE.Properties.Resources.Editar;
             this.EditPartida.Name = "EditPartida";
@@ -245,7 +243,6 @@
             // 
             // AddPartida
             // 
-            this.AddPartida.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.AddPartida, "AddPartida");
             this.AddPartida.Image = global::GAFE.Properties.Resources.Nuevo;
             this.AddPartida.Name = "AddPartida";
