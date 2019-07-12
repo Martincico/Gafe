@@ -23,6 +23,8 @@ namespace GAFE
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
 
+        private Boolean isDataSaved = false;//Valida el cerrar el doc
+
         List<clsFillCbo> lp;
         List<DocPartidasReq> PARTIDAS;
 
@@ -101,24 +103,25 @@ namespace GAFE
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            switch(Opcion)
+            Boolean DellAll = true;
+
+            switch (Opcion)
             {
                 case 1:
-                    DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (rsp == DialogResult.Yes)
+                    if (grdViewD.RowCount > 0)
                     {
-                        DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-                        SetValues(sRq);
-                        if (sRq.GuardarDocumento(ConfigDoc.UsaSerie == 1 ? 0 : 5000, ConfigDoc.ClaveDoc, Opcion) == 1)
+                        DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (rsp == DialogResult.Yes)
                         {
-                            MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
+                            DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
+                            SetValues(sRq);
+                            if (sRq.GuardarDocumento(ConfigDoc.UsaSerie == 1 ? 0 : 5000, ConfigDoc.ClaveDoc, Opcion) == 1)
+                            {
+                                MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                isDataSaved = true;
+                                DellAll = false;
+                            }
                         }
-                    }
-                    else
-                    {
-                        NoGuardaElDocumento();
-                        this.Close();
                     }
                     break;
                 case 2:
@@ -130,16 +133,18 @@ namespace GAFE
                         if (sRq.ActualizaDocumento(Opcion) == 1)
                         {
                             MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
+                            isDataSaved = true;
+                            DellAll = false;
                         }
                     }
-                    else
-                    {
-                        this.Close();
-                    }
                 break;
-                default: this.Close(); break;
+                default: isDataSaved = true; DellAll = false; break;
             }
+
+            if (DellAll)
+                ConfirmarSalir();
+
+                this.Close();
         }
 
         private void SetValues(DocPuiRequisiciones sRq)
@@ -175,8 +180,7 @@ namespace GAFE
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
-            NoGuardaElDocumento();
-            this.Close();
+            ConfirmarSalir();
         }
 
 
@@ -400,5 +404,25 @@ namespace GAFE
 
         }
 
+        private void DocRegistroRequisicion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isDataSaved)
+            {
+                ConfirmarSalir();
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+        }
+
+        private void ConfirmarSalir()
+        {
+            NoGuardaElDocumento();
+            isDataSaved = true;
+            this.Close();
+
+        }
     }
 }

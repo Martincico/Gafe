@@ -27,15 +27,6 @@ namespace GAFE
         private string Perfil;
         private clsUtil uT;
 
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
         List<clsFillCbo> lp;
         List<clsFillCbo> ln;
 
@@ -73,20 +64,6 @@ namespace GAFE
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
-
-            this.Size = this.MinimumSize;
-            
-
-            /*
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            */
             string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 'A'";
             SqlDataReader dr = db.SelectDR(Sqlstr);
             lp = new List<clsFillCbo>();

@@ -291,6 +291,7 @@
             this.MinimizeBox = false;
             this.Name = "DocRegistroRequisicion";
             this.ShowIcon = false;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DocRegistroRequisicion_FormClosing);
             this.Load += new System.EventHandler(this.DocRegistroRequisicion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

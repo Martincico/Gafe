@@ -18,6 +18,8 @@ namespace GAFE
     {
         DateTime FecDia;
         clsCfgDocumento ConfigDoc;
+        DataTable dt = null;
+        DataRow row = null;
         MsSql db;
         private SqlDataAdapter DatosTbl;
         private clsUtil uT;
@@ -43,6 +45,8 @@ namespace GAFE
 
         private void DocLstRequisiciones_Load(object sender, EventArgs e)
         {
+            LlecboAlmaOri(user.AlmacenUsa);
+
             LlenaGridView();
         }
 
@@ -134,37 +138,124 @@ namespace GAFE
 
         private void LlenaGridView()
         {
+            String AlmOri = Convert.ToString(cboAlmaOri.SelectedValue);
+            String FIni = dtFechaInicio.Value.ToString("dd/MM/yyyy");
+            String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
+
             DocPuiRequisiciones pui = new DocPuiRequisiciones(db);
-            DatosTbl = pui.ListarDocumentos();
+            DatosTbl = pui.ListarDocumentos(AlmOri, FIni, FFin);
             DataSet Ds = new DataSet();
 
             try
             {
                 DatosTbl.Fill(Ds);
-                
-                grdView.Rows.Clear();
-                
-                for (int j = 0; j < Ds.Tables[0].Rows.Count; j++)
-                {
-                    object[] tmp = Ds.Tables[0].Rows[j].ItemArray;
-                    grdView.Rows.Add(tmp);
+                grdView.Columns.Clear();
+                grdView.DataSource = Ds.Tables[0];
 
-                    if (tmp[0].ToString().Length == 0)
-                        grdView.Rows[j].DefaultCellStyle.BackColor = Color.Beige;                    
-                }
+                grdView.Columns["ClaveAlmacen"].Visible = false;
 
-                
+
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            /*
+             
+                        PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            DatosTbl = pui.ListarInventarioMovtos(CodProve, AlmOri, CodTipoMov, FIni, FFin);
+            DataSet Ds = new DataSet();
+
+            try
+            {
+                DatosTbl.Fill(Ds);
+                grdView.Columns.Clear();
+                grdView.DataSource = Ds.Tables[0];
+                grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
+                grdView.Columns["NoMovimiento"].Visible = false;
+                grdView.Columns["Cancelado"].Visible = false;
+                grdView.Columns["TotalDoc"].Visible = false;
+                grdView.Columns["CveTipoMov"].Visible = false;
+                grdView.Columns["NoMovtoTra"].Visible = false;
+                
+
+                for (int i = 0; i < grdView.Columns.Count; i++)
+                {
+                    grdView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+             */
+
+        }
+
+        private void LlecboAlmaOri(String CveUser)
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            dt = lin.CboInv_CatAlmacenes();
+            row = dt.NewRow();
+            row["ClaveAlmacen"] = "0";
+            row["Descripcion"] = "TODOS ";
+            dt.Rows.Add(row);
+
+            cboAlmaOri.DataSource = dt;
+
+            cboAlmaOri.ValueMember = "ClaveAlmacen";
+            cboAlmaOri.DisplayMember = "Descripcion";
+
+            cboAlmaOri.SelectedValue = CveUser;
         }
 
         private void DocLstRequisiciones_FormClosing(object sender, FormClosingEventArgs e)
         {
 
+        }
+
+        private void cmdRestablecer_Click(object sender, EventArgs e)
+        {
+            dtFechaFin.Value = dtFechaFin.MaxDate;
+
+            dtFechaInicio.Value = DateTime.Now;
+            cboAlmaOri.SelectedValue = user.AlmacenUsa;
+            dtFechaFin.Value = DateTime.Now;
+        }
+
+        private void cboAlmaOri_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string val = Convert.ToString(cboAlmaOri.SelectedValue);
+            if (!val.Equals("System.Data.DataRowView") && !val.Equals(""))
+            {
+                LlenaGridView();
+            }
+        }
+
+        private void dtFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtFechaInicio.Value > dtFechaFin.Value)
+            {
+                dtFechaInicio.Focus();
+                MessageBoxAdv.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+                LlenaGridView();
+        }
+
+        private void dtFechaFin_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtFechaInicio.Value > dtFechaFin.Value)
+            {
+                dtFechaFin.Focus();
+                MessageBoxAdv.Show("Fecha de Inicio debe ser mayor a Fecha Final.", "Listado registros", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+                LlenaGridView();
         }
     }
 }

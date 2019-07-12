@@ -239,11 +239,11 @@ namespace GAFE
             MatParam2[1, 0] = "FechaExpedicion"; MatParam2[1, 1] = FechaExpedicion;
         }
 
-        public SqlDataAdapter ListarDocumentos()
+        public SqlDataAdapter ListarDocumentos(String CodAlm, String FIni, String FFin)
         {
             CargaParametroMat();
             DocRegRequisiciones OpLst = new DocRegRequisiciones(db);
-            return OpLst.ListDocumentos();
+            return OpLst.ListDocumentos(CodAlm, FIni, FFin);
         }
 
 

@@ -83,11 +83,24 @@ namespace GAFE
         }
 
 
-        public SqlDataAdapter ListDocumentos()
+        public SqlDataAdapter ListDocumentos(String CodAlm, String FIni, String FFin)
         {
+            String StrSql = "";
+
+
+            if (!CodAlm.Equals("0") && !CodAlm.Equals(""))
+            {
+                StrSql += " AND Alm.ClaveAlmacen = '" + CodAlm + "'";
+            }
+
             SqlDataAdapter dt = null;
-            string Sql = "Select idMov, Documento,Serie,NumDoc,ClaveAlmacen,FechaExpedicion,Impuesto,Descuento,SubTotal,Total " +
-                         "from ReqMaster";
+
+
+            string Sql = "SELECT M.idMov,M.Documento,M.Serie,M.NumDoc,M.ClaveAlmacen, Alm.Descripcion 'Almacén'," +
+                         "       M.FechaExpedicion as 'Fec Exp',M.Impuesto,M.Descuento,M.SubTotal,M.Total" +
+                         " FROM dbo.ReqMaster AS M " +
+                         " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON M.ClaveAlmacen = Alm.ClaveAlmacen " +
+                         " WHERE (CONVERT(date,M.FechaExpedicion) BETWEEN '" + FIni + "' AND '" + FFin + "')" + StrSql;
             dt = db.SelectDA(Sql);
             return dt;
         }

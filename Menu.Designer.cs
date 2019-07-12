@@ -521,43 +521,43 @@
             // stilDefault
             // 
             this.stilDefault.Name = "stilDefault";
-            this.stilDefault.Size = new System.Drawing.Size(113, 22);
+            this.stilDefault.Size = new System.Drawing.Size(180, 22);
             this.stilDefault.Text = "Default";
             this.stilDefault.Click += new System.EventHandler(this.stilDefault_Click);
             // 
             // stilClaro
             // 
             this.stilClaro.Name = "stilClaro";
-            this.stilClaro.Size = new System.Drawing.Size(113, 22);
+            this.stilClaro.Size = new System.Drawing.Size(180, 22);
             this.stilClaro.Text = "Claro";
             this.stilClaro.Click += new System.EventHandler(this.stilClaro_Click);
             // 
             // stilVerde
             // 
             this.stilVerde.Name = "stilVerde";
-            this.stilVerde.Size = new System.Drawing.Size(113, 22);
+            this.stilVerde.Size = new System.Drawing.Size(180, 22);
             this.stilVerde.Text = "Verde";
             this.stilVerde.Click += new System.EventHandler(this.stilVerde_Click);
             // 
             // stilNegro
             // 
             this.stilNegro.Name = "stilNegro";
-            this.stilNegro.Size = new System.Drawing.Size(113, 22);
+            this.stilNegro.Size = new System.Drawing.Size(180, 22);
             this.stilNegro.Text = "Negro";
             this.stilNegro.Click += new System.EventHandler(this.stilNegro_Click);
             // 
             // stilAzul
             // 
             this.stilAzul.Name = "stilAzul";
-            this.stilAzul.Size = new System.Drawing.Size(113, 22);
+            this.stilAzul.Size = new System.Drawing.Size(180, 22);
             this.stilAzul.Text = "Azul";
             this.stilAzul.Click += new System.EventHandler(this.stilAzul_Click);
             // 
             // stilRosado
             // 
             this.stilRosado.Name = "stilRosado";
-            this.stilRosado.Size = new System.Drawing.Size(113, 22);
-            this.stilRosado.Text = "Rosado";
+            this.stilRosado.Size = new System.Drawing.Size(180, 22);
+            this.stilRosado.Text = "Rosa";
             this.stilRosado.Click += new System.EventHandler(this.stilRosado_Click);
             // 
             // CatsFondos
@@ -579,35 +579,35 @@
             // PerFondo1
             // 
             this.PerFondo1.Name = "PerFondo1";
-            this.PerFondo1.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo1.Size = new System.Drawing.Size(180, 22);
             this.PerFondo1.Text = "Fondo1";
             this.PerFondo1.Click += new System.EventHandler(this.PerFondo1_Click);
             // 
             // PerFondo2
             // 
             this.PerFondo2.Name = "PerFondo2";
-            this.PerFondo2.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo2.Size = new System.Drawing.Size(180, 22);
             this.PerFondo2.Text = "Fondo2";
             this.PerFondo2.Click += new System.EventHandler(this.PerFondo2_Click);
             // 
             // PerFondo3
             // 
             this.PerFondo3.Name = "PerFondo3";
-            this.PerFondo3.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo3.Size = new System.Drawing.Size(180, 22);
             this.PerFondo3.Text = "Fondo3";
             this.PerFondo3.Click += new System.EventHandler(this.PerFondo3_Click);
             // 
             // PerFondo4
             // 
             this.PerFondo4.Name = "PerFondo4";
-            this.PerFondo4.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo4.Size = new System.Drawing.Size(180, 22);
             this.PerFondo4.Text = "Fondo4";
             this.PerFondo4.Click += new System.EventHandler(this.PerFondo4_Click);
             // 
             // PerFondoNone
             // 
             this.PerFondoNone.Name = "PerFondoNone";
-            this.PerFondoNone.Size = new System.Drawing.Size(120, 22);
+            this.PerFondoNone.Size = new System.Drawing.Size(180, 22);
             this.PerFondoNone.Text = "Ninguno";
             this.PerFondoNone.Click += new System.EventHandler(this.PerFondoNone_Click);
             // 

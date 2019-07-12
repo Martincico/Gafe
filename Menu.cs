@@ -161,7 +161,7 @@ namespace GAFE
 
         private void OpMovInv_Click(object sender, EventArgs e)
         {
-            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, user.CodPerfil);
+            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -251,7 +251,7 @@ namespace GAFE
 
         private void stilRosado_Click(object sender, EventArgs e)
         {
-            ActualizaTemaUser("Rosado");
+            ActualizaTemaUser("Rosa");
         }
 
         private void PerFondo1_Click(object sender, EventArgs e)

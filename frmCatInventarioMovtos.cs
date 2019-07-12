@@ -26,7 +26,7 @@ namespace GAFE
         DataTable dt = null;
         DataRow row = null;
 
-        private string Perfil;
+        public DatCfgUsuario user;
         private clsUtil uT;
 
         private string path;
@@ -38,6 +38,7 @@ namespace GAFE
         private string Usuario;
         private string Password;
 
+        public clsStiloTemas StiloColor;
 
         public frmCatInventarioMovtos()
         {
@@ -45,11 +46,12 @@ namespace GAFE
         }
 
 
-        public frmCatInventarioMovtos(MsSql Odat, string perfil)
+        public frmCatInventarioMovtos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -57,7 +59,7 @@ namespace GAFE
 
         private void frmCatInventarioMovtos_Load(object sender, EventArgs e)
         {
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             clsUsPerfil up = uT.BuscarIdNodo("1Inv011A");
@@ -80,11 +82,8 @@ namespace GAFE
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdRestablecer.Enabled = (AcCOP == 1) ? true : false;
 
-
-            this.Size = this.MinimumSize;
-            
             LlecboProveedor();
-            LlecboAlmaOri("100");
+            LlecboAlmaOri(user.AlmacenUsa);
             LlecboTipoMovtos();
             
             LlenaGridView();
@@ -189,34 +188,7 @@ namespace GAFE
         {
             cmdConsultar_Click(sender, e);
         }
-
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
-        }
+        
 
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -447,10 +419,9 @@ namespace GAFE
         private void cmdRestablecer_Click(object sender, EventArgs e)
         {
             dtFechaFin.Value = dtFechaFin.MaxDate;
-
             dtFechaInicio.Value = DateTime.Now;
             cboTipoMovtos.SelectedValue = "0";
-            cboAlmaOri.SelectedValue = "100";
+            cboAlmaOri.SelectedValue = user.AlmacenUsa;
             cboProveedor.SelectedValue = "0";
             dtFechaFin.Value =  DateTime.Now;
 

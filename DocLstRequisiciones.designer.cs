@@ -33,16 +33,18 @@
             this.cmEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
+            this.dtFechaInicio = new System.Windows.Forms.DateTimePicker();
+            this.lblAlmaOri = new System.Windows.Forms.Label();
+            this.cboAlmaOri = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmdRestablecer = new System.Windows.Forms.Button();
             this.idMov = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NumDoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClaveAlmacen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaExpedicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Impuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +53,7 @@
             this.cmdConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(682, 402);
+            this.cmdConsultar.Location = new System.Drawing.Point(694, 402);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 14;
@@ -65,7 +67,7 @@
             this.cmdEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(582, 402);
+            this.cmdEliminar.Location = new System.Drawing.Point(594, 402);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 17;
@@ -79,7 +81,7 @@
             this.cmEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmEditar.Location = new System.Drawing.Point(482, 402);
+            this.cmEditar.Location = new System.Drawing.Point(494, 402);
             this.cmEditar.Name = "cmEditar";
             this.cmEditar.Size = new System.Drawing.Size(94, 36);
             this.cmEditar.TabIndex = 16;
@@ -93,7 +95,7 @@
             this.cmdAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(382, 402);
+            this.cmdAgregar.Location = new System.Drawing.Point(394, 402);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 15;
@@ -109,21 +111,126 @@
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idMov,
-            this.Documento,
-            this.Serie,
-            this.NumDoc,
-            this.ClaveAlmacen,
-            this.FechaExpedicion,
-            this.Impuesto,
-            this.Descuento,
-            this.SubTotal,
-            this.Total});
-            this.grdView.Location = new System.Drawing.Point(12, 128);
+            this.idMov});
+            this.grdView.Location = new System.Drawing.Point(12, 99);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(776, 268);
+            this.grdView.Size = new System.Drawing.Size(776, 297);
             this.grdView.TabIndex = 18;
+            // 
+            // textBox1
+            // 
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(334, 42);
+            this.textBox1.MaxLength = 100;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(84, 22);
+            this.textBox1.TabIndex = 27;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigo.Location = new System.Drawing.Point(154, 42);
+            this.txtCodigo.MaxLength = 100;
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(95, 22);
+            this.txtCodigo.TabIndex = 26;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 16);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Folio de";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(281, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(16, 16);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "a";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(281, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(16, 16);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "a";
+            // 
+            // dtFechaFin
+            // 
+            this.dtFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaFin.Location = new System.Drawing.Point(334, 71);
+            this.dtFechaFin.Name = "dtFechaFin";
+            this.dtFechaFin.Size = new System.Drawing.Size(104, 22);
+            this.dtFechaFin.TabIndex = 22;
+            this.dtFechaFin.ValueChanged += new System.EventHandler(this.dtFechaFin_ValueChanged);
+            // 
+            // dtFechaInicio
+            // 
+            this.dtFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaInicio.Location = new System.Drawing.Point(154, 70);
+            this.dtFechaInicio.Name = "dtFechaInicio";
+            this.dtFechaInicio.Size = new System.Drawing.Size(104, 22);
+            this.dtFechaInicio.TabIndex = 21;
+            this.dtFechaInicio.ValueChanged += new System.EventHandler(this.dtFechaInicio_ValueChanged);
+            // 
+            // lblAlmaOri
+            // 
+            this.lblAlmaOri.AutoSize = true;
+            this.lblAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlmaOri.Location = new System.Drawing.Point(9, 15);
+            this.lblAlmaOri.Name = "lblAlmaOri";
+            this.lblAlmaOri.Size = new System.Drawing.Size(104, 16);
+            this.lblAlmaOri.TabIndex = 19;
+            this.lblAlmaOri.Text = "Almacén Origen";
+            // 
+            // cboAlmaOri
+            // 
+            this.cboAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAlmaOri.FormattingEnabled = true;
+            this.cboAlmaOri.Location = new System.Drawing.Point(154, 12);
+            this.cboAlmaOri.Name = "cboAlmaOri";
+            this.cboAlmaOri.Size = new System.Drawing.Size(264, 24);
+            this.cboAlmaOri.TabIndex = 20;
+            this.cboAlmaOri.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 16);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Fecha expedición";
+            // 
+            // cmdRestablecer
+            // 
+            this.cmdRestablecer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdRestablecer.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.cmdRestablecer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.cmdRestablecer.Location = new System.Drawing.Point(691, 26);
+            this.cmdRestablecer.Name = "cmdRestablecer";
+            this.cmdRestablecer.Size = new System.Drawing.Size(85, 54);
+            this.cmdRestablecer.TabIndex = 29;
+            this.cmdRestablecer.Text = "Restablacer";
+            this.cmdRestablecer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.cmdRestablecer.UseVisualStyleBackColor = false;
+            this.cmdRestablecer.Click += new System.EventHandler(this.cmdRestablecer_Click);
             // 
             // idMov
             // 
@@ -131,63 +238,6 @@
             this.idMov.Name = "idMov";
             this.idMov.ReadOnly = true;
             this.idMov.Visible = false;
-            // 
-            // Documento
-            // 
-            this.Documento.HeaderText = "Documento";
-            this.Documento.MinimumWidth = 20;
-            this.Documento.Name = "Documento";
-            this.Documento.ReadOnly = true;
-            this.Documento.Width = 80;
-            // 
-            // Serie
-            // 
-            this.Serie.HeaderText = "Serie";
-            this.Serie.Name = "Serie";
-            this.Serie.ReadOnly = true;
-            this.Serie.Width = 20;
-            // 
-            // NumDoc
-            // 
-            this.NumDoc.HeaderText = "Numero";
-            this.NumDoc.Name = "NumDoc";
-            this.NumDoc.ReadOnly = true;
-            // 
-            // ClaveAlmacen
-            // 
-            this.ClaveAlmacen.HeaderText = "Almacen";
-            this.ClaveAlmacen.Name = "ClaveAlmacen";
-            this.ClaveAlmacen.ReadOnly = true;
-            // 
-            // FechaExpedicion
-            // 
-            this.FechaExpedicion.HeaderText = "Fec Exp";
-            this.FechaExpedicion.Name = "FechaExpedicion";
-            this.FechaExpedicion.ReadOnly = true;
-            // 
-            // Impuesto
-            // 
-            this.Impuesto.HeaderText = "Impuesto";
-            this.Impuesto.Name = "Impuesto";
-            this.Impuesto.ReadOnly = true;
-            // 
-            // Descuento
-            // 
-            this.Descuento.HeaderText = "Descuento";
-            this.Descuento.Name = "Descuento";
-            this.Descuento.ReadOnly = true;
-            // 
-            // SubTotal
-            // 
-            this.SubTotal.HeaderText = "SubTotal";
-            this.SubTotal.Name = "SubTotal";
-            this.SubTotal.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
             // 
             // DocLstRequisiciones
             // 
@@ -198,7 +248,18 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(796, 441);
+            this.Controls.Add(this.cmdRestablecer);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCodigo);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dtFechaFin);
+            this.Controls.Add(this.dtFechaInicio);
+            this.Controls.Add(this.lblAlmaOri);
+            this.Controls.Add(this.cboAlmaOri);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
             this.Controls.Add(this.cmEditar);
@@ -214,6 +275,7 @@
             this.Load += new System.EventHandler(this.DocLstRequisiciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -224,15 +286,17 @@
         private System.Windows.Forms.Button cmEditar;
         private System.Windows.Forms.Button cmdAgregar;
         private System.Windows.Forms.DataGridView grdView;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtFechaFin;
+        private System.Windows.Forms.DateTimePicker dtFechaInicio;
+        private System.Windows.Forms.Label lblAlmaOri;
+        private System.Windows.Forms.ComboBox cboAlmaOri;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button cmdRestablecer;
         private System.Windows.Forms.DataGridViewTextBoxColumn idMov;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Serie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumDoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClaveAlmacen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaExpedicion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Impuesto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }
