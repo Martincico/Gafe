@@ -29,15 +29,6 @@ namespace GAFE
         public DatCfgUsuario user;
         private clsUtil uT;
 
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
         public clsStiloTemas StiloColor;
 
         public frmCatInventarioMovtos()
@@ -113,22 +104,7 @@ namespace GAFE
             }
         }
 
-        private void cmdBuscar_Click(object sender, EventArgs e)
-        {
-            /*
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            DatosTbl = pui.BuscaTipoMov(txtBuscar.Text);
-            DataSet ds = new DataSet();
-            DatosTbl.Fill(ds);
 
-            grdView.Rows.Clear();
-            for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
-            {
-                object[] tmp = ds.Tables[0].Rows[j].ItemArray;
-                grdView.Rows.Add(tmp);
-            }
-            */
-        }
 
         private void frmCatInventarioMovtos_KeyDown(object sender, KeyEventArgs e)
         {

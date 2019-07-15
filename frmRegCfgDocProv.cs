@@ -14,18 +14,18 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmRegTipoMovtos : MetroForm
+    public partial class frmRegCfgDocProv : MetroForm
     {
         private int opcion;
         private MsSql db = null;
 
 
-        public frmRegTipoMovtos()
+        public frmRegCfgDocProv()
         {
             InitializeComponent();
         }
 
-        public frmRegTipoMovtos(MsSql Odat, int Op, String Cod="")
+        public frmRegCfgDocProv(MsSql Odat, int Op, String Cod="")
         {
             InitializeComponent();
             opcion = Op;
@@ -45,12 +45,12 @@ namespace GAFE
                 break;
                 case 2://Edita
                     get_Campos(Cod);
-                    txtClaveTipoMov.Enabled = false;
+                    //txtClaveTipoMov.Enabled = false;
                 break;
                 case 3://Consulta
                     get_Campos(Cod);
                     OpcionControles(false);
-                    cboTipoMovRel.Enabled = false;
+                    //cboTipoMovRel.Enabled = false;
                 break;
 
             }
@@ -62,7 +62,7 @@ namespace GAFE
             PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
             pui.keyCveTipoMov = Cod;
             pui.EditarTipoMov();
-
+            /*
             txtClaveTipoMov.Text = pui.keyCveTipoMov;
             txtDescripcion.Text = pui.cmpDescripcion;
             txtDescCorta.Text = pui.cmpDescCorta;
@@ -85,11 +85,11 @@ namespace GAFE
             //chkEditaCosto.Checked = pui.cmpPideCentroCosto == 1 ? true : false;
             chkInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
-
+            */
         }
 
 
-        private void frmRegTipoMovtos_KeyDown(object sender, KeyEventArgs e)
+        private void frmRegCfgDocumentos_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -158,6 +158,7 @@ namespace GAFE
         public int set_Campos()
         {
             int rsp = -1;
+            /*
             string _tipomovrel = (cboCveClsMov.Text == "TRASPASO") ? Convert.ToString(cboTipoMovRel.SelectedValue) : "";
             PuiCatTipoMovtos pui = new PuiCatTipoMovtos(db);
             pui.keyCveTipoMov = txtClaveTipoMov.Text;
@@ -199,7 +200,7 @@ namespace GAFE
             }
             else
                 rsp =pui.ActualizaTipoMov();
-
+                */
 
             return rsp;
         }
@@ -207,7 +208,9 @@ namespace GAFE
 
         private Boolean Validar()
         {
+            
             Boolean dv = true;
+            /*
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
@@ -265,7 +268,7 @@ namespace GAFE
                     dv = false;
                 }
             }
-
+            */
 
             return dv;
         }
@@ -274,6 +277,7 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
+            /*
             txtClaveTipoMov.Enabled = Op;
             txtDescripcion.Enabled = Op;
 
@@ -293,13 +297,16 @@ namespace GAFE
             chkCalculaIva.Enabled = Op;
             chkInterno.Enabled = Op;
             chkEstatus.Enabled = Op;
+            */
 
         }
 
         private void LimpiarControles()
         {
+            /*
             txtClaveTipoMov.Text = "";
             txtDescripcion.Text = "";
+            */
         }
 
         private void cmdCancelar_Click_1(object sender, EventArgs e)
@@ -309,33 +316,39 @@ namespace GAFE
 
         private void LleCboClaseMov()
         {
+            /*
             PuiCatInv_ClaseMov lin = new PuiCatInv_ClaseMov(db);
             cboCveClsMov.DataSource = lin.CboInv_ClaseMov();
             cboCveClsMov.ValueMember = "CveClsMov";
             cboCveClsMov.DisplayMember = "Descripcion";
+            */
         }
 
 
         private void LleCboMovRel()
         {
+            /*
             PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
             cboTipoMovRel.DataSource = lin.CboInv_TipoMovtos();
             cboTipoMovRel.ValueMember = "CveTipoMov";
             cboTipoMovRel.DisplayMember = "Descripcion";
-
+            */
         }
 
         private void LlecboCfgCatFoliadores()
         {
+            /*
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
             cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores();
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
+            */
         }
 
 
         private void cboCveClsMov_SelectedValueChanged(object sender, EventArgs e)
         {
+            /*
             if (cboCveClsMov.Text == "TRASPASO")
             {
                 cboTipoMovRel.Enabled = true;
@@ -346,7 +359,7 @@ namespace GAFE
                 cboTipoMovRel.Enabled = false;
                 cboTipoMovRel.Text = "";
             }
-
+            */
         }
 
         private void txtClaveTipoMov_KeyPress(object sender, KeyPressEventArgs e)

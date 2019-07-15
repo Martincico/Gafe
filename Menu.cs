@@ -314,10 +314,35 @@ namespace GAFE
             Nav(fm, panelContenedor);
         }
 
-        private void InvRequisicion_Click(object sender, EventArgs e)
+ 
+        private void InvTipoMov_Click(object sender, EventArgs e)
+        {
+            frmCatTipoMovtos tm = new frmCatTipoMovtos(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void ProvDocumentos_Click(object sender, EventArgs e)
+        {
+            frmCatCfgDocProv tm = new frmCatCfgDocProv(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void ProvTipoMov_Click(object sender, EventArgs e)
+        {
+            frmCatCfgTipoMovProv tm = new frmCatCfgTipoMovProv(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void InvDocRequisicion_Click(object sender, EventArgs e)
         {
             DocLstRequisiciones flsRq = new DocLstRequisiciones(db, user, NewColor);
             Nav(flsRq, panelContenedor);
+        }
+
+        private void MnuCfgFoliadores_Click(object sender, EventArgs e)
+        {
+            frmCatCfgCatFoliadores fm = new frmCatCfgCatFoliadores(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
         }
     }
 }

@@ -173,6 +173,18 @@
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </Compile>
     <Compile Include="DocRegRequisiciones.cs" />
+    <Compile Include="frmCatCfgDocProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatCfgDocProv.designer.cs">
+      <DependentUpon>frmCatCfgDocProv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatCfgTipoMovProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatCfgTipoMovProv.designer.cs">
+      <DependentUpon>frmCatCfgTipoMovProv.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatLstPrecios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +208,18 @@
     </Compile>
     <Compile Include="frmLstProveedores.Designer.cs">
       <DependentUpon>frmLstProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegCfgDocProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegCfgDocProv.designer.cs">
+      <DependentUpon>frmRegCfgDocProv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRegCfgTipoMovProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegCfgTipoMovProv.designer.cs">
+      <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -361,6 +385,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
+    <Compile Include="PuiCatCfgDocProv.cs" />
+    <Compile Include="PuiCatCfgTipoMovProv.cs" />
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
@@ -383,6 +409,8 @@
     <Compile Include="PuiSegPerfiles.cs" />
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
+    <Compile Include="RegCatCfgDocProv.cs" />
+    <Compile Include="RegCatCfgTipoMovProv.cs" />
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
@@ -418,6 +446,12 @@
     <EmbeddedResource Include="DocRegistroRequisicion.resx">
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCatCfgDocProv.resx">
+      <DependentUpon>frmCatCfgDocProv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatCfgTipoMovProv.resx">
+      <DependentUpon>frmCatCfgTipoMovProv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCatLstPrecios.resx">
       <DependentUpon>frmCatLstPrecios.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,6 +460,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLstProveedores.resx">
       <DependentUpon>frmLstProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegCfgDocProv.resx">
+      <DependentUpon>frmRegCfgDocProv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRegCfgTipoMovProv.resx">
+      <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSlcEmpresas.resx">
       <DependentUpon>frmSlcEmpresas.cs</DependentUpon>

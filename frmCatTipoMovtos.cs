@@ -23,18 +23,11 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
 
-        private string path;
+        public DatCfgUsuario user;
+        private clsUtil uT;
 
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
+        public clsStiloTemas StiloColor;
 
         public frmCatTipoMovtos()
         {
@@ -42,11 +35,12 @@ namespace GAFE
         }
 
 
-        public frmCatTipoMovtos(MsSql Odat, string perfil)
+        public frmCatTipoMovtos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            user = DatUsr;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -57,40 +51,32 @@ namespace GAFE
         private void frmCatTipoMovtos_Load(object sender, EventArgs e)
         {
             /*
-            uT = new clsUtil(db, Perfil);
-            uT.CargaArbolAcceso();
-
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+             
+                        clsUsPerfil up = uT.BuscarIdNodo("1Inv011A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv011B");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv011C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
 
+            up = uT.BuscarIdNodo("1Inv011D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
 
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
-           
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            this.Size = this.MinimumSize;
+            up = uT.BuscarIdNodo("1Inv011E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdRestablecer.Enabled = (AcCOP == 1) ? true : false;
+
+
+             * */
+
+
+
             LlenaGridView();
 
         }
@@ -201,33 +187,7 @@ namespace GAFE
 
 
 
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
-        }
+    
 
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

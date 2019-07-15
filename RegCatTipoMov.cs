@@ -141,12 +141,14 @@ namespace GAFE
             dt = db.SelectDA(sql);
             return dt;
         }
-        public SqlDataAdapter CboInv_TipoMovtos(String cve="")
+        public SqlDataAdapter CboInv_TipoMovtos(String cve="", int OmiteInter = 1)
         {
             SqlDataAdapter dt = null;
             String Str = (!cve.Equals(""))? (" AND CveClsMov = '" + cve+"'"):" ";
+            Str = (OmiteInter==1) ? (" AND EsInterno =  0") : " ";
+
             string Sql = "Select CveTipoMov, Descripcion " +
-                         "from Inv_TipoMovtos WHERE estatus = 1 AND EsInterno =  0 " + Str;
+                         "from Inv_TipoMovtos WHERE estatus = 1  " + Str;
             dt = db.SelectDA(Sql);
             return dt;
         }

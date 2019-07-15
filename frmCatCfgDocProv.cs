@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,72 +17,90 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatCfgCatFoliadores : MetroForm
+    public partial class frmCatCfgDocProv : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
+        public String KeyCampo = null;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
 
-        public frmCatCfgCatFoliadores()
+        public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
+
+
+        public frmCatCfgDocProv()
         {
             InitializeComponent();
         }
 
 
-        public frmCatCfgCatFoliadores(MsSql Odat, string perfil)
+        public frmCatCfgDocProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
         {
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            opcion = op;
+            user = DatUsr;
+            StiloColor = NewColor;
+
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
 
 
-        private void frmCatCfgCatFoliadores_Load(object sender, EventArgs e)
+        private void frmCatCfgDocProv_Load(object sender, EventArgs e)
         {
             /*
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv003A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
+            up = uT.BuscarIdNodo("1Inv003B");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv003C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv003D");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
 
+            up = uT.BuscarIdNodo("1Inv003E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            */
 
             this.Size = this.MinimumSize;
             LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
-            */
-           
-           
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            LleCboClaseMov();
+            
+
+            cmdSeleccionar.Visible = false;
+            if (opcion>3)
+            {
+                cmdEliminar.Visible = false;
+                cmdEliminar.Visible = false;
+                cmdConsultar.Visible = true;
+                cmdSeleccionar.Visible = true;
+            }
+            
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             LimpiarControles();
             OpcionControles(true);
-            this.Size = this.MaximumSize;
             opcion = 1;
         }
 
@@ -94,16 +113,17 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
+            PuiCatLineas pui = new PuiCatLineas(db);
 
-            pui.keyCveFoliador= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarCfgCatFoliador();
-            txtClaveClase.Text = pui.keyCveFoliador;
+            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarLinea();
+            /*
+            txtClaveLinea.Text = pui.keyCveLinea;
             txtDescripcion.Text = pui.cmpDescripcion;
-            cboCfgModuloSys.SelectedValue = pui.cmpCveModulo;
-            txtUso.Text = pui.cmpUso;
+            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
 
-            txtClaveClase.Enabled = false;
+            txtClaveLinea.Enabled = false;
+            */
 
         }
 
@@ -116,16 +136,17 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
+            PuiCatLineas pui = new PuiCatLineas(db);
 
-            pui.keyCveFoliador = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarCfgCatFoliador();
-            txtClaveClase.Text = pui.keyCveFoliador;
+            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarLinea();
+            /*
+            txtClaveLinea.Text = pui.keyCveLinea;
             txtDescripcion.Text = pui.cmpDescripcion;
-            cboCfgModuloSys.SelectedValue = pui.cmpCveModulo;
-            txtUso.Text = pui.cmpUso;
+            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
 
             OpcionControles(false);
+            */
         }
 
         private void cmdEliminar_Click(object sender, EventArgs e)
@@ -135,9 +156,9 @@ namespace GAFE
                 if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
-                    pui.keyCveFoliador = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaCfgCatFoliador();
+                    PuiCatLineas pui = new PuiCatLineas(db);
+                    pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EliminaLinea();
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -154,8 +175,8 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
-            DatosTbl = pui.BuscaClase(txtBuscar.Text);
+            PuiCatLineas pui = new PuiCatLineas(db);
+            DatosTbl = pui.BuscaLinea(txtBuscar.Text);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
 
@@ -190,7 +211,7 @@ namespace GAFE
             OpcionControles(true);
         }
 
-        private void frmCatCfgCatFoliadores_KeyDown(object sender, KeyEventArgs e)
+        private void frmCatCfgDocProv_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -204,8 +225,8 @@ namespace GAFE
 
         private void LlenaGridView()
         {
-            PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
-            DatosTbl = pui.ListarCfgCatFoliadores();
+            PuiCatLineas pui = new PuiCatLineas(db);
+            DatosTbl = pui.ListarLineas();
             DataSet Ds = new DataSet();
 
             try
@@ -230,14 +251,14 @@ namespace GAFE
         {
             if (Validar())
             {
-                PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
-                                
-                pui.keyCveFoliador = txtClaveClase.Text;
+                PuiCatLineas pui = new PuiCatLineas(db);
+                /*
+                pui.keyCveLinea = txtClaveLinea.Text;
                 pui.cmpDescripcion = txtDescripcion.Text;
-                pui.cmpCveModulo   = Convert.ToString(cboCfgModuloSys.SelectedValue);
-                pui.cmpUso = txtUso.Text;
+                pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+                */
 
-                if (pui.AgregarClase() >= 1)
+                if (pui.AgregarLinea() >= 1)
                 {
                     MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
@@ -254,14 +275,13 @@ namespace GAFE
             {
                 if (Validar())
                 {
-                    PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
-
-                    pui.keyCveFoliador = txtClaveClase.Text;
+                    PuiCatLineas pui = new PuiCatLineas(db);
+                    /*
+                    pui.keyCveLinea = txtClaveLinea.Text;
                     pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpCveModulo = Convert.ToString(cboCfgModuloSys.SelectedValue);
-                    pui.cmpUso = txtUso.Text;
-
-                    if (pui.ActualizaCfgCatFoliador() >= 0)
+                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+                    */
+                    if (pui.ActualizaLinea() >= 0)
                     {
                         MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
@@ -283,49 +303,36 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
+            /*
             ClsUtilerias Util = new ClsUtilerias();
-            if (String.IsNullOrEmpty(txtClaveClase.Text))
-            {                
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatClasees", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (String.IsNullOrEmpty(txtClaveLinea.Text))
+            {
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatLineaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
-                if (!Util.LetrasNum(txtClaveClase.Text))
+                if (!Util.LetrasNum(txtClaveLinea.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
-
-
-            if (String.IsNullOrEmpty(txtUso.Text))
-            {
-                MessageBoxAdv.Show("Uso: No puede ir vacío.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-            else
-            {
-                if (!Util.LetrasNumSpa(txtDescripcion.Text))
-                {
-                    MessageBoxAdv.Show("txtUso: Contiene caracteres no validos.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
+            */
 
             return dv;
         }
@@ -333,50 +340,62 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            txtClaveClase.Enabled = Op;
+            /*
+            txtClaveLinea.Enabled = Op;
             txtDescripcion.Enabled = Op;
-            txtUso.Enabled = Op;
-            cboCfgModuloSys.Enabled = Op;
-
+            cboEstatus.Enabled = Op;
+            */
         }
 
         private void LimpiarControles()
         {
-            txtClaveClase.Text = "";
+            /*
+            txtClaveLinea.Text = "";
             txtDescripcion.Text = "";
-            txtUso.Text = "";
-            //cboCfgModuloSys.Text = "";
+            cboEstatus.Text = "";
+            */
         }
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
-        
-
-        private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void cmdSeleccionar_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
 
-        private void LleCboClaseMov()
-        {
-            PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgModuloSys.DataSource = lin.CboCfgModuloSys();
-            cboCfgModuloSys.ValueMember = "CveModulo";
-            cboCfgModuloSys.DisplayMember = "Descripcion";
-
-        }
-
-        private void txtClaveClase_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtClaveLinea_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
         }
+
+        private void frmCatCfgDocProv_CaptionBarPaint(object sender, PaintEventArgs e)
+        {
+//            e.Graphics.FillRectangle(new LinearGradientBrush(e.ClipRectangle, Color.AliceBlue, Color.Blue, LinearGradientMode.BackwardDiagonal), e.ClipRectangle);
+        }
+
     }
 }

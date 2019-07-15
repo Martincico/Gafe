@@ -203,11 +203,11 @@ namespace GAFE
             return OpLst.ListTipoMovtos();
         }
 
-        public DataTable CboInv_TipoMovtos(String cve = "")
+        public DataTable CboInv_TipoMovtos(String cve = "", int OmiteInter=1)
         {
             RegCatTipoMov OpLst = new RegCatTipoMov(db);
             DataSet Cbo = new DataSet();
-            OpLst.CboInv_TipoMovtos(cve).Fill(Cbo);
+            OpLst.CboInv_TipoMovtos(cve, OmiteInter).Fill(Cbo);
             return Cbo.Tables[0];
         }
 
