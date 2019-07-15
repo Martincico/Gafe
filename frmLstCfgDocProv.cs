@@ -17,11 +17,10 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatCfgDocProv : MetroForm
+    public partial class frmLstCfgDocProv : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
-        private int idxG;
         public String KeyCampo = null;
 
         private MsSql db = null;
@@ -31,13 +30,13 @@ namespace GAFE
         public clsStiloTemas StiloColor;
 
 
-        public frmCatCfgDocProv()
+        public frmLstCfgDocProv()
         {
             InitializeComponent();
         }
 
 
-        public frmCatCfgDocProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
+        public frmLstCfgDocProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
         {
             InitializeComponent();
             db = Odat;
@@ -82,7 +81,6 @@ namespace GAFE
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
             */
 
-            this.Size = this.MinimumSize;
             LlenaGridView();
             
 
@@ -99,54 +97,42 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            opcion = 1;
+            frmRegCfgDocProv art = new frmRegCfgDocProv(db, user.CodPerfil, 1);
+            art.ShowDialog();
+            LlenaGridView();
         }
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
-
-            idxG = grdView.CurrentRow.Index;
-
-            PuiCatLineas pui = new PuiCatLineas(db);
-
-            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLinea();
-            /*
-            txtClaveLinea.Text = pui.keyCveLinea;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-
-            txtClaveLinea.Enabled = false;
-            */
+            try
+            {
+                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.ShowDialog();
+                LlenaGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                    "Error al consultar", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
 
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 3;
-
-            idxG = grdView.CurrentRow.Index;
-
-            PuiCatLineas pui = new PuiCatLineas(db);
-
-            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLinea();
-            /*
-            txtClaveLinea.Text = pui.keyCveLinea;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-
-            OpcionControles(false);
-            */
+            try
+            {
+                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.ShowDialog();
+                LlenaGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                    "Error al consultar", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void cmdEliminar_Click(object sender, EventArgs e)
@@ -156,9 +142,11 @@ namespace GAFE
                 if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatLineas pui = new PuiCatLineas(db);
+                    PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+                    /*
                     pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     pui.EliminaLinea();
+                    */
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -175,19 +163,35 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiCatLineas pui = new PuiCatLineas(db);
-            DatosTbl = pui.BuscaLinea(txtBuscar.Text);
-            DataSet ds = new DataSet();
-            DatosTbl.Fill(ds);
-
-            grdView.Rows.Clear();
-            for (int j = 0; j < ds.Tables[0].Rows.Count; j++)
+            PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+            DatosTbl = pui.BuscaCfgDocProv(txtBuscar.Text);
+            DataSet Ds = new DataSet();
+            try
             {
-                object[] tmp = ds.Tables[0].Rows[j].ItemArray;
-                grdView.Rows.Add(tmp);
+                DatosTbl.Fill(Ds);
+                LoadArcGrid(Ds);
             }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
+        private void LoadArcGrid(DataSet Ds)
+        {
+            grdView.Columns.Clear();
+            grdView.DataSource = Ds.Tables[0];
+            
+            grdView.Columns["CveAlmacen"].Visible = false;
+            grdView.Columns["CodMovProv"].Visible = false;
+            grdView.Columns["CodFoliador"].Visible = false;
+            /*
+            grdView.Columns["Almacén"].Frozen = true;//Inmovilizar columna
+            grdView.Columns["Mov_Inv"].Frozen = true;//Inmovilizar columna
+            grdView.Columns["Serie"].Frozen = true;//Inmovilizar columna
+            */
+        }
 
 
 
@@ -220,30 +224,21 @@ namespace GAFE
         }
 
 
-
-
-
         private void LlenaGridView()
         {
-            PuiCatLineas pui = new PuiCatLineas(db);
-            DatosTbl = pui.ListarLineas();
+            PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+            DatosTbl = pui.ListarCfgDocProvs();
             DataSet Ds = new DataSet();
-
             try
             {
                 DatosTbl.Fill(Ds);
-                grdView.Rows.Clear();
-
-                for (int j = 0; j < Ds.Tables[0].Rows.Count; j++)
-                {
-                    object[] tmp = Ds.Tables[0].Rows[j].ItemArray;
-                    grdView.Rows.Add(tmp);
-                }
+                LoadArcGrid(Ds);
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
         }
 
@@ -251,21 +246,21 @@ namespace GAFE
         {
             if (Validar())
             {
-                PuiCatLineas pui = new PuiCatLineas(db);
+                PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
                 /*
                 pui.keyCveLinea = txtClaveLinea.Text;
                 pui.cmpDescripcion = txtDescripcion.Text;
                 pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-                */
+                
 
-                if (pui.AgregarLinea() >= 1)
+                    if (pui.AgregarLinea() >= 1)
                 {
                     MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
-
+                    */
             }
         }
 
@@ -275,12 +270,12 @@ namespace GAFE
             {
                 if (Validar())
                 {
-                    PuiCatLineas pui = new PuiCatLineas(db);
+                    PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
                     /*
                     pui.keyCveLinea = txtClaveLinea.Text;
                     pui.cmpDescripcion = txtDescripcion.Text;
                     pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-                    */
+                    
                     if (pui.ActualizaLinea() >= 0)
                     {
                         MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
@@ -288,6 +283,7 @@ namespace GAFE
                         this.Size = this.MinimumSize;
                     }
                     LlenaGridView();
+                    */
                     //grdView.CurrentRow.Index = idxG;  
                 }
             }

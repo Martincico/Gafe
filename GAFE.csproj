@@ -173,17 +173,17 @@
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </Compile>
     <Compile Include="DocRegRequisiciones.cs" />
-    <Compile Include="frmCatCfgDocProv.cs">
+    <Compile Include="frmLstCfgDocProv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCatCfgDocProv.designer.cs">
-      <DependentUpon>frmCatCfgDocProv.cs</DependentUpon>
+    <Compile Include="frmLstCfgDocProv.designer.cs">
+      <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatCfgTipoMovProv.cs">
+    <Compile Include="frmLstCfgTipoMovProv.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCatCfgTipoMovProv.designer.cs">
-      <DependentUpon>frmCatCfgTipoMovProv.cs</DependentUpon>
+    <Compile Include="frmLstCfgTipoMovProv.designer.cs">
+      <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatLstPrecios.cs">
       <SubType>Form</SubType>
@@ -269,11 +269,11 @@
     <Compile Include="frmCatImpuestos.designer.cs">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatInventarioMovtos.cs">
+    <Compile Include="frmLstInventarioMovtos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCatInventarioMovtos.designer.cs">
-      <DependentUpon>frmCatInventarioMovtos.cs</DependentUpon>
+    <Compile Include="frmLstInventarioMovtos.designer.cs">
+      <DependentUpon>frmLstInventarioMovtos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatLineas.cs">
       <SubType>Form</SubType>
@@ -446,11 +446,11 @@
     <EmbeddedResource Include="DocRegistroRequisicion.resx">
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatCfgDocProv.resx">
-      <DependentUpon>frmCatCfgDocProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmLstCfgDocProv.resx">
+      <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatCfgTipoMovProv.resx">
-      <DependentUpon>frmCatCfgTipoMovProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmLstCfgTipoMovProv.resx">
+      <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatLstPrecios.resx">
       <DependentUpon>frmCatLstPrecios.cs</DependentUpon>
@@ -497,8 +497,8 @@
     <EmbeddedResource Include="frmCatImpuestos.resx">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatInventarioMovtos.resx">
-      <DependentUpon>frmCatInventarioMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="frmLstInventarioMovtos.resx">
+      <DependentUpon>frmLstInventarioMovtos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatLineas.resx">
       <DependentUpon>frmCatLineas.cs</DependentUpon>

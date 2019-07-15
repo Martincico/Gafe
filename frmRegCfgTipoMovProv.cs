@@ -17,20 +17,25 @@ namespace GAFE
     public partial class frmRegCfgTipoMovProv : MetroForm
     {
         private MsSql db = null;
-        int opcion;
-        public DatCfgUsuario user;
-        public clsStiloTemas StiloColor;
+        private int opcion;
+        private string Perfil;
+
+
+        PuiCatArticulos Art;
+        private clsUtil uT;
+
 
         public frmRegCfgTipoMovProv()
         {
             InitializeComponent();
         }
 
-        public frmRegCfgTipoMovProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op, string Cod = "")
+        public frmRegCfgTipoMovProv(MsSql Odat, string perfil, int op, String Cod = "")
         {
             InitializeComponent();
             opcion = op;
             db = Odat;
+            Perfil = perfil;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -179,7 +184,7 @@ namespace GAFE
         {
             
             Boolean dv = true;
-            /*
+            
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
@@ -208,36 +213,6 @@ namespace GAFE
                     dv = false;
                 }
             }
-
-            if (String.IsNullOrEmpty(txtDescCorta.Text))
-            {
-                MessageBoxAdv.Show("Descripción Corta: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-            else
-            {
-                if (!Util.LetrasNum(txtDescCorta.Text))
-                {
-                    MessageBoxAdv.Show("Descripción Corta: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-
-            if (String.IsNullOrEmpty(cboCfgCatFoliadores.Text))
-            {
-                MessageBoxAdv.Show("Foliador: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-
-            if (!String.IsNullOrEmpty(txtFmtoImpresion.Text))
-            {
-                if (!Util.Letras(txtFmtoImpresion.Text))
-                {
-                    MessageBoxAdv.Show("Nombre Fmto Impr: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-            */
 
             return dv;
         }
@@ -273,10 +248,19 @@ namespace GAFE
         private void LleCboTipoMov()
         {
             PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
-            cboTipoMov.DataSource = lin.CboInv_TipoMovtos("",0);
+            DataTable dt = lin.CboInv_TipoMovtos("",0);
+            DataRow row = dt.NewRow();
+            row["CveTipoMov"] = "0";
+            row["Descripcion"] = "NINGUNO ";
+            dt.Rows.Add(row);
+
+            cboTipoMov.DataSource = dt;
+
+
             cboTipoMov.ValueMember = "CveTipoMov";
             cboTipoMov.DisplayMember = "Descripcion";
 
+            cboTipoMov.SelectedValue = 0;
         }
 
         private void LlecboCfgCatFoliadores()
@@ -291,6 +275,41 @@ namespace GAFE
         private void txtClaveTipoMov_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void frmRegCfgTipoMovProv_Load(object sender, EventArgs e)
+        {
+            uT = new clsUtil(db, Perfil);
+            uT.CargaArbolAcceso();
+
+            Art = new PuiCatArticulos(db);
+            /*
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001B");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001C");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
+            */
         }
     }
 }

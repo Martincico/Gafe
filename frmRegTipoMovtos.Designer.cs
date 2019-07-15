@@ -176,9 +176,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.label7.Location = new System.Drawing.Point(5, 245);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 18);
+            this.label7.Size = new System.Drawing.Size(112, 18);
             this.label7.TabIndex = 21;
-            this.label7.Text = "Nombre Fmto Impr";
+            this.label7.Text = "Fmto Impresión";
             // 
             // label6
             // 

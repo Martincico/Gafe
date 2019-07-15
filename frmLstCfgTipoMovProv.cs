@@ -16,27 +16,26 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatCfgTipoMovProv : MetroForm
+    public partial class frmLstCfgTipoMovProv : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
         public String KeyCampo = null;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
 
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
 
 
-        public frmCatCfgTipoMovProv()
+        public frmLstCfgTipoMovProv()
         {
             InitializeComponent();
         }
 
 
-        public frmCatCfgTipoMovProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1)
+        public frmLstCfgTipoMovProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1)
         {
             InitializeComponent();
             db = Odat;
@@ -96,23 +95,41 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegCfgTipoMovProv art = new frmRegCfgTipoMovProv(db, user, StiloColor,1);
+            frmRegCfgTipoMovProv art = new frmRegCfgTipoMovProv(db, user.CodPerfil,1);
             art.ShowDialog();
             LlenaGridView();
         }
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            frmRegCfgTipoMovProv art = new frmRegCfgTipoMovProv(db, user, StiloColor, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            art.ShowDialog();
-            LlenaGridView();
+            try
+            {
+                frmRegCfgTipoMovProv Ventana = new frmRegCfgTipoMovProv(db, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.ShowDialog();
+                LlenaGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                    "Error al consultar", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            frmRegCfgTipoMovProv art = new frmRegCfgTipoMovProv(db, user, StiloColor, 1, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-            art.ShowDialog();
-            LlenaGridView();
+            try
+            {
+                frmRegCfgTipoMovProv Ventana = new frmRegCfgTipoMovProv(db, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.ShowDialog();
+                LlenaGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                    "Error al consultar", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void cmdEliminar_Click(object sender, EventArgs e)

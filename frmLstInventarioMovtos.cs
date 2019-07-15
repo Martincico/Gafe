@@ -17,7 +17,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatInventarioMovtos : MetroForm
+    public partial class frmLstInventarioMovtos : MetroForm
     {
         private String TipoDocProv = "MINV"; //MINV aun no sta registrado
         private SqlDataAdapter DatosTbl;
@@ -31,13 +31,13 @@ namespace GAFE
 
         public clsStiloTemas StiloColor;
 
-        public frmCatInventarioMovtos()
+        public frmLstInventarioMovtos()
         {
             InitializeComponent();
         }
 
 
-        public frmCatInventarioMovtos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public frmLstInventarioMovtos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;

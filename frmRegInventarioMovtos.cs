@@ -768,7 +768,41 @@ namespace GAFE
             _AlmNumRojoDest = pui.cmpNumRojo;
         }
 
-  
+        private void frmRegInventarioMovtos_Load(object sender, EventArgs e)
+        {
+            /*
+            uT = new clsUtil(db, Perfil);
+            uT.CargaArbolAcceso();
+
+            Art = new PuiCatArticulos(db);
+            
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001B");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001C");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv001F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            */
+
+        }
 
         private void GetRegistro()
         {

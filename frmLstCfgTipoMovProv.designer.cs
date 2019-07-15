@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmCatCfgDocProv
+    partial class frmLstCfgTipoMovProv
     {
         /// <summary>
         /// Required designer variable.
@@ -37,9 +37,8 @@
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmdSeleccionar = new System.Windows.Forms.Button();
+            this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +51,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 55);
+            this.panel1.Size = new System.Drawing.Size(614, 55);
             this.panel1.TabIndex = 8;
             // 
             // cmdBuscar
@@ -61,7 +60,7 @@
             this.cmdBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(390, 7);
+            this.cmdBuscar.Location = new System.Drawing.Point(511, 6);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
             this.cmdBuscar.TabIndex = 2;
@@ -75,7 +74,7 @@
             this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtBuscar.Location = new System.Drawing.Point(59, 11);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(325, 24);
+            this.txtBuscar.Size = new System.Drawing.Size(446, 24);
             this.txtBuscar.TabIndex = 1;
             // 
             // label1
@@ -94,7 +93,7 @@
             this.cmdConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(403, 223);
+            this.cmdConsultar.Location = new System.Drawing.Point(521, 348);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 9;
@@ -109,7 +108,7 @@
             this.cmdEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(303, 223);
+            this.cmdEliminar.Location = new System.Drawing.Point(421, 348);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 12;
@@ -124,7 +123,7 @@
             this.cmdEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEditar.Location = new System.Drawing.Point(203, 223);
+            this.cmdEditar.Location = new System.Drawing.Point(321, 348);
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.Size = new System.Drawing.Size(94, 36);
             this.cmdEditar.TabIndex = 11;
@@ -139,7 +138,7 @@
             this.cmdAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(103, 223);
+            this.cmdAgregar.Location = new System.Drawing.Point(221, 348);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 10;
@@ -155,28 +154,13 @@
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CodEmpleado,
-            this.Nombre});
+            this.CodEmpleado});
             this.grdView.Location = new System.Drawing.Point(12, 62);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 154);
+            this.grdView.Size = new System.Drawing.Size(596, 280);
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
-            // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Código";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
             // 
             // cmdSeleccionar
             // 
@@ -184,7 +168,7 @@
             this.cmdSeleccionar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(10, 223);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(1, 348);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
             this.cmdSeleccionar.Size = new System.Drawing.Size(36, 36);
             this.cmdSeleccionar.TabIndex = 15;
@@ -193,7 +177,14 @@
             this.cmdSeleccionar.Visible = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
-            // frmCatCfgDocProv
+            // CodEmpleado
+            // 
+            this.CodEmpleado.HeaderText = "Código";
+            this.CodEmpleado.Name = "CodEmpleado";
+            this.CodEmpleado.ReadOnly = true;
+            this.CodEmpleado.Width = 80;
+            // 
+            // frmCatCfgTipoMovProv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -203,7 +194,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionFont = new System.Drawing.Font("Segoe UI", 8.25F);
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(503, 264);
+            this.ClientSize = new System.Drawing.Size(620, 389);
             this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
@@ -213,15 +204,13 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 539);
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 300);
-            this.Name = "frmCatCfgDocProv";
+            this.Name = "frmCatCfgTipoMovProv";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Configuración  documentos";
-            this.Load += new System.EventHandler(this.frmCatCfgDocProv_Load);
+            this.Text = "Listado tipo de movimientos de proveedores";
+            this.Load += new System.EventHandler(this.frmCatCfgDocumentos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
@@ -242,6 +231,5 @@
         private System.Windows.Forms.DataGridView grdView;
         private System.Windows.Forms.Button cmdSeleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
     }
 }

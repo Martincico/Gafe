@@ -161,7 +161,7 @@ namespace GAFE
 
         private void OpMovInv_Click(object sender, EventArgs e)
         {
-            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, user, NewColor);
+            frmLstInventarioMovtos fm = new frmLstInventarioMovtos(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -323,13 +323,13 @@ namespace GAFE
 
         private void ProvDocumentos_Click(object sender, EventArgs e)
         {
-            frmCatCfgDocProv tm = new frmCatCfgDocProv(db, user, NewColor);
+            frmLstCfgDocProv tm = new frmLstCfgDocProv(db, user, NewColor);
             Nav(tm, panelContenedor);
         }
 
         private void ProvTipoMov_Click(object sender, EventArgs e)
         {
-            frmCatCfgTipoMovProv tm = new frmCatCfgTipoMovProv(db, user, NewColor);
+            frmLstCfgTipoMovProv tm = new frmLstCfgTipoMovProv(db, user, NewColor);
             Nav(tm, panelContenedor);
         }
 

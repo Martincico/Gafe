@@ -25,33 +25,44 @@ namespace GAFE
 
         public RegCatCfgDocProv(MsSql Odat) { db = Odat; }
 
-        public int AddRegLinea()
+        public int AddRegCfgDocProv()
         {
-            string sql = "Insert into CfgDocProv (CveLinea,Descripción,Estatus) " +
-                         "values(@CveLinea,@Descripcion,@Estatus)";
+            string sql = "Insert into CfgDocProv (CveAlmacen,CodMovProv,Serie,Descripcion,CodFoliador," +
+                         "                         EditaFolio,FmtoImpresion,NoCopiasImp,NombImpresora,PregImpresion," +
+                         "                         Estatus) " +
+                         "values(@CveAlmacen,@CodMovProv,@Serie,@Descripcion,@CodFoliador," +
+                         "                         @EditaFolio,@FmtoImpresion,@NoCopiasImp,@NombImpresora,@PregImpresion," +
+                         "                         @Estatus)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
 
-        public int UpdateLinea()
+        public int UpdateCfgDocProv()
         {
-            string sql = "Update CfgDocProv set Descripcion = @Descripcion, " +
-                         "Estatus = @Estatus " +
-                         "Where CveLinea = @CveLinea";
+            string sql = "Update CfgDocProv set Descripcion = @Descripcion, "+
+                         "       CodFoliador = @CodFoliador, EditaFolio = @EditaFolio, FmtoImpresion = @FmtoImpresion, " +
+                         "       NoCopiasImp = @NoCopiasImp, NombImpresora = @NombImpresora, PregImpresion = @PregImpresion, " +
+                         "       Estatu = @Estatus " +
+                         " Where CveAlmacen = @CveAlmacen AND CodMovProv = @CodMovProv AND Serie = @Serie";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int DeleteLinea()
+        public int DeleteCfgDocProv()
         {
-            string sql = "Delete from CfgDocProv where CveLinea = @CveLinea";
+            string sql = "Delete from CfgDocProv where Where CveAlmacen = @CveAlmacen AND CodMovProv = @CodMovProv AND Serie = @Serie";
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
-        public SqlDataAdapter ListLineas()
+        public SqlDataAdapter ListCfgDocProvs()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select CveLinea,Descripcion " +
-                         "from CfgDocProv";
+            string Sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CodMovProv,TipoMtos.Descripcion as Mov_Inv," +
+                        "         DocProv.Serie,DocProv.Descripcion,DocProv.CodFoliador,Fol.Descripcion as Foliador, " +
+                        "         DocProv.FmtoImpresion,DocProv.NoCopiasImp, DocProv.NombImpresora " +
+                        " FROM dbo.CfgDocProv AS DocProv " +
+                        " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
+                        " INNER JOIN dbo.CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
+                        " INNER JOIN dbo.Inv_TipoMovtos AS TipoMtos ON DocProv.CodMovProv = TipoMtos.CveTipoMov ";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -59,30 +70,37 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select CveLinea,Descripcion,Estatus " +
-                          "from CfgDocProv where CveLinea =@CveLinea";
+            string Sql = "Select CveAlmacen,CodMovProv,Serie,Descripcion,CodFoliador," +
+                         "                         EditaFolio,FmtoImpresion,NoCopiasImp,NombImpresora,PregImpresion," +
+                         "                         Estatus " +
+                         " from CfgDocProv " +
+                         " Where CveAlmacen = @CveAlmacen AND CodMovProv = @CodMovProv AND Serie = @Serie";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-        public SqlDataAdapter BuscaLinea(string bsq)
+        public SqlDataAdapter BuscaCfgDocProv(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = "Select CveLinea,Descripcion " +
-               "from CfgDocProv " +
-               "where CveLinea like '%" + bsq + "%' OR " +
-               "Descripcion like '%" + bsq + "%' ";
+            string sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CodMovProv,TipoMtos.Descripcion as Mov_Inv," +
+                        "         DocProv.Serie,DocProv.Descripcion,DocProv.CodFoliador,Fol.Descripcion as Foliador, " +
+                        "         DocProv.FmtoImpresion,DocProv.NoCopiasImp, DocProv.NombImpresora " +
+                        " FROM dbo.CfgDocProv AS DocProv " +
+                        " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
+                        " INNER JOIN dbo.CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
+                        " INNER JOIN dbo.Inv_TipoMovtos AS TipoMtos ON DocProv.CodMovProv = TipoMtos.CveTipoMov " +
+                        " Where DocProv.CveAlmacen  like '%" + bsq + "%' OR  DocProv.CodMovProv = '%" + bsq + "%' OR DocProv.Serie = '%" + bsq + "%'";
 
             dt = db.SelectDA(sql);
             return dt;
         }
-        public SqlDataAdapter ComboLinea()
+
+        public int AddRegCfgFoliadores()
         {
-            SqlDataAdapter dt = null;
-            string Sql = "Select CveLinea as Clave,Descripcion " +
-                         "from CfgDocProv";
-            dt = db.SelectDA(Sql);
-            return dt;
+            string sql = "Insert into CfgFoliadores (CveFoliador,CveAlmacen,FolioActual, FolioSiguiente) " +
+                         "values( @CodFoliador,@CveAlmacen,0,1)";
+            return db.InsertarRegistro(sql, ArrParametros);
         }
+
     }
 }
