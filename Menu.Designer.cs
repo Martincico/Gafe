@@ -47,8 +47,12 @@
             this.OpKardex = new System.Windows.Forms.ToolStripMenuItem();
             this.OpExistencia = new System.Windows.Forms.ToolStripMenuItem();
             this.InvTipoMov = new System.Windows.Forms.ToolStripMenuItem();
+            this.InvMenDocumentos = new System.Windows.Forms.ToolStripMenuItem();
+            this.InvDocRequisicion = new System.Windows.Forms.ToolStripMenuItem();
             this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.toolStripEx1 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.MnuCfgFoliadores = new System.Windows.Forms.ToolStripDropDownButton();
             this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatProvee = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsProveedores = new System.Windows.Forms.ToolStripDropDownButton();
@@ -76,21 +80,17 @@
             this.PerFondoNone = new System.Windows.Forms.ToolStripMenuItem();
             this.panelPie = new System.Windows.Forms.Panel();
             this.panelContenedor = new System.Windows.Forms.Panel();
-            this.InvMenDocumentos = new System.Windows.Forms.ToolStripMenuItem();
-            this.InvDocRequisicion = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripEx1 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.MnuCfgFoliadores = new System.Windows.Forms.ToolStripDropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
             this.ribMenu.SuspendLayout();
             this.ModInventario.Panel.SuspendLayout();
             this.CatInven.SuspendLayout();
             this.ProcInven.SuspendLayout();
+            this.toolStripEx1.SuspendLayout();
             this.ModProveedores.Panel.SuspendLayout();
             this.CatProvee.SuspendLayout();
             this.MovSeguridad.Panel.SuspendLayout();
             this.CatSeguridad.SuspendLayout();
             this.CatPersonalizar.SuspendLayout();
-            this.toolStripEx1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribMenu
@@ -198,42 +198,42 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(180, 22);
+            this.CatLineas.Size = new System.Drawing.Size(169, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(180, 22);
+            this.CatClase.Size = new System.Drawing.Size(169, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
             // CatGeografia
             // 
             this.CatGeografia.Name = "CatGeografia";
-            this.CatGeografia.Size = new System.Drawing.Size(180, 22);
+            this.CatGeografia.Size = new System.Drawing.Size(169, 22);
             this.CatGeografia.Text = "Geografía";
             this.CatGeografia.Click += new System.EventHandler(this.CatGeografia_Click);
             // 
@@ -255,7 +255,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -263,7 +263,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
@@ -332,6 +332,21 @@
             this.InvTipoMov.Text = "Tipos de movimientos";
             this.InvTipoMov.Click += new System.EventHandler(this.InvTipoMov_Click);
             // 
+            // InvMenDocumentos
+            // 
+            this.InvMenDocumentos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.InvDocRequisicion});
+            this.InvMenDocumentos.Name = "InvMenDocumentos";
+            this.InvMenDocumentos.Size = new System.Drawing.Size(216, 22);
+            this.InvMenDocumentos.Text = "Documentos";
+            // 
+            // InvDocRequisicion
+            // 
+            this.InvDocRequisicion.Name = "InvDocRequisicion";
+            this.InvDocRequisicion.Size = new System.Drawing.Size(180, 22);
+            this.InvDocRequisicion.Text = "Requisición";
+            this.InvDocRequisicion.Click += new System.EventHandler(this.InvDocRequisicion_Click);
+            // 
             // OpInvFisicos
             // 
             this.OpInvFisicos.ForeColor = System.Drawing.Color.MidnightBlue;
@@ -359,6 +374,36 @@
             this.RepInven.Size = new System.Drawing.Size(100, 79);
             this.RepInven.TabIndex = 5;
             this.RepInven.Text = "Reportes";
+            // 
+            // toolStripEx1
+            // 
+            this.toolStripEx1.AutoSize = false;
+            this.toolStripEx1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripEx1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.toolStripEx1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.toolStripEx1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripEx1.Image = null;
+            this.toolStripEx1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuCfgFoliadores});
+            this.toolStripEx1.Location = new System.Drawing.Point(448, 1);
+            this.toolStripEx1.Name = "toolStripEx1";
+            this.toolStripEx1.Office12Mode = false;
+            this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.toolStripEx1.Size = new System.Drawing.Size(100, 79);
+            this.toolStripEx1.TabIndex = 6;
+            // 
+            // MnuCfgFoliadores
+            // 
+            this.MnuCfgFoliadores.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.MnuCfgFoliadores.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.MnuCfgFoliadores.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuCfgFoliadores.Name = "MnuCfgFoliadores";
+            this.MnuCfgFoliadores.Size = new System.Drawing.Size(74, 61);
+            this.MnuCfgFoliadores.Text = "Foliadores";
+            this.MnuCfgFoliadores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.MnuCfgFoliadores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.MnuCfgFoliadores.ToolTipText = "Inv. físicos";
+            this.MnuCfgFoliadores.Click += new System.EventHandler(this.MnuCfgFoliadores_Click);
             // 
             // ModProveedores
             // 
@@ -654,51 +699,6 @@
             this.panelContenedor.Size = new System.Drawing.Size(799, 246);
             this.panelContenedor.TabIndex = 4;
             // 
-            // InvMenDocumentos
-            // 
-            this.InvMenDocumentos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.InvDocRequisicion});
-            this.InvMenDocumentos.Name = "InvMenDocumentos";
-            this.InvMenDocumentos.Size = new System.Drawing.Size(216, 22);
-            this.InvMenDocumentos.Text = "Documentos";
-            // 
-            // InvDocRequisicion
-            // 
-            this.InvDocRequisicion.Name = "InvDocRequisicion";
-            this.InvDocRequisicion.Size = new System.Drawing.Size(180, 22);
-            this.InvDocRequisicion.Text = "Requisición";
-            this.InvDocRequisicion.Click += new System.EventHandler(this.InvDocRequisicion_Click);
-            // 
-            // toolStripEx1
-            // 
-            this.toolStripEx1.AutoSize = false;
-            this.toolStripEx1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripEx1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.toolStripEx1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.toolStripEx1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripEx1.Image = null;
-            this.toolStripEx1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuCfgFoliadores});
-            this.toolStripEx1.Location = new System.Drawing.Point(448, 1);
-            this.toolStripEx1.Name = "toolStripEx1";
-            this.toolStripEx1.Office12Mode = false;
-            this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx1.Size = new System.Drawing.Size(100, 79);
-            this.toolStripEx1.TabIndex = 6;
-            // 
-            // MnuCfgFoliadores
-            // 
-            this.MnuCfgFoliadores.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.MnuCfgFoliadores.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.MnuCfgFoliadores.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MnuCfgFoliadores.Name = "MnuCfgFoliadores";
-            this.MnuCfgFoliadores.Size = new System.Drawing.Size(73, 61);
-            this.MnuCfgFoliadores.Text = "Inv. físicos";
-            this.MnuCfgFoliadores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MnuCfgFoliadores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.MnuCfgFoliadores.ToolTipText = "Inv. físicos";
-            this.MnuCfgFoliadores.Click += new System.EventHandler(this.MnuCfgFoliadores_Click);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -723,6 +723,8 @@
             this.CatInven.PerformLayout();
             this.ProcInven.ResumeLayout(false);
             this.ProcInven.PerformLayout();
+            this.toolStripEx1.ResumeLayout(false);
+            this.toolStripEx1.PerformLayout();
             this.ModProveedores.Panel.ResumeLayout(false);
             this.CatProvee.ResumeLayout(false);
             this.CatProvee.PerformLayout();
@@ -731,8 +733,6 @@
             this.CatSeguridad.PerformLayout();
             this.CatPersonalizar.ResumeLayout(false);
             this.CatPersonalizar.PerformLayout();
-            this.toolStripEx1.ResumeLayout(false);
-            this.toolStripEx1.PerformLayout();
             this.ResumeLayout(false);
 
         }

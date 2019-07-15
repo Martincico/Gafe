@@ -14,10 +14,12 @@ namespace GAFE
         public string ClaveDoc;
         public string Nombre;
         public string CargoAbono;
-        public int MovInv;
-        public int Foliador;
+        public String CveTipoMov;
+        public String Foliador;
         public int UsaSerie;
         public int EditaFecha;
+        public int Estatus;
+        public int EsInterno;
 
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
@@ -37,17 +39,19 @@ namespace GAFE
         {
             clsCfgDocumento Doc = new clsCfgDocumento();
             string Sql = "Select * " +
-                         "from CfgDocumentos";
+                         "from CfgTipoMovProv";
             SqlDataReader dr = db.SelectDR(Sql);
             while (dr.Read())
             {
                 Doc.ClaveDoc = Convert.ToString(dr["ClaveDoc"]);
                 Doc.Nombre = Convert.ToString(dr["Nombre"]);
                 Doc.CargoAbono = Convert.ToString(dr["CargoAbono"]);
-                Doc.MovInv = Convert.ToInt32(dr["MovInv"]);
-                Doc.Foliador = Convert.ToInt32(dr["Foliador"]);
+                Doc.CveTipoMov = Convert.ToString(dr["CveTipoMov"]);
+                Doc.Foliador = Convert.ToString(dr["Foliador"]);
                 Doc.UsaSerie = Convert.ToInt32(dr["UsaSerie"]);
                 Doc.EditaFecha = Convert.ToInt32(dr["EditaFecha"]);
+                Doc.EsInterno = Convert.ToInt32(dr["EsInterno"]);
+                Doc.Estatus = Convert.ToInt32(dr["Estatus"]);
             }
             dr.Close();
             return Doc;

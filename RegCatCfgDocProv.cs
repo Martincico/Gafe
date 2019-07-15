@@ -25,26 +25,9 @@ namespace GAFE
 
         public RegCatCfgDocProv(MsSql Odat) { db = Odat; }
 
-        /*
-        public void Conn()
-        {
-            /*db = new DatSql.MsSql(
-                   ConfigurationSettings.AppSettings.Get("Servidor"),
-                   ConfigurationSettings.AppSettings.Get("Datos"),
-                   ConfigurationSettings.AppSettings.Get("Usuario"),
-                   ConfigurationSettings.AppSettings.Get("Password")
-                   );
-            
-            db = new DatSql.MsSql("SIGMA6\\SQL14", "CtrlAcceso", "sa", "Remolachas1");
-                   
-            if (db.Conectar() < 1)
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    */
-
         public int AddRegLinea()
         {
-            string sql = "Insert into Inv_Lineas (CveLinea,Descripción,Estatus) " +
+            string sql = "Insert into CfgDocProv (CveLinea,Descripción,Estatus) " +
                          "values(@CveLinea,@Descripcion,@Estatus)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
@@ -52,7 +35,7 @@ namespace GAFE
 
         public int UpdateLinea()
         {
-            string sql = "Update Inv_Lineas set Descripcion = @Descripcion, " +
+            string sql = "Update CfgDocProv set Descripcion = @Descripcion, " +
                          "Estatus = @Estatus " +
                          "Where CveLinea = @CveLinea";
             return db.DeleteRegistro(sql, ArrParametros);
@@ -60,7 +43,7 @@ namespace GAFE
 
         public int DeleteLinea()
         {
-            string sql = "Delete from Inv_Lineas where CveLinea = @CveLinea";
+            string sql = "Delete from CfgDocProv where CveLinea = @CveLinea";
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
@@ -68,7 +51,7 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select CveLinea,Descripcion " +
-                         "from Inv_Lineas";
+                         "from CfgDocProv";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -77,7 +60,7 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select CveLinea,Descripcion,Estatus " +
-                          "from Inv_Lineas where CveLinea =@CveLinea";
+                          "from CfgDocProv where CveLinea =@CveLinea";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -86,7 +69,7 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string sql = "Select CveLinea,Descripcion " +
-               "from Inv_Lineas " +
+               "from CfgDocProv " +
                "where CveLinea like '%" + bsq + "%' OR " +
                "Descripcion like '%" + bsq + "%' ";
 
@@ -97,7 +80,7 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select CveLinea as Clave,Descripcion " +
-                         "from Inv_Lineas";
+                         "from CfgDocProv";
             dt = db.SelectDA(Sql);
             return dt;
         }

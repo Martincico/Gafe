@@ -53,7 +53,7 @@ namespace GAFE
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            string movimiento = rq.AgregarDocEnBlanco(ConfigDoc.Foliador,FecDia);
+            string movimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador),FecDia);
             //llamar la forma de regdoc
             if (movimiento.CompareTo("Error") != 0)
             {
