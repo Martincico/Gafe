@@ -33,6 +33,7 @@
             this.cmEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
+            this.idMov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,10 +42,9 @@
             this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.dtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.lblAlmaOri = new System.Windows.Forms.Label();
-            this.cboAlmaOri = new System.Windows.Forms.ComboBox();
+            this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdRestablecer = new System.Windows.Forms.Button();
-            this.idMov = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,6 +117,13 @@
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(776, 297);
             this.grdView.TabIndex = 18;
+            // 
+            // idMov
+            // 
+            this.idMov.HeaderText = "idMov";
+            this.idMov.Name = "idMov";
+            this.idMov.ReadOnly = true;
+            this.idMov.Visible = false;
             // 
             // textBox1
             // 
@@ -198,15 +205,15 @@
             this.lblAlmaOri.TabIndex = 19;
             this.lblAlmaOri.Text = "Almacén Origen";
             // 
-            // cboAlmaOri
+            // cboAlmacen
             // 
-            this.cboAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboAlmaOri.FormattingEnabled = true;
-            this.cboAlmaOri.Location = new System.Drawing.Point(154, 12);
-            this.cboAlmaOri.Name = "cboAlmaOri";
-            this.cboAlmaOri.Size = new System.Drawing.Size(264, 24);
-            this.cboAlmaOri.TabIndex = 20;
-            this.cboAlmaOri.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
+            this.cboAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboAlmacen.FormattingEnabled = true;
+            this.cboAlmacen.Location = new System.Drawing.Point(154, 12);
+            this.cboAlmacen.Name = "cboAlmacen";
+            this.cboAlmacen.Size = new System.Drawing.Size(264, 24);
+            this.cboAlmacen.TabIndex = 20;
+            this.cboAlmacen.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
             // 
             // label1
             // 
@@ -232,13 +239,6 @@
             this.cmdRestablecer.UseVisualStyleBackColor = false;
             this.cmdRestablecer.Click += new System.EventHandler(this.cmdRestablecer_Click);
             // 
-            // idMov
-            // 
-            this.idMov.HeaderText = "idMov";
-            this.idMov.Name = "idMov";
-            this.idMov.ReadOnly = true;
-            this.idMov.Visible = false;
-            // 
             // DocLstRequisiciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,7 +259,7 @@
             this.Controls.Add(this.dtFechaFin);
             this.Controls.Add(this.dtFechaInicio);
             this.Controls.Add(this.lblAlmaOri);
-            this.Controls.Add(this.cboAlmaOri);
+            this.Controls.Add(this.cboAlmacen);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);
             this.Controls.Add(this.cmEditar);
@@ -294,7 +294,7 @@
         private System.Windows.Forms.DateTimePicker dtFechaFin;
         private System.Windows.Forms.DateTimePicker dtFechaInicio;
         private System.Windows.Forms.Label lblAlmaOri;
-        private System.Windows.Forms.ComboBox cboAlmaOri;
+        private System.Windows.Forms.ComboBox cboAlmacen;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdRestablecer;
         private System.Windows.Forms.DataGridViewTextBoxColumn idMov;

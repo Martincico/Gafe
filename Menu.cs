@@ -315,29 +315,33 @@ namespace GAFE
         }
 
  
-        private void InvTipoMov_Click(object sender, EventArgs e)
-        {
-            frmCatTipoMovtos tm = new frmCatTipoMovtos(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
-
-        private void ProvDocumentos_Click(object sender, EventArgs e)
-        {
-            frmLstCfgDocProv tm = new frmLstCfgDocProv(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
-
-        private void ProvTipoMov_Click(object sender, EventArgs e)
-        {
-            frmLstCfgTipoMovProv tm = new frmLstCfgTipoMovProv(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
 
         private void InvDocRequisicion_Click(object sender, EventArgs e)
         {
             DocLstRequisiciones flsRq = new DocLstRequisiciones(db, user, NewColor);
             Nav(flsRq, panelContenedor);
         }
+
+
+
+        private void Inv_TipoMov_Click(object sender, EventArgs e)
+        {
+            frmCatTipoMovtos tm = new frmCatTipoMovtos(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void Prov_TipoMov_Click(object sender, EventArgs e)
+        {
+            frmLstCfgTipoMovProv tm = new frmLstCfgTipoMovProv(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void Prov_SereDoc_Click(object sender, EventArgs e)
+        {
+            frmLstCfgDocProv tm = new frmLstCfgDocProv(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
 
         private void MnuCfgFoliadores_Click(object sender, EventArgs e)
         {

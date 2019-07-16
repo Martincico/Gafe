@@ -33,7 +33,7 @@
             this.lblAlmaOri = new System.Windows.Forms.Label();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.lblTipoMovtos = new System.Windows.Forms.Label();
-            this.cboTipoMovtos = new System.Windows.Forms.ComboBox();
+            this.cboTMovtoProv = new System.Windows.Forms.ComboBox();
             this.cboCfgCatFoliadores = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSerie = new System.Windows.Forms.TextBox();
@@ -102,18 +102,18 @@
             this.lblTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.lblTipoMovtos.Location = new System.Drawing.Point(10, 47);
             this.lblTipoMovtos.Name = "lblTipoMovtos";
-            this.lblTipoMovtos.Size = new System.Drawing.Size(118, 18);
+            this.lblTipoMovtos.Size = new System.Drawing.Size(120, 18);
             this.lblTipoMovtos.TabIndex = 22;
-            this.lblTipoMovtos.Text = "Tipo Movimiento";
+            this.lblTipoMovtos.Text = "Movimiento Prov";
             // 
-            // cboTipoMovtos
+            // cboTMovtoProv
             // 
-            this.cboTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.cboTipoMovtos.FormattingEnabled = true;
-            this.cboTipoMovtos.Location = new System.Drawing.Point(152, 44);
-            this.cboTipoMovtos.Name = "cboTipoMovtos";
-            this.cboTipoMovtos.Size = new System.Drawing.Size(264, 26);
-            this.cboTipoMovtos.TabIndex = 23;
+            this.cboTMovtoProv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboTMovtoProv.FormattingEnabled = true;
+            this.cboTMovtoProv.Location = new System.Drawing.Point(152, 44);
+            this.cboTMovtoProv.Name = "cboTMovtoProv";
+            this.cboTMovtoProv.Size = new System.Drawing.Size(264, 26);
+            this.cboTMovtoProv.TabIndex = 23;
             // 
             // cboCfgCatFoliadores
             // 
@@ -275,7 +275,7 @@
             this.Controls.Add(this.cboCfgCatFoliadores);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblTipoMovtos);
-            this.Controls.Add(this.cboTipoMovtos);
+            this.Controls.Add(this.cboTMovtoProv);
             this.Controls.Add(this.lblAlmaOri);
             this.Controls.Add(this.cboAlmacen);
             this.Controls.Add(this.cmdCancelar);
@@ -299,7 +299,7 @@
         private System.Windows.Forms.Label lblAlmaOri;
         private System.Windows.Forms.ComboBox cboAlmacen;
         private System.Windows.Forms.Label lblTipoMovtos;
-        private System.Windows.Forms.ComboBox cboTipoMovtos;
+        private System.Windows.Forms.ComboBox cboTMovtoProv;
         private System.Windows.Forms.ComboBox cboCfgCatFoliadores;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSerie;

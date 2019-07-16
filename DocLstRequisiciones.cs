@@ -24,7 +24,8 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private clsUtil uT;
         public DatCfgUsuario user;
-        public clsStiloTemas StiloColor; 
+        public clsStiloTemas StiloColor;
+        private String CveDoc = "M02001";
 
         public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
@@ -33,11 +34,8 @@ namespace GAFE
             db = Odat;
             user = DatUsr;
             StiloColor = NewColor;
-            clsCfgDocumento cd = new clsCfgDocumento("M02001", db);
+            clsCfgDocumento cd = new clsCfgDocumento(CveDoc, db);
             ConfigDoc = cd.ConfigDoc();
-
-
-
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
@@ -57,11 +55,15 @@ namespace GAFE
             //llamar la forma de regdoc
             if (movimiento.CompareTo("Error") != 0)
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  1, ConfigDoc, movimiento);
+                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  1, ConfigDoc, movimiento, CveDoc);
                 Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Rcap.ShowDialog();
                 LlenaGridView();
+            }
+            else
+            {
+                MessageBoxAdv.Show("Existe un error insertar registro", "Error de Requisición", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -75,7 +77,7 @@ namespace GAFE
             }
             else
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  2, ConfigDoc, rq.keyDocumento);
+                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  2, ConfigDoc, rq.keyDocumento, CveDoc);
                 Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Rcap.ShowDialog();
@@ -127,7 +129,7 @@ namespace GAFE
             }
             else
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  3, ConfigDoc, rq.keyDocumento);
+                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  3, ConfigDoc, rq.keyDocumento, CveDoc);
                 Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Rcap.ShowDialog();
@@ -138,7 +140,7 @@ namespace GAFE
 
         private void LlenaGridView()
         {
-            String AlmOri = Convert.ToString(cboAlmaOri.SelectedValue);
+            String AlmOri = Convert.ToString(cboAlmacen.SelectedValue);
             String FIni = dtFechaInicio.Value.ToString("dd/MM/yyyy");
             String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
 
@@ -205,12 +207,12 @@ namespace GAFE
             row["Descripcion"] = "TODOS ";
             dt.Rows.Add(row);
 
-            cboAlmaOri.DataSource = dt;
+            cboAlmacen.DataSource = dt;
 
-            cboAlmaOri.ValueMember = "ClaveAlmacen";
-            cboAlmaOri.DisplayMember = "Descripcion";
+            cboAlmacen.ValueMember = "ClaveAlmacen";
+            cboAlmacen.DisplayMember = "Descripcion";
 
-            cboAlmaOri.SelectedValue = CveUser;
+            cboAlmacen.SelectedValue = CveUser;
         }
 
         private void DocLstRequisiciones_FormClosing(object sender, FormClosingEventArgs e)
@@ -223,13 +225,13 @@ namespace GAFE
             dtFechaFin.Value = dtFechaFin.MaxDate;
 
             dtFechaInicio.Value = DateTime.Now;
-            cboAlmaOri.SelectedValue = user.AlmacenUsa;
+            cboAlmacen.SelectedValue = user.AlmacenUsa;
             dtFechaFin.Value = DateTime.Now;
         }
 
         private void cboAlmaOri_SelectedValueChanged(object sender, EventArgs e)
         {
-            string val = Convert.ToString(cboAlmaOri.SelectedValue);
+            string val = Convert.ToString(cboAlmacen.SelectedValue);
             if (!val.Equals("System.Data.DataRowView") && !val.Equals(""))
             {
                 LlenaGridView();

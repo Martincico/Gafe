@@ -65,10 +65,10 @@ namespace GAFE
             return dv;
         }
 
-        public string[] getIdDoc(int f,string Documento)
+        public string[] getIdDoc(int f, string _alm,string Documento)
         {
             string dv = Documento;
-            string x = db.GetFolioMov(f,"");
+            string x = db.GetFolioMov(f,_alm);
 
             string[] folDoc = new string[2];
             folDoc[0] = x;

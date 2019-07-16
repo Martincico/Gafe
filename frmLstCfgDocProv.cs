@@ -106,7 +106,10 @@ namespace GAFE
         {
             try
             {
-                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
+                String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
+                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 2, Alm, CodMP, Ser);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -123,7 +126,10 @@ namespace GAFE
         {
             try
             {
-                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
+                String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
+                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 3, Alm, CodMP, Ser);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }

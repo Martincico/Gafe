@@ -41,7 +41,7 @@ namespace GAFE
             LimpiarControles();
             OpcionControles(true);
             LlecboAlmacen();
-            LleCboTipoMov();
+            LlecboTMovtoProv();
             LlecboCfgCatFoliadores();
             switch (opcion)
             {
@@ -52,7 +52,7 @@ namespace GAFE
                     get_Campos(Alm,TMov,ser);
                     txtSerie.Enabled = false;
                     cboAlmacen.Enabled = false;
-                    cboTipoMovtos.Enabled = false;
+                    cboTMovtoProv.Enabled = false;
                     break;
                 case 3://Consulta
                     get_Campos(Alm, TMov, ser);
@@ -74,7 +74,7 @@ namespace GAFE
             pui.EditarCfgDocProv();
 
             cboAlmacen.SelectedValue = Alm;
-            cboTipoMovtos.SelectedValue = TMov;
+            cboTMovtoProv.SelectedValue = TMov;
             txtSerie.Text = ser;
             txtDescripcion.Text = pui.cmpDescripcion;
             cboCfgCatFoliadores.SelectedValue = pui.cmpCodFoliador;
@@ -155,7 +155,7 @@ namespace GAFE
             PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
 
             pui.keyCveAlmacen = Convert.ToString(cboAlmacen.SelectedValue);
-            pui.keyCodMovProv = Convert.ToString(cboTipoMovtos.SelectedValue);
+            pui.keyCodMovProv = Convert.ToString(cboTMovtoProv.SelectedValue);
             pui.keySerie = txtSerie.Text;
             pui.cmpDescripcion = txtDescripcion.Text;
             pui.cmpCodFoliador = Convert.ToString(cboCfgCatFoliadores.SelectedValue);
@@ -249,7 +249,7 @@ namespace GAFE
         private void OpcionControles(Boolean Op)
         {
             cboAlmacen.Enabled = Op;
-            cboTipoMovtos.Enabled = Op;
+            cboTMovtoProv.Enabled = Op;
             txtSerie.Enabled = Op;
             txtDescripcion.Enabled = Op;
             cboCfgCatFoliadores.Enabled = Op;
@@ -281,12 +281,12 @@ namespace GAFE
             cboAlmacen.DisplayMember = "Descripcion";
         }
       
-        private void LleCboTipoMov()
+        private void LlecboTMovtoProv()
         {
-            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
-            cboTipoMovtos.DataSource = lin.CboInv_TipoMovtos();
-            cboTipoMovtos.ValueMember = "CveTipoMov";
-            cboTipoMovtos.DisplayMember = "Descripcion";
+            PuiCatCfgTipoMovProv lin = new PuiCatCfgTipoMovProv(db);
+            cboTMovtoProv.DataSource = lin.cboTipoMovProvee();
+            cboTMovtoProv.ValueMember = "Clave";
+            cboTMovtoProv.DisplayMember = "Descripcion";
         }
 
         private void LlecboCfgCatFoliadores()

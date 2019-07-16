@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocRegistroRequisicion));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboSerie = new System.Windows.Forms.ComboBox();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.FechaExpedicion = new System.Windows.Forms.DateTimePicker();
@@ -38,7 +39,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtNumDoc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSerie = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,6 +68,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboSerie);
             this.panel1.Controls.Add(this.cboAlmacen);
             this.panel1.Controls.Add(this.txtDescuento);
             this.panel1.Controls.Add(this.FechaExpedicion);
@@ -76,18 +77,25 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtNumDoc);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtSerie);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtDocumento);
             this.panel1.Controls.Add(this.label1);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
+            // cboSerie
+            // 
+            resources.ApplyResources(this.cboSerie, "cboSerie");
+            this.cboSerie.FormattingEnabled = true;
+            this.cboSerie.Name = "cboSerie";
+            this.cboSerie.SelectedIndexChanged += new System.EventHandler(this.cboSerie_SelectedIndexChanged);
+            // 
             // cboAlmacen
             // 
             resources.ApplyResources(this.cboAlmacen, "cboAlmacen");
             this.cboAlmacen.FormattingEnabled = true;
             this.cboAlmacen.Name = "cboAlmacen";
+            this.cboAlmacen.SelectedIndexChanged += new System.EventHandler(this.cboAlmacen_SelectedIndexChanged);
             // 
             // txtDescuento
             // 
@@ -124,12 +132,6 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
-            // txtSerie
-            // 
-            resources.ApplyResources(this.txtSerie, "txtSerie");
-            this.txtSerie.Name = "txtSerie";
-            this.txtSerie.TextChanged += new System.EventHandler(this.txtSerie_TextChanged);
             // 
             // label2
             // 
@@ -308,7 +310,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNumDoc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtSerie;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDocumento;
         private System.Windows.Forms.Label label1;
@@ -335,5 +336,6 @@
         private System.Windows.Forms.ComboBox cboAlmacen;
         private System.Windows.Forms.Button DelPartida;
         private System.Windows.Forms.Button EditPartida;
+        private System.Windows.Forms.ComboBox cboSerie;
     }
 }

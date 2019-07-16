@@ -136,6 +136,7 @@
     <Compile Include="AsignaPorAlmacen.Designer.cs">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsCfgDocSeries.cs" />
     <Compile Include="clsCfgDocumento.cs" />
     <Compile Include="clsStiloTemas.cs" />
     <Compile Include="DatCfgUsuario.cs" />

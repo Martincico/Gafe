@@ -86,5 +86,14 @@ namespace GAFE
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
+        public SqlDataAdapter cboTipoMovProvee()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select ClaveDoc as Clave, Nombre as Descripcion " +
+                         "from CfgTipoMovProv";
+            dt = db.SelectDA(Sql);
+            return dt;
+        }
+
     }
 }

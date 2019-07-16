@@ -175,10 +175,10 @@ namespace GAFE
         }
 
 
-        public int GuardarDocumento(int foliador, string Doc, int op)
+        public int GuardarDocumento(int foliador, string _alm,string Doc, int op)
         {
             DocRegRequisiciones rRq = new DocRegRequisiciones(db);
-            string[] fd = rRq.getIdDoc(foliador, Doc);
+            string[] fd = rRq.getIdDoc(foliador, _alm, Doc);
             NumDoc = Convert.ToInt64(fd[0]);
             Documento = fd[1];
             rRq = null;

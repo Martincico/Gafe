@@ -17,11 +17,14 @@ namespace GAFE
     public partial class DocRegistroRequisicion : MetroForm
     {
         clsCfgDocumento ConfigDoc;
+        clsCfgDocSeries CfgDocSerie;
+
         string idmovimiento;
         private MsSql db = null;
         int Opcion;
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
+        private String CveDoc;
 
         private Boolean isDataSaved = false;//Valida el cerrar el doc
 
@@ -36,7 +39,8 @@ namespace GAFE
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
-        public DocRegistroRequisicion(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op, clsCfgDocumento CfgDoc,string mov)
+        public DocRegistroRequisicion(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op, 
+            clsCfgDocumento CfgDoc,string mov, String _CveDoc)
         {
             StiloColor = NewColor;
 
@@ -45,65 +49,43 @@ namespace GAFE
             idmovimiento = mov;
             Opcion = op;
             user = DatUsr;
+            CveDoc = _CveDoc;
             InitializeComponent();
             PARTIDAS = new List<DocPartidasReq>();
-            if (ConfigDoc.UsaSerie == 1)
-            {
-                txtSerie.Enabled = true;
-                txtSerie.Focus();
-                //lamar la configuracion de la serie para ese documento
-            }
-            if(op>=2)
+
+            FechaExpedicion.Enabled = (ConfigDoc.EditaFecha == 1)?true:false;
+
+            if (op>=2)
             {
                 getRegistro();
                 if(op==3)
                 {
-                    AddPartida.Enabled = false;
-                    EditPartida.Enabled = false;
-                    DelPartida.Enabled = false;
-                    txtSerie.Enabled = false;
-                    txtNumDoc.Enabled = false;
-                    cboAlmacen.Enabled = false;
-                    FechaExpedicion.Enabled = false;
-                    txtDescuento.Enabled = false;
-                    txtObservaciones.Enabled = false;
-
+                    HD_Botones(3,false);
                 }
             }
         }
 
 
+
         private void DocRegistroRequisicion_Load(object sender, EventArgs e)
         {
-            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 'A'";
-            SqlDataReader dr = db.SelectDR(Sqlstr);
-            lp = new List<clsFillCbo>();
+            LlecboAlmacen();
+        }
 
-            clsFillCbo Prv1 = new clsFillCbo();
-            Prv1.Id = "";
-            Prv1.Descripcion = "";
-            lp.Add(Prv1);
-
-            while (dr.Read())
-            {
-                clsFillCbo Prv = new clsFillCbo();
-                Prv.Id = Convert.ToString(dr["ClaveAlmacen"]);
-                Prv.Descripcion = Convert.ToString(dr["Descripcion"]);
-                lp.Add(Prv);
-            }
-            dr.Close();
-            cboAlmacen.DataSource = lp;
-            cboAlmacen.ValueMember = "Id";
+        private void LlecboAlmacen()
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboAlmacen.DataSource = lin.CboInv_CatAlmacenes();
+            cboAlmacen.ValueMember = "ClaveAlmacen";
             cboAlmacen.DisplayMember = "Descripcion";
 
             cboAlmacen.SelectedValue = user.AlmacenUsa;
         }
 
-
-
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
             Boolean DellAll = true;
+            int RspVal = -1;
 
             switch (Opcion)
             {
@@ -113,9 +95,33 @@ namespace GAFE
                         DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (rsp == DialogResult.Yes)
                         {
+                            RspVal = Valida();
+                            if (RspVal == 0)
+                            {
+                                DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
+                                SetValues(sRq);
+                                
+                                if (sRq.GuardarDocumento(ConfigDoc.UsaSerie == 1 ? int.Parse(CfgDocSerie.CodFoliador) : 5000, cboAlmacen.SelectedValue.ToString(), ConfigDoc.ClaveDoc, Opcion) == 1)
+                                {
+                                    MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    isDataSaved = true;
+                                    DellAll = false;
+                                }
+                            }
+                        }
+
+                    }
+                    break;
+                case 2:
+                    DialogResult rspw = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (rspw == DialogResult.Yes)
+                    {
+                        RspVal = Valida();
+                        if (RspVal == 0)
+                        {
                             DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
                             SetValues(sRq);
-                            if (sRq.GuardarDocumento(ConfigDoc.UsaSerie == 1 ? 0 : 5000, ConfigDoc.ClaveDoc, Opcion) == 1)
+                            if (sRq.ActualizaDocumento(Opcion) == 1)
                             {
                                 MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 isDataSaved = true;
@@ -123,35 +129,24 @@ namespace GAFE
                             }
                         }
                     }
-                    break;
-                case 2:
-                    DialogResult rspw = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (rspw == DialogResult.Yes)
-                    {
-                        DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-                        SetValues(sRq);
-                        if (sRq.ActualizaDocumento(Opcion) == 1)
-                        {
-                            MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            isDataSaved = true;
-                            DellAll = false;
-                        }
-                    }
                 break;
                 default: isDataSaved = true; DellAll = false; break;
             }
 
-            if (DellAll)
-                ConfirmarSalir();
+            if (RspVal <= 0)
+            {
+                if (DellAll)
+                    ConfirmarSalir();
 
                 this.Close();
+            }
         }
 
         private void SetValues(DocPuiRequisiciones sRq)
         {
             sRq.keyidMov = idmovimiento;
             sRq.keyDocumento = (Opcion == 2) ? txtDocumento.Text : "";
-            sRq.cmpSerie = txtSerie.Text;
+            sRq.cmpSerie = cboSerie.SelectedValue.ToString();
             sRq.cmpNumDoc = Convert.ToInt64(txtNumDoc.Text);
             sRq.cmpClaveAlmacen = cboAlmacen.SelectedValue.ToString();
             sRq.cmpFechaExpedicion = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", FechaExpedicion.Value));
@@ -326,7 +321,8 @@ namespace GAFE
             sRq.GetDocumento();
 
             txtDocumento.Text = sRq.keyDocumento;
-            txtSerie.Text = sRq.cmpSerie;
+            //txtSerie.Text = sRq.cmpSerie;
+            cboSerie.SelectedValue = sRq.cmpSerie;
             txtNumDoc.Text = Convert.ToString(sRq.cmpNumDoc);
             cboAlmacen.SelectedValue = sRq.cmpClaveAlmacen;
             FechaExpedicion.Value = sRq.cmpFechaExpedicion;
@@ -423,6 +419,103 @@ namespace GAFE
             isDataSaved = true;
             this.Close();
 
+        }
+
+        private void LlecboSerie(String CveAlm)
+        {
+            PuiCatCfgDocProv lin = new PuiCatCfgDocProv(db);
+            cboSerie.DataSource = lin.CbollenaSerie(CveAlm, CveDoc);
+
+            cboSerie.ValueMember = "Clave";
+            cboSerie.DisplayMember = "Descripcion";
+
+            //cboSerie.SelectedValue = CveAlm;
+        }
+
+        private int Valida()
+        {
+            int rsp = 0;
+            String msj = "";
+            if (cboAlmacen.SelectedIndex < 0)
+            {
+                rsp = 1;
+                msj += "No se ha seleccinado ningún almacén.\n";
+            }
+
+            if (ConfigDoc.UsaSerie == 1)
+            {
+                if (cboSerie.SelectedIndex < 0)
+                {
+                    rsp = 1;
+                    msj += "No se ha seleccinado ninguna serie.\n";
+                }
+            }
+
+            if(rsp==1)
+            {
+                MessageBoxAdv.Show("Se han encontrado los siguientes errores: \n" +msj, "Registro de requisición", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return rsp;
+        }
+
+        private void HD_Botones(int oq, Boolean Bol)
+        {
+            AddPartida.Enabled = Bol;
+            EditPartida.Enabled = Bol;
+            DelPartida.Enabled = Bol;
+
+            if (oq == 3)
+            {
+                cboSerie.Enabled = Bol;
+                txtNumDoc.Enabled = Bol;
+                cboAlmacen.Enabled = Bol;
+                FechaExpedicion.Enabled = Bol;
+                txtDescuento.Enabled = Bol;
+                txtObservaciones.Enabled = Bol;
+            }
+        }
+
+        private void cboSerie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string val = Convert.ToString(cboSerie.SelectedValue);
+            if (cboSerie.SelectedIndex >= 0)
+            {
+                if (!val.Equals("System.Data.DataRowView"))
+                {
+                    HD_Botones(1, true);
+                    string cboAlm = Convert.ToString(cboAlmacen.SelectedValue);
+                    string cboSer = Convert.ToString(cboSerie.SelectedValue);
+
+                    clsCfgDocSeries cds = new clsCfgDocSeries(cboAlm, CveDoc,  cboSer, db);
+                    CfgDocSerie = cds.ConfigDocSerie();
+                    
+                }
+            }
+            else
+            {
+                HD_Botones(1, false);
+            }
+        }
+
+        private void cboAlmacen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string val = Convert.ToString(cboAlmacen.SelectedValue);
+            if (cboAlmacen.SelectedIndex >= 0)
+            {
+                if (!val.Equals("System.Data.DataRowView"))
+                {
+                    if (ConfigDoc.UsaSerie == 1)
+                    {
+                        LlecboSerie(val);
+                        cboSerie.Enabled = true;
+                    }
+                    else
+                    {
+                        HD_Botones(1, false);
+                    }
+                }
+            }
         }
     }
 }

@@ -164,6 +164,14 @@ namespace GAFE
             return OpRadd.AddRegCfgFoliadores();
         }
 
+        public DataTable CbollenaSerie(string Alm, string MProv)
+        {
+            RegCatCfgDocProv OpLst = new RegCatCfgDocProv(db);
+            DataSet Cbo = new DataSet();
+            OpLst.cboCfgSeries(Alm, MProv).Fill(Cbo);
+            return Cbo.Tables[0];
+        }
+
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "CveAlmacen"; MatParam[0, 1] = CveAlmacen;

@@ -367,18 +367,24 @@ namespace GAFE
             OcultProvee(false);
             if (cboTipoMovtos.SelectedIndex >= 0)
             {
-                CargaInv_TipoMovtos();
-                String CodTipMo = Convert.ToString(cboTipoMovtos.SelectedValue);
-                
-                switch (CodTipMo)
+                string val = Convert.ToString(cboTipoMovtos.SelectedValue);
+                if (!val.Equals("System.Data.DataRowView"))
                 {
-                    case "003": CargaInv_TipoMovtosRel(); break;
-                    case "502": CargaInv_TipoMovtosRel(); break;
-                    case "001":
-                        OcultProvee(true);
-                        //TipoVal = 2;
-                        break;                }
+                    CargaInv_TipoMovtos();
+                    String CodTipMo = Convert.ToString(cboTipoMovtos.SelectedValue);
+
+                    switch (CodTipMo)
+                    {
+                        case "003": CargaInv_TipoMovtosRel(); break;
+                        case "502": CargaInv_TipoMovtosRel(); break;
+                        case "001":
+                            OcultProvee(true);
+                            //TipoVal = 2;
+                            break;
+                    }
+                }
             }
+
         }
 
 

@@ -163,6 +163,15 @@ namespace GAFE
             return OpRadd.AddRegCfgFoliadores();
         }
 
+        public DataTable cboTipoMovProvee()
+        {
+            RegCatCfgTipoMovProv OpLst = new RegCatCfgTipoMovProv(db);
+            DataSet Cbo = new DataSet();
+            OpLst.cboTipoMovProvee().Fill(Cbo);
+            return Cbo.Tables[0];
+        }
+
+
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "ClaveDoc"; MatParam[0, 1] = ClaveDoc;

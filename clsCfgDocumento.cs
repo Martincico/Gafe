@@ -22,7 +22,7 @@ namespace GAFE
         public int EsInterno;
 
         private MsSql db = null;
-        private SqlParameter[] ArrParametros;
+        //private SqlParameter[] ArrParametros;
 
         public clsCfgDocumento(string clavedoc, MsSql Odat)
         {
@@ -39,7 +39,7 @@ namespace GAFE
         {
             clsCfgDocumento Doc = new clsCfgDocumento();
             string Sql = "Select * " +
-                         "from CfgTipoMovProv";
+                         "from CfgTipoMovProv WHERE ClaveDoc = '"+this.ClaveDoc+"'";
             SqlDataReader dr = db.SelectDR(Sql);
             while (dr.Read())
             {

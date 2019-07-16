@@ -56,13 +56,13 @@ namespace GAFE
         public SqlDataAdapter ListCfgDocProvs()
         {
             SqlDataAdapter dt = null;
-            string Sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CodMovProv,TipoMtos.Descripcion as Mov_Inv," +
+            string Sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CodMovProv,TipoMtos.Nombre as Mov_Inv," +
                         "         DocProv.Serie,DocProv.Descripcion,DocProv.CodFoliador,Fol.Descripcion as Foliador, " +
                         "         DocProv.FmtoImpresion,DocProv.NoCopiasImp, DocProv.NombImpresora " +
                         " FROM dbo.CfgDocProv AS DocProv " +
                         " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
                         " INNER JOIN dbo.CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
-                        " INNER JOIN dbo.Inv_TipoMovtos AS TipoMtos ON DocProv.CodMovProv = TipoMtos.CveTipoMov ";
+                        " INNER JOIN CfgTipoMovProv AS TipoMtos ON TipoMtos.ClaveDoc = DocProv.CodMovProv ";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -82,14 +82,14 @@ namespace GAFE
         public SqlDataAdapter BuscaCfgDocProv(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CodMovProv,TipoMtos.Descripcion as Mov_Inv," +
+            string sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CodMovProv,TipoMtos.Nombre as Mov_Inv," +
                         "         DocProv.Serie,DocProv.Descripcion,DocProv.CodFoliador,Fol.Descripcion as Foliador, " +
                         "         DocProv.FmtoImpresion,DocProv.NoCopiasImp, DocProv.NombImpresora " +
-                        " FROM dbo.CfgDocProv AS DocProv " +
-                        " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
-                        " INNER JOIN dbo.CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
-                        " INNER JOIN dbo.Inv_TipoMovtos AS TipoMtos ON DocProv.CodMovProv = TipoMtos.CveTipoMov " +
-                        " Where DocProv.CveAlmacen  like '%" + bsq + "%' OR  DocProv.CodMovProv = '%" + bsq + "%' OR DocProv.Serie = '%" + bsq + "%'";
+                        " FROM CfgDocProv AS DocProv " +
+                        " INNER JOIN Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
+                        " INNER JOIN CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
+                        " INNER JOIN CfgTipoMovProv AS TipoMtos ON TipoMtos.ClaveDoc = DocProv.CodMovProv " +
+                        " Where DocProv.CveAlmacen  like '%" + bsq + "%' OR  DocProv.CodMovProv LIKE '%" + bsq + "%' OR DocProv.Serie LIKE '%" + bsq + "%'";
 
             dt = db.SelectDA(sql);
             return dt;
@@ -100,6 +100,16 @@ namespace GAFE
             string sql = "Insert into CfgFoliadores (CveFoliador,CveAlmacen,FolioActual, FolioSiguiente) " +
                          "values( @CodFoliador,@CveAlmacen,0,1)";
             return db.InsertarRegistro(sql, ArrParametros);
+        }
+
+        public SqlDataAdapter cboCfgSeries(string Alm, string MProv)
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select Serie as Clave, Descripcion " +
+                         " from CfgDocProv "+
+                         " Where CveAlmacen ='" + Alm + "' AND CodMovProv = '" + MProv + "'";
+            dt = db.SelectDA(Sql);
+            return dt;
         }
 
     }
