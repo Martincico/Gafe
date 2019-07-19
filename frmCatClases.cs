@@ -26,6 +26,8 @@ namespace GAFE
         private string Perfil;
         private clsUtil uT;
 
+        public String KeyCampo = null;
+
         public frmCatClases()
         {
             InitializeComponent();
@@ -50,21 +52,42 @@ namespace GAFE
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            /*
+
+            Minv	Clases	Formulario	1Inv009	1Inv00
+Minv	Agregar Clases	Operacion		1Inv009
+Minv	Editar Clases	Operacion		1Inv009
+Minv	Eliminar Clases	Operacion		1Inv009
+Minv	Consultar Clases	Operacion		1Inv009
+Minv	Seleccionar Clases	Operacion		1Inv009
+Minv	Buscar Clases	Operacion		1Inv009
+
+    */
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv009A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
+            up = uT.BuscarIdNodo("1Inv009B");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEditar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv009C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv009D");
             AcCOP = (up != null) ? up.Acceso : 0;
-            //cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv009E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv009F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
+            cmdSeleccionar.Visible = false;
 
 
             this.Size = this.MinimumSize;
@@ -343,6 +366,20 @@ namespace GAFE
             cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
 
             OpcionControles(false);
+        }
+
+        private void cmdSeleccionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

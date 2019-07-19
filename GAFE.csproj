@@ -630,6 +630,13 @@
     <None Include="Resources\Fondos\Fondo4.png" />
     <None Include="Resources\Fondos\Fondo1.png" />
     <None Include="Resources\Fondos\Fondo2.png" />
+    <None Include="Resources\MnuAlmacen.png" />
+    <None Include="Resources\MnuArticulos.png" />
+    <None Include="Resources\MnuInventario.png" />
+    <None Include="Resources\MnuProveedores.png" />
+    <None Include="Resources\MnuColores.png" />
+    <None Include="Resources\MnuTemas.png" />
+    <None Include="Resources\MnuUsuarios.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

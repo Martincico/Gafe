@@ -29,6 +29,10 @@ namespace GAFE
         clsEncripta Seg;
         public DatCfgUsuario user;
 
+
+        private int posY = 0;
+        private int posX = 0;
+
         public frmInicio()
         {
             InitializeComponent();
@@ -228,6 +232,20 @@ namespace GAFE
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button != MouseButtons.Left)
+            {
+                posX = e.X;
+                posY = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - posX);
+                Top = Top + (e.Y - posY);
+            }
         }
     }
 }

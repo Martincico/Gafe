@@ -48,6 +48,7 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdConsultar = new System.Windows.Forms.Button();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -291,6 +292,21 @@
             this.cmdConsultar.UseVisualStyleBackColor = false;
             this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
+            // cmdSeleccionar
+            // 
+            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdSeleccionar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSeleccionar.Location = new System.Drawing.Point(10, 223);
+            this.cmdSeleccionar.Name = "cmdSeleccionar";
+            this.cmdSeleccionar.Size = new System.Drawing.Size(36, 36);
+            this.cmdSeleccionar.TabIndex = 16;
+            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdSeleccionar.UseVisualStyleBackColor = false;
+            this.cmdSeleccionar.Visible = false;
+            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
             // frmCatClases
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,6 +317,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(503, 403);
+            this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
@@ -348,5 +365,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Button cmdConsultar;
+        private System.Windows.Forms.Button cmdSeleccionar;
     }
 }

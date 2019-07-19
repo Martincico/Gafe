@@ -55,7 +55,7 @@ namespace GAFE
             color.HoverTabForeColor = ColorTranslator.FromHtml(FontColor);
 
             //Color de fondo del pie del panel
-            color.CaptionBackColor = ColorTranslator.FromHtml("#F9D93A");
+            //color.CaptionBackColor = ColorTranslator.FromHtml("#F9D93A");
 
             //Color de fondo d los submenu
             //color.DropDownBackColor = ColorTranslator.FromHtml(HoverEncabezado);

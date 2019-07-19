@@ -82,12 +82,25 @@ namespace GAFE
                 int CatMarca = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv005");
                 int CatAlm = up.Acceso;
+                up = ut.BuscarIdNodo("1Inv006");
+                int CatGeo = up.Acceso;
+                up = ut.BuscarIdNodo("1Inv009");
+                int CatCla = up.Acceso;
+                
+                up = ut.BuscarIdNodo("1Inv007");
+                int CatProve = up.Acceso;
+                CatProveedores.Enabled = (CatProve == 1) ? true : false;
+                up = ut.BuscarIdNodo("1Inv008");
+                int CatLstPre = up.Acceso;
+                CatListaPrecios.Enabled = (CatLstPre == 1) ? true : false;
 
                 CatArticulo.Enabled = (CatArt == 1) ? true : false;
                 CatUMedidas.Enabled = (CatUMed == 1) ? true : false;
                 CatLineas.Enabled = (CatLinea == 1) ? true : false;
                 CatMarcas.Enabled = (CatMarca == 1) ? true : false;
-                //CatAlmacen.Enabled = (CatAlm == 1) ? true : false;
+                CatGeografia.Enabled = (CatGeo == 1) ? true : false;
+                CatClase.Enabled = (CatCla == 1) ? true : false;
+                CatAlmacen.Enabled = (CatAlm == 1) ? true : false;
 
                 up = ut.BuscarIdNodo("1Inv011");
                 int Movinv = up.Acceso;
@@ -234,6 +247,9 @@ namespace GAFE
             NewColor.HoverEncabezado = us.cmpNombre;
             NewColor.FontColor = us.cmpPassword;
             this.ribMenu.Office2016ColorTable.Add(NewColor.StiloTeam());
+
+            //this.ribMenu.RibbonStyle = RibbonStyle.Office2007;
+            //this.ribMenu.Office2016ColorScheme = Office2016ColorScheme.DarkGray;
 
         }
 

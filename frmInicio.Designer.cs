@@ -60,7 +60,7 @@
             // 
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cmdAceptar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAceptar.Image")));
+            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Aceptar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(220, 179);
             this.cmdAceptar.Name = "cmdAceptar";
@@ -121,10 +121,11 @@
             this.panel1.Controls.Add(this.cmdAceptar);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.lblFecha);
-            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Location = new System.Drawing.Point(0, -3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(463, 229);
             this.panel1.TabIndex = 19;
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
             // cboEmpresas
             // 
@@ -142,7 +143,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.DimGray;
             this.CancelButton = this.cmdCancelar;
-            this.ClientSize = new System.Drawing.Size(472, 242);
+            this.ClientSize = new System.Drawing.Size(466, 229);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

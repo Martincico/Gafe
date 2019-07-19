@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCatGeografia));
             this.cboPaises = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -126,7 +125,7 @@
             // 
             this.cmdEditarLocalidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEditarLocalidad.Enabled = false;
-            this.cmdEditarLocalidad.Image = ((System.Drawing.Image)(resources.GetObject("cmdEditarLocalidad.Image")));
+            this.cmdEditarLocalidad.Image = global::GAFE.Properties.Resources.Editar;
             this.cmdEditarLocalidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEditarLocalidad.Location = new System.Drawing.Point(295, 348);
             this.cmdEditarLocalidad.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -143,7 +142,7 @@
             // 
             this.cmdEditarMunicipio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEditarMunicipio.Enabled = false;
-            this.cmdEditarMunicipio.Image = ((System.Drawing.Image)(resources.GetObject("cmdEditarMunicipio.Image")));
+            this.cmdEditarMunicipio.Image = global::GAFE.Properties.Resources.Editar;
             this.cmdEditarMunicipio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEditarMunicipio.Location = new System.Drawing.Point(295, 252);
             this.cmdEditarMunicipio.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -160,7 +159,7 @@
             // 
             this.cmdEditarEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEditarEstado.Enabled = false;
-            this.cmdEditarEstado.Image = ((System.Drawing.Image)(resources.GetObject("cmdEditarEstado.Image")));
+            this.cmdEditarEstado.Image = global::GAFE.Properties.Resources.Editar;
             this.cmdEditarEstado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEditarEstado.Location = new System.Drawing.Point(295, 139);
             this.cmdEditarEstado.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -176,7 +175,8 @@
             // cmdEditarPais
             // 
             this.cmdEditarPais.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdEditarPais.Image = ((System.Drawing.Image)(resources.GetObject("cmdEditarPais.Image")));
+            this.cmdEditarPais.Enabled = false;
+            this.cmdEditarPais.Image = global::GAFE.Properties.Resources.Editar;
             this.cmdEditarPais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEditarPais.Location = new System.Drawing.Point(295, 40);
             this.cmdEditarPais.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -193,7 +193,7 @@
             // 
             this.cmdEliminarLocalidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminarLocalidad.Enabled = false;
-            this.cmdEliminarLocalidad.Image = ((System.Drawing.Image)(resources.GetObject("cmdEliminarLocalidad.Image")));
+            this.cmdEliminarLocalidad.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminarLocalidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEliminarLocalidad.Location = new System.Drawing.Point(97, 347);
             this.cmdEliminarLocalidad.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -210,7 +210,7 @@
             // 
             this.cmdEliminarMunicipio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminarMunicipio.Enabled = false;
-            this.cmdEliminarMunicipio.Image = ((System.Drawing.Image)(resources.GetObject("cmdEliminarMunicipio.Image")));
+            this.cmdEliminarMunicipio.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminarMunicipio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEliminarMunicipio.Location = new System.Drawing.Point(97, 251);
             this.cmdEliminarMunicipio.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -317,7 +317,7 @@
             // 
             this.cmdEliminarEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminarEstado.Enabled = false;
-            this.cmdEliminarEstado.Image = ((System.Drawing.Image)(resources.GetObject("cmdEliminarEstado.Image")));
+            this.cmdEliminarEstado.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminarEstado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEliminarEstado.Location = new System.Drawing.Point(97, 138);
             this.cmdEliminarEstado.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -379,7 +379,7 @@
             // 
             this.cmdEliminarPais.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminarPais.Enabled = false;
-            this.cmdEliminarPais.Image = ((System.Drawing.Image)(resources.GetObject("cmdEliminarPais.Image")));
+            this.cmdEliminarPais.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminarPais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEliminarPais.Location = new System.Drawing.Point(97, 39);
             this.cmdEliminarPais.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -395,6 +395,7 @@
             // cmdAgregarPais
             // 
             this.cmdAgregarPais.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdAgregarPais.Enabled = false;
             this.cmdAgregarPais.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregarPais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAgregarPais.Location = new System.Drawing.Point(197, 39);
@@ -411,6 +412,7 @@
             // cmdSeleccionar
             // 
             this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdSeleccionar.Enabled = false;
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdSeleccionar.Location = new System.Drawing.Point(212, 407);
@@ -464,7 +466,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdCancelar.Image = ((System.Drawing.Image)(resources.GetObject("cmdCancelar.Image")));
+            this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCancelar.Location = new System.Drawing.Point(216, 108);
             this.cmdCancelar.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -479,7 +481,7 @@
             // cmdAceptar
             // 
             this.cmdAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdAceptar.Image = ((System.Drawing.Image)(resources.GetObject("cmdAceptar.Image")));
+            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(111, 108);
             this.cmdAceptar.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
