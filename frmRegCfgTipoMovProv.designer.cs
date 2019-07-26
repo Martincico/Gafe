@@ -44,6 +44,11 @@
             this.txtClaveTipoMov = new System.Windows.Forms.TextBox();
             this.lblCodEmpleado = new System.Windows.Forms.Label();
             this.chkEsInterno = new System.Windows.Forms.CheckBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkUsaCliente = new System.Windows.Forms.CheckBox();
+            this.chkUsaProvee = new System.Windows.Forms.CheckBox();
+            this.chkAutoriza = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cmdCancelar
@@ -51,7 +56,7 @@
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(438, 217);
+            this.cmdCancelar.Location = new System.Drawing.Point(438, 256);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 19;
@@ -65,7 +70,7 @@
             this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(333, 217);
+            this.cmdAceptar.Location = new System.Drawing.Point(333, 256);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 18;
@@ -143,7 +148,7 @@
             this.chkEstatus.Checked = true;
             this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEstatus.Location = new System.Drawing.Point(282, 192);
+            this.chkEstatus.Location = new System.Drawing.Point(10, 262);
             this.chkEstatus.Name = "chkEstatus";
             this.chkEstatus.Size = new System.Drawing.Size(67, 22);
             this.chkEstatus.TabIndex = 33;
@@ -154,7 +159,7 @@
             // 
             this.chkEditaFecha.AutoSize = true;
             this.chkEditaFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEditaFecha.Location = new System.Drawing.Point(282, 164);
+            this.chkEditaFecha.Location = new System.Drawing.Point(131, 206);
             this.chkEditaFecha.Name = "chkEditaFecha";
             this.chkEditaFecha.Size = new System.Drawing.Size(100, 22);
             this.chkEditaFecha.TabIndex = 32;
@@ -165,7 +170,7 @@
             // 
             this.chkUsaSerie.AutoSize = true;
             this.chkUsaSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkUsaSerie.Location = new System.Drawing.Point(131, 164);
+            this.chkUsaSerie.Location = new System.Drawing.Point(10, 206);
             this.chkUsaSerie.Name = "chkUsaSerie";
             this.chkUsaSerie.Size = new System.Drawing.Size(90, 22);
             this.chkUsaSerie.TabIndex = 31;
@@ -218,12 +223,67 @@
             this.chkEsInterno.Checked = true;
             this.chkEsInterno.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEsInterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEsInterno.Location = new System.Drawing.Point(131, 192);
+            this.chkEsInterno.Location = new System.Drawing.Point(10, 234);
             this.chkEsInterno.Name = "chkEsInterno";
             this.chkEsInterno.Size = new System.Drawing.Size(94, 22);
             this.chkEsInterno.TabIndex = 38;
             this.chkEsInterno.Text = "Es interno";
             this.chkEsInterno.UseVisualStyleBackColor = true;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtEmail.Location = new System.Drawing.Point(131, 164);
+            this.txtEmail.MaxLength = 100;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(336, 24);
+            this.txtEmail.TabIndex = 39;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label1.Location = new System.Drawing.Point(7, 167);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 18);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Enviar correo";
+            // 
+            // chkUsaCliente
+            // 
+            this.chkUsaCliente.AutoSize = true;
+            this.chkUsaCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkUsaCliente.Location = new System.Drawing.Point(272, 206);
+            this.chkUsaCliente.Name = "chkUsaCliente";
+            this.chkUsaCliente.Size = new System.Drawing.Size(100, 22);
+            this.chkUsaCliente.TabIndex = 41;
+            this.chkUsaCliente.Text = "Usa cliente";
+            this.chkUsaCliente.UseVisualStyleBackColor = true;
+            // 
+            // chkUsaProvee
+            // 
+            this.chkUsaProvee.AutoSize = true;
+            this.chkUsaProvee.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkUsaProvee.Location = new System.Drawing.Point(407, 206);
+            this.chkUsaProvee.Name = "chkUsaProvee";
+            this.chkUsaProvee.Size = new System.Drawing.Size(125, 22);
+            this.chkUsaProvee.TabIndex = 42;
+            this.chkUsaProvee.Text = "Usa proveedor";
+            this.chkUsaProvee.UseVisualStyleBackColor = true;
+            // 
+            // chkAutoriza
+            // 
+            this.chkAutoriza.AutoSize = true;
+            this.chkAutoriza.Checked = true;
+            this.chkAutoriza.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutoriza.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAutoriza.Location = new System.Drawing.Point(131, 234);
+            this.chkAutoriza.Name = "chkAutoriza";
+            this.chkAutoriza.Size = new System.Drawing.Size(160, 22);
+            this.chkAutoriza.TabIndex = 43;
+            this.chkAutoriza.Text = "Solicita autorización";
+            this.chkAutoriza.UseVisualStyleBackColor = true;
             // 
             // frmRegCfgTipoMovProv
             // 
@@ -234,7 +294,12 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(534, 257);
+            this.ClientSize = new System.Drawing.Size(534, 299);
+            this.Controls.Add(this.chkAutoriza);
+            this.Controls.Add(this.chkUsaProvee);
+            this.Controls.Add(this.chkUsaCliente);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.chkEsInterno);
             this.Controls.Add(this.cboCfgCatFoliadores);
             this.Controls.Add(this.cboTipoMov);
@@ -257,7 +322,7 @@
             this.Name = "frmRegCfgTipoMovProv";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registro de tipo movimientos proveedores";
+            this.Text = "Registro de documentos";
             this.Load += new System.EventHandler(this.frmRegCfgTipoMovProv_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -281,5 +346,10 @@
         private System.Windows.Forms.TextBox txtClaveTipoMov;
         private System.Windows.Forms.Label lblCodEmpleado;
         private System.Windows.Forms.CheckBox chkEsInterno;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkUsaCliente;
+        private System.Windows.Forms.CheckBox chkUsaProvee;
+        private System.Windows.Forms.CheckBox chkAutoriza;
     }
 }

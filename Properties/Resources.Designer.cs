@@ -93,6 +93,16 @@ namespace GAFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Check {
+            get {
+                object obj = ResourceManager.GetObject("Check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Consultar {
             get {
                 object obj = ResourceManager.GetObject("Consultar", resourceCulture);
@@ -306,6 +316,16 @@ namespace GAFE.Properties {
         internal static System.Drawing.Bitmap Seleccionar {
             get {
                 object obj = ResourceManager.GetObject("Seleccionar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnCheck {
+            get {
+                object obj = ResourceManager.GetObject("UnCheck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -187,7 +187,7 @@
             this.cmdEditar.Text = "Editar";
             this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEditar.UseVisualStyleBackColor = false;
-            this.cmdEditar.Click += new System.EventHandler(this.cmEditar_Click);
+            this.cmdEditar.Click += new System.EventHandler(this.cmdEditar_Click);
             // 
             // cmdAgregar
             // 

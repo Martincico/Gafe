@@ -83,7 +83,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 1, TipoDocProv);
+            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 1, TipoDocProv, user);
             Ventana.ShowDialog();
             LlenaGridView();
         }

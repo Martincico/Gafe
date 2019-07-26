@@ -45,6 +45,7 @@
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdRestablecer = new System.Windows.Forms.Button();
+            this.cmdAutorizarTodo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -239,6 +240,20 @@
             this.cmdRestablecer.UseVisualStyleBackColor = false;
             this.cmdRestablecer.Click += new System.EventHandler(this.cmdRestablecer_Click);
             // 
+            // cmdAutorizarTodo
+            // 
+            this.cmdAutorizarTodo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdAutorizarTodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdAutorizarTodo.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdAutorizarTodo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdAutorizarTodo.Location = new System.Drawing.Point(12, 402);
+            this.cmdAutorizarTodo.Name = "cmdAutorizarTodo";
+            this.cmdAutorizarTodo.Size = new System.Drawing.Size(38, 36);
+            this.cmdAutorizarTodo.TabIndex = 30;
+            this.cmdAutorizarTodo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdAutorizarTodo.UseVisualStyleBackColor = false;
+            this.cmdAutorizarTodo.Visible = false;
+            // 
             // DocLstRequisiciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -249,6 +264,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(796, 441);
+            this.Controls.Add(this.cmdAutorizarTodo);
             this.Controls.Add(this.cmdRestablecer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -298,5 +314,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdRestablecer;
         private System.Windows.Forms.DataGridViewTextBoxColumn idMov;
+        private System.Windows.Forms.Button cmdAutorizarTodo;
     }
 }

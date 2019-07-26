@@ -24,6 +24,8 @@ namespace GAFE
         private MsSql db = null;
         private String Foliador;
 
+        public DatCfgUsuario user;
+
         private Boolean isDataSaved = false;
 
         //Configuración de Tipo de Movimiento
@@ -77,11 +79,13 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public frmRegInventarioMovtos(MsSql Odat, int Op, String TipoDocInv)
+        public frmRegInventarioMovtos(MsSql Odat, int Op, String TipoDocInv, DatCfgUsuario DatUsr)
         {
             InitializeComponent();
             opcion = Op;
             db = Odat;
+
+            user = DatUsr;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -101,7 +105,7 @@ namespace GAFE
             if (folMovto >= 1)
               {
                 LleCboClaseMov();
-                LlecboAlmaOri("100");
+                LlecboAlmaOri(user.AlmacenUsa);
                 OcultProvee(false);
                 OcultAlmDest(false);
             }

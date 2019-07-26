@@ -28,24 +28,6 @@ namespace GAFE
 
         public RegCatInventarioMov(MsSql Odat) { db = Odat; }
 
-        /*
-        public void Conn()
-        {
-            /*db = new DatSql.MsSql(
-                   ConfigurationSettings.AppSettings.Get("Servidor"),
-                   ConfigurationSettings.AppSettings.Get("Datos"),
-                   ConfigurationSettings.AppSettings.Get("Usuario"),
-                   ConfigurationSettings.AppSettings.Get("Password")
-                   );
-            
-            db = new DatSql.MsSql("SIGMA6\\SQL14", "CtrlAcceso", "sa", "Remolachas1");
-                   
-            if (db.Conectar() < 1)
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-    */
-
         public int AddRegBlanco()
         {
 

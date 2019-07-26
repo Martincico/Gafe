@@ -70,13 +70,16 @@ namespace GAFE
             pui.EditarTipoMovProv();
             txtClaveTipoMov.Text = pui.keyClaveDoc;
             txtDescripcion.Text = pui.cmpNombre;
-            optCargo.Checked = pui.cmpCargoAbono == "E" ? true : false;
-            optAbono.Checked = pui.cmpCargoAbono == "S" ? true : false;
+            optCargo.Checked = pui.cmpCargoAbono == "C" ? true : false;
+            optAbono.Checked = pui.cmpCargoAbono == "A" ? true : false;
             cboTipoMov.SelectedValue = pui.cmpCveTipoMov;
             cboCfgCatFoliadores.SelectedValue = pui.cmpFoliador;
             chkUsaSerie.Checked = pui.cmpUsaSerie == 1 ? true : false;
             chkEditaFecha.Checked = pui.cmpEditaFecha== 1 ? true : false;
+            chkUsaCliente.Checked = pui.cmpUsaCliente == 1 ? true : false;
+            chkUsaProvee.Checked = pui.cmpUsaProvee == 1 ? true : false;
             chkEsInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
+            chkAutoriza.Checked = pui.cmpSolicitaAutorizar == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
         }
 
@@ -157,6 +160,9 @@ namespace GAFE
             pui.cmpEditaFecha = chkEditaFecha.Checked ? 1 : 0;
             pui.cmpEsInterno = chkEsInterno.Checked ? 1 : 0;
             pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
+            pui.cmpUsaCliente = chkUsaCliente.Checked ? 1 : 0;
+            pui.cmpUsaProvee = chkUsaProvee.Checked ? 1 : 0;
+            pui.cmpSolicitaAutorizar = chkAutoriza.Checked ? 1 : 0;
 
             if (opcion==1)
             {
@@ -231,6 +237,7 @@ namespace GAFE
             chkUsaSerie.Enabled = Op;
             chkEsInterno.Enabled = Op;
             chkEstatus.Enabled = Op;
+            chkAutoriza.Enabled = Op;
 
         }
 
@@ -266,7 +273,7 @@ namespace GAFE
         private void LlecboCfgCatFoliadores()
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores();
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(1);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }

@@ -201,7 +201,7 @@ namespace GAFE
                 {
                     RecorrerRecursivo(n);
                 }
-                MessageBoxAdv.Show("Accesos Asignados al Perfil " + cboPerfiles.SelectedValue.ToString(),"Cinfirmacion",MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Accesos Asignados al Perfil " + cboPerfiles.SelectedValue.ToString(),"Confirmación",MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 tSeg.Nodes.Clear();
                 btnActualizaSeg.Enabled = false;

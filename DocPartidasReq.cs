@@ -8,12 +8,14 @@ namespace GAFE
 {
     public partial class DocPartidasReq
     {
+        public bool Autorizado { get; set; }
         public string idMov { get; set; }
         public string Documento { get; set; }
         public string Serie { get; set; }
         public long Numdoc { get; set; }
         public string ClaveAlmacen { get; set; }
         public int Partida { get; set; }
+
         public string CveArticulo { get; set; }
         public string Descripcion { get; set; }
         public double Cantidad { get; set; }
@@ -26,5 +28,7 @@ namespace GAFE
         public double Impuesto { get; set; }
         public double SubTotal { get; set; }
         public double Total { get; set; }
+        
+        
     }
 }

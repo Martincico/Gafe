@@ -47,7 +47,6 @@
             this.OpKardex = new System.Windows.Forms.ToolStripMenuItem();
             this.OpExistencia = new System.Windows.Forms.ToolStripMenuItem();
             this.InvMenDocumentos = new System.Windows.Forms.ToolStripMenuItem();
-            this.InvDocRequisicion = new System.Windows.Forms.ToolStripMenuItem();
             this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
@@ -206,42 +205,42 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(169, 22);
+            this.CatLineas.Size = new System.Drawing.Size(180, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(169, 22);
+            this.CatClase.Size = new System.Drawing.Size(180, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
             // CatGeografia
             // 
             this.CatGeografia.Name = "CatGeografia";
-            this.CatGeografia.Size = new System.Drawing.Size(169, 22);
+            this.CatGeografia.Size = new System.Drawing.Size(180, 22);
             this.CatGeografia.Text = "Geografía";
             this.CatGeografia.Click += new System.EventHandler(this.CatGeografia_Click);
             // 
@@ -263,7 +262,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -271,7 +270,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
@@ -334,18 +333,10 @@
             // 
             // InvMenDocumentos
             // 
-            this.InvMenDocumentos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.InvDocRequisicion});
             this.InvMenDocumentos.Name = "InvMenDocumentos";
             this.InvMenDocumentos.Size = new System.Drawing.Size(216, 22);
             this.InvMenDocumentos.Text = "Documentos";
-            // 
-            // InvDocRequisicion
-            // 
-            this.InvDocRequisicion.Name = "InvDocRequisicion";
-            this.InvDocRequisicion.Size = new System.Drawing.Size(134, 22);
-            this.InvDocRequisicion.Text = "Requisición";
-            this.InvDocRequisicion.Click += new System.EventHandler(this.InvDocRequisicion_Click);
+            this.InvMenDocumentos.Click += new System.EventHandler(this.InvMenDocumentos_Click);
             // 
             // OpInvFisicos
             // 
@@ -880,7 +871,6 @@
         private System.Windows.Forms.ToolStripMenuItem CatProveedores;
         private System.Windows.Forms.ToolStripMenuItem CatListaPrecios;
         private System.Windows.Forms.ToolStripMenuItem InvMenDocumentos;
-        private System.Windows.Forms.ToolStripMenuItem InvDocRequisicion;
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModConfiguración;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx3;
         private System.Windows.Forms.ToolStripDropDownButton CfgMnuInventarios;

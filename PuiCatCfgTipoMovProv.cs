@@ -18,12 +18,15 @@ namespace GAFE
         private string Foliador;
         private int UsaSerie;
         private int EditaFecha;
+        private int UsaCliente;
+        private int UsaProveedor;
         private int EsInterno;
+        private int SolicitaAutorizar;
         private int Estatus;
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[9, 2];
+        private object[,] MatParam = new object[12, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -92,6 +95,23 @@ namespace GAFE
             set { Estatus = value; }
         }
 
+        public int cmpUsaCliente
+        {
+            get { return UsaCliente; }
+            set { UsaCliente = value; }
+        }
+
+        public int cmpUsaProvee
+        {
+            get { return UsaProveedor; }
+            set { UsaProveedor = value; }
+        }
+
+        public int cmpSolicitaAutorizar
+        {
+            get { return SolicitaAutorizar; }
+            set { SolicitaAutorizar = value; }
+        }
 
         #endregion
 
@@ -143,8 +163,11 @@ namespace GAFE
             Foliador = ObjA[4].ToString();
             UsaSerie = int.Parse(ObjA[5].ToString());
             EditaFecha = int.Parse(ObjA[6].ToString());
-            EsInterno = int.Parse(ObjA[7].ToString());
-            Estatus = int.Parse(ObjA[8].ToString());
+            UsaCliente = int.Parse(ObjA[7].ToString());
+            UsaProveedor = int.Parse(ObjA[8].ToString());
+            EsInterno = int.Parse(ObjA[9].ToString());
+            SolicitaAutorizar = int.Parse(ObjA[10].ToString());
+            Estatus = int.Parse(ObjA[11].ToString());
 
 
         }
@@ -181,8 +204,11 @@ namespace GAFE
             MatParam[4, 0] = "Foliador"; MatParam[4, 1] = Foliador;
             MatParam[5, 0] = "UsaSerie"; MatParam[5, 1] = UsaSerie;
             MatParam[6, 0] = "EditaFecha"; MatParam[6, 1] = EditaFecha;
-            MatParam[7, 0] = "EsInterno"; MatParam[7, 1] = EsInterno;
-            MatParam[8, 0] = "Estatus"; MatParam[8, 1] = Estatus;
+            MatParam[7, 0] = "UsaCliente"; MatParam[7, 1] = UsaCliente;
+            MatParam[8, 0] = "UsaProveedor"; MatParam[8, 1] = UsaProveedor;
+            MatParam[9, 0] = "EsInterno"; MatParam[9, 1] = EsInterno;
+            MatParam[10, 0] = "SolicitaAutorizar"; MatParam[10, 1] = SolicitaAutorizar;
+            MatParam[11, 0] = "Estatus"; MatParam[11, 1] = Estatus;
         }
 
     }

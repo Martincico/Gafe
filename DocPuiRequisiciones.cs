@@ -14,6 +14,7 @@ namespace GAFE
         private string idMov;
         private string Documento;
         private string Serie;
+        private string CveDoc;
         private long NumDoc;
         private string ClaveAlmacen;
         private DateTime FechaExpedicion;
@@ -22,17 +23,19 @@ namespace GAFE
         private double Descuento;
         private double SubTotal;
         private double Total;
+        private string CveProveedor;
+        private string CveCliente;
         private string Observaciones;
+        private DateTime FechaModificacion;
         private string Estatus;
-        private string Autorizado;
-        private int Cancelado;
+        private Boolean Autorizado;
 
         private List<DocPartidasReq> Partidas;
 
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[15, 2];
+        private object[,] MatParam = new object[18, 2];
         private object[,] MatParam2 = new object[2, 2];
        
         private SqlDataAdapter Datos;
@@ -74,6 +77,24 @@ namespace GAFE
             set { NumDoc = value; }
         }
 
+        public string cmpCveDoc
+        {
+            get { return CveDoc; }
+            set { CveDoc = value; }
+        }
+
+        public string cmpCveProveedor
+        {
+            get { return CveProveedor; }
+            set { CveProveedor = value; }
+        }
+
+        public string cmpCveCliente
+        {
+            get { return CveCliente; }
+            set { CveCliente = value; }
+        }
+
         public string cmpClaveAlmacen
         {
             get { return ClaveAlmacen; }
@@ -84,6 +105,12 @@ namespace GAFE
         {
             get { return FechaExpedicion; }
             set { FechaExpedicion = value; }
+        }
+
+        public DateTime cmpFechaModificacion
+        {
+            get { return FechaModificacion; }
+            set { FechaModificacion = value; }
         }
 
         public string cmpClaveImpuesto
@@ -128,17 +155,12 @@ namespace GAFE
             set { Estatus = value; }
         }
 
-        public string cmpAutorizado
+        public Boolean cmpAutorizado
         {
             get { return Autorizado; }
             set { Autorizado = value; }
         }
 
-        public int cmpCancelado
-        {
-            get { return Cancelado; }
-            set { Cancelado = value; }
-        }
 
         public List<DocPartidasReq> PartidasDoc
         {
@@ -175,10 +197,10 @@ namespace GAFE
         }
 
 
-        public int GuardarDocumento(int foliador, string _alm,string Doc, int op)
+        public int GuardarDocumento(int foliador, string _alm,string Doc, string ser, int op)
         {
             DocRegRequisiciones rRq = new DocRegRequisiciones(db);
-            string[] fd = rRq.getIdDoc(foliador, _alm, Doc);
+            string[] fd = rRq.getIdDoc(foliador, _alm, Doc, ser);
             NumDoc = Convert.ToInt64(fd[0]);
             Documento = fd[1];
             rRq = null;
@@ -193,6 +215,7 @@ namespace GAFE
             DocRegRequisiciones rRq = new DocRegRequisiciones(db);
             rRq = null;
             CargaParametroMat();
+            AsignaValPartidas();
             rRq = new DocRegRequisiciones(MatParam, db, Partidas);
             return rRq.SaveDocumento(op);
         }
@@ -221,9 +244,10 @@ namespace GAFE
             cmpTotal = double.Parse(ObjA[10].ToString());
             cmpObservaciones = ObjA[11].ToString();
             cmpEstatus = ObjA[12].ToString();
-            cmpAutorizado = ObjA[13].ToString();
-            cmpCancelado= int.Parse(ObjA[14].ToString());
-            
+            cmpAutorizado = Boolean.Parse(ObjA[13].ToString());
+            cmpCveProveedor = ObjA[15].ToString();
+            cmpCveCliente= ObjA[16].ToString();
+
         }
 
         public SqlDataAdapter GetDatelleDoc(string doc)
@@ -239,11 +263,11 @@ namespace GAFE
             MatParam2[1, 0] = "FechaExpedicion"; MatParam2[1, 1] = FechaExpedicion;
         }
 
-        public SqlDataAdapter ListarDocumentos(String CodAlm, String FIni, String FFin)
+        public SqlDataAdapter ListarDocumentos(String CodAlm, String FIni, String FFin, String Cvedoc)
         {
             CargaParametroMat();
             DocRegRequisiciones OpLst = new DocRegRequisiciones(db);
-            return OpLst.ListDocumentos(CodAlm, FIni, FFin);
+            return OpLst.ListDocumentos(CodAlm, FIni, FFin, Cvedoc);
         }
 
 
@@ -260,19 +284,24 @@ namespace GAFE
             MatParam[0, 0] = "idMov"; MatParam[0, 1] = idMov;
             MatParam[1, 0] = "Documento"; MatParam[1, 1] = Documento;
             MatParam[2, 0] = "Serie"; MatParam[2, 1] = Serie;
-            MatParam[3, 0] = "NumDoc"; MatParam[3, 1] = NumDoc;
-            MatParam[4, 0] = "ClaveAlmacen"; MatParam[4, 1] = ClaveAlmacen;
-            MatParam[5, 0] = "FechaExpedicion"; MatParam[5, 1] = FechaExpedicion;
-            MatParam[6, 0] = "ClaveImpuesto"; MatParam[6, 1] = ClaveImpuesto;
-            MatParam[7, 0] = "Impuesto"; MatParam[7, 1] = Impuesto;
-            MatParam[8, 0] = "Descuento"; MatParam[8, 1] = Descuento;
-            MatParam[9, 0] = "SubTotal"; MatParam[9, 1] = SubTotal;
-            MatParam[10, 0] = "Total"; MatParam[10, 1] = Total;
-            MatParam[11, 0] = "Observaciones"; MatParam[11, 1] = Observaciones;
-            MatParam[12, 0] = "Estatus"; MatParam[12, 1] = Estatus;
-            MatParam[13, 0] = "Autorizado"; MatParam[13, 1] = Autorizado;
-            MatParam[14, 0] = "Cancelado"; MatParam[14, 1] = Cancelado;
-        }
+            MatParam[3, 0] = "CveDoc"; MatParam[3, 1] = CveDoc;
+            MatParam[4, 0] = "NumDoc"; MatParam[4, 1] = NumDoc;
+            MatParam[5, 0] = "ClaveAlmacen"; MatParam[5, 1] = ClaveAlmacen;
+            MatParam[6, 0] = "FechaExpedicion"; MatParam[6, 1] = FechaExpedicion;
+            MatParam[7, 0] = "ClaveImpuesto"; MatParam[7, 1] = ClaveImpuesto;
+            MatParam[8, 0] = "Impuesto"; MatParam[8, 1] = Impuesto;
+            MatParam[9, 0] = "Descuento"; MatParam[9, 1] = Descuento;
+            MatParam[10, 0] = "SubTotal"; MatParam[10, 1] = SubTotal;
+            MatParam[11, 0] = "Total"; MatParam[11, 1] = Total;
+            MatParam[12, 0] = "CveProveedor"; MatParam[12, 1] = CveProveedor;
+            MatParam[13, 0] = "CveCliente"; MatParam[13, 1] = CveCliente;
+            MatParam[14, 0] = "Observaciones"; MatParam[14, 1] = Observaciones;
+            MatParam[15, 0] = "FechaModificacion"; MatParam[15, 1] = FechaModificacion;
+            MatParam[16, 0] = "Estatus"; MatParam[16, 1] = Estatus;
+            MatParam[17, 0] = "Autorizado"; MatParam[17, 1] = Autorizado;
+           
+
+    }
 
 
         private void AsignaValPartidas()

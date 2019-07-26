@@ -174,6 +174,12 @@
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </Compile>
     <Compile Include="DocRegRequisiciones.cs" />
+    <Compile Include="FrmSlcDocumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSlcDocumentos.designer.cs">
+      <DependentUpon>FrmSlcDocumentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLstCfgDocProv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -447,6 +453,9 @@
     <EmbeddedResource Include="DocRegistroRequisicion.resx">
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSlcDocumentos.resx">
+      <DependentUpon>FrmSlcDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLstCfgDocProv.resx">
       <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
     </EmbeddedResource>
@@ -637,6 +646,10 @@
     <None Include="Resources\MnuColores.png" />
     <None Include="Resources\MnuTemas.png" />
     <None Include="Resources\MnuUsuarios.png" />
+    <None Include="Resources\Check.png" />
+    <None Include="Resources\UnCheck.png" />
+    <None Include="Resources\Check1.png" />
+    <None Include="Resources\UnCheck1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

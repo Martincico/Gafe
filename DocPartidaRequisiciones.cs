@@ -373,6 +373,7 @@ namespace GAFE
                     Impu.EditarImpuesto();
                     txtIva.Text = Convert.ToString(Impu.cmpValor);
                     CveUmed = Art.UMedida1.keyCveUMedida;
+                    
                 }
                 else
                 {
@@ -442,6 +443,11 @@ namespace GAFE
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
             Calculos(0);
+        }
+
+        private void DocPartidaRequisiciones_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

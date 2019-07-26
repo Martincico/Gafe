@@ -455,5 +455,24 @@ namespace GAFE
 
         }
 
+        private void txtClaveArticulo_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void txtCodigoBarras_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void txtCodigoAlterno_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void txtCodigoSAT_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
     }
 }

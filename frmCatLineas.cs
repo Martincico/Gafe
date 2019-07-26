@@ -21,6 +21,7 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
+        private int AcCOPEdit;
         public String KeyCampo = null;
 
         private MsSql db = null;
@@ -58,8 +59,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv003B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv003C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -105,22 +106,32 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if(AcCOPEdit==1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatLineas pui = new PuiCatLineas(db);
+                PuiCatLineas pui = new PuiCatLineas(db);
 
-            pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLinea();
-            txtClaveLinea.Text = pui.keyCveLinea;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+                pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarLinea();
+                txtClaveLinea.Text = pui.keyCveLinea;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
 
-            txtClaveLinea.Enabled = false;
+                txtClaveLinea.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                 "Error al editar registro", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+            
 
         }
 

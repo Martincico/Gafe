@@ -25,19 +25,24 @@ namespace GAFE
         private clsUtil uT;
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
-        private String CveDoc = "M02001";
+        private String CveDoc;
 
-        public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, String CveDc, String NameDoc)
         {
             InitializeComponent();
             FecDia = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Today));
             db = Odat;
             user = DatUsr;
             StiloColor = NewColor;
+            CveDoc = CveDc;
             clsCfgDocumento cd = new clsCfgDocumento(CveDoc, db);
             ConfigDoc = cd.ConfigDoc();
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
+            this.Text = "LISTADO DE "+NameDoc;
+
+            cmdAutorizarTodo.Visible = ConfigDoc.SolicitaAutorizar == 1 ? true : false;
 
         }
 
@@ -77,10 +82,19 @@ namespace GAFE
             }
             else
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  2, ConfigDoc, rq.keyDocumento, CveDoc);
-                Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-                Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-                Rcap.ShowDialog();
+                try
+                {
+                    DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor, 2, ConfigDoc, rq.keyDocumento, CveDoc);
+                    Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                    Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                    Rcap.ShowDialog();
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBoxAdv.Show("Error:" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
                 LlenaGridView();
             }
         }
@@ -145,7 +159,7 @@ namespace GAFE
             String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
 
             DocPuiRequisiciones pui = new DocPuiRequisiciones(db);
-            DatosTbl = pui.ListarDocumentos(AlmOri, FIni, FFin);
+            DatosTbl = pui.ListarDocumentos(AlmOri, FIni, FFin, CveDoc);
             DataSet Ds = new DataSet();
 
             try

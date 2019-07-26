@@ -33,9 +33,12 @@
             this.cmdAceptar = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
-            this.tabUbicacion = new System.Windows.Forms.TabPage();
-            this.grdViewUbicacion = new System.Windows.Forms.DataGridView();
-            this.tabFoto = new System.Windows.Forms.TabPage();
+            this.chkDispVenta = new System.Windows.Forms.CheckBox();
+            this.chkEsServicio = new System.Windows.Forms.CheckBox();
+            this.chkDispKit = new System.Windows.Forms.CheckBox();
+            this.chkEsKit = new System.Windows.Forms.CheckBox();
+            this.chkEsInventa = new System.Windows.Forms.CheckBox();
+            this.chkEstatus = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.cboImpuesto = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,23 +67,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cboLinea = new System.Windows.Forms.ComboBox();
             this.txtCodigoBarras = new System.Windows.Forms.TextBox();
+            this.tabUbicacion = new System.Windows.Forms.TabPage();
+            this.grdViewUbicacion = new System.Windows.Forms.DataGridView();
+            this.tabFoto = new System.Windows.Forms.TabPage();
             this.pbArticulo = new System.Windows.Forms.PictureBox();
             this.cmdFoto = new System.Windows.Forms.Button();
             this.tabOtros = new System.Windows.Forms.TabPage();
-            this.txtultimoProveedor = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtUltimaCompra = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.dtFechaAlta = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.chkEstatus = new System.Windows.Forms.CheckBox();
-            this.chkDispVenta = new System.Windows.Forms.CheckBox();
-            this.chkEsServicio = new System.Windows.Forms.CheckBox();
-            this.chkDispKit = new System.Windows.Forms.CheckBox();
-            this.chkEsKit = new System.Windows.Forms.CheckBox();
-            this.chkEsInventa = new System.Windows.Forms.CheckBox();
+            this.txtultimoProveedor = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtUltimaCompra = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tabUbicacion.SuspendLayout();
@@ -178,38 +178,71 @@
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             // 
-            // tabUbicacion
+            // chkDispVenta
             // 
-            this.tabUbicacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.tabUbicacion.Controls.Add(this.grdViewUbicacion);
-            this.tabUbicacion.Location = new System.Drawing.Point(4, 22);
-            this.tabUbicacion.Name = "tabUbicacion";
-            this.tabUbicacion.Size = new System.Drawing.Size(726, 364);
-            this.tabUbicacion.TabIndex = 5;
-            this.tabUbicacion.Text = "Ubicacion";
+            this.chkDispVenta.AutoSize = true;
+            this.chkDispVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkDispVenta.Location = new System.Drawing.Point(549, 326);
+            this.chkDispVenta.Name = "chkDispVenta";
+            this.chkDispVenta.Size = new System.Drawing.Size(159, 20);
+            this.chkDispVenta.TabIndex = 1351;
+            this.chkDispVenta.Text = "Disponible para venta";
+            this.chkDispVenta.UseVisualStyleBackColor = true;
             // 
-            // grdViewUbicacion
+            // chkEsServicio
             // 
-            this.grdViewUbicacion.AllowUserToAddRows = false;
-            this.grdViewUbicacion.AllowUserToDeleteRows = false;
-            this.grdViewUbicacion.AllowUserToOrderColumns = true;
-            this.grdViewUbicacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdViewUbicacion.Location = new System.Drawing.Point(11, 8);
-            this.grdViewUbicacion.Name = "grdViewUbicacion";
-            this.grdViewUbicacion.ReadOnly = true;
-            this.grdViewUbicacion.Size = new System.Drawing.Size(705, 279);
-            this.grdViewUbicacion.TabIndex = 9;
+            this.chkEsServicio.AutoSize = true;
+            this.chkEsServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkEsServicio.Location = new System.Drawing.Point(337, 326);
+            this.chkEsServicio.Name = "chkEsServicio";
+            this.chkEsServicio.Size = new System.Drawing.Size(95, 20);
+            this.chkEsServicio.TabIndex = 1352;
+            this.chkEsServicio.Text = "Es Servicio";
+            this.chkEsServicio.UseVisualStyleBackColor = true;
             // 
-            // tabFoto
+            // chkDispKit
             // 
-            this.tabFoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.tabFoto.Controls.Add(this.pbArticulo);
-            this.tabFoto.Controls.Add(this.cmdFoto);
-            this.tabFoto.Location = new System.Drawing.Point(4, 22);
-            this.tabFoto.Name = "tabFoto";
-            this.tabFoto.Size = new System.Drawing.Size(726, 364);
-            this.tabFoto.TabIndex = 6;
-            this.tabFoto.Text = "Foto";
+            this.chkDispKit.AutoSize = true;
+            this.chkDispKit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkDispKit.Location = new System.Drawing.Point(549, 300);
+            this.chkDispKit.Name = "chkDispKit";
+            this.chkDispKit.Size = new System.Drawing.Size(109, 20);
+            this.chkDispKit.TabIndex = 1353;
+            this.chkDispKit.Text = "Disponible Kit";
+            this.chkDispKit.UseVisualStyleBackColor = true;
+            // 
+            // chkEsKit
+            // 
+            this.chkEsKit.AutoSize = true;
+            this.chkEsKit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkEsKit.Location = new System.Drawing.Point(126, 326);
+            this.chkEsKit.Name = "chkEsKit";
+            this.chkEsKit.Size = new System.Drawing.Size(60, 20);
+            this.chkEsKit.TabIndex = 1354;
+            this.chkEsKit.Text = "Es Kit";
+            this.chkEsKit.UseVisualStyleBackColor = true;
+            // 
+            // chkEsInventa
+            // 
+            this.chkEsInventa.AutoSize = true;
+            this.chkEsInventa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkEsInventa.Location = new System.Drawing.Point(337, 300);
+            this.chkEsInventa.Name = "chkEsInventa";
+            this.chkEsInventa.Size = new System.Drawing.Size(104, 20);
+            this.chkEsInventa.TabIndex = 1350;
+            this.chkEsInventa.Text = "Inventariable";
+            this.chkEsInventa.UseVisualStyleBackColor = true;
+            // 
+            // chkEstatus
+            // 
+            this.chkEstatus.AutoSize = true;
+            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.chkEstatus.Location = new System.Drawing.Point(126, 300);
+            this.chkEstatus.Name = "chkEstatus";
+            this.chkEstatus.Size = new System.Drawing.Size(64, 20);
+            this.chkEstatus.TabIndex = 1349;
+            this.chkEstatus.Text = "Activo";
+            this.chkEstatus.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -325,6 +358,7 @@
             this.txtClaveArticulo.Name = "txtClaveArticulo";
             this.txtClaveArticulo.Size = new System.Drawing.Size(147, 22);
             this.txtClaveArticulo.TabIndex = 1321;
+            this.txtClaveArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveArticulo_KeyPress_1);
             // 
             // label2
             // 
@@ -438,6 +472,7 @@
             this.txtCodigoSAT.Name = "txtCodigoSAT";
             this.txtCodigoSAT.Size = new System.Drawing.Size(222, 22);
             this.txtCodigoSAT.TabIndex = 1330;
+            this.txtCodigoSAT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoSAT_KeyPress_1);
             // 
             // label1
             // 
@@ -458,6 +493,7 @@
             this.txtCodigoAlterno.Name = "txtCodigoAlterno";
             this.txtCodigoAlterno.Size = new System.Drawing.Size(222, 22);
             this.txtCodigoAlterno.TabIndex = 1325;
+            this.txtCodigoAlterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoAlterno_KeyPress_1);
             // 
             // lblCodEmpleado
             // 
@@ -499,6 +535,40 @@
             this.txtCodigoBarras.Name = "txtCodigoBarras";
             this.txtCodigoBarras.Size = new System.Drawing.Size(222, 22);
             this.txtCodigoBarras.TabIndex = 1322;
+            this.txtCodigoBarras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoBarras_KeyPress_1);
+            // 
+            // tabUbicacion
+            // 
+            this.tabUbicacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.tabUbicacion.Controls.Add(this.grdViewUbicacion);
+            this.tabUbicacion.Location = new System.Drawing.Point(4, 22);
+            this.tabUbicacion.Name = "tabUbicacion";
+            this.tabUbicacion.Size = new System.Drawing.Size(726, 364);
+            this.tabUbicacion.TabIndex = 5;
+            this.tabUbicacion.Text = "Ubicacion";
+            // 
+            // grdViewUbicacion
+            // 
+            this.grdViewUbicacion.AllowUserToAddRows = false;
+            this.grdViewUbicacion.AllowUserToDeleteRows = false;
+            this.grdViewUbicacion.AllowUserToOrderColumns = true;
+            this.grdViewUbicacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdViewUbicacion.Location = new System.Drawing.Point(11, 8);
+            this.grdViewUbicacion.Name = "grdViewUbicacion";
+            this.grdViewUbicacion.ReadOnly = true;
+            this.grdViewUbicacion.Size = new System.Drawing.Size(705, 279);
+            this.grdViewUbicacion.TabIndex = 9;
+            // 
+            // tabFoto
+            // 
+            this.tabFoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.tabFoto.Controls.Add(this.pbArticulo);
+            this.tabFoto.Controls.Add(this.cmdFoto);
+            this.tabFoto.Location = new System.Drawing.Point(4, 22);
+            this.tabFoto.Name = "tabFoto";
+            this.tabFoto.Size = new System.Drawing.Size(726, 364);
+            this.tabFoto.TabIndex = 6;
+            this.tabFoto.Text = "Foto";
             // 
             // pbArticulo
             // 
@@ -542,48 +612,6 @@
             this.tabOtros.TabIndex = 7;
             this.tabOtros.Text = "Otros";
             // 
-            // txtultimoProveedor
-            // 
-            this.txtultimoProveedor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtultimoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtultimoProveedor.Location = new System.Drawing.Point(149, 35);
-            this.txtultimoProveedor.MaxLength = 20;
-            this.txtultimoProveedor.Name = "txtultimoProveedor";
-            this.txtultimoProveedor.ReadOnly = true;
-            this.txtultimoProveedor.Size = new System.Drawing.Size(222, 22);
-            this.txtultimoProveedor.TabIndex = 1308;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label16.Location = new System.Drawing.Point(10, 38);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(113, 16);
-            this.label16.TabIndex = 1306;
-            this.label16.Text = "Ultimo Proveedor";
-            // 
-            // txtUltimaCompra
-            // 
-            this.txtUltimaCompra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUltimaCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtUltimaCompra.Location = new System.Drawing.Point(149, 7);
-            this.txtUltimaCompra.MaxLength = 20;
-            this.txtUltimaCompra.Name = "txtUltimaCompra";
-            this.txtUltimaCompra.ReadOnly = true;
-            this.txtUltimaCompra.Size = new System.Drawing.Size(222, 22);
-            this.txtUltimaCompra.TabIndex = 1307;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label15.Location = new System.Drawing.Point(10, 10);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(97, 16);
-            this.label15.TabIndex = 1305;
-            this.label15.Text = "Última Compra";
-            // 
             // txtObservaciones
             // 
             this.txtObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -625,71 +653,47 @@
             this.label5.TabIndex = 1331;
             this.label5.Text = "Fecha Alta";
             // 
-            // chkEstatus
+            // txtultimoProveedor
             // 
-            this.chkEstatus.AutoSize = true;
-            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.chkEstatus.Location = new System.Drawing.Point(126, 300);
-            this.chkEstatus.Name = "chkEstatus";
-            this.chkEstatus.Size = new System.Drawing.Size(64, 20);
-            this.chkEstatus.TabIndex = 1349;
-            this.chkEstatus.Text = "Activo";
-            this.chkEstatus.UseVisualStyleBackColor = true;
+            this.txtultimoProveedor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtultimoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtultimoProveedor.Location = new System.Drawing.Point(149, 35);
+            this.txtultimoProveedor.MaxLength = 20;
+            this.txtultimoProveedor.Name = "txtultimoProveedor";
+            this.txtultimoProveedor.ReadOnly = true;
+            this.txtultimoProveedor.Size = new System.Drawing.Size(222, 22);
+            this.txtultimoProveedor.TabIndex = 1308;
             // 
-            // chkDispVenta
+            // label16
             // 
-            this.chkDispVenta.AutoSize = true;
-            this.chkDispVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.chkDispVenta.Location = new System.Drawing.Point(549, 326);
-            this.chkDispVenta.Name = "chkDispVenta";
-            this.chkDispVenta.Size = new System.Drawing.Size(159, 20);
-            this.chkDispVenta.TabIndex = 1351;
-            this.chkDispVenta.Text = "Disponible para venta";
-            this.chkDispVenta.UseVisualStyleBackColor = true;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label16.Location = new System.Drawing.Point(10, 38);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(113, 16);
+            this.label16.TabIndex = 1306;
+            this.label16.Text = "Ultimo Proveedor";
             // 
-            // chkEsServicio
+            // txtUltimaCompra
             // 
-            this.chkEsServicio.AutoSize = true;
-            this.chkEsServicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.chkEsServicio.Location = new System.Drawing.Point(337, 326);
-            this.chkEsServicio.Name = "chkEsServicio";
-            this.chkEsServicio.Size = new System.Drawing.Size(95, 20);
-            this.chkEsServicio.TabIndex = 1352;
-            this.chkEsServicio.Text = "Es Servicio";
-            this.chkEsServicio.UseVisualStyleBackColor = true;
+            this.txtUltimaCompra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUltimaCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtUltimaCompra.Location = new System.Drawing.Point(149, 7);
+            this.txtUltimaCompra.MaxLength = 20;
+            this.txtUltimaCompra.Name = "txtUltimaCompra";
+            this.txtUltimaCompra.ReadOnly = true;
+            this.txtUltimaCompra.Size = new System.Drawing.Size(222, 22);
+            this.txtUltimaCompra.TabIndex = 1307;
             // 
-            // chkDispKit
+            // label15
             // 
-            this.chkDispKit.AutoSize = true;
-            this.chkDispKit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.chkDispKit.Location = new System.Drawing.Point(549, 300);
-            this.chkDispKit.Name = "chkDispKit";
-            this.chkDispKit.Size = new System.Drawing.Size(109, 20);
-            this.chkDispKit.TabIndex = 1353;
-            this.chkDispKit.Text = "Disponible Kit";
-            this.chkDispKit.UseVisualStyleBackColor = true;
-            // 
-            // chkEsKit
-            // 
-            this.chkEsKit.AutoSize = true;
-            this.chkEsKit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.chkEsKit.Location = new System.Drawing.Point(126, 326);
-            this.chkEsKit.Name = "chkEsKit";
-            this.chkEsKit.Size = new System.Drawing.Size(60, 20);
-            this.chkEsKit.TabIndex = 1354;
-            this.chkEsKit.Text = "Es Kit";
-            this.chkEsKit.UseVisualStyleBackColor = true;
-            // 
-            // chkEsInventa
-            // 
-            this.chkEsInventa.AutoSize = true;
-            this.chkEsInventa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.chkEsInventa.Location = new System.Drawing.Point(337, 300);
-            this.chkEsInventa.Name = "chkEsInventa";
-            this.chkEsInventa.Size = new System.Drawing.Size(104, 20);
-            this.chkEsInventa.TabIndex = 1350;
-            this.chkEsInventa.Text = "Inventariable";
-            this.chkEsInventa.UseVisualStyleBackColor = true;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label15.Location = new System.Drawing.Point(10, 10);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(97, 16);
+            this.label15.TabIndex = 1305;
+            this.label15.Text = "Última Compra";
             // 
             // frmCatArticulos
             // 

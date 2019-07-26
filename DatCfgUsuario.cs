@@ -17,6 +17,8 @@ namespace GAFE
         public String StiloTema;
         public String Fondo;
 
+        public DateTime FecServer;
+
         public String CambiarAlmacen;
         public String CambiarSerie;
 
@@ -29,6 +31,7 @@ namespace GAFE
             this.AlmacenUsa         =   DatosUsuario[ 4].ToString();
             this.StiloTema          =   DatosUsuario[ 5].ToString();
             this.Fondo              =   DatosUsuario[ 6].ToString();
+            this.FecServer          =   DateTime.Parse(DatosUsuario[7].ToString());
             //this.NoSessiones        =   DatosUsuario[ 5].ToString();
             //this.CambiarAlmacen     =   DatosUsuario[ 6].ToString();
             //this.CambiarSerie       =   DatosUsuario[ 7].ToString();

@@ -21,6 +21,7 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
+        private int AcCOPEdit;
 
         private MsSql db = null;
         private string Perfil;
@@ -53,8 +54,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv004B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv004C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -83,23 +84,32 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if(AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatMarcas pui = new PuiCatMarcas(db);
+                PuiCatMarcas pui = new PuiCatMarcas(db);
 
-            pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarMarcas();
-            txtClaveMarcas.Text = pui.keyCveMarca;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+                pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarMarcas();
+                txtClaveMarcas.Text = pui.keyCveMarca;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
 
-            txtClaveMarcas.Enabled = false;
-
+                txtClaveMarcas.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
+            
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)

@@ -22,6 +22,8 @@ namespace GAFE
         private int opcion;
         private int idxG;
 
+        private int AcCOPEdit;
+
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
@@ -68,8 +70,8 @@ Minv	Buscar Clases	Operacion		1Inv009
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv009B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv009C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -103,27 +105,7 @@ Minv	Buscar Clases	Operacion		1Inv009
             this.Size = this.MaximumSize;
             opcion = 1;
         }
-
-        private void cmEditar_Click(object sender, EventArgs e)
-        {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
-
-            idxG = grdView.CurrentRow.Index;
-
-            PuiCatClases pui = new PuiCatClases(db);
-
-            pui.keyCveClase= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarClase();
-            txtClaveClase.Text = pui.keyCveClase;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-
-            txtClaveClase.Enabled = false;
-
-        }
+        
 
 
         private void cmdEliminar_Click(object sender, EventArgs e)
@@ -330,12 +312,12 @@ Minv	Buscar Clases	Operacion		1Inv009
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmEditar_Click(sender, e);
+            cmdEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmEditar_Click(sender, e);
+            cmdEditar_Click(sender, e);
         }
 
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -378,6 +360,35 @@ Minv	Buscar Clases	Operacion		1Inv009
             catch (Exception ex)
             {
                 MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void cmdEditar_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
+            OpcionControles(true);
+
+            if (AcCOPEdit == 1)
+            {
+                this.Size = this.MaximumSize;
+                opcion = 2;
+
+                idxG = grdView.CurrentRow.Index;
+
+                PuiCatClases pui = new PuiCatClases(db);
+
+                pui.keyCveClase = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarClase();
+                txtClaveClase.Text = pui.keyCveClase;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+
+                txtClaveClase.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No cuenta con permisos suficientes" , "Error al editar registro", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
         }

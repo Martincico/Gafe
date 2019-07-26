@@ -79,14 +79,14 @@
             this.txtDescripcion.Location = new System.Drawing.Point(101, 36);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(450, 24);
-            this.txtDescripcion.TabIndex = 2;
+            this.txtDescripcion.TabIndex = 20;
             // 
             // cmdArticulo
             // 
             this.cmdArticulo.Location = new System.Drawing.Point(263, 6);
             this.cmdArticulo.Name = "cmdArticulo";
             this.cmdArticulo.Size = new System.Drawing.Size(39, 24);
-            this.cmdArticulo.TabIndex = 3;
+            this.cmdArticulo.TabIndex = 2;
             this.cmdArticulo.Text = "...";
             this.cmdArticulo.UseVisualStyleBackColor = true;
             this.cmdArticulo.Click += new System.EventHandler(this.cmdArticulo_Click);
@@ -107,8 +107,9 @@
             this.txtPrecio.Location = new System.Drawing.Point(101, 66);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(86, 24);
-            this.txtPrecio.TabIndex = 5;
+            this.txtPrecio.TabIndex = 3;
             this.txtPrecio.Text = "0";
+            this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
             this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
@@ -118,7 +119,7 @@
             this.txtCantidad.Location = new System.Drawing.Point(101, 126);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(86, 24);
-            this.txtCantidad.TabIndex = 9;
+            this.txtCantidad.TabIndex = 5;
             this.txtCantidad.Text = "0";
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
@@ -151,6 +152,7 @@
             this.txtImpuesto.Name = "txtImpuesto";
             this.txtImpuesto.Size = new System.Drawing.Size(146, 24);
             this.txtImpuesto.TabIndex = 13;
+            this.txtImpuesto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -170,6 +172,7 @@
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.Size = new System.Drawing.Size(146, 24);
             this.txtSubtotal.TabIndex = 15;
+            this.txtSubtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
@@ -188,7 +191,7 @@
             this.cmdAceptar.Location = new System.Drawing.Point(357, 192);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
-            this.cmdAceptar.TabIndex = 16;
+            this.cmdAceptar.TabIndex = 6;
             this.cmdAceptar.Text = "Aceptar";
             this.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAceptar.UseVisualStyleBackColor = false;
@@ -236,6 +239,7 @@
             this.txtPrecioNeto.Name = "txtPrecioNeto";
             this.txtPrecioNeto.Size = new System.Drawing.Size(146, 24);
             this.txtPrecioNeto.TabIndex = 19;
+            this.txtPrecioNeto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label8
             // 
@@ -254,6 +258,7 @@
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(146, 24);
             this.txtTotal.TabIndex = 22;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
@@ -271,7 +276,7 @@
             this.txtDescuento.Location = new System.Drawing.Point(101, 97);
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(46, 24);
-            this.txtDescuento.TabIndex = 23;
+            this.txtDescuento.TabIndex = 4;
             this.txtDescuento.Text = "0";
             this.txtDescuento.TextChanged += new System.EventHandler(this.txtDescuento_TextChanged);
             this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
@@ -291,6 +296,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BorderThickness = 3;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
@@ -327,6 +333,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de partidas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DocPartidaRequisiciones_FormClosed);
             this.Load += new System.EventHandler(this.DocPartidaRequisiciones_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

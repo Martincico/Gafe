@@ -37,8 +37,8 @@
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.CodEmpleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
@@ -162,6 +162,13 @@
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
+            // CodEmpleado
+            // 
+            this.CodEmpleado.HeaderText = "Código";
+            this.CodEmpleado.Name = "CodEmpleado";
+            this.CodEmpleado.ReadOnly = true;
+            this.CodEmpleado.Width = 80;
+            // 
             // cmdSeleccionar
             // 
             this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
@@ -177,14 +184,7 @@
             this.cmdSeleccionar.Visible = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
-            // CodEmpleado
-            // 
-            this.CodEmpleado.HeaderText = "Código";
-            this.CodEmpleado.Name = "CodEmpleado";
-            this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
-            // 
-            // frmCatCfgTipoMovProv
+            // frmLstCfgTipoMovProv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,10 +206,10 @@
             this.MaximizeBox = false;
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.MinimizeBox = false;
-            this.Name = "frmCatCfgTipoMovProv";
+            this.Name = "frmLstCfgTipoMovProv";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Listado tipo de movimientos de proveedores";
+            this.Text = "Listado de documentos";
             this.Load += new System.EventHandler(this.frmCatCfgDocumentos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

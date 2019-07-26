@@ -113,10 +113,7 @@ namespace GAFE
                 up = ut.BuscarIdNodo("1Inv013");
                 int Exst = up.Acceso;
                 OpExistencia.Enabled = (Exst == 1) ? true : false;
-
-
-
-
+                
             }
             catch (Exception ex)
             {
@@ -330,16 +327,6 @@ namespace GAFE
             Nav(fm, panelContenedor);
         }
 
- 
-
-        private void InvDocRequisicion_Click(object sender, EventArgs e)
-        {
-            DocLstRequisiciones flsRq = new DocLstRequisiciones(db, user, NewColor);
-            Nav(flsRq, panelContenedor);
-        }
-
-
-
         private void Inv_TipoMov_Click(object sender, EventArgs e)
         {
             frmCatTipoMovtos tm = new frmCatTipoMovtos(db, user, NewColor);
@@ -362,6 +349,12 @@ namespace GAFE
         private void MnuCfgFoliadores_Click(object sender, EventArgs e)
         {
             frmCatCfgCatFoliadores fm = new frmCatCfgCatFoliadores(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void InvMenDocumentos_Click(object sender, EventArgs e)
+        {
+            FrmSlcDocumentos fm = new FrmSlcDocumentos(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
     }

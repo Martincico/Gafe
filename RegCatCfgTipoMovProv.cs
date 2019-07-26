@@ -28,8 +28,8 @@ namespace GAFE
 
         public int AddRegTipoMovProv()
         {
-            string sql = "Insert into CfgTipoMovProv (ClaveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, EsInterno, Estatus) " +
-                         "values(@ClaveDoc,@Nombre,@CargoAbono,@CveTipoMov,@Foliador,@UsaSerie,@EditaFecha, @EsInterno, @Estatus)";
+            string sql = "Insert into CfgTipoMovProv (ClaveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, UsaCliente, UsaProveedor, EsInterno, SolicitaAutorizar,Estatus) " +
+                         "values(@ClaveDoc,@Nombre,@CargoAbono,@CveTipoMov,@Foliador,@UsaSerie,@EditaFecha, @UsaCliente, @UsaProveedor, @EsInterno,@SolicitaAutorizar, @Estatus)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -38,7 +38,10 @@ namespace GAFE
         {
             string sql = "Update CfgTipoMovProv set Nombre = @Nombre, " +
                          "      CargoAbono = @CargoAbono, CveTipoMov = @CveTipoMov,Foliador = @Foliador," +
-                         "      UsaSerie = @UsaSerie,EditaFecha = @EditaFecha, EsInterno = @EsInterno, Estatus= @Estatus" +
+                         "      UsaSerie = @UsaSerie,EditaFecha = @EditaFecha, " +
+                         "      UsaCliente = @UsaCliente, UsaProveedor = @UsaProveedor," +
+                         "      EsInterno = @EsInterno, SolicitaAutorizar =  @SolicitaAutorizar, " +
+                         "      Estatus= @Estatus" +
                          " Where ClaveDoc = @ClaveDoc";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -61,7 +64,8 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, EsInterno, Estatus" +
+            string Sql = "Select ClaveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, UsaCliente, " +
+                         "       UsaProveedor, EsInterno, SolicitaAutorizar, Estatus" +
                          " FROM CfgTipoMovProv where ClaveDoc =@ClaveDoc";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
@@ -90,7 +94,7 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select ClaveDoc as Clave, Nombre as Descripcion " +
-                         "from CfgTipoMovProv";
+                         "from CfgTipoMovProv WHERE estatus = 1";
             dt = db.SelectDA(Sql);
             return dt;
         }

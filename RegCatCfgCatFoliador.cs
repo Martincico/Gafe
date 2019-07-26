@@ -30,27 +30,10 @@ namespace GAFE
 
         public RegCatCfgCatFoliador(MsSql Odat) { db = Odat; }
 
-        /*
-        public void Conn()
-        {
-            /*db = new DatSql.MsSql(
-                   ConfigurationSettings.AppSettings.Get("Servidor"),
-                   ConfigurationSettings.AppSettings.Get("Datos"),
-                   ConfigurationSettings.AppSettings.Get("Usuario"),
-                   ConfigurationSettings.AppSettings.Get("Password")
-                   );
-            
-            db = new DatSql.MsSql("SIGMA6\\SQL14", "CtrlAcceso", "sa", "Remolachas1");
-                   
-            if (db.Conectar() < 1)
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    */
-
         public int AddRegCfgCatFoliador()
         {           
-            string sql = "Insert into CfgCatFoliadores (CveFoliador,CveModulo,Descripción,Uso) " +
-                         "values(@CveFoliador,@CveModulo,@Descripcion,@Uso)";
+            string sql = "Insert into CfgCatFoliadores (CveFoliador,CveModulo,Descripción,Uso, EnUso) " +
+                         "values(@CveFoliador,@CveModulo,@Descripcion,@Uso, @EnUso)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -109,11 +92,12 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter cboCfgCatFoliadores()
+        public SqlDataAdapter cboCfgCatFoliadores(int _EnUso)
         {
+            String Str = _EnUso == 1 ? " WHERE EnUso = " + 0: " ";
             SqlDataAdapter dt = null;
             string Sql = "Select CveFoliador, Descripcion " +
-                         "from CfgCatFoliadores";
+                         "from CfgCatFoliadores "+Str;
             dt = db.SelectDA(Sql);
             return dt;
         }

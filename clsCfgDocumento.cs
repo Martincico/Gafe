@@ -18,8 +18,11 @@ namespace GAFE
         public String Foliador;
         public int UsaSerie;
         public int EditaFecha;
+        public int UsaCliente;
+        public int UsaProveedor;
         public int Estatus;
         public int EsInterno;
+        public int SolicitaAutorizar;
 
         private MsSql db = null;
         //private SqlParameter[] ArrParametros;
@@ -50,7 +53,10 @@ namespace GAFE
                 Doc.Foliador = Convert.ToString(dr["Foliador"]);
                 Doc.UsaSerie = Convert.ToInt32(dr["UsaSerie"]);
                 Doc.EditaFecha = Convert.ToInt32(dr["EditaFecha"]);
+                Doc.UsaCliente= Convert.ToInt32(dr["UsaCliente"]);
+                Doc.UsaProveedor = Convert.ToInt32(dr["UsaProveedor"]);
                 Doc.EsInterno = Convert.ToInt32(dr["EsInterno"]);
+                Doc.SolicitaAutorizar = Convert.ToInt32(dr["SolicitaAutorizar"]);
                 Doc.Estatus = Convert.ToInt32(dr["Estatus"]);
             }
             dr.Close();

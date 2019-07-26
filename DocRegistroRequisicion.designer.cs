@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocRegistroRequisicion));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboProveedor = new System.Windows.Forms.ComboBox();
+            this.lblProveedor = new System.Windows.Forms.Label();
+            this.cboCliente = new System.Windows.Forms.ComboBox();
+            this.lblCliente = new System.Windows.Forms.Label();
             this.cboSerie = new System.Windows.Forms.ComboBox();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.txtDescuento = new System.Windows.Forms.TextBox();
@@ -46,6 +50,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.grdViewD = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmdAutorizarTodo = new System.Windows.Forms.Button();
+            this.cmdCancelar = new System.Windows.Forms.Button();
+            this.cmdAceptar = new System.Windows.Forms.Button();
             this.DelPartida = new System.Windows.Forms.Button();
             this.EditPartida = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
@@ -58,8 +65,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.AddPartida = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmdAceptar = new System.Windows.Forms.Button();
-            this.cmdCancelar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewD)).BeginInit();
             this.panel2.SuspendLayout();
@@ -68,6 +73,10 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboProveedor);
+            this.panel1.Controls.Add(this.lblProveedor);
+            this.panel1.Controls.Add(this.cboCliente);
+            this.panel1.Controls.Add(this.lblCliente);
             this.panel1.Controls.Add(this.cboSerie);
             this.panel1.Controls.Add(this.cboAlmacen);
             this.panel1.Controls.Add(this.txtDescuento);
@@ -82,6 +91,28 @@
             this.panel1.Controls.Add(this.label1);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
+            // 
+            // cboProveedor
+            // 
+            resources.ApplyResources(this.cboProveedor, "cboProveedor");
+            this.cboProveedor.FormattingEnabled = true;
+            this.cboProveedor.Name = "cboProveedor";
+            // 
+            // lblProveedor
+            // 
+            resources.ApplyResources(this.lblProveedor, "lblProveedor");
+            this.lblProveedor.Name = "lblProveedor";
+            // 
+            // cboCliente
+            // 
+            resources.ApplyResources(this.cboCliente, "cboCliente");
+            this.cboCliente.FormattingEnabled = true;
+            this.cboCliente.Name = "cboCliente";
+            // 
+            // lblCliente
+            // 
+            resources.ApplyResources(this.lblCliente, "lblCliente");
+            this.lblCliente.Name = "lblCliente";
             // 
             // cboSerie
             // 
@@ -165,10 +196,15 @@
             this.grdViewD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             resources.ApplyResources(this.grdViewD, "grdViewD");
             this.grdViewD.Name = "grdViewD";
+            this.grdViewD.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewD_CellMouseUp);
+            this.grdViewD.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewD_CellValueChanged);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.cmdAutorizarTodo);
+            this.panel2.Controls.Add(this.cmdCancelar);
+            this.panel2.Controls.Add(this.cmdAceptar);
             this.panel2.Controls.Add(this.DelPartida);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtObservaciones);
@@ -186,6 +222,32 @@
             this.panel2.Controls.Add(this.grdViewD);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // cmdAutorizarTodo
+            // 
+            this.cmdAutorizarTodo.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.cmdAutorizarTodo, "cmdAutorizarTodo");
+            this.cmdAutorizarTodo.Image = global::GAFE.Properties.Resources.Check;
+            this.cmdAutorizarTodo.Name = "cmdAutorizarTodo";
+            this.cmdAutorizarTodo.UseVisualStyleBackColor = false;
+            this.cmdAutorizarTodo.Click += new System.EventHandler(this.cmdAutorizarTodo_Click);
+            // 
+            // cmdCancelar
+            // 
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.cmdCancelar, "cmdCancelar");
+            this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.cmdCancelar.Name = "cmdCancelar";
+            this.cmdCancelar.UseVisualStyleBackColor = false;
+            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
+            // 
+            // cmdAceptar
+            // 
+            resources.ApplyResources(this.cmdAceptar, "cmdAceptar");
+            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
+            this.cmdAceptar.Name = "cmdAceptar";
+            this.cmdAceptar.UseVisualStyleBackColor = false;
+            this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
             // DelPartida
             // 
@@ -258,34 +320,16 @@
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Name = "label6";
             // 
-            // cmdAceptar
-            // 
-            resources.ApplyResources(this.cmdAceptar, "cmdAceptar");
-            this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
-            this.cmdAceptar.Name = "cmdAceptar";
-            this.cmdAceptar.UseVisualStyleBackColor = false;
-            this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
-            // 
-            // cmdCancelar
-            // 
-            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.cmdCancelar, "cmdCancelar");
-            this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.cmdCancelar.Name = "cmdCancelar";
-            this.cmdCancelar.UseVisualStyleBackColor = false;
-            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
-            // 
             // DocRegistroRequisicion
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BorderThickness = 2;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.Controls.Add(this.cmdCancelar);
-            this.Controls.Add(this.cmdAceptar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -337,5 +381,10 @@
         private System.Windows.Forms.Button DelPartida;
         private System.Windows.Forms.Button EditPartida;
         private System.Windows.Forms.ComboBox cboSerie;
+        private System.Windows.Forms.ComboBox cboCliente;
+        private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.ComboBox cboProveedor;
+        private System.Windows.Forms.Label lblProveedor;
+        private System.Windows.Forms.Button cmdAutorizarTodo;
     }
 }

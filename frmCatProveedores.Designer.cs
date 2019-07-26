@@ -125,6 +125,7 @@
             this.txtClaveProveedor.Name = "txtClaveProveedor";
             this.txtClaveProveedor.Size = new System.Drawing.Size(213, 24);
             this.txtClaveProveedor.TabIndex = 100;
+            this.txtClaveProveedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveProveedor_KeyPress);
             // 
             // lblCodEmpleado
             // 
@@ -167,6 +168,7 @@
             this.txtRFC.Name = "txtRFC";
             this.txtRFC.Size = new System.Drawing.Size(243, 24);
             this.txtRFC.TabIndex = 110;
+            this.txtRFC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRFC_KeyPress);
             // 
             // label1
             // 

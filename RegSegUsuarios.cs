@@ -81,7 +81,7 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select Usuario,Nombre,Password,CodPerfil,ClaveAlmacen,StiloTema, Fondo " +
+            string Sql = "Select Usuario,Nombre,Password,CodPerfil,ClaveAlmacen,StiloTema, Fondo, CONVERT (date, GETDATE()) " +
                           "from SUsuarios where Usuario =@Usuario";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;

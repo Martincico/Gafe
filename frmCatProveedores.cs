@@ -287,5 +287,14 @@ namespace GAFE
             return result;
         }
 
+        private void txtClaveProveedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void txtRFC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ClsUtilerias.LetrasNumeros(e);
+        }
     }
 }

@@ -164,7 +164,7 @@ namespace GAFE
             return OpRadd.AddRegCfgFoliadores();
         }
 
-        public DataTable CbollenaSerie(string Alm, string MProv)
+        public DataTable CbollenaSeries(string Alm, string MProv)
         {
             RegCatCfgDocProv OpLst = new RegCatCfgDocProv(db);
             DataSet Cbo = new DataSet();
