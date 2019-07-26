@@ -648,8 +648,6 @@
     <None Include="Resources\MnuUsuarios.png" />
     <None Include="Resources\Check.png" />
     <None Include="Resources\UnCheck.png" />
-    <None Include="Resources\Check1.png" />
-    <None Include="Resources\UnCheck1.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

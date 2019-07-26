@@ -100,7 +100,8 @@ namespace GAFE
 
             if(ConfigDoc.SolicitaAutorizar ==1)
             {
-                cmdAutorizarTodo.Visible = true;
+                if(Opcion ==2)
+                    cmdAutorizarTodo.Visible = true;
             }
         }
 
