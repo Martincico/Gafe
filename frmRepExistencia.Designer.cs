@@ -63,6 +63,7 @@
             this.Name = "frmRepExistencia";
             this.Text = "frmRepExistencia";
             this.Load += new System.EventHandler(this.frmRepExistencia_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRepExistencia_KeyDown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -352,6 +352,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Existencia por Almacen";
             this.Load += new System.EventHandler(this.frmExistencias_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmExistencias_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

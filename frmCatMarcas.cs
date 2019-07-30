@@ -348,5 +348,38 @@ namespace GAFE
             ClsUtilerias.LetrasNumeros(e);
         }
 
+        private void grdView_MouseClick(object sender, MouseEventArgs e)
+        {
+            //Checamos click ha sido en el encabezado?
+            if (grdView.HitTest(e.X, e.Y).Type == DataGridViewHitTestType.ColumnHeader)
+            {
+                //creamos un menu
+                ContextMenu mnugrid = new ContextMenu();
+
+                //Agregamos submenus
+                foreach (DataGridViewColumn cols in grdView.Columns)
+                {
+                    MenuItem _items = new MenuItem();
+
+                    _items.Text = cols.HeaderText;
+                    _items.Checked = cols.Visible;
+
+                    //Agregando evento al submenu al click
+                    _items.Click += (obj, ea) =>
+                    {
+                        cols.Visible = !_items.Checked;
+
+                        _items.Checked = cols.Visible;
+
+                        mnugrid.Show(grdView, e.Location);
+                    };
+
+                    mnugrid.MenuItems.Add(_items);
+                }
+
+                //Mostrando menú
+                mnugrid.Show(grdView, e.Location);
+            }
+        }
     }
 }

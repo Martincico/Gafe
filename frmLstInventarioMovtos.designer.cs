@@ -301,7 +301,7 @@
             this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdImprimir.UseVisualStyleBackColor = false;
             // 
-            // frmCatInventarioMovtos
+            // frmLstInventarioMovtos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -322,11 +322,12 @@
             this.MaximumSize = new System.Drawing.Size(685, 500);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(685, 500);
-            this.Name = "frmCatInventarioMovtos";
+            this.Name = "frmLstInventarioMovtos";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo movimientos de inventarios";
             this.Load += new System.EventHandler(this.frmCatInventarioMovtos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLstInventarioMovtos_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

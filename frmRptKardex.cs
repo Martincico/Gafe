@@ -9,9 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmRptKardex : Form
+    public partial class frmRptKardex : MetroForm
     {
         public frmRptKardex()
         {
@@ -22,6 +24,9 @@ namespace GAFE
         {
 
             this.rptKardex.RefreshReport();
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         public void Kardex(DataTable dt, String Articulo, String Almacen, DateTime FechaIni, DateTime FechaFin)
@@ -35,6 +40,14 @@ namespace GAFE
             rptKardex.LocalReport.SetParameters(new ReportParameter("Almacen", Almacen));
             rptKardex.SetDisplayMode(DisplayMode.PrintLayout);
             //rptKardex.RefreshReport();
+        }
+
+        private void frmRptKardex_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

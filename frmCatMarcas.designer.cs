@@ -167,6 +167,7 @@
             this.grdView.Size = new System.Drawing.Size(474, 154);
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
+            this.grdView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdView_MouseClick);
             // 
             // CodEmpleado
             // 
@@ -212,6 +213,7 @@
             // 
             // cmdCancelar
             // 
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -284,6 +286,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;

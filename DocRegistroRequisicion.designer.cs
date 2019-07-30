@@ -198,6 +198,7 @@
             this.grdViewD.Name = "grdViewD";
             this.grdViewD.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewD_CellMouseUp);
             this.grdViewD.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewD_CellValueChanged);
+            this.grdViewD.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdViewD_MouseClick);
             // 
             // panel2
             // 

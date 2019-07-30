@@ -399,5 +399,12 @@ namespace GAFE
 //            e.Graphics.FillRectangle(new LinearGradientBrush(e.ClipRectangle, Color.AliceBlue, Color.Blue, LinearGradientMode.BackwardDiagonal), e.ClipRectangle);
         }
 
+        private void frmLstCfgDocProv_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

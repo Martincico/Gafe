@@ -37,10 +37,10 @@
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.Almacén = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mov_Inv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Serie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
@@ -166,21 +166,6 @@
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
-            // cmdSeleccionar
-            // 
-            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdSeleccionar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
-            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(9, 340);
-            this.cmdSeleccionar.Name = "cmdSeleccionar";
-            this.cmdSeleccionar.Size = new System.Drawing.Size(36, 36);
-            this.cmdSeleccionar.TabIndex = 15;
-            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cmdSeleccionar.UseVisualStyleBackColor = false;
-            this.cmdSeleccionar.Visible = false;
-            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
-            // 
             // Almacén
             // 
             this.Almacén.HeaderText = "Almacén";
@@ -199,7 +184,22 @@
             this.Serie.Name = "Serie";
             this.Serie.ReadOnly = true;
             // 
-            // frmCatCfgDocProv
+            // cmdSeleccionar
+            // 
+            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdSeleccionar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSeleccionar.Location = new System.Drawing.Point(9, 340);
+            this.cmdSeleccionar.Name = "cmdSeleccionar";
+            this.cmdSeleccionar.Size = new System.Drawing.Size(36, 36);
+            this.cmdSeleccionar.TabIndex = 15;
+            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdSeleccionar.UseVisualStyleBackColor = false;
+            this.cmdSeleccionar.Visible = false;
+            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
+            // frmLstCfgDocProv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,11 +221,12 @@
             this.MaximizeBox = false;
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.MinimizeBox = false;
-            this.Name = "frmCatCfgDocProv";
+            this.Name = "frmLstCfgDocProv";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configuración  documentos";
             this.Load += new System.EventHandler(this.frmCatCfgDocProv_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLstCfgDocProv_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();

@@ -137,6 +137,7 @@
             this.ribMenu.TabIndex = 0;
             this.ribMenu.Text = "ribbonControlAdv1";
             this.ribMenu.ThemeName = "Office2016";
+            this.ribMenu.ThemeStyle.CloseButtonBackground = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ribMenu.ThemeStyle.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(212)))));
             this.ribMenu.ThemeStyle.MoreCommandsStyle.PropertyGridViewBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(171)))), ((int)(((byte)(171)))));
             this.ribMenu.ThemeStyle.QuickDropDownPressedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(158)))));
@@ -262,7 +263,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -270,7 +271,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 

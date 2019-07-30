@@ -121,7 +121,6 @@ namespace GAFE
             }
         }
 
-
         private void Nav(MetroForm form, Panel panel)
         {
             form.TopLevel = false;

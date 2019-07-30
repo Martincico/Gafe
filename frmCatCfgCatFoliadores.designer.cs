@@ -105,6 +105,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCancelar.Location = new System.Drawing.Point(393, 138);
@@ -317,6 +318,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;

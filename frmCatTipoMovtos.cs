@@ -198,5 +198,13 @@ namespace GAFE
         {
 
         }
+
+        private void frmCatTipoMovtos_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

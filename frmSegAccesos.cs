@@ -243,5 +243,13 @@ namespace GAFE
             tSeg.Nodes.Clear();
             btnActualizaSeg.Enabled = false;
         }
+
+        private void frmSegAccesos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

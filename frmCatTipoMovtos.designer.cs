@@ -201,6 +201,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo de tipo movimientos";
             this.Load += new System.EventHandler(this.frmCatTipoMovtos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCatTipoMovtos_KeyDown_1);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -402,5 +402,13 @@ namespace GAFE
             dtFechaFin.Value =  DateTime.Now;
 
         }
+
+        private void frmLstInventarioMovtos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

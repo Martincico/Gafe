@@ -50,7 +50,7 @@
             this.cmdConsultar.Location = new System.Drawing.Point(702, 408);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
-            this.cmdConsultar.TabIndex = 15;
+            this.cmdConsultar.TabIndex = 6;
             this.cmdConsultar.Text = "Consultar";
             this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdConsultar.UseVisualStyleBackColor = false;
@@ -63,7 +63,7 @@
             this.cmdEliminar.Location = new System.Drawing.Point(602, 408);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEliminar.TabIndex = 18;
+            this.cmdEliminar.TabIndex = 4;
             this.cmdEliminar.Text = "Eliminar";
             this.cmdEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEliminar.UseVisualStyleBackColor = false;
@@ -76,7 +76,7 @@
             this.cmdEditar.Location = new System.Drawing.Point(502, 408);
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEditar.TabIndex = 17;
+            this.cmdEditar.TabIndex = 3;
             this.cmdEditar.Text = "Editar";
             this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEditar.UseVisualStyleBackColor = false;
@@ -89,7 +89,7 @@
             this.cmdAgregar.Location = new System.Drawing.Point(402, 408);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
-            this.cmdAgregar.TabIndex = 16;
+            this.cmdAgregar.TabIndex = 2;
             this.cmdAgregar.Text = "Agregar";
             this.cmdAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAgregar.UseVisualStyleBackColor = false;
@@ -108,7 +108,7 @@
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(776, 326);
-            this.grdView.TabIndex = 19;
+            this.grdView.TabIndex = 1;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
@@ -129,7 +129,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(794, 58);
-            this.panel1.TabIndex = 14;
+            this.panel1.TabIndex = 0;
             // 
             // cmdBuscar
             // 
@@ -171,7 +171,7 @@
             this.cmdSeleccionar.Location = new System.Drawing.Point(3, 408);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
             this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
-            this.cmdSeleccionar.TabIndex = 20;
+            this.cmdSeleccionar.TabIndex = 5;
             this.cmdSeleccionar.Text = "Seleccionar";
             this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSeleccionar.UseVisualStyleBackColor = false;

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grdView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,9 +78,9 @@
             // 
             // Id
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Id.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Id.DefaultCellStyle = dataGridViewCellStyle1;
             this.Id.FillWeight = 80F;
             this.Id.HeaderText = "Clave";
             this.Id.Name = "Id";
@@ -340,7 +340,7 @@
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
-            // frmSclEmpresas
+            // frmSlcEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -362,11 +362,12 @@
             this.MaximumSize = new System.Drawing.Size(687, 468);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(687, 298);
-            this.Name = "frmSclEmpresas";
+            this.Name = "frmSlcEmpresas";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ".:Bienvenidos:.";
             this.Load += new System.EventHandler(this.frmEmpresas_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSlcEmpresas_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmEmpresas_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);

@@ -480,5 +480,13 @@ namespace GAFE
             cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
             idxG = pui.keyCveGeografia;
         }
+
+        private void frmCatGeografia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

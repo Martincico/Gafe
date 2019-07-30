@@ -226,6 +226,7 @@
             this.ShowIcon = false;
             this.Text = "Kardex de Artículos";
             this.Load += new System.EventHandler(this.frmKardex_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmKardex_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

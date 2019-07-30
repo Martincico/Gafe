@@ -50,6 +50,7 @@
             this.Name = "frmRptKardex";
             this.Text = "frmRptKardex";
             this.Load += new System.EventHandler(this.frmRptKardex_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRptKardex_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

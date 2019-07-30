@@ -198,6 +198,7 @@
             // 
             // cmdCancelar
             // 
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Location = new System.Drawing.Point(402, 140);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(75, 23);
@@ -289,6 +290,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cmdCancelar;
             this.ClientSize = new System.Drawing.Size(497, 453);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);

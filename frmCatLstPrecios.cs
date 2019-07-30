@@ -367,5 +367,10 @@ namespace GAFE
 
             OpcionControles(false);
         }
+
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

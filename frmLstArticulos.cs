@@ -32,6 +32,7 @@ namespace GAFE
         public frmLstArticulos()
         {
             InitializeComponent();
+            this.KeyDown += new KeyEventHandler(PressKey);
         }
 
 
@@ -44,9 +45,28 @@ namespace GAFE
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
+            this.KeyDown += new KeyEventHandler(PressKey);
+        }
+
+        private void PressKey(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
 
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
         private void frmLstArticulos_Load(object sender, EventArgs e)
         {
@@ -172,17 +192,6 @@ namespace GAFE
         }
 
 
-        
-
-        private void frmLstArticulos_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-
-
 
 
 
@@ -271,6 +280,8 @@ namespace GAFE
             {
                 cmdBuscar_Click(sender,e);
             }
-        }       
+        }
+
+
     }
 }

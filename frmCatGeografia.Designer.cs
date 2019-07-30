@@ -580,6 +580,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Catálogo de Geografia";
             this.Load += new System.EventHandler(this.frmCatGeografia_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCatGeografia_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

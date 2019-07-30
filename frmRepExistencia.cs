@@ -12,9 +12,11 @@ using Microsoft.Reporting.WinForms;
 using System.Data.SqlClient;
 using DatSql;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class frmRepExistencia : Form
+    public partial class frmRepExistencia : MetroForm
     {
         private string Articulo;
         private string Almacen;
@@ -36,6 +38,9 @@ namespace GAFE
             Buscar = buscar;
             dbR = db;
             InitializeComponent();
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void frmRepExistencia_Load(object sender, EventArgs e)
@@ -90,6 +95,14 @@ namespace GAFE
 
 
             this.reportViewer1.RefreshReport();
+        }
+
+        private void frmRepExistencia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

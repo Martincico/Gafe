@@ -211,6 +211,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Listado de documentos";
             this.Load += new System.EventHandler(this.frmCatCfgDocumentos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLstCfgTipoMovProv_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
