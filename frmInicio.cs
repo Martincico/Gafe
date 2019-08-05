@@ -171,19 +171,28 @@ namespace GAFE
                         PuiSegUsuarios us = new PuiSegUsuarios(db);
                         us.keySusuario = txtUsuario.Text;
                         Object[] reg = us.getUsuario();
-                        if (reg.Length >= 1)
+                        if (reg != null)
                         {
                             if (String.Equals(us.keySusuario, txtUsuario.Text) == true)
                             {
                                 if (String.Equals(us.cmpPassword, txtPassword.Text) == true)
                                 {
                                     user = new DatCfgUsuario(reg);
-                                    Menu mn = new Menu(db, this, user);
+                                    
                                     this.Hide();
-                                    mn.Show();
+                                    if (user.CodPerfil == "CAJAS")
+                                    {
+                                        frmCaja mn = new frmCaja(db,  user);
+                                        mn.Show();
+                                        
+                                    }
+                                    else
+                                    {
+                                        Menu mn = new Menu(db, this, user);
+                                        mn.Show();
+                                        
+                                    }
 
-                                    //MessageBoxAdv.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
-                                    //MessageBoxIcon.Exclamation);
                                 }
                                 else
                                 {

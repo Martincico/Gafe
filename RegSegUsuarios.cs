@@ -81,8 +81,13 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select Usuario,Nombre,Password,CodPerfil,ClaveAlmacen,StiloTema, Fondo, CONVERT (date, GETDATE()) " +
-                          "from SUsuarios where Usuario =@Usuario";
+            string Sql = " SELECT Usr.Usuario, Usr.Nombre,Usr.Password,Usr.CodPerfil,UsrCfg.CveAlmacen, " +
+                         "        UsrCfg.CambiaAlmacen, Alm.EsDeCompra,Alm.EsDeVenta,Alm.EsDeConsigna,Alm.NumRojo, " +
+                         "        UsrCfg.Fondo,UsrCfg.StiloTema,CONVERT (date, GETDATE()) " +
+                         " FROM dbo.SUsuarios AS Usr " +
+                         " INNER JOIN dbo.SUsuarioConf AS UsrCfg ON UsrCfg.CveUsuario = Usr.Usuario " +
+                         " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON UsrCfg.CveAlmacen = Alm.ClaveAlmacen " +
+                         " WHERE Usr.Usuario = @Usuario";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -109,13 +114,16 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter EstiloUser()
+        public SqlDataAdapter CboUsuarios(int SinConfg)
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select Encabezado,HoverEncabezado,FontColor " +
-                          "from CfgEstilos where CveStilo =@Usuario";
-            dt = db.SelectDA(Sql, ArrParametros);
+
+            String Str = (SinConfg == 1) ? " WHERE Usr.Usuario not IN (SELECT  CveUsuario FROM SUsuarioConf) " : " INNER JOIN dbo.SUsuarioConf AS UsrCfg ON UsrCfg.CveUsuario = Usr.Usuario ";
+
+            string Sql = " SELECT Usr.Usuario Clave, Usr.Nombre Descripcion FROM SUsuarios AS Usr " + Str;
+            dt = db.SelectDA(Sql);
             return dt;
         }
+
     }
 }

@@ -37,51 +37,35 @@
             this.CatLineas = new System.Windows.Forms.ToolStripMenuItem();
             this.CatMarcas = new System.Windows.Forms.ToolStripMenuItem();
             this.CatClase = new System.Windows.Forms.ToolStripMenuItem();
-            this.CatGeografia = new System.Windows.Forms.ToolStripMenuItem();
             this.catsAlmacenes = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatAlmacen = new System.Windows.Forms.ToolStripMenuItem();
             this.CatListaPrecios = new System.Windows.Forms.ToolStripMenuItem();
             this.ProcInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.OpInventarios = new System.Windows.Forms.ToolStripDropDownButton();
-            this.OpMovInv = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpKardex = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpExistencia = new System.Windows.Forms.ToolStripMenuItem();
-            this.InvMenDocumentos = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
+            this.MnuMovInventarios = new System.Windows.Forms.ToolStripDropDownButton();
+            this.MnuKardexArt = new System.Windows.Forms.ToolStripDropDownButton();
+            this.MnuExitenciaArt = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatProvee = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsProveedores = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatProveedores = new System.Windows.Forms.ToolStripMenuItem();
-            this.ModConfiguración = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
-            this.toolStripEx4 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.MnuCfgFoliadores = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ContInvDocumentos = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.MnuRequisición = new System.Windows.Forms.ToolStripButton();
+            this.MnuCotizacion = new System.Windows.Forms.ToolStripButton();
+            this.MnuOrdenCompra = new System.Windows.Forms.ToolStripButton();
+            this.MnuCompras = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx2 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.CfgMnuProveedores = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Prov_TipoMov = new System.Windows.Forms.ToolStripMenuItem();
-            this.Prov_SereDoc = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripEx3 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.CfgMnuInventarios = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Inv_TipoMov = new System.Windows.Forms.ToolStripMenuItem();
+            this.ModGeneral = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.catGeneral = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.MnuGeografia = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEx1 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.MnuFoliadores = new System.Windows.Forms.ToolStripButton();
             this.ModSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsUsuarios = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatsPerfiles = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatsAsignaPer = new System.Windows.Forms.ToolStripDropDownButton();
-            this.CatPersonalizar = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.CatsTemas = new System.Windows.Forms.ToolStripDropDownButton();
-            this.stilDefault = new System.Windows.Forms.ToolStripMenuItem();
-            this.stilClaro = new System.Windows.Forms.ToolStripMenuItem();
-            this.stilVerde = new System.Windows.Forms.ToolStripMenuItem();
-            this.stilNegro = new System.Windows.Forms.ToolStripMenuItem();
-            this.stilAzul = new System.Windows.Forms.ToolStripMenuItem();
-            this.stilRosado = new System.Windows.Forms.ToolStripMenuItem();
-            this.CatsFondos = new System.Windows.Forms.ToolStripDropDownButton();
-            this.PerFondo1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.PerFondo2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.PerFondo3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.PerFondo4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.PerFondoNone = new System.Windows.Forms.ToolStripMenuItem();
+            this.CatsUserCfg = new System.Windows.Forms.ToolStripDropDownButton();
             this.panelPie = new System.Windows.Forms.Panel();
             this.panelContenedor = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
@@ -91,13 +75,12 @@
             this.ProcInven.SuspendLayout();
             this.ModProveedores.Panel.SuspendLayout();
             this.CatProvee.SuspendLayout();
-            this.ModConfiguración.Panel.SuspendLayout();
-            this.toolStripEx4.SuspendLayout();
-            this.toolStripEx2.SuspendLayout();
-            this.toolStripEx3.SuspendLayout();
+            this.ContInvDocumentos.SuspendLayout();
+            this.ModGeneral.Panel.SuspendLayout();
+            this.catGeneral.SuspendLayout();
+            this.toolStripEx1.SuspendLayout();
             this.ModSeguridad.Panel.SuspendLayout();
             this.CatSeguridad.SuspendLayout();
-            this.CatPersonalizar.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribMenu
@@ -107,7 +90,7 @@
             this.ribMenu.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.ribMenu.Header.AddMainItem(ModInventario);
             this.ribMenu.Header.AddMainItem(ModProveedores);
-            this.ribMenu.Header.AddMainItem(ModConfiguración);
+            this.ribMenu.Header.AddMainItem(ModGeneral);
             this.ribMenu.Header.AddMainItem(ModSeguridad);
             this.ribMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ribMenu.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
@@ -129,9 +112,9 @@
             this.ribMenu.QuickPanelVisible = false;
             this.ribMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribMenu.SelectedTab = this.ModInventario;
+            this.ribMenu.SelectedTab = this.ModProveedores;
             this.ribMenu.ShowRibbonDisplayOptionButton = true;
-            this.ribMenu.Size = new System.Drawing.Size(799, 149);
+            this.ribMenu.Size = new System.Drawing.Size(799, 175);
             this.ribMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
             this.ribMenu.SystemText.RenameDisplayLabelText = "&Display Name:";
             this.ribMenu.TabIndex = 0;
@@ -181,7 +164,7 @@
             this.CatInven.Name = "CatInven";
             this.CatInven.Office12Mode = false;
             this.CatInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatInven.Size = new System.Drawing.Size(165, 80);
+            this.CatInven.Size = new System.Drawing.Size(165, 106);
             this.CatInven.TabIndex = 0;
             this.CatInven.Text = "Catálgos";
             // 
@@ -192,58 +175,51 @@
             this.CatUMedidas,
             this.CatLineas,
             this.CatMarcas,
-            this.CatClase,
-            this.CatGeografia});
+            this.CatClase});
             this.CatsArticulos.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CatsArticulos.Image = global::GAFE.Properties.Resources.MnuArticulos;
+            this.CatsArticulos.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CatsArticulos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.CatsArticulos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsArticulos.Name = "CatsArticulos";
-            this.CatsArticulos.Size = new System.Drawing.Size(65, 63);
+            this.CatsArticulos.Size = new System.Drawing.Size(65, 89);
             this.CatsArticulos.Text = "Artículos";
-            this.CatsArticulos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CatsArticulos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             // 
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(180, 22);
+            this.CatLineas.Size = new System.Drawing.Size(169, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(180, 22);
+            this.CatClase.Size = new System.Drawing.Size(169, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
-            // 
-            // CatGeografia
-            // 
-            this.CatGeografia.Name = "CatGeografia";
-            this.CatGeografia.Size = new System.Drawing.Size(180, 22);
-            this.CatGeografia.Text = "Geografía";
-            this.CatGeografia.Click += new System.EventHandler(this.CatGeografia_Click);
             // 
             // catsAlmacenes
             // 
@@ -252,11 +228,12 @@
             this.CatListaPrecios});
             this.catsAlmacenes.ForeColor = System.Drawing.Color.MidnightBlue;
             this.catsAlmacenes.Image = global::GAFE.Properties.Resources.MnuAlmacen;
+            this.catsAlmacenes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.catsAlmacenes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.catsAlmacenes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.catsAlmacenes.Name = "catsAlmacenes";
-            this.catsAlmacenes.Size = new System.Drawing.Size(74, 63);
+            this.catsAlmacenes.Size = new System.Drawing.Size(74, 89);
             this.catsAlmacenes.Text = "Almacenes";
-            this.catsAlmacenes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.catsAlmacenes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.catsAlmacenes.ToolTipText = "Almacenes";
             // 
@@ -284,72 +261,54 @@
             this.ProcInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ProcInven.Image = null;
             this.ProcInven.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpInventarios,
-            this.OpInvFisicos});
+            this.MnuMovInventarios,
+            this.MnuKardexArt,
+            this.MnuExitenciaArt});
+            this.ProcInven.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007;
+            this.ProcInven.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.ProcInven.Location = new System.Drawing.Point(167, 1);
             this.ProcInven.Name = "ProcInven";
             this.ProcInven.Office12Mode = false;
             this.ProcInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.ProcInven.Size = new System.Drawing.Size(177, 80);
+            this.ProcInven.Size = new System.Drawing.Size(131, 106);
             this.ProcInven.TabIndex = 4;
             this.ProcInven.Text = "Procesos";
             // 
-            // OpInventarios
+            // MnuMovInventarios
             // 
-            this.OpInventarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpMovInv,
-            this.OpKardex,
-            this.OpExistencia,
-            this.InvMenDocumentos});
-            this.OpInventarios.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.OpInventarios.Image = global::GAFE.Properties.Resources.MnuInventario;
-            this.OpInventarios.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpInventarios.Name = "OpInventarios";
-            this.OpInventarios.Size = new System.Drawing.Size(77, 63);
-            this.OpInventarios.Text = "Inventarios";
-            this.OpInventarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.OpInventarios.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.OpInventarios.ToolTipText = "Inventarios";
+            this.MnuMovInventarios.AutoSize = false;
+            this.MnuMovInventarios.Image = global::GAFE.Properties.Resources.MnuInventario;
+            this.MnuMovInventarios.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuMovInventarios.Name = "MnuMovInventarios";
+            this.MnuMovInventarios.ShowDropDownArrow = false;
+            this.MnuMovInventarios.Size = new System.Drawing.Size(120, 28);
+            this.MnuMovInventarios.Text = "Mov. Inventarios";
+            this.MnuMovInventarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MnuMovInventarios.Click += new System.EventHandler(this.MnuMovInventarios_Click);
             // 
-            // OpMovInv
+            // MnuKardexArt
             // 
-            this.OpMovInv.Name = "OpMovInv";
-            this.OpMovInv.Size = new System.Drawing.Size(216, 22);
-            this.OpMovInv.Text = "Movimientos de inventarios";
-            this.OpMovInv.Click += new System.EventHandler(this.OpMovInv_Click);
+            this.MnuKardexArt.AutoSize = false;
+            this.MnuKardexArt.Image = global::GAFE.Properties.Resources.MnuArticulos;
+            this.MnuKardexArt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MnuKardexArt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuKardexArt.Name = "MnuKardexArt";
+            this.MnuKardexArt.ShowDropDownArrow = false;
+            this.MnuKardexArt.Size = new System.Drawing.Size(120, 28);
+            this.MnuKardexArt.Text = "Kardex";
+            this.MnuKardexArt.Click += new System.EventHandler(this.MnuKardexArt_Click);
             // 
-            // OpKardex
+            // MnuExitenciaArt
             // 
-            this.OpKardex.Name = "OpKardex";
-            this.OpKardex.Size = new System.Drawing.Size(216, 22);
-            this.OpKardex.Text = "Kardex por artículo";
-            this.OpKardex.Click += new System.EventHandler(this.OpKardex_Click);
-            // 
-            // OpExistencia
-            // 
-            this.OpExistencia.Name = "OpExistencia";
-            this.OpExistencia.Size = new System.Drawing.Size(216, 22);
-            this.OpExistencia.Text = "Existencia Art - Almacén";
-            this.OpExistencia.Click += new System.EventHandler(this.OpExistencia_Click);
-            // 
-            // InvMenDocumentos
-            // 
-            this.InvMenDocumentos.Name = "InvMenDocumentos";
-            this.InvMenDocumentos.Size = new System.Drawing.Size(216, 22);
-            this.InvMenDocumentos.Text = "Documentos";
-            this.InvMenDocumentos.Click += new System.EventHandler(this.InvMenDocumentos_Click);
-            // 
-            // OpInvFisicos
-            // 
-            this.OpInvFisicos.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.OpInvFisicos.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.OpInvFisicos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpInvFisicos.Name = "OpInvFisicos";
-            this.OpInvFisicos.Size = new System.Drawing.Size(73, 63);
-            this.OpInvFisicos.Text = "Inv. físicos";
-            this.OpInvFisicos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.OpInvFisicos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.OpInvFisicos.ToolTipText = "Inv. físicos";
+            this.MnuExitenciaArt.AutoSize = false;
+            this.MnuExitenciaArt.Image = global::GAFE.Properties.Resources.MnuProveedores;
+            this.MnuExitenciaArt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MnuExitenciaArt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuExitenciaArt.Name = "MnuExitenciaArt";
+            this.MnuExitenciaArt.ShowDropDownArrow = false;
+            this.MnuExitenciaArt.Size = new System.Drawing.Size(120, 28);
+            this.MnuExitenciaArt.Text = "Existencias";
+            this.MnuExitenciaArt.Click += new System.EventHandler(this.MnuExitenciaArt_Click);
             // 
             // RepInven
             // 
@@ -359,11 +318,11 @@
             this.RepInven.ForeColor = System.Drawing.Color.Black;
             this.RepInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.RepInven.Image = null;
-            this.RepInven.Location = new System.Drawing.Point(346, 1);
+            this.RepInven.Location = new System.Drawing.Point(300, 1);
             this.RepInven.Name = "RepInven";
             this.RepInven.Office12Mode = false;
             this.RepInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.RepInven.Size = new System.Drawing.Size(100, 80);
+            this.RepInven.Size = new System.Drawing.Size(100, 106);
             this.RepInven.TabIndex = 5;
             this.RepInven.Text = "Reportes";
             // 
@@ -374,6 +333,8 @@
             // ribMenu.ribbonPanel2
             // 
             this.ModProveedores.Panel.Controls.Add(this.CatProvee);
+            this.ModProveedores.Panel.Controls.Add(this.ContInvDocumentos);
+            this.ModProveedores.Panel.Controls.Add(this.toolStripEx2);
             this.ModProveedores.Panel.Name = "ribbonPanel2";
             this.ModProveedores.Panel.ScrollPosition = 0;
             this.ModProveedores.Panel.TabIndex = 3;
@@ -385,7 +346,6 @@
             // 
             // CatProvee
             // 
-            this.CatProvee.AutoSize = false;
             this.CatProvee.Dock = System.Windows.Forms.DockStyle.None;
             this.CatProvee.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.CatProvee.ForeColor = System.Drawing.Color.Black;
@@ -393,12 +353,13 @@
             this.CatProvee.Image = null;
             this.CatProvee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CatsProveedores});
+            this.CatProvee.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.CatProvee.Location = new System.Drawing.Point(0, 1);
             this.CatProvee.Name = "CatProvee";
             this.CatProvee.Office12Mode = false;
             this.CatProvee.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatProvee.Size = new System.Drawing.Size(121, 80);
-            this.CatProvee.TabIndex = 1;
+            this.CatProvee.Size = new System.Drawing.Size(92, 106);
+            this.CatProvee.TabIndex = 11;
             this.CatProvee.Text = "Catálgos";
             // 
             // CatsProveedores
@@ -407,11 +368,12 @@
             this.CatProveedores});
             this.CatsProveedores.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CatsProveedores.Image = global::GAFE.Properties.Resources.MnuProveedores;
+            this.CatsProveedores.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CatsProveedores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.CatsProveedores.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsProveedores.Name = "CatsProveedores";
-            this.CatsProveedores.Size = new System.Drawing.Size(83, 63);
+            this.CatsProveedores.Size = new System.Drawing.Size(83, 89);
             this.CatsProveedores.Text = "Proveedores";
-            this.CatsProveedores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.CatsProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             // 
             // CatProveedores
@@ -420,56 +382,72 @@
             this.CatProveedores.Size = new System.Drawing.Size(126, 22);
             this.CatProveedores.Text = "Proveedor";
             this.CatProveedores.ToolTipText = "Proveedor";
-            this.CatProveedores.Click += new System.EventHandler(this.CatProveedores_Click);
             // 
-            // ModConfiguración
+            // ContInvDocumentos
             // 
-            this.ModConfiguración.Name = "ModConfiguración";
+            this.ContInvDocumentos.AutoSize = false;
+            this.ContInvDocumentos.Dock = System.Windows.Forms.DockStyle.None;
+            this.ContInvDocumentos.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.ContInvDocumentos.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.ContInvDocumentos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.ContInvDocumentos.Image = null;
+            this.ContInvDocumentos.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuRequisición,
+            this.MnuCotizacion,
+            this.MnuOrdenCompra,
+            this.MnuCompras});
+            this.ContInvDocumentos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.ContInvDocumentos.Location = new System.Drawing.Point(94, 1);
+            this.ContInvDocumentos.Name = "ContInvDocumentos";
+            this.ContInvDocumentos.Office12Mode = false;
+            this.ContInvDocumentos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.ContInvDocumentos.Size = new System.Drawing.Size(226, 106);
+            this.ContInvDocumentos.TabIndex = 10;
+            this.ContInvDocumentos.Text = "Procesos";
             // 
-            // ribMenu.ribbonPanel3
+            // MnuRequisición
             // 
-            this.ModConfiguración.Panel.Controls.Add(this.toolStripEx4);
-            this.ModConfiguración.Panel.Controls.Add(this.toolStripEx2);
-            this.ModConfiguración.Panel.Controls.Add(this.toolStripEx3);
-            this.ModConfiguración.Panel.Name = "ribbonPanel3";
-            this.ModConfiguración.Panel.ScrollPosition = 0;
-            this.ModConfiguración.Panel.TabIndex = 5;
-            this.ModConfiguración.Panel.Text = "Configuración";
-            this.ModConfiguración.Position = 2;
-            this.ModConfiguración.Size = new System.Drawing.Size(97, 30);
-            this.ModConfiguración.Tag = "1";
-            this.ModConfiguración.Text = "Configuración";
+            this.MnuRequisición.AutoSize = false;
+            this.MnuRequisición.Image = global::GAFE.Properties.Resources.MnuAlmacen;
+            this.MnuRequisición.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuRequisición.Name = "MnuRequisición";
+            this.MnuRequisición.Size = new System.Drawing.Size(110, 42);
+            this.MnuRequisición.Text = "Requisición";
+            this.MnuRequisición.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MnuRequisición.Click += new System.EventHandler(this.MnuRequisición_Click);
             // 
-            // toolStripEx4
+            // MnuCotizacion
             // 
-            this.toolStripEx4.AutoSize = false;
-            this.toolStripEx4.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripEx4.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.toolStripEx4.ForeColor = System.Drawing.Color.Black;
-            this.toolStripEx4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripEx4.Image = null;
-            this.toolStripEx4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuCfgFoliadores});
-            this.toolStripEx4.Location = new System.Drawing.Point(0, 1);
-            this.toolStripEx4.Name = "toolStripEx4";
-            this.toolStripEx4.Office12Mode = false;
-            this.toolStripEx4.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx4.Size = new System.Drawing.Size(100, 80);
-            this.toolStripEx4.TabIndex = 8;
-            this.toolStripEx4.Text = "Reportes";
+            this.MnuCotizacion.AutoSize = false;
+            this.MnuCotizacion.Image = global::GAFE.Properties.Resources.MnuArticulos;
+            this.MnuCotizacion.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuCotizacion.Name = "MnuCotizacion";
+            this.MnuCotizacion.Size = new System.Drawing.Size(110, 42);
+            this.MnuCotizacion.Text = "Cotización";
+            this.MnuCotizacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MnuCotizacion.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
-            // MnuCfgFoliadores
+            // MnuOrdenCompra
             // 
-            this.MnuCfgFoliadores.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.MnuCfgFoliadores.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.MnuCfgFoliadores.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.MnuCfgFoliadores.Name = "MnuCfgFoliadores";
-            this.MnuCfgFoliadores.Size = new System.Drawing.Size(74, 63);
-            this.MnuCfgFoliadores.Text = "Foliadores";
-            this.MnuCfgFoliadores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.MnuCfgFoliadores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.MnuCfgFoliadores.ToolTipText = "Inv. físicos";
-            this.MnuCfgFoliadores.Click += new System.EventHandler(this.MnuCfgFoliadores_Click);
+            this.MnuOrdenCompra.AutoSize = false;
+            this.MnuOrdenCompra.Image = global::GAFE.Properties.Resources.MnuInventario;
+            this.MnuOrdenCompra.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuOrdenCompra.Name = "MnuOrdenCompra";
+            this.MnuOrdenCompra.Size = new System.Drawing.Size(110, 42);
+            this.MnuOrdenCompra.Text = "Orden compra";
+            this.MnuOrdenCompra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // MnuCompras
+            // 
+            this.MnuCompras.AutoSize = false;
+            this.MnuCompras.Image = global::GAFE.Properties.Resources.MnuProveedores;
+            this.MnuCompras.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuCompras.Name = "MnuCompras";
+            this.MnuCompras.Size = new System.Drawing.Size(110, 42);
+            this.MnuCompras.Text = "Compras";
+            this.MnuCompras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MnuCompras.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.MnuCompras.Click += new System.EventHandler(this.MnuOrdenCompra_Click);
             // 
             // toolStripEx2
             // 
@@ -479,83 +457,91 @@
             this.toolStripEx2.ForeColor = System.Drawing.Color.Black;
             this.toolStripEx2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx2.Image = null;
-            this.toolStripEx2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CfgMnuProveedores});
-            this.toolStripEx2.Location = new System.Drawing.Point(102, 1);
+            this.toolStripEx2.Location = new System.Drawing.Point(322, 1);
             this.toolStripEx2.Name = "toolStripEx2";
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx2.Size = new System.Drawing.Size(110, 80);
-            this.toolStripEx2.TabIndex = 7;
+            this.toolStripEx2.Size = new System.Drawing.Size(100, 106);
+            this.toolStripEx2.TabIndex = 9;
             this.toolStripEx2.Text = "Reportes";
             // 
-            // CfgMnuProveedores
+            // ModGeneral
             // 
-            this.CfgMnuProveedores.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Prov_TipoMov,
-            this.Prov_SereDoc});
-            this.CfgMnuProveedores.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CfgMnuProveedores.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.CfgMnuProveedores.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CfgMnuProveedores.Name = "CfgMnuProveedores";
-            this.CfgMnuProveedores.Size = new System.Drawing.Size(83, 63);
-            this.CfgMnuProveedores.Text = "Proveedores";
-            this.CfgMnuProveedores.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CfgMnuProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CfgMnuProveedores.ToolTipText = "Inv. físicos";
+            this.ModGeneral.Name = "ModGeneral";
             // 
-            // Prov_TipoMov
+            // ribMenu.ribbonPanel3
             // 
-            this.Prov_TipoMov.Name = "Prov_TipoMov";
-            this.Prov_TipoMov.Size = new System.Drawing.Size(166, 22);
-            this.Prov_TipoMov.Text = "Tipo Movimientos";
-            this.Prov_TipoMov.Click += new System.EventHandler(this.Prov_TipoMov_Click);
+            this.ModGeneral.Panel.Controls.Add(this.catGeneral);
+            this.ModGeneral.Panel.Controls.Add(this.toolStripEx1);
+            this.ModGeneral.Panel.Name = "ribbonPanel3";
+            this.ModGeneral.Panel.ScrollPosition = 0;
+            this.ModGeneral.Panel.TabIndex = 5;
+            this.ModGeneral.Panel.Text = "General";
+            this.ModGeneral.Position = 2;
+            this.ModGeneral.Size = new System.Drawing.Size(63, 30);
+            this.ModGeneral.Tag = "1";
+            this.ModGeneral.Text = "General";
             // 
-            // Prov_SereDoc
+            // catGeneral
             // 
-            this.Prov_SereDoc.Name = "Prov_SereDoc";
-            this.Prov_SereDoc.Size = new System.Drawing.Size(166, 22);
-            this.Prov_SereDoc.Text = "Serie documentos";
-            this.Prov_SereDoc.Click += new System.EventHandler(this.Prov_SereDoc_Click);
+            this.catGeneral.AutoSize = false;
+            this.catGeneral.Dock = System.Windows.Forms.DockStyle.None;
+            this.catGeneral.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.catGeneral.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.catGeneral.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.catGeneral.Image = null;
+            this.catGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuGeografia});
+            this.catGeneral.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.catGeneral.Location = new System.Drawing.Point(0, 1);
+            this.catGeneral.Name = "catGeneral";
+            this.catGeneral.Office12Mode = false;
+            this.catGeneral.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.catGeneral.Size = new System.Drawing.Size(126, 105);
+            this.catGeneral.TabIndex = 0;
+            this.catGeneral.Text = "General";
             // 
-            // toolStripEx3
+            // MnuGeografia
             // 
-            this.toolStripEx3.AutoSize = false;
-            this.toolStripEx3.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripEx3.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.toolStripEx3.ForeColor = System.Drawing.Color.Black;
-            this.toolStripEx3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripEx3.Image = null;
-            this.toolStripEx3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CfgMnuInventarios});
-            this.toolStripEx3.Location = new System.Drawing.Point(214, 1);
-            this.toolStripEx3.Name = "toolStripEx3";
-            this.toolStripEx3.Office12Mode = false;
-            this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx3.Size = new System.Drawing.Size(100, 80);
-            this.toolStripEx3.TabIndex = 6;
-            this.toolStripEx3.Text = "Reportes";
+            this.MnuGeografia.AutoSize = false;
+            this.MnuGeografia.Image = global::GAFE.Properties.Resources.MnuColores;
+            this.MnuGeografia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MnuGeografia.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuGeografia.Name = "MnuGeografia";
+            this.MnuGeografia.Size = new System.Drawing.Size(94, 28);
+            this.MnuGeografia.Text = "Geografía";
+            this.MnuGeografia.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.MnuGeografia.Click += new System.EventHandler(this.MnuGeografia_Click);
             // 
-            // CfgMnuInventarios
+            // toolStripEx1
             // 
-            this.CfgMnuInventarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Inv_TipoMov});
-            this.CfgMnuInventarios.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CfgMnuInventarios.Image = global::GAFE.Properties.Resources.Cancelar;
-            this.CfgMnuInventarios.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CfgMnuInventarios.Name = "CfgMnuInventarios";
-            this.CfgMnuInventarios.Size = new System.Drawing.Size(77, 63);
-            this.CfgMnuInventarios.Text = "Inventarios";
-            this.CfgMnuInventarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CfgMnuInventarios.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CfgMnuInventarios.ToolTipText = "Inv. físicos";
+            this.toolStripEx1.AutoSize = false;
+            this.toolStripEx1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripEx1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.toolStripEx1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.toolStripEx1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripEx1.Image = null;
+            this.toolStripEx1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MnuFoliadores});
+            this.toolStripEx1.Location = new System.Drawing.Point(128, 1);
+            this.toolStripEx1.Name = "toolStripEx1";
+            this.toolStripEx1.Office12Mode = false;
+            this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.toolStripEx1.Size = new System.Drawing.Size(126, 105);
+            this.toolStripEx1.TabIndex = 1;
+            this.toolStripEx1.Text = "Documentos";
             // 
-            // Inv_TipoMov
+            // MnuFoliadores
             // 
-            this.Inv_TipoMov.Name = "Inv_TipoMov";
-            this.Inv_TipoMov.Size = new System.Drawing.Size(165, 22);
-            this.Inv_TipoMov.Text = "Tipo Movimientos";
-            this.Inv_TipoMov.Click += new System.EventHandler(this.Inv_TipoMov_Click);
+            this.MnuFoliadores.AutoSize = false;
+            this.MnuFoliadores.Image = global::GAFE.Properties.Resources.MnuTemas;
+            this.MnuFoliadores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MnuFoliadores.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MnuFoliadores.Name = "MnuFoliadores";
+            this.MnuFoliadores.Size = new System.Drawing.Size(94, 28);
+            this.MnuFoliadores.Text = "Foliadores";
+            this.MnuFoliadores.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.MnuFoliadores.Click += new System.EventHandler(this.MnuFoliadores_Click);
             // 
             // ModSeguridad
             // 
@@ -564,7 +550,6 @@
             // ribMenu.ribbonPanel4
             // 
             this.ModSeguridad.Panel.Controls.Add(this.CatSeguridad);
-            this.ModSeguridad.Panel.Controls.Add(this.CatPersonalizar);
             this.ModSeguridad.Panel.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
             this.ModSeguridad.Panel.Name = "ribbonPanel4";
             this.ModSeguridad.Panel.ScrollPosition = 0;
@@ -586,182 +571,72 @@
             this.CatSeguridad.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CatsUsuarios,
             this.CatsPerfiles,
-            this.CatsAsignaPer});
+            this.CatsAsignaPer,
+            this.CatsUserCfg});
+            this.CatSeguridad.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.CatSeguridad.Location = new System.Drawing.Point(0, 1);
             this.CatSeguridad.Name = "CatSeguridad";
             this.CatSeguridad.Office12Mode = false;
             this.CatSeguridad.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatSeguridad.Size = new System.Drawing.Size(251, 80);
+            this.CatSeguridad.Size = new System.Drawing.Size(248, 106);
             this.CatSeguridad.TabIndex = 1;
             this.CatSeguridad.Text = "Usuarios";
             // 
             // CatsUsuarios
             // 
+            this.CatsUsuarios.AutoSize = false;
             this.CatsUsuarios.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CatsUsuarios.Image = global::GAFE.Properties.Resources.MnuUsuarios;
+            this.CatsUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CatsUsuarios.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsUsuarios.Name = "CatsUsuarios";
-            this.CatsUsuarios.Size = new System.Drawing.Size(65, 63);
+            this.CatsUsuarios.ShowDropDownArrow = false;
+            this.CatsUsuarios.Size = new System.Drawing.Size(120, 42);
             this.CatsUsuarios.Text = "Usuarios";
-            this.CatsUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CatsUsuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.CatsUsuarios.ToolTipText = "Usuarios";
+            this.CatsUsuarios.Click += new System.EventHandler(this.CatsUsuarios_Click);
             // 
             // CatsPerfiles
             // 
+            this.CatsPerfiles.AutoSize = false;
             this.CatsPerfiles.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CatsPerfiles.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.CatsPerfiles.Image = global::GAFE.Properties.Resources.MnuColores;
+            this.CatsPerfiles.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CatsPerfiles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsPerfiles.Name = "CatsPerfiles";
-            this.CatsPerfiles.Size = new System.Drawing.Size(57, 63);
+            this.CatsPerfiles.ShowDropDownArrow = false;
+            this.CatsPerfiles.Size = new System.Drawing.Size(120, 42);
             this.CatsPerfiles.Text = "Perfiles";
-            this.CatsPerfiles.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CatsPerfiles.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.CatsPerfiles.ToolTipText = "Perfiles";
+            this.CatsPerfiles.Click += new System.EventHandler(this.CatsPerfiles_Click);
             // 
             // CatsAsignaPer
             // 
+            this.CatsAsignaPer.AutoSize = false;
             this.CatsAsignaPer.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CatsAsignaPer.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.CatsAsignaPer.Image = global::GAFE.Properties.Resources.MnuAlmacen;
+            this.CatsAsignaPer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CatsAsignaPer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsAsignaPer.Name = "CatsAsignaPer";
-            this.CatsAsignaPer.Size = new System.Drawing.Size(104, 63);
-            this.CatsAsignaPer.Text = "Asigna permisos";
-            this.CatsAsignaPer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CatsAsignaPer.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CatsAsignaPer.ToolTipText = "Asigna permisos";
+            this.CatsAsignaPer.ShowDropDownArrow = false;
+            this.CatsAsignaPer.Size = new System.Drawing.Size(120, 42);
+            this.CatsAsignaPer.Text = "Permisos";
+            this.CatsAsignaPer.ToolTipText = "Permisos";
             this.CatsAsignaPer.Click += new System.EventHandler(this.CatsAsignaPer_Click);
             // 
-            // CatPersonalizar
+            // CatsUserCfg
             // 
-            this.CatPersonalizar.AutoSize = false;
-            this.CatPersonalizar.Dock = System.Windows.Forms.DockStyle.None;
-            this.CatPersonalizar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.CatPersonalizar.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CatPersonalizar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.CatPersonalizar.Image = null;
-            this.CatPersonalizar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatsTemas,
-            this.CatsFondos});
-            this.CatPersonalizar.Location = new System.Drawing.Point(253, 1);
-            this.CatPersonalizar.Name = "CatPersonalizar";
-            this.CatPersonalizar.Office12Mode = false;
-            this.CatPersonalizar.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatPersonalizar.Size = new System.Drawing.Size(141, 80);
-            this.CatPersonalizar.TabIndex = 2;
-            this.CatPersonalizar.Text = "Personalizar";
-            // 
-            // CatsTemas
-            // 
-            this.CatsTemas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stilDefault,
-            this.stilClaro,
-            this.stilVerde,
-            this.stilNegro,
-            this.stilAzul,
-            this.stilRosado});
-            this.CatsTemas.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CatsTemas.Image = global::GAFE.Properties.Resources.MnuColores;
-            this.CatsTemas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CatsTemas.Name = "CatsTemas";
-            this.CatsTemas.Size = new System.Drawing.Size(50, 63);
-            this.CatsTemas.Text = "Temas";
-            this.CatsTemas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CatsTemas.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CatsTemas.ToolTipText = "Temas";
-            // 
-            // stilDefault
-            // 
-            this.stilDefault.Name = "stilDefault";
-            this.stilDefault.Size = new System.Drawing.Size(112, 22);
-            this.stilDefault.Text = "Default";
-            this.stilDefault.Click += new System.EventHandler(this.stilDefault_Click);
-            // 
-            // stilClaro
-            // 
-            this.stilClaro.Name = "stilClaro";
-            this.stilClaro.Size = new System.Drawing.Size(112, 22);
-            this.stilClaro.Text = "Claro";
-            this.stilClaro.Click += new System.EventHandler(this.stilClaro_Click);
-            // 
-            // stilVerde
-            // 
-            this.stilVerde.Name = "stilVerde";
-            this.stilVerde.Size = new System.Drawing.Size(112, 22);
-            this.stilVerde.Text = "Verde";
-            this.stilVerde.Click += new System.EventHandler(this.stilVerde_Click);
-            // 
-            // stilNegro
-            // 
-            this.stilNegro.Name = "stilNegro";
-            this.stilNegro.Size = new System.Drawing.Size(112, 22);
-            this.stilNegro.Text = "Negro";
-            this.stilNegro.Click += new System.EventHandler(this.stilNegro_Click);
-            // 
-            // stilAzul
-            // 
-            this.stilAzul.Name = "stilAzul";
-            this.stilAzul.Size = new System.Drawing.Size(112, 22);
-            this.stilAzul.Text = "Azul";
-            this.stilAzul.Click += new System.EventHandler(this.stilAzul_Click);
-            // 
-            // stilRosado
-            // 
-            this.stilRosado.Name = "stilRosado";
-            this.stilRosado.Size = new System.Drawing.Size(112, 22);
-            this.stilRosado.Text = "Rosa";
-            this.stilRosado.Click += new System.EventHandler(this.stilRosado_Click);
-            // 
-            // CatsFondos
-            // 
-            this.CatsFondos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.PerFondo1,
-            this.PerFondo2,
-            this.PerFondo3,
-            this.PerFondo4,
-            this.PerFondoNone});
-            this.CatsFondos.Image = global::GAFE.Properties.Resources.MnuTemas;
-            this.CatsFondos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CatsFondos.Name = "CatsFondos";
-            this.CatsFondos.Size = new System.Drawing.Size(59, 63);
-            this.CatsFondos.Text = "Fondos";
-            this.CatsFondos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.CatsFondos.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            // 
-            // PerFondo1
-            // 
-            this.PerFondo1.Name = "PerFondo1";
-            this.PerFondo1.Size = new System.Drawing.Size(120, 22);
-            this.PerFondo1.Text = "Fondo1";
-            this.PerFondo1.Click += new System.EventHandler(this.PerFondo1_Click);
-            // 
-            // PerFondo2
-            // 
-            this.PerFondo2.Name = "PerFondo2";
-            this.PerFondo2.Size = new System.Drawing.Size(120, 22);
-            this.PerFondo2.Text = "Fondo2";
-            this.PerFondo2.Click += new System.EventHandler(this.PerFondo2_Click);
-            // 
-            // PerFondo3
-            // 
-            this.PerFondo3.Name = "PerFondo3";
-            this.PerFondo3.Size = new System.Drawing.Size(120, 22);
-            this.PerFondo3.Text = "Fondo3";
-            this.PerFondo3.Click += new System.EventHandler(this.PerFondo3_Click);
-            // 
-            // PerFondo4
-            // 
-            this.PerFondo4.Name = "PerFondo4";
-            this.PerFondo4.Size = new System.Drawing.Size(120, 22);
-            this.PerFondo4.Text = "Fondo4";
-            this.PerFondo4.Click += new System.EventHandler(this.PerFondo4_Click);
-            // 
-            // PerFondoNone
-            // 
-            this.PerFondoNone.Name = "PerFondoNone";
-            this.PerFondoNone.Size = new System.Drawing.Size(120, 22);
-            this.PerFondoNone.Text = "Ninguno";
-            this.PerFondoNone.Click += new System.EventHandler(this.PerFondoNone_Click);
+            this.CatsUserCfg.AutoSize = false;
+            this.CatsUserCfg.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatsUserCfg.Image = global::GAFE.Properties.Resources.MnuTemas;
+            this.CatsUserCfg.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CatsUserCfg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatsUserCfg.Name = "CatsUserCfg";
+            this.CatsUserCfg.ShowDropDownArrow = false;
+            this.CatsUserCfg.Size = new System.Drawing.Size(120, 42);
+            this.CatsUserCfg.Text = "Configuración";
+            this.CatsUserCfg.ToolTipText = "Configuración";
+            this.CatsUserCfg.Click += new System.EventHandler(this.CatsUserCfg_Click);
             // 
             // panelPie
             // 
@@ -776,9 +651,9 @@
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(241)))));
             this.panelContenedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(1, 149);
+            this.panelContenedor.Location = new System.Drawing.Point(1, 175);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(799, 245);
+            this.panelContenedor.Size = new System.Drawing.Size(799, 219);
             this.panelContenedor.TabIndex = 4;
             // 
             // Menu
@@ -806,20 +681,19 @@
             this.ProcInven.ResumeLayout(false);
             this.ProcInven.PerformLayout();
             this.ModProveedores.Panel.ResumeLayout(false);
+            this.ModProveedores.Panel.PerformLayout();
             this.CatProvee.ResumeLayout(false);
             this.CatProvee.PerformLayout();
-            this.ModConfiguración.Panel.ResumeLayout(false);
-            this.toolStripEx4.ResumeLayout(false);
-            this.toolStripEx4.PerformLayout();
-            this.toolStripEx2.ResumeLayout(false);
-            this.toolStripEx2.PerformLayout();
-            this.toolStripEx3.ResumeLayout(false);
-            this.toolStripEx3.PerformLayout();
+            this.ContInvDocumentos.ResumeLayout(false);
+            this.ContInvDocumentos.PerformLayout();
+            this.ModGeneral.Panel.ResumeLayout(false);
+            this.catGeneral.ResumeLayout(false);
+            this.catGeneral.PerformLayout();
+            this.toolStripEx1.ResumeLayout(false);
+            this.toolStripEx1.PerformLayout();
             this.ModSeguridad.Panel.ResumeLayout(false);
             this.CatSeguridad.ResumeLayout(false);
             this.CatSeguridad.PerformLayout();
-            this.CatPersonalizar.ResumeLayout(false);
-            this.CatPersonalizar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -841,47 +715,31 @@
         private System.Windows.Forms.ToolStripMenuItem CatLineas;
         private System.Windows.Forms.ToolStripMenuItem CatMarcas;
         private System.Windows.Forms.ToolStripMenuItem CatClase;
-        private System.Windows.Forms.ToolStripMenuItem CatGeografia;
         private System.Windows.Forms.ToolStripDropDownButton catsAlmacenes;
         private System.Windows.Forms.ToolStripMenuItem CatAlmacen;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx ProcInven;
-        private System.Windows.Forms.ToolStripDropDownButton OpInventarios;
-        private System.Windows.Forms.ToolStripMenuItem OpMovInv;
-        private System.Windows.Forms.ToolStripMenuItem OpKardex;
-        private System.Windows.Forms.ToolStripMenuItem OpExistencia;
-        private System.Windows.Forms.ToolStripDropDownButton OpInvFisicos;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx RepInven;
-        private System.Windows.Forms.ToolStripDropDownButton CatsTemas;
-        private System.Windows.Forms.ToolStripMenuItem stilDefault;
-        private System.Windows.Forms.ToolStripMenuItem stilClaro;
         private System.Windows.Forms.Panel panelPie;
-        private System.Windows.Forms.ToolStripMenuItem stilVerde;
-        private System.Windows.Forms.ToolStripMenuItem stilNegro;
-        private System.Windows.Forms.ToolStripMenuItem stilAzul;
         private System.Windows.Forms.Panel panelContenedor;
-        private System.Windows.Forms.ToolStripMenuItem stilRosado;
-        private Syncfusion.Windows.Forms.Tools.ToolStripEx CatPersonalizar;
-        private System.Windows.Forms.ToolStripDropDownButton CatsFondos;
-        private System.Windows.Forms.ToolStripMenuItem PerFondo1;
-        private System.Windows.Forms.ToolStripMenuItem PerFondo2;
-        private System.Windows.Forms.ToolStripMenuItem PerFondo3;
-        private System.Windows.Forms.ToolStripMenuItem PerFondo4;
-        private System.Windows.Forms.ToolStripMenuItem PerFondoNone;
+        private System.Windows.Forms.ToolStripMenuItem CatListaPrecios;
+        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModGeneral;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx catGeneral;
+        private System.Windows.Forms.ToolStripButton MnuGeografia;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx1;
+        private System.Windows.Forms.ToolStripButton MnuFoliadores;
+        private System.Windows.Forms.ToolStripDropDownButton MnuMovInventarios;
+        private System.Windows.Forms.ToolStripDropDownButton MnuKardexArt;
+        private System.Windows.Forms.ToolStripDropDownButton MnuExitenciaArt;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx CatProvee;
         private System.Windows.Forms.ToolStripDropDownButton CatsProveedores;
         private System.Windows.Forms.ToolStripMenuItem CatProveedores;
-        private System.Windows.Forms.ToolStripMenuItem CatListaPrecios;
-        private System.Windows.Forms.ToolStripMenuItem InvMenDocumentos;
-        private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModConfiguración;
-        private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx3;
-        private System.Windows.Forms.ToolStripDropDownButton CfgMnuInventarios;
-        private System.Windows.Forms.ToolStripMenuItem Inv_TipoMov;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx ContInvDocumentos;
+        private System.Windows.Forms.ToolStripButton MnuRequisición;
+        private System.Windows.Forms.ToolStripButton MnuCotizacion;
+        private System.Windows.Forms.ToolStripButton MnuOrdenCompra;
+        private System.Windows.Forms.ToolStripButton MnuCompras;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx2;
-        private System.Windows.Forms.ToolStripDropDownButton CfgMnuProveedores;
-        private System.Windows.Forms.ToolStripMenuItem Prov_TipoMov;
-        private System.Windows.Forms.ToolStripMenuItem Prov_SereDoc;
-        private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx4;
-        private System.Windows.Forms.ToolStripDropDownButton MnuCfgFoliadores;
+        private System.Windows.Forms.ToolStripDropDownButton CatsUserCfg;
     }
 }
 

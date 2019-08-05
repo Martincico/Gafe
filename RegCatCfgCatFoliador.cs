@@ -33,7 +33,7 @@ namespace GAFE
         public int AddRegCfgCatFoliador()
         {           
             string sql = "Insert into CfgCatFoliadores (CveFoliador,CveModulo,Descripción,Uso, EnUso) " +
-                         "values(@CveFoliador,@CveModulo,@Descripcion,@Uso, @EnUso)";
+                         "values(@CveFoliador,@CveModulo,@Descripcion,@Uso, 0)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 

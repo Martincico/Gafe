@@ -135,6 +135,16 @@ namespace GAFE
             return OpBsq.ListadoPrecioArticulo();
         }
 
+        public SqlDataAdapter GetPrecioArticulo()
+        {
+            MatParam = new object[2, 2];
+            MatParam[0, 0] = "CveLstPrecio"; MatParam[0, 1] = CveLstPrecio;
+            MatParam[1, 0] = "CveArticulo"; MatParam[1, 1] = Nombre;
+            RegCatLstPrecios OpBsq = new RegCatLstPrecios(MatParam, db);
+            return OpBsq.GetPrecioArticulo();
+        }
+
+
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "CveLstPrecio"; MatParam[0, 1] = CveLstPrecio;
@@ -142,6 +152,14 @@ namespace GAFE
             MatParam[2, 0] = "EsDeVenta"; MatParam[2, 1] = EsDeVenta;
             MatParam[3, 0] = "EsDeCosto"; MatParam[3, 1] = EsDeCosto;
             MatParam[4, 0] = "Estatus"; MatParam[4, 1] = Estatus;
+        }
+
+        public DataTable LLenaCboLstPrecio(int padre = 0)
+        {
+            RegCatLstPrecios OpLst = new RegCatLstPrecios(db);
+            DataSet Cbo = new DataSet();
+            OpLst.LLenaCboLstPrecio().Fill(Cbo);
+            return Cbo.Tables[0];
         }
     }
 }

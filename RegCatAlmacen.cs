@@ -49,8 +49,8 @@ namespace GAFE
 
         public int AddRegAlmacen()
         {
-            string sql = "Insert into Inv_CatAlmacenes (ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo) " +
-                         "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta,@EsDeConsigna,@NumRojo)";
+            string sql = "Insert into Inv_CatAlmacenes (ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo, CveLstPrecio) " +
+                         "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta,@EsDeConsigna,@NumRojo,@CveLstPrecio)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -63,6 +63,7 @@ namespace GAFE
                          "EsDeVenta = @EsDeVenta, " +
                          "EsDeConsigna = @EsDeConsigna, " +
                          "NumRojo = @NumRojo " +
+                         "CveLstPrecio = @CveLstPrecio " +
                          "Where ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -85,7 +86,7 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo " +
+            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo,CveLstPrecio " +
                           "from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;

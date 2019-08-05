@@ -261,6 +261,8 @@ namespace GAFE
                 pui.cmpEsDeVenta = (chkEsDeVenta.Checked == true) ? 1 : 0;
                 pui.cmpEsDeConsigna  = (chkEsDeConsigna.Checked == true) ? 1 : 0;
                 pui.cmpNumRojo =  (chkNumRojo.Checked == true) ? 1 : 0;
+                pui.cmpCveLstPrecio = Convert.ToString(cboLstPrecio.SelectedValue);
+
 
                 if (pui.AgregarAlmacen() >= 1)
                 {
@@ -288,6 +290,7 @@ namespace GAFE
                     pui.cmpEsDeVenta = (chkEsDeVenta.Checked == true) ? 1 : 0;
                     pui.cmpEsDeConsigna = (chkEsDeConsigna.Checked == true) ? 1 : 0;
                     pui.cmpNumRojo = (chkNumRojo.Checked == true) ? 1 : 0;
+                    pui.cmpCveLstPrecio = Convert.ToString(cboLstPrecio.SelectedValue);
 
                     if (pui.ActualizaAlmacen() >= 0)
                     {
@@ -355,6 +358,7 @@ namespace GAFE
             chkEsDeVenta.Enabled = Op;
             chkEsDeConsigna.Enabled = Op;
             chkNumRojo.Enabled = Op;
+            cboLstPrecio.Enabled = Op;
         }
 
         private void LimpiarControles()
@@ -382,6 +386,15 @@ namespace GAFE
         private void txtClaveAlmacen_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
+        }
+
+
+        private void LlecboLstPrecio()
+        {
+            PuiCatProveedores lin = new PuiCatProveedores(db);
+            cboLstPrecio.DataSource = lin.LLenaCboProveedores();
+            cboLstPrecio.ValueMember = "Clave";
+            cboLstPrecio.DisplayMember = "Descripcion";
         }
     }
 }

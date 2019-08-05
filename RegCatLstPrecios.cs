@@ -105,5 +105,25 @@ namespace GAFE
             return dt;
         }
 
+        public SqlDataAdapter GetPrecioArticulo()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = " SELECT LstPM.CveLstPrecio,LstPM.Nombre, LstPM.EsDeVenta, LstPM.EsDeCosto, LstPD.Precio " +
+                         " FROM Inv_LstPreciosMast AS LstPM " +
+                         " INNER JOIN Inv_LstPreciosDet AS LstPD ON LstPD.CveLstPrecio = LstPM.CveLstPrecio " +
+                         " WHERE LstPM.Estatus = 1 AND LstpD.CveArticulo  = @CveArticulo AND LstPM.CveLstPrecio = @CveLstPrecio ";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        public SqlDataAdapter LLenaCboLstPrecio()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select CveLstPrecio as Clave,Nombre as Descripcion " +
+                         "from Inv_LstPreciosMast where Estatus=1";
+            dt = db.SelectDA(Sql);
+            return dt;
+        }
+
     }
 }

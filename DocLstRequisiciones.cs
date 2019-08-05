@@ -26,8 +26,9 @@ namespace GAFE
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
         private String CveDoc;
+        private String NameDoc;
 
-        public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, String CveDc, String NameDoc)
+        public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, String CveDc, String _NameDoc)
         {
             InitializeComponent();
             FecDia = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Today));
@@ -39,6 +40,8 @@ namespace GAFE
             ConfigDoc = cd.ConfigDoc();
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
+            NameDoc = _NameDoc;
 
             this.Text = "LISTADO DE "+NameDoc;
 
@@ -60,7 +63,7 @@ namespace GAFE
             //llamar la forma de regdoc
             if (movimiento.CompareTo("Error") != 0)
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  1, ConfigDoc, movimiento, CveDoc);
+                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  1, ConfigDoc, movimiento, CveDoc, NameDoc);
                 Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Rcap.ShowDialog();
@@ -84,7 +87,7 @@ namespace GAFE
             {
                 try
                 {
-                    DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor, 2, ConfigDoc, rq.keyDocumento, CveDoc);
+                    DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor, 2, ConfigDoc, rq.keyDocumento, CveDoc, NameDoc);
                     Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                     Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                     Rcap.ShowDialog();
@@ -143,7 +146,7 @@ namespace GAFE
             }
             else
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  3, ConfigDoc, rq.keyDocumento, CveDoc);
+                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  3, ConfigDoc, rq.keyDocumento, CveDoc, NameDoc);
                 Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Rcap.ShowDialog();

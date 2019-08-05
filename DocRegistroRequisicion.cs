@@ -25,6 +25,7 @@ namespace GAFE
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
         private String CveDoc;
+        private String NameDoc;
 
         private Boolean isDataSaved = false;//Valida el cerrar el doc
 
@@ -42,7 +43,7 @@ namespace GAFE
         }
 
         public DocRegistroRequisicion(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op, 
-            clsCfgDocumento CfgDoc,string mov, String _CveDoc)
+            clsCfgDocumento CfgDoc,string mov, String _CveDoc, string _namedoc)
         {
             StiloColor = NewColor;
 
@@ -54,6 +55,10 @@ namespace GAFE
             CveDoc = _CveDoc;
             InitializeComponent();
             PARTIDAS = new List<DocPartidasReq>();
+
+            NameDoc = _namedoc;
+
+            this.Text = "registro de DE " + NameDoc;
 
             FechaExpedicion.Enabled = (ConfigDoc.EditaFecha == 1)?true:false;
 

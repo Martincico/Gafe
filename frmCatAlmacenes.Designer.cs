@@ -53,6 +53,8 @@
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cboLstPrecio = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -75,6 +77,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cboLstPrecio);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.chkNumRojo);
             this.panel2.Controls.Add(this.chkEsDeConsigna);
             this.panel2.Controls.Add(this.chkEsDeVenta);
@@ -89,14 +93,14 @@
             this.panel2.Controls.Add(this.lblCodEmpleado);
             this.panel2.Location = new System.Drawing.Point(1, 268);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 218);
+            this.panel2.Size = new System.Drawing.Size(495, 230);
             this.panel2.TabIndex = 12;
             // 
             // chkNumRojo
             // 
             this.chkNumRojo.AutoSize = true;
             this.chkNumRojo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkNumRojo.Location = new System.Drawing.Point(263, 145);
+            this.chkNumRojo.Location = new System.Drawing.Point(10, 136);
             this.chkNumRojo.Name = "chkNumRojo";
             this.chkNumRojo.Size = new System.Drawing.Size(175, 22);
             this.chkNumRojo.TabIndex = 13;
@@ -107,7 +111,7 @@
             // 
             this.chkEsDeConsigna.AutoSize = true;
             this.chkEsDeConsigna.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEsDeConsigna.Location = new System.Drawing.Point(95, 145);
+            this.chkEsDeConsigna.Location = new System.Drawing.Point(10, 166);
             this.chkEsDeConsigna.Name = "chkEsDeConsigna";
             this.chkEsDeConsigna.Size = new System.Drawing.Size(118, 22);
             this.chkEsDeConsigna.TabIndex = 12;
@@ -118,7 +122,7 @@
             // 
             this.chkEsDeVenta.AutoSize = true;
             this.chkEsDeVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEsDeVenta.Location = new System.Drawing.Point(263, 108);
+            this.chkEsDeVenta.Location = new System.Drawing.Point(10, 194);
             this.chkEsDeVenta.Name = "chkEsDeVenta";
             this.chkEsDeVenta.Size = new System.Drawing.Size(68, 22);
             this.chkEsDeVenta.TabIndex = 11;
@@ -129,7 +133,7 @@
             // 
             this.chkEsDeCompra.AutoSize = true;
             this.chkEsDeCompra.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEsDeCompra.Location = new System.Drawing.Point(95, 108);
+            this.chkEsDeCompra.Location = new System.Drawing.Point(149, 194);
             this.chkEsDeCompra.Name = "chkEsDeCompra";
             this.chkEsDeCompra.Size = new System.Drawing.Size(81, 22);
             this.chkEsDeCompra.TabIndex = 10;
@@ -143,7 +147,7 @@
             this.cboEstatus.Items.AddRange(new object[] {
             "Activo",
             "Baja"});
-            this.cboEstatus.Location = new System.Drawing.Point(95, 74);
+            this.cboEstatus.Location = new System.Drawing.Point(95, 104);
             this.cboEstatus.Name = "cboEstatus";
             this.cboEstatus.Size = new System.Drawing.Size(147, 26);
             this.cboEstatus.TabIndex = 9;
@@ -152,7 +156,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label8.Location = new System.Drawing.Point(7, 77);
+            this.label8.Location = new System.Drawing.Point(7, 107);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 18);
             this.label8.TabIndex = 19;
@@ -344,6 +348,28 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar";
             // 
+            // cboLstPrecio
+            // 
+            this.cboLstPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboLstPrecio.FormattingEnabled = true;
+            this.cboLstPrecio.Items.AddRange(new object[] {
+            "Activo",
+            "Baja"});
+            this.cboLstPrecio.Location = new System.Drawing.Point(95, 72);
+            this.cboLstPrecio.Name = "cboLstPrecio";
+            this.cboLstPrecio.Size = new System.Drawing.Size(246, 26);
+            this.cboLstPrecio.TabIndex = 20;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label3.Location = new System.Drawing.Point(7, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 18);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Lista Precio";
+            // 
             // frmCatAlmacenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,7 +380,7 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(504, 487);
+            this.ClientSize = new System.Drawing.Size(504, 497);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
@@ -364,7 +390,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(516, 523);
+            this.MaximumSize = new System.Drawing.Size(516, 533);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(516, 297);
             this.Name = "frmCatAlmacenes";
@@ -407,5 +433,7 @@
         private System.Windows.Forms.CheckBox chkEsDeCompra;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.ComboBox cboLstPrecio;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -18,9 +18,8 @@ namespace GAFE
         private string Nombre;
         private string Password;
         private string CodPerfil;
-        private string ClaveAlmacen;
         //matriz para Usuarioar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[5, 2];
+        private object[,] MatParam = new object[4, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -58,11 +57,6 @@ namespace GAFE
             set { CodPerfil = value; }
         }
 
-        public string cmpCveAlmacen
-        {
-            get { return ClaveAlmacen; }
-            set { ClaveAlmacen = value; }
-        }
 
 
         #endregion
@@ -149,20 +143,9 @@ namespace GAFE
             if (Ds.Tables[0].Rows.Count > 0)
             {
                 ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
                 Usuario = ObjA[0].ToString();
-                Nombre = ObjA[1].ToString();
                 Password = ObjA[2].ToString();
-                CodPerfil = ObjA[3].ToString();
-                ClaveAlmacen = ObjA[4].ToString();
-            }
-            else
-            {
-                ObjA = new object[1];
-                Usuario = "";
-                Nombre = "";
-                Password = "";
-                CodPerfil = "";
-                ClaveAlmacen = "";
             }
 
             return ObjA;
@@ -180,34 +163,9 @@ namespace GAFE
 
         public SqlDataAdapter BuscaUsuario(string buscar)
         {
-            /* MatParam = new object[4, 2];
-             MatParam[0, 0] = "Usuario"; MatParam[0, 1] = buscar;
-             MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
-             MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
-             MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
-             RegSegUsuarios OpBsq = new RegSegUsuarios(MatParam);/
-             */
             RegSegUsuarios OpBsq = new RegSegUsuarios(db);
             return OpBsq.BuscaUsuario(buscar);
         }
-
-
-        public void getEstiloUser()
-        {
-            MatParam = new object[1, 2];
-            MatParam[0, 0] = "Usuario"; MatParam[0, 1] = Usuario;
-            RegSegUsuarios OpEdit = new RegSegUsuarios(MatParam, db);
-            Datos = OpEdit.EstiloUser();
-            DataSet Ds = new DataSet();
-            Datos.Fill(Ds);
-            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
-
-            Usuario = ObjA[0].ToString();
-            Nombre = ObjA[1].ToString();
-            Password = ObjA[2].ToString();
-
-        }
-
 
         private void CargaParametroMat()
         {
@@ -215,8 +173,17 @@ namespace GAFE
             MatParam[1, 0] = "Nombre"; MatParam[1, 1] = Nombre;
             MatParam[2, 0] = "Password"; MatParam[2, 1] = Password;
             MatParam[3, 0] = "CodPerfil"; MatParam[3, 1] = CodPerfil;
-            MatParam[4, 0] = "ClaveAlmacen"; MatParam[4, 1] = ClaveAlmacen;
         }
 
+
+        public DataTable CboUsuarios(int SinConfg)
+        {
+            RegSegUsuarios OpLst = new RegSegUsuarios(db);
+            DataSet Cbo = new DataSet();
+            OpLst.CboUsuarios(SinConfg).Fill(Cbo);
+            return Cbo.Tables[0];
+        }
     }
+
+
 }

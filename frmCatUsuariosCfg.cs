@@ -16,7 +16,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatPerfiles : MetroForm
+    public partial class frmCatUsuariosCfg : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
@@ -26,37 +26,33 @@ namespace GAFE
         private string Perfil;
         private clsUtil uT;
 
-        public frmCatPerfiles()
+        public frmCatUsuariosCfg()
         {
             InitializeComponent();
         }
 
-        public frmCatPerfiles(MsSql Odat, string perfil)
+        public frmCatUsuariosCfg(MsSql Odat, string perfil)
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
-        private void frmCatPerfiles_Load(object sender, EventArgs e)
+        private void frmCatUsuariosCfg_Load(object sender, EventArgs e)
         {
          
 
             this.Size = this.MinimumSize;
             LlenaGridView();
-            cmdSeleccionar.Visible = false;
-            if (opcion > 3)
-            {
+            LlecboAlmacen();
+            LlecboUsuario(1);
+            LlecboTema();
+            LlecboFondo();
 
-                cmdAceptar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdConsultar.Visible = true;
-                cmdSeleccionar.Visible = true;
-            }
+
         }
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
@@ -70,19 +66,16 @@ namespace GAFE
         {
             LimpiarControles();
             OpcionControles(true);
+            LlecboUsuario(0);
             this.Size = this.MaximumSize;
             opcion = 2;
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiSegPerfiles pui = new PuiSegPerfiles(db);
+            getValues();
 
-            pui.keySperfil = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarPerfil();
-            txtPerfil.Text = pui.keySperfil;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            
-            txtPerfil.Enabled = false;
+
+            cboUsuario.Enabled = false;
 
         }
 
@@ -90,18 +83,29 @@ namespace GAFE
         {
             LimpiarControles();
             OpcionControles(true);
+            LlecboUsuario(0);
             this.Size = this.MaximumSize;
             opcion = 3;
 
             idxG = grdView.CurrentRow.Index;
+            getValues();
 
-            PuiSegPerfiles pui = new PuiSegPerfiles(db);
-
-            pui.keySperfil = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarPerfil();
-            txtPerfil.Text = pui.keySperfil;
-            txtDescripcion.Text = pui.cmpDescripcion;
             OpcionControles(false);
+        }
+
+        private void getValues()
+        {
+            PuiSegUsuarioCfg pui = new PuiSegUsuarioCfg(db);
+
+            pui.keySUsrCfg = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            pui.EditarUsrCfg();
+            cboUsuario.SelectedValue = pui.keySUsrCfg;
+            cboAlmacen.SelectedValue = pui.cmpCveAlmacen;
+            chkEditaFoli.Checked = pui.cmpCambiaAlmacen == 1? true: false;
+            cboFondo.SelectedValue = pui.cmpFondo;
+            cboTema.SelectedValue = pui.cmpStiloTema;
+
+
         }
 
         private void cmdEliminar_Click(object sender, EventArgs e)
@@ -111,9 +115,9 @@ namespace GAFE
                 if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiSegPerfiles pui = new PuiSegPerfiles(db);
-                    pui.keySperfil = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaPerfil();
+                    PuiSegUsuarioCfg pui = new PuiSegUsuarioCfg(db);
+                    pui.keySUsrCfg = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EliminaUsrCfg();
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -130,8 +134,8 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiSegPerfiles pui = new PuiSegPerfiles(db);
-            DatosTbl = pui.BuscaPerfil(txtBuscar.Text);
+            PuiSegUsuarioCfg pui = new PuiSegUsuarioCfg(db);
+            DatosTbl = pui.BuscaUsrCfg(txtBuscar.Text);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
 
@@ -143,17 +147,14 @@ namespace GAFE
             }
         }
 
-
-
-
-
-
+        
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
 
             switch (opcion)
             {
-                case 1: Agregar(); break;
+                case 1: Agregar(); 
+                    break;
                 case 2: Editar(); break;
                 case 3: this.Size = this.MinimumSize; break;
             }
@@ -166,22 +167,11 @@ namespace GAFE
             OpcionControles(true);
         }
 
-        private void frmSegPerfiles_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-
-
-
-
 
         private void LlenaGridView()
         {
-            PuiSegPerfiles pui = new PuiSegPerfiles(db);
-            DatosTbl = pui.ListarPerfiles();
+            PuiSegUsuarioCfg pui = new PuiSegUsuarioCfg(db);
+            DatosTbl = pui.ListarUsrCfg();
             DataSet Ds = new DataSet();
 
             try
@@ -206,12 +196,10 @@ namespace GAFE
         {
             if (Validar())
             {
-                PuiSegPerfiles pui = new PuiSegPerfiles(db);
+                PuiSegUsuarioCfg pui = new PuiSegUsuarioCfg(db);
+                SetValues(pui);
 
-                pui.keySperfil = txtPerfil.Text;
-                pui.cmpDescripcion = txtDescripcion.Text;
-
-                if (pui.AgregarPerfil() >= 1)
+                if (pui.AgregarUsrCfg() >= 1)
                 {
                     MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
@@ -228,19 +216,15 @@ namespace GAFE
             {
                 if (Validar())
                 {
-                    PuiSegPerfiles pui = new PuiSegPerfiles(db);
-
-                    pui.keySperfil = txtPerfil.Text;
-                    pui.cmpDescripcion = txtDescripcion.Text;
-
-                    if (pui.ActualizaPerfil() >= 0)
+                    PuiSegUsuarioCfg pui = new PuiSegUsuarioCfg(db);
+                    SetValues(pui);
+                    if (pui.ActualizaUsrCfg() >= 0)
                     {
                         MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                            MessageBoxIcon.Information);
                         this.Size = this.MinimumSize;
                     }
                     LlenaGridView();
-                    //grdView.CurrentRow.Index = idxG;  
                 }
             }
             catch (Exception ex)
@@ -251,39 +235,48 @@ namespace GAFE
             }
         }
 
+        private void SetValues(PuiSegUsuarioCfg pui)
+        {
+            pui.keySUsrCfg = cboUsuario.SelectedValue.ToString();
+            pui.cmpCveAlmacen = cboAlmacen.SelectedValue.ToString();
+            pui.cmpCambiaAlmacen = (chkEditaFoli.Checked) ? 1 : 0;
+            pui.cmpFondo = cboFondo.SelectedValue.ToString();
+            pui.cmpStiloTema = cboTema.SelectedValue.ToString();
+
+        }
 
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
-            if (String.IsNullOrEmpty(txtPerfil.Text))
+            string msg = "";
+            if (cboAlmacen.SelectedIndex < 0)
             {
-                MessageBoxAdv.Show("Perfil: No puede ir vacío.", "CatUMedidaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                msg = "Seleccioné un almacén \n";
                 dv = false;
             }
-            else
-            {
-                if (!Util.LetrasNum(txtPerfil.Text))
-                {
-                    MessageBoxAdv.Show("Perfil: Contiene caracteres no validos.", "SegPerfiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
 
-            if (String.IsNullOrEmpty(txtDescripcion.Text))
+            if (cboUsuario.SelectedIndex < 0)
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "SegPerfiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                msg = "Seleccioné un usurio. \n";
                 dv = false;
             }
-            else
+
+            if (cboTema.SelectedIndex < 0)
             {
-                if (!Util.LetrasNumSpa(txtDescripcion.Text))
-                {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "SegPerfiles", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
+                msg = "Seleccioné un tema. \n";
+                dv = false;
             }
 
+            if (cboFondo.SelectedIndex < 0)
+            {
+                msg = "Seleccioné un fondo. \n";
+                dv = false;
+            }
+
+            if(!dv)
+            {
+                MessageBoxAdv.Show("Se encontraron los siguientes errores: \n", " Configuración de usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             return dv;
         }
@@ -291,47 +284,79 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            txtPerfil.Enabled = Op;
-            txtDescripcion.Enabled = Op;
+            cboUsuario.Enabled = Op;
+            cboAlmacen.Enabled = Op;
+            cboFondo.Enabled = Op;
+            cboTema.Enabled = Op;
+            chkEditaFoli.Enabled = Op;
         }
 
         private void LimpiarControles()
         {
-            txtPerfil.Text = "";
-            txtDescripcion.Text = "";
+            LlecboUsuario(1);
+            LlecboAlmacen();
+            LlecboFondo();
+            LlecboTema();
         }
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (opcion > 3)
-                cmdSeleccionar_Click(sender, e);
-            else
-                cmEditar_Click(sender, e);
+            cmEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            if (opcion > 3)
-                cmdSeleccionar_Click(sender, e);
-            else
-                cmEditar_Click(sender, e);
+            cmEditar_Click(sender, e);
+
         }
 
-
-
-        private void cmdSeleccionar_Click(object sender, EventArgs e)
+        private void LlecboAlmacen()
         {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboAlmacen.DataSource = lin.CboInv_CatAlmacenes();
+            cboAlmacen.ValueMember = "ClaveAlmacen";
+            cboAlmacen.DisplayMember = "Descripcion";
+        }
 
-            try
+        private void LlecboUsuario(int SinConfg)
+        {
+            PuiSegUsuarios lin = new PuiSegUsuarios(db);
+            cboUsuario.DataSource = lin.CboUsuarios(SinConfg);
+            cboUsuario.ValueMember = "Clave";
+            cboUsuario.DisplayMember = "Descripcion";
+        }
+
+        private void LlecboTema()
+        {
+            PuiSegUsuarioCfg lin = new PuiSegUsuarioCfg(db);
+            cboTema.DataSource = lin.CboTemas();
+            cboTema.ValueMember = "Clave";
+            cboTema.DisplayMember = "Descripcion";
+        }
+
+        private void LlecboFondo()
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            cboFondo.DataSource = lin.CboInv_CatAlmacenes();
+            cboFondo.ValueMember = "ClaveAlmacen";
+            cboFondo.DisplayMember = "Descripcion";
+        }
+
+        private void cmdAgregar_Click_1(object sender, EventArgs e)
+        {
+            LimpiarControles();
+            OpcionControles(true);
+            this.Size = this.MaximumSize;
+            opcion = 1;
+        }
+
+        private void frmCatUsuariosCfg_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
             {
-                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 this.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
-                     MessageBoxIcon.Exclamation);
-            }
+
         }
     }
 }

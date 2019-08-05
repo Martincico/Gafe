@@ -18,8 +18,9 @@ namespace GAFE
         private int EsDeVenta;
         private int EsDeConsigna;
         private int NumRojo;
+        private string CveLstPrecio;
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[7, 2];
+        private object[,] MatParam = new object[8, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -76,6 +77,13 @@ namespace GAFE
             set { NumRojo = value; }
         }
 
+        public string cmpCveLstPrecio
+        {
+            get { return CveLstPrecio; }
+            set { CveLstPrecio = value; }
+        }
+
+
         #endregion
 
         public int AgregarAlmacen()
@@ -126,6 +134,7 @@ namespace GAFE
             EsDeVenta = Convert.ToInt32(ObjA[4]);
             EsDeConsigna = Convert.ToInt32(ObjA[5]);
             NumRojo = Convert.ToInt32(ObjA[6]);
+            CveLstPrecio = ObjA[7].ToString();
 
 
         }
@@ -160,6 +169,7 @@ namespace GAFE
             MatParam[4, 0] = "EsDeVenta"; MatParam[4, 1] = EsDeVenta;
             MatParam[5, 0] = "EsDeConsigna"; MatParam[5, 1] = EsDeConsigna;
             MatParam[6, 0] = "NumRojo"; MatParam[6, 1] = NumRojo;
+            MatParam[7, 0] = "CveLstPrecio"; MatParam[7, 1] = CveLstPrecio;
         }
     }
 }

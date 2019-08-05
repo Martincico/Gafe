@@ -174,11 +174,17 @@
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </Compile>
     <Compile Include="DocRegRequisiciones.cs" />
-    <Compile Include="FrmSlcDocumentos.cs">
+    <Compile Include="frmCaja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSlcDocumentos.designer.cs">
-      <DependentUpon>FrmSlcDocumentos.cs</DependentUpon>
+    <Compile Include="frmCaja.designer.cs">
+      <DependentUpon>frmCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatUsuariosCfg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatUsuariosCfg.Designer.cs">
+      <DependentUpon>frmCatUsuariosCfg.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLstCfgDocProv.cs">
       <SubType>Form</SubType>
@@ -227,6 +233,12 @@
     </Compile>
     <Compile Include="frmRegCfgTipoMovProv.designer.cs">
       <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu2.Designer.cs">
+      <DependentUpon>Menu2.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -397,6 +409,7 @@
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
+    <Compile Include="PuiCatClientes.cs" />
     <Compile Include="PuiCatProveedores.cs" />
     <Compile Include="PuiExistencias.cs" />
     <Compile Include="PuiCatArticulos.cs" />
@@ -413,6 +426,7 @@
     <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="PuiSegAccesos.cs" />
+    <Compile Include="PuiSegUsuarioCfg.cs" />
     <Compile Include="PuiSegPerfiles.cs" />
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
@@ -421,6 +435,7 @@
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
+    <Compile Include="RegCatClientes.cs" />
     <Compile Include="RegCatProveedores.cs" />
     <Compile Include="RegExistencias.cs" />
     <Compile Include="RegCatArticulo.cs" />
@@ -437,6 +452,7 @@
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
     <Compile Include="RegSegAccesos.cs" />
+    <Compile Include="RegSegUsuarioCfg.cs" />
     <Compile Include="RegSegPerfiles.cs" />
     <Compile Include="RegSegUsuarios.cs" />
     <Compile Include="RepExistencias.cs" />
@@ -453,8 +469,11 @@
     <EmbeddedResource Include="DocRegistroRequisicion.resx">
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSlcDocumentos.resx">
-      <DependentUpon>FrmSlcDocumentos.cs</DependentUpon>
+    <EmbeddedResource Include="frmCaja.resx">
+      <DependentUpon>frmCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatUsuariosCfg.resx">
+      <DependentUpon>frmCatUsuariosCfg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLstCfgDocProv.resx">
       <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
@@ -482,6 +501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu2.resx">
+      <DependentUpon>Menu2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

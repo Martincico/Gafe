@@ -8,13 +8,13 @@ using DatSql;
 
 namespace GAFE
 {
-    class RegCatProveedores
+    class RegCatClientes
     {
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
         //private string ClaveReg;
 
-        public RegCatProveedores(object[,] Param, MsSql Odat)
+        public RegCatClientes(object[,] Param, MsSql Odat)
         {
             ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
             for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
@@ -23,36 +23,19 @@ namespace GAFE
             db = Odat;
         }
 
-        public RegCatProveedores(MsSql Odat) { db = Odat; }
+        public RegCatClientes(MsSql Odat) { db = Odat; }
 
-        /*
-        public void Conn()
+        public int AddRegClientes()
         {
-            /*db = new DatSql.MsSql(
-                   ConfigurationSettings.AppSettings.Get("Servidor"),
-                   ConfigurationSettings.AppSettings.Get("Datos"),
-                   ConfigurationSettings.AppSettings.Get("Usuario"),
-                   ConfigurationSettings.AppSettings.Get("Password")
-                   );
-            
-            db = new DatSql.MsSql("SIGMA6\\SQL14", "CtrlAcceso", "sa", "Remolachas1");
-                   
-            if (db.Conectar() < 1)
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    */
-
-        public int AddRegProveedores()
-        {
-            string sql = "Insert into CatProveedores (CveProveedor,Nombre,RFC,Calle,CveLocalidad,CP,Tel1,Mail1,TipoPersona,Estatus,Contacto,Tel2,Mail2,Cargo,Celular) " +
-                         "values(@CveProveedor,@Nombre,@RFC,@Calle,@CveLocalidad,@CP,@Tel1,@Mail1,@TipoPersona,@Estatus,@Contacto,@Tel2,@Mail2,@Cargo,@Celular)";
+            string sql = "Insert into CatClientes (CveCliente,Nombre,RFC,Calle,CveLocalidad,CP,Tel1,Mail1,TipoPersona,Estatus,Contacto,Tel2,Mail2,Cargo,Celular) " +
+                         "values(@CveCliente,@Nombre,@RFC,@Calle,@CveLocalidad,@CP,@Tel1,@Mail1,@TipoPersona,@Estatus,@Contacto,@Tel2,@Mail2,@Cargo,@Celular)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
 
-        public int UpdateProveedores()
+        public int UpdateClientes()
         {
-            string sql = "Update CatProveedores set " +
+            string sql = "Update CatClientes set " +
                         "Nombre=@Nombre, " +
                         "RFC=@RFC, " +
                         "Calle=@Calle, " +
@@ -67,13 +50,13 @@ namespace GAFE
                         "Mail2=@Mail2, " +
                         "Cargo=@Cargo, " +
                         "Celular=@Celular " +
-                         "Where CveProveedor = @CveProveedor";
+                         "Where CveCliente = @CveCliente";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int DeleteProveedores()
+        public int DeleteClientes()
         {
-            string sql = "Delete from CatProveedores where CveProveedor = @CveProveedor";
+            string sql = "Delete from CatClientes where CveCliente = @CveCliente";
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
@@ -81,31 +64,31 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select CveProveedor,Nombre,RFC,Calle,CveLocalidad,CP,Tel1,Mail1,TipoPersona,Estatus,Contacto,Tel2,Mail2,Cargo,Celular " +
-                          "from CatProveedores where CveProveedor = @CveProveedor";
+            string Sql = "Select CveCliente,Nombre,CveLstPrecio " +
+                          "from CatClientes where CveCliente = @CveCliente";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-        public SqlDataAdapter ListProveedores()
+        public SqlDataAdapter ListClientes()
         {
             SqlDataAdapter dt = null;
-            string Sql = "SELECT P.CveProveedor, P.Nombre, P.RFC, P.Calle, G.Descripcion AS Localidad, P.CP, P.Tel1, P.Mail1, " +
+            string Sql = "SELECT P.CveCliente, P.Nombre, P.RFC, P.Calle, G.Descripcion AS Localidad, P.CP, P.Tel1, P.Mail1, " +
                         "P.TipoPersona, IIF(P.Estatus=1,'ACTIVO','BAJA') AS Estatus, P.Contacto, P.Tel2, P.Mail2, P.Cargo, P.Celular " +
-                         "FROM CatProveedores P JOIN CatGeografia G ON P.CveLocalidad = G.id";
+                         "FROM CatClientes P JOIN CatGeografia G ON P.CveLocalidad = G.id";
             dt = db.SelectDA(Sql);
             return dt;
         }
         public SqlDataAdapter BuscaArticulo(string bsq)
         {
             SqlDataAdapter dt = null;
-            string Sql = "SELECT P.CveProveedor, P.Nombre, P.RFC, P.Calle, G.Descripcion AS Localidad, P.CP, P.Tel1, P.Mail1, " +
+            string Sql = "SELECT P.CveCliente, P.Nombre, P.RFC, P.Calle, G.Descripcion AS Localidad, P.CP, P.Tel1, P.Mail1, " +
                         "P.TipoPersona, IIF(P.Estatus=1,'ACTIVO','BAJA') AS Estatus, P.Contacto, P.Tel2, P.Mail2, P.Cargo, P.Celular " +
-                        "FROM CatProveedores P " +
+                        "FROM CatClientes P " +
                         "JOIN CatGeografia G ON P.CveLocalidad = G.id " +
-                        "WHERE P.CveProveedor like '%" + bsq + "%' OR " +
+                        "WHERE P.CveCliente like '%" + bsq + "%' OR " +
                         "P.Nombre like '%" + bsq + "%' OR " +
-                        "P.CveProveedor like '%" + bsq + "%' OR " +
+                        "P.CveCliente like '%" + bsq + "%' OR " +
                         "P.Nombre like '%" + bsq + "%' OR " +
                         "P.RFC like '%" + bsq + "%' OR " +
                         "P.Calle like '%" + bsq + "%' OR " +
@@ -121,11 +104,11 @@ namespace GAFE
             dt = db.SelectDA(Sql);
             return dt;
         }
-        public SqlDataAdapter LLenaCboProveedores()
+        public SqlDataAdapter LLenaCboClientes()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select CveProveedor as Clave,Nombre as Descripcion " +
-                         "from CatProveedores where Estatus=1";
+            string Sql = "Select CveCliente as Clave,Nombre as Descripcion " +
+                         "from CatClientes where Estatus=1";
             dt = db.SelectDA(Sql);
             return dt;
         }

@@ -195,11 +195,11 @@ namespace GAFE
             return OpBsq.BuscaArticulo(buscar);
         }
 
-        public DataTable ComboProveedores(int padre = 0)
+        public DataTable LLenaCboProveedores(int padre = 0)
         {
             RegCatProveedores OpLst = new RegCatProveedores(db);
             DataSet Cbo = new DataSet();
-            OpLst.ComboProveedores().Fill(Cbo);
+            OpLst.LLenaCboProveedores().Fill(Cbo);
             return Cbo.Tables[0];
         }
 

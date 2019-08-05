@@ -430,15 +430,12 @@ namespace GAFE
 
         private void LlecboProveedor()
         {
-            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
-            cboProveedor.ValueMember = "ClaveAlmacen";
+            PuiCatProveedores lin = new PuiCatProveedores(db);
+            cboProveedor.DataSource = lin.LLenaCboProveedores();
+            cboProveedor.ValueMember = "Clave";
             cboProveedor.DisplayMember = "Descripcion";
         }
 
-
-
-    
         private void cboClaseMov_SelectedIndexChanged(object sender, EventArgs e)
         {
             cboTipoMovtos.DataSource = null;
