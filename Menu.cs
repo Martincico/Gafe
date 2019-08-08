@@ -98,7 +98,7 @@ namespace GAFE
                 
                 up = ut.BuscarIdNodo("1Inv007");
                 int CatProve = up.Acceso;
-                CatProveedores.Enabled = (CatProve == 1) ? true : false;
+                CatsProveedores.Enabled = (CatProve == 1) ? true : false;
                 up = ut.BuscarIdNodo("1Inv008");
                 int CatLstPre = up.Acceso;
                 CatListaPrecios.Enabled = (CatLstPre == 1) ? true : false;
@@ -212,8 +212,7 @@ namespace GAFE
 
         private void CatProveedores_Click(object sender, EventArgs e)
         {
-            frmLstProveedores fm = new frmLstProveedores(db, user.CodPerfil);
-            Nav(fm, panelContenedor);
+            
         }
 
         private void CatListaPrecios_Click(object sender, EventArgs e)
@@ -260,7 +259,7 @@ namespace GAFE
 
         private void MnuKardexArt_Click(object sender, EventArgs e)
         {
-            frmKardex fm = new frmKardex(db, user.CodPerfil);
+            frmKardex fm = new frmKardex(db, user);
             Nav(fm, panelContenedor);
         }
 
@@ -278,7 +277,7 @@ namespace GAFE
 
         private void MnuExitenciaArt_Click(object sender, EventArgs e)
         {
-            frmExistencias fm = new frmExistencias(db, user.CodPerfil);
+            frmExistencias fm = new frmExistencias(db, user);
             Nav(fm, panelContenedor);
         }
 
@@ -298,6 +297,18 @@ namespace GAFE
         {
             frmCatUsuariosCfg fm = new frmCatUsuariosCfg(db, user.CodPerfil);
             Nav(fm, panelContenedor);
+
+        }
+
+        private void CatsProveedores_Click(object sender, EventArgs e)
+        {
+            frmLstProveedores fm = new frmLstProveedores(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void CatsClientes_Click(object sender, EventArgs e)
+        {
+            
 
         }
     }

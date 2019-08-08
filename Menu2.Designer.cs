@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu2));
             this.ribMenu = new Syncfusion.Windows.Forms.Tools.RibbonControlAdv();
             this.ModInventario = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.ModConfiguración = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
+            this.ModSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsArticulos = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatArticulo = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,11 +53,9 @@
             this.InvMenDocumentos = new System.Windows.Forms.ToolStripMenuItem();
             this.OpInvFisicos = new System.Windows.Forms.ToolStripDropDownButton();
             this.RepInven = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
-            this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatProvee = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsProveedores = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatProveedores = new System.Windows.Forms.ToolStripMenuItem();
-            this.ModConfiguración = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.toolStripEx4 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.MnuCfgFoliadores = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripEx2 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
@@ -63,7 +65,6 @@
             this.toolStripEx3 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CfgMnuInventarios = new System.Windows.Forms.ToolStripDropDownButton();
             this.Inv_TipoMov = new System.Windows.Forms.ToolStripMenuItem();
-            this.ModSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsUsuarios = new System.Windows.Forms.ToolStripDropDownButton();
             this.CatsPerfiles = new System.Windows.Forms.ToolStripDropDownButton();
@@ -86,18 +87,6 @@
             this.panelContenedor = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
             this.ribMenu.SuspendLayout();
-            this.ModInventario.Panel.SuspendLayout();
-            this.CatInven.SuspendLayout();
-            this.ProcInven.SuspendLayout();
-            this.ModProveedores.Panel.SuspendLayout();
-            this.CatProvee.SuspendLayout();
-            this.ModConfiguración.Panel.SuspendLayout();
-            this.toolStripEx4.SuspendLayout();
-            this.toolStripEx2.SuspendLayout();
-            this.toolStripEx3.SuspendLayout();
-            this.ModSeguridad.Panel.SuspendLayout();
-            this.CatSeguridad.SuspendLayout();
-            this.CatPersonalizar.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribMenu
@@ -113,7 +102,7 @@
             this.ribMenu.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
             this.ribMenu.Location = new System.Drawing.Point(1, 0);
             this.ribMenu.MenuButtonFont = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.ribMenu.MenuButtonImage = global::GAFE.Properties.Resources.Logotipo;
+            this.ribMenu.MenuButtonImage = ((System.Drawing.Image)(resources.GetObject("ribMenu.MenuButtonImage")));
             this.ribMenu.MenuButtonText = "GAFE";
             this.ribMenu.MenuButtonWidth = 56;
             this.ribMenu.MenuColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
@@ -129,7 +118,7 @@
             this.ribMenu.QuickPanelVisible = false;
             this.ribMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribMenu.SelectedTab = this.ModInventario;
+            this.ribMenu.SelectedTab = this.ModProveedores;
             this.ribMenu.ShowRibbonDisplayOptionButton = true;
             this.ribMenu.Size = new System.Drawing.Size(799, 149);
             this.ribMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
@@ -153,10 +142,6 @@
             // 
             // ribMenu.ribbonPanel1
             // 
-            this.ModInventario.Panel.Controls.Add(this.CatInven);
-            this.ModInventario.Panel.Controls.Add(this.ProcInven);
-            this.ModInventario.Panel.Controls.Add(this.RepInven);
-            this.ModInventario.Panel.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007;
             this.ModInventario.Panel.Name = "ribbonPanel1";
             this.ModInventario.Panel.ScrollPosition = 0;
             this.ModInventario.Panel.TabIndex = 2;
@@ -166,6 +151,51 @@
             this.ModInventario.Tag = "1";
             this.ModInventario.Text = "Inventarios";
             // 
+            // ModProveedores
+            // 
+            this.ModProveedores.Name = "ModProveedores";
+            // 
+            // ribMenu.ribbonPanel2
+            // 
+            this.ModProveedores.Panel.Name = "ribbonPanel2";
+            this.ModProveedores.Panel.ScrollPosition = 0;
+            this.ModProveedores.Panel.TabIndex = 3;
+            this.ModProveedores.Panel.Text = "Proveedores";
+            this.ModProveedores.Position = 1;
+            this.ModProveedores.Size = new System.Drawing.Size(86, 30);
+            this.ModProveedores.Tag = "2";
+            this.ModProveedores.Text = "Proveedores";
+            // 
+            // ModConfiguración
+            // 
+            this.ModConfiguración.Name = "ModConfiguración";
+            // 
+            // ribMenu.ribbonPanel3
+            // 
+            this.ModConfiguración.Panel.Name = "ribbonPanel3";
+            this.ModConfiguración.Panel.ScrollPosition = 0;
+            this.ModConfiguración.Panel.TabIndex = 4;
+            this.ModConfiguración.Panel.Text = "Configuración";
+            this.ModConfiguración.Position = 2;
+            this.ModConfiguración.Size = new System.Drawing.Size(97, 30);
+            this.ModConfiguración.Tag = "1";
+            this.ModConfiguración.Text = "Configuración";
+            // 
+            // ModSeguridad
+            // 
+            this.ModSeguridad.Name = "ModSeguridad";
+            // 
+            // ribMenu.ribbonPanel4
+            // 
+            this.ModSeguridad.Panel.Name = "ribbonPanel4";
+            this.ModSeguridad.Panel.ScrollPosition = 0;
+            this.ModSeguridad.Panel.TabIndex = 5;
+            this.ModSeguridad.Panel.Text = "Seguridad";
+            this.ModSeguridad.Position = 3;
+            this.ModSeguridad.Size = new System.Drawing.Size(76, 30);
+            this.ModSeguridad.Tag = "3";
+            this.ModSeguridad.Text = "Seguridad";
+            // 
             // CatInven
             // 
             this.CatInven.AutoSize = false;
@@ -174,9 +204,6 @@
             this.CatInven.ForeColor = System.Drawing.Color.Black;
             this.CatInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CatInven.Image = null;
-            this.CatInven.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatsArticulos,
-            this.catsAlmacenes});
             this.CatInven.Location = new System.Drawing.Point(0, 1);
             this.CatInven.Name = "CatInven";
             this.CatInven.Office12Mode = false;
@@ -206,42 +233,42 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(171, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(171, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(169, 22);
+            this.CatLineas.Size = new System.Drawing.Size(171, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(171, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(169, 22);
+            this.CatClase.Size = new System.Drawing.Size(171, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
             // CatGeografia
             // 
             this.CatGeografia.Name = "CatGeografia";
-            this.CatGeografia.Size = new System.Drawing.Size(169, 22);
+            this.CatGeografia.Size = new System.Drawing.Size(171, 22);
             this.CatGeografia.Text = "Geografía";
             this.CatGeografia.Click += new System.EventHandler(this.CatGeografia_Click);
             // 
@@ -263,7 +290,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(155, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -271,7 +298,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(155, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
@@ -283,9 +310,6 @@
             this.ProcInven.ForeColor = System.Drawing.Color.Black;
             this.ProcInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ProcInven.Image = null;
-            this.ProcInven.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpInventarios,
-            this.OpInvFisicos});
             this.ProcInven.Location = new System.Drawing.Point(167, 1);
             this.ProcInven.Name = "ProcInven";
             this.ProcInven.Office12Mode = false;
@@ -314,28 +338,28 @@
             // OpMovInv
             // 
             this.OpMovInv.Name = "OpMovInv";
-            this.OpMovInv.Size = new System.Drawing.Size(216, 22);
+            this.OpMovInv.Size = new System.Drawing.Size(221, 22);
             this.OpMovInv.Text = "Movimientos de inventarios";
             this.OpMovInv.Click += new System.EventHandler(this.OpMovInv_Click);
             // 
             // OpKardex
             // 
             this.OpKardex.Name = "OpKardex";
-            this.OpKardex.Size = new System.Drawing.Size(216, 22);
+            this.OpKardex.Size = new System.Drawing.Size(221, 22);
             this.OpKardex.Text = "Kardex por artículo";
             this.OpKardex.Click += new System.EventHandler(this.OpKardex_Click);
             // 
             // OpExistencia
             // 
             this.OpExistencia.Name = "OpExistencia";
-            this.OpExistencia.Size = new System.Drawing.Size(216, 22);
+            this.OpExistencia.Size = new System.Drawing.Size(221, 22);
             this.OpExistencia.Text = "Existencia Art - Almacén";
             this.OpExistencia.Click += new System.EventHandler(this.OpExistencia_Click);
             // 
             // InvMenDocumentos
             // 
             this.InvMenDocumentos.Name = "InvMenDocumentos";
-            this.InvMenDocumentos.Size = new System.Drawing.Size(216, 22);
+            this.InvMenDocumentos.Size = new System.Drawing.Size(221, 22);
             this.InvMenDocumentos.Text = "Documentos";
             this.InvMenDocumentos.Click += new System.EventHandler(this.InvMenDocumentos_Click);
             // 
@@ -367,22 +391,6 @@
             this.RepInven.TabIndex = 5;
             this.RepInven.Text = "Reportes";
             // 
-            // ModProveedores
-            // 
-            this.ModProveedores.Name = "ModProveedores";
-            // 
-            // ribMenu.ribbonPanel2
-            // 
-            this.ModProveedores.Panel.Controls.Add(this.CatProvee);
-            this.ModProveedores.Panel.Name = "ribbonPanel2";
-            this.ModProveedores.Panel.ScrollPosition = 0;
-            this.ModProveedores.Panel.TabIndex = 3;
-            this.ModProveedores.Panel.Text = "Proveedores";
-            this.ModProveedores.Position = 1;
-            this.ModProveedores.Size = new System.Drawing.Size(86, 30);
-            this.ModProveedores.Tag = "2";
-            this.ModProveedores.Text = "Proveedores";
-            // 
             // CatProvee
             // 
             this.CatProvee.AutoSize = false;
@@ -391,8 +399,6 @@
             this.CatProvee.ForeColor = System.Drawing.Color.Black;
             this.CatProvee.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CatProvee.Image = null;
-            this.CatProvee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatsProveedores});
             this.CatProvee.Location = new System.Drawing.Point(0, 1);
             this.CatProvee.Name = "CatProvee";
             this.CatProvee.Office12Mode = false;
@@ -417,28 +423,10 @@
             // CatProveedores
             // 
             this.CatProveedores.Name = "CatProveedores";
-            this.CatProveedores.Size = new System.Drawing.Size(126, 22);
+            this.CatProveedores.Size = new System.Drawing.Size(128, 22);
             this.CatProveedores.Text = "Proveedor";
             this.CatProveedores.ToolTipText = "Proveedor";
             this.CatProveedores.Click += new System.EventHandler(this.CatProveedores_Click);
-            // 
-            // ModConfiguración
-            // 
-            this.ModConfiguración.Name = "ModConfiguración";
-            // 
-            // ribMenu.ribbonPanel3
-            // 
-            this.ModConfiguración.Panel.Controls.Add(this.toolStripEx4);
-            this.ModConfiguración.Panel.Controls.Add(this.toolStripEx2);
-            this.ModConfiguración.Panel.Controls.Add(this.toolStripEx3);
-            this.ModConfiguración.Panel.Name = "ribbonPanel3";
-            this.ModConfiguración.Panel.ScrollPosition = 0;
-            this.ModConfiguración.Panel.TabIndex = 5;
-            this.ModConfiguración.Panel.Text = "Configuración";
-            this.ModConfiguración.Position = 2;
-            this.ModConfiguración.Size = new System.Drawing.Size(97, 30);
-            this.ModConfiguración.Tag = "1";
-            this.ModConfiguración.Text = "Configuración";
             // 
             // toolStripEx4
             // 
@@ -448,8 +436,6 @@
             this.toolStripEx4.ForeColor = System.Drawing.Color.Black;
             this.toolStripEx4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx4.Image = null;
-            this.toolStripEx4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MnuCfgFoliadores});
             this.toolStripEx4.Location = new System.Drawing.Point(0, 1);
             this.toolStripEx4.Name = "toolStripEx4";
             this.toolStripEx4.Office12Mode = false;
@@ -479,8 +465,6 @@
             this.toolStripEx2.ForeColor = System.Drawing.Color.Black;
             this.toolStripEx2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx2.Image = null;
-            this.toolStripEx2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CfgMnuProveedores});
             this.toolStripEx2.Location = new System.Drawing.Point(102, 1);
             this.toolStripEx2.Name = "toolStripEx2";
             this.toolStripEx2.Office12Mode = false;
@@ -507,14 +491,14 @@
             // Prov_TipoMov
             // 
             this.Prov_TipoMov.Name = "Prov_TipoMov";
-            this.Prov_TipoMov.Size = new System.Drawing.Size(166, 22);
+            this.Prov_TipoMov.Size = new System.Drawing.Size(171, 22);
             this.Prov_TipoMov.Text = "Tipo Movimientos";
             this.Prov_TipoMov.Click += new System.EventHandler(this.Prov_TipoMov_Click);
             // 
             // Prov_SereDoc
             // 
             this.Prov_SereDoc.Name = "Prov_SereDoc";
-            this.Prov_SereDoc.Size = new System.Drawing.Size(166, 22);
+            this.Prov_SereDoc.Size = new System.Drawing.Size(171, 22);
             this.Prov_SereDoc.Text = "Serie documentos";
             this.Prov_SereDoc.Click += new System.EventHandler(this.Prov_SereDoc_Click);
             // 
@@ -526,8 +510,6 @@
             this.toolStripEx3.ForeColor = System.Drawing.Color.Black;
             this.toolStripEx3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx3.Image = null;
-            this.toolStripEx3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CfgMnuInventarios});
             this.toolStripEx3.Location = new System.Drawing.Point(214, 1);
             this.toolStripEx3.Name = "toolStripEx3";
             this.toolStripEx3.Office12Mode = false;
@@ -553,27 +535,9 @@
             // Inv_TipoMov
             // 
             this.Inv_TipoMov.Name = "Inv_TipoMov";
-            this.Inv_TipoMov.Size = new System.Drawing.Size(165, 22);
+            this.Inv_TipoMov.Size = new System.Drawing.Size(171, 22);
             this.Inv_TipoMov.Text = "Tipo Movimientos";
             this.Inv_TipoMov.Click += new System.EventHandler(this.Inv_TipoMov_Click);
-            // 
-            // ModSeguridad
-            // 
-            this.ModSeguridad.Name = "ModSeguridad";
-            // 
-            // ribMenu.ribbonPanel4
-            // 
-            this.ModSeguridad.Panel.Controls.Add(this.CatSeguridad);
-            this.ModSeguridad.Panel.Controls.Add(this.CatPersonalizar);
-            this.ModSeguridad.Panel.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office12;
-            this.ModSeguridad.Panel.Name = "ribbonPanel4";
-            this.ModSeguridad.Panel.ScrollPosition = 0;
-            this.ModSeguridad.Panel.TabIndex = 4;
-            this.ModSeguridad.Panel.Text = "Seguridad";
-            this.ModSeguridad.Position = 3;
-            this.ModSeguridad.Size = new System.Drawing.Size(76, 30);
-            this.ModSeguridad.Tag = "3";
-            this.ModSeguridad.Text = "Seguridad";
             // 
             // CatSeguridad
             // 
@@ -583,10 +547,6 @@
             this.CatSeguridad.ForeColor = System.Drawing.Color.Black;
             this.CatSeguridad.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CatSeguridad.Image = null;
-            this.CatSeguridad.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatsUsuarios,
-            this.CatsPerfiles,
-            this.CatsAsignaPer});
             this.CatSeguridad.Location = new System.Drawing.Point(0, 1);
             this.CatSeguridad.Name = "CatSeguridad";
             this.CatSeguridad.Office12Mode = false;
@@ -640,9 +600,6 @@
             this.CatPersonalizar.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CatPersonalizar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.CatPersonalizar.Image = null;
-            this.CatPersonalizar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatsTemas,
-            this.CatsFondos});
             this.CatPersonalizar.Location = new System.Drawing.Point(253, 1);
             this.CatPersonalizar.Name = "CatPersonalizar";
             this.CatPersonalizar.Office12Mode = false;
@@ -731,35 +688,35 @@
             // PerFondo1
             // 
             this.PerFondo1.Name = "PerFondo1";
-            this.PerFondo1.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo1.Size = new System.Drawing.Size(121, 22);
             this.PerFondo1.Text = "Fondo1";
             this.PerFondo1.Click += new System.EventHandler(this.PerFondo1_Click);
             // 
             // PerFondo2
             // 
             this.PerFondo2.Name = "PerFondo2";
-            this.PerFondo2.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo2.Size = new System.Drawing.Size(121, 22);
             this.PerFondo2.Text = "Fondo2";
             this.PerFondo2.Click += new System.EventHandler(this.PerFondo2_Click);
             // 
             // PerFondo3
             // 
             this.PerFondo3.Name = "PerFondo3";
-            this.PerFondo3.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo3.Size = new System.Drawing.Size(121, 22);
             this.PerFondo3.Text = "Fondo3";
             this.PerFondo3.Click += new System.EventHandler(this.PerFondo3_Click);
             // 
             // PerFondo4
             // 
             this.PerFondo4.Name = "PerFondo4";
-            this.PerFondo4.Size = new System.Drawing.Size(120, 22);
+            this.PerFondo4.Size = new System.Drawing.Size(121, 22);
             this.PerFondo4.Text = "Fondo4";
             this.PerFondo4.Click += new System.EventHandler(this.PerFondo4_Click);
             // 
             // PerFondoNone
             // 
             this.PerFondoNone.Name = "PerFondoNone";
-            this.PerFondoNone.Size = new System.Drawing.Size(120, 22);
+            this.PerFondoNone.Size = new System.Drawing.Size(121, 22);
             this.PerFondoNone.Text = "Ninguno";
             this.PerFondoNone.Click += new System.EventHandler(this.PerFondoNone_Click);
             // 
@@ -789,6 +746,7 @@
             this.Controls.Add(this.ribMenu);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelPie);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "Menu2";
             this.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
@@ -800,26 +758,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).EndInit();
             this.ribMenu.ResumeLayout(false);
             this.ribMenu.PerformLayout();
-            this.ModInventario.Panel.ResumeLayout(false);
-            this.CatInven.ResumeLayout(false);
-            this.CatInven.PerformLayout();
-            this.ProcInven.ResumeLayout(false);
-            this.ProcInven.PerformLayout();
-            this.ModProveedores.Panel.ResumeLayout(false);
-            this.CatProvee.ResumeLayout(false);
-            this.CatProvee.PerformLayout();
-            this.ModConfiguración.Panel.ResumeLayout(false);
-            this.toolStripEx4.ResumeLayout(false);
-            this.toolStripEx4.PerformLayout();
-            this.toolStripEx2.ResumeLayout(false);
-            this.toolStripEx2.PerformLayout();
-            this.toolStripEx3.ResumeLayout(false);
-            this.toolStripEx3.PerformLayout();
-            this.ModSeguridad.Panel.ResumeLayout(false);
-            this.CatSeguridad.ResumeLayout(false);
-            this.CatSeguridad.PerformLayout();
-            this.CatPersonalizar.ResumeLayout(false);
-            this.CatPersonalizar.PerformLayout();
             this.ResumeLayout(false);
 
         }

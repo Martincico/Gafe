@@ -24,11 +24,12 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
 
         List<clsFillCbo> lp;
         List<clsFillCbo> ln;
+
+        public DatCfgUsuario user;
 
         public frmExistencias()
         {
@@ -36,11 +37,11 @@ namespace GAFE
         }
 
 
-        public frmExistencias(MsSql Odat, string perfil)
+        public frmExistencias(MsSql Odat, DatCfgUsuario DatUsr)
         {
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -49,7 +50,7 @@ namespace GAFE
         private void frmExistencias_Load(object sender, EventArgs e)
         {
             
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             clsUsPerfil up = uT.BuscarIdNodo("1Inv013A");
@@ -84,8 +85,8 @@ namespace GAFE
             cboAlmacen.DataSource = lp;
             cboAlmacen.ValueMember = "Id";
             cboAlmacen.DisplayMember = "Descripcion";
-            //cboAlmacen.SelectedText = "Activo";
-
+            cboAlmacen.SelectedValue = user.AlmacenUsa;
+            cboAlmacen.Enabled = user.CambiaAlmacen == 1 ? true : false;
 
             string Sqlstr2 = " SELECT CveLinea,Descripcion FROM Inv_Lineas WHERE Estatus = 1";
             SqlDataReader dr2 = db.SelectDR(Sqlstr2);
@@ -107,7 +108,6 @@ namespace GAFE
             cboLineas.DataSource = ln;
             cboLineas.ValueMember = "Id";
             cboLineas.DisplayMember = "Descripcion";
-            //cboAlmacen.SelectedText = "Activo";
             
             LlenaGridView(0);
         }

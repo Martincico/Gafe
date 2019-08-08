@@ -48,7 +48,6 @@
             this.ModProveedores = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatProvee = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.CatsProveedores = new System.Windows.Forms.ToolStripDropDownButton();
-            this.CatProveedores = new System.Windows.Forms.ToolStripMenuItem();
             this.ContInvDocumentos = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.MnuRequisición = new System.Windows.Forms.ToolStripButton();
             this.MnuCotizacion = new System.Windows.Forms.ToolStripButton();
@@ -68,6 +67,7 @@
             this.CatsUserCfg = new System.Windows.Forms.ToolStripDropDownButton();
             this.panelPie = new System.Windows.Forms.Panel();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.CatsClientes = new System.Windows.Forms.ToolStripDropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
             this.ribMenu.SuspendLayout();
             this.ModInventario.Panel.SuspendLayout();
@@ -76,6 +76,7 @@
             this.ModProveedores.Panel.SuspendLayout();
             this.CatProvee.SuspendLayout();
             this.ContInvDocumentos.SuspendLayout();
+            this.toolStripEx2.SuspendLayout();
             this.ModGeneral.Panel.SuspendLayout();
             this.catGeneral.SuspendLayout();
             this.toolStripEx1.SuspendLayout();
@@ -189,35 +190,35 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(169, 22);
+            this.CatLineas.Size = new System.Drawing.Size(180, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(169, 22);
+            this.CatClase.Size = new System.Drawing.Size(180, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
@@ -240,7 +241,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -248,7 +249,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
@@ -358,30 +359,23 @@
             this.CatProvee.Name = "CatProvee";
             this.CatProvee.Office12Mode = false;
             this.CatProvee.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.CatProvee.Size = new System.Drawing.Size(92, 106);
+            this.CatProvee.Size = new System.Drawing.Size(83, 106);
             this.CatProvee.TabIndex = 11;
             this.CatProvee.Text = "Catálgos";
             // 
             // CatsProveedores
             // 
-            this.CatsProveedores.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CatProveedores});
             this.CatsProveedores.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CatsProveedores.Image = global::GAFE.Properties.Resources.MnuProveedores;
             this.CatsProveedores.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.CatsProveedores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.CatsProveedores.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CatsProveedores.Name = "CatsProveedores";
-            this.CatsProveedores.Size = new System.Drawing.Size(83, 89);
+            this.CatsProveedores.ShowDropDownArrow = false;
+            this.CatsProveedores.Size = new System.Drawing.Size(74, 89);
             this.CatsProveedores.Text = "Proveedores";
             this.CatsProveedores.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            // 
-            // CatProveedores
-            // 
-            this.CatProveedores.Name = "CatProveedores";
-            this.CatProveedores.Size = new System.Drawing.Size(126, 22);
-            this.CatProveedores.Text = "Proveedor";
-            this.CatProveedores.ToolTipText = "Proveedor";
+            this.CatsProveedores.Click += new System.EventHandler(this.CatsProveedores_Click);
             // 
             // ContInvDocumentos
             // 
@@ -397,7 +391,7 @@
             this.MnuOrdenCompra,
             this.MnuCompras});
             this.ContInvDocumentos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.ContInvDocumentos.Location = new System.Drawing.Point(94, 1);
+            this.ContInvDocumentos.Location = new System.Drawing.Point(85, 1);
             this.ContInvDocumentos.Name = "ContInvDocumentos";
             this.ContInvDocumentos.Office12Mode = false;
             this.ContInvDocumentos.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -457,11 +451,13 @@
             this.toolStripEx2.ForeColor = System.Drawing.Color.Black;
             this.toolStripEx2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx2.Image = null;
-            this.toolStripEx2.Location = new System.Drawing.Point(322, 1);
+            this.toolStripEx2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CatsClientes});
+            this.toolStripEx2.Location = new System.Drawing.Point(313, 1);
             this.toolStripEx2.Name = "toolStripEx2";
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx2.Size = new System.Drawing.Size(100, 106);
+            this.toolStripEx2.Size = new System.Drawing.Size(145, 106);
             this.toolStripEx2.TabIndex = 9;
             this.toolStripEx2.Text = "Reportes";
             // 
@@ -497,7 +493,7 @@
             this.catGeneral.Name = "catGeneral";
             this.catGeneral.Office12Mode = false;
             this.catGeneral.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.catGeneral.Size = new System.Drawing.Size(126, 105);
+            this.catGeneral.Size = new System.Drawing.Size(126, 106);
             this.catGeneral.TabIndex = 0;
             this.catGeneral.Text = "General";
             // 
@@ -527,7 +523,7 @@
             this.toolStripEx1.Name = "toolStripEx1";
             this.toolStripEx1.Office12Mode = false;
             this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx1.Size = new System.Drawing.Size(126, 105);
+            this.toolStripEx1.Size = new System.Drawing.Size(126, 106);
             this.toolStripEx1.TabIndex = 1;
             this.toolStripEx1.Text = "Documentos";
             // 
@@ -656,6 +652,20 @@
             this.panelContenedor.Size = new System.Drawing.Size(799, 219);
             this.panelContenedor.TabIndex = 4;
             // 
+            // CatsClientes
+            // 
+            this.CatsClientes.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatsClientes.Image = global::GAFE.Properties.Resources.MnuUsuarios;
+            this.CatsClientes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CatsClientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.CatsClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatsClientes.Name = "CatsClientes";
+            this.CatsClientes.ShowDropDownArrow = false;
+            this.CatsClientes.Size = new System.Drawing.Size(52, 89);
+            this.CatsClientes.Text = "Clientes";
+            this.CatsClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.CatsClientes.Click += new System.EventHandler(this.CatsClientes_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -686,6 +696,8 @@
             this.CatProvee.PerformLayout();
             this.ContInvDocumentos.ResumeLayout(false);
             this.ContInvDocumentos.PerformLayout();
+            this.toolStripEx2.ResumeLayout(false);
+            this.toolStripEx2.PerformLayout();
             this.ModGeneral.Panel.ResumeLayout(false);
             this.catGeneral.ResumeLayout(false);
             this.catGeneral.PerformLayout();
@@ -732,7 +744,6 @@
         private System.Windows.Forms.ToolStripDropDownButton MnuExitenciaArt;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx CatProvee;
         private System.Windows.Forms.ToolStripDropDownButton CatsProveedores;
-        private System.Windows.Forms.ToolStripMenuItem CatProveedores;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx ContInvDocumentos;
         private System.Windows.Forms.ToolStripButton MnuRequisición;
         private System.Windows.Forms.ToolStripButton MnuCotizacion;
@@ -740,6 +751,7 @@
         private System.Windows.Forms.ToolStripButton MnuCompras;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx2;
         private System.Windows.Forms.ToolStripDropDownButton CatsUserCfg;
+        private System.Windows.Forms.ToolStripDropDownButton CatsClientes;
     }
 }
 

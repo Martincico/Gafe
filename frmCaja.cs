@@ -22,6 +22,7 @@ namespace GAFE
 
         private MsSql db = null;
         public DatCfgUsuario user;
+        Form Flg;
         private clsUtil uT;
         clsStiloTemas NewColor = new clsStiloTemas();
 
@@ -43,14 +44,17 @@ namespace GAFE
         public frmCaja()
         {
             InitializeComponent();
+            
         }
 
 
-        public frmCaja(MsSql Odat, DatCfgUsuario DatUsr)
+        public frmCaja(MsSql Odat, Form lg, DatCfgUsuario DatUsr)
         {
             InitializeComponent();
+            
             db = Odat;
             user = DatUsr;
+            Flg = lg;
             //SelectTemaUser(user.StiloTema);
 
 
@@ -63,10 +67,12 @@ namespace GAFE
 
             //this.ribMenu.Office2016ColorTable.Add(NewColor.StiloTeam());
 
-
-            partida = new DocPartidasReq();
+            
             LlecboCliente();
-            LlecboAlmacen();
+
+            GetDatoAlmacen();
+
+            PARTIDAS = new List<DocPartidasReq>();
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -134,11 +140,6 @@ namespace GAFE
 
         }
 
-        private void txtCantidad_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void LLenaGrid()
         {
             grdViewD.DataSource = null;
@@ -152,9 +153,19 @@ namespace GAFE
             grdViewD.Columns["ClaveAlmacen"].Visible = false;
             grdViewD.Columns["Partida"].HeaderText = "Part";
             grdViewD.Columns["Partida"].Width = 40;
-            grdViewD.Columns["CveArticulo"].HeaderText = "Clave";
-            grdViewD.Columns["CveUmedida1"].HeaderText = "U.Medida";
-            //grdViewD.Columns["Autorizado"].Visible = false;
+            grdViewD.Columns["Autorizado"].Visible = false;
+            grdViewD.Columns["Descripcion"].Width = 150;
+            grdViewD.Columns["CveUmedida1"].Visible = false;
+            grdViewD.Columns["CveImpuesto"].Visible = false;
+            grdViewD.Columns["Descuento"].Visible = false;
+
+            grdViewD.Columns["Impuesto"].Visible = false;
+            grdViewD.Columns["ImpuestoValor"].Visible = false;
+            grdViewD.Columns["Precio"].Visible = false;
+            grdViewD.Columns["SubTotal"].Visible = false;
+            grdViewD.Columns["Cantidad"].Width = 40;
+            grdViewD.Columns["Cantidad"].HeaderText = "Cant.";
+
             grdViewD.Columns["CveArticulo"].Frozen = true;//Inmovilizar columna
             
 
@@ -162,30 +173,33 @@ namespace GAFE
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
-            AbrirPArtidas();
-            
-            if (partida != null)
-            {
-                if (partida.CveArticulo != null)
+            partida = new DocPartidasReq();
+            if (e.KeyChar == (char)Keys.Enter)
+            { 
+                AbrirPArtidas();
+
+                if (partida != null)
                 {
-                    double subTotal = 0,  total = 0;
-                    PARTIDAS.Add(partida);
-                    for (int i = 0; i < PARTIDAS.Count; i++)
+                    if (partida.CveArticulo != null)
                     {
-                        PARTIDAS[i].idMov = "idmovimiento";
-                        PARTIDAS[i].Serie = "";
-                        PARTIDAS[i].Partida = i + 1;
-                        PARTIDAS[i].ClaveAlmacen = user.AlmacenUsa;
-                        PARTIDAS[i].Autorizado = false;
-                        subTotal = subTotal + PARTIDAS[i].SubTotal;
-                        total = total + PARTIDAS[i].Total;
+                        double subTotal = 0, total = 0;
+                        PARTIDAS.Add(partida);
+                        for (int i = 0; i < PARTIDAS.Count; i++)
+                        {
+                            PARTIDAS[i].idMov = "idmovimiento";
+                            PARTIDAS[i].Serie = "";
+                            PARTIDAS[i].Partida = i + 1;
+                            PARTIDAS[i].ClaveAlmacen = user.AlmacenUsa;
+                            PARTIDAS[i].Autorizado = false;
+                            subTotal = subTotal + PARTIDAS[i].SubTotal;
+                            total = total + PARTIDAS[i].Total;
+                        }
+                        txtSubTotal.Text = subTotal.ToString();
+                        txtTotal.Text = total.ToString();
+
+                        LLenaGrid();
+                        LimpiaVar();
                     }
-                    txtSubTotal.Text = subTotal.ToString();
-                    txtTotal.Text = total.ToString();
-
-                    LLenaGrid();
-
                 }
 
             }
@@ -204,8 +218,18 @@ namespace GAFE
             //txtIva.Text = ar.dv[12];
             CveUmed = ar.dv[8];
 
-            getPrecio();
+            PuiCatArticulos Art = new PuiCatArticulos(db);
+            Art.keyCveArticulo = ar.dv[0];
+            Art.EditarArticulo();
 
+            if (Art.cmpFoto.Length > 0)
+            {
+                MemoryStream Mf = new MemoryStream(Art.cmpFoto);
+                Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
+                pbArticulo.Image = Image.FromStream(Mf);
+            }
+            getPrecio();
+            txtCantidad.Focus();
         }
         private void txtClaveArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -225,7 +249,14 @@ namespace GAFE
                     Impu.EditarImpuesto();
                     //txtIva.Text = Convert.ToString(Impu.cmpValor);
                     CveUmed = Art.UMedida1.keyCveUMedida;
+                    if (Art.cmpFoto.Length > 0)
+                    {
+                        MemoryStream Mf = new MemoryStream(Art.cmpFoto);
+                        Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
+                        pbArticulo.Image = Image.FromStream(Mf);
+                    }
                     getPrecio();
+                    txtCantidad.Focus();
                 }
                 else
                 {
@@ -279,16 +310,6 @@ namespace GAFE
             GetDatoCliente();
         }
 
-        private void LlecboAlmacen()
-        {
-            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboAlmacen.DataSource = lin.CboInv_CatAlmacenes();
-            cboAlmacen.ValueMember = "ClaveAlmacen";
-            cboAlmacen.DisplayMember = "Descripcion";
-
-            GetDatoAlmacen();
-        }
-
         private void GetDatoCliente()
         {
             string val = Convert.ToString(cboCliente.SelectedValue);
@@ -308,28 +329,41 @@ namespace GAFE
 
         private void GetDatoAlmacen()
         {
-            string val = Convert.ToString(cboAlmacen.SelectedValue);
-            if (cboAlmacen.SelectedIndex >= 0)
-            {
-                if (!val.Equals("System.Data.DataRowView"))
-                {
-                    PuiCatAlmacenes alm = new PuiCatAlmacenes(db);
-                    alm.keyClaveAlmacen = val;
+            PuiCatAlmacenes alm = new PuiCatAlmacenes(db);
+            alm.keyClaveAlmacen = user.AlmacenUsa;
 
-                    alm.EditarAlmacen();
+            alm.EditarAlmacen();
 
-                    LstPre_Alm = alm.cmpCveLstPrecio;
-                }
-            }
+            LstPre_Alm = alm.cmpCveLstPrecio;
         }
 
         private void LimpiaVar()
         {
             IdArt = "";
             txtDescripcion.Text = "";
-            //txtIva.Text = "";
+            txtClaveArticulo.Text = "";
             CveImp = "";
             CveUmed = "";
+            txtCantidad.Text = "1";
+            txtClaveArticulo.Focus();
+        }
+
+
+        private void frmCaja_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Flg.Close();
+        }
+
+        private void cboCliente_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string val = Convert.ToString(cboCliente.SelectedValue);
+            if (cboCliente.SelectedIndex >= 0)
+            {
+                if (!val.Equals("System.Data.DataRowView"))
+                {
+                    GetDatoCliente();
+                }
+            }
         }
     }
 }

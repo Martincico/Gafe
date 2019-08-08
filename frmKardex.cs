@@ -24,21 +24,22 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
         DataTable dt;
+
+        public DatCfgUsuario user;
 
         public frmKardex()
         {
             InitializeComponent();
         }
 
-        public frmKardex(MsSql Odat, string perfil)
+        public frmKardex(MsSql Odat, DatCfgUsuario DatUsr)
         {
             
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -46,7 +47,7 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, Perfil, 3);
+            frmLstArticulos art = new frmLstArticulos(db, user.CodPerfil, 3);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
@@ -61,7 +62,7 @@ namespace GAFE
         private void frmKardex_Load(object sender, EventArgs e)
         {
 
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
 
@@ -75,6 +76,8 @@ namespace GAFE
 
             PuiCatAlmacenes alm = new PuiCatAlmacenes(db);
             cboAlmacenes.DataSource = alm.CboInv_CatAlmacenes();
+
+            cboAlmacenes.Enabled = user.CambiaAlmacen == 1 ? true : false;
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)

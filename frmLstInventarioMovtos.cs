@@ -75,6 +75,8 @@ namespace GAFE
 
             LlecboProveedor();
             LlecboAlmaOri(user.AlmacenUsa);
+            cboAlmaOri.Enabled =user.CambiaAlmacen == 1 ? true : false;
+
             LlecboTipoMovtos();
             
             LlenaGridView();

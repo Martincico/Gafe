@@ -73,6 +73,16 @@ namespace GAFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_cajas {
+            get {
+                object obj = ResourceManager.GetObject("bg_cajas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Buscar {
             get {
                 object obj = ResourceManager.GetObject("Buscar", resourceCulture);

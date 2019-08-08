@@ -182,7 +182,7 @@ namespace GAFE
                                     this.Hide();
                                     if (user.CodPerfil == "CAJAS")
                                     {
-                                        frmCaja mn = new frmCaja(db,  user);
+                                        frmCaja mn = new frmCaja(db,this,  user);
                                         mn.Show();
                                         
                                     }

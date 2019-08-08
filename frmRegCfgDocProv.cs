@@ -18,22 +18,24 @@ namespace GAFE
     {
         private int opcion;
         private MsSql db = null;
-        private string Perfil;
 
         PuiCatArticulos Art;
         private clsUtil uT;
+
+        public DatCfgUsuario user;
 
         public frmRegCfgDocProv()
         {
             InitializeComponent();
         }
 
-        public frmRegCfgDocProv(MsSql Odat, string perfil, int Op, String Alm= "", String TMov = "", String ser= "")
+        public frmRegCfgDocProv(MsSql Odat, DatCfgUsuario DatUsr, int Op, String Alm= "", String TMov = "", String ser= "")
         {
             InitializeComponent();
             opcion = Op;
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
+
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -43,6 +45,7 @@ namespace GAFE
             LlecboAlmacen();
             LlecboTMovtoProv();
             LlecboCfgCatFoliadores();
+
             switch (opcion)
             {
                 case 1://Nuevo
@@ -248,7 +251,8 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            cboAlmacen.Enabled = Op;
+            cboAlmacen.Enabled = Op?(user.CambiaAlmacen == 1?true:false) : false;
+
             cboTMovtoProv.Enabled = Op;
             txtSerie.Enabled = Op;
             txtDescripcion.Enabled = Op;
@@ -299,7 +303,7 @@ namespace GAFE
 
         private void frmRegCfgDocProv_Load(object sender, EventArgs e)
         {
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             Art = new PuiCatArticulos(db);

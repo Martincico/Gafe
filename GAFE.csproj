@@ -46,6 +46,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DatSql">
       <HintPath>..\DatSql\bin\Debug\DatSql.dll</HintPath>
@@ -670,6 +674,7 @@
     <None Include="Resources\MnuUsuarios.png" />
     <None Include="Resources\Check.png" />
     <None Include="Resources\UnCheck.png" />
+    <None Include="Resources\bg_cajas.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

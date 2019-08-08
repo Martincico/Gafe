@@ -97,7 +97,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegCfgDocProv art = new frmRegCfgDocProv(db, user.CodPerfil, 1);
+            frmRegCfgDocProv art = new frmRegCfgDocProv(db, user, 1);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -109,7 +109,7 @@ namespace GAFE
                 String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
                 String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 2, Alm, CodMP, Ser);
+                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user, 2, Alm, CodMP, Ser);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -129,7 +129,7 @@ namespace GAFE
                 String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
                 String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user.CodPerfil, 3, Alm, CodMP, Ser);
+                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user, 3, Alm, CodMP, Ser);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }

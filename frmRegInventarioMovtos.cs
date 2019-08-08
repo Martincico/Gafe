@@ -101,6 +101,7 @@ namespace GAFE
 
             folMovto = pui.AgregarBlanco();
             OcultTitulos(false);
+            OpcionControles(true);
 
             if (folMovto >= 1)
               {
@@ -709,7 +710,7 @@ namespace GAFE
         private void OpcionControles(Boolean Op)
         {
             cboClaseMov.Enabled =  Op;
-            cboAlmaOri.Enabled = Op;
+            cboAlmaOri.Enabled = Op ? (user.CambiaAlmacen == 1 ? true : false) : false;
             cboAlmaDest.Enabled = Op;
             cboTipoMovtos.Enabled = Op;
             cboProveedor.Enabled = Op;

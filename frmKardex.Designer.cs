@@ -74,7 +74,7 @@
             this.panel1.Controls.Add(this.cmdArticulo);
             this.panel1.Location = new System.Drawing.Point(3, 14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1057, 97);
+            this.panel1.Size = new System.Drawing.Size(834, 97);
             this.panel1.TabIndex = 26;
             // 
             // cmdConsultar

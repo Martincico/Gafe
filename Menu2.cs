@@ -176,13 +176,13 @@ namespace GAFE
 
         private void OpKardex_Click(object sender, EventArgs e)
         {
-            frmKardex fm = new frmKardex(db, user.CodPerfil);
+            frmKardex fm = new frmKardex(db, user);
             Nav(fm, panelContenedor);
         }
 
         private void OpExistencia_Click(object sender, EventArgs e)
         {
-            frmExistencias fm = new frmExistencias(db, user.CodPerfil);
+            frmExistencias fm = new frmExistencias(db, user);
             Nav(fm, panelContenedor);
         }
 
