@@ -43,7 +43,7 @@ namespace GAFE
             LimpiarControles();
             OpcionControles(true);
             LlecboAlmacen();
-            LlecboTMovtoProv();
+            LlecboCfgDocs();
             LlecboCfgCatFoliadores();
 
             switch (opcion)
@@ -273,10 +273,10 @@ namespace GAFE
             cboAlmacen.DisplayMember = "Descripcion";
         }
       
-        private void LlecboTMovtoProv()
+        private void LlecboCfgDocs()
         {
-            PuiCatCfgTipoMovProv lin = new PuiCatCfgTipoMovProv(db);
-            cboTMovtoProv.DataSource = lin.cboTipoMovProvee();
+            PuiCatCfgDocumentos lin = new PuiCatCfgDocumentos(db);
+            cboTMovtoProv.DataSource = lin.cboCfgDocumentos();
             cboTMovtoProv.ValueMember = "Clave";
             cboTMovtoProv.DisplayMember = "Descripcion";
         }

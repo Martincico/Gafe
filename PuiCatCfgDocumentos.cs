@@ -11,21 +11,22 @@ namespace GAFE
 {
     class PuiCatCfgDocumentos
     {
-        private string CveAlmacen;
-        private string CodMovProv;
-        private string Serie;
-        private string Descripcion;
-        private string CodFoliador;
-        private int EditaFolio;
-        private string FmtoImpresion;
-        private int NoCopiasImp;
-        private string NombImpresora;
-        private int PregImpresion;
+        private string CveDoc;
+        private string Nombre;
+        private string CargoAbono;
+        private string CveTipoMov;
+        private string Foliador;
+        private int UsaSerie;
+        private int EditaFecha;
+        private int UsaCliente;
+        private int UsaProveedor;
+        private int EsInterno;
+        private int SolicitaAutorizar;
         private int Estatus;
 
+
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[11, 2];
-        private object[,] MatParamK = new object[3, 2];
+        private object[,] MatParam = new object[12, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -38,64 +39,79 @@ namespace GAFE
         }
 
 
-        #region Definicion de propiedades de la CfgDocumentos
+        #region Definicion de propiedades de la Linea
 
-        public string keyCveAlmacen
+        public string keyCveDoc
         {
-            get { return CveAlmacen; }
-            set { CveAlmacen = value; }
+            get { return CveDoc; }
+            set { CveDoc = value; }
         }
-        public string keyCodMovProv
+
+        public string cmpNombre
         {
-            get { return CodMovProv; }
-            set { CodMovProv = value; }
+            get { return Nombre; }
+            set { Nombre = value; }
         }
-        public string keySerie
+
+        public string cmpCargoAbono
         {
-            get { return Serie; }
-            set { Serie = value; }
+            get { return CargoAbono; }
+            set { CargoAbono = value; }
         }
-        public string cmpDescripcion
+
+        public String cmpCveTipoMov
         {
-            get { return Descripcion; }
-            set { Descripcion = value; }
+            get { return CveTipoMov; }
+            set { CveTipoMov = value; }
         }
-        public string cmpCodFoliador
+
+        public String cmpFoliador
         {
-            get { return CodFoliador; }
-            set { CodFoliador = value; }
+            get { return Foliador; }
+            set { Foliador = value; }
         }
-        public int cmpEditaFolio
+
+        public int cmpUsaSerie
         {
-            get { return EditaFolio; }
-            set { EditaFolio = value; }
+            get { return UsaSerie; }
+            set { UsaSerie = value; }
         }
-        public string cmpFmtoImpresion
+
+        public int cmpEditaFecha
         {
-            get { return FmtoImpresion; }
-            set { FmtoImpresion = value; }
+            get { return EditaFecha; }
+            set { EditaFecha = value; }
         }
-        public int cmpNoCopiasImp
+
+        public int cmpEsInterno
         {
-            get { return NoCopiasImp; }
-            set { NoCopiasImp = value; }
+            get { return EsInterno; }
+            set { EsInterno = value; }
         }
-        public string cmpNombImpresora
-        {
-            get { return NombImpresora; }
-            set { NombImpresora = value; }
-        }
-        public int cmpPregImpresion
-        {
-            get { return PregImpresion; }
-            set { PregImpresion = value; }
-        }
+
         public int cmpEstatus
         {
             get { return Estatus; }
             set { Estatus = value; }
         }
 
+        public int cmpUsaCliente
+        {
+            get { return UsaCliente; }
+            set { UsaCliente = value; }
+        }
+
+        public int cmpUsaProvee
+        {
+            get { return UsaProveedor; }
+            set { UsaProveedor = value; }
+        }
+
+        public int cmpSolicitaAutorizar
+        {
+            get { return SolicitaAutorizar; }
+            set { SolicitaAutorizar = value; }
+        }
 
         #endregion
 
@@ -108,45 +124,52 @@ namespace GAFE
 
         public int ActualizaCfgDocumentos()
         {
-            CargaParamKey();
-            RegCatCfgDocumentos OpUp = new RegCatCfgDocumentos(MatParamK, db);
+            CargaParametroMat();
+            RegCatCfgDocumentos OpUp = new RegCatCfgDocumentos(MatParam, db);
             return OpUp.UpdateCfgDocumentos();
 
         }
 
         public int EliminaCfgDocumentos()
         {
-            CargaParamKey();
-            RegCatCfgDocumentos OpDel = new RegCatCfgDocumentos(MatParamK, db);
+            //CargaParametroMat();
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "CveDoc"; MatParam[0, 1] = CveDoc;
+            RegCatCfgDocumentos OpDel = new RegCatCfgDocumentos(MatParam, db);
             return OpDel.DeleteCfgDocumentos();
         }
 
         public SqlDataAdapter ListarCfgDocumentos()
         {
+            CargaParametroMat();
             RegCatCfgDocumentos OpLst = new RegCatCfgDocumentos(db);
             return OpLst.ListCfgDocumentos();
         }
 
         public void EditarCfgDocumentos()
         {
-            CargaParamKey();
-            RegCatCfgDocumentos OpEdit = new RegCatCfgDocumentos(MatParamK, db);
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "CveDoc"; MatParam[0, 1] = CveDoc;
+            RegCatCfgDocumentos OpEdit = new RegCatCfgDocumentos(MatParam, db);
             Datos = OpEdit.RegistroActivo();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
             object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
 
-            CveAlmacen = ObjA[0].ToString();
-            CodMovProv = ObjA[0].ToString();
-            Serie = ObjA[0].ToString();
-            Descripcion = ObjA[0].ToString();
-            CodFoliador = ObjA[0].ToString();
-            EditaFolio = int.Parse(ObjA[0].ToString());
-            FmtoImpresion = ObjA[0].ToString();
-            NoCopiasImp = int.Parse(ObjA[0].ToString());
-            NombImpresora = ObjA[0].ToString();
-            PregImpresion = int.Parse(ObjA[0].ToString());
-            Estatus = int.Parse(ObjA[0].ToString());
+            CveDoc = ObjA[0].ToString();
+            Nombre = ObjA[1].ToString();
+            CargoAbono = ObjA[2].ToString();
+            CveTipoMov = ObjA[3].ToString();
+            Foliador = ObjA[4].ToString();
+            UsaSerie = int.Parse(ObjA[5].ToString());
+            EditaFecha = int.Parse(ObjA[6].ToString());
+            UsaCliente = int.Parse(ObjA[7].ToString());
+            UsaProveedor = int.Parse(ObjA[8].ToString());
+            EsInterno = int.Parse(ObjA[9].ToString());
+            SolicitaAutorizar = int.Parse(ObjA[10].ToString());
+            Estatus = int.Parse(ObjA[11].ToString());
+
+
         }
 
         public SqlDataAdapter BuscaCfgDocumentos(string buscar)
@@ -157,41 +180,35 @@ namespace GAFE
 
         public int AddRegCfgFoliadores()
         {
-            MatParam = new object[2, 2];
-            MatParam[0, 0] = "CodFoliador"; MatParam[0, 1] = CodFoliador;
-            MatParam[1, 0] = "CveAlmacen"; MatParam[1, 1] = CveAlmacen;
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "Foliador"; MatParam[0, 1] = Foliador;
             RegCatCfgDocumentos OpRadd = new RegCatCfgDocumentos(MatParam, db);
             return OpRadd.AddRegCfgFoliadores();
         }
 
-        public DataTable CbollenaSeries(string Alm, string MProv)
+        public DataTable cboCfgDocumentos()
         {
             RegCatCfgDocumentos OpLst = new RegCatCfgDocumentos(db);
             DataSet Cbo = new DataSet();
-            OpLst.cboCfgSeries(Alm, MProv).Fill(Cbo);
+            OpLst.cboCfgDocumentos().Fill(Cbo);
             return Cbo.Tables[0];
         }
 
+
         private void CargaParametroMat()
         {
-            MatParam[0, 0] = "CveAlmacen"; MatParam[0, 1] = CveAlmacen;
-            MatParam[1, 0] = "CodMovProv"; MatParam[1, 1] = CodMovProv;
-            MatParam[2, 0] = "Serie"; MatParam[2, 1] = Serie;
-            MatParam[3, 0] = "Descripcion"; MatParam[3, 1] = Descripcion;
-            MatParam[4, 0] = "CodFoliador"; MatParam[4, 1] = CodFoliador;
-            MatParam[5, 0] = "EditaFolio"; MatParam[5, 1] = EditaFolio;
-            MatParam[6, 0] = "FmtoImpresion"; MatParam[6, 1] = FmtoImpresion;
-            MatParam[7, 0] = "NoCopiasImp"; MatParam[7, 1] = NoCopiasImp;
-            MatParam[8, 0] = "NombImpresora"; MatParam[8, 1] = NombImpresora;
-            MatParam[9, 0] = "PregImpresion"; MatParam[9, 1] = PregImpresion;
-            MatParam[10, 0] = "Estatus"; MatParam[10, 1] = Estatus;
-        }
-
-        private void CargaParamKey()
-        {
-            MatParamK[0, 0] = "CveAlmacen"; MatParamK[0, 1] = CveAlmacen;
-            MatParamK[1, 0] = "CodMovProv"; MatParamK[1, 1] = CodMovProv;
-            MatParamK[2, 0] = "Serie"; MatParamK[2, 1] = Serie;
+            MatParam[0, 0] = "CveDoc"; MatParam[0, 1] = CveDoc;
+            MatParam[1, 0] = "Nombre"; MatParam[1, 1] = Nombre;
+            MatParam[2, 0] = "CargoAbono"; MatParam[2, 1] = CargoAbono;
+            MatParam[3, 0] = "CveTipoMov"; MatParam[3, 1] = CveTipoMov;
+            MatParam[4, 0] = "Foliador"; MatParam[4, 1] = Foliador;
+            MatParam[5, 0] = "UsaSerie"; MatParam[5, 1] = UsaSerie;
+            MatParam[6, 0] = "EditaFecha"; MatParam[6, 1] = EditaFecha;
+            MatParam[7, 0] = "UsaCliente"; MatParam[7, 1] = UsaCliente;
+            MatParam[8, 0] = "UsaProveedor"; MatParam[8, 1] = UsaProveedor;
+            MatParam[9, 0] = "EsInterno"; MatParam[9, 1] = EsInterno;
+            MatParam[10, 0] = "SolicitaAutorizar"; MatParam[10, 1] = SolicitaAutorizar;
+            MatParam[11, 0] = "Estatus"; MatParam[11, 1] = Estatus;
         }
 
     }

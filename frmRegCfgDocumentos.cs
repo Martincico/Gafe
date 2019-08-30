@@ -16,86 +16,71 @@ namespace GAFE
 {
     public partial class frmRegCfgDocumentos : MetroForm
     {
-        private int opcion;
         private MsSql db = null;
+        private int opcion;
+        private string Perfil;
+
 
         PuiCatArticulos Art;
         private clsUtil uT;
 
-        public DatCfgUsuario user;
 
         public frmRegCfgDocumentos()
         {
             InitializeComponent();
         }
 
-        public frmRegCfgDocumentos(MsSql Odat, DatCfgUsuario DatUsr, int Op, String Alm= "", String TMov = "", String ser= "")
+        public frmRegCfgDocumentos(MsSql Odat, string perfil, int op, String Cod = "")
         {
             InitializeComponent();
-            opcion = Op;
+            opcion = op;
             db = Odat;
-            user = DatUsr;
-
+            Perfil = perfil;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
             LimpiarControles();
             OpcionControles(true);
-            LlecboAlmacen();
-            LlecboTMovtoProv();
+            LleCboTipoMov();
             LlecboCfgCatFoliadores();
-
             switch (opcion)
             {
                 case 1://Nuevo
                     OpcionControles(true);
                 break;
                 case 2://Edita
-                    get_Campos(Alm,TMov,ser);
-                    txtSerie.Enabled = false;
-                    cboAlmacen.Enabled = false;
-                    cboTMovtoProv.Enabled = false;
-                    break;
+                    get_Campos(Cod);
+                    txtClaveTipoMov.Enabled = false;
+                break;
                 case 3://Consulta
-                    get_Campos(Alm, TMov, ser);
+                    get_Campos(Cod);
                     OpcionControles(false);
+                    cboTipoMov.Enabled = false;
                 break;
 
             }
             
         }
 
-        private void get_Campos(String Alm, String TMov, String ser)
+        private void get_Campos(String Cod)
         {
-            
             PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
-            pui.keyCveAlmacen = Alm;
-            pui.keyCodMovProv = TMov;
-            pui.keySerie = ser;
-
-            pui.EditarCfgDocProv();
-
-            cboAlmacen.SelectedValue = Alm;
-            cboTMovtoProv.SelectedValue = TMov;
-            txtSerie.Text = ser;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboCfgCatFoliadores.SelectedValue = pui.cmpCodFoliador;
-            txtFmtoImpresion.Text = pui.cmpFmtoImpresion;
-            txtNombreImpresora.Text = pui.cmpNombImpresora;
+            pui.keyCveDoc = Cod;
+            pui.EditarCfgDocumentos();
+            txtClaveTipoMov.Text = pui.keyCveDoc;
+            txtDescripcion.Text = pui.cmpNombre;
+            optCargo.Checked = pui.cmpCargoAbono == "C" ? true : false;
+            optAbono.Checked = pui.cmpCargoAbono == "A" ? true : false;
+            cboTipoMov.SelectedValue = pui.cmpCveTipoMov;
+            cboCfgCatFoliadores.SelectedValue = pui.cmpFoliador;
+            chkUsaSerie.Checked = pui.cmpUsaSerie == 1 ? true : false;
+            chkEditaFecha.Checked = pui.cmpEditaFecha== 1 ? true : false;
+            chkUsaCliente.Checked = pui.cmpUsaCliente == 1 ? true : false;
+            chkUsaProvee.Checked = pui.cmpUsaProvee == 1 ? true : false;
+            chkEsInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
+            chkAutoriza.Checked = pui.cmpSolicitaAutorizar == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
-            chkEditaFoli.Checked = pui.cmpEditaFolio == 1 ? true : false;
-            chkPregImpresion.Checked = pui.cmpPregImpresion == 1 ? true : false;
-            
-        }
-
-
-        private void frmRegCfgDocumentos_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
@@ -156,23 +141,24 @@ namespace GAFE
         {
             int rsp = -1;
             PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
-
-            pui.keyCveAlmacen = Convert.ToString(cboAlmacen.SelectedValue);
-            pui.keyCodMovProv = Convert.ToString(cboTMovtoProv.SelectedValue);
-            pui.keySerie = txtSerie.Text;
-            pui.cmpDescripcion = txtDescripcion.Text;
-            pui.cmpCodFoliador = Convert.ToString(cboCfgCatFoliadores.SelectedValue);
-            pui.cmpFmtoImpresion = txtFmtoImpresion.Text;
-            pui.cmpNombImpresora = txtNombreImpresora.Text;
-            pui.cmpNoCopiasImp = 1;
+            
+            pui.keyCveDoc = txtClaveTipoMov.Text;
+            pui.cmpNombre = txtDescripcion.Text;
+            pui.cmpCveTipoMov = Convert.ToString(cboTipoMov.SelectedValue);
+            pui.cmpFoliador = Convert.ToString(cboCfgCatFoliadores.SelectedValue);
+            pui.cmpCargoAbono = optAbono.Checked ? "A" : "C";
+            pui.cmpUsaSerie = chkUsaSerie.Checked ? 1 : 0;
+            pui.cmpEditaFecha = chkEditaFecha.Checked ? 1 : 0;
+            pui.cmpEsInterno = chkEsInterno.Checked ? 1 : 0;
             pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
-            pui.cmpEditaFolio = chkEditaFoli.Checked ? 1 : 0;
-            pui.cmpPregImpresion = chkPregImpresion.Checked ? 1 : 0;
+            pui.cmpUsaCliente = chkUsaCliente.Checked ? 1 : 0;
+            pui.cmpUsaProvee = chkUsaProvee.Checked ? 1 : 0;
+            pui.cmpSolicitaAutorizar = chkAutoriza.Checked ? 1 : 0;
 
             if (opcion==1)
             {
                 db.IniciaTrans();
-                if(pui.AgregarCfgDocProv()==1)
+                if (pui.AgregarCfgDocumentos()==1)
                 {
                     if(pui.AddRegCfgFoliadores()==1)
                     {
@@ -185,8 +171,8 @@ namespace GAFE
                 }
             }
             else
-                rsp =pui.ActualizaCfgDocProv();
-
+                rsp =pui.ActualizaCfgDocumentos();
+            
             return rsp;
         }
 
@@ -195,18 +181,18 @@ namespace GAFE
         {
             
             Boolean dv = true;
-
+            
             ClsUtilerias Util = new ClsUtilerias();
-            if (String.IsNullOrEmpty(txtSerie.Text))
+            if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
-                MessageBoxAdv.Show("Serie: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
-                if (!Util.LetrasNum(txtSerie.Text))
+                if (!Util.LetrasNum(txtClaveTipoMov.Text))
                 {
-                    MessageBoxAdv.Show("Serie: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -225,25 +211,6 @@ namespace GAFE
                 }
             }
 
-            if (!String.IsNullOrEmpty(txtFmtoImpresion.Text))
-            {
-                if (!Util.LetrasNum(txtFmtoImpresion.Text))
-                {
-                    MessageBoxAdv.Show("Formato de impresión Corta: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-
-
-            if (!String.IsNullOrEmpty(txtNombreImpresora.Text))
-            {
-                if (!Util.Letras(txtNombreImpresora.Text))
-                {
-                    MessageBoxAdv.Show("Nombre de impresora: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-
             return dv;
         }
 
@@ -251,25 +218,24 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            cboAlmacen.Enabled = Op?(user.CambiaAlmacen == 1?true:false) : false;
-
-            cboTMovtoProv.Enabled = Op;
-            txtSerie.Enabled = Op;
+            txtClaveTipoMov.Enabled = Op;
             txtDescripcion.Enabled = Op;
+            optCargo.Enabled = Op;
+            optAbono.Enabled = Op;
             cboCfgCatFoliadores.Enabled = Op;
-            txtFmtoImpresion.Enabled = Op;
-            txtNombreImpresora.Enabled = Op;
-            chkEditaFoli.Enabled = Op;
+            chkUsaSerie.Enabled = Op;
+            chkEditaFecha.Enabled = Op;
+            chkUsaSerie.Enabled = Op;
+            chkEsInterno.Enabled = Op;
             chkEstatus.Enabled = Op;
-            chkPregImpresion.Enabled = Op;
+            chkAutoriza.Enabled = Op;
+
         }
 
         private void LimpiarControles()
         {
-            txtSerie.Text = "";
+            txtClaveTipoMov.Text = "";
             txtDescripcion.Text = "";
-            txtFmtoImpresion.Text = "";
-            txtNombreImpresora.Text = "";
         }
 
         private void cmdCancelar_Click_1(object sender, EventArgs e)
@@ -277,38 +243,46 @@ namespace GAFE
             this.Close();
         }
 
-        private void LlecboAlmacen()
+        private void LleCboTipoMov()
         {
-            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboAlmacen.DataSource = lin.CboInv_CatAlmacenes();
-            cboAlmacen.ValueMember = "ClaveAlmacen";
-            cboAlmacen.DisplayMember = "Descripcion";
-        }
-      
-        private void LlecboTMovtoProv()
-        {
-            PuiCatCfgTipoMovProv lin = new PuiCatCfgTipoMovProv(db);
-            cboTMovtoProv.DataSource = lin.cboTipoMovProvee();
-            cboTMovtoProv.ValueMember = "Clave";
-            cboTMovtoProv.DisplayMember = "Descripcion";
+            PuiCatTipoMovtos lin = new PuiCatTipoMovtos(db);
+            DataTable dt = lin.CboInv_TipoMovtos("",0);
+            DataRow row = dt.NewRow();
+            row["CveTipoMov"] = "0";
+            row["Descripcion"] = "NINGUNO ";
+            dt.Rows.Add(row);
+
+            cboTipoMov.DataSource = dt;
+
+
+            cboTipoMov.ValueMember = "CveTipoMov";
+            cboTipoMov.DisplayMember = "Descripcion";
+
+            cboTipoMov.SelectedValue = 0;
         }
 
         private void LlecboCfgCatFoliadores()
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(0);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(1);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }
 
-        private void frmRegCfgDocProv_Load(object sender, EventArgs e)
+        
+        private void txtClaveTipoMov_KeyPress(object sender, KeyPressEventArgs e)
         {
-            uT = new clsUtil(db, user.CodPerfil);
+            ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void frmRegCfgDocumentos_Load(object sender, EventArgs e)
+        {
+            uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
             Art = new PuiCatArticulos(db);
-
             /*
+
             clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
@@ -332,7 +306,16 @@ namespace GAFE
             up = uT.BuscarIdNodo("1Inv001F");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
             */
+        }
+
+        private void frmRegCfgDocumentos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

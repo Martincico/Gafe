@@ -56,13 +56,13 @@ namespace GAFE
         public SqlDataAdapter ListCfgDocSeries()
         {
             SqlDataAdapter dt = null;
-            string Sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CveDoc,TipoMtos.Nombre as Mov_Inv," +
+            string Sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CveDoc,CfgDoc.Nombre as Mov_Inv," +
                         "         DocProv.Serie,DocProv.Descripcion,DocProv.CodFoliador,Fol.Descripcion as Foliador, " +
                         "         DocProv.FmtoImpresion,DocProv.NoCopiasImp, DocProv.NombImpresora " +
                         " FROM dbo.CfgDocSerie AS DocProv " +
                         " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
                         " INNER JOIN dbo.CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
-                        " INNER JOIN CfgTipoMovProv AS TipoMtos ON TipoMtos.ClaveDoc = DocProv.CveDoc ";
+                        " INNER JOIN CfgDocumentos AS CfgDoc ON CfgDoc.CveDoc = DocProv.CveDoc ";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -82,13 +82,13 @@ namespace GAFE
         public SqlDataAdapter BuscaCfgDocSerie(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CveDoc,TipoMtos.Nombre as Mov_Inv," +
+            string sql = " SELECT DocProv.CveAlmacen, Alm.Descripcion as Almacén,DocProv.CveDoc,CfgDoc.Nombre as Mov_Inv," +
                         "         DocProv.Serie,DocProv.Descripcion,DocProv.CodFoliador,Fol.Descripcion as Foliador, " +
                         "         DocProv.FmtoImpresion,DocProv.NoCopiasImp, DocProv.NombImpresora " +
                         " FROM CfgDocSerie AS DocProv " +
                         " INNER JOIN Inv_CatAlmacenes AS Alm ON DocProv.CveAlmacen = Alm.ClaveAlmacen " +
                         " INNER JOIN CfgCatFoliadores AS Fol ON DocProv.CodFoliador = Fol.CveFoliador " +
-                        " INNER JOIN CfgTipoMovProv AS TipoMtos ON TipoMtos.ClaveDoc = DocProv.CveDoc " +
+                        " INNER JOIN CfgDocumentos AS CfgDoc ON CfgDoc.CveDoc = DocProv.CveDoc " +
                         " Where DocProv.CveAlmacen  like '%" + bsq + "%' OR  DocProv.CveDoc LIKE '%" + bsq + "%' OR DocProv.Serie LIKE '%" + bsq + "%'";
 
             dt = db.SelectDA(sql);

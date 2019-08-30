@@ -202,11 +202,11 @@
     <Compile Include="frmLstCfgDocSerie.designer.cs">
       <DependentUpon>frmLstCfgDocSerie.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLstCfgTipoMovProv.cs">
+    <Compile Include="frmLstCfgDocumentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLstCfgTipoMovProv.designer.cs">
-      <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
+    <Compile Include="frmLstCfgDocumentos.designer.cs">
+      <DependentUpon>frmLstCfgDocumentos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatLstPrecios.cs">
       <SubType>Form</SubType>
@@ -238,11 +238,11 @@
     <Compile Include="frmRegCfgDocSerie.designer.cs">
       <DependentUpon>frmRegCfgDocSerie.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegCfgTipoMovProv.cs">
+    <Compile Include="frmRegCfgDocumentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegCfgTipoMovProv.designer.cs">
-      <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
+    <Compile Include="frmRegCfgDocumentos.designer.cs">
+      <DependentUpon>frmRegCfgDocumentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu2.cs">
       <SubType>Form</SubType>
@@ -415,7 +415,7 @@
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatCfgDocSerie.cs" />
-    <Compile Include="PuiCatCfgTipoMovProv.cs" />
+    <Compile Include="PuiCatCfgDocumentos.cs" />
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
@@ -441,7 +441,7 @@
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatCfgDocSerie.cs" />
-    <Compile Include="RegCatCfgTipoMovProv.cs" />
+    <Compile Include="RegCatCfgDocumentos.cs" />
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
@@ -491,8 +491,8 @@
     <EmbeddedResource Include="frmLstCfgDocSerie.resx">
       <DependentUpon>frmLstCfgDocSerie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLstCfgTipoMovProv.resx">
-      <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmLstCfgDocumentos.resx">
+      <DependentUpon>frmLstCfgDocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatLstPrecios.resx">
       <DependentUpon>frmCatLstPrecios.cs</DependentUpon>
@@ -506,8 +506,8 @@
     <EmbeddedResource Include="frmRegCfgDocSerie.resx">
       <DependentUpon>frmRegCfgDocSerie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegCfgTipoMovProv.resx">
-      <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmRegCfgDocumentos.resx">
+      <DependentUpon>frmRegCfgDocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSlcEmpresas.resx">
       <DependentUpon>frmSlcEmpresas.cs</DependentUpon>

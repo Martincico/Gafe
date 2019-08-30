@@ -11,7 +11,7 @@ namespace GAFE
 {
   public class clsCfgDocumento
     {
-        public string ClaveDoc;
+        public string CveDoc;
         public string Nombre;
         public string CargoAbono;
         public String CveTipoMov;
@@ -29,7 +29,7 @@ namespace GAFE
 
         public clsCfgDocumento(string clavedoc, MsSql Odat)
         {
-            ClaveDoc = clavedoc;
+            CveDoc = clavedoc;
             db = Odat;
         }
 
@@ -42,11 +42,11 @@ namespace GAFE
         {
             clsCfgDocumento Doc = new clsCfgDocumento();
             string Sql = "Select * " +
-                         "from CfgTipoMovProv WHERE ClaveDoc = '"+this.ClaveDoc+"'";
+                         "from CfgDocumentos WHERE CveDoc = '" + this.CveDoc+"'";
             SqlDataReader dr = db.SelectDR(Sql);
             while (dr.Read())
             {
-                Doc.ClaveDoc = Convert.ToString(dr["ClaveDoc"]);
+                Doc.CveDoc = Convert.ToString(dr["CveDoc"]);
                 Doc.Nombre = Convert.ToString(dr["Nombre"]);
                 Doc.CargoAbono = Convert.ToString(dr["CargoAbono"]);
                 Doc.CveTipoMov = Convert.ToString(dr["CveTipoMov"]);

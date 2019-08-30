@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,13 +35,12 @@ namespace GAFE
         }
 
 
-        public frmLstCfgDocumentos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
+        public frmLstCfgDocumentos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             user = DatUsr;
-            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -50,15 +48,54 @@ namespace GAFE
 
 
 
-        private void frmCatCfgDocProv_Load(object sender, EventArgs e)
+        private void frmCatCfgDocumentos_Load(object sender, EventArgs e)
         {
-            
+            /*
+            uT = new clsUtil(db, Perfil);
+            uT.CargaArbolAcceso();
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv003A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003B");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003C");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            */
+
+            LlenaGridView();
+
+            cmdSeleccionar.Visible = false;
+            if (opcion>3)
+            {
+                
+                cmdEliminar.Visible = false;
+                cmdEliminar.Visible = false;
+                cmdConsultar.Visible = true;
+                cmdSeleccionar.Visible = true;
+            }
             
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegCfgDocumentos art = new frmRegCfgDocumentos(db, user, 1);
+            frmRegCfgDocumentos art = new frmRegCfgDocumentos(db, user.CodPerfil,1);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -67,10 +104,7 @@ namespace GAFE
         {
             try
             {
-                String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
-                String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user, 2, Alm, CodMP, Ser);
+                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -80,17 +114,13 @@ namespace GAFE
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
             try
             {
-                String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
-                String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user, 3, Alm, CodMP, Ser);
+                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -109,11 +139,9 @@ namespace GAFE
                 if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
-                    /*
+                    PuiCatLineas pui = new PuiCatLineas(db);
                     pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     pui.EliminaLinea();
-                    */
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }
@@ -132,36 +160,17 @@ namespace GAFE
         {
             PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
             DatosTbl = pui.BuscaCfgDocumentos(txtBuscar.Text);
-            DataSet Ds = new DataSet();
+            DataSet ds = new DataSet();
             try
             {
-                DatosTbl.Fill(Ds);
-                LoadArcGrid(Ds);
+                DatosTbl.Fill(ds);
+                LoadArcGrid(ds);
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
-        private void LoadArcGrid(DataSet Ds)
-        {
-            grdView.Columns.Clear();
-            grdView.DataSource = Ds.Tables[0];
-            
-            grdView.Columns["CveAlmacen"].Visible = false;
-            grdView.Columns["CodMovProv"].Visible = false;
-            grdView.Columns["CodFoliador"].Visible = false;
-            /*
-            grdView.Columns["Almacén"].Frozen = true;//Inmovilizar columna
-            grdView.Columns["Mov_Inv"].Frozen = true;//Inmovilizar columna
-            grdView.Columns["Serie"].Frozen = true;//Inmovilizar columna
-            */
-        }
-
-
-
 
 
         private void cmdAceptar_Click(object sender, EventArgs e)
@@ -169,26 +178,27 @@ namespace GAFE
 
             switch (opcion)
             {
-                case 1: Agregar(); break;
-                case 2: Editar(); break;
+                case 1: break;
+                case 2: break;
                 case 3: this.Size = this.MinimumSize; break;
             }
         }
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
-            this.Size = this.MinimumSize;
-            LimpiarControles();
-            OpcionControles(true);
+            this.Close();
         }
 
-        private void frmCatCfgDocProv_KeyDown(object sender, KeyEventArgs e)
+        private void frmCatCfgDocumentos_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
             }
         }
+
+
+
 
 
         private void LlenaGridView()
@@ -206,118 +216,16 @@ namespace GAFE
                 MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-
         }
 
-        private void Agregar()
+        private void LoadArcGrid(DataSet Ds)
         {
-            if (Validar())
-            {
-                PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
-                /*
-                pui.keyCveLinea = txtClaveLinea.Text;
-                pui.cmpDescripcion = txtDescripcion.Text;
-                pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-                
-
-                    if (pui.AgregarLinea() >= 1)
-                {
-                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                    LlenaGridView();
-                    this.Size = this.MinimumSize;
-                }
-                    */
-            }
+            grdView.Columns.Clear();
+            grdView.DataSource = Ds.Tables[0];
+            //grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
+            //grdView.Columns["NoMovimiento"].Visible = false;
         }
-
-        private void Editar()
-        {
-            try
-            {
-                if (Validar())
-                {
-                    PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
-                    /*
-                    pui.keyCveLinea = txtClaveLinea.Text;
-                    pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-                    
-                    if (pui.ActualizaLinea() >= 0)
-                    {
-                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
-                        this.Size = this.MinimumSize;
-                    }
-                    LlenaGridView();
-                    */
-                    //grdView.CurrentRow.Index = idxG;  
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
-                    "Error al editar", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-
-        private Boolean Validar()
-        {
-            Boolean dv = true;
-            /*
-            ClsUtilerias Util = new ClsUtilerias();
-            if (String.IsNullOrEmpty(txtClaveLinea.Text))
-            {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatLineaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-            else
-            {
-                if (!Util.LetrasNum(txtClaveLinea.Text))
-                {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-
-            if (String.IsNullOrEmpty(txtDescripcion.Text))
-            {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-            else
-            {
-                if (!Util.LetrasNumSpa(txtDescripcion.Text))
-                {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatLineas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-            */
-
-            return dv;
-        }
-
-
-        private void OpcionControles(Boolean Op)
-        {
-            /*
-            txtClaveLinea.Enabled = Op;
-            txtDescripcion.Enabled = Op;
-            cboEstatus.Enabled = Op;
-            */
-        }
-
-        private void LimpiarControles()
-        {
-            /*
-            txtClaveLinea.Text = "";
-            txtDescripcion.Text = "";
-            cboEstatus.Text = "";
-            */
-        }
+       
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -353,51 +261,6 @@ namespace GAFE
         private void txtClaveLinea_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
-        }
-
-
-        private void frmLstCfgDocumentos_Load(object sender, EventArgs e)
-        {
-            /*
-            uT = new clsUtil(db, user.CodPerfil);
-            uT.CargaArbolAcceso();
-
-            clsUsPerfil up = uT.BuscarIdNodo("1Inv003A");
-            int AcCOP = (up != null) ? up.Acceso : 0;
-            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003C");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003D");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003E");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003F");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
-            */
-
-            LlenaGridView();
-
-
-            cmdSeleccionar.Visible = false;
-            if (opcion > 3)
-            {
-                cmdEliminar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdConsultar.Visible = true;
-                cmdSeleccionar.Visible = true;
-            }
         }
 
         private void frmLstCfgDocumentos_KeyDown(object sender, KeyEventArgs e)

@@ -229,7 +229,7 @@ namespace GAFE
 
         private void Prov_TipoMov_Click(object sender, EventArgs e)
         {
-            frmLstCfgTipoMovProv tm = new frmLstCfgTipoMovProv(db, user, NewColor);
+            frmLstCfgDocumentos tm = new frmLstCfgDocumentos(db, user, NewColor);
             Nav(tm, panelContenedor);
         }
 
