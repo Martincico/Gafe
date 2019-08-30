@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmCaja
+    partial class DcRegPVenta
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCaja));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DcRegPVenta));
             this.txtClaveArticulo = new System.Windows.Forms.TextBox();
             this.cmdArticulo = new System.Windows.Forms.Button();
             this.cboCliente = new System.Windows.Forms.ComboBox();
@@ -53,6 +53,7 @@
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.cmdAceptar = new System.Windows.Forms.Button();
+            this.btnVerVentas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulo)).BeginInit();
             this.SuspendLayout();
@@ -343,7 +344,22 @@
             this.cmdAceptar.UseVisualStyleBackColor = false;
             this.cmdAceptar.Click += new System.EventHandler(this.cmdAceptar_Click);
             // 
-            // frmCaja
+            // btnVerVentas
+            // 
+            this.btnVerVentas.BackColor = System.Drawing.Color.Snow;
+            this.btnVerVentas.BackgroundImage = global::GAFE.Properties.Resources.Check;
+            this.btnVerVentas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnVerVentas.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnVerVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btnVerVentas.Location = new System.Drawing.Point(185, 469);
+            this.btnVerVentas.Name = "btnVerVentas";
+            this.btnVerVentas.Size = new System.Drawing.Size(31, 34);
+            this.btnVerVentas.TabIndex = 264;
+            this.btnVerVentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnVerVentas.UseVisualStyleBackColor = false;
+            this.btnVerVentas.Click += new System.EventHandler(this.btnVerVentas_Click);
+            // 
+            // DcRegPVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -354,7 +370,8 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(788, 600);
+            this.Controls.Add(this.btnVerVentas);
             this.Controls.Add(this.cmdAceptar);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.lblSubTotal);
@@ -385,7 +402,7 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCaja";
+            this.Name = "DcRegPVenta";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo movimientos de inventarios";
@@ -424,5 +441,6 @@
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button cmdAceptar;
+        private System.Windows.Forms.Button btnVerVentas;
     }
 }

@@ -59,6 +59,8 @@ namespace GAFE
         //        private int PermiteExiNegativasDest;
         //        private int ExisNegativa;
 
+        private string perfil;
+
         ClsUtilerias Util = new ClsUtilerias();
 
         public AddPartidaInvMovtos()
@@ -69,11 +71,12 @@ namespace GAFE
         public AddPartidaInvMovtos(MsSql Odat, String P_modulo, String P_folio, int P_operacion,
                 String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
                  int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, DateTime P_FechaMovimiento,
-                 int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart)
+                 int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart, string _perfil )
         {
             InitializeComponent();
             opcion = P_operacion;
             db = Odat;
+            perfil = _perfil;
             CodPart = P_CodPart;
 
             PModLlama = P_modulo; //dependiendo del modulo que llama esta ventana extrae el precio
@@ -263,38 +266,7 @@ namespace GAFE
 
         }
 
-        private void btnBuscarArt_Click(object sender, EventArgs e)
-        {
-            frmLstArticulos art = new frmLstArticulos(db, "ADMIN", 3);
-            art.ShowDialog();
-            if (!string.IsNullOrEmpty(art.KeyCampo))
-            {
-                PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
-                pui.keyNoMovimiento = art.KeyCampo;
-                pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
-                if (pui.GetDuplicado() >= 1)
-                {
-                    if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",
-                        "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        opcion = 2;
-                        CodPart = pui.keyNoPartida;
-                        GetRegistro();
-                    }
-
-                }
-                else
-                {
-                    PuiCatArticulos arti = new PuiCatArticulos(db);
-                    arti.keyCveArticulo = art.KeyCampo;
-                    arti.EditarArticulo();
-                    txtCodigo.Text = arti.keyCveArticulo;
-                    txtDescripcion.Text = arti.cmpDescripcion;
-                    txtUmedida.Text = arti.UMedida1.keyCveUMedida;
-                    BuscarPrecio(art.KeyCampo);
-                }
-            }
-        }
+        
 
         private void BuscarPrecio(String CveArt)
         {
@@ -656,6 +628,81 @@ namespace GAFE
         private void txtDescuento_TextChanged(object sender, EventArgs e)
         {
             ValidaCalculos(0);
+        }
+
+        private void btnBuscarArt_Click(object sender, EventArgs e)
+        {
+            frmLstArticulos art = new frmLstArticulos(db, perfil, 3);
+            art.ShowDialog();
+            if (!string.IsNullOrEmpty(art.KeyCampo))
+            {
+                PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                pui.keyNoMovimiento = art.KeyCampo;
+                pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
+                if (pui.GetDuplicado() >= 1)
+                {
+                    if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",
+                        "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        opcion = 2;
+                        CodPart = pui.keyNoPartida;
+                        GetRegistro();
+                    }
+
+                }
+                else
+                {
+                    PuiCatArticulos arti = new PuiCatArticulos(db);
+                    arti.keyCveArticulo = art.KeyCampo;
+                    arti.EditarArticulo();
+                    txtCodigo.Text = arti.keyCveArticulo;
+                    txtDescripcion.Text = arti.cmpDescripcion;
+                    txtUmedida.Text = arti.UMedida1.keyCveUMedida;
+                    BuscarPrecio(art.KeyCampo);
+                }
+            }
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                PuiCatArticulos Art = new PuiCatArticulos(db);
+                Art.keyCveArticulo = txtCodigo.Text;
+                if (Art.EditarArticulo() > 0)
+                {
+                    PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
+                    pui.keyNoMovimiento = Art.keyCveArticulo;
+                    pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
+                    if (pui.GetDuplicado() >= 1)
+                    {
+                        if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",
+                            "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            opcion = 2;
+                            CodPart = pui.keyNoPartida;
+                            GetRegistro();
+                        }
+
+                    }
+                    else
+                    {
+                        PuiCatArticulos arti = new PuiCatArticulos(db);
+                        arti.keyCveArticulo = Art.keyCveArticulo;
+                        arti.EditarArticulo();
+                        txtCodigo.Text = arti.keyCveArticulo;
+                        txtDescripcion.Text = arti.cmpDescripcion;
+                        txtUmedida.Text = arti.UMedida1.keyCveUMedida;
+                        BuscarPrecio(Art.keyCveArticulo);
+                    }
+
+                }
+                else
+                {
+                    
+                    MessageBoxAdv.Show("No se encuentra el registro", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

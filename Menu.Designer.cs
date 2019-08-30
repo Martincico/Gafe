@@ -54,10 +54,11 @@
             this.MnuOrdenCompra = new System.Windows.Forms.ToolStripButton();
             this.MnuCompras = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx2 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.CatsClientes = new System.Windows.Forms.ToolStripDropDownButton();
             this.ModGeneral = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.catGeneral = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.MnuGeografia = new System.Windows.Forms.ToolStripButton();
-            this.toolStripEx1 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.CatGeneralDoc = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.MnuFoliadores = new System.Windows.Forms.ToolStripButton();
             this.ModSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripTabItem();
             this.CatSeguridad = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
@@ -67,7 +68,6 @@
             this.CatsUserCfg = new System.Windows.Forms.ToolStripDropDownButton();
             this.panelPie = new System.Windows.Forms.Panel();
             this.panelContenedor = new System.Windows.Forms.Panel();
-            this.CatsClientes = new System.Windows.Forms.ToolStripDropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
             this.ribMenu.SuspendLayout();
             this.ModInventario.Panel.SuspendLayout();
@@ -79,7 +79,7 @@
             this.toolStripEx2.SuspendLayout();
             this.ModGeneral.Panel.SuspendLayout();
             this.catGeneral.SuspendLayout();
-            this.toolStripEx1.SuspendLayout();
+            this.CatGeneralDoc.SuspendLayout();
             this.ModSeguridad.Panel.SuspendLayout();
             this.CatSeguridad.SuspendLayout();
             this.SuspendLayout();
@@ -113,7 +113,7 @@
             this.ribMenu.QuickPanelVisible = false;
             this.ribMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribMenu.SelectedTab = this.ModProveedores;
+            this.ribMenu.SelectedTab = this.ModGeneral;
             this.ribMenu.ShowRibbonDisplayOptionButton = true;
             this.ribMenu.Size = new System.Drawing.Size(799, 175);
             this.ribMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
@@ -190,35 +190,35 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(180, 22);
+            this.CatLineas.Size = new System.Drawing.Size(169, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(180, 22);
+            this.CatClase.Size = new System.Drawing.Size(169, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
@@ -241,7 +241,7 @@
             // CatAlmacen
             // 
             this.CatAlmacen.Name = "CatAlmacen";
-            this.CatAlmacen.Size = new System.Drawing.Size(180, 22);
+            this.CatAlmacen.Size = new System.Drawing.Size(152, 22);
             this.CatAlmacen.Text = "Almacén";
             this.CatAlmacen.ToolTipText = "Almacén";
             this.CatAlmacen.Click += new System.EventHandler(this.CatAlmacen_Click);
@@ -249,7 +249,7 @@
             // CatListaPrecios
             // 
             this.CatListaPrecios.Name = "CatListaPrecios";
-            this.CatListaPrecios.Size = new System.Drawing.Size(180, 22);
+            this.CatListaPrecios.Size = new System.Drawing.Size(152, 22);
             this.CatListaPrecios.Text = "Lista de Precios";
             this.CatListaPrecios.Click += new System.EventHandler(this.CatListaPrecios_Click);
             // 
@@ -267,7 +267,7 @@
             this.MnuExitenciaArt});
             this.ProcInven.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007;
             this.ProcInven.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.ProcInven.Location = new System.Drawing.Point(167, 1);
+            this.ProcInven.Location = new System.Drawing.Point(0, 1);
             this.ProcInven.Name = "ProcInven";
             this.ProcInven.Office12Mode = false;
             this.ProcInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -319,7 +319,7 @@
             this.RepInven.ForeColor = System.Drawing.Color.Black;
             this.RepInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.RepInven.Image = null;
-            this.RepInven.Location = new System.Drawing.Point(300, 1);
+            this.RepInven.Location = new System.Drawing.Point(0, 1);
             this.RepInven.Name = "RepInven";
             this.RepInven.Office12Mode = false;
             this.RepInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -461,6 +461,20 @@
             this.toolStripEx2.TabIndex = 9;
             this.toolStripEx2.Text = "Reportes";
             // 
+            // CatsClientes
+            // 
+            this.CatsClientes.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatsClientes.Image = global::GAFE.Properties.Resources.MnuUsuarios;
+            this.CatsClientes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CatsClientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.CatsClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CatsClientes.Name = "CatsClientes";
+            this.CatsClientes.ShowDropDownArrow = false;
+            this.CatsClientes.Size = new System.Drawing.Size(52, 89);
+            this.CatsClientes.Text = "Clientes";
+            this.CatsClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.CatsClientes.Click += new System.EventHandler(this.CatsClientes_Click);
+            // 
             // ModGeneral
             // 
             this.ModGeneral.Name = "ModGeneral";
@@ -468,7 +482,7 @@
             // ribMenu.ribbonPanel3
             // 
             this.ModGeneral.Panel.Controls.Add(this.catGeneral);
-            this.ModGeneral.Panel.Controls.Add(this.toolStripEx1);
+            this.ModGeneral.Panel.Controls.Add(this.CatGeneralDoc);
             this.ModGeneral.Panel.Name = "ribbonPanel3";
             this.ModGeneral.Panel.ScrollPosition = 0;
             this.ModGeneral.Panel.TabIndex = 5;
@@ -509,23 +523,23 @@
             this.MnuGeografia.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.MnuGeografia.Click += new System.EventHandler(this.MnuGeografia_Click);
             // 
-            // toolStripEx1
+            // CatGeneralDoc
             // 
-            this.toolStripEx1.AutoSize = false;
-            this.toolStripEx1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStripEx1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.toolStripEx1.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.toolStripEx1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripEx1.Image = null;
-            this.toolStripEx1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CatGeneralDoc.AutoSize = false;
+            this.CatGeneralDoc.Dock = System.Windows.Forms.DockStyle.None;
+            this.CatGeneralDoc.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.CatGeneralDoc.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.CatGeneralDoc.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.CatGeneralDoc.Image = null;
+            this.CatGeneralDoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuFoliadores});
-            this.toolStripEx1.Location = new System.Drawing.Point(128, 1);
-            this.toolStripEx1.Name = "toolStripEx1";
-            this.toolStripEx1.Office12Mode = false;
-            this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripEx1.Size = new System.Drawing.Size(126, 106);
-            this.toolStripEx1.TabIndex = 1;
-            this.toolStripEx1.Text = "Documentos";
+            this.CatGeneralDoc.Location = new System.Drawing.Point(128, 1);
+            this.CatGeneralDoc.Name = "CatGeneralDoc";
+            this.CatGeneralDoc.Office12Mode = false;
+            this.CatGeneralDoc.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.CatGeneralDoc.Size = new System.Drawing.Size(126, 106);
+            this.CatGeneralDoc.TabIndex = 1;
+            this.CatGeneralDoc.Text = "Documentos";
             // 
             // MnuFoliadores
             // 
@@ -652,20 +666,6 @@
             this.panelContenedor.Size = new System.Drawing.Size(799, 219);
             this.panelContenedor.TabIndex = 4;
             // 
-            // CatsClientes
-            // 
-            this.CatsClientes.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.CatsClientes.Image = global::GAFE.Properties.Resources.MnuUsuarios;
-            this.CatsClientes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.CatsClientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.CatsClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CatsClientes.Name = "CatsClientes";
-            this.CatsClientes.ShowDropDownArrow = false;
-            this.CatsClientes.Size = new System.Drawing.Size(52, 89);
-            this.CatsClientes.Text = "Clientes";
-            this.CatsClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.CatsClientes.Click += new System.EventHandler(this.CatsClientes_Click);
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -701,8 +701,8 @@
             this.ModGeneral.Panel.ResumeLayout(false);
             this.catGeneral.ResumeLayout(false);
             this.catGeneral.PerformLayout();
-            this.toolStripEx1.ResumeLayout(false);
-            this.toolStripEx1.PerformLayout();
+            this.CatGeneralDoc.ResumeLayout(false);
+            this.CatGeneralDoc.PerformLayout();
             this.ModSeguridad.Panel.ResumeLayout(false);
             this.CatSeguridad.ResumeLayout(false);
             this.CatSeguridad.PerformLayout();
@@ -737,7 +737,7 @@
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModGeneral;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx catGeneral;
         private System.Windows.Forms.ToolStripButton MnuGeografia;
-        private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx1;
+        private Syncfusion.Windows.Forms.Tools.ToolStripEx CatGeneralDoc;
         private System.Windows.Forms.ToolStripButton MnuFoliadores;
         private System.Windows.Forms.ToolStripDropDownButton MnuMovInventarios;
         private System.Windows.Forms.ToolStripDropDownButton MnuKardexArt;

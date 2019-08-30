@@ -471,7 +471,7 @@ namespace GAFE
                     _CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
                     _SolicitaCosto, _EsTraspaso, _EntSal,_CalculaIva, 
                     Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)),
-                    _AlmNumRojo,_AlmNumRojoDest,0);
+                    _AlmNumRojo,_AlmNumRojoDest,0,user.CodPerfil);
                 Addp.ShowDialog();
                 LlenaGridViewPart();
                 OpcionControles(false);
@@ -653,7 +653,7 @@ namespace GAFE
                         _CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
                         _SolicitaCosto, _EsTraspaso, _EntSal, _CalculaIva,
                         Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)),
-                        _AlmNumRojo, _AlmNumRojoDest, Cp);
+                        _AlmNumRojo, _AlmNumRojoDest, Cp, user.CodPerfil);
                 Addp.ShowDialog();
                 LlenaGridViewPart();
             }

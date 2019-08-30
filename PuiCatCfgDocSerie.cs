@@ -9,10 +9,10 @@ using DatSql;
 
 namespace GAFE
 {
-    class PuiCatCfgDocProv
+    class PuiCatCfgDocSerie
     {
         private string CveAlmacen;
-        private string CodMovProv;
+        private string CveDoc;
         private string Serie;
         private string Descripcion;
         private string CodFoliador;
@@ -31,24 +31,24 @@ namespace GAFE
         private MsSql db = null;
 
 
-        public PuiCatCfgDocProv(MsSql Odat)
+        public PuiCatCfgDocSerie(MsSql Odat)
         {
             //MatParam = new object[9,2]; 
             db = Odat;
         }
 
 
-        #region Definicion de propiedades de la CfgDocProv
+        #region Definicion de propiedades de la CfgDocSerie
 
         public string keyCveAlmacen
         {
             get { return CveAlmacen; }
             set { CveAlmacen = value; }
         }
-        public string keyCodMovProv
+        public string keyCveDoc
         {
-            get { return CodMovProv; }
-            set { CodMovProv = value; }
+            get { return CveDoc; }
+            set { CveDoc = value; }
         }
         public string keySerie
         {
@@ -99,45 +99,45 @@ namespace GAFE
 
         #endregion
 
-        public int AgregarCfgDocProv()
+        public int AgregarCfgDocSerie()
         {
             CargaParametroMat();
-            RegCatCfgDocProv OpRadd = new RegCatCfgDocProv(MatParam, db);
-            return OpRadd.AddRegCfgDocProv();
+            RegCatCfgDocSerie OpRadd = new RegCatCfgDocSerie(MatParam, db);
+            return OpRadd.AddRegCfgDocSerie();
         }
 
-        public int ActualizaCfgDocProv()
+        public int ActualizaCfgDocSerie()
         {
             CargaParamKey();
-            RegCatCfgDocProv OpUp = new RegCatCfgDocProv(MatParamK, db);
-            return OpUp.UpdateCfgDocProv();
+            RegCatCfgDocSerie OpUp = new RegCatCfgDocSerie(MatParamK, db);
+            return OpUp.UpdateCfgDocSerie();
 
         }
 
-        public int EliminaCfgDocProv()
+        public int EliminaCfgDocSerie()
         {
             CargaParamKey();
-            RegCatCfgDocProv OpDel = new RegCatCfgDocProv(MatParamK, db);
-            return OpDel.DeleteCfgDocProv();
+            RegCatCfgDocSerie OpDel = new RegCatCfgDocSerie(MatParamK, db);
+            return OpDel.DeleteCfgDocSerie();
         }
 
-        public SqlDataAdapter ListarCfgDocProvs()
+        public SqlDataAdapter ListarCfgDocSeries()
         {
-            RegCatCfgDocProv OpLst = new RegCatCfgDocProv(db);
-            return OpLst.ListCfgDocProvs();
+            RegCatCfgDocSerie OpLst = new RegCatCfgDocSerie(db);
+            return OpLst.ListCfgDocSeries();
         }
 
-        public void EditarCfgDocProv()
+        public void EditarCfgDocSerie()
         {
             CargaParamKey();
-            RegCatCfgDocProv OpEdit = new RegCatCfgDocProv(MatParamK, db);
+            RegCatCfgDocSerie OpEdit = new RegCatCfgDocSerie(MatParamK, db);
             Datos = OpEdit.RegistroActivo();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
             object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
 
             CveAlmacen = ObjA[0].ToString();
-            CodMovProv = ObjA[0].ToString();
+            CveDoc = ObjA[0].ToString();
             Serie = ObjA[0].ToString();
             Descripcion = ObjA[0].ToString();
             CodFoliador = ObjA[0].ToString();
@@ -149,10 +149,10 @@ namespace GAFE
             Estatus = int.Parse(ObjA[0].ToString());
         }
 
-        public SqlDataAdapter BuscaCfgDocProv(string buscar)
+        public SqlDataAdapter BuscaCfgDocSerie(string buscar)
         {
-            RegCatCfgDocProv OpBsq = new RegCatCfgDocProv(db);
-            return OpBsq.BuscaCfgDocProv(buscar);
+            RegCatCfgDocSerie OpBsq = new RegCatCfgDocSerie(db);
+            return OpBsq.BuscaCfgDocSerie(buscar);
         }
 
         public int AddRegCfgFoliadores()
@@ -160,13 +160,13 @@ namespace GAFE
             MatParam = new object[2, 2];
             MatParam[0, 0] = "CodFoliador"; MatParam[0, 1] = CodFoliador;
             MatParam[1, 0] = "CveAlmacen"; MatParam[1, 1] = CveAlmacen;
-            RegCatCfgDocProv OpRadd = new RegCatCfgDocProv(MatParam, db);
+            RegCatCfgDocSerie OpRadd = new RegCatCfgDocSerie(MatParam, db);
             return OpRadd.AddRegCfgFoliadores();
         }
 
         public DataTable CbollenaSeries(string Alm, string MProv)
         {
-            RegCatCfgDocProv OpLst = new RegCatCfgDocProv(db);
+            RegCatCfgDocSerie OpLst = new RegCatCfgDocSerie(db);
             DataSet Cbo = new DataSet();
             OpLst.cboCfgSeries(Alm, MProv).Fill(Cbo);
             return Cbo.Tables[0];
@@ -175,7 +175,7 @@ namespace GAFE
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "CveAlmacen"; MatParam[0, 1] = CveAlmacen;
-            MatParam[1, 0] = "CodMovProv"; MatParam[1, 1] = CodMovProv;
+            MatParam[1, 0] = "CveDoc"; MatParam[1, 1] = CveDoc;
             MatParam[2, 0] = "Serie"; MatParam[2, 1] = Serie;
             MatParam[3, 0] = "Descripcion"; MatParam[3, 1] = Descripcion;
             MatParam[4, 0] = "CodFoliador"; MatParam[4, 1] = CodFoliador;
@@ -190,7 +190,7 @@ namespace GAFE
         private void CargaParamKey()
         {
             MatParamK[0, 0] = "CveAlmacen"; MatParamK[0, 1] = CveAlmacen;
-            MatParamK[1, 0] = "CodMovProv"; MatParamK[1, 1] = CodMovProv;
+            MatParamK[1, 0] = "CveDoc"; MatParamK[1, 1] = CveDoc;
             MatParamK[2, 0] = "Serie"; MatParamK[2, 1] = Serie;
         }
 

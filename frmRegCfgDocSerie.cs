@@ -14,7 +14,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmRegCfgDocProv : MetroForm
+    public partial class frmRegCfgDocSerie : MetroForm
     {
         private int opcion;
         private MsSql db = null;
@@ -24,12 +24,12 @@ namespace GAFE
 
         public DatCfgUsuario user;
 
-        public frmRegCfgDocProv()
+        public frmRegCfgDocSerie()
         {
             InitializeComponent();
         }
 
-        public frmRegCfgDocProv(MsSql Odat, DatCfgUsuario DatUsr, int Op, String Alm= "", String TMov = "", String ser= "")
+        public frmRegCfgDocSerie(MsSql Odat, DatCfgUsuario DatUsr, int Op, String Alm= "", String TMov = "", String ser= "")
         {
             InitializeComponent();
             opcion = Op;
@@ -69,12 +69,12 @@ namespace GAFE
         private void get_Campos(String Alm, String TMov, String ser)
         {
             
-            PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+            PuiCatCfgDocSerie pui = new PuiCatCfgDocSerie(db);
             pui.keyCveAlmacen = Alm;
-            pui.keyCodMovProv = TMov;
+            pui.keyCveDoc = TMov;
             pui.keySerie = ser;
 
-            pui.EditarCfgDocProv();
+            pui.EditarCfgDocSerie();
 
             cboAlmacen.SelectedValue = Alm;
             cboTMovtoProv.SelectedValue = TMov;
@@ -106,13 +106,6 @@ namespace GAFE
                 case 2: Editar(); break;
                 case 3: this.Close(); break;
             }
-        }
-
-        private void cmdCancelar_Click(object sender, EventArgs e)
-        {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Close();
         }
 
         private void Agregar()
@@ -155,10 +148,10 @@ namespace GAFE
         public int set_Campos()
         {
             int rsp = -1;
-            PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+            PuiCatCfgDocSerie pui = new PuiCatCfgDocSerie(db);
 
             pui.keyCveAlmacen = Convert.ToString(cboAlmacen.SelectedValue);
-            pui.keyCodMovProv = Convert.ToString(cboTMovtoProv.SelectedValue);
+            pui.keyCveDoc = Convert.ToString(cboTMovtoProv.SelectedValue);
             pui.keySerie = txtSerie.Text;
             pui.cmpDescripcion = txtDescripcion.Text;
             pui.cmpCodFoliador = Convert.ToString(cboCfgCatFoliadores.SelectedValue);
@@ -172,7 +165,7 @@ namespace GAFE
             if (opcion==1)
             {
                 db.IniciaTrans();
-                if(pui.AgregarCfgDocProv()==1)
+                if(pui.AgregarCfgDocSerie()==1)
                 {
                     if(pui.AddRegCfgFoliadores()==1)
                     {
@@ -185,7 +178,7 @@ namespace GAFE
                 }
             }
             else
-                rsp =pui.ActualizaCfgDocProv();
+                rsp =pui.ActualizaCfgDocSerie();
 
             return rsp;
         }
@@ -272,11 +265,6 @@ namespace GAFE
             txtNombreImpresora.Text = "";
         }
 
-        private void cmdCancelar_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void LlecboAlmacen()
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
@@ -301,7 +289,7 @@ namespace GAFE
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }
 
-        private void frmRegCfgDocProv_Load(object sender, EventArgs e)
+        private void frmRegCfgDocSerie_Load(object sender, EventArgs e)
         {
             uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
@@ -333,6 +321,13 @@ namespace GAFE
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
             */
+        }
+
+        private void cmdCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
+            OpcionControles(true);
+            this.Close();
         }
     }
 }

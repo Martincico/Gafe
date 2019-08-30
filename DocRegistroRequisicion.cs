@@ -497,7 +497,7 @@ namespace GAFE
             
             cboSerie.DataSource = null;
             cboSerie.Items.Clear();
-            PuiCatCfgDocProv lin = new PuiCatCfgDocProv(db);
+            PuiCatCfgDocSerie lin = new PuiCatCfgDocSerie(db);
             cboSerie.DataSource = lin.CbollenaSeries(CveAlm, CveDoc);
 
             cboSerie.ValueMember = "Clave";

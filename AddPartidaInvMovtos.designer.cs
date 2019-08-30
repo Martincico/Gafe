@@ -307,8 +307,9 @@
             this.txtCodigo.Location = new System.Drawing.Point(108, 11);
             this.txtCodigo.MaxLength = 100;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(159, 22);
+            this.txtCodigo.Size = new System.Drawing.Size(184, 22);
             this.txtCodigo.TabIndex = 2;
+            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // label8
             // 

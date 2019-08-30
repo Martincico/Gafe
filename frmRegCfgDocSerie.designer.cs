@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmRegCfgDocProv
+    partial class frmRegCfgDocSerie
     {
         /// <summary>
         /// Required designer variable.
@@ -62,7 +62,7 @@
             this.cmdCancelar.Text = "Cancelar";
             this.cmdCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdCancelar.UseVisualStyleBackColor = false;
-            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click_1);
+            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
             // 
             // cmdAceptar
             // 
@@ -252,7 +252,7 @@
             this.chkEstatus.Text = "Activo";
             this.chkEstatus.UseVisualStyleBackColor = true;
             // 
-            // frmRegCfgDocProv
+            // frmRegCfgDocSerie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -285,11 +285,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmRegCfgDocProv";
+            this.Name = "frmRegCfgDocSerie";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro tipo de documentos";
-            this.Load += new System.EventHandler(this.frmRegCfgDocProv_Load);
+            this.Load += new System.EventHandler(this.frmRegCfgDocSerie_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -12,7 +12,7 @@ namespace GAFE
   public class clsCfgDocSeries
     {
         public string CveAlmacen;
-        public string CodMovProv;
+        public string CveDoc;
         public string Serie;
         public string Descripcion;
         public string CodFoliador;
@@ -26,10 +26,10 @@ namespace GAFE
         private MsSql db = null;
         //private SqlParameter[] ArrParametros;
 
-        public clsCfgDocSeries(string CveAlm, string CodMProv, string Ser, MsSql Odat)
+        public clsCfgDocSeries(string CveAlm, string CveDoc, string Ser, MsSql Odat)
         {
             CveAlmacen = CveAlm;
-            CodMovProv = CodMProv;
+            CveDoc = CveDoc;
             Serie = Ser;
             db = Odat;
         }
@@ -43,13 +43,13 @@ namespace GAFE
         {
             clsCfgDocSeries Doc = new clsCfgDocSeries();
             string Sql = "Select * " +
-                         "from CfgDocProv " +
-                         "WHERE CveAlmacen = '" + CveAlmacen + "' AND CodMovProv = '"+ CodMovProv + "' AND Serie = '"+ Serie+"'" ;
+                         "from CfgDocSerie " +
+                         "WHERE CveAlmacen = '" + CveAlmacen + "' AND CveDoc = '"+ CveDoc + "' AND Serie = '"+ Serie+"'" ;
             SqlDataReader dr = db.SelectDR(Sql);
             while (dr.Read())
             {
                 Doc.CveAlmacen = Convert.ToString(dr["CveAlmacen"]);
-                Doc.CodMovProv = Convert.ToString(dr["CodMovProv"]);
+                Doc.CveDoc = Convert.ToString(dr["CveDoc"]);
                 Doc.Serie = Convert.ToString(dr["Serie"]);
                 Doc.Descripcion = Convert.ToString(dr["Descripcion"]);
                 Doc.CodFoliador = Convert.ToString(dr["CodFoliador"]);

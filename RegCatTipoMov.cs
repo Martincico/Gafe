@@ -145,7 +145,7 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             String Str = (!cve.Equals(""))? (" AND CveClsMov = '" + cve+"'"):" ";
-            Str = (OmiteInter==1) ? (" AND EsInterno =  0") : " ";
+            Str += (OmiteInter==1) ? (" AND EsInterno =  0") : " ";
 
             string Sql = "Select CveTipoMov, Descripcion " +
                          "from Inv_TipoMovtos WHERE estatus = 1  " + Str;

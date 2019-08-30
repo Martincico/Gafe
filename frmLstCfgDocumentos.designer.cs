@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmLstCfgDocProv
+    partial class frmLstCfgDocumentos
     {
         /// <summary>
         /// Required designer variable.
@@ -199,7 +199,7 @@
             this.cmdSeleccionar.Visible = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
-            // frmLstCfgDocProv
+            // frmLstCfgDocumentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,12 +221,12 @@
             this.MaximizeBox = false;
             this.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.MinimizeBox = false;
-            this.Name = "frmLstCfgDocProv";
+            this.Name = "frmLstCfgDocumentos";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Configuración  documentos";
-            this.Load += new System.EventHandler(this.frmCatCfgDocProv_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLstCfgDocProv_KeyDown);
+            this.Load += new System.EventHandler(this.frmLstCfgDocumentos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLstCfgDocumentos_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();

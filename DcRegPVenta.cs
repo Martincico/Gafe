@@ -18,7 +18,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace GAFE
 {
-    public partial class frmCaja : MetroForm
+    public partial class DcRegPVenta : MetroForm
     {
 
         private MsSql db = null;
@@ -50,22 +50,24 @@ namespace GAFE
 
         private String CveDoc;
 
-        public frmCaja()
+        public DcRegPVenta()
         {
             InitializeComponent();
         }
 
 
-        public frmCaja(MsSql Odat, Form lg, DatCfgUsuario DatUsr, int Opc, String CveDc)
+        public DcRegPVenta(MsSql Odat, Form lg, DatCfgUsuario DatUsr, int Opc,
+            String _CveDoc, string _namedoc, string _cveventa = "")
         {
             InitializeComponent();
             
             db = Odat;
             user = DatUsr;
             Flg = lg;
-            //SelectTemaUser(user.StiloTema);
             Opcion = Opc;
-            CveDoc = CveDc;
+            CveDoc = _CveDoc;
+            idmovimiento = _cveventa;
+
 
             PuiSegUsuarioCfg team = new PuiSegUsuarioCfg(db);
             team.cmpStiloTema = user.StiloTema;
@@ -73,9 +75,6 @@ namespace GAFE
             NewColor.Encabezado = reg[0].ToString();
             NewColor.HoverEncabezado = reg[1].ToString();
             NewColor.FontColor = reg[2].ToString();
-
-            //this.ribMenu.Office2016ColorTable.Add(NewColor.StiloTeam());
-
             
             LlecboCliente();
 
@@ -85,6 +84,7 @@ namespace GAFE
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
         }
 
         private void frmCaja_Load(object sender, EventArgs e)
@@ -112,21 +112,24 @@ namespace GAFE
             switch (e.KeyCode)
             {
                 case Keys.F1:
-                    MessageBox.Show("F1 pressed.", "Key Down Event");
+                    MessageBox.Show("Click articulo");
                     cmdArticulo_Click(sender, e);
                     break;
 
                 case Keys.F2:
-                    MessageBox.Show("F2 pressed.", "Key Down Event");
-
+                    MessageBox.Show("EDITAR");
+                    btnEditar_Click(sender, e);
                     break;
-
-                case Keys.F4: CancelEditPart();
+                case Keys.F3:
+                    MessageBox.Show("ELIMINAR");
+                    btnEliminar_Click(sender, e);
+                    break;
+                case Keys.F4:
+                    CancelEditPart();
                     break;
                 case Keys.Escape:
                     isDataSaved = true;
                     FrmClose();
-
                     break;
                 default:
                     //MessageBox.Show(e.KeyCode.ToString() + " pressed.", "Key Down Event");
@@ -193,6 +196,7 @@ namespace GAFE
         {
             grdViewD.DataSource = null;
             grdViewD.DataSource = PARTIDAS;
+            grdViewD.Columns["CveArticulo"].Frozen = true;//Inmovilizar columna
 
             grdViewD.Columns["idMov"].Visible = false;
             grdViewD.Columns["Documento"].Visible = false;
@@ -215,7 +219,7 @@ namespace GAFE
             grdViewD.Columns["Cantidad"].Width = 40;
             grdViewD.Columns["Cantidad"].HeaderText = "Cant.";
 
-            grdViewD.Columns["CveArticulo"].Frozen = true;//Inmovilizar columna
+           
             
 
         }
@@ -250,7 +254,7 @@ namespace GAFE
                         LimpiaVar(0);
                         InhControles(true,0);
                         txtClaveArticulo.Focus();
-                        lblTotalArticulos.Text = lblTotalArticulos.Text + " " + grdViewD.RowCount;
+                        lblTotalArticulos.Text =  Convert.ToString(grdViewD.RowCount);
                         OptPartd = 1;
                     }
                 }
@@ -411,14 +415,15 @@ namespace GAFE
                 lblSubTotal.Text = "0";
                 txtDescuento.Text = "0";
                 lblSubTotal.Text = "0";
-                //limppiar el grid
+                grdViewD.DataSource = null;
+                PARTIDAS = new List<DocPartidasReq>();
+                lblTotalArticulos.Text = "0" ;
             }
 
             CveImp = "";
             CveUmed = "";
             
             txtClaveArticulo.Focus();
-            
         }
 
         private void InhControles(Boolean Opt, int _all)
@@ -494,8 +499,14 @@ namespace GAFE
                                     MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     isDataSaved = true;
                                     DellAll = false;
+                                    LimpiaVar(1);
+
                                 }
                             //}
+                        }
+                        else
+                        {
+                            DellAll = false;
                         }
 
                     }
@@ -619,7 +630,7 @@ namespace GAFE
 
             lblSubTotal.Text = subTotal.ToString();
             lblTotal.Text = total.ToString();
-            lblTotalArticulos.Text = lblTotalArticulos.Text + " " + grdViewD.RowCount;
+            lblTotalArticulos.Text = Convert.ToString(grdViewD.RowCount); ;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -640,6 +651,98 @@ namespace GAFE
                 MessageBox.Show("Tienes que seleccionar una partida\n Error:" + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnVerVentas_Click(object sender, EventArgs e)
+        {
+            DcLstPventas LPv = new DcLstPventas(db, user, CveDoc, "LISTADO DE VENTAS");
+            LPv.ShowDialog();
+            idmovimiento = LPv.dv[0];
+            if (!LPv.dv[0].Equals(""))
+            {
+                getRegistro();
+                btnEditar.Enabled = false;
+                btnEliminar.Enabled = false;
+            }
+        }
+
+        private void grdViewD_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void getRegistro()
+        {
+            DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
+            sRq.keyidMov = idmovimiento;
+            sRq.GetDocumento();
+            lblTicket.Text = sRq.keyDocumento;
+            /*
+            if (ConfigDoc.UsaSerie == 1)
+            {
+                cboSerie.SelectedValue = sRq.cmpSerie;
+            }
+            
+            txtNumDoc.Text = Convert.ToString(sRq.cmpNumDoc);
+            cboAlmacen.SelectedValue = sRq.cmpClaveAlmacen;
+            FechaExpedicion.Value = sRq.cmpFechaExpedicion;
+            */
+            txtDescuento.Text = Convert.ToString(sRq.cmpDescuento);
+            /*
+            if (ConfigDoc.UsaProveedor == 1)
+            {
+                cboProveedor.SelectedValue = sRq.cmpCveProveedor;
+            }
+            if (ConfigDoc.UsaCliente == 0)
+            {
+                cboCliente.SelectedValue = sRq.cmpCveCliente;
+            }
+            */
+
+            SqlDataAdapter DatosTbl = sRq.GetDatelleDoc(idmovimiento);
+            DataSet ds = new DataSet();
+            DatosTbl.Fill(ds);
+            DataTable dt = ds.Tables[0];
+
+
+            double subTotal = 0, impuesto = 0, total = 0;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                DocPartidasReq partida = new DocPartidasReq();
+                partida.idMov = row["idMov"].ToString();
+                partida.Documento = row["Documento"].ToString();
+                partida.Serie = row["Serie"].ToString();
+                partida.Numdoc = long.Parse(row["Numdoc"].ToString());
+                partida.ClaveAlmacen = row["ClaveAlmacen"].ToString();
+                partida.Partida = int.Parse(row["Partida"].ToString());
+                partida.CveArticulo = row["CveArticulo"].ToString();
+                partida.Descripcion = row["Descripcion"].ToString();
+                partida.Cantidad = double.Parse(row["Cantidad"].ToString());
+                partida.CveUmedida1 = row["CveUmedida1"].ToString();
+                partida.CveImpuesto = row["CveImpuesto"].ToString();
+                partida.ImpuestoValor = Convert.ToDouble(row["ImpuestoValor"].ToString());
+                partida.Precio = Convert.ToDouble(row["Precio"].ToString());
+                partida.Descuento = Convert.ToDouble(row["Descuento"].ToString());
+                partida.PrecioNeto = Convert.ToDouble(row["PrecioNeto"].ToString());
+                partida.Impuesto = Convert.ToDouble(row["Impuesto"].ToString());
+                partida.SubTotal = Convert.ToDouble(row["SubTotal"].ToString());
+                partida.Total = Convert.ToDouble(row["Total"].ToString());
+                partida.Autorizado = Boolean.Parse(row["Autorizado"].ToString());
+
+                subTotal = subTotal + Convert.ToDouble(row["SubTotal"].ToString());
+                impuesto = impuesto + Convert.ToDouble(row["Impuesto"].ToString());
+                total = total + Convert.ToDouble(row["Total"].ToString());
+
+                PARTIDAS.Add(partida);
+
+            }
+
+            lblSubTotal.Text = subTotal.ToString();
+            lblTotal.Text = total.ToString();
+
+            LLenaGrid();
+        }
+
     }
 }
 

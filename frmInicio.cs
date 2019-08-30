@@ -182,8 +182,8 @@ namespace GAFE
                                     this.Hide();
                                     if (user.CodPerfil == "CAJAS")
                                     {
-                                        frmCaja mn = new frmCaja(db,this,  user, 1, "M3001");
-                                        mn.Show();
+                                        DcRegPVenta Rcap = new DcRegPVenta(db, this, user, 1, "M3001", "PUNTO DE VENTA");
+                                        Rcap.Show();
                                         
                                     }
                                     else

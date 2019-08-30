@@ -235,7 +235,7 @@ namespace GAFE
 
         private void Prov_SereDoc_Click(object sender, EventArgs e)
         {
-            frmLstCfgDocProv tm = new frmLstCfgDocProv(db, user, NewColor);
+            frmLstCfgDocSerie tm = new frmLstCfgDocSerie(db, user, NewColor);
             Nav(tm, panelContenedor);
         }
       
@@ -265,14 +265,14 @@ namespace GAFE
 
         private void MnuRequisición_Click(object sender, EventArgs e)
         {
-            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2001", "Requisición");
-            Lst.ShowDialog();
+            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2001", "REQUISICIÓN");
+            Nav(Lst, panelContenedor);
         }
 
         private void MnuOrdenCompra_Click(object sender, EventArgs e)
         {
-            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2002", "Orden de compra");
-            Lst.ShowDialog();
+            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2002", "ORDEN DE COMPRA");
+            Nav(Lst, panelContenedor);
         }
 
         private void MnuExitenciaArt_Click(object sender, EventArgs e)
@@ -310,6 +310,11 @@ namespace GAFE
         {
             
 
+        }
+
+        private void MnuPuntosVentas_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

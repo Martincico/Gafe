@@ -68,7 +68,7 @@
             this.txtClaveArticulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtClaveArticulo.Location = new System.Drawing.Point(101, 6);
             this.txtClaveArticulo.Name = "txtClaveArticulo";
-            this.txtClaveArticulo.Size = new System.Drawing.Size(156, 24);
+            this.txtClaveArticulo.Size = new System.Drawing.Size(208, 24);
             this.txtClaveArticulo.TabIndex = 1;
             this.txtClaveArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveArticulo_KeyPress);
             // 
@@ -83,7 +83,7 @@
             // 
             // cmdArticulo
             // 
-            this.cmdArticulo.Location = new System.Drawing.Point(263, 6);
+            this.cmdArticulo.Location = new System.Drawing.Point(315, 6);
             this.cmdArticulo.Name = "cmdArticulo";
             this.cmdArticulo.Size = new System.Drawing.Size(39, 24);
             this.cmdArticulo.TabIndex = 2;

@@ -340,7 +340,7 @@ namespace GAFE
 
         private void Prov_SereDoc_Click(object sender, EventArgs e)
         {
-            frmLstCfgDocProv tm = new frmLstCfgDocProv(db, user, NewColor);
+            frmLstCfgDocSerie tm = new frmLstCfgDocSerie(db, user, NewColor);
             Nav(tm, panelContenedor);
         }
 

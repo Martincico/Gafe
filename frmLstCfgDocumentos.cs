@@ -17,7 +17,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmLstCfgDocProv : MetroForm
+    public partial class frmLstCfgDocumentos : MetroForm
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
@@ -30,13 +30,13 @@ namespace GAFE
         public clsStiloTemas StiloColor;
 
 
-        public frmLstCfgDocProv()
+        public frmLstCfgDocumentos()
         {
             InitializeComponent();
         }
 
 
-        public frmLstCfgDocProv(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
+        public frmLstCfgDocumentos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
         {
             InitializeComponent();
             db = Odat;
@@ -52,52 +52,13 @@ namespace GAFE
 
         private void frmCatCfgDocProv_Load(object sender, EventArgs e)
         {
-            /*
-            uT = new clsUtil(db, user.CodPerfil);
-            uT.CargaArbolAcceso();
-
-            clsUsPerfil up = uT.BuscarIdNodo("1Inv003A");
-            int AcCOP = (up != null) ? up.Acceso : 0;
-            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003C");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003D");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003E");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv003F");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
-            */
-
-            LlenaGridView();
             
-
-            cmdSeleccionar.Visible = false;
-            if (opcion>3)
-            {
-                cmdEliminar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdConsultar.Visible = true;
-                cmdSeleccionar.Visible = true;
-            }
             
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegCfgDocProv art = new frmRegCfgDocProv(db, user, 1);
+            frmRegCfgDocumentos art = new frmRegCfgDocumentos(db, user, 1);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -109,7 +70,7 @@ namespace GAFE
                 String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
                 String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user, 2, Alm, CodMP, Ser);
+                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user, 2, Alm, CodMP, Ser);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -129,7 +90,7 @@ namespace GAFE
                 String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
                 String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocProv Ventana = new frmRegCfgDocProv(db, user, 3, Alm, CodMP, Ser);
+                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user, 3, Alm, CodMP, Ser);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -148,7 +109,7 @@ namespace GAFE
                 if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+                    PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
                     /*
                     pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     pui.EliminaLinea();
@@ -169,8 +130,8 @@ namespace GAFE
 
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
-            DatosTbl = pui.BuscaCfgDocProv(txtBuscar.Text);
+            PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
+            DatosTbl = pui.BuscaCfgDocumentos(txtBuscar.Text);
             DataSet Ds = new DataSet();
             try
             {
@@ -232,8 +193,8 @@ namespace GAFE
 
         private void LlenaGridView()
         {
-            PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
-            DatosTbl = pui.ListarCfgDocProvs();
+            PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
+            DatosTbl = pui.ListarCfgDocumentos();
             DataSet Ds = new DataSet();
             try
             {
@@ -252,7 +213,7 @@ namespace GAFE
         {
             if (Validar())
             {
-                PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+                PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
                 /*
                 pui.keyCveLinea = txtClaveLinea.Text;
                 pui.cmpDescripcion = txtDescripcion.Text;
@@ -276,7 +237,7 @@ namespace GAFE
             {
                 if (Validar())
                 {
-                    PuiCatCfgDocProv pui = new PuiCatCfgDocProv(db);
+                    PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
                     /*
                     pui.keyCveLinea = txtClaveLinea.Text;
                     pui.cmpDescripcion = txtDescripcion.Text;
@@ -394,12 +355,52 @@ namespace GAFE
             ClsUtilerias.LetrasNumeros(e);
         }
 
-        private void frmCatCfgDocProv_CaptionBarPaint(object sender, PaintEventArgs e)
+
+        private void frmLstCfgDocumentos_Load(object sender, EventArgs e)
         {
-//            e.Graphics.FillRectangle(new LinearGradientBrush(e.ClipRectangle, Color.AliceBlue, Color.Blue, LinearGradientMode.BackwardDiagonal), e.ClipRectangle);
+            /*
+            uT = new clsUtil(db, user.CodPerfil);
+            uT.CargaArbolAcceso();
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv003A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003B");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003C");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003E");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv003F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            */
+
+            LlenaGridView();
+
+
+            cmdSeleccionar.Visible = false;
+            if (opcion > 3)
+            {
+                cmdEliminar.Visible = false;
+                cmdEliminar.Visible = false;
+                cmdConsultar.Visible = true;
+                cmdSeleccionar.Visible = true;
+            }
         }
 
-        private void frmLstCfgDocProv_KeyDown(object sender, KeyEventArgs e)
+        private void frmLstCfgDocumentos_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {

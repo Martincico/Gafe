@@ -178,11 +178,11 @@
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </Compile>
     <Compile Include="DocRegRequisiciones.cs" />
-    <Compile Include="frmCaja.cs">
+    <Compile Include="DcRegPVenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCaja.designer.cs">
-      <DependentUpon>frmCaja.cs</DependentUpon>
+    <Compile Include="DcRegPVenta.designer.cs">
+      <DependentUpon>DcRegPVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatUsuariosCfg.cs">
       <SubType>Form</SubType>
@@ -190,11 +190,17 @@
     <Compile Include="frmCatUsuariosCfg.Designer.cs">
       <DependentUpon>frmCatUsuariosCfg.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLstCfgDocProv.cs">
+    <Compile Include="DcLstPventas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLstCfgDocProv.designer.cs">
-      <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
+    <Compile Include="DcLstPventas.Designer.cs">
+      <DependentUpon>DcLstPventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLstCfgDocSerie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLstCfgDocSerie.designer.cs">
+      <DependentUpon>frmLstCfgDocSerie.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLstCfgTipoMovProv.cs">
       <SubType>Form</SubType>
@@ -226,11 +232,11 @@
     <Compile Include="frmLstProveedores.Designer.cs">
       <DependentUpon>frmLstProveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegCfgDocProv.cs">
+    <Compile Include="frmRegCfgDocSerie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegCfgDocProv.designer.cs">
-      <DependentUpon>frmRegCfgDocProv.cs</DependentUpon>
+    <Compile Include="frmRegCfgDocSerie.designer.cs">
+      <DependentUpon>frmRegCfgDocSerie.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegCfgTipoMovProv.cs">
       <SubType>Form</SubType>
@@ -408,7 +414,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
-    <Compile Include="PuiCatCfgDocProv.cs" />
+    <Compile Include="PuiCatCfgDocSerie.cs" />
     <Compile Include="PuiCatCfgTipoMovProv.cs" />
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
@@ -434,7 +440,7 @@
     <Compile Include="PuiSegPerfiles.cs" />
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
-    <Compile Include="RegCatCfgDocProv.cs" />
+    <Compile Include="RegCatCfgDocSerie.cs" />
     <Compile Include="RegCatCfgTipoMovProv.cs" />
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
@@ -473,14 +479,17 @@
     <EmbeddedResource Include="DocRegistroRequisicion.resx">
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCaja.resx">
-      <DependentUpon>frmCaja.cs</DependentUpon>
+    <EmbeddedResource Include="DcRegPVenta.resx">
+      <DependentUpon>DcRegPVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatUsuariosCfg.resx">
       <DependentUpon>frmCatUsuariosCfg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLstCfgDocProv.resx">
-      <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
+    <EmbeddedResource Include="DcLstPventas.resx">
+      <DependentUpon>DcLstPventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLstCfgDocSerie.resx">
+      <DependentUpon>frmLstCfgDocSerie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLstCfgTipoMovProv.resx">
       <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
@@ -494,8 +503,8 @@
     <EmbeddedResource Include="frmLstProveedores.resx">
       <DependentUpon>frmLstProveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegCfgDocProv.resx">
-      <DependentUpon>frmRegCfgDocProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmRegCfgDocSerie.resx">
+      <DependentUpon>frmRegCfgDocSerie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegCfgTipoMovProv.resx">
       <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
