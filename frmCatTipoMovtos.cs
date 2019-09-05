@@ -25,7 +25,6 @@ namespace GAFE
         private MsSql db = null;
 
         public DatCfgUsuario user;
-        private clsUtil uT;
 
         public clsStiloTemas StiloColor;
 

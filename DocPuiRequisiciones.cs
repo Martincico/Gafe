@@ -12,6 +12,7 @@ namespace GAFE
     class DocPuiRequisiciones
     {
         private string idMov;
+        private string idMovNew;
         private string Documento;
         private string Serie;
         private string CveDoc;
@@ -37,7 +38,8 @@ namespace GAFE
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
         private object[,] MatParam = new object[18, 2];
         private object[,] MatParam2 = new object[2, 2];
-       
+        private object[,] MatParTrans = new object[6, 2];
+
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -57,7 +59,11 @@ namespace GAFE
             set { idMov = value; }
         }
 
-       
+        public string keyidMovNew
+        {
+            get { return idMovNew; }
+            set { idMovNew = value; }
+        }
 
         public string keyDocumento
         {
@@ -299,9 +305,7 @@ namespace GAFE
             MatParam[15, 0] = "FechaModificacion"; MatParam[15, 1] = FechaModificacion;
             MatParam[16, 0] = "Estatus"; MatParam[16, 1] = Estatus;
             MatParam[17, 0] = "Autorizado"; MatParam[17, 1] = Autorizado;
-           
-
-    }
+        }
 
 
         private void AsignaValPartidas()
@@ -315,5 +319,27 @@ namespace GAFE
             }
         }
 
+        public int GuardarDocTransf(int foliador, string _alm, string Doc, string ser)
+        {
+            DocRegRequisiciones rRq = new DocRegRequisiciones(db);
+            string[] fd = rRq.getIdDoc(foliador, _alm, Doc, ser);
+            NumDoc = Convert.ToInt64(fd[0]);
+            Documento = fd[1];
+            CargaParametroTranfs();
+            rRq = null;
+            rRq = new DocRegRequisiciones(MatParTrans, db);
+            return rRq.SaveDocTransf();
+        }
+
+
+        private void CargaParametroTranfs()
+        {
+            MatParTrans[0, 0] = "idMov"; MatParTrans[0, 1] = idMov;
+            MatParTrans[1, 0] = "idMovNew"; MatParTrans[1, 1] = idMovNew;
+            MatParTrans[2, 0] = "Documento"; MatParTrans[2, 1] = Documento;
+            MatParTrans[3, 0] = "Serie"; MatParTrans[3, 1] = Serie;
+            MatParTrans[4, 0] = "CveDoc"; MatParTrans[4, 1] = CveDoc;
+            MatParTrans[5, 0] = "NumDoc"; MatParTrans[5, 1] = NumDoc;
+        }
     } 
 }

@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmdRestablecer = new System.Windows.Forms.Button();
             this.cmdAutorizarTodo = new System.Windows.Forms.Button();
+            this.btnGenerarDoc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,6 +254,22 @@
             this.cmdAutorizarTodo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAutorizarTodo.UseVisualStyleBackColor = false;
             this.cmdAutorizarTodo.Visible = false;
+            this.cmdAutorizarTodo.Click += new System.EventHandler(this.cmdAutorizarTodo_Click);
+            // 
+            // btnGenerarDoc
+            // 
+            this.btnGenerarDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.btnGenerarDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarDoc.Image = global::GAFE.Properties.Resources.migrar_doc;
+            this.btnGenerarDoc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGenerarDoc.Location = new System.Drawing.Point(75, 402);
+            this.btnGenerarDoc.Name = "btnGenerarDoc";
+            this.btnGenerarDoc.Size = new System.Drawing.Size(144, 36);
+            this.btnGenerarDoc.TabIndex = 31;
+            this.btnGenerarDoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnGenerarDoc.UseVisualStyleBackColor = false;
+            this.btnGenerarDoc.Visible = false;
+            this.btnGenerarDoc.Click += new System.EventHandler(this.btnGenerarDoc_Click);
             // 
             // DocLstRequisiciones
             // 
@@ -264,6 +281,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(796, 441);
+            this.Controls.Add(this.btnGenerarDoc);
             this.Controls.Add(this.cmdAutorizarTodo);
             this.Controls.Add(this.cmdRestablecer);
             this.Controls.Add(this.label1);
@@ -315,5 +333,6 @@
         private System.Windows.Forms.Button cmdRestablecer;
         private System.Windows.Forms.DataGridViewTextBoxColumn idMov;
         private System.Windows.Forms.Button cmdAutorizarTodo;
+        private System.Windows.Forms.Button btnGenerarDoc;
     }
 }

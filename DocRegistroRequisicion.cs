@@ -29,7 +29,6 @@ namespace GAFE
 
         private Boolean isDataSaved = false;//Valida el cerrar el doc
 
-        List<clsFillCbo> lp;
         List<DocPartidasReq> PARTIDAS;
 
         private Boolean AutTodo = false;
@@ -74,19 +73,6 @@ namespace GAFE
             panel1.Size = new Size(785, 73);
             panel2.Location = new Point(3, 82);
             this.Size = this.MinimumSize;
-
-            if (ConfigDoc.UsaCliente == 1)
-            {
-                lblCliente.Visible = true;
-                cboCliente.Visible = true;
-
-                panel1.Size = new Size(785, 100);
-                panel2.Location = new Point(3, 109);
-                this.Size = this.MaximumSize;
-                LlecboCliente();
-
-
-            }
 
             if (ConfigDoc.UsaProveedor == 1)
             {
@@ -136,18 +122,7 @@ namespace GAFE
 
             cboProveedor.SelectedValue = user.AlmacenUsa;
         }
-
-        private void LlecboCliente()
-        {
-            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboCliente.DataSource = lin.CboInv_CatAlmacenes();
-            cboCliente.ValueMember = "ClaveAlmacen";
-            cboCliente.DisplayMember = "Descripcion";
-
-            cboCliente.SelectedValue = user.AlmacenUsa;
-        }
-
-
+        
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
             Boolean DellAll = true;
@@ -176,7 +151,7 @@ namespace GAFE
                                     _ser = cboSerie.SelectedValue.ToString();
                                 }
 
-                                if (sRq.GuardarDocumento( _fol, _alm, ConfigDoc.ClaveDoc,_ser ,Opcion) == 1)
+                                if (sRq.GuardarDocumento( _fol, _alm, ConfigDoc.CveDoc,_ser ,Opcion) == 1)
                                 {
                                     MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     isDataSaved = true;
@@ -251,10 +226,7 @@ namespace GAFE
             {
                 sRq.cmpCveProveedor = cboProveedor.SelectedValue.ToString();
             }
-            if (ConfigDoc.UsaCliente == 1)
-            {
-                sRq.cmpCveCliente = cboCliente.SelectedValue.ToString();
-            }
+
             sRq.PartidasDoc = PARTIDAS;
 
         }
@@ -404,11 +376,7 @@ namespace GAFE
             {
                 cboProveedor.SelectedValue = sRq.cmpCveProveedor;
             }
-            if (ConfigDoc.UsaCliente == 0)
-            {
-                cboCliente.SelectedValue = sRq.cmpCveCliente;
-            }
-
+            
             SqlDataAdapter DatosTbl = sRq.GetDatelleDoc(idmovimiento);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
@@ -522,15 +490,6 @@ namespace GAFE
                 {
                     rsp = 1;
                     msj += "No se ha seleccinado ninguna serie.\n";
-                }
-            }
-
-            if (ConfigDoc.UsaCliente == 1)
-            {
-                if (cboCliente.SelectedIndex < 0)
-                {
-                    rsp = 1;
-                    msj += "No se ha seleccinado ningún cliente.\n";
                 }
             }
 

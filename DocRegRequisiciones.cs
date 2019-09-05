@@ -98,7 +98,7 @@ namespace GAFE
 
             string Sql = "SELECT M.idMov,M.Documento,M.Serie,M.NumDoc,M.ClaveAlmacen, Alm.Descripcion 'Almacén'," +
                          "       M.FechaExpedicion as 'Fec Exp',M.Impuesto,M.Descuento,M.SubTotal,M.Total" +
-                         " FROM dbo.ReqMaster AS M " +
+                         " FROM DocCab AS M " +
                          " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON M.ClaveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE (CONVERT(date,M.FechaExpedicion) BETWEEN '" + FIni + "' AND '" + FFin + "')" +
                          "   AND CveDoc = '"+CveDc+"' " + StrSql;
@@ -108,21 +108,21 @@ namespace GAFE
 
         public int AddRegEnBlanco()
         {
-            string sql = "Insert into ReqMaster (idMov,FechaExpedicion, FechaCaptura) " +
+            string sql = "Insert into DocCab (idMov,FechaExpedicion, FechaCaptura) " +
                         "values(@idMov,@FechaExpedicion,@FechaExpedicion )";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
         public int DeleteRegEnBlanco()
         {
-            string sql = "Delete from ReqMaster where idmov = @idMov";
+            string sql = "Delete from DocCab where idmov = @idMov";
             return db.DeleteRegistro(sql,ArrParametros);
         }
 
         public int SaveDocumento(int op)
         {
             int bandDev = 0;
-            string sql = "Update ReqMaster Set Documento = @Documento,CveDoc = @CveDoc, Serie = @Serie,NumDoc=@NumDoc," +
+            string sql = "Update DocCab Set Documento = @Documento,CveDoc = @CveDoc, Serie = @Serie,NumDoc=@NumDoc," +
                          "       ClaveAlmacen=@ClaveAlmacen," +
                          "       ClaveImpuesto=@ClaveImpuesto,Impuesto=@Impuesto,Descuento=@Descuento," +
                          "       SubTotal=@SubTotal,Total=@Total,CveProveedor =@CveProveedor, " +
@@ -136,15 +136,14 @@ namespace GAFE
             {
                 if (op == 2)
                 {
-                    sql = "Delete from ReqDetalle  where idMov = @idMov";
+                    sql = "Delete from DocDet  where idMov = @idMov";
                     int rp = db.UpdateRegistro(sql, ArrParametros);
                     
                 }
 
-                int j = 0;
                 foreach (DocPartidasReq lst in Partidas)
                 {
-                    string SqlP = "insert into ReqDetalle (idMov,Documento,Serie,Numdoc,ClaveAlmacen,Partida,CveArticulo,Descripcion,Cantidad," +
+                    string SqlP = "insert into DocDet (idMov,Documento,Serie,Numdoc,ClaveAlmacen,Partida,CveArticulo,Descripcion,Cantidad," +
                                   "CveUmedida1,CveImpuesto,ImpuestoValor,Precio,Descuento,PrecioNeto,Impuesto,SubTotal,Total, Autorizado)" +
                              "  values(@idMov,@Documento,@Serie,@Numdoc,@ClaveAlmacen,@Partida,@CveArticulo,@Descripcion,@Cantidad," +
                                        "@CveUmedida1,@CveImpuesto,@ImpuestoValor,@Precio,@Descuento,@PrecioNeto,@Impuesto,@SubTotal,@Total, @Autorizado)";
@@ -197,7 +196,7 @@ namespace GAFE
                          "       RM.FechaExpedicion,RM.ClaveImpuesto,RM.Impuesto,RM.Descuento, RM.SubTotal," +
                          "       RM.Total,RM.Observaciones,RM.Estatus,RM.Autorizado," +
                          "       Alm.Descripcion, Rm.CveProveedor, CveCliente " +
-                         " FROM dbo.ReqMaster AS RM " +
+                         " FROM DocCab AS RM " +
                          " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON RM.ClaveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE RM.idMov = @idMov";
             dt = db.SelectDA(Sql, ArrParametros);
@@ -212,7 +211,7 @@ namespace GAFE
                          "        RD.ImpuestoValor, RD.Precio, RD.Descuento, RD.PrecioNeto, RD.Impuesto, " +
                          "        RD.SubTotal, RD.Total, Art.CveArticulo, Art.Descripcion as DescArticulo," +
                          "        RD.Autorizado "+
-                         " FROM dbo.ReqDetalle AS RD " +
+                         " FROM DocDet AS RD " +
                          " INNER JOIN dbo.inv_CatArticulos AS Art ON RD.CveArticulo = Art.CveArticulo " +
                          " INNER JOIN dbo.Inv_UMedidas AS Umed ON RD.CveUmedida1 = Umed.CveUMedida" +
                          " WHERE RD.idMov = '" + Doc+"'";
@@ -222,13 +221,50 @@ namespace GAFE
 
         public int DeleteDocumento()
         {
-            string sql = "Delete from ReqDetalle  where idMov = @idMov";
+            string sql = "Delete from DocDet  where idMov = @idMov";
             int rp = db.UpdateRegistro(sql, ArrParametros);
-            sql = "Delete from ReqMaster where idMov = @idMov";
+            sql = "Delete from DocCab where idMov = @idMov";
             int rp2 = db.UpdateRegistro(sql, ArrParametros);
             return rp2;
         }
 
+        public int SaveDocTransf()
+        {
+            int bandDev = 0;
+            db.IniciaTrans();
+            string sql = " UPDATE DocCab  " +
+                         " SET 	  DocCab.Documento = @Documento, DocCab.Serie = @Serie, DocCab.CveDoc = @CveDoc," +
+                         "	      DocCab.NumDoc = @NumDoc, DocCab.ClaveAlmacen = DCI.ClaveAlmacen, DocCab.ClaveImpuesto = DCI.ClaveImpuesto," +
+                         "	 	  DocCab.Impuesto = DCI.Impuesto, DocCab.Descuento = DCI.Descuento,	DocCab.SubTotal = DCI.SubTotal, " +
+                         "        DocCab.Total = DCI.Total, DocCab.CveProveedor = DCI.CveProveedor, DocCab.Observaciones = DCI.Observaciones," +
+                         "        DocCab.FechaModificacion = DCI.FechaModificacion, DocCab.Estatus = DCI.Estatus, DocCab.Autorizado = DCI.Autorizado " +
+                         " FROM  ( SELECT Documento, Serie,	CveDoc, NumDoc, ClaveAlmacen, ClaveImpuesto,Impuesto, Descuento, SubTotal, Total," +
+                         "     	          CveProveedor, Observaciones, FechaModificacion, Estatus, Autorizado " +
+                         "         FROM DocCab WHERE idMov = @idMov) DCI " +
+                         " WHERE DocCab.idMov = @idMovNew";
 
+            if (db.UpdateRegistro(sql, ArrParametros) > 0)
+            {
+                sql = " INSERT INTO DocDet (idMov, Documento,Serie,Numdoc,ClaveAlmacen,Partida,CveArticulo,Descripcion," +
+                     "                      Cantidad,CveUmedida1,CveImpuesto,ImpuestoValor,Precio,Descuento,PrecioNeto," +
+                     "                      Impuesto,SubTotal,Total,CodAlmacen,FechaModificacion,FechaCaptura,EstatusDoc,Autorizado) " +
+                     " SELECT @idMovNew, @Documento, @Serie, @Numdoc, ClaveAlmacen, Partida, CveArticulo, Descripcion, " +
+                     "        Cantidad, CveUmedida1, CveImpuesto, ImpuestoValor, Precio, Descuento, PrecioNeto, " +
+                     "        Impuesto, SubTotal, Total, CodAlmacen, FechaModificacion, FechaCaptura, EstatusDoc, Autorizado" +
+                     " FROM   DocDet AS DCI WHERE DCI.idMov = @idMov";
+
+                int rps = db.InsertarRegistro(sql, ArrParametros);
+
+                if (rps > 0)
+                    bandDev = 1;
+            }
+
+            if (bandDev == 1)
+                db.TerminaTrans();
+            else
+                db.CancelaTrans();
+
+            return bandDev;
+        }
     }
 }

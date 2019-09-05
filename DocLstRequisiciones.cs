@@ -22,7 +22,6 @@ namespace GAFE
         DataRow row = null;
         MsSql db;
         private SqlDataAdapter DatosTbl;
-        private clsUtil uT;
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
         private String CveDoc;
@@ -46,7 +45,11 @@ namespace GAFE
             this.Text = "LISTADO DE "+NameDoc;
 
             cmdAutorizarTodo.Visible = ConfigDoc.SolicitaAutorizar == 1 ? true : false;
-
+            if(!ConfigDoc.DocRel.Equals(""))
+            {
+                btnGenerarDoc.Visible = true;
+                btnGenerarDoc.Text = ConfigDoc.txtBotonDocRel;
+            }
         }
 
         private void DocLstRequisiciones_Load(object sender, EventArgs e)
@@ -71,7 +74,7 @@ namespace GAFE
             }
             else
             {
-                MessageBoxAdv.Show("Existe un error insertar registro", "Error de Requisición", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show("Existe un error insertar registro", "ERROR "+ NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -180,38 +183,6 @@ namespace GAFE
                 MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            /*
-             
-                        PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            DatosTbl = pui.ListarInventarioMovtos(CodProve, AlmOri, CodTipoMov, FIni, FFin);
-            DataSet Ds = new DataSet();
-
-            try
-            {
-                DatosTbl.Fill(Ds);
-                grdView.Columns.Clear();
-                grdView.DataSource = Ds.Tables[0];
-                grdView.Columns["Documento"].Frozen = true;//Inmovilizar columna
-                grdView.Columns["NoMovimiento"].Visible = false;
-                grdView.Columns["Cancelado"].Visible = false;
-                grdView.Columns["TotalDoc"].Visible = false;
-                grdView.Columns["CveTipoMov"].Visible = false;
-                grdView.Columns["NoMovtoTra"].Visible = false;
-                
-
-                for (int i = 0; i < grdView.Columns.Count; i++)
-                {
-                    grdView.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-             */
 
         }
 
@@ -275,6 +246,63 @@ namespace GAFE
             }
             else
                 LlenaGridView();
+        }
+
+        private void cmdAutorizarTodo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGenerarDoc_Click(object sender, EventArgs e)
+        {
+            funcParaGenererDocM2002();
+            /*
+            //string DocRelCmp = "DocX";
+            switch (ConfigDoc.DocRel)
+            {
+                case "M2002": funcParaGenererDocM2002(); break;
+               
+            }
+            */
+        }
+
+        private void funcParaGenererDocM2002()
+        {
+            clsCfgDocumento Ccd = new clsCfgDocumento(ConfigDoc.DocRel, db);
+            clsCfgDocumento CfgDocTrans = Ccd.ConfigDoc();
+            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+            string movimiento = rq.AgregarDocEnBlanco(int.Parse(CfgDocTrans.Foliador), FecDia);
+            rq.keyidMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+            if (movimiento.CompareTo("Error") != 0)
+            {
+                rq.keyidMovNew = movimiento;
+                rq.cmpCveDoc = ConfigDoc.DocRel;
+                int _fol = 5000;
+                string _alm = "5000";
+                string _ser = "";
+                rq.cmpSerie = _ser;
+                if (CfgDocTrans.UsaSerie == 1)
+                {
+                    _alm = user.AlmacenUsa;
+                    _ser = "SERIE";//Poner serie seleccionada
+                    clsCfgDocSeries cds = new clsCfgDocSeries(_alm, ConfigDoc.DocRel, _ser, db);
+                    clsCfgDocSeries CfgDocSerie = cds.ConfigDocSerie();
+
+                    _fol = int.Parse(CfgDocSerie.CodFoliador);
+                    
+                    rq.cmpSerie = _ser;
+                }
+
+                if (rq.GuardarDocTransf(_fol, _alm, CfgDocTrans.CveDoc, _ser) == 1)
+                {
+                    MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            
+            }
+            else
+            {
+                MessageBoxAdv.Show("Existe un error insertar registro", "ERROR "+ NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

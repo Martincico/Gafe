@@ -183,69 +183,6 @@
   <data name="&gt;&gt;lblProveedor.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="cboCliente.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="cboCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 65</value>
-  </data>
-  <data name="cboCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 23</value>
-  </data>
-  <data name="cboCliente.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="cboCliente.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;cboCliente.Name" xml:space="preserve">
-    <value>cboCliente</value>
-  </data>
-  <data name="&gt;&gt;cboCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboCliente.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;cboCliente.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblCliente.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCliente.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 9pt</value>
-  </data>
-  <data name="lblCliente.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblCliente.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 68</value>
-  </data>
-  <data name="lblCliente.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 15</value>
-  </data>
-  <data name="lblCliente.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="lblCliente.Text" xml:space="preserve">
-    <value>Cliente</value>
-  </data>
-  <data name="lblCliente.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;lblCliente.Name" xml:space="preserve">
-    <value>lblCliente</value>
-  </data>
-  <data name="&gt;&gt;lblCliente.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCliente.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;lblCliente.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="cboSerie.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -271,7 +208,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;cboSerie.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="cboAlmacen.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -295,7 +232,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;cboAlmacen.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="txtDescuento.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>
@@ -319,7 +256,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;txtDescuento.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="FechaExpedicion.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -328,10 +265,10 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="FechaExpedicion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>669, 34</value>
+    <value>78, 68</value>
   </data>
   <data name="FechaExpedicion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 21</value>
+    <value>151, 21</value>
   </data>
   <data name="FechaExpedicion.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -346,7 +283,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;FechaExpedicion.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="Descuento.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -376,7 +313,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;Descuento.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>6</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -385,7 +322,7 @@
     <value>Microsoft Sans Serif, 9pt</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>599, 39</value>
+    <value>8, 71</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 15</value>
@@ -406,7 +343,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>7</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -436,7 +373,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>8</value>
   </data>
   <data name="txtNumDoc.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -466,7 +403,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;txtNumDoc.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>9</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -496,7 +433,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>10</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -526,7 +463,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="txtDocumento.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -553,7 +490,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;txtDocumento.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>12</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -583,7 +520,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="panel1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 9pt</value>

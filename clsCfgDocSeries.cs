@@ -26,10 +26,10 @@ namespace GAFE
         private MsSql db = null;
         //private SqlParameter[] ArrParametros;
 
-        public clsCfgDocSeries(string CveAlm, string CveDoc, string Ser, MsSql Odat)
+        public clsCfgDocSeries(string CveAlm, string _CveDoc, string Ser, MsSql Odat)
         {
             CveAlmacen = CveAlm;
-            CveDoc = CveDoc;
+            CveDoc = _CveDoc;
             Serie = Ser;
             db = Odat;
         }

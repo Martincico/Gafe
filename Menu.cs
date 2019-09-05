@@ -226,18 +226,6 @@ namespace GAFE
             frmCatTipoMovtos tm = new frmCatTipoMovtos(db, user, NewColor);
             Nav(tm, panelContenedor);
         }
-
-        private void Prov_TipoMov_Click(object sender, EventArgs e)
-        {
-            frmLstCfgDocumentos tm = new frmLstCfgDocumentos(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
-
-        private void Prov_SereDoc_Click(object sender, EventArgs e)
-        {
-            frmLstCfgDocSerie tm = new frmLstCfgDocSerie(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
       
         private void MnuFoliadores_Click(object sender, EventArgs e)
         {
@@ -271,7 +259,7 @@ namespace GAFE
 
         private void MnuOrdenCompra_Click(object sender, EventArgs e)
         {
-            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2002", "ORDEN DE COMPRA");
+            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2003", "ORDEN DE COMPRA");
             Nav(Lst, panelContenedor);
         }
 
@@ -312,9 +300,29 @@ namespace GAFE
 
         }
 
-        private void MnuPuntosVentas_Click(object sender, EventArgs e)
+        private void MnuDocProvee_Click(object sender, EventArgs e)
         {
-            
+            frmLstCfgDocumentos tm = new frmLstCfgDocumentos(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void MnuDocSeries_Click(object sender, EventArgs e)
+        {
+            frmLstCfgDocSerie tm = new frmLstCfgDocSerie(db, user, NewColor);
+            Nav(tm, panelContenedor);
+        }
+
+        private void MnuCotizacion_Click(object sender, EventArgs e)
+        {
+            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2002", "COTIZACIÓN");
+            Nav(Lst, panelContenedor);
+        }
+
+        private void MnuCompras_Click(object sender, EventArgs e)
+        {
+            DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2004", "COMPRAS");
+            Nav(Lst, panelContenedor);
+
         }
     }
 }

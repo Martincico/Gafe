@@ -32,8 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cboProveedor = new System.Windows.Forms.ComboBox();
             this.lblProveedor = new System.Windows.Forms.Label();
-            this.cboCliente = new System.Windows.Forms.ComboBox();
-            this.lblCliente = new System.Windows.Forms.Label();
             this.cboSerie = new System.Windows.Forms.ComboBox();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.txtDescuento = new System.Windows.Forms.TextBox();
@@ -75,8 +73,6 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.cboProveedor);
             this.panel1.Controls.Add(this.lblProveedor);
-            this.panel1.Controls.Add(this.cboCliente);
-            this.panel1.Controls.Add(this.lblCliente);
             this.panel1.Controls.Add(this.cboSerie);
             this.panel1.Controls.Add(this.cboAlmacen);
             this.panel1.Controls.Add(this.txtDescuento);
@@ -102,17 +98,6 @@
             // 
             resources.ApplyResources(this.lblProveedor, "lblProveedor");
             this.lblProveedor.Name = "lblProveedor";
-            // 
-            // cboCliente
-            // 
-            resources.ApplyResources(this.cboCliente, "cboCliente");
-            this.cboCliente.FormattingEnabled = true;
-            this.cboCliente.Name = "cboCliente";
-            // 
-            // lblCliente
-            // 
-            resources.ApplyResources(this.lblCliente, "lblCliente");
-            this.lblCliente.Name = "lblCliente";
             // 
             // cboSerie
             // 
@@ -382,8 +367,6 @@
         private System.Windows.Forms.Button DelPartida;
         private System.Windows.Forms.Button EditPartida;
         private System.Windows.Forms.ComboBox cboSerie;
-        private System.Windows.Forms.ComboBox cboCliente;
-        private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.ComboBox cboProveedor;
         private System.Windows.Forms.Label lblProveedor;
         private System.Windows.Forms.Button cmdAutorizarTodo;

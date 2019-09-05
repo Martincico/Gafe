@@ -166,7 +166,7 @@ namespace GAFE
 
         private void AbrirPArtidas()
         {
-            double subTotal = 0, total = 0;
+            double subTotal = 0;
             if (OptPartd == 1)
             {
                 partida.idMov = idmovimiento;
@@ -494,7 +494,7 @@ namespace GAFE
                                 string _alm = "5000";
                                 string _ser = "";
 
-                                if (sRq.GuardarDocumento( _fol, _alm, ConfigDoc.ClaveDoc,_ser ,Opcion) == 1)
+                                if (sRq.GuardarDocumento( _fol, _alm, ConfigDoc.CveDoc,_ser ,Opcion) == 1)
                                 {
                                     MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     isDataSaved = true;

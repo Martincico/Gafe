@@ -684,6 +684,7 @@
     <None Include="Resources\Check.png" />
     <None Include="Resources\UnCheck.png" />
     <None Include="Resources\bg_cajas.jpg" />
+    <None Include="Resources\migrar_doc.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

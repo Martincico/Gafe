@@ -24,7 +24,6 @@ namespace GAFE
 
         private MsSql db = null;
         private string Perfil;
-        private clsUtil uT;
 
         public frmCatCfgCatFoliadores()
         {
