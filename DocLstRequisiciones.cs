@@ -256,14 +256,6 @@ namespace GAFE
         private void btnGenerarDoc_Click(object sender, EventArgs e)
         {
             funcParaGenererDocM2002();
-            /*
-            //string DocRelCmp = "DocX";
-            switch (ConfigDoc.DocRel)
-            {
-                case "M2002": funcParaGenererDocM2002(); break;
-               
-            }
-            */
         }
 
         private void funcParaGenererDocM2002()

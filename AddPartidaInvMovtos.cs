@@ -582,37 +582,52 @@ namespace GAFE
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsNumber(ch) && ch != 8)
+            if (!Char.IsNumber(ch) && ch != 8 && ch != 13)
             {
                 e.Handled = true;
                 ErrCalc = false;
             }
             else
+            {
+                if (ch == 13)
+                    txtPrecio.Focus();
+
                 ErrCalc = true;
+            }
         }
 
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsNumber(ch) && ch != 8 && ch != 46)
+            if (!Char.IsNumber(ch) && ch != 8 && ch != 46 && ch != 13)
             {
                 e.Handled = true;
                 ErrCalc = false;
             }
             else
+            {
+                if (ch == 13)
+                    txtDescuento.Focus();
+
                 ErrCalc = true;
+            }
         }
 
         private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsNumber(ch) && ch != 8 && ch != 46)
+            if (!Char.IsNumber(ch) && ch != 8 && ch != 46 && ch != 13)
             {
                 e.Handled = true;
                 ErrCalc = false;
             }
             else
+            {
+                if (ch == 13)
+                    cmdAceptar.Focus();
+
                 ErrCalc = true;
+            }
         }
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
@@ -674,6 +689,7 @@ namespace GAFE
                     PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
                     pui.keyNoMovimiento = Art.keyCveArticulo;
                     pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
+                    txtCantidad.Focus();
                     if (pui.GetDuplicado() >= 1)
                     {
                         if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",

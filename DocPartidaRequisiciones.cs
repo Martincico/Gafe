@@ -373,6 +373,8 @@ namespace GAFE
                     Impu.EditarImpuesto();
                     txtIva.Text = Convert.ToString(Impu.cmpValor);
                     CveUmed = Art.UMedida1.keyCveUMedida;
+
+                    txtPrecio.Focus();
                     
                 }
                 else
@@ -396,38 +398,53 @@ namespace GAFE
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsNumber(ch) && ch != 8 && ch != 46)
+            if (!Char.IsNumber(ch) && ch != 8 && ch != 46 && ch != 13)
             {
                 e.Handled = true;
                 ErrCalc = false;
             }
             else
+            {
+                if (ch == 13)
+                    txtDescuento.Focus();
+
                 ErrCalc = true;
+            }
         }
 
         private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsNumber(ch) && ch != 8 && ch != 46)
+            if (!Char.IsNumber(ch) && ch != 8 && ch != 46 && ch != 13)
             {
                 e.Handled = true;
                 ErrCalc = false;
             }
             else
+            {
+                if (ch == 13)
+                    txtCantidad.Focus();
+
                 ErrCalc = true;
+            }
         }
 
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
-            if (!Char.IsNumber(ch) && ch != 8)
+            if (!Char.IsNumber(ch) && ch != 8 && ch != 13)
             {
                 e.Handled = true;
                 ErrCalc = false;
             }
             else
+            {
+                if (ch == 13)
+                    cmdAceptar.Focus();
+
                 ErrCalc = true;
+            }
         }
 
         private void txtPrecio_TextChanged(object sender, EventArgs e)
