@@ -252,7 +252,7 @@ namespace GAFE
 
                                 pui.cmpCveProveedor = CodProve;
                                 pui.cmpCancelado = 1;
-                                pui.cmpCveUsarioCaptu = "USUARIO";
+                                pui.cmpCveUsarioCaptu = user.CodPerfil;
 
                                 pui.cmpNoMovtoTra = Convert.ToString(folMovto);
                                 pui.cmpDocTra = DocM;

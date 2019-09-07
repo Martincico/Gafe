@@ -325,6 +325,7 @@
             this.ShowIcon = false;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DocRegistroRequisicion_FormClosing);
             this.Load += new System.EventHandler(this.DocRegistroRequisicion_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DocRegistroRequisicion_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewD)).EndInit();

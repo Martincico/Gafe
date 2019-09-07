@@ -57,7 +57,7 @@ namespace GAFE
 
             NameDoc = _namedoc;
 
-            this.Text = "registro de DE " + NameDoc;
+            this.Text = "REGISTRO DE " + NameDoc;
 
             FechaExpedicion.Enabled = (ConfigDoc.EditaFecha == 1)?true:false;
 
@@ -69,24 +69,12 @@ namespace GAFE
                     HD_Botones(3,false);
                 }
             }
-
-            panel1.Size = new Size(785, 73);
-            panel2.Location = new Point(3, 82);
-            this.Size = this.MinimumSize;
-
             if (ConfigDoc.UsaProveedor == 1)
             {
                 lblProveedor.Visible = true;
                 cboProveedor.Visible = true;
-                if (ConfigDoc.UsaCliente == 0)
-                {
-                    lblProveedor.Location = new Point(5, 68);
-                    cboProveedor.Location = new Point(78, 65);
-                }
                 LlecboProveedor();
-                panel1.Size = new Size(785, 100);
-                panel2.Location = new Point(3, 109);
-                this.Size = this.MaximumSize;
+
             }
 
             if(ConfigDoc.SolicitaAutorizar ==1)
@@ -125,72 +113,69 @@ namespace GAFE
         
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            Boolean DellAll = true;
-            int RspVal = -1;
-
-            switch (Opcion)
-            {
-                case 1:
-                    if (grdViewD.RowCount > 0)
-                    {
-                        DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (rsp == DialogResult.Yes)
+            if (grdViewD.RowCount > 0)
+            { 
+                switch (Opcion)
+                {
+                    case 1:
+                        Agregar();
+                        break;
+                    case 2:
+                        DialogResult rspw = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (rspw == DialogResult.Yes)
                         {
-                            RspVal = Valida();
-                            if (RspVal == 0)
-                            {
                                 DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
                                 SetValues(sRq);
-                                int _fol = 5000;
-                                string _alm = "5000";
-                                string _ser = "";
-                                if (ConfigDoc.UsaSerie == 1)
-                                {
-                                    _fol = int.Parse(CfgDocSerie.CodFoliador);
-                                    _alm = cboAlmacen.SelectedValue.ToString();
-                                    _ser = cboSerie.SelectedValue.ToString();
-                                }
-
-                                if (sRq.GuardarDocumento( _fol, _alm, ConfigDoc.CveDoc,_ser ,Opcion) == 1)
+                                if (sRq.ActualizaDocumento(Opcion) == 1)
                                 {
                                     MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     isDataSaved = true;
-                                    DellAll = false;
                                 }
-                            }
+                                else
+                                {
+                                    MessageBox.Show("Existe un error al editar ", "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    isDataSaved = false;
+                                }
                         }
-
-                    }
-                    break;
-                case 2:
-                    DialogResult rspw = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (rspw == DialogResult.Yes)
-                    {
-                        RspVal = Valida();
-                        if (RspVal == 0)
-                        {
-                            DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-                            SetValues(sRq);
-                            if (sRq.ActualizaDocumento(Opcion) == 1)
-                            {
-                                MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                isDataSaved = true;
-                                DellAll = false;
-                            }
-                        }
-                    }
-                break;
-                default: isDataSaved = true; DellAll = false; break;
-            }
-
-            if (RspVal <= 0)
-            {
-                if (DellAll)
-                    ConfirmarSalir();
-
-                this.Close();
+                        break;
+                    default: isDataSaved = true; break;
+                }
             }
         }
+
+        private void Agregar()
+        {
+            DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (rsp == DialogResult.Yes)
+            {
+                DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
+                SetValues(sRq);
+                int _fol = 5000;
+                string _alm = "5000";
+                string _ser = "";
+                if (ConfigDoc.UsaSerie == 1)
+                {
+                    _fol = int.Parse(CfgDocSerie.CodFoliador);
+                    _alm = cboAlmacen.SelectedValue.ToString();
+                    _ser = cboSerie.SelectedValue.ToString();
+                }
+
+                if (sRq.GuardarDocumento(_fol, _alm, ConfigDoc.CveDoc, _ser, Opcion) == 1)
+                {
+                    MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    isDataSaved = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Existe un error al guardar ", "Error al guardar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    isDataSaved = false;
+                }
+            }
+        }
+
+
+
 
         private void SetValues(DocPuiRequisiciones sRq)
         {
@@ -249,27 +234,72 @@ namespace GAFE
 
         private void AddPartida_Click(object sender, EventArgs e)
         {
-            DocPartidasReq par = new DocPartidasReq();
-            DocPartidaRequisiciones DP = new DocPartidaRequisiciones(db, user, StiloColor,1, par);
-            DP.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-            DP.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-            DP.ShowDialog();
-            
-            DocPartidasReq partida = DP.partida;
-            double subTotal = 0, impuesto = 0, total = 0;
-
-            if (partida != null)
+            if (Valida() == 0)
             {
-                if (partida.CveArticulo != null)
+                DocPartidasReq par = new DocPartidasReq();
+                DocPartidaRequisiciones DP = new DocPartidaRequisiciones(db, user, StiloColor, 1, par);
+                DP.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                DP.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                DP.ShowDialog();
+
+                DocPartidasReq partida = DP.partida;
+                double subTotal = 0, impuesto = 0, total = 0;
+
+                if (partida != null)
                 {
-                    PARTIDAS.Add(partida);
+                    if (partida.CveArticulo != null)
+                    {
+                        PARTIDAS.Add(partida);
+                        for (int i = 0; i < PARTIDAS.Count; i++)
+                        {
+                            PARTIDAS[i].idMov = idmovimiento;
+                            PARTIDAS[i].Serie = "";
+                            PARTIDAS[i].Partida = i + 1;
+                            PARTIDAS[i].ClaveAlmacen = cboAlmacen.SelectedValue.ToString();
+                            PARTIDAS[i].Autorizado = false;
+                            subTotal = subTotal + PARTIDAS[i].SubTotal;
+                            impuesto = impuesto + PARTIDAS[i].Impuesto;
+                            total = total + PARTIDAS[i].Total;
+                        }
+                        txtSubTotal.Text = subTotal.ToString();
+                        txtIva.Text = impuesto.ToString();
+                        txtTotal.Text = total.ToString();
+
+                        LLenaGrid();
+                    }
+                }
+            }
+ 
+        }
+
+
+
+        private void EditPartida_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Valida() == 0)
+                { 
+                    double subTotal = 0, impuesto = 0, total = 0;
+                    int partida = Convert.ToInt32(grdViewD[6, grdViewD.CurrentRow.Index].Value);
+
+                    DocPartidasReq pr = PARTIDAS.Find(x => x.Partida.Equals(partida));
+                    int idx = PARTIDAS.IndexOf(pr);
+                    PARTIDAS.RemoveAt(idx);
+
+                    DocPartidaRequisiciones prV = new DocPartidaRequisiciones(db, user, StiloColor,2,pr);
+                    prV.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                    prV.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+
+                    prV.ShowDialog();
+
+                    if (prV.partida != null)
+                        PARTIDAS.Insert(idx, prV.partida);
+                    else
+                        PARTIDAS.Insert(idx, pr);
+
                     for (int i = 0; i < PARTIDAS.Count; i++)
                     {
-                        PARTIDAS[i].idMov = idmovimiento;
-                        PARTIDAS[i].Serie = "";
-                        PARTIDAS[i].Partida = i + 1;
-                        PARTIDAS[i].ClaveAlmacen = cboAlmacen.SelectedValue.ToString();
-                        PARTIDAS[i].Autorizado = false;
                         subTotal = subTotal + PARTIDAS[i].SubTotal;
                         impuesto = impuesto + PARTIDAS[i].Impuesto;
                         total = total + PARTIDAS[i].Total;
@@ -279,48 +309,7 @@ namespace GAFE
                     txtTotal.Text = total.ToString();
 
                     LLenaGrid();
-
                 }
-
-            }
-               
-        }
-
-
-
-        private void EditPartida_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                double subTotal = 0, impuesto = 0, total = 0;
-                int partida = Convert.ToInt32(grdViewD[6, grdViewD.CurrentRow.Index].Value);
-
-                DocPartidasReq pr = PARTIDAS.Find(x => x.Partida.Equals(partida));
-                int idx = PARTIDAS.IndexOf(pr);
-                PARTIDAS.RemoveAt(idx);
-
-                DocPartidaRequisiciones prV = new DocPartidaRequisiciones(db, user, StiloColor,2,pr);
-                prV.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-                prV.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-
-                prV.ShowDialog();
-
-                if (prV.partida != null)
-                    PARTIDAS.Insert(idx, prV.partida);
-                else
-                    PARTIDAS.Insert(idx, pr);
-
-                for (int i = 0; i < PARTIDAS.Count; i++)
-                {
-                    subTotal = subTotal + PARTIDAS[i].SubTotal;
-                    impuesto = impuesto + PARTIDAS[i].Impuesto;
-                    total = total + PARTIDAS[i].Total;
-                }
-                txtSubTotal.Text = subTotal.ToString();
-                txtIva.Text = impuesto.ToString();
-                txtTotal.Text = total.ToString();
-
-                LLenaGrid();
             }
             catch (Exception ex)
             {
@@ -454,10 +443,40 @@ namespace GAFE
 
         private void ConfirmarSalir()
         {
-            NoGuardaElDocumento();
-            isDataSaved = true;
-            this.Close();
+            if (Opcion != 3)
+            {
+                Boolean DellAll = true;
 
+                DocPuiRequisiciones InvMast = new DocPuiRequisiciones(db);
+                if (grdViewD.RowCount > 0)
+                {
+                    switch (MessageBoxAdv.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            break;
+                        default:
+                            DellAll = false;
+                            if (Opcion == 1)
+                            {
+                                Agregar();
+                            }
+                            break;
+                    }
+                }
+
+                if (DellAll)
+                {
+                    InvMast.keyidMov = idmovimiento;
+                    InvMast.EliminaDocumento();
+                }
+                isDataSaved = true;
+                this.Close();
+            }
+            else
+            {
+                isDataSaved = true;
+                this.Close();
+            }
         }
 
         private void LlecboSerie(String CveAlm)
@@ -700,6 +719,14 @@ namespace GAFE
                 mnugrid.Show(grdViewD, e.Location);
             }
             */
+        }
+
+        private void DocRegistroRequisicion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                ConfirmarSalir();
+            }
         }
     }
 }
