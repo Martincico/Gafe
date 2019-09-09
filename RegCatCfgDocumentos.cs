@@ -28,8 +28,12 @@ namespace GAFE
 
         public int AddRegCfgDocumentos()
         {
-            string sql = "Insert into CfgDocumentos (CveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, UsaCliente, UsaProveedor, EsInterno, SolicitaAutorizar,Estatus) " +
-                         "values(@CveDoc,@Nombre,@CargoAbono,@CveTipoMov,@Foliador,@UsaSerie,@EditaFecha, @UsaCliente, @UsaProveedor, @EsInterno,@SolicitaAutorizar, @Estatus)";
+            string sql = "Insert into CfgDocumentos (CveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, " +
+                         "                          UsaCliente, UsaProveedor, EsInterno, SolicitaAutorizar, " +
+                         "                          AfectaInventario,Estatus,DocRel,txtBotonDocRel) " +
+                         "values(@CveDoc,@Nombre,@CargoAbono,@CveTipoMov,@Foliador,@UsaSerie,@EditaFecha, " +
+                         "                          @UsaCliente, @UsaProveedor, @EsInterno,@SolicitaAutorizar, " +
+                         "                          @AfectaInventario,@Estatus, @DocRel,@txtBotonDocRel)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -41,7 +45,8 @@ namespace GAFE
                          "      UsaSerie = @UsaSerie,EditaFecha = @EditaFecha, " +
                          "      UsaCliente = @UsaCliente, UsaProveedor = @UsaProveedor," +
                          "      EsInterno = @EsInterno, SolicitaAutorizar =  @SolicitaAutorizar, " +
-                         "      Estatus= @Estatus" +
+                         "      AfectaInventario = @AfectaInventario, Estatus= @Estatus," +
+                         "     DocRel = @DocRel,txtBotonDocRel = @txtBotonDocRel " +
                          " Where CveDoc = @CveDoc";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -65,7 +70,8 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select CveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, UsaCliente, " +
-                         "       UsaProveedor, EsInterno, SolicitaAutorizar, Estatus" +
+                         "       UsaProveedor, EsInterno, SolicitaAutorizar, AfectaInventario, Estatus," +
+                         "       DocRel,txtBotonDocRel" +
                          " FROM CfgDocumentos where CveDoc =@CveDoc";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
@@ -98,6 +104,5 @@ namespace GAFE
             dt = db.SelectDA(Sql);
             return dt;
         }
-
     }
 }

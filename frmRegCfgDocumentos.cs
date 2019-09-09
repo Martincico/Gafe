@@ -44,6 +44,7 @@ namespace GAFE
             OpcionControles(true);
             LleCboTipoMov();
             LlecboCfgCatFoliadores();
+            LlecboCfgDocumentosRel();
             switch (opcion)
             {
                 case 1://Nuevo
@@ -70,17 +71,38 @@ namespace GAFE
             pui.EditarCfgDocumentos();
             txtClaveTipoMov.Text = pui.keyCveDoc;
             txtDescripcion.Text = pui.cmpNombre;
-            optCargo.Checked = pui.cmpCargoAbono == "C" ? true : false;
-            optAbono.Checked = pui.cmpCargoAbono == "A" ? true : false;
             cboTipoMov.SelectedValue = pui.cmpCveTipoMov;
             cboCfgCatFoliadores.SelectedValue = pui.cmpFoliador;
             chkUsaSerie.Checked = pui.cmpUsaSerie == 1 ? true : false;
             chkEditaFecha.Checked = pui.cmpEditaFecha== 1 ? true : false;
-            chkUsaCliente.Checked = pui.cmpUsaCliente == 1 ? true : false;
-            chkUsaProvee.Checked = pui.cmpUsaProvee == 1 ? true : false;
-            chkEsInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkAutoriza.Checked = pui.cmpSolicitaAutorizar == 1 ? true : false;
+            chkAfectaInventario.Checked = pui.cmpAfectaInventario == 1 ? true : false;
+            if (pui.cmpCargoAbono == "C")
+            {
+                optCargo.Checked = true;
+                optAbono.Checked = false;
+            }
+            else
+            {
+                optCargo.Checked = false;
+                optAbono.Checked = true;
+            }
+            if (pui.cmpUsaCliente == 1)
+            {
+                optCliente.Checked = true;
+                optProveedor.Checked = false;
+            }
+            else
+            {
+                optCliente.Checked = false;
+                optProveedor.Checked = true;
+            }
+            chkEsInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
+
+
+            cboDocRel.SelectedValue = pui.cmpDocRel;
+            txtBotonDocRel.Text = pui.cmptxtBotonDocRel;
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
@@ -149,11 +171,16 @@ namespace GAFE
             pui.cmpCargoAbono = optAbono.Checked ? "A" : "C";
             pui.cmpUsaSerie = chkUsaSerie.Checked ? 1 : 0;
             pui.cmpEditaFecha = chkEditaFecha.Checked ? 1 : 0;
+            pui.cmpSolicitaAutorizar = chkAutoriza.Checked ? 1 : 0;
+            pui.cmpAfectaInventario = chkAfectaInventario.Checked ? 1 : 0;
             pui.cmpEsInterno = chkEsInterno.Checked ? 1 : 0;
             pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
-            pui.cmpUsaCliente = chkUsaCliente.Checked ? 1 : 0;
-            pui.cmpUsaProvee = chkUsaProvee.Checked ? 1 : 0;
-            pui.cmpSolicitaAutorizar = chkAutoriza.Checked ? 1 : 0;
+            pui.cmpUsaCliente = optCliente.Checked ? 1 : 0;
+            pui.cmpUsaProvee = optProveedor.Checked ? 1 : 0;
+            pui.cmpDocRel = Convert.ToString(cboDocRel.SelectedValue);
+            pui.cmptxtBotonDocRel = "";
+            if (!pui.cmpDocRel.Equals(""))
+                pui.cmptxtBotonDocRel = txtBotonDocRel.Text;
 
             if (opcion==1)
             {
@@ -173,6 +200,8 @@ namespace GAFE
             else
                 rsp =pui.ActualizaCfgDocumentos();
             
+
+
             return rsp;
         }
 
@@ -225,10 +254,12 @@ namespace GAFE
             cboCfgCatFoliadores.Enabled = Op;
             chkUsaSerie.Enabled = Op;
             chkEditaFecha.Enabled = Op;
-            chkUsaSerie.Enabled = Op;
+            chkAutoriza.Enabled = Op;
+            chkAfectaInventario.Enabled = Op;
             chkEsInterno.Enabled = Op;
             chkEstatus.Enabled = Op;
-            chkAutoriza.Enabled = Op;
+            cboDocRel.Enabled = Op;
+            txtBotonDocRel.Enabled = Op;
 
         }
 
@@ -236,6 +267,10 @@ namespace GAFE
         {
             txtClaveTipoMov.Text = "";
             txtDescripcion.Text = "";
+            txtEmail.Text = "";
+            txtBotonDocRel.Text = "";
+            cboDocRel.SelectedValue = "";
+
         }
 
         private void cmdCancelar_Click_1(object sender, EventArgs e)
@@ -269,7 +304,25 @@ namespace GAFE
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }
 
-        
+        private void LlecboCfgDocumentosRel()
+        {
+            PuiCatCfgDocumentos lin = new PuiCatCfgDocumentos(db);
+            DataTable dt = lin.cboCfgDocumentos();
+            DataRow row = dt.NewRow();
+            row["Clave"] = "";
+            row["Descripcion"] = "NINGUNO";
+            dt.Rows.Add(row);
+
+
+            cboDocRel.DataSource = dt;
+            cboDocRel.ValueMember = "Clave";
+            cboDocRel.DisplayMember = "Descripcion";
+
+            cboDocRel.SelectedValue = "";
+
+
+        }
+
         private void txtClaveTipoMov_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
@@ -316,6 +369,25 @@ namespace GAFE
             {
                 this.Close();
             }
+        }
+
+        private void cboDocRel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String val = Convert.ToString(cboDocRel.SelectedValue);
+            if (cboDocRel.Text == "NINGUNO")
+            {
+                txtBotonDocRel.Enabled = false;
+                txtBotonDocRel.Text = "";
+            }
+            else
+            {
+                txtBotonDocRel.Enabled = true;
+            }
+        }
+
+        private void cboDocRel_SelectedValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

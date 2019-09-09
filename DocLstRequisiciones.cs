@@ -285,6 +285,17 @@ namespace GAFE
                     rq.cmpSerie = _ser;
                 }
 
+                /*
+                   Aca seria la segunda fase del guardado del documento, si el documento afecta inventario se supone ya 
+                   leiste la configuracion en algun punto de este codigo, 
+                   aka llamaras tu clase donde esta la funcionalidad del almacen y le pasaras el cabecero y detalle del
+                   documento.
+                   y se guardaran como un mov de inv afectando las tablas reacionadas con el mod de inv, articulo, precios, existencia
+                   ....
+                   ok
+
+                 */
+
                 if (rq.GuardarDocTransf(_fol, _alm, CfgDocTrans.CveDoc, _ser) == 1)
                 {
                     MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);

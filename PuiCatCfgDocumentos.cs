@@ -22,11 +22,14 @@ namespace GAFE
         private int UsaProveedor;
         private int EsInterno;
         private int SolicitaAutorizar;
+        private int AfectaInventario;
         private int Estatus;
+        private string DocRel;
+        private string txtBotonDocRel;
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[12, 2];
+        private object[,] MatParam = new object[15, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -113,6 +116,24 @@ namespace GAFE
             set { SolicitaAutorizar = value; }
         }
 
+        public int cmpAfectaInventario
+        {
+            get { return AfectaInventario; }
+            set { AfectaInventario = value; }
+        }
+
+        public String cmpDocRel
+        {
+            get { return DocRel; }
+            set { DocRel = value; }
+        }
+
+        public String cmptxtBotonDocRel
+        {
+            get { return txtBotonDocRel; }
+            set { txtBotonDocRel = value; }
+        }
+
         #endregion
 
         public int AgregarCfgDocumentos()
@@ -167,7 +188,10 @@ namespace GAFE
             UsaProveedor = int.Parse(ObjA[8].ToString());
             EsInterno = int.Parse(ObjA[9].ToString());
             SolicitaAutorizar = int.Parse(ObjA[10].ToString());
-            Estatus = int.Parse(ObjA[11].ToString());
+            AfectaInventario = int.Parse(ObjA[11].ToString());
+            Estatus = int.Parse(ObjA[12].ToString());
+            DocRel = ObjA[13].ToString();
+            txtBotonDocRel = ObjA[14].ToString();
 
 
         }
@@ -208,7 +232,10 @@ namespace GAFE
             MatParam[8, 0] = "UsaProveedor"; MatParam[8, 1] = UsaProveedor;
             MatParam[9, 0] = "EsInterno"; MatParam[9, 1] = EsInterno;
             MatParam[10, 0] = "SolicitaAutorizar"; MatParam[10, 1] = SolicitaAutorizar;
-            MatParam[11, 0] = "Estatus"; MatParam[11, 1] = Estatus;
+            MatParam[11, 0] = "AfectaInventario"; MatParam[11, 1] = AfectaInventario;
+            MatParam[12, 0] = "Estatus"; MatParam[12, 1] = Estatus;
+            MatParam[13, 0] = "DocRel"; MatParam[13, 1] = DocRel;
+            MatParam[14, 0] = "txtBotonDocRel"; MatParam[14, 1] = txtBotonDocRel;
         }
 
     }

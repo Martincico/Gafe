@@ -23,8 +23,10 @@ namespace GAFE
         public int Estatus;
         public int EsInterno;
         public int SolicitaAutorizar;
+        public int AfectaInventario;
         public String DocRel;
         public String txtBotonDocRel;
+        
 
         private MsSql db = null;
         //private SqlParameter[] ArrParametros;
@@ -59,6 +61,7 @@ namespace GAFE
                 Doc.UsaProveedor = Convert.ToInt32(dr["UsaProveedor"]);
                 Doc.EsInterno = Convert.ToInt32(dr["EsInterno"]);
                 Doc.SolicitaAutorizar = Convert.ToInt32(dr["SolicitaAutorizar"]);
+                Doc.AfectaInventario = Convert.ToInt32(dr["AfectaInventario"]);
                 Doc.Estatus = Convert.ToInt32(dr["Estatus"]);
                 Doc.DocRel = Convert.ToString(dr["DocRel"]);
                 Doc.txtBotonDocRel = Convert.ToString(dr["txtBotonDocRel"]);
