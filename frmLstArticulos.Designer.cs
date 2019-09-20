@@ -111,6 +111,7 @@
             this.grdView.TabIndex = 1;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
+            this.grdView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.grdView_PreviewKeyDown);
             // 
             // Clave
             // 

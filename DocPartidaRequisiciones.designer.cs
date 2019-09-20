@@ -148,7 +148,7 @@
             // 
             this.txtImpuesto.Enabled = false;
             this.txtImpuesto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.txtImpuesto.Location = new System.Drawing.Point(405, 98);
+            this.txtImpuesto.Location = new System.Drawing.Point(405, 123);
             this.txtImpuesto.Name = "txtImpuesto";
             this.txtImpuesto.Size = new System.Drawing.Size(146, 24);
             this.txtImpuesto.TabIndex = 13;
@@ -158,7 +158,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label5.Location = new System.Drawing.Point(289, 101);
+            this.label5.Location = new System.Drawing.Point(289, 126);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 18);
             this.label5.TabIndex = 12;
@@ -168,7 +168,7 @@
             // 
             this.txtSubtotal.Enabled = false;
             this.txtSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.txtSubtotal.Location = new System.Drawing.Point(405, 129);
+            this.txtSubtotal.Location = new System.Drawing.Point(405, 97);
             this.txtSubtotal.Name = "txtSubtotal";
             this.txtSubtotal.Size = new System.Drawing.Size(146, 24);
             this.txtSubtotal.TabIndex = 15;
@@ -178,7 +178,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label6.Location = new System.Drawing.Point(289, 132);
+            this.label6.Location = new System.Drawing.Point(289, 100);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 18);
             this.label6.TabIndex = 14;
@@ -215,9 +215,9 @@
             // 
             this.txtIva.Enabled = false;
             this.txtIva.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.txtIva.Location = new System.Drawing.Point(101, 162);
+            this.txtIva.Location = new System.Drawing.Point(101, 153);
             this.txtIva.Name = "txtIva";
-            this.txtIva.Size = new System.Drawing.Size(86, 24);
+            this.txtIva.Size = new System.Drawing.Size(57, 24);
             this.txtIva.TabIndex = 7;
             this.txtIva.Text = "0";
             // 
@@ -225,7 +225,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label7.Location = new System.Drawing.Point(7, 165);
+            this.label7.Location = new System.Drawing.Point(7, 156);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 18);
             this.label7.TabIndex = 6;
@@ -254,7 +254,7 @@
             // 
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.txtTotal.Location = new System.Drawing.Point(405, 162);
+            this.txtTotal.Location = new System.Drawing.Point(405, 153);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(146, 24);
             this.txtTotal.TabIndex = 22;
@@ -264,7 +264,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label9.Location = new System.Drawing.Point(289, 165);
+            this.label9.Location = new System.Drawing.Point(289, 156);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 18);
             this.label9.TabIndex = 21;
@@ -301,7 +301,7 @@
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(563, 232);
+            this.ClientSize = new System.Drawing.Size(563, 234);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtDescuento);
             this.Controls.Add(this.txtTotal);

@@ -28,7 +28,10 @@ namespace GAFE
         public double Impuesto { get; set; }
         public double SubTotal { get; set; }
         public double Total { get; set; }
-        
-        
+
+        public DateTime FechaCaptura { get; set; }
+        public DateTime FechaModificacion { get; set; }
+
+
     }
 }

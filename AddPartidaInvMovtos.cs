@@ -30,7 +30,7 @@ namespace GAFE
         private double Cantidad;
         private double Precio;
         private double Descuento;
-        private double TotalDesc;
+        private double PNeto;
         private double TotalIva;
         private double SubTotal;
         private double TotalPartida;
@@ -61,6 +61,9 @@ namespace GAFE
 
         private string perfil;
 
+        private String CveImp = "";
+        public clsStiloTemas StiloColor;
+
         ClsUtilerias Util = new ClsUtilerias();
 
         public AddPartidaInvMovtos()
@@ -68,7 +71,7 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public AddPartidaInvMovtos(MsSql Odat, String P_modulo, String P_folio, int P_operacion,
+        public AddPartidaInvMovtos(MsSql Odat, clsStiloTemas NewColor, String P_modulo, String P_folio, int P_operacion,
                 String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
                  int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, DateTime P_FechaMovimiento,
                  int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart, string _perfil )
@@ -78,7 +81,7 @@ namespace GAFE
             db = Odat;
             perfil = _perfil;
             CodPart = P_CodPart;
-
+            StiloColor = NewColor;
             PModLlama = P_modulo; //dependiendo del modulo que llama esta ventana extrae el precio
             PNoMovimiento = P_folio;
 
@@ -133,9 +136,10 @@ namespace GAFE
             BuscarPrecio(pui.cmpCveArticulo);
             txtCantidad.Text = Convert.ToString(pui.cmpCantidad);
             txtDescuento.Text = Convert.ToString(pui.cmpDescuento);
-            txtTotDesc.Text = Convert.ToString(pui.cmpTotalDscto);
+            txtPrecioNeto.Text = Convert.ToString(pui.cmpTotalDscto);
             txtSubTotal.Text = Convert.ToString(pui.cmpSubTotal);
-            txtIva.Text = Convert.ToString(pui.cmpTotalIva);
+            txtImpuesto.Text = Convert.ToString(pui.cmpTotalIva);
+            txtIva.Text = Convert.ToString(pui.cmpImpuestoValor);
             txtTotal.Text = Convert.ToString(pui.cmpTotalPartida);
 
         }
@@ -184,8 +188,9 @@ namespace GAFE
                 pui.cmpCantidadPkt = Cantidad;
                 pui.cmpPrecio = Precio;
                 pui.cmpDescuento = Descuento;
-                pui.cmpTotalDscto = TotalDesc;
-                pui.cmpCveImpuesto = "";
+                pui.cmpTotalDscto = PNeto;
+                pui.cmpCveImpuesto = CveImp;
+                pui.cmpImpuestoValor = Convert.ToDouble(txtIva.Text);
                 pui.cmpTotalIva = TotalIva;
                 pui.cmpSubTotal = SubTotal;
                 pui.cmpTotalPartida = TotalPartida;
@@ -226,8 +231,9 @@ namespace GAFE
                     pui.cmpCantidadPkt = Cantidad;
                     pui.cmpPrecio = Precio;
                     pui.cmpDescuento = Descuento;
-                    pui.cmpTotalDscto = TotalDesc;
-                    pui.cmpCveImpuesto = "";
+                    pui.cmpTotalDscto = PNeto;
+                    pui.cmpCveImpuesto = CveImp;
+                    pui.cmpImpuestoValor = Convert.ToDouble(txtIva.Text);
                     pui.cmpTotalIva = TotalIva;
                     pui.cmpSubTotal = SubTotal;
                     pui.cmpTotalPartida = TotalPartida;
@@ -489,7 +495,7 @@ namespace GAFE
                         ErrCalc = false;
                     }
                     else
-                        Descuento = Convert.ToDouble(txtDescuento.Text);
+                        Descuento = (Convert.ToDouble(txtDescuento.Text) / 100);
                 }
                 /*
                 else
@@ -546,18 +552,22 @@ namespace GAFE
                     ExisNegativa = 0;
 
                 SubTotal = 0; txtSubTotal.Text = "0.0";
-                TotalDesc = 0; txtTotDesc.Text = "0.0";
-                TotalIva = 0; txtIva.Text = "0.0";
+                PNeto = 0; txtPrecioNeto.Text = "0.0";
+                TotalIva = 0; 
                 TotalPartida = 0; txtTotal.Text = "0.0";
 
 
                 //002 eNTRADA - 501 - SALIDA por ajuste de inventario
                 if (!PCveTipoMov.Equals("002") || !PCveTipoMov.Equals("501"))
                 {
-                    SubTotal = Cantidad * Precio;
-                    TotalDesc = SubTotal * (Descuento / 100);
-                    txtTotDesc.Text = Convert.ToString(TotalDesc);
-                    SubTotal = SubTotal - TotalDesc;
+                    PNeto = Precio - (Precio * Descuento);
+                    txtPrecioNeto.Text = Convert.ToString(PNeto);
+                    double iva = Convert.ToDouble(txtIva.Text);
+
+                    SubTotal = PNeto * Cantidad;
+                    TotalIva = SubTotal * (iva / 100);
+                    TotalPartida = SubTotal + TotalIva;
+
 
                     //PENDIENTE: Valida una matrz y dentro de un else va lo siguiente
                     if (PCalcIva == 1)
@@ -567,9 +577,13 @@ namespace GAFE
 
 
                 }
+                else
+                {
+                    CveImp = "";
+                }
 
                 txtSubTotal.Text = Convert.ToString(SubTotal);
-                txtIva.Text = Convert.ToString(TotalIva);
+                txtImpuesto.Text = Convert.ToString(TotalIva);
                 txtTotal.Text = Convert.ToString(TotalPartida);
 
             }
@@ -590,7 +604,7 @@ namespace GAFE
             else
             {
                 if (ch == 13)
-                    txtPrecio.Focus();
+                    cmdAceptar.Focus();
 
                 ErrCalc = true;
             }
@@ -624,7 +638,7 @@ namespace GAFE
             else
             {
                 if (ch == 13)
-                    cmdAceptar.Focus();
+                    txtCantidad.Focus();
 
                 ErrCalc = true;
             }
@@ -648,6 +662,8 @@ namespace GAFE
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
             frmLstArticulos art = new frmLstArticulos(db, perfil, 3);
+            art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
@@ -662,18 +678,19 @@ namespace GAFE
                         opcion = 2;
                         CodPart = pui.keyNoPartida;
                         GetRegistro();
+                        txtPrecio.Focus();
                     }
 
                 }
                 else
                 {
-                    PuiCatArticulos arti = new PuiCatArticulos(db);
-                    arti.keyCveArticulo = art.KeyCampo;
-                    arti.EditarArticulo();
-                    txtCodigo.Text = arti.keyCveArticulo;
-                    txtDescripcion.Text = arti.cmpDescripcion;
-                    txtUmedida.Text = arti.UMedida1.keyCveUMedida;
+                    CveImp = art.dv[10];
+                    txtIva.Text = art.dv[12];
+                    txtCodigo.Text = art.dv[0];
+                    txtDescripcion.Text = art.dv[1];
+                    txtUmedida.Text = art.dv[8];
                     BuscarPrecio(art.KeyCampo);
+                    txtPrecio.Focus();
                 }
             }
         }
@@ -683,13 +700,14 @@ namespace GAFE
             if (e.KeyChar == (char)Keys.Enter)
             {
                 PuiCatArticulos Art = new PuiCatArticulos(db);
+                PuiCatImpuestos Impu = new PuiCatImpuestos(db);
                 Art.keyCveArticulo = txtCodigo.Text;
                 if (Art.EditarArticulo() > 0)
                 {
                     PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
                     pui.keyNoMovimiento = Art.keyCveArticulo;
                     pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
-                    txtCantidad.Focus();
+                    txtPrecio.Focus();
                     if (pui.GetDuplicado() >= 1)
                     {
                         if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",
@@ -703,22 +721,31 @@ namespace GAFE
                     }
                     else
                     {
-                        PuiCatArticulos arti = new PuiCatArticulos(db);
-                        arti.keyCveArticulo = Art.keyCveArticulo;
-                        arti.EditarArticulo();
-                        txtCodigo.Text = arti.keyCveArticulo;
-                        txtDescripcion.Text = arti.cmpDescripcion;
-                        txtUmedida.Text = arti.UMedida1.keyCveUMedida;
-                        BuscarPrecio(Art.keyCveArticulo);
+                        txtCodigo.Text = Art.keyCveArticulo;
+                        txtDescripcion.Text = Art.cmpDescripcion;
+
+                        CveImp = Art.Impuesto.keyCveImpuesto;
+                        Impu.keyCveImpuesto = CveImp;
+                        Impu.EditarImpuesto();
+                        txtIva.Text = Convert.ToString(Impu.cmpValor);
+                        txtUmedida.Text = Art.UMedida1.keyCveUMedida;
                     }
 
                 }
                 else
                 {
-                    
                     MessageBoxAdv.Show("No se encuentra el registro", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LimpiaVar();
                 }
             }
+        }
+
+
+        private void LimpiaVar()
+        {
+            txtDescripcion.Text = "";
+            txtImpuesto.Text = "";
+            CveImp = "";
         }
     }
 }

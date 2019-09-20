@@ -127,18 +127,29 @@ namespace GAFE
 
         private void cmdEliminar_Click(object sender, EventArgs e)
         {
+            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
             try
             {
-                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                String idMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String Doc = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro: " + Doc,
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatArticulos pui = new PuiCatArticulos(db);
-                    pui.keyCveArticulo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaArticulo();
-                    LlenaGridView();                    
+                    rq.keyidMov = idMov;
+                    db.IniciaTrans();
+                    if (rq.EliminaDocumento() >= 1)
+                    {
+                        MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                        db.TerminaTrans();
+                    }
+                    else
+                    {
+                        MessageBoxAdv.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        db.CancelaTrans();
+                    }
                 }
-
-
+                LlenaGridView();
             }
             catch (Exception ex)
             {

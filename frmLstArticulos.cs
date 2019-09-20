@@ -282,6 +282,12 @@ namespace GAFE
             }
         }
 
-
+        private void grdView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmdSeleccionar_Click(sender, e);
+            }
+        }
     }
 }

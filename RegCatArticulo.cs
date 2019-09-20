@@ -57,7 +57,9 @@ namespace GAFE
         }
         public int AddRegExistencias()
         {
-            string sql = "Insert into Inv_Existencias (ClaveArticulo, ClaveAlmacen) values(@ClaveArticulo,@ClaveAlmacen)";
+            string sql = "Insert into Inv_Existencias (ClaveArticulo, ClaveAlmacen, Cantidad, stockMin, stockMax, CantApartada," +
+                         "            CostoPromedio, CostoUltimo, CostoActual) " +
+                         "      values(@ClaveArticulo,@ClaveAlmacen,0,0,0,0,0,0,0)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
         public int AddRegLstPrecios()

@@ -200,6 +200,7 @@
             this.MinimizeBox = false;
             this.Name = "DcLstPventas";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado de ventas";
             this.Load += new System.EventHandler(this.DcLstPventas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();

@@ -47,9 +47,25 @@ namespace GAFE
             "           NoDoc=@NoDoc, Documento=@Documento,CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
             "           Modulo=@Modulo, Descuento=@Descuento," +
             "           TotalDscto=@TotalDscto, TIva=@TIva, SubTotal=@SubTotal, TotalDoc=@TotalDoc, CveProveedor=@CveProveedor," +
-            "           Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu, NoMovtoTra = @NoMovtoTra, DocTra = @DocTra " +
+            "           Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu, NoMovtoTra = @NoMovtoTra, DocTra = @DocTra," +
+            "           DocOrigen = @DocOrigen " +
             " Where NoMovimiento = @NoMovimiento";
-            return db.DeleteRegistro(sql, ArrParametros);
+
+            int rsp = db.UpdateRegistro(sql, ArrParametros);
+
+
+            if (rsp > 0)
+            {
+                sql = " UPDATE DocCab  " +
+                         " SET 	  EsperaAceptacion = 0" +
+                         " WHERE idMov = @DocOrigen";
+
+                db.UpdateRegistro(sql, ArrParametros);
+            }
+
+
+
+            return rsp;
         }
 
         public int UpdateInvDet()
@@ -162,6 +178,24 @@ namespace GAFE
             dt = db.SelectDA(Sql);
             return dt;
         }
+
+        public int AddPartMigraDoc()
+        {
+            string sql = "INSERT INTO Inv_MovtosDetalles ( " +
+                         "            NoMovimiento,NoPartida,CveArticulo,Descripcion,Cantidad," +
+                         "            CantidadPkt,CveUMedida,CveImpuesto,ImpuestoValor,Precio," +
+                         "            Descuento,TotalDscto,TotalIva,SubTotal,TotalPartida," +
+                         "            FechaMovimiento, CveAlmacenMov,CveTipoMov,EntSal,NoDoc, " +
+                         "            Documento,FolioDocOrigen,NoMovtoTra,DocTra,PartTra ) " +
+                         " SELECT @NoMovimiento, DD.Partida,DD.CveArticulo,DD.Descripcion,DD.Cantidad," +
+                         "        DD.Cantidad,DD.CveUmedida1,DD.CveImpuesto,DD.ImpuestoValor,DD.Precio," +
+                         "        DD.Descuento,DD.PrecioNeto,DD.Impuesto,DD.SubTotal,DD.Total," +
+                         "        DD.FechaModificacion,'','','',''," +
+                         "        '','','','','' " +
+                         " FROM dbo.DocDet AS DD WHERE DD.idMov = @IdDoc";
+            return db.InsertarRegistro(sql, ArrParametros);
+        }
+
 
         public SqlDataAdapter GetParamAlma()
         {

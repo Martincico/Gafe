@@ -28,17 +28,19 @@ namespace GAFE
         private string CveCliente;
         private string Observaciones;
         private DateTime FechaModificacion;
-        private string Estatus;
+        private int Estatus;
         private Boolean Autorizado;
+        private int EsperaAceptacion;
+        private string DocOrigen;
 
         private List<DocPartidasReq> Partidas;
 
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[18, 2];
+        private object[,] MatParam = new object[19, 2];
         private object[,] MatParam2 = new object[2, 2];
-        private object[,] MatParTrans = new object[6, 2];
+        private object[,] MatParTrans = new object[7, 2];
 
         private SqlDataAdapter Datos;
 
@@ -155,7 +157,7 @@ namespace GAFE
             set { Observaciones = value; }
         }
 
-        public string cmpEstatus
+        public int cmpEstatus
         {
             get { return Estatus; }
             set { Estatus = value; }
@@ -167,11 +169,22 @@ namespace GAFE
             set { Autorizado = value; }
         }
 
+        public int cmpEsperaAceptacion
+        {
+            get { return EsperaAceptacion; }
+            set { EsperaAceptacion = value; }
+        }
 
         public List<DocPartidasReq> PartidasDoc
         {
             get { return Partidas; }
             set { Partidas = value; }
+        }
+
+        public string cmpDocOrigen
+        {
+            get { return DocOrigen; }
+            set { DocOrigen = value; }
         }
 
         #endregion
@@ -249,10 +262,11 @@ namespace GAFE
             cmpSubTotal = double.Parse(ObjA[9].ToString());
             cmpTotal = double.Parse(ObjA[10].ToString());
             cmpObservaciones = ObjA[11].ToString();
-            cmpEstatus = ObjA[12].ToString();
+            cmpEstatus = Convert.ToInt32(ObjA[12].ToString());
             cmpAutorizado = Boolean.Parse(ObjA[13].ToString());
             cmpCveProveedor = ObjA[15].ToString();
             cmpCveCliente= ObjA[16].ToString();
+            cmpEsperaAceptacion = Convert.ToInt32(ObjA[17].ToString());
 
         }
 
@@ -305,6 +319,8 @@ namespace GAFE
             MatParam[15, 0] = "FechaModificacion"; MatParam[15, 1] = FechaModificacion;
             MatParam[16, 0] = "Estatus"; MatParam[16, 1] = Estatus;
             MatParam[17, 0] = "Autorizado"; MatParam[17, 1] = Autorizado;
+            MatParam[18, 0] = "EsperaAceptacion"; MatParam[18, 1] = EsperaAceptacion;
+            
         }
 
 
@@ -340,6 +356,7 @@ namespace GAFE
             MatParTrans[3, 0] = "Serie"; MatParTrans[3, 1] = Serie;
             MatParTrans[4, 0] = "CveDoc"; MatParTrans[4, 1] = CveDoc;
             MatParTrans[5, 0] = "NumDoc"; MatParTrans[5, 1] = NumDoc;
+            MatParTrans[6, 0] = "DocOrigen"; MatParTrans[6, 1] = DocOrigen;
         }
     } 
 }

@@ -37,6 +37,7 @@ namespace GAFE
         private string CveCentroCosto;
         private string NoMovtoTra;
         private string DocTra;
+        private string DocOrigen;
 
         //Se usa en consultar
         private string CveClaseTipoMov;
@@ -49,7 +50,7 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[20, 2];
+        private object[,] MatParam = new object[21, 2];
         private object[,] MatParamParti = new object[6, 2];
         private object[,] MatParamAlma = new object[5, 2];
 
@@ -230,7 +231,11 @@ namespace GAFE
             set { DocTra = value; }
         }
 
-
+        public string cmpDocOrigen
+        {
+            get { return DocOrigen; }
+            set { DocOrigen = value; }
+        }
         public int cmpEsDeCompra
         {
             get { return EsDeCompra; }
@@ -398,23 +403,34 @@ namespace GAFE
 
         }
 
-/*
-    public SqlDataAdapter BuscaInventarioMov(string buscar)
+        public int AddPartMigraDoc()
         {
-            //
-             MatParam = new object[4, 2];
-             MatParam[0, 0] = "CodTipoMov"; MatParam[0, 1] = buscar;
-             MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
-             MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
-             MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
-             RegCatInventarioMov OpBsq = new RegCatInventarioMov(MatParam);/
-            
-
-            //
-            RegCatInventarioMov OpBsq = new RegCatInventarioMov(db);
-            return OpBsq.BuscaInventarioMov(buscar);
+            object[,] MatParam2 = new object[2, 2];
+            MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = NoMovimiento;
+            MatParam2[1, 0] = "IdDoc"; MatParam2[1, 1] = CveTipoMov;
+            RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam2, db);
+            int rsp = OpRadd2.AddPartMigraDoc();
+            return rsp;
         }
-*/
+
+
+        /*
+            public SqlDataAdapter BuscaInventarioMov(string buscar)
+                {
+                    //
+                     MatParam = new object[4, 2];
+                     MatParam[0, 0] = "CodTipoMov"; MatParam[0, 1] = buscar;
+                     MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
+                     MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
+                     MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
+                     RegCatInventarioMov OpBsq = new RegCatInventarioMov(MatParam);/
+
+
+                    //
+                    RegCatInventarioMov OpBsq = new RegCatInventarioMov(db);
+                    return OpBsq.BuscaInventarioMov(buscar);
+                }
+        */
 
         private void CargaParametroMat()
         {
@@ -438,6 +454,8 @@ namespace GAFE
             MatParam[17, 0] = "CveAlmacenDes"; MatParam[17, 1] = CveAlmacenDes;
             MatParam[18, 0] = "NoMovtoTra"; MatParam[18, 1] = NoMovtoTra;
             MatParam[19, 0] = "DocTra"; MatParam[19, 1] = DocTra;
+            MatParam[20, 0] = "DocOrigen"; MatParam[20, 1] = DocOrigen;
+
         }
         private void CargaParamMatPart()
         {

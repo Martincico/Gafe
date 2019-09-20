@@ -16,7 +16,7 @@ namespace GAFE
         private SqlParameter[] ArrParametrosP;
 
         DocPartidasReq cl = new DocPartidasReq();
-        private object[,] MatParamP = new object[19,2];
+        private object[,] MatParamP = new object[21,2];
 
         private List<DocPartidasReq> Partidas;
 
@@ -97,7 +97,8 @@ namespace GAFE
 
 
             string Sql = "SELECT M.idMov,M.Documento,M.Serie,M.NumDoc,M.ClaveAlmacen, Alm.Descripcion 'Almacén'," +
-                         "       M.FechaExpedicion as 'Fec Exp',M.Impuesto,M.Descuento,M.SubTotal,M.Total" +
+                         "       M.FechaExpedicion as 'Fec Exp',M.Impuesto,M.Descuento,M.SubTotal,M.Total,M.CveProveedor," +
+                         "       M.EsperaAceptacion, M.DocOrigen" +
                          " FROM DocCab AS M " +
                          " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON M.ClaveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE (CONVERT(date,M.FechaExpedicion) BETWEEN '" + FIni + "' AND '" + FFin + "')" +
@@ -128,7 +129,7 @@ namespace GAFE
                          "       SubTotal=@SubTotal,Total=@Total,CveProveedor =@CveProveedor, " +
                          "       CveCliente = @CveCliente, Observaciones=@Observaciones, " +
                          "       FechaModificacion = @FechaModificacion, Estatus=@Estatus, " +
-                         "       Autorizado=@Autorizado " +
+                         "       Autorizado=@Autorizado, EsperaAceptacion = @EsperaAceptacion " +
                          " WHERE idMov = @idMov";
             db.IniciaTrans();
 
@@ -144,9 +145,11 @@ namespace GAFE
                 foreach (DocPartidasReq lst in Partidas)
                 {
                     string SqlP = "insert into DocDet (idMov,Documento,Serie,Numdoc,ClaveAlmacen,Partida,CveArticulo,Descripcion,Cantidad," +
-                                  "CveUmedida1,CveImpuesto,ImpuestoValor,Precio,Descuento,PrecioNeto,Impuesto,SubTotal,Total, Autorizado)" +
+                                  "CveUmedida1,CveImpuesto,ImpuestoValor,Precio,Descuento,PrecioNeto,Impuesto,SubTotal,Total, Autorizado," +
+                                  "FechaCaptura,FechaModificacion)" +
                              "  values(@idMov,@Documento,@Serie,@Numdoc,@ClaveAlmacen,@Partida,@CveArticulo,@Descripcion,@Cantidad," +
-                                       "@CveUmedida1,@CveImpuesto,@ImpuestoValor,@Precio,@Descuento,@PrecioNeto,@Impuesto,@SubTotal,@Total, @Autorizado)";
+                                       "@CveUmedida1,@CveImpuesto,@ImpuestoValor,@Precio,@Descuento,@PrecioNeto,@Impuesto,@SubTotal,@Total, @Autorizado," +
+                                       "@FechaCaptura,@FechaModificacion)";
 
                     MatParamP[0, 0] = "idMov"; MatParamP[0, 1] = lst.idMov;
                     MatParamP[1, 0] = "Documento"; MatParamP[1, 1] = lst.Documento;
@@ -167,6 +170,8 @@ namespace GAFE
                     MatParamP[16, 0] = "SubTotal"; MatParamP[16, 1] = lst.SubTotal;
                     MatParamP[17, 0] = "Total"; MatParamP[17, 1] = lst.Total;
                     MatParamP[18, 0] = "Autorizado"; MatParamP[18, 1] = lst.Autorizado;
+                    MatParamP[19, 0] = "FechaCaptura"; MatParamP[19, 1] = lst.FechaCaptura;
+                    MatParamP[20, 0] = "FechaModificacion"; MatParamP[20, 1] = lst.FechaModificacion;
                     ParamPartidas(MatParamP);
                     int rps = db.InsertarRegistro(SqlP, ArrParametrosP);
 
@@ -195,7 +200,7 @@ namespace GAFE
             string Sql = " SELECT RM.idMov,RM.Documento,RM.Serie,RM.NumDoc,RM.ClaveAlmacen," +
                          "       RM.FechaExpedicion,RM.ClaveImpuesto,RM.Impuesto,RM.Descuento, RM.SubTotal," +
                          "       RM.Total,RM.Observaciones,RM.Estatus,RM.Autorizado," +
-                         "       Alm.Descripcion, Rm.CveProveedor, CveCliente " +
+                         "       Alm.Descripcion, Rm.CveProveedor, CveCliente,EsperaAceptacion " +
                          " FROM DocCab AS RM " +
                          " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON RM.ClaveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE RM.idMov = @idMov";
@@ -210,7 +215,7 @@ namespace GAFE
                          "        RD.CveArticulo, RD.Descripcion, RD.Cantidad, RD.CveUmedida1, RD.CveImpuesto, " +
                          "        RD.ImpuestoValor, RD.Precio, RD.Descuento, RD.PrecioNeto, RD.Impuesto, " +
                          "        RD.SubTotal, RD.Total, Art.CveArticulo, Art.Descripcion as DescArticulo," +
-                         "        RD.Autorizado "+
+                         "        RD.Autorizado,FechaCaptura,FechaModificacion " +
                          " FROM DocDet AS RD " +
                          " INNER JOIN dbo.inv_CatArticulos AS Art ON RD.CveArticulo = Art.CveArticulo " +
                          " INNER JOIN dbo.Inv_UMedidas AS Umed ON RD.CveUmedida1 = Umed.CveUMedida" +
@@ -237,7 +242,8 @@ namespace GAFE
                          "	      DocCab.NumDoc = @NumDoc, DocCab.ClaveAlmacen = DCI.ClaveAlmacen, DocCab.ClaveImpuesto = DCI.ClaveImpuesto," +
                          "	 	  DocCab.Impuesto = DCI.Impuesto, DocCab.Descuento = DCI.Descuento,	DocCab.SubTotal = DCI.SubTotal, " +
                          "        DocCab.Total = DCI.Total, DocCab.CveProveedor = DCI.CveProveedor, DocCab.Observaciones = DCI.Observaciones," +
-                         "        DocCab.FechaModificacion = DCI.FechaModificacion, DocCab.Estatus = DCI.Estatus, DocCab.Autorizado = DCI.Autorizado " +
+                         "        DocCab.FechaModificacion = DCI.FechaModificacion, DocCab.Estatus = DCI.Estatus, DocCab.Autorizado = DCI.Autorizado," +
+                         "        DocCab.DocOrigen = @DocOrigen" +
                          " FROM  ( SELECT Documento, Serie,	CveDoc, NumDoc, ClaveAlmacen, ClaveImpuesto,Impuesto, Descuento, SubTotal, Total," +
                          "     	          CveProveedor, Observaciones, FechaModificacion, Estatus, Autorizado " +
                          "         FROM DocCab WHERE idMov = @idMov) DCI " +
@@ -256,7 +262,15 @@ namespace GAFE
                 int rps = db.InsertarRegistro(sql, ArrParametros);
 
                 if (rps > 0)
+                {
                     bandDev = 1;
+
+                    sql = " UPDATE DocCab  " +
+                         " SET 	  EsperaAceptacion = 0" +
+                         " WHERE idMov = @idMov";
+                    db.UpdateRegistro(sql, ArrParametros);
+
+                }
             }
 
             if (bandDev == 1)

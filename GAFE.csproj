@@ -140,6 +140,7 @@
     <Compile Include="AsignaPorAlmacen.Designer.cs">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsCfgTipoMovInv.cs" />
     <Compile Include="clsCfgDocSeries.cs" />
     <Compile Include="clsCfgDocumento.cs" />
     <Compile Include="clsStiloTemas.cs" />
@@ -255,12 +256,6 @@
     </Compile>
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatAlmacenes.cs">
       <SubType>Form</SubType>
@@ -521,9 +516,6 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmCatAlmacenes.resx">
       <DependentUpon>frmCatAlmacenes.cs</DependentUpon>
     </EmbeddedResource>
@@ -683,8 +675,8 @@
     <None Include="Resources\MnuUsuarios.png" />
     <None Include="Resources\Check.png" />
     <None Include="Resources\UnCheck.png" />
-    <None Include="Resources\bg_cajas.jpg" />
     <None Include="Resources\migrar_doc.png" />
+    <None Include="Resources\bg_cajas.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

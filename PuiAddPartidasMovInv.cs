@@ -27,6 +27,7 @@ namespace GAFE
         private Double Descuento;
         private Double TotalDscto;
         private String CveImpuesto;
+        private Double ImpuestoValor;
         private Double TotalIva;
         private Double SubTotal;
         private Double TotalPartida;
@@ -37,7 +38,7 @@ namespace GAFE
         private String PartTra;
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[24, 2];
+        private object[,] MatParam = new object[25, 2];
         private object[,] MatParamKeys = new object[2, 2];
         private object[,] MatParamInvExis = new object[9, 2];
         private SqlDataAdapter Datos;
@@ -141,6 +142,11 @@ namespace GAFE
             set { CveImpuesto = value; }
         }
 
+        public double cmpImpuestoValor
+        {
+            get { return ImpuestoValor; }
+            set { ImpuestoValor = value; }
+        }
 
         public double cmpDescuento
         {
@@ -372,14 +378,15 @@ namespace GAFE
             Descuento = Convert.ToDouble(ObjA[13].ToString());
             TotalDscto = Convert.ToDouble(ObjA[14].ToString());
             CveImpuesto = ObjA[15].ToString();
-            TotalIva = Convert.ToDouble(ObjA[16].ToString());
-            SubTotal = Convert.ToDouble(ObjA[17].ToString());
-            TotalPartida = Convert.ToDouble(ObjA[18].ToString());
-            FolioDocOrigen = ObjA[19].ToString();
-            FechaMovimiento = Convert.ToDateTime(ObjA[20].ToString());
-            NoMovtoTra = ObjA[21].ToString();
-            DocTra = ObjA[22].ToString();
-            PartTra = ObjA[23].ToString();
+            ImpuestoValor = Convert.ToDouble(ObjA[16].ToString());
+            TotalIva = Convert.ToDouble(ObjA[17].ToString());
+            SubTotal = Convert.ToDouble(ObjA[18].ToString());
+            TotalPartida = Convert.ToDouble(ObjA[19].ToString());
+            FolioDocOrigen = ObjA[20].ToString();
+            FechaMovimiento = Convert.ToDateTime(ObjA[21].ToString());
+            NoMovtoTra = ObjA[22].ToString();
+            DocTra = ObjA[23].ToString();
+            PartTra = ObjA[24].ToString();
 
         }
 
@@ -430,6 +437,7 @@ namespace GAFE
             MatParam[21, 0] = "NoMovtoTra"; MatParam[21, 1] = NoMovtoTra;
             MatParam[22, 0] = "DocTra"; MatParam[22, 1] = DocTra;
             MatParam[23, 0] = "PartTra"; MatParam[23, 1] = PartTra;
+            MatParam[24, 0] = "ImpuestoValor"; MatParam[24, 1] = ImpuestoValor;
         }
 
         private void CargaParamMatKeys()

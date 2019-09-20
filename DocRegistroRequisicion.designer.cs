@@ -34,9 +34,7 @@
             this.lblProveedor = new System.Windows.Forms.Label();
             this.cboSerie = new System.Windows.Forms.ComboBox();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
-            this.txtDescuento = new System.Windows.Forms.TextBox();
             this.FechaExpedicion = new System.Windows.Forms.DateTimePicker();
-            this.Descuento = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNumDoc = new System.Windows.Forms.TextBox();
@@ -75,9 +73,7 @@
             this.panel1.Controls.Add(this.lblProveedor);
             this.panel1.Controls.Add(this.cboSerie);
             this.panel1.Controls.Add(this.cboAlmacen);
-            this.panel1.Controls.Add(this.txtDescuento);
             this.panel1.Controls.Add(this.FechaExpedicion);
-            this.panel1.Controls.Add(this.Descuento);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtNumDoc);
@@ -98,6 +94,7 @@
             // 
             resources.ApplyResources(this.lblProveedor, "lblProveedor");
             this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Click += new System.EventHandler(this.lblProveedor_Click);
             // 
             // cboSerie
             // 
@@ -113,21 +110,11 @@
             this.cboAlmacen.Name = "cboAlmacen";
             this.cboAlmacen.SelectedIndexChanged += new System.EventHandler(this.cboAlmacen_SelectedIndexChanged);
             // 
-            // txtDescuento
-            // 
-            resources.ApplyResources(this.txtDescuento, "txtDescuento");
-            this.txtDescuento.Name = "txtDescuento";
-            // 
             // FechaExpedicion
             // 
             resources.ApplyResources(this.FechaExpedicion, "FechaExpedicion");
             this.FechaExpedicion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.FechaExpedicion.Name = "FechaExpedicion";
-            // 
-            // Descuento
-            // 
-            resources.ApplyResources(this.Descuento, "Descuento");
-            this.Descuento.Name = "Descuento";
             // 
             // label5
             // 
@@ -348,8 +335,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtDescuento;
-        private System.Windows.Forms.Label Descuento;
         private System.Windows.Forms.DataGridView grdViewD;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtSubTotal;

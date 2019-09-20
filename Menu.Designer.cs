@@ -120,7 +120,7 @@
             this.ribMenu.QuickPanelVisible = false;
             this.ribMenu.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribMenu.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribMenu.SelectedTab = this.ModProveedores;
+            this.ribMenu.SelectedTab = this.ModInventario;
             this.ribMenu.ShowRibbonDisplayOptionButton = true;
             this.ribMenu.Size = new System.Drawing.Size(799, 170);
             this.ribMenu.SystemText.QuickAccessDialogDropDownName = "Start menu";
@@ -274,7 +274,7 @@
             this.MnuExitenciaArt});
             this.ProcInven.LauncherStyle = Syncfusion.Windows.Forms.Tools.LauncherStyle.Office2007;
             this.ProcInven.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.ProcInven.Location = new System.Drawing.Point(0, 1);
+            this.ProcInven.Location = new System.Drawing.Point(167, 1);
             this.ProcInven.Name = "ProcInven";
             this.ProcInven.Office12Mode = false;
             this.ProcInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
@@ -326,7 +326,7 @@
             this.RepInven.ForeColor = System.Drawing.Color.Black;
             this.RepInven.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.RepInven.Image = null;
-            this.RepInven.Location = new System.Drawing.Point(0, 1);
+            this.RepInven.Location = new System.Drawing.Point(300, 1);
             this.RepInven.Name = "RepInven";
             this.RepInven.Office12Mode = false;
             this.RepInven.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);

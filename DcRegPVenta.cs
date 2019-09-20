@@ -41,14 +41,18 @@ namespace GAFE
         private int Opcion;
         private int OptPartd = 1;
 
-        private Boolean isDataSaved = false;
-
         private string idmovimiento = "";
 
         List<DocPartidasReq> PARTIDAS;
         clsCfgDocumento ConfigDoc;
 
         private String CveDoc;
+
+        //Form without bord and resize
+        private const int cGrip = 16;      // Grip size
+        private const int cCaption = 65;   // Caption bar height;
+
+        private int Ww;
 
         public DcRegPVenta()
         {
@@ -84,6 +88,15 @@ namespace GAFE
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+            
+            
+            this.FormBorderStyle = FormBorderStyle.None; //Form without bord and resize
+            this.DoubleBuffered = true; //Form without bord and resize
+            this.SetStyle(ControlStyles.ResizeRedraw, true); //Form without bord and resize
+
+
+            this.Size = this.MinimumSize;
+            
 
         }
 
@@ -105,6 +118,9 @@ namespace GAFE
             }
             else
                 InhControles(false, 1);
+
+            Ww = this.Width - lblDescArticulo.Width;
+
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
@@ -127,8 +143,10 @@ namespace GAFE
                 case Keys.F4:
                     CancelEditPart();
                     break;
+                case Keys.F5:
+                    ClearAll();
+                    break;
                 case Keys.Escape:
-                    isDataSaved = true;
                     FrmClose();
                     break;
                 default:
@@ -176,19 +194,23 @@ namespace GAFE
                 partida.ClaveAlmacen = "";
                 partida.Partida = 0;
             }
-                partida.CveArticulo = txtClaveArticulo.Text;
-                partida.Descripcion = lblDescArticulo.Text;
-                partida.Cantidad = Convert.ToDouble(txtCantidad.Text);
-                partida.CveUmedida1 = CveUmed;
-                partida.CveImpuesto = CveImp;
-                partida.ImpuestoValor = 0;//Convert.ToDouble(txtIva.Text);
-                partida.Precio = Convert.ToDouble(lblPrecioArt.Text);
-                subTotal = Convert.ToDouble(lblPrecioArt.Text) * Convert.ToDouble(txtCantidad.Text);
-                partida.Descuento = 0;
-                partida.PrecioNeto = Convert.ToDouble(lblPrecioArt.Text);
-                partida.Impuesto = 0;;
-                partida.SubTotal = subTotal;
-                partida.Total = subTotal;
+
+            partida.CveArticulo = txtClaveArticulo.Text;
+            partida.Descripcion = lblDescArticulo.Text;
+            partida.Cantidad = Convert.ToDouble(txtCantidad.Text);
+            partida.CveUmedida1 = CveUmed;
+            partida.CveImpuesto = CveImp;
+            partida.ImpuestoValor = 0;//Convert.ToDouble(txtIva.Text);
+            partida.Precio = Convert.ToDouble(lblPrecioArt.Text);
+            subTotal = Convert.ToDouble(lblPrecioArt.Text) * Convert.ToDouble(txtCantidad.Text);
+            partida.Descuento = 0;
+            partida.PrecioNeto = Convert.ToDouble(lblPrecioArt.Text);
+            partida.Impuesto = 0;;
+            partida.SubTotal = subTotal;
+            partida.Total = subTotal;
+            partida.FechaCaptura = user.FecServer;
+            partida.FechaModificacion = user.FecServer;
+
 
         }
 
@@ -197,6 +219,7 @@ namespace GAFE
             grdViewD.DataSource = null;
             grdViewD.DataSource = PARTIDAS;
             grdViewD.Columns["CveArticulo"].Frozen = true;//Inmovilizar columna
+            grdViewD.Columns["Partida"].Visible = false;
 
             grdViewD.Columns["idMov"].Visible = false;
             grdViewD.Columns["Documento"].Visible = false;
@@ -204,8 +227,6 @@ namespace GAFE
             grdViewD.Columns["Numdoc"].Visible = false;
             grdViewD.Columns["CveImpuesto"].Visible = false;
             grdViewD.Columns["ClaveAlmacen"].Visible = false;
-            grdViewD.Columns["Partida"].HeaderText = "Part";
-            grdViewD.Columns["Partida"].Width = 40;
             grdViewD.Columns["Autorizado"].Visible = false;
             grdViewD.Columns["Descripcion"].Width = 150;
             grdViewD.Columns["CveUmedida1"].Visible = false;
@@ -219,8 +240,11 @@ namespace GAFE
             grdViewD.Columns["Cantidad"].Width = 40;
             grdViewD.Columns["Cantidad"].HeaderText = "Cant.";
 
-           
-            
+            grdViewD.Columns["FechaCaptura"].Visible = false;
+            grdViewD.Columns["FechaModificacion"].Visible = false;
+
+
+
 
         }
 
@@ -258,40 +282,13 @@ namespace GAFE
                         OptPartd = 1;
                     }
                 }
-
+                ShowVentArt();
             }
             
         }
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos ar = new frmLstArticulos(db, user.CodPerfil, 3);
-            ar.CaptionBarColor = ColorTranslator.FromHtml(NewColor.Encabezado);
-            ar.CaptionForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
-            ar.ShowDialog();
-            IdArt = ar.dv[0];
-            if(IdArt != null)
-            { 
-                txtClaveArticulo.Text = ar.dv[0];
-                lblDescArticulo.Text = ar.dv[1];
-                CveImp = ar.dv[10];
-                //txtIva.Text = ar.dv[12];
-                CveUmed = ar.dv[8];
-
-                PuiCatArticulos Art = new PuiCatArticulos(db);
-                Art.keyCveArticulo = ar.dv[0];
-                Art.EditarArticulo();
-
-                if (Art.cmpFoto.Length > 0)
-                {
-                    MemoryStream Mf = new MemoryStream(Art.cmpFoto);
-                    Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
-                    pbArticulo.Image = Image.FromStream(Mf);
-                }
-                getPrecio();
-                txtCantidad.Focus();
-                txtClaveArticulo.Enabled = false;
-                cmdArticulo.Enabled = false;
-            }
+            ShowVentArt();
         }
         private void txtClaveArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -320,7 +317,6 @@ namespace GAFE
                     getPrecio();
                     txtCantidad.Focus();
                     txtClaveArticulo.Enabled = false;
-                    cmdArticulo.Enabled = false;
                 }
                 else
                 {
@@ -412,12 +408,12 @@ namespace GAFE
 
             if (_All == 1)
             {
-                lblSubTotal.Text = "0";
                 txtDescuento.Text = "0";
                 lblSubTotal.Text = "0";
                 grdViewD.DataSource = null;
                 PARTIDAS = new List<DocPartidasReq>();
                 lblTotalArticulos.Text = "0" ;
+                lblTotal.Text = "0";
             }
 
             CveImp = "";
@@ -431,13 +427,11 @@ namespace GAFE
             txtClaveArticulo.Enabled = Opt;
             txtCantidad.Enabled = Opt;
             txtDescuento.Enabled = Opt;
-            cmdArticulo.Enabled = Opt;
 
             if (_all==1)
             {
                 btnEditar.Enabled = Opt;
                 btnEliminar.Enabled = Opt;
-                cmdArticulo.Enabled = Opt;
             }
 
         }
@@ -456,26 +450,21 @@ namespace GAFE
 
         private void FrmClose()
         {
-            if (!isDataSaved)
+            if (grdViewD.RowCount > 0)
             {
-                
-                MessageBox.Show("You must save first.");
+                DialogResult rsp = MessageBox.Show("¿Estás seguro de salir?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (rsp == DialogResult.Yes)
+                {
+                    Flg.Close();
+                }
             }
             else
-            {
-                //e.Cancel = false;
-                MessageBox.Show("Goodbye.");
                 Flg.Close();
-
-            }
 
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            Boolean DellAll = true;
-            //int RspVal = -1;
-
             switch (Opcion)
             {
                 case 1:
@@ -484,31 +473,8 @@ namespace GAFE
                         DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (rsp == DialogResult.Yes)
                         {
-                            /*
-                            if (RspVal == 0)
-                            {
-                            */
-                                DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-                                SetValues(sRq);
-                                int _fol = 5000;
-                                string _alm = "5000";
-                                string _ser = "";
-
-                                if (sRq.GuardarDocumento( _fol, _alm, ConfigDoc.CveDoc,_ser ,Opcion) == 1)
-                                {
-                                    MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    isDataSaved = true;
-                                    DellAll = false;
-                                    LimpiaVar(1);
-
-                                }
-                            //}
+                            Agregar();
                         }
-                        else
-                        {
-                            DellAll = false;
-                        }
-
                     }
                     break;
                 case 2:
@@ -525,23 +491,56 @@ namespace GAFE
                             if (sRq.ActualizaDocumento(Opcion) == 1)
                             {
                                 MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                isDataSaved = true;
-                                DellAll = false;
                             }
                         //}
                     }
                 break;
-                default: isDataSaved = true; DellAll = false; break;
             }
-            /*
-            if (RspVal <= 0)
-            {
-            */
-                if (DellAll)
-                    FrmClose();
-
-            //}
         }
+
+        private void Agregar()
+        {
+            DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
+            SetValues(sRq);
+            int _fol = 5000;
+            string _alm = "5000";
+            string _ser = "";
+
+            if (sRq.GuardarDocumento(_fol, _alm, ConfigDoc.CveDoc, _ser, Opcion) == 1)
+            {
+                if (ConfigDoc.AfectaInventario == 1)
+                {
+                    string strprov = Convert.ToString(cboCliente.SelectedValue);
+                    frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, null, "MINV", user);
+
+                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, idmovimiento, idmovimiento);
+                    if (rsp != 0)
+                    {
+                        string msj = "";
+                        switch (rsp)
+                        {
+                            case 1: msj = "Al guardar cabecero"; break;
+                            case 2: msj = "Al guardar detalle partidas"; break;
+                            case 3: msj = "Al afectar existencias"; break;
+                            case 4: msj = "Traspaso: Registro en blanco"; break;
+                            case 5: msj = "Traspaso: Al guardar cabecero"; break;
+                            case 6: msj = "Traspaso: Al guardar detalle partidas"; break;
+                            case 7: msj = "Traspaso: Al afectar existencias"; break;
+                            case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
+                            default: msj = "Error desconocido"; break;
+                        }
+                        MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+
+
+
+
+                MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiaVar(1);
+            }
+        }
+
 
         private void SetValues(DocPuiRequisiciones sRq)
         {
@@ -549,10 +548,10 @@ namespace GAFE
             sRq.cmpCveProveedor = "";
             sRq.cmpCveCliente = cboCliente.SelectedValue.ToString();
             sRq.keyidMov = idmovimiento;
-            sRq.keyDocumento = lblTicket.Text ;
+            sRq.keyDocumento = "" ;
             sRq.cmpSerie = "";
 
-            sRq.cmpNumDoc = Convert.ToInt64(lblTicket.Text);
+            sRq.cmpNumDoc = 0;
             sRq.cmpCveDoc = CveDoc;
             sRq.cmpClaveAlmacen = user.AlmacenUsa;
             sRq.cmpFechaExpedicion = user.FecServer;
@@ -565,7 +564,7 @@ namespace GAFE
             sRq.cmpSubTotal = Convert.ToDouble(lblSubTotal.Text);
             sRq.cmpTotal = Convert.ToDouble(lblTotal.Text);
             sRq.cmpObservaciones = "";
-            sRq.cmpEstatus = "1";
+            sRq.cmpEstatus = 1;
             sRq.cmpAutorizado = false;
             sRq.PartidasDoc = PARTIDAS;
 
@@ -601,11 +600,24 @@ namespace GAFE
             }
         }
 
+        private void ClearAll()
+        {
+            LimpiaVar(1);
+            InhControles(true, 1);
+
+            LLenaGrid();
+            OptPartd = 1;
+            txtClaveArticulo.Focus();
+
+            ShowVentArt();
+
+        }
+
         private void CancelEditPart()
         {
             LimpiaVar(0);
             InhControles(true, 0);
-            if(OptPartd == 2)
+            if (OptPartd == 2)
             {
                 PARTIDAS.Add(pr);
                 ReasgIdPart();
@@ -614,6 +626,8 @@ namespace GAFE
             LLenaGrid();
             OptPartd = 1;
             txtClaveArticulo.Focus();
+
+            ShowVentArt();
 
         }
 
@@ -662,6 +676,7 @@ namespace GAFE
                 getRegistro();
                 btnEditar.Enabled = false;
                 btnEliminar.Enabled = false;
+                OptPartd = 3;
             }
         }
 
@@ -675,7 +690,6 @@ namespace GAFE
             DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
             sRq.keyidMov = idmovimiento;
             sRq.GetDocumento();
-            lblTicket.Text = sRq.keyDocumento;
             /*
             if (ConfigDoc.UsaSerie == 1)
             {
@@ -743,6 +757,107 @@ namespace GAFE
             LLenaGrid();
         }
 
+        private void ShowVentArt()
+        {
+            
+            frmLstArticulos ar = new frmLstArticulos(db, user.CodPerfil, 3);
+            ar.CaptionBarColor = ColorTranslator.FromHtml(NewColor.Encabezado);
+            ar.CaptionForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
+            ar.ShowDialog();
+            IdArt = ar.dv[0];
+            if (IdArt != null)
+            {
+                txtClaveArticulo.Text = ar.dv[0];
+                lblDescArticulo.Text = ar.dv[1];
+                CveImp = ar.dv[10];
+                //txtIva.Text = ar.dv[12];
+                CveUmed = ar.dv[8];
+
+                PuiCatArticulos Art = new PuiCatArticulos(db);
+                Art.keyCveArticulo = ar.dv[0];
+                Art.EditarArticulo();
+
+                if (Art.cmpFoto.Length > 0)
+                {
+                    MemoryStream Mf = new MemoryStream(Art.cmpFoto);
+                    Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
+                    pbArticulo.Image = Image.FromStream(Mf);
+                }
+                getPrecio();
+                txtCantidad.Focus();
+                txtClaveArticulo.Enabled = false;
+            }
+        }
+        
+        
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            //Form without bord and resize
+            //Se dibuja un reactungolo pero sin fondo para que puedan mover
+            Rectangle rc = new Rectangle(this.ClientSize.Width - cGrip, this.ClientSize.Height - cGrip, cGrip, cGrip);
+            ControlPaint.DrawSizeGrip(e.Graphics, this.BackColor, rc);
+            rc = new Rectangle(0, 0, this.ClientSize.Width, cCaption);
+            e.Graphics.FillRectangle(Brushes.Transparent, rc);
+
+        }
+        
+        protected override void WndProc(ref Message m)
+        {
+            //Form without bord and resize
+
+            if (m.Msg == 0x84)
+            {  // Trap WM_NCHITTEST
+                Point pos = new Point(m.LParam.ToInt32());
+                pos = this.PointToClient(pos);
+                if (pos.Y < cCaption)
+                {
+                    m.Result = (IntPtr)2;  // HTCAPTION
+                    return;
+                }
+                
+                if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
+                {
+                    m.Result = (IntPtr)17; // HTBOTTOMRIGHT
+                    return;
+                }
+                
+            }
+            base.WndProc(ref m);
+        }
+        
+
+        private void DcRegPVenta_Resize(object sender, EventArgs e)
+        {
+            /*
+                        int t = (this.Height * 12) / 100;
+                        int l = (this.Width * 70) / 100;
+                        int w = (this.Width * 42)/100;
+
+                        cboCliente.Width = w;
+
+                        w = (this.Width * 27) / 100;
+                        txtClaveArticulo.Width = w;
+                        txtClaveArticulo.Left = l;
+                        */
+                        //lblDescArticulo.Width = this.Width - Ww;
+                    /*
+
+                        l = (this.Width * 67) / 100;
+                        lblDescArticulo.Left = l;
+                        lblDescArticulo.Top = t-5;
+
+
+                        lblDescArticulo.Width = lblDescArticulo.Width +  w;
+                        
+                        t = (this.Height * 91) / 400;
+                        lblPrecioArt.Top = t ;
+
+                        l = (this.Width * 78) / 100;
+                        lblPrecioArt.Left = l;
+                        w = (this.Width * 20) / 100;
+                        lblPrecioArt.Width = w;
+                        */
+        }
     }
 }
 

@@ -103,12 +103,12 @@ namespace GAFE
 
         private void LlecboProveedor()
         {
-            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboProveedor.DataSource = lin.CboInv_CatAlmacenes();
-            cboProveedor.ValueMember = "ClaveAlmacen";
+            PuiCatProveedores lin = new PuiCatProveedores(db);
+            cboProveedor.DataSource = lin.LLenaCboProveedores();
+            cboProveedor.ValueMember = "Clave";
             cboProveedor.DisplayMember = "Descripcion";
 
-            cboProveedor.SelectedValue = user.AlmacenUsa;
+            //cboProveedor.SelectedValue = user.AlmacenUsa;
         }
         
         private void cmdAceptar_Click(object sender, EventArgs e)
@@ -204,8 +204,9 @@ namespace GAFE
             sRq.cmpSubTotal = Convert.ToDouble(txtSubTotal.Text);
             sRq.cmpTotal = Convert.ToDouble(txtTotal.Text);
             sRq.cmpObservaciones = txtObservaciones.Text;
-            sRq.cmpEstatus = "1";
+            sRq.cmpEstatus = 1;
             sRq.cmpAutorizado =false;
+            sRq.cmpEsperaAceptacion =  1;
             
             if (ConfigDoc.UsaProveedor == 1)
             {
@@ -260,6 +261,16 @@ namespace GAFE
                             subTotal = subTotal + PARTIDAS[i].SubTotal;
                             impuesto = impuesto + PARTIDAS[i].Impuesto;
                             total = total + PARTIDAS[i].Total;
+
+                            PARTIDAS[i].FechaCaptura= Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", FechaExpedicion.Value));
+
+                            if (Opcion == 1)
+                                PARTIDAS[i].FechaModificacion = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", FechaExpedicion.Value));
+                            else
+                                PARTIDAS[i].FechaModificacion = user.FecServer;
+
+
+
                         }
                         txtSubTotal.Text = subTotal.ToString();
                         txtIva.Text = impuesto.ToString();
@@ -359,13 +370,13 @@ namespace GAFE
             txtNumDoc.Text = Convert.ToString(sRq.cmpNumDoc);
             cboAlmacen.SelectedValue = sRq.cmpClaveAlmacen;
             FechaExpedicion.Value = sRq.cmpFechaExpedicion;
-            txtDescuento.Text = Convert.ToString(sRq.cmpDescuento);
+            //txtDescuento.Text = Convert.ToString(sRq.cmpDescuento);
             txtObservaciones.Text = sRq.cmpObservaciones;
             if (ConfigDoc.UsaProveedor == 1)
             {
                 cboProveedor.SelectedValue = sRq.cmpCveProveedor;
             }
-            
+
             SqlDataAdapter DatosTbl = sRq.GetDatelleDoc(idmovimiento);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
@@ -390,12 +401,15 @@ namespace GAFE
                 partida.CveImpuesto = row["CveImpuesto"].ToString();
                 partida.ImpuestoValor = Convert.ToDouble(row["ImpuestoValor"].ToString());
                 partida.Precio = Convert.ToDouble(row["Precio"].ToString());
-                partida.Descuento = Convert.ToDouble(row["Descuento"].ToString());
+                partida.Descuento = 0;
                 partida.PrecioNeto = Convert.ToDouble(row["PrecioNeto"].ToString());
                 partida.Impuesto = Convert.ToDouble(row["Impuesto"].ToString());
                 partida.SubTotal = Convert.ToDouble(row["SubTotal"].ToString());
                 partida.Total = Convert.ToDouble(row["Total"].ToString());
                 partida.Autorizado = Boolean.Parse(row["Autorizado"].ToString());
+                partida.FechaCaptura = Convert.ToDateTime(row["FechaCaptura"].ToString());
+                partida.FechaModificacion = Convert.ToDateTime(row["FechaModificacion"].ToString());
+
 
                 subTotal = subTotal + Convert.ToDouble(row["SubTotal"].ToString());
                 impuesto = impuesto + Convert.ToDouble(row["Impuesto"].ToString());
@@ -542,7 +556,7 @@ namespace GAFE
                 txtNumDoc.Enabled = Bol;
                 cboAlmacen.Enabled = Bol;
                 FechaExpedicion.Enabled = Bol;
-                txtDescuento.Enabled = Bol;
+                //txtDescuento.Enabled = Bol;
                 txtObservaciones.Enabled = Bol;
             }
         }
@@ -727,6 +741,11 @@ namespace GAFE
             {
                 ConfirmarSalir();
             }
+        }
+
+        private void lblProveedor_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

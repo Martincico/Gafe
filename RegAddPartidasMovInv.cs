@@ -36,12 +36,12 @@ namespace GAFE
             string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
                          "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
                          "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
-                         "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+                         "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
                          "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
                         " values( @NoMovimiento,@NoPartida,@CveAlmacenMov,@CveTipoMov,@EntSal," +
                          "        @NoDoc,@Documento,@CveArticulo,@Descripcion,@CveUMedida," +
                          "        @Cantidad,@CantidadPkt,@Precio,@Descuento,@TotalDscto," +
-                         "        @CveImpuesto,@TotalIva,@SubTotal,@TotalPartida,@FolioDocOrigen," +
+                         "        @CveImpuesto,@ImpuestoValor,@TotalIva,@SubTotal,@TotalPartida,@FolioDocOrigen," +
                          "        @FechaMovimiento,@NoMovtoTra,@DocTra,@PartTra)";
 
             return db.InsertarRegistro(sql, ArrParametros);
@@ -52,7 +52,7 @@ namespace GAFE
             string sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov, CveTipoMov= @CveTipoMov,EntSal = @EntSal," +
                          "        NoDoc = @NoDoc,Documento = @Documento,CveArticulo = @CveArticulo,Descripcion = @Descripcion,CveUMedida = @CveUMedida," +
                          "        Cantidad = @Cantidad,CantidadPkt = @CantidadPkt,Precio = @Precio,Descuento = @Descuento,TotalDscto = @TotalDscto," +
-                         "        CveImpuesto = @CveImpuesto,TotalIva = @TotalIva,SubTotal = @SubTotal,TotalPartida = @TotalPartida,FolioDocOrigen = @FolioDocOrigen," +
+                         "        CveImpuesto = @CveImpuesto,ImpuestoValor = @ImpuestoValor,TotalIva = @TotalIva,SubTotal = @SubTotal,TotalPartida = @TotalPartida,FolioDocOrigen = @FolioDocOrigen," +
                          "        FechaMovimiento = @FechaMovimiento,NoMovtoTra = @NoMovtoTra,DocTra = @DocTra,PartTra = @PartTra " +
                         " Where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
             return db.DeleteRegistro(sql, ArrParametros);
@@ -114,12 +114,12 @@ namespace GAFE
             string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
-             "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+             "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
             "  SELECT @NoPartida,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
-             "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+             "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovimiento,Documento,NoPartida " +
              " FROM Inv_MovtosDetalles" +
              " WHERE NoMovimiento = @NoMovimiento";
@@ -132,7 +132,7 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "Select NoMovimiento,NoPartida,CveArticulo " +
                          " from Inv_MovtosDetalles " +
-                         " where NoMovimiento = @NoPartida  AND CveArticulo = @NoMovimiento";
+                         " where NoMovimiento = @NoMovimiento  AND CveArticulo = @NoPartida";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -143,8 +143,8 @@ namespace GAFE
             string Sql = "Select NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
                          "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
                          "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
-                         "        CveImpuesto,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
-                         "        FechaMovimiento,NoMovtoTra,DocTra,PartTra " +
+                         "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
+                         "        FechaMovimiento,NoMovtoTra,DocTra,PartTra" +
                          " from Inv_MovtosDetalles " +
                          " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
             dt = db.SelectDA(Sql, ArrParametros);

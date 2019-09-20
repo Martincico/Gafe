@@ -119,6 +119,8 @@
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(776, 297);
             this.grdView.TabIndex = 18;
+            this.grdView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellClick);
+            this.grdView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdView_MouseClick);
             // 
             // idMov
             // 
@@ -259,12 +261,13 @@
             // btnGenerarDoc
             // 
             this.btnGenerarDoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.btnGenerarDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarDoc.Enabled = false;
+            this.btnGenerarDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerarDoc.Image = global::GAFE.Properties.Resources.migrar_doc;
             this.btnGenerarDoc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGenerarDoc.Location = new System.Drawing.Point(75, 402);
             this.btnGenerarDoc.Name = "btnGenerarDoc";
-            this.btnGenerarDoc.Size = new System.Drawing.Size(144, 36);
+            this.btnGenerarDoc.Size = new System.Drawing.Size(159, 36);
             this.btnGenerarDoc.TabIndex = 31;
             this.btnGenerarDoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGenerarDoc.UseVisualStyleBackColor = false;

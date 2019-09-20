@@ -16,7 +16,6 @@ namespace GAFE
 {
     public partial class DocLstRequisiciones : MetroForm
     {
-        DateTime FecDia;
         clsCfgDocumento ConfigDoc;
         DataTable dt = null;
         DataRow row = null;
@@ -30,7 +29,6 @@ namespace GAFE
         public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, String CveDc, String _NameDoc)
         {
             InitializeComponent();
-            FecDia = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Today));
             db = Odat;
             user = DatUsr;
             StiloColor = NewColor;
@@ -45,7 +43,8 @@ namespace GAFE
             this.Text = "LISTADO DE "+NameDoc;
 
             cmdAutorizarTodo.Visible = ConfigDoc.SolicitaAutorizar == 1 ? true : false;
-            if(!ConfigDoc.DocRel.Equals(""))
+
+            if (ConfigDoc.AfectaInventario == 1 || !ConfigDoc.DocRel.Equals(""))
             {
                 btnGenerarDoc.Visible = true;
                 btnGenerarDoc.Text = ConfigDoc.txtBotonDocRel;
@@ -62,7 +61,7 @@ namespace GAFE
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            string movimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador),FecDia);
+            string movimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador),user.FecServer);
             //llamar la forma de regdoc
             if (movimiento.CompareTo("Error") != 0)
             {
@@ -80,28 +79,36 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            rq.keyDocumento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            if (rq.keyDocumento.Length == 0)
-            {
-                MessageBoxAdv.Show("Documento en uso por otro usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                try
+            try
+            { 
+                DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+                rq.keyDocumento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                if (rq.keyDocumento.Length == 0)
                 {
-                    DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor, 2, ConfigDoc, rq.keyDocumento, CveDoc, NameDoc);
-                    Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-                    Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-                    Rcap.ShowDialog();
+                    MessageBoxAdv.Show("Documento en uso por otro usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    try
+                    {
+                        DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor, 2, ConfigDoc, rq.keyDocumento, CveDoc, NameDoc);
+                        Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                        Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                        Rcap.ShowDialog();
                     
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBoxAdv.Show("Error:" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                             MessageBoxIcon.Exclamation);
+                    }
+                    LlenaGridView();
                 }
-                catch (Exception ex)
-                {
-                    MessageBoxAdv.Show("Error:" + ex.Message, "Alerta", MessageBoxButtons.OK,
-                         MessageBoxIcon.Exclamation);
-                }
-                LlenaGridView();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
             }
         }
 
@@ -141,19 +148,27 @@ namespace GAFE
 
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            rq.keyDocumento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            if (rq.keyDocumento.Length == 0)
+            try
             {
-                MessageBoxAdv.Show("Documento en uso por otro usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+                rq.keyDocumento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                if (rq.keyDocumento.Length == 0)
+                {
+                    MessageBoxAdv.Show("Documento en uso por otro usuario", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor, 3, ConfigDoc, rq.keyDocumento, CveDoc, NameDoc);
+                    Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                    Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                    Rcap.ShowDialog();
+                    LlenaGridView();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  3, ConfigDoc, rq.keyDocumento, CveDoc, NameDoc);
-                Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-                Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-                Rcap.ShowDialog();
-                LlenaGridView();
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
             }
         }
 
@@ -175,6 +190,9 @@ namespace GAFE
                 grdView.DataSource = Ds.Tables[0];
 
                 grdView.Columns["ClaveAlmacen"].Visible = false;
+                grdView.Columns["CveProveedor"].Visible = false;
+                grdView.Columns["EsperaAceptacion"].Visible = false;
+                grdView.Columns["DocOrigen"].Visible = false;
 
 
             }
@@ -255,20 +273,56 @@ namespace GAFE
 
         private void btnGenerarDoc_Click(object sender, EventArgs e)
         {
-            funcParaGenererDocM2002();
+            try
+            {
+                if (ConfigDoc.AfectaInventario == 1)
+                {
+                    string IdDc = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    string strprov = grdView[11, grdView.CurrentRow.Index].Value.ToString();
+                    string IdDoc = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, StiloColor,"MINV", user);
+                
+                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDoc, IdDc);
+                    if (rsp != 0)
+                    {
+                        string msj = "";
+                        switch (rsp)
+                        {
+                            case 1: msj = "Al guardar cabecero"; break;
+                            case 2: msj = "Al guardar detalle partidas"; break;
+                            case 3: msj = "Al afectar existencias"; break;
+                            case 4: msj = "Traspaso: Registro en blanco"; break;
+                            case 5: msj = "Traspaso: Al guardar cabecero"; break;
+                            case 6: msj = "Traspaso: Al guardar detalle partidas"; break;
+                            case 7: msj = "Traspaso: Al afectar existencias"; break;
+                            case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
+                            default: msj = "Error desconocido"; break;
+                        }
+                        MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                    funcParaMigrarDoc();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
 
-        private void funcParaGenererDocM2002()
+        private void funcParaMigrarDoc()
         {
             clsCfgDocumento Ccd = new clsCfgDocumento(ConfigDoc.DocRel, db);
             clsCfgDocumento CfgDocTrans = Ccd.ConfigDoc();
             DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            string movimiento = rq.AgregarDocEnBlanco(int.Parse(CfgDocTrans.Foliador), FecDia);
+            string movimiento = rq.AgregarDocEnBlanco(int.Parse(CfgDocTrans.Foliador), user.FecServer);
             rq.keyidMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
             if (movimiento.CompareTo("Error") != 0)
             {
                 rq.keyidMovNew = movimiento;
                 rq.cmpCveDoc = ConfigDoc.DocRel;
+                rq.cmpDocOrigen = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 int _fol = 5000;
                 string _alm = "5000";
                 string _ser = "";
@@ -285,27 +339,59 @@ namespace GAFE
                     rq.cmpSerie = _ser;
                 }
 
-                /*
-                   Aca seria la segunda fase del guardado del documento, si el documento afecta inventario se supone ya 
-                   leiste la configuracion en algun punto de este codigo, 
-                   aka llamaras tu clase donde esta la funcionalidad del almacen y le pasaras el cabecero y detalle del
-                   documento.
-                   y se guardaran como un mov de inv afectando las tablas reacionadas con el mod de inv, articulo, precios, existencia
-                   ....
-                   ok
-
-                 */
-
                 if (rq.GuardarDocTransf(_fol, _alm, CfgDocTrans.CveDoc, _ser) == 1)
                 {
                     MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            
+                else
+                {
+                    MessageBoxAdv.Show("Existe un error insertar registro", "ERROR " + NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBoxAdv.Show("Existe un error insertar registro", "ERROR "+ NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show("Existe un error insertar registro en blanco", "ERROR "+ NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void grdView_MouseClick(object sender, MouseEventArgs e)
+        {
+            /*
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenuStrip MnuDer = new ContextMenuStrip();
+                int position_xy_mouse_row = grdView.HitTest(e.X, e.Y).RowIndex;
+
+                //MessageBox.Show(position_xy_mouse_row.ToString());
+
+                if (position_xy_mouse_row >= 0)
+                {
+                    MnuDer.Items.Add("Espera aceptación").Name = "EsperaAceptacion";
+                }
+
+                MnuDer.Show(grdView, new Point(e.X, e.Y));
+
+                MnuDer.ItemClicked += new ToolStripItemClickedEventHandler(MnuDel_Click);
+            }
+            */
+        }
+
+        private void MnuDel_Click(object sender, ToolStripItemClickedEventArgs e)
+        {
+            /*
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "EsperaAceptacion":
+                    MessageBoxAdv.Show(e.ClickedItem.Name.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
+            */
+        }
+
+        private void grdView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int EspAcept = Convert.ToInt32(grdView[12, grdView.CurrentRow.Index].Value.ToString());
+            btnGenerarDoc.Enabled = EspAcept == 1 ? true : false;
         }
     }
 }

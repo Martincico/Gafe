@@ -346,12 +346,15 @@ namespace GAFE
             ar.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             ar.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             ar.ShowDialog();
-            IdArt = ar.dv[0];
-            txtClaveArticulo.Text = ar.dv[0];
-            txtDescripcion.Text = ar.dv[1];
-            CveImp = ar.dv[10];
-            txtIva.Text = ar.dv[12];
-            CveUmed = ar.dv[8];
+            if (!string.IsNullOrEmpty(ar.KeyCampo))
+            {
+                IdArt = ar.dv[0];
+                txtClaveArticulo.Text = ar.dv[0];
+                txtDescripcion.Text = ar.dv[1];
+                CveImp = ar.dv[10];
+                txtIva.Text = ar.dv[12];
+                CveUmed = ar.dv[8];
+            }
 
         }
 
