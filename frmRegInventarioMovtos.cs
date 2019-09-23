@@ -207,7 +207,7 @@ namespace GAFE
                 pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
             }
             db.IniciaTrans();
-            if (pui.AgregarInvMaster() >= 1)
+            if (pui.AgregarInvMaster(DcOrigen) >= 1)
             {
                 if (pui.AgregarInvDet() >= 1)
                 {
@@ -256,7 +256,7 @@ namespace GAFE
 
                                 pui.cmpNoMovtoTra = Convert.ToString(folMovto);
                                 pui.cmpDocTra = DocM;
-                                if (pui.AgregarInvMaster() >= 1)
+                                if (pui.AgregarInvMaster("") >= 1)
                                 {
                                     PuiAddPartidasMovInv PuiPart = new PuiAddPartidasMovInv(db);
                                     PuiPart.keyNoMovimiento = Convert.ToString(folMovto);

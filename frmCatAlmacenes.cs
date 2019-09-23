@@ -40,6 +40,7 @@ namespace GAFE
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
         }
 
 
@@ -81,6 +82,8 @@ namespace GAFE
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
 
+            LlecboLstPrecio();
+
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -111,7 +114,7 @@ namespace GAFE
             chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
             chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
             chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
-
+            cboLstPrecio.SelectedValue = pui.cmpCveLstPrecio;
             txtClaveAlmacen.Enabled = false;
 
         }
@@ -136,6 +139,7 @@ namespace GAFE
             chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
             chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
             chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
+            cboLstPrecio.SelectedValue = pui.cmpCveLstPrecio;
 
             OpcionControles(false);
         }
@@ -381,8 +385,8 @@ namespace GAFE
 
         private void LlecboLstPrecio()
         {
-            PuiCatProveedores lin = new PuiCatProveedores(db);
-            cboLstPrecio.DataSource = lin.LLenaCboProveedores();
+            PuiCatLstPrecios lin = new PuiCatLstPrecios(db);
+            cboLstPrecio.DataSource = lin.LLenaCboLstPrecio();
             cboLstPrecio.ValueMember = "Clave";
             cboLstPrecio.DisplayMember = "Descripcion";
         }

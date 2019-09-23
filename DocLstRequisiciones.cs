@@ -303,6 +303,8 @@ namespace GAFE
                 }
                 else
                     funcParaMigrarDoc();
+
+                LlenaGridView();
             }
             catch (Exception ex)
             {
@@ -388,10 +390,14 @@ namespace GAFE
             */
         }
 
-        private void grdView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void grdView_SelectionChanged(object sender, EventArgs e)
         {
-            int EspAcept = Convert.ToInt32(grdView[12, grdView.CurrentRow.Index].Value.ToString());
-            btnGenerarDoc.Enabled = EspAcept == 1 ? true : false;
+            if (grdView.SelectedCells.Count > 0)
+            {
+                int EspAcept = Convert.ToInt32(grdView[12, grdView.CurrentRow.Index].Value.ToString());
+                btnGenerarDoc.Enabled = EspAcept == 1 ? true : false;
+            }
+                //Do_Something_With_It(dataGridView1.SelectedCells[0].RowIndex);
         }
     }
 }

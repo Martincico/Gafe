@@ -29,6 +29,8 @@ namespace GAFE
 
         public string[] dv = new string[13];
 
+        public clsStiloTemas StiloColor;
+
         public frmLstArticulos()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace GAFE
         }
 
 
-        public frmLstArticulos(MsSql Odat, string perfil, int op = 1)
+        public frmLstArticulos(MsSql Odat, clsStiloTemas NewColor,string perfil, int op = 1)
         {
             InitializeComponent();
             db = Odat;
@@ -45,6 +47,8 @@ namespace GAFE
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
+            StiloColor = NewColor;
 
             this.KeyDown += new KeyEventHandler(PressKey);
         }
@@ -112,7 +116,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmCatArticulos art = new frmCatArticulos(db, Perfil);
+            frmCatArticulos art = new frmCatArticulos(db,StiloColor, Perfil);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -121,7 +125,7 @@ namespace GAFE
         {
             try
             {
-                frmCatArticulos art = new frmCatArticulos(db, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmCatArticulos art = new frmCatArticulos(db, StiloColor, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 art.ShowDialog();
                 LlenaGridView();
             }
@@ -138,7 +142,7 @@ namespace GAFE
         {
             try
             {
-                frmCatArticulos art = new frmCatArticulos(db, Perfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmCatArticulos art = new frmCatArticulos(db, StiloColor, Perfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 art.ShowDialog();
             }
             catch (Exception ex)

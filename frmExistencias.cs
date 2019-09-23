@@ -30,6 +30,7 @@ namespace GAFE
         List<clsFillCbo> ln;
 
         public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
 
         public frmExistencias()
         {
@@ -37,11 +38,12 @@ namespace GAFE
         }
 
 
-        public frmExistencias(MsSql Odat, DatCfgUsuario DatUsr)
+        public frmExistencias(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
             user = DatUsr;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -145,7 +147,9 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos la = new frmLstArticulos(db,"",3);
+            frmLstArticulos la = new frmLstArticulos(db, StiloColor, user.CodPerfil,3);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             la.ShowDialog();
             txtClaveArticulo.Text = la.dv[0];
             txtDscArticulo.Text = la.dv[1];
@@ -167,6 +171,8 @@ namespace GAFE
             string stockMax = grdView[8, grdView.CurrentRow.Index].Value.ToString();
 
             AsignaPorAlmacen fas = new AsignaPorAlmacen(ClaveArticulo,ClaveAlmacen,Descripcion,Ubicacion,stockMin,stockMax,db);
+            fas.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            fas.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             fas.ShowDialog();
             LlenaGridView(1);
         }

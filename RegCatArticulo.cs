@@ -64,7 +64,7 @@ namespace GAFE
         }
         public int AddRegLstPrecios()
         {
-            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo, FechaModifacion) (SELECT CveLstPrecio, @CveArticulo, GETDATE() FROM Inv_LstPreciosMast WHERE ESTATUS = 1) ";
+            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo,Precio, FechaModifacion) (SELECT CveLstPrecio, @CveArticulo,0, GETDATE() FROM Inv_LstPreciosMast WHERE ESTATUS = 1) ";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 

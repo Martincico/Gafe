@@ -661,7 +661,7 @@ namespace GAFE
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, perfil, 3);
+            frmLstArticulos art = new frmLstArticulos(db, StiloColor, perfil, 3);
             art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();

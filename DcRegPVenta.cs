@@ -54,6 +54,8 @@ namespace GAFE
 
         private int Ww;
 
+        public clsStiloTemas StiloColor;
+
         public DcRegPVenta()
         {
             InitializeComponent();
@@ -79,7 +81,10 @@ namespace GAFE
             NewColor.Encabezado = reg[0].ToString();
             NewColor.HoverEncabezado = reg[1].ToString();
             NewColor.FontColor = reg[2].ToString();
-            
+
+            StiloColor = NewColor;
+
+
             LlecboCliente();
 
             GetDatoAlmacen();
@@ -334,7 +339,7 @@ namespace GAFE
             object[] ObjA = null;
 
             pui.keyCveLstPrecio = LstPre_Clie;
-            pui.cmpNombre = IdArt;
+            pui.cmpCveArticulo = IdArt;
 
             Datos = pui.GetPrecioArticulo();
 
@@ -760,7 +765,7 @@ namespace GAFE
         private void ShowVentArt()
         {
             
-            frmLstArticulos ar = new frmLstArticulos(db, user.CodPerfil, 3);
+            frmLstArticulos ar = new frmLstArticulos(db, StiloColor, user.CodPerfil, 3);
             ar.CaptionBarColor = ColorTranslator.FromHtml(NewColor.Encabezado);
             ar.CaptionForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
             ar.ShowDialog();

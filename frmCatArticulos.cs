@@ -30,9 +30,10 @@ namespace GAFE
         PuiCatArticulos Art;
         private string Perfil;
         private clsUtil uT;
+        public clsStiloTemas StiloColor;
 
 
-        public frmCatArticulos(MsSql Odat, string perfil,int op=1, String Key="" )
+        public frmCatArticulos(MsSql Odat, clsStiloTemas NewColor, string perfil,int op=1, String Key="" )
         {
             InitializeComponent();
             _Opcion = op;
@@ -40,6 +41,9 @@ namespace GAFE
             db = Odat;
             Perfil = perfil;
 
+            StiloColor = NewColor;
+            CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 

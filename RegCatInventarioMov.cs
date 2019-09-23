@@ -41,7 +41,7 @@ namespace GAFE
             return db.GetFolioMov(Int32.Parse(Fol), "");
         }
 
-        public int AddRegInvMaster()
+        public int AddRegInvMaster(String DcOrigen)
         {
             string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
             "           NoDoc=@NoDoc, Documento=@Documento,CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
@@ -53,17 +53,17 @@ namespace GAFE
 
             int rsp = db.UpdateRegistro(sql, ArrParametros);
 
-
-            if (rsp > 0)
+            if (!DcOrigen.Equals(""))
             {
-                sql = " UPDATE DocCab  " +
-                         " SET 	  EsperaAceptacion = 0" +
-                         " WHERE idMov = @DocOrigen";
+                if (rsp > 0)
+                {
+                    sql = " UPDATE DocCab  " +
+                             " SET 	  EsperaAceptacion = 0" +
+                             " WHERE idMov = @DocOrigen";
 
-                db.UpdateRegistro(sql, ArrParametros);
+                    db.UpdateRegistro(sql, ArrParametros);
+                }
             }
-
-
 
             return rsp;
         }

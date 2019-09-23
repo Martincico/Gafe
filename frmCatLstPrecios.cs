@@ -23,8 +23,10 @@ namespace GAFE
         private int idxG;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
+
+        public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
 
         public frmCatLstPrecios()
         {
@@ -32,11 +34,12 @@ namespace GAFE
         }
 
 
-        public frmCatLstPrecios(MsSql Odat, string perfil)
+        public frmCatLstPrecios(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -47,7 +50,7 @@ namespace GAFE
         private void frmCatLstPrecios_Load(object sender, EventArgs e)
         {
             
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             clsUsPerfil up = uT.BuscarIdNodo("1Inv008A");
@@ -95,17 +98,25 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
+            try
+            {
 
-            pui.keyCveLstPrecio= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLstPrecios();
-            txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
-            txtDescripcion.Text = pui.cmpNombre;
-            chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
-            chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
-            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
-            txtClaveLstPrecio.Enabled = false;
+                PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
 
+                pui.keyCveLstPrecio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarLstPrecios();
+                txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
+                txtDescripcion.Text = pui.cmpNombre;
+                chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
+                chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
+                chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+                txtClaveLstPrecio.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
 
 
@@ -355,22 +366,43 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
+            try { 
 
-            pui.keyCveLstPrecio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLstPrecios();
-            txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
-            txtDescripcion.Text = pui.cmpNombre;
-            chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
-            chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
-            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+                PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
 
-            OpcionControles(false);
-        }
+                pui.keyCveLstPrecio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarLstPrecios();
+                txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
+                txtDescripcion.Text = pui.cmpNombre;
+                chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
+                chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
+                chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+
+                OpcionControles(false);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+}
 
         private void btnVer_Click(object sender, EventArgs e)
         {
+            try
+            { 
+                LstCatViewLstPrecio LPv = new LstCatViewLstPrecio(db, user, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                LPv.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                LPv.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                LPv.ShowDialog();
 
-        }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+}
     }
 }

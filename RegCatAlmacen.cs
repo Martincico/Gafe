@@ -62,7 +62,7 @@ namespace GAFE
                          "EsDeCompra = @EsDeCompra, " +
                          "EsDeVenta = @EsDeVenta, " +
                          "EsDeConsigna = @EsDeConsigna, " +
-                         "NumRojo = @NumRojo " +
+                         "NumRojo = @NumRojo, " +
                          "CveLstPrecio = @CveLstPrecio " +
                          "Where ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);

@@ -277,11 +277,11 @@ namespace GAFE
             return OpRadd.GetFolioSql(fol);
         }
 
-        public int AgregarInvMaster()
+        public int AgregarInvMaster(String DcOrigen)
         {
             CargaParametroMat();
             RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
-            return OpRadd.AddRegInvMaster();
+            return OpRadd.AddRegInvMaster(DcOrigen);
         }
 
         public int AgregarInvDet()

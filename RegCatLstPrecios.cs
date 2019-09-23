@@ -39,7 +39,7 @@ namespace GAFE
 
         public int AddLstPreciosDet()
         {
-            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo, FechaModifacion) (SELECT @CveLstPrecio, CveArticulo, GETDATE() FROM inv_CatArticulos) ";
+            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo, Precio, FechaModifacion) (SELECT @CveLstPrecio, CveArticulo,0, GETDATE() FROM inv_CatArticulos) ";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -123,6 +123,33 @@ namespace GAFE
                          "from Inv_LstPreciosMast where Estatus=1";
             dt = db.SelectDA(Sql);
             return dt;
+        }
+
+        public SqlDataAdapter LstArticulo_LstPrecio(String txtArt)
+        {
+            String Wh = "";
+            txtArt = txtArt.Trim();
+
+            if(!txtArt.Equals(""))
+            {
+                Wh = " AND (LstPD.CveArticulo LIKE '%" + txtArt + "%' OR Art.Descripcion LIKE '%" + txtArt + "%')";
+            }
+
+            SqlDataAdapter dt = null;
+            string Sql = " SELECT LstPD.CveArticulo AS 'Articulo',Art.Descripcion,Art.Modelo,LstPD.Precio,LstPD.FechaModifacion " +
+                         " FROM Inv_LstPreciosDet AS LstPD " +
+                         " INNER JOIN dbo.inv_CatArticulos AS Art ON LstPD.CveArticulo = Art.CveArticulo " +
+                         " WHERE LstpD.CveLstPrecio  = @CveLstPrecio "+ Wh;
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        public int UpdLstPrecio_Art()
+        {
+            string sql = "Update Inv_LstPreciosDet set FechaModifacion = @FechaModifacion, Precio = @Precio  " +
+                         "Where CveLstPrecio = @CveLstPrecio " +
+                         "AND   CveArticulo  = @CveArticulo";
+            return db.DeleteRegistro(sql, ArrParametros);
         }
 
     }

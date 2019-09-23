@@ -158,7 +158,7 @@ namespace GAFE
 
         private void CatArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos fm = new frmLstArticulos(db, user.CodPerfil);
+            frmLstArticulos fm = new frmLstArticulos(db,NewColor, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
@@ -176,13 +176,13 @@ namespace GAFE
 
         private void OpKardex_Click(object sender, EventArgs e)
         {
-            frmKardex fm = new frmKardex(db, user);
+            frmKardex fm = new frmKardex(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
         private void OpExistencia_Click(object sender, EventArgs e)
         {
-            frmExistencias fm = new frmExistencias(db, user);
+            frmExistencias fm = new frmExistencias(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -322,7 +322,7 @@ namespace GAFE
 
         private void CatListaPrecios_Click(object sender, EventArgs e)
         {
-            frmCatLstPrecios fm = new frmCatLstPrecios(db, user.CodPerfil);
+            frmCatLstPrecios fm = new frmCatLstPrecios(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 

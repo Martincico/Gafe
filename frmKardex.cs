@@ -28,18 +28,20 @@ namespace GAFE
         DataTable dt;
 
         public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
 
         public frmKardex()
         {
             InitializeComponent();
         }
 
-        public frmKardex(MsSql Odat, DatCfgUsuario DatUsr)
+        public frmKardex(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             
             InitializeComponent();
             db = Odat;
             user = DatUsr;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -47,7 +49,9 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, user.CodPerfil, 3);
+            frmLstArticulos art = new frmLstArticulos(db, StiloColor, user.CodPerfil, 3);
+            art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {

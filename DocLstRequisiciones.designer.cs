@@ -119,7 +119,7 @@
             this.grdView.ReadOnly = true;
             this.grdView.Size = new System.Drawing.Size(776, 297);
             this.grdView.TabIndex = 18;
-            this.grdView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellClick);
+            this.grdView.SelectionChanged += new System.EventHandler(this.grdView_SelectionChanged);
             this.grdView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grdView_MouseClick);
             // 
             // idMov

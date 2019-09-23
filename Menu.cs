@@ -167,7 +167,7 @@ namespace GAFE
 
         private void CatArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos fm = new frmLstArticulos(db, user.CodPerfil);
+            frmLstArticulos fm = new frmLstArticulos(db,NewColor, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
 
@@ -217,7 +217,7 @@ namespace GAFE
 
         private void CatListaPrecios_Click(object sender, EventArgs e)
         {
-            frmCatLstPrecios fm = new frmCatLstPrecios(db, user.CodPerfil);
+            frmCatLstPrecios fm = new frmCatLstPrecios(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -247,7 +247,7 @@ namespace GAFE
 
         private void MnuKardexArt_Click(object sender, EventArgs e)
         {
-            frmKardex fm = new frmKardex(db, user);
+            frmKardex fm = new frmKardex(db, user,NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -265,7 +265,7 @@ namespace GAFE
 
         private void MnuExitenciaArt_Click(object sender, EventArgs e)
         {
-            frmExistencias fm = new frmExistencias(db, user);
+            frmExistencias fm = new frmExistencias(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -292,12 +292,6 @@ namespace GAFE
         {
             frmLstProveedores fm = new frmLstProveedores(db, user.CodPerfil);
             Nav(fm, panelContenedor);
-        }
-
-        private void CatsClientes_Click(object sender, EventArgs e)
-        {
-            
-
         }
 
         private void MnuDocProvee_Click(object sender, EventArgs e)

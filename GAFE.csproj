@@ -158,6 +158,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosGafe.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LstCatViewLstPrecio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LstCatViewLstPrecio.Designer.cs">
+      <DependentUpon>LstCatViewLstPrecio.cs</DependentUpon>
+    </Compile>
     <Compile Include="DocLstRequisiciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -464,6 +470,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LstCatViewLstPrecio.resx">
+      <DependentUpon>LstCatViewLstPrecio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DocLstRequisiciones.resx">
       <DependentUpon>DocLstRequisiciones.cs</DependentUpon>

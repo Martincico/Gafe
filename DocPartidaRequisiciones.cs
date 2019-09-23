@@ -342,7 +342,7 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos ar = new frmLstArticulos(db, user.CodPerfil, 3);
+            frmLstArticulos ar = new frmLstArticulos(db, StiloColor, user.CodPerfil, 3);
             ar.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             ar.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             ar.ShowDialog();
