@@ -518,7 +518,7 @@ namespace GAFE
                     string strprov = Convert.ToString(cboCliente.SelectedValue);
                     frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, null, "MINV", user);
 
-                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, idmovimiento, idmovimiento);
+                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, idmovimiento, idmovimiento, user.AlmacenUsa);
                     if (rsp != 0)
                     {
                         string msj = "";

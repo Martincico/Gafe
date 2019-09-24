@@ -72,7 +72,7 @@ namespace GAFE
         {
             String sql = "Update Inv_MovtosDetalles set CveAlmacenMov = @CveAlmacenMov, CveTipoMov= @CveTipoMov," +
                       "                      EntSal = @EntSal, NoDoc = @NoDoc, Documento = @Documento" +
-                      " Where NoMovimiento = @NoMovimiento";
+                      " Where NoMovimiento = @NoMovimiento AND Cancelado = 1";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
@@ -83,6 +83,27 @@ namespace GAFE
             sql = "Delete from Inv_MovtosMaster where NoMovimiento = @NoMovimiento";
             int rp2 = db.UpdateRegistro(sql, ArrParametros);
             return rp2;
+        }
+
+        public int DelRegCerosSql() //Ponemos en ceros al Eliminar
+        {
+            int rsp = -1;
+
+            string sql = "Update Inv_MovtosMaster set Descuento=0," +
+            "           TotalDscto=0, TIva=0, SubTotal=0, TotalDoc=0, " +
+            "           Cancelado= 2 " +
+            " Where NoMovimiento = @NoMovimiento";
+
+            rsp =  db.UpdateRegistro(sql, ArrParametros);
+            if(rsp > 0)
+            {
+                sql = "Update Inv_MovtosDetalles set Cantidad = 0,CantidadPkt = 0,Precio = 0,Descuento = 0,TotalDscto = 0," +
+                         "        ImpuestoValor = 0,TotalIva = 0,SubTotal = 0,TotalPartida = 0, Cancelado= 2" +
+                      " Where NoMovimiento = @NoMovimiento";
+                rsp = db.UpdateRegistro(sql, ArrParametros);
+            }
+
+            return rsp;
         }
 
         public int AfectaCostosSql(String _CveTipoMov, int Op)
@@ -99,19 +120,27 @@ namespace GAFE
             else
             {
                 Opera = "-";
-                Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = ( SELECT TOP 1 Precio " +
-                                                                                                                                 " ORDER BY NoMovimiento DESC) ";
+                Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = "; 
+
+                Add_UltPrecio += " ( SELECT TOP 1 Precio " +
+                                "  FROM Inv_MovtosDetalles " +
+                                "  WHERE CveArticulo = Rsp.CveArticulo " +
+                                "    AND CveTipoMov =  '" + _CveTipoMov + "'" +
+                                "    AND NoMovimiento != @NoMovimiento" +
+                                "    AND Cancelado = 1 " +
+                                " ORDER BY CONVERT(INT, NoMovimiento) DESC ) ";
             }
 
 
             string sql = " UPDATE Inv_Existencias SET Inv_Existencias.CostoPromedio = Rsp.CtoProm " + Add_UltPrecio +
                          " FROM Inv_Existencias t1, " +
                          "      (SELECT MDet.CveArticulo, MDet.CveTipoMov, " +
-                         "          ((( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0))" + Opera + "( MDet.Cantidad * MDet.Precio ))/ (ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad)) as CtoProm, " +
+                         "          ((( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0))" + Opera + "( MDet.Cantidad * MDet.Precio ))/ " +
+                         "          (CASE (ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad) WHEN 0 THEN 1 ELSE (ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad) END)) as CtoProm," +
                          "          MDet.Precio  " +
                          "       FROM Inv_MovtosDetalles MDet" +
                          "       INNER JOIN  Inv_Existencias Exis ON MDet.CveArticulo =  Exis.ClaveArticulo and MDet.CveAlmacenMov = Exis.ClaveAlmacen " +
-                         "       WHERE MDet.NoMovimiento = @NoMovimiento) AS Rsp" +
+                         "       WHERE MDet.NoMovimiento = @NoMovimiento AND Cancelado = 1) AS Rsp" +
                          " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -124,7 +153,7 @@ namespace GAFE
                          " FROM Inv_Existencias t1, " +
                          "     (SELECT MDet.CveArticulo, MDet.Cantidad as Cant " +
                          "      FROM Inv_MovtosDetalles MDet" +
-                         "       WHERE MDet.NoMovimiento = @NoMovimiento) AS Rsp" +
+                         "       WHERE MDet.NoMovimiento = @NoMovimiento AND Cancelado = 1) AS Rsp" +
                          " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -174,7 +203,9 @@ namespace GAFE
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
                          " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = mm.CveTipoMov" +
                         //" WHERE MM.Cancelado = 1 " + StrSql;
-                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '"+FIni+"' AND '"+FFin+ "') AND TMvto.EsInterno = 0 " + StrSql;
+                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '"+FIni+"' AND '"+FFin+ "') " +
+                        "   AND TMvto.EsInterno = 0 " +
+                        "   AND MM.Cancelado = 1" + StrSql;
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -203,6 +234,16 @@ namespace GAFE
 
             string Sql = "SELECT EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo" +
                          " from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        public SqlDataAdapter GetIdMov()
+        {// Obtenemos el IdMov y TipoMov de acuerdo al DocOrigen
+            SqlDataAdapter dt = null;
+            string Sql = "Select NoMovimiento, CveTipoMov " +
+                         "from Inv_MovtosMaster " +
+                         "where DocOrigen =@DocOrigen";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }

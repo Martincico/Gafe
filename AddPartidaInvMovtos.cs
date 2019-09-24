@@ -34,8 +34,6 @@ namespace GAFE
         private double TotalIva;
         private double SubTotal;
         private double TotalPartida;
-        private DateTime _FechaMov;
-
 
 
         private int PSugiereCosto;
@@ -59,10 +57,11 @@ namespace GAFE
         //        private int PermiteExiNegativasDest;
         //        private int ExisNegativa;
 
-        private string perfil;
 
         private String CveImp = "";
         public clsStiloTemas StiloColor;
+
+        public DatCfgUsuario user;
 
         ClsUtilerias Util = new ClsUtilerias();
 
@@ -71,15 +70,15 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public AddPartidaInvMovtos(MsSql Odat, clsStiloTemas NewColor, String P_modulo, String P_folio, int P_operacion,
+        public AddPartidaInvMovtos(MsSql Odat, clsStiloTemas NewColor, DatCfgUsuario DatUsr, String P_modulo, String P_folio, int P_operacion,
                 String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
-                 int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, DateTime P_FechaMovimiento,
-                 int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart, string _perfil )
+                 int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, 
+                 int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart )
         {
             InitializeComponent();
             opcion = P_operacion;
             db = Odat;
-            perfil = _perfil;
+            user = DatUsr;
             CodPart = P_CodPart;
             StiloColor = NewColor;
             PModLlama = P_modulo; //dependiendo del modulo que llama esta ventana extrae el precio
@@ -96,7 +95,6 @@ namespace GAFE
 //            this.PermiteExiNegativasOri = P_PermiteExiNegativasOri;
 //            this.PermiteExiNegativasDest = P_PermiteExiNegativasDest;
             PCalcIva = P_CalcIva;
-            _FechaMov = P_FechaMovimiento;
             _AlmNumRojo = P_AlmNumRojo;
             _AlmNumRojoDest = P_AlmNumRojoDest;
 
@@ -195,7 +193,7 @@ namespace GAFE
                 pui.cmpSubTotal = SubTotal;
                 pui.cmpTotalPartida = TotalPartida;
                 pui.cmpFolioDocOrigen = "";
-                pui.cmpFechaMovimiento = _FechaMov;
+                pui.cmpFechaMovimiento = user.FecServer;
                 pui.cmpNoMovtoTra = "";
                 pui.cmpDocTra = "";
                 pui.cmpPartTra = "";
@@ -238,7 +236,7 @@ namespace GAFE
                     pui.cmpSubTotal = SubTotal;
                     pui.cmpTotalPartida = TotalPartida;
                     pui.cmpFolioDocOrigen = "";
-                    pui.cmpFechaMovimiento = _FechaMov;
+                    pui.cmpFechaMovimiento = user.FecServer;
                     pui.cmpNoMovtoTra = "";
                     pui.cmpDocTra = "";
                     pui.cmpPartTra = "";
@@ -278,12 +276,12 @@ namespace GAFE
         {
             PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
             pui.cmpCveArticulo = CveArt;
-            pui.cmpinv_ClaveAlmacen = "100";
+            pui.cmpinv_ClaveAlmacen = user.AlmacenUsa;
             pui.BuscaPrecio(PModLlama);
             CantInv = pui.cmpinv_Cantidad;
 
 
-            if (PModLlama.Equals("M01"))
+            if (PModLlama.Equals("Minv"))
             {
                 //FALTA sugiere costo
                 //String sugiere = winpadre.parametros.metcosto;
@@ -515,7 +513,7 @@ namespace GAFE
             if (ErrCalc)
             {
 
-                if (PModLlama.Equals("M01"))
+                if (PModLlama.Equals("Minv"))
                 {
                     if (PEsTraspaso == 1 || PEntSal.Equals("S"))
                     {
@@ -661,7 +659,7 @@ namespace GAFE
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, StiloColor, perfil, 3);
+            frmLstArticulos art = new frmLstArticulos(db, StiloColor, user.CodPerfil, 3);
             art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
@@ -729,6 +727,7 @@ namespace GAFE
                         Impu.EditarImpuesto();
                         txtIva.Text = Convert.ToString(Impu.cmpValor);
                         txtUmedida.Text = Art.UMedida1.keyCveUMedida;
+                        BuscarPrecio(Art.keyCveArticulo);
                     }
 
                 }

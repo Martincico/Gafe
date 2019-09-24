@@ -175,83 +175,34 @@ namespace GAFE
 
         private void cmEliminar_Click(object sender, EventArgs e)
         {
-            Boolean Rsp = false;
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            String err = "";
+            
             try
             {
                 String NoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String IdTipMov = grdView[8, grdView.CurrentRow.Index].Value.ToString();
-                db.IniciaTrans();
-                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
+                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + NoMov,
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    pui.keyNoMovimiento = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EditarInventarioMov();
 
-                    PuiCatTipoMovtos PuiTM = new PuiCatTipoMovtos(db);
-                    PuiTM.keyCveTipoMov = IdTipMov;
-                    PuiTM.EditarTipoMov();
-                    int rpp = 1;
-                    if (PuiTM.cmpAfectaCosto == 1)
+                    db.IniciaTrans();
+                    int Rsp = EliminarMov(NoMov, IdTipMov);
+                    String err = "";
+                    if (Rsp < 0)
                     {
-                        rpp = pui.AfectaCostos(pui.cmpCveTipoMov, 0);
-                    }
-                    if (pui.AfectaExistencias(pui.cmpEntSal, 0) >= 1 && rpp >= 1)
-                    {
-                        if (PuiTM.cmpEsTraspaso == 1)
-                        {
-                            PuiCatInventarioMov puiRel = new PuiCatInventarioMov(db);
-
-                            puiRel.keyNoMovimiento = pui.cmpNoMovtoTra;
-                            puiRel.EditarInventarioMov();
-
-                            PuiCatTipoMovtos PuiTMRel = new PuiCatTipoMovtos(db);
-                            PuiTMRel.keyCveTipoMov = puiRel.cmpCveTipoMov;
-                            PuiTMRel.EditarTipoMov();
-
-                            rpp = 1;
-                            if (PuiTMRel.cmpAfectaCosto == 1)
-                            {
-                                rpp = puiRel.AfectaCostos(puiRel.cmpCveTipoMov, 0);
-                            }
-                            if (puiRel.AfectaExistencias(puiRel.cmpEntSal, 0) >= 1 && rpp >= 1)
-                            {
-                                Rsp = true;
-                            }
-                            else
-                            {
-                                err = "Existe un error al afectar existencias de relación";
-                            }
-                        }
-                        else
-                        {
-                            Rsp = true;
-                        }
-                    }
-                    else
-                        err = "Existe un error al afectar existencias";
-
-                    if (Rsp)
-                    {
-                        if (pui.EliminaInventarioMov() >= 1)
-                        {
-                            MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
-                                            MessageBoxIcon.Information);
-                            db.TerminaTrans();
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBoxAdv.Show("Existe un error al eliminar", "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            db.CancelaTrans();
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBoxAdv.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         db.CancelaTrans();
+                        switch (Rsp)
+                        {
+                            case -1: err = "Existe un error al eliminar registro"; break;
+                            case -2: err = "Existe un error al afectar existencias de relación"; break;
+                            case -3: err = "Existe un error al afectar existencias"; break;
+                        }
+                        MessageBoxAdv.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        db.TerminaTrans();
+                        MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information);
                     }
                 }
 
@@ -411,6 +362,72 @@ namespace GAFE
             {
                 this.Close();
             }
+        }
+
+        private int EliminarMov(String NoMov, String IdTipMov)
+        {
+            int Rsp = -4;
+            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            
+            pui.keyNoMovimiento = NoMov;
+            pui.EditarInventarioMov();
+
+            PuiCatTipoMovtos PuiTM = new PuiCatTipoMovtos(db);
+            PuiTM.keyCveTipoMov = IdTipMov;
+            PuiTM.EditarTipoMov();
+            int rpp = 1;
+            if (PuiTM.cmpAfectaCosto == 1)
+            {
+                rpp = pui.AfectaCostos(pui.cmpCveTipoMov, 0);
+            }
+            if (pui.AfectaExistencias(pui.cmpEntSal, 0) >= 1 && rpp >= 1)
+            {
+                if (PuiTM.cmpEsTraspaso == 1)
+                {
+                    PuiCatInventarioMov puiRel = new PuiCatInventarioMov(db);
+
+                    puiRel.keyNoMovimiento = pui.cmpNoMovtoTra;
+                    puiRel.EditarInventarioMov();
+
+                    PuiCatTipoMovtos PuiTMRel = new PuiCatTipoMovtos(db);
+                    PuiTMRel.keyCveTipoMov = puiRel.cmpCveTipoMov;
+                    PuiTMRel.EditarTipoMov();
+
+                    rpp = 1;
+                    if (PuiTMRel.cmpAfectaCosto == 1)
+                    {
+                        rpp = puiRel.AfectaCostos(puiRel.cmpCveTipoMov, 0);
+                    }
+                    if (puiRel.AfectaExistencias(puiRel.cmpEntSal, 0) >= 1 && rpp >= 1)
+                        Rsp = 0;
+                    else
+                        Rsp = -2;
+                }
+                else
+                    Rsp = 0;
+
+            }
+            else
+                Rsp = -3;
+
+            if (Rsp == 0)
+            {
+                Rsp = pui.DelRegCerosSql();
+            }
+
+            return Rsp;
+        }
+
+
+        public int DelMigraMov(String DcOrigen)
+        {
+            int Rsp = -4;
+            PuiCatInventarioMov Del = new PuiCatInventarioMov(db);
+            Del.cmpDocOrigen = DcOrigen;
+            Del.GetIdMov();
+            Rsp = EliminarMov(Del.keyNoMovimiento, Del.cmpCveTipoMov);
+
+            return Rsp;
         }
     }
 }

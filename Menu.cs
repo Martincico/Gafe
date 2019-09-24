@@ -63,8 +63,6 @@ namespace GAFE
         {
             try
             {
-                
-
                 clsUsPerfil up = ut.BuscarIdNodo("1Inv");
                 int ModInv = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv00");
@@ -122,7 +120,32 @@ namespace GAFE
                 up = ut.BuscarIdNodo("1Inv013");
                 int Exst = up.Acceso;
                 MnuExitenciaArt.Enabled = (Exst == 1) ? true : false;
-                
+
+
+                /*
+                    Carga la seguridad del modulo de PROVEEDORES.
+                 */
+
+                up = ut.BuscarIdNodo("1Prov");
+                int ModP = up.Acceso;
+
+                //Activa la cinta del modulo
+                ModProveedores.Enabled = (ModP == 1) ? true : false;
+
+                up = ut.BuscarIdNodo("1ProvR");
+                ModP = up.Acceso;
+                MnuRequisición.Enabled = (ModP == 1) ? true : false;
+                up = ut.BuscarIdNodo("1ProvC");
+                ModP = up.Acceso;
+                MnuCotizacion.Enabled = (ModP == 1) ? true : false;
+                up = ut.BuscarIdNodo("1ProvO");
+                ModP = up.Acceso;
+                MnuOrdenCompra.Enabled = (ModP == 1) ? true : false;
+                up = ut.BuscarIdNodo("1ProvCO");
+                ModP = up.Acceso;
+                MnuCompras.Enabled = (ModP == 1) ? true : false;
+
+
             }
             catch (Exception ex)
             {

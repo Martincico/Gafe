@@ -89,7 +89,9 @@ namespace GAFE
         private void DocRegistroRequisicion_Load(object sender, EventArgs e)
         {
             LlecboAlmacen();
+            
         }
+
 
         private void LlecboAlmacen()
         {
@@ -229,7 +231,7 @@ namespace GAFE
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
-            ConfirmarSalir();
+            this.Close();
         }
 
 
@@ -446,52 +448,43 @@ namespace GAFE
         {
             if (!isDataSaved)
             {
-                ConfirmarSalir();
-                e.Cancel = true;
+                if (Opcion != 3)
+                {
+                    switch (MessageBoxAdv.Show(this, "¿En realidad desea salir del modulo?", "Salir del modulo", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            e.Cancel = true;
+                            break;
+                        default:
+                            Boolean rp = false;
+                            if (grdViewD.RowCount > 0)
+                            {
+                                cmdAceptar_Click(sender, e);
+                                rp = isDataSaved;
+                            }
+                            if(!rp)
+                            {
+                                DocPuiRequisiciones InvMast = new DocPuiRequisiciones(db);
+                                InvMast.keyidMov = idmovimiento;
+                                InvMast.EliminaDocumento();
+                            }
+                            e.Cancel = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+
             }
             else
             {
                 e.Cancel = false;
             }
+
         }
 
-        private void ConfirmarSalir()
-        {
-            if (Opcion != 3)
-            {
-                Boolean DellAll = true;
-
-                DocPuiRequisiciones InvMast = new DocPuiRequisiciones(db);
-                if (grdViewD.RowCount > 0)
-                {
-                    switch (MessageBoxAdv.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    {
-                        case DialogResult.No:
-                            break;
-                        default:
-                            DellAll = false;
-                            if (Opcion == 1)
-                            {
-                                Agregar();
-                            }
-                            break;
-                    }
-                }
-
-                if (DellAll)
-                {
-                    InvMast.keyidMov = idmovimiento;
-                    InvMast.EliminaDocumento();
-                }
-                isDataSaved = true;
-                this.Close();
-            }
-            else
-            {
-                isDataSaved = true;
-                this.Close();
-            }
-        }
 
         private void LlecboSerie(String CveAlm)
         {
@@ -737,10 +730,6 @@ namespace GAFE
 
         private void DocRegistroRequisicion_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
-            {
-                ConfirmarSalir();
-            }
         }
 
         private void lblProveedor_Click(object sender, EventArgs e)

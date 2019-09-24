@@ -58,7 +58,7 @@ namespace GAFE
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
-        public int DeletePartida()
+        public int DeletePartida()//Elimina partida
         {
             string sql = "Delete from Inv_MovtosDetalles " +
                          " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
@@ -81,14 +81,14 @@ namespace GAFE
 
         public int GetFolioPart(String NoMov)
         {
-            String Sql = "SELECT TOP 1   NoPartida FROM Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' ORDER BY NoPartida DESC ";
+            String Sql = "SELECT TOP 1   NoPartida FROM Inv_MovtosDetalles where NoMovimiento = '" + NoMov + "' AND Cancelado = 1 ORDER BY NoPartida DESC ";
             return db.GetRegGenerico(Sql);
         }
 
         public SqlDataAdapter BusPrecio(String ModLlama)
         {
             SqlDataAdapter dt = null;
-            if (ModLlama.Equals("M02") || ModLlama.Equals("M01"))
+            if (ModLlama.Equals("MProv") || ModLlama.Equals("Minv"))
             {
                 string Sql = "SELECT ClaveArticulo,ClaveAlmacen,Cantidad,stockMin,stockMax," +
                             "        CantApartada,CostoPromedio,CostoUltimo,CostoActual " +
@@ -104,7 +104,7 @@ namespace GAFE
             string Sql = "Select  NoMovimiento,NoPartida,CveArticulo,Descripcion,CveUMedida," +
                          "        Cantidad,Precio,Descuento,TotalDscto," +
                          "        TotalIva,SubTotal,TotalPartida " +
-                         "from Inv_MovtosDetalles where NoMovimiento = @NoMovimiento Order by NoPartida Desc ";
+                         "from Inv_MovtosDetalles where NoMovimiento = @NoMovimiento AND Cancelado = 1 Order by NoPartida Desc ";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -122,7 +122,7 @@ namespace GAFE
              "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovimiento,Documento,NoPartida " +
              " FROM Inv_MovtosDetalles" +
-             " WHERE NoMovimiento = @NoMovimiento";
+             " WHERE NoMovimiento = @NoMovimiento AND Cancelado = 1";
 
             return db.InsertarRegistro(sql, ArrParametros);
         }
@@ -132,7 +132,7 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "Select NoMovimiento,NoPartida,CveArticulo " +
                          " from Inv_MovtosDetalles " +
-                         " where NoMovimiento = @NoMovimiento  AND CveArticulo = @NoPartida";
+                         " where NoMovimiento = @NoMovimiento  AND CveArticulo = @NoPartida AND Cancelado = 1";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -146,7 +146,7 @@ namespace GAFE
                          "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
                          "        FechaMovimiento,NoMovtoTra,DocTra,PartTra" +
                          " from Inv_MovtosDetalles " +
-                         " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
+                         " where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida AND Cancelado = 1";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }

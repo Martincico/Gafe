@@ -20,7 +20,7 @@ namespace GAFE
 
         private SqlDataAdapter DatosTbl;
 
-        private String Modulo = "M01";
+        private String Modulo = "Minv";
         private MsSql db = null;
         private String Foliador = "1";
 
@@ -115,7 +115,7 @@ namespace GAFE
             db = Odat;
             StiloColor = NewColor;
             user = DatUsr;
-                        
+            OcultProvee(true);
         }
 
 
@@ -126,7 +126,7 @@ namespace GAFE
         {
             if (e.KeyCode == Keys.Escape)
             {
-                ConfirmarSalir();
+                this.Close();
             }
         }
 
@@ -134,42 +134,59 @@ namespace GAFE
         {
             switch (opcion)
             {
-                case 1: int rsp = Agregar("");
-                    if (rsp != 0)
+                case 1:
+                    if (ValidaTipoMov() == 1)
                     {
-                        string msj = "";
-                        switch (rsp)
+                        if (grdViewPart.RowCount > 0)
                         {
-                            case 1: msj = "Al guardar cabecero"; break;
-                            case 2: msj = "Al guardar detalle partidas"; break;
-                            case 3: msj = "Al afectar existencias"; break;
-                            case 4: msj = "Traspaso: Registro en blanco"; break;
-                            case 5: msj = "Traspaso: Al guardar cabecero"; break;
-                            case 6: msj = "Traspaso: Al guardar detalle partidas"; break;
-                            case 7: msj = "Traspaso: Al afectar existencias"; break;
-                            case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
-                            default: msj = "Error desconocido"; break;
+                            DialogResult ans = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (ans == DialogResult.Yes)
+                            {
+                                String CodProve = cboProveedor.Visible ? Convert.ToString(cboProveedor.SelectedValue) : "";
+                                int rsp = Agregar("", CodProve);
+                                if (rsp != 0)
+                                {
+                                    string msj = "";
+                                    switch (rsp)
+                                    {
+                                        case 1: msj = "Al guardar cabecero"; break;
+                                        case 2: msj = "Al guardar detalle partidas"; break;
+                                        case 3: msj = "Al afectar existencias"; break;
+                                        case 4: msj = "Traspaso: Registro en blanco"; break;
+                                        case 5: msj = "Traspaso: Al guardar cabecero"; break;
+                                        case 6: msj = "Traspaso: Al guardar detalle partidas"; break;
+                                        case 7: msj = "Traspaso: Al afectar existencias"; break;
+                                        case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
+                                        default: msj = "Error desconocido"; break;
+                                    }
+                                    MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    isDataSaved = false;
+                                }
+                                else
+                                {
+                                    isDataSaved = true;
+                                    this.Close();
+                                }
+                            }
                         }
-                        MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     break;
-                case 2: ConfirmarSalir(); break;
-                case 3: this.Close(); break;
+                case 2: isDataSaved = true; this.Close(); break;
+                case 3: isDataSaved = true;  this.Close(); break;
             }
         }
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
-            ConfirmarSalir();
+            this.Close();
         }
 
-        private int Agregar(String DcOrigen)
+        private int Agregar(String DcOrigen, String CodProve)
         {
             int rsp = -1;
             //strCboTipoMovInv == String _cveinvmt = Convert.ToString(cboTipoMovtos.SelectedValue);
             String _AlmO  = Convert.ToString(cboAlmaOri.SelectedValue);
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            String CodProve = cboProveedor.Visible ? Convert.ToString(cboProveedor.SelectedValue) : "";
             String FolMov = pui.GetFolio(CfgMovInv.CveFoliador);//_Foliador
             String DocM = strCboTipoMovInv + _AlmO + folMovto;
             pui.keyNoMovimiento = Convert.ToString(folMovto);
@@ -423,11 +440,10 @@ namespace GAFE
         {
             if(ValidaTipoMov()==1)
             {
-                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, StiloColor, Modulo, Convert.ToString(folMovto), 1,
+                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, StiloColor,user, Modulo, Convert.ToString(folMovto), 1,
                     CfgMovInv.CveTipoMov, CfgMovInv.SugiereCosto, CfgMovInv.EditaCosto, CfgMovInv.MuestraCosto, //_CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
                     CfgMovInv.SolicitaCosto, CfgMovInv.EsTraspaso, CfgMovInv.EntSal, CfgMovInv.CalculaIva,  //_SolicitaCosto, _EsTraspaso, _EntSal,_CalculaIva, 
-                    Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)),
-                    _AlmNumRojo,_AlmNumRojoDest,0,user.CodPerfil);
+                    _AlmNumRojo,_AlmNumRojoDest,0);
                  
                 Addp.ShowDialog();
                 LlenaGridViewPart();
@@ -606,11 +622,10 @@ namespace GAFE
             try
             {
                 int Cp = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
-                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, StiloColor, Modulo, Convert.ToString(folMovto), 2,
+                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, StiloColor,user, Modulo, Convert.ToString(folMovto), 2,
                         CfgMovInv.CveTipoMov, CfgMovInv.SugiereCosto, CfgMovInv.EditaCosto, CfgMovInv.MuestraCosto,
                         CfgMovInv.SolicitaCosto, CfgMovInv.EsTraspaso, CfgMovInv.EntSal, CfgMovInv.CalculaIva,
-                        Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now)),
-                        _AlmNumRojo, _AlmNumRojoDest, Cp, user.CodPerfil);
+                        _AlmNumRojo, _AlmNumRojoDest, Cp);
                 Addp.ShowDialog();
                 LlenaGridViewPart();
             }
@@ -622,47 +637,6 @@ namespace GAFE
             }
 
         }
-
-
-        private void ConfirmarSalir()
-        {
-            if (opcion != 3)
-            {
-                Boolean DellAll = true;
-
-                PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
-                if (grdViewPart.RowCount > 0)
-                {
-                    switch (MessageBoxAdv.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    {
-                        case DialogResult.No:
-                            break;
-                        default:
-                            DellAll = false;
-                            if (opcion == 1)
-                            {
-                                Agregar("");
-                            }
-                            break;
-                    }
-                }
-
-                if (DellAll)
-                {
-                    InvMast.keyNoMovimiento = Convert.ToString(folMovto);
-                    InvMast.EliminaInventarioMov();
-                }
-                isDataSaved = true;
-                this.Close();
-            }
-            else
-            {
-                isDataSaved = true;
-                this.Close();
-            }
-
-        }
-
 
         private void OpcionControles(Boolean Op)
         {
@@ -709,14 +683,80 @@ namespace GAFE
 
         private void frmRegInventarioMovtos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!isDataSaved)
+
+            /*
+                         if (opcion != 3)
             {
-                ConfirmarSalir();
-                e.Cancel = true;
+                Boolean DellAll = true;
+
+                PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
+                if (grdViewPart.RowCount > 0)
+                {
+                    switch (MessageBoxAdv.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            break;
+                        default:
+                            DellAll = false;
+                            if (opcion == 1)
+                            {
+                                String CodProve = cboProveedor.Visible ? Convert.ToString(cboProveedor.SelectedValue) : "";
+                                Agregar("", CodProve);
+                            }
+                            break;
+                    }
+                }
+
+                if (DellAll)
+                {
+                    InvMast.keyNoMovimiento = Convert.ToString(folMovto);
+                    InvMast.EliminaInventarioMov();
+                }
+                isDataSaved = true;
+                this.Close();
             }
             else
             {
-                //MessageBoxAdv.Show("Goodbye.");
+                isDataSaved = true;
+                this.Close();
+            } 
+             
+             */
+
+            if (!isDataSaved)
+            {
+                if (opcion != 3)
+                {
+                    switch (MessageBoxAdv.Show(this, "¿En realidad desea salir del modulo?", "Salir del modulo", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            e.Cancel = true;
+                            break;
+                        default:
+                            Boolean rp = false;
+                            if (grdViewPart.RowCount > 0)
+                            {
+                                cmdAceptar_Click(sender, e);
+                                rp = isDataSaved;
+                            }
+                            if (!rp)
+                            {
+                                PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
+                                InvMast.keyNoMovimiento = Convert.ToString(folMovto);
+                                InvMast.EliminaInventarioMov();
+                            }
+                            e.Cancel = false;
+                            break;
+                    }
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+
+            }
+            else
+            {
                 e.Cancel = false;
             }
         }
@@ -794,7 +834,7 @@ namespace GAFE
             lblDocumento.Text = pui.cmpDocumento ;
         }
 
-        public int MigrarDocDetToMovDet(String MInv, String CveProv, String IdDoc, String DcOrigen)
+        public int MigrarDocDetToMovDet(String MInv, String CveProv, String IdDoc, String DcOrigen, String Alm)
         {
             int rsp = -1;
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
@@ -807,7 +847,7 @@ namespace GAFE
 
             if (folMovto >= 1)
             {
-                LlecboAlmaOri(user.AlmacenUsa);
+                LlecboAlmaOri(Alm);
                 OcultProvee(false);
 
                 strCboTipoMovInv = MInv;
@@ -815,16 +855,13 @@ namespace GAFE
                 clsCfgTipoMovInv cd = new clsCfgTipoMovInv(strCboTipoMovInv, db);
                 CfgMovInv = cd.ConfigMovInv();
 
-                LlecboProveedor();
-                cboProveedor.SelectedValue = CveProv;
-
                 pui.keyNoMovimiento = Convert.ToString(folMovto);
                 pui.cmpCveTipoMov = IdDoc;
 
                 rsp = pui.AddPartMigraDoc();
                 if (rsp > 0)
                 {
-                    rsp = Agregar(DcOrigen);
+                    rsp = Agregar(DcOrigen, CveProv);
                     if(rsp!=0) //En esta parte hay que eliminar todo, ya que hubo un error
                     { //Registro cabecero y detalle
                         int s = 0;

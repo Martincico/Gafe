@@ -25,6 +25,7 @@ namespace GAFE
         public clsStiloTemas StiloColor;
         private String CveDoc;
         private String NameDoc;
+        private clsUtil uT;
 
         public DocLstRequisiciones(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, String CveDc, String _NameDoc)
         {
@@ -53,6 +54,49 @@ namespace GAFE
 
         private void DocLstRequisiciones_Load(object sender, EventArgs e)
         {
+            uT = new clsUtil(db, user.CodPerfil);
+            uT.CargaArbolAcceso();
+            String st = "";
+            switch (NameDoc)
+            {
+                case "REQUISICIÓN": st = "R"; break;
+                case "COTIZACIÓN": st = "C";  break;
+                case "ORDEN DE COMPRA": st = "O"; break;
+                case "COMPRAS": st = "CO"; break;
+            }
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Prov" + st + "AG");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Prov" + st + "ED");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Prov" + st + "EL");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Prov" + st + "CO");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Prov" + st + "MI");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            btnGenerarDoc.Enabled = (AcCOP == 1) ? true : false;
+
+            /*
+            
+            up = uT.BuscarIdNodo("1Prov" + st + "IM");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
+            
+            up = uT.BuscarIdNodo("1Prov" + st + "BU");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            */
+
+
             LlecboAlmaOri(user.AlmacenUsa);
 
             LlenaGridView();
@@ -124,6 +168,27 @@ namespace GAFE
                 {
                     rq.keyidMov = idMov;
                     db.IniciaTrans();
+
+                    if (ConfigDoc.AfectaInventario == 1)
+                    {
+                        frmLstInventarioMovtos Ventana = new frmLstInventarioMovtos(db, user, StiloColor);
+                        int Rsp = Ventana.DelMigraMov(idMov);
+                        String err = "";
+                        if (Rsp < 0)
+                        {
+                            db.CancelaTrans();
+                            switch (Rsp)
+                            {
+                                case -1: err = "Existe un error al eliminar registro"; break;
+                                case -2: err = "Existe un error al afectar existencias de relación"; break;
+                                case -3: err = "Existe un error al afectar existencias"; break;
+                            }
+                            MessageBoxAdv.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                    }
+
+                    
                     if (rq.EliminaDocumento() >= 1)
                     {
                         MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
@@ -277,12 +342,12 @@ namespace GAFE
             {
                 if (ConfigDoc.AfectaInventario == 1)
                 {
-                    string IdDc = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    string IdDocOrg = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     string strprov = grdView[11, grdView.CurrentRow.Index].Value.ToString();
                     string IdDoc = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, StiloColor,"MINV", user);
                 
-                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDoc, IdDc);
+                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDoc, IdDocOrg, Convert.ToString(cboAlmacen.SelectedValue));
                     if (rsp != 0)
                     {
                         string msj = "";
@@ -331,7 +396,7 @@ namespace GAFE
                 rq.cmpSerie = _ser;
                 if (CfgDocTrans.UsaSerie == 1)
                 {
-                    _alm = user.AlmacenUsa;
+                    _alm = Convert.ToString(cboAlmacen.SelectedValue);
                     _ser = "SERIE";//Poner serie seleccionada
                     clsCfgDocSeries cds = new clsCfgDocSeries(_alm, ConfigDoc.DocRel, _ser, db);
                     clsCfgDocSeries CfgDocSerie = cds.ConfigDocSerie();
@@ -395,7 +460,13 @@ namespace GAFE
             if (grdView.SelectedCells.Count > 0)
             {
                 int EspAcept = Convert.ToInt32(grdView[12, grdView.CurrentRow.Index].Value.ToString());
-                btnGenerarDoc.Enabled = EspAcept == 1 ? true : false;
+                //btnGenerarDoc.Enabled = EspAcept == 1 ? true : false;
+                Boolean rspAcep = EspAcept == 1 ? true : false;
+
+
+                btnGenerarDoc.Enabled = rspAcep;
+                cmEditar.Enabled = rspAcep;
+
             }
                 //Do_Something_With_It(dataGridView1.SelectedCells[0].RowIndex);
         }

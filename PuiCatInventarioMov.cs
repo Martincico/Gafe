@@ -316,6 +316,15 @@ namespace GAFE
             return OpDel.DeleteInventarioMov();
         }
 
+        public int DelRegCerosSql()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
+            RegCatInventarioMov OpDel = new RegCatInventarioMov(MatParam, db);
+            return OpDel.DelRegCerosSql();
+        }
+
+
         public SqlDataAdapter ListarInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             CargaParametroMat();
@@ -412,6 +421,25 @@ namespace GAFE
             int rsp = OpRadd2.AddPartMigraDoc();
             return rsp;
         }
+
+
+        public void GetIdMov()
+        { //Obtenemos el IdMov y TipoMov de acuerdo al DocOrigen
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "DocOrigen"; MatParam[0, 1] = DocOrigen;
+            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParam, db);
+            Datos = OpEdit.GetIdMov();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+
+            NoMovimiento = ObjA[0].ToString();
+            CveTipoMov = ObjA[1].ToString();
+
+
+        }
+
 
 
         /*
