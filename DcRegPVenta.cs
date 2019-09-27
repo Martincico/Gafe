@@ -38,7 +38,6 @@ namespace GAFE
         private String LstPre_Clie = "";
         private String LstPre_Alm = "";
 
-        private int Opcion;
         private int OptPartd = 1;
 
         private string idmovimiento = "";
@@ -47,6 +46,7 @@ namespace GAFE
         clsCfgDocumento ConfigDoc;
 
         private String CveDoc;
+        private Boolean isDataSaved = false;//Valida el cerrar el doc
 
         //Form without bord and resize
         private const int cGrip = 16;      // Grip size
@@ -70,7 +70,7 @@ namespace GAFE
             db = Odat;
             user = DatUsr;
             Flg = lg;
-            Opcion = Opc;
+            OptPartd = Opc;
             CveDoc = _CveDoc;
             idmovimiento = _cveventa;
 
@@ -122,37 +122,65 @@ namespace GAFE
                 InhControles(true,0);
             }
             else
-                InhControles(false, 1);
+                InhControles(false, 0);
 
             Ww = this.Width - lblDescArticulo.Width;
+
+            ResetControles(0);
+            //LLenaGrid();
 
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
+            DialogResult rspw ;
             switch (e.KeyCode)
             {
-                case Keys.F1:
-                    MessageBox.Show("Click articulo");
-                    cmdArticulo_Click(sender, e);
+                
+                case Keys.F2://Muestra Articulos
+                    if(OptPartd == 1)
+                        cmdArticulo_Click(sender, e);
+                    else
+                        MessageBoxAdv.Show("Busqueda de artículo deshabilitado para esta opción", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
 
-                case Keys.F2:
-                    MessageBox.Show("EDITAR");
-                    btnEditar_Click(sender, e);
+                case Keys.F3://Edita articulo
+                    if (OptPartd == 1)
+                        btnEditar_Click(sender, e);
+                    else
+                        MessageBoxAdv.Show("Editar de artículo deshabilitado para esta opción", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
-                case Keys.F3:
-                    MessageBox.Show("ELIMINAR");
-                    btnEliminar_Click(sender, e);
+                case Keys.F4://Elimina partida
+                    if (OptPartd == 1)
+                    {
+                        rspw = MessageBox.Show("¿Quieres eliminar el documento?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (rspw == DialogResult.Yes)
+                        {
+                            btnEliminar_Click(sender, e);
+                        }
+                    }
+                    else
+                        MessageBoxAdv.Show("Eliminar de artículo deshabilitado para esta opción", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     break;
-                case Keys.F4:
-                    CancelEditPart();
+                case Keys.F5: //Muestra todas las ventas del día
+                    VerVentas_Click();
                     break;
-                case Keys.F5:
-                    ClearAll();
+                case Keys.F6: //Limpiar todo
+                    rspw = MessageBox.Show("¿Quieres cancelar el documento?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (rspw == DialogResult.Yes)
+                    {
+                        ResetControles(0);
+                    }
                     break;
                 case Keys.Escape:
-                    FrmClose();
+                    switch(OptPartd)
+                    {
+                        case 1: FrmClose(); break;
+                        case 2: CancelEditPart(); break;
+                        case 3: ResetControles(0); InhControles(true, 0); break;
+                    }
+  
                     break;
                 default:
                     //MessageBox.Show(e.KeyCode.ToString() + " pressed.", "Key Down Event");
@@ -183,8 +211,10 @@ namespace GAFE
             //txtTotal.Text = part.Total.ToString();
             //txtIva.Text = part.ImpuestoValor.ToString();
 
-            InhControles(false,0);
+            InhControles(false,1);
             txtCantidad.Enabled = true;
+
+            OptPartd = 2;
         }
 
         private void AbrirPArtidas()
@@ -280,13 +310,12 @@ namespace GAFE
                         lblTotal.Text = total.ToString();
 
                         LLenaGrid();
-                        LimpiaVar(0);
-                        InhControles(true,0);
-                        txtClaveArticulo.Focus();
-                        lblTotalArticulos.Text =  Convert.ToString(grdViewD.RowCount);
+                        ResetControles(1);
+                        InhControles(true,1);
                         OptPartd = 1;
                     }
                 }
+                lblTotalArticulos.Text = Convert.ToString(grdViewD.RowCount);
                 ShowVentArt();
             }
             
@@ -325,7 +354,7 @@ namespace GAFE
                 }
                 else
                 {
-                    LimpiaVar(0);
+                    ResetControles(1);
                     MessageBoxAdv.Show("No se encuentra el registro", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -402,44 +431,7 @@ namespace GAFE
             LstPre_Alm = alm.cmpCveLstPrecio;
         }
 
-        private void LimpiaVar(int _All)
-        {
 
-            IdArt = "";
-            txtClaveArticulo.Text = "";
-            lblDescArticulo.Text = "";
-            lblPrecioArt.Text = "0";
-            txtCantidad.Text = "1";
-
-            if (_All == 1)
-            {
-                txtDescuento.Text = "0";
-                lblSubTotal.Text = "0";
-                grdViewD.DataSource = null;
-                PARTIDAS = new List<DocPartidasReq>();
-                lblTotalArticulos.Text = "0" ;
-                lblTotal.Text = "0";
-            }
-
-            CveImp = "";
-            CveUmed = "";
-            
-            txtClaveArticulo.Focus();
-        }
-
-        private void InhControles(Boolean Opt, int _all)
-        {
-            txtClaveArticulo.Enabled = Opt;
-            txtCantidad.Enabled = Opt;
-            txtDescuento.Enabled = Opt;
-
-            if (_all==1)
-            {
-                btnEditar.Enabled = Opt;
-                btnEliminar.Enabled = Opt;
-            }
-
-        }
 
         private void cboCliente_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -455,22 +447,54 @@ namespace GAFE
 
         private void FrmClose()
         {
-            if (grdViewD.RowCount > 0)
+            if (!isDataSaved)
             {
-                DialogResult rsp = MessageBox.Show("¿Estás seguro de salir?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (rsp == DialogResult.Yes)
+                if (OptPartd != 3)
                 {
-                    Flg.Close();
+                    switch (MessageBoxAdv.Show(this, "¿En realidad desea salir del modulo?", "Salir del modulo", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        case DialogResult.No:
+                            isDataSaved = false;
+                            break;
+                        default:
+                            Boolean rp = false;
+                            if (grdViewD.RowCount > 0)
+                            {
+                                Aceptar_click(0);
+                                rp = isDataSaved;
+                            }
+                            if (!rp)
+                            {
+                                DocPuiRequisiciones InvMast = new DocPuiRequisiciones(db);
+                                InvMast.keyidMov = idmovimiento;
+                                InvMast.EliminaDocumento();
+                            }
+                            Flg.Close();
+                        break;
+                    }
+                }
+                else
+                {
+                    CancelEditPart(); 
                 }
             }
             else
+            {
                 Flg.Close();
+            }
+
+
 
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            switch (Opcion)
+            Aceptar_click(1);
+        }
+
+        private void Aceptar_click(int Exi)
+        {
+            switch (OptPartd)
             {
                 case 1:
                     if (grdViewD.RowCount > 0)
@@ -478,7 +502,7 @@ namespace GAFE
                         DialogResult rsp = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (rsp == DialogResult.Yes)
                         {
-                            Agregar();
+                            Agregar(Exi);
                         }
                     }
                     break;
@@ -486,42 +510,48 @@ namespace GAFE
                     DialogResult rspw = MessageBox.Show("Quieres guardar el documento", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (rspw == DialogResult.Yes)
                     {
-                        /*
-                        RspVal = Valida();
-                        if (RspVal == 0)
+                        DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
+                        SetValues(sRq);
+                        if (sRq.ActualizaDocumento(OptPartd) == 1)
                         {
-                        */
-                            DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-                            SetValues(sRq);
-                            if (sRq.ActualizaDocumento(Opcion) == 1)
-                            {
-                                MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        //}
+                            MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            isDataSaved = true;
+                        }
+                        else
+                        {
+                            isDataSaved = false;
+                        }
+
                     }
-                break;
+                    break;
+                case 3:
+                    ResetControles(0);
+                    InhControles(true, 0);
+                    break;
             }
         }
 
-        private void Agregar()
+        private void Agregar(int Exi)
         {
             DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
             SetValues(sRq);
             int _fol = 5000;
             string _alm = "5000";
             string _ser = "";
+            int rsp = 0;
 
-            if (sRq.GuardarDocumento(_fol, _alm, ConfigDoc.CveDoc, _ser, Opcion) == 1)
+            if (sRq.GuardarDocumento(_fol, _alm, ConfigDoc.CveDoc, _ser, OptPartd) == 1)
             {
                 if (ConfigDoc.AfectaInventario == 1)
                 {
                     string strprov = Convert.ToString(cboCliente.SelectedValue);
                     frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, null, "MINV", user);
 
-                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, idmovimiento, idmovimiento, user.AlmacenUsa);
+                    rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, idmovimiento, user.AlmacenUsa);
                     if (rsp != 0)
                     {
                         string msj = "";
+                        isDataSaved = false;
                         switch (rsp)
                         {
                             case 1: msj = "Al guardar cabecero"; break;
@@ -534,16 +564,33 @@ namespace GAFE
                             case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
                             default: msj = "Error desconocido"; break;
                         }
-                        MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBoxAdv.Show(msj, "Afectando a inventarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
 
+                if (rsp == 0 && Exi == 1)
+                {
+                    ResetControles(0);
 
+                    DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+                    idmovimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador), user.FecServer);
+                    if (!idmovimiento.Equals(""))
+                    {
+                        this.KeyDown += new KeyEventHandler(this.OnKeyDown);
+                        InhControles(true, 0);
+                    }
+                    else
+                        InhControles(false, 0);
 
-
-                MessageBox.Show("Documento guardado ...", "Confimacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiaVar(1);
+                    isDataSaved = true;
+                }
             }
+            else
+            {
+                isDataSaved = false;
+                MessageBoxAdv.Show("Existen un error al guardar", "Guardando documento", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
 
 
@@ -575,16 +622,6 @@ namespace GAFE
 
         }
 
-        private void NoGuardaElDocumento()
-        {
-            DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-
-            switch (Opcion)
-            {
-                case 1: sRq.BorrarDocEnBlanco(idmovimiento); break;
-            }
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             try
@@ -592,12 +629,11 @@ namespace GAFE
                 int partida = Convert.ToInt32(grdViewD[6, grdViewD.CurrentRow.Index].Value);
                 pr = PARTIDAS.Find(x => x.Partida.Equals(partida));
                 int idx = PARTIDAS.IndexOf(pr);
-                OptPartd = 2;
                 PARTIDAS.RemoveAt(idx);
                 AbrirPArtidas(pr);
                 ReasgIdPart();
                 LLenaGrid();
-               
+                lblTotalArticulos.Text = Convert.ToString(grdViewD.RowCount);
             }
             catch (Exception ex)
             {
@@ -605,23 +641,11 @@ namespace GAFE
             }
         }
 
-        private void ClearAll()
-        {
-            LimpiaVar(1);
-            InhControles(true, 1);
-
-            LLenaGrid();
-            OptPartd = 1;
-            txtClaveArticulo.Focus();
-
-            ShowVentArt();
-
-        }
 
         private void CancelEditPart()
         {
-            LimpiaVar(0);
-            InhControles(true, 0);
+            ResetControles(1);
+            InhControles(true, 1);
             if (OptPartd == 2)
             {
                 PARTIDAS.Add(pr);
@@ -630,8 +654,6 @@ namespace GAFE
 
             LLenaGrid();
             OptPartd = 1;
-            txtClaveArticulo.Focus();
-
             ShowVentArt();
 
         }
@@ -659,10 +681,11 @@ namespace GAFE
                 int partida = Convert.ToInt32(grdViewD[6, grdViewD.CurrentRow.Index].Value);
                 pr = PARTIDAS.Find(x => x.Partida.Equals(partida));
                 int idx = PARTIDAS.IndexOf(pr);
-                OptPartd = 2;
                 PARTIDAS.RemoveAt(idx);
                 ReasgIdPart();
                 LLenaGrid();
+                lblTotalArticulos.Text = Convert.ToString(grdViewD.RowCount);
+                OptPartd = 1;
 
             }
             catch (Exception ex)
@@ -673,27 +696,30 @@ namespace GAFE
 
         private void btnVerVentas_Click(object sender, EventArgs e)
         {
+            VerVentas_Click();
+        }
+
+        private void VerVentas_Click()
+        {
             DcLstPventas LPv = new DcLstPventas(db, user, CveDoc, "LISTADO DE VENTAS");
             LPv.ShowDialog();
-            idmovimiento = LPv.dv[0];
             if (!LPv.dv[0].Equals(""))
             {
-                getRegistro();
-                btnEditar.Enabled = false;
-                btnEliminar.Enabled = false;
+                getRegistro(LPv.dv[0]);
+                InhControles(false, 0);
                 OptPartd = 3;
+            }
+            
+            if(OptPartd != 3)
+            {
+                txtClaveArticulo.Focus();
             }
         }
 
-        private void grdViewD_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void getRegistro()
+        private void getRegistro(String IdM)
         {
             DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
-            sRq.keyidMov = idmovimiento;
+            sRq.keyidMov = IdM;
             sRq.GetDocumento();
             /*
             if (ConfigDoc.UsaSerie == 1)
@@ -717,7 +743,7 @@ namespace GAFE
             }
             */
 
-            SqlDataAdapter DatosTbl = sRq.GetDatelleDoc(idmovimiento);
+            SqlDataAdapter DatosTbl = sRq.GetDatelleDoc(IdM);
             DataSet ds = new DataSet();
             DatosTbl.Fill(ds);
             DataTable dt = ds.Tables[0];
@@ -862,6 +888,47 @@ namespace GAFE
                         w = (this.Width * 20) / 100;
                         lblPrecioArt.Width = w;
                         */
+        }
+
+        private void ResetControles(int _All)
+        {
+            IdArt = "";
+            txtClaveArticulo.Text = "";
+            CveImp = "";
+            CveUmed = "";
+            lblDescArticulo.Text = "";
+            lblPrecioArt.Text = "0";
+            txtCantidad.Text = "1";
+            
+            if(_All == 0)
+            {
+                //pbArticulo
+                lblSubTotal.Text = "0";
+                txtDescuento.Text = "0";
+                lblTotal.Text = "0";
+                grdViewD.DataSource = null;
+                PARTIDAS = new List<DocPartidasReq>();
+                //lblTotalArticulos.Text = "0";
+                lblTotalArticulos.Text = Convert.ToString(grdViewD.RowCount);
+
+                OptPartd = 1;
+            }
+            
+            txtClaveArticulo.Focus();
+        }
+
+        private void InhControles(Boolean Opt, int _all)
+        {
+            txtClaveArticulo.Enabled = Opt;
+            txtCantidad.Enabled = Opt;
+            txtDescuento.Enabled = Opt;
+
+            if (_all == 0)
+            {
+                btnEditar.Enabled = Opt;
+                btnEliminar.Enabled = Opt;
+            }
+
         }
     }
 }

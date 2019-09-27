@@ -344,10 +344,9 @@ namespace GAFE
                 {
                     string IdDocOrg = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     string strprov = grdView[11, grdView.CurrentRow.Index].Value.ToString();
-                    string IdDoc = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, StiloColor,"MINV", user);
                 
-                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDoc, IdDocOrg, Convert.ToString(cboAlmacen.SelectedValue));
+                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDocOrg, Convert.ToString(cboAlmacen.SelectedValue));
                     if (rsp != 0)
                     {
                         string msj = "";

@@ -104,7 +104,7 @@ namespace GAFE
 
         public int DeleteArticulo()
         {
-            string sql = "Delete from inv_CatArticulos where CveArticulo = @CveArticulo";
+            string sql = "UPDATE inv_CatArticulos SET Estatus = 0 WHERE CveArticulo = @CveArticulo";
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
@@ -122,7 +122,8 @@ namespace GAFE
                          " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
                          " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
                          " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
-                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  ";
+                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto " +
+                         " WHERE A.Estatus = 1 ";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -130,8 +131,9 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select * " +
-                          "from Inv_CatArticulos where CveArticulo =@CveArticulo";
+            string Sql = "  SELECT * " +
+                          " FROM Inv_CatArticulos " +
+                          " WHERE CveArticulo =@CveArticulo AND A.Estatus = 1 ";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -151,14 +153,14 @@ namespace GAFE
                          " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
                          " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
                          " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  "+
-                         " where CveArticulo like '%" + bsq + "%' OR " +
+                         " where (CveArticulo like '%" + bsq + "%' OR " +
                         " A.Descripcion  like '%" + bsq + "%' OR " +
                         " CodigoBarra    like '%" + bsq + "%' OR " +
                         " M.Descripcion  like '%" + bsq + "%' OR " +
                         " L.Descripcion  like '%" + bsq + "%' OR " +
                         " C.Descripcion  like '%" + bsq + "%' OR " +
                         " UM.Descripcion like '%" + bsq + "%' OR " +
-                        " CodigoSat like '%" + bsq + "%'";
+                        " CodigoSat like '%" + bsq + "%') AND A.Estatus = 1 ";
 
 
             dt = db.SelectDA(sql);

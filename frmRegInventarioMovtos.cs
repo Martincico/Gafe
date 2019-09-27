@@ -834,7 +834,7 @@ namespace GAFE
             lblDocumento.Text = pui.cmpDocumento ;
         }
 
-        public int MigrarDocDetToMovDet(String MInv, String CveProv, String IdDoc, String DcOrigen, String Alm)
+        public int MigrarDocDetToMovDet(String MInv, String CveProv, String DcOrigen, String Alm)
         {
             int rsp = -1;
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
@@ -856,7 +856,7 @@ namespace GAFE
                 CfgMovInv = cd.ConfigMovInv();
 
                 pui.keyNoMovimiento = Convert.ToString(folMovto);
-                pui.cmpCveTipoMov = IdDoc;
+                pui.cmpDocOrigen = DcOrigen;
 
                 rsp = pui.AddPartMigraDoc();
                 if (rsp > 0)

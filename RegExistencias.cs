@@ -87,10 +87,12 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
-                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
-                        "Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
-                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
-                                                "join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea ";
+                        "        (Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                        "        Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
+                        " from Inv_Existencias Ex " +
+                        " join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
+                        " join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea " +
+                        " WHERE Ar.Estatus = 1";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -99,10 +101,11 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
-                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
-                        "Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
-                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
-                                                "join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea ";
+                        "        (Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                        "        Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
+                        " from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
+                        " join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea " +
+                        " WHERE Ar.Estatus = 1";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -110,7 +113,7 @@ namespace GAFE
         public SqlDataAdapter BuscaExistencia(string articulo,string clavealmacen,string linea, string buscar)
         {
             SqlDataAdapter dt = null;
-            string where = "where ";
+            string where = "AND  ";
             int usaAnd = 0;
             if (articulo.Length > 0)
             {
@@ -139,10 +142,11 @@ namespace GAFE
             //where =   (usaAnd == 1) ? "AND Ex.ClaveAlmacen = " + clavealmacen + "' " : "Ex.ClaveAlmacen = '" + clavealmacen + "' ";
 
             string sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
-                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
-                        "Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
-                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
-                                                "join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea ";
+                        "        (Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                        "        Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
+                        " from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
+                        " join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea " +
+                        " WHERE Ar.Estatus = 1 ";
             sql += (usaAnd == 1) ? where : "";
                        
 

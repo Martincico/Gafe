@@ -21,6 +21,7 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
+        private int AcCOPEdit;
         public string KeyCampo = null;
 
         private MsSql db = null;
@@ -83,8 +84,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv001C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -125,9 +126,18 @@ namespace GAFE
         {
             try
             {
-                frmCatArticulos art = new frmCatArticulos(db, StiloColor, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-                art.ShowDialog();
-                LlenaGridView();
+                if (AcCOPEdit == 1)
+                {
+                    frmCatArticulos art = new frmCatArticulos(db, StiloColor, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                    art.ShowDialog();
+                    LlenaGridView();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception ex)
             {

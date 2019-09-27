@@ -224,6 +224,7 @@
             this.grdViewD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdViewD.Location = new System.Drawing.Point(10, 70);
             this.grdViewD.Name = "grdViewD";
+            this.grdViewD.ReadOnly = true;
             this.grdViewD.Size = new System.Drawing.Size(500, 465);
             this.grdViewD.TabIndex = 270;
             // 
@@ -301,6 +302,7 @@
             this.btnEliminar.TabIndex = 277;
             this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnEditar
             // 
@@ -316,6 +318,7 @@
             this.btnEditar.TabIndex = 276;
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // pbArticulo
             // 

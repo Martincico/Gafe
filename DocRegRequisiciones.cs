@@ -135,7 +135,7 @@ namespace GAFE
 
             if (db.UpdateRegistro(sql, ArrParametros) > 0)
             {
-                if (op == 2)
+                if (op == 2)//En caso este editando
                 {
                     sql = "Delete from DocDet  where idMov = @idMov";
                     int rp = db.UpdateRegistro(sql, ArrParametros);
@@ -219,7 +219,7 @@ namespace GAFE
                          " FROM DocDet AS RD " +
                          " INNER JOIN dbo.inv_CatArticulos AS Art ON RD.CveArticulo = Art.CveArticulo " +
                          " INNER JOIN dbo.Inv_UMedidas AS Umed ON RD.CveUmedida1 = Umed.CveUMedida" +
-                         " WHERE RD.idMov = '" + Doc+"'";
+                         " WHERE RD.idMov = '" + Doc+ "' AND Art.Estatus = 1";
             dt = db.SelectDA(Sql);
             return dt;
         }

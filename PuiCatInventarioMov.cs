@@ -416,7 +416,7 @@ namespace GAFE
         {
             object[,] MatParam2 = new object[2, 2];
             MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = NoMovimiento;
-            MatParam2[1, 0] = "IdDoc"; MatParam2[1, 1] = CveTipoMov;
+            MatParam2[1, 0] = "IdDoc"; MatParam2[1, 1] = DocOrigen;
             RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam2, db);
             int rsp = OpRadd2.AddPartMigraDoc();
             return rsp;

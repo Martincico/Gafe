@@ -67,6 +67,7 @@ namespace GAFE
         {
             if (keyData == Keys.Escape)
             {
+                dv[0] = "";
                 this.Close();
                 return true;
             }
