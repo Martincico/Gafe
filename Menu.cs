@@ -93,7 +93,9 @@ namespace GAFE
                 int CatGeo = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv009");
                 int CatCla = up.Acceso;
-                
+                up = ut.BuscarIdNodo("1Inv010");
+                int CatImp = up.Acceso;
+
                 up = ut.BuscarIdNodo("1Inv007");
                 int CatProve = up.Acceso;
                 CatsProveedores.Enabled = (CatProve == 1) ? true : false;
@@ -108,6 +110,7 @@ namespace GAFE
                 MnuGeografia.Enabled = (CatGeo == 1) ? true : false;
                 CatClase.Enabled = (CatCla == 1) ? true : false;
                 CatAlmacen.Enabled = (CatAlm == 1) ? true : false;
+                CatImpuesto.Enabled = (CatImp == 1) ? true : false;
 
                 up = ut.BuscarIdNodo("1Inv011");
                 int Movinv = up.Acceso;
@@ -340,6 +343,12 @@ namespace GAFE
             DocLstRequisiciones Lst = new DocLstRequisiciones(db, user, NewColor, "M2004", "COMPRAS");
             Nav(Lst, panelContenedor);
 
+        }
+
+        private void CatImpuesto_Click(object sender, EventArgs e)
+        {
+            frmCatImpuestos fm = new frmCatImpuestos(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
         }
     }
 }

@@ -74,6 +74,7 @@
             this.MnuDocSeries = new System.Windows.Forms.ToolStripButton();
             this.panelPie = new System.Windows.Forms.Panel();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.CatImpuesto = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribMenu)).BeginInit();
             this.ribMenu.SuspendLayout();
             this.ModInventario.Panel.SuspendLayout();
@@ -187,7 +188,8 @@
             this.CatUMedidas,
             this.CatLineas,
             this.CatMarcas,
-            this.CatClase});
+            this.CatClase,
+            this.CatImpuesto});
             this.CatsArticulos.ForeColor = System.Drawing.Color.MidnightBlue;
             this.CatsArticulos.Image = global::GAFE.Properties.Resources.MnuArticulos;
             this.CatsArticulos.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -201,35 +203,35 @@
             // CatArticulo
             // 
             this.CatArticulo.Name = "CatArticulo";
-            this.CatArticulo.Size = new System.Drawing.Size(169, 22);
+            this.CatArticulo.Size = new System.Drawing.Size(180, 22);
             this.CatArticulo.Text = "Artículos";
             this.CatArticulo.Click += new System.EventHandler(this.CatArticulo_Click);
             // 
             // CatUMedidas
             // 
             this.CatUMedidas.Name = "CatUMedidas";
-            this.CatUMedidas.Size = new System.Drawing.Size(169, 22);
+            this.CatUMedidas.Size = new System.Drawing.Size(180, 22);
             this.CatUMedidas.Text = "Unidad de medida";
             this.CatUMedidas.Click += new System.EventHandler(this.CatUMedidas_Click);
             // 
             // CatLineas
             // 
             this.CatLineas.Name = "CatLineas";
-            this.CatLineas.Size = new System.Drawing.Size(169, 22);
+            this.CatLineas.Size = new System.Drawing.Size(180, 22);
             this.CatLineas.Text = "Lineas";
             this.CatLineas.Click += new System.EventHandler(this.CatLineas_Click);
             // 
             // CatMarcas
             // 
             this.CatMarcas.Name = "CatMarcas";
-            this.CatMarcas.Size = new System.Drawing.Size(169, 22);
+            this.CatMarcas.Size = new System.Drawing.Size(180, 22);
             this.CatMarcas.Text = "Marcas";
             this.CatMarcas.Click += new System.EventHandler(this.CatMarcas_Click);
             // 
             // CatClase
             // 
             this.CatClase.Name = "CatClase";
-            this.CatClase.Size = new System.Drawing.Size(169, 22);
+            this.CatClase.Size = new System.Drawing.Size(180, 22);
             this.CatClase.Text = "Clases";
             this.CatClase.Click += new System.EventHandler(this.CatClase_Click);
             // 
@@ -770,6 +772,13 @@
             this.panelContenedor.Size = new System.Drawing.Size(799, 224);
             this.panelContenedor.TabIndex = 4;
             // 
+            // CatImpuesto
+            // 
+            this.CatImpuesto.Name = "CatImpuesto";
+            this.CatImpuesto.Size = new System.Drawing.Size(180, 22);
+            this.CatImpuesto.Text = "Impuestos";
+            this.CatImpuesto.Click += new System.EventHandler(this.CatImpuesto_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -866,6 +875,7 @@
         private Syncfusion.Windows.Forms.Tools.ToolStripTabItem ModClientes;
         private Syncfusion.Windows.Forms.Tools.ToolStripEx toolStripEx1;
         private System.Windows.Forms.ToolStripDropDownButton CatsClientes;
+        private System.Windows.Forms.ToolStripMenuItem CatImpuesto;
     }
 }
 

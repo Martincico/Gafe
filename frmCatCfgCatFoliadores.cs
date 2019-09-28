@@ -21,7 +21,7 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
-
+        //private int AcCOPEdit;
         private MsSql db = null;
         private string Perfil;
 
@@ -53,8 +53,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Vis001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Vis001C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -69,8 +69,8 @@ namespace GAFE
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
             */
-           
-           
+
+
             this.Size = this.MinimumSize;
             LlenaGridView();
             LleCboClaseMov();
@@ -86,24 +86,34 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            //if (AcCOPEdit == 1)
+            //{
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
+                PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
 
-            pui.keyCveFoliador= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarCfgCatFoliador();
-            txtClaveClase.Text = pui.keyCveFoliador;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboCfgModuloSys.SelectedValue = pui.cmpCveModulo;
-            txtUso.Text = pui.cmpUso;
+                pui.keyCveFoliador= grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarCfgCatFoliador();
+                txtClaveClase.Text = pui.keyCveFoliador;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                cboCfgModuloSys.SelectedValue = pui.cmpCveModulo;
+                txtUso.Text = pui.cmpUso;
 
-            txtClaveClase.Enabled = false;
-
+                txtClaveClase.Enabled = false;
+            /*
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
+            */
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)

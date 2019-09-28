@@ -108,8 +108,7 @@ namespace GAFE
                 MessageBoxAdv.Show("No tienes privilegios suficientes",
                 "Error al editar registro", MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
-            }
-            
+            }            
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)

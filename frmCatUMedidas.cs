@@ -22,7 +22,7 @@ namespace GAFE
         private int opcion;
         private int idxG;
         public string KeyCampo;
-
+        private int AcCOPEdit;
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
@@ -55,8 +55,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv002B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv002C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -102,23 +102,31 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if (AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatUMedidas pui = new PuiCatUMedidas(db);
+                PuiCatUMedidas pui = new PuiCatUMedidas(db);
 
-            pui.keyCveUMedida = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarUMedida();
-            txtClaveUMedida.Text = pui.keyCveUMedida;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+                pui.keyCveUMedida = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarUMedida();
+                txtClaveUMedida.Text = pui.keyCveUMedida;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
 
-            txtClaveUMedida.Enabled = false;
-
+                txtClaveUMedida.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)

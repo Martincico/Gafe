@@ -21,7 +21,7 @@ namespace GAFE
         private SqlDataAdapter DatosTbl;
         private int opcion;
         private int idxG;
-
+        private int AcCOPEdit;
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
@@ -56,8 +56,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv005B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv005C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -96,27 +96,35 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if (AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatAlmacenes pui = new PuiCatAlmacenes(db);
+                PuiCatAlmacenes pui = new PuiCatAlmacenes(db);
 
-            pui.keyClaveAlmacen = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarAlmacen();
-            txtClaveAlmacen.Text = pui.keyClaveAlmacen;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "A") ? "Activo" : "Baja";
-            chkEsDeCompra.Checked = (pui.cmpEsDeCompra == 1) ? true : false;
-            chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
-            chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
-            chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
-            cboLstPrecio.SelectedValue = pui.cmpCveLstPrecio;
-            txtClaveAlmacen.Enabled = false;
-
+                pui.keyClaveAlmacen = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarAlmacen();
+                txtClaveAlmacen.Text = pui.keyClaveAlmacen;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                cboEstatus.SelectedText = (pui.cmpEstatus == "A") ? "Activo" : "Baja";
+                chkEsDeCompra.Checked = (pui.cmpEsDeCompra == 1) ? true : false;
+                chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
+                chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
+                chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
+                cboLstPrecio.SelectedValue = pui.cmpCveLstPrecio;
+                txtClaveAlmacen.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)

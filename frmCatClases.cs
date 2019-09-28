@@ -366,11 +366,11 @@ Minv	Buscar Clases	Operacion		1Inv009
 
         private void cmdEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-
             if (AcCOPEdit == 1)
             {
+                LimpiarControles();
+                OpcionControles(true);
+
                 this.Size = this.MaximumSize;
                 opcion = 2;
 

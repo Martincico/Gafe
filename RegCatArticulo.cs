@@ -133,7 +133,7 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "  SELECT * " +
                           " FROM Inv_CatArticulos " +
-                          " WHERE CveArticulo =@CveArticulo AND A.Estatus = 1 ";
+                          " WHERE CveArticulo =@CveArticulo AND Estatus = 1 ";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
