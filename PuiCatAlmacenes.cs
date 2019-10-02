@@ -88,9 +88,17 @@ namespace GAFE
 
         public int AgregarAlmacen()
         {
+            int resp = 0;
             CargaParametroMat();
             RegCatAlmacen OpRadd = new RegCatAlmacen(MatParam,db);
-            return OpRadd.AddRegAlmacen();
+            resp = OpRadd.AddRegAlmacen();
+
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "ClaveAlmacen"; MatParam[0, 1] = ClaveAlmacen;
+            RegCatAlmacen OpRaddExis = new RegCatAlmacen(MatParam, db);
+            resp = OpRaddExis.AddRegExistencias();
+
+            return resp;
         }
 
         public int ActualizaAlmacen()

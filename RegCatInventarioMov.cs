@@ -147,6 +147,12 @@ namespace GAFE
 
         public int AfectaExistenciasSql(String _EntSal, int Op)
         {
+
+
+
+
+
+
             String Opera = (Op == 1) ? (_EntSal.Equals("E")) ? "+" : "-" : (_EntSal.Equals("E")) ? "-" : "+"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
 
             string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" +

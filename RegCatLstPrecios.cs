@@ -97,23 +97,29 @@ namespace GAFE
         }
 
         public SqlDataAdapter ListadoPrecioArticulo()
-        {
+        {//Llena grid de Articulos en la pestaña de UBICACION
             SqlDataAdapter dt = null;
             string Sql = " SELECT LstPM.Nombre, LstPD.FechaModifacion, LstPD.Precio " +
                          " FROM Inv_LstPreciosMast AS LstPM " +
                          " INNER JOIN Inv_LstPreciosDet AS LstPD ON LstPD.CveLstPrecio = LstPM.CveLstPrecio " +
-                         " WHERE LstPM.Estatus = 1 AND LstpD.CveArticulo  = @CveArticulo";
+                         " INNER JOIN inv_CatArticulos AS A ON A.CveArticulo = LstPD.CveArticulo " +
+                         " WHERE LstPM.Estatus = 1 " +
+                         "   AND A.Estatus = 1 " +
+                         "   AND LstpD.CveArticulo  = @CveArticulo";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
         public SqlDataAdapter GetPrecioArticulo()
-        {
+        {//Se usa el GET PRECIO en la pantalla de VENTA
             SqlDataAdapter dt = null;
             string Sql = " SELECT LstPM.CveLstPrecio,LstPM.Nombre, LstPM.EsDeVenta, LstPM.EsDeCosto, LstPD.Precio " +
                          " FROM Inv_LstPreciosMast AS LstPM " +
                          " INNER JOIN Inv_LstPreciosDet AS LstPD ON LstPD.CveLstPrecio = LstPM.CveLstPrecio " +
-                         " WHERE LstPM.Estatus = 1 AND LstpD.CveArticulo  = @CveArticulo AND LstPM.CveLstPrecio = @CveLstPrecio ";
+                         " INNER JOIN inv_CatArticulos AS A ON A.CveArticulo = LstPD.CveArticulo " +
+                         " WHERE LstPM.Estatus = 1 " +
+                         "   AND A.Estatus = 1 " +
+                         "   AND LstpD.CveArticulo  = @CveArticulo AND LstPM.CveLstPrecio = @CveLstPrecio ";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -128,7 +134,7 @@ namespace GAFE
         }
 
         public SqlDataAdapter LstArticulo_LstPrecio(String txtArt)
-        {
+        {//Llena grid en la pantalla de VIEW lst precios para poder actualizar
             String Wh = "";
             txtArt = txtArt.Trim();
 

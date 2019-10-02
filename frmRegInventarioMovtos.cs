@@ -203,7 +203,7 @@ namespace GAFE
             pui.cmpTotalDoc = Convert.ToDouble(txtTotal.Text);
             pui.cmpCveProveedor = CodProve;
             pui.cmpCancelado = 1;
-            pui.cmpCveUsarioCaptu = user.CodPerfil;
+            pui.cmpCveUsarioCaptu = user.Usuario;
             pui.cmpCveAlmacenDes= "";
             pui.cmpCveTipoMovDest = "";
             pui.cmpEntSalDest = "";
@@ -269,7 +269,7 @@ namespace GAFE
 
                                 pui.cmpCveProveedor = CodProve;
                                 pui.cmpCancelado = 1;
-                                pui.cmpCveUsarioCaptu = user.CodPerfil;
+                                pui.cmpCveUsarioCaptu = user.Usuario;
 
                                 pui.cmpNoMovtoTra = Convert.ToString(folMovto);
                                 pui.cmpDocTra = DocM;

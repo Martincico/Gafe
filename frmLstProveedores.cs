@@ -191,13 +191,6 @@ namespace GAFE
             }
         }
 
-
-
-
-
-
-
-
         private void LlenaGridView()
         {
             try

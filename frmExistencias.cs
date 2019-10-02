@@ -147,7 +147,7 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos la = new frmLstArticulos(db, StiloColor, user.CodPerfil,3);
+            frmLstArticulos la = new frmLstArticulos(db, user, StiloColor,3);
             la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             la.ShowDialog();

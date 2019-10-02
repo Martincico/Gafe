@@ -347,7 +347,6 @@ namespace GAFE
             return rRq.SaveDocTransf();
         }
 
-
         private void CargaParametroTranfs()
         {
             MatParTrans[0, 0] = "idMov"; MatParTrans[0, 1] = idMov;
@@ -357,6 +356,26 @@ namespace GAFE
             MatParTrans[4, 0] = "CveDoc"; MatParTrans[4, 1] = CveDoc;
             MatParTrans[5, 0] = "NumDoc"; MatParTrans[5, 1] = NumDoc;
             MatParTrans[6, 0] = "DocOrigen"; MatParTrans[6, 1] = DocOrigen;
+        }
+
+        public DataTable DocCabPrint()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "idMov"; MatParam[0, 1] = idMov;
+            DocRegRequisiciones OpLst = new DocRegRequisiciones(MatParam,db);
+            DataSet Cbo = new DataSet();
+            OpLst.SqlDocCabPrint().Fill(Cbo);
+            return Cbo.Tables[0];
+        }
+
+        public DataTable DocDetPrint()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "idMov"; MatParam[0, 1] = idMov;
+            DocRegRequisiciones OpLst = new DocRegRequisiciones(MatParam, db);
+            DataSet Cbo = new DataSet();
+            OpLst.SqlDocDetPrint().Fill(Cbo);
+            return Cbo.Tables[0];
         }
     } 
 }

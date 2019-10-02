@@ -62,10 +62,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtCargo = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.cboEstatus = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cboTipoPersona = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.chkEstatus = new System.Windows.Forms.CheckBox();
+            this.optFisica = new System.Windows.Forms.RadioButton();
+            this.optMoral = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // cmdCancelar
@@ -284,7 +284,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 282);
+            this.label7.Location = new System.Drawing.Point(12, 281);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 18);
             this.label7.TabIndex = 1318;
@@ -304,7 +304,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(13, 312);
+            this.label8.Location = new System.Drawing.Point(12, 309);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 18);
             this.label8.TabIndex = 1320;
@@ -364,7 +364,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(13, 342);
+            this.label11.Location = new System.Drawing.Point(12, 341);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(67, 18);
             this.label11.TabIndex = 1324;
@@ -394,7 +394,7 @@
             // 
             this.txtCelular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCelular.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCelular.Location = new System.Drawing.Point(485, 144);
+            this.txtCelular.Location = new System.Drawing.Point(485, 151);
             this.txtCelular.MaxLength = 15;
             this.txtCelular.Name = "txtCelular";
             this.txtCelular.Size = new System.Drawing.Size(243, 24);
@@ -404,7 +404,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(383, 147);
+            this.label14.Location = new System.Drawing.Point(390, 154);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(78, 18);
             this.label14.TabIndex = 1330;
@@ -414,7 +414,7 @@
             // 
             this.txtCargo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCargo.Location = new System.Drawing.Point(128, 144);
+            this.txtCargo.Location = new System.Drawing.Point(129, 151);
             this.txtCargo.MaxLength = 20;
             this.txtCargo.Name = "txtCargo";
             this.txtCargo.Size = new System.Drawing.Size(212, 24);
@@ -424,57 +424,59 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(12, 148);
+            this.label15.Location = new System.Drawing.Point(12, 154);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(49, 18);
             this.label15.TabIndex = 1332;
             this.label15.Text = "Cargo";
             // 
-            // cboEstatus
-            // 
-            this.cboEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboEstatus.FormattingEnabled = true;
-            this.cboEstatus.Items.AddRange(new object[] {
-            "BAJA",
-            "ACTIVO"});
-            this.cboEstatus.Location = new System.Drawing.Point(129, 379);
-            this.cboEstatus.Name = "cboEstatus";
-            this.cboEstatus.Size = new System.Drawing.Size(213, 26);
-            this.cboEstatus.TabIndex = 270;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(13, 379);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(58, 18);
-            this.label16.TabIndex = 1333;
-            this.label16.Text = "Estatus";
-            // 
-            // cboTipoPersona
-            // 
-            this.cboTipoPersona.DisplayMember = "Descripcion";
-            this.cboTipoPersona.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTipoPersona.FormattingEnabled = true;
-            this.cboTipoPersona.Items.AddRange(new object[] {
-            "FISICA",
-            "MORAL"});
-            this.cboTipoPersona.Location = new System.Drawing.Point(127, 75);
-            this.cboTipoPersona.Name = "cboTipoPersona";
-            this.cboTipoPersona.Size = new System.Drawing.Size(213, 26);
-            this.cboTipoPersona.TabIndex = 125;
-            this.cboTipoPersona.ValueMember = "Clave";
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(11, 75);
+            this.label17.Location = new System.Drawing.Point(12, 81);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(97, 18);
             this.label17.TabIndex = 1335;
             this.label17.Text = "Tipo Persona";
+            // 
+            // chkEstatus
+            // 
+            this.chkEstatus.AutoSize = true;
+            this.chkEstatus.Checked = true;
+            this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkEstatus.Location = new System.Drawing.Point(129, 382);
+            this.chkEstatus.Name = "chkEstatus";
+            this.chkEstatus.Size = new System.Drawing.Size(67, 22);
+            this.chkEstatus.TabIndex = 1336;
+            this.chkEstatus.Text = "Activo";
+            this.chkEstatus.UseVisualStyleBackColor = true;
+            // 
+            // optFisica
+            // 
+            this.optFisica.AutoSize = true;
+            this.optFisica.Checked = true;
+            this.optFisica.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.optFisica.Location = new System.Drawing.Point(129, 77);
+            this.optFisica.Name = "optFisica";
+            this.optFisica.Size = new System.Drawing.Size(65, 22);
+            this.optFisica.TabIndex = 1337;
+            this.optFisica.TabStop = true;
+            this.optFisica.Text = "Fisica";
+            this.optFisica.UseVisualStyleBackColor = true;
+            // 
+            // optMoral
+            // 
+            this.optMoral.AutoSize = true;
+            this.optMoral.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.optMoral.Location = new System.Drawing.Point(224, 77);
+            this.optMoral.Name = "optMoral";
+            this.optMoral.Size = new System.Drawing.Size(64, 22);
+            this.optMoral.TabIndex = 1338;
+            this.optMoral.TabStop = true;
+            this.optMoral.Text = "Moral";
+            this.optMoral.UseVisualStyleBackColor = true;
             // 
             // frmCatProveedores
             // 
@@ -486,10 +488,10 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cboTipoPersona);
+            this.Controls.Add(this.optMoral);
+            this.Controls.Add(this.optFisica);
+            this.Controls.Add(this.chkEstatus);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.cboEstatus);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.txtCargo);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtCelular);
@@ -573,9 +575,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtCargo;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox cboEstatus;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox cboTipoPersona;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.CheckBox chkEstatus;
+        private System.Windows.Forms.RadioButton optFisica;
+        private System.Windows.Forms.RadioButton optMoral;
     }
 }

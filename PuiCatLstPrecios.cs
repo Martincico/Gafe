@@ -117,7 +117,7 @@ namespace GAFE
             return OpDel.DeleteLstPrecios();
         }
 
-        public SqlDataAdapter ListarLstPrecioss()
+        public SqlDataAdapter ListarLstPrecios()
         {
             CargaParametroMat();
             RegCatLstPrecios OpLst = new RegCatLstPrecios(db);

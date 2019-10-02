@@ -23,9 +23,9 @@ namespace GAFE
         private int idxG;
         private int AcCOPEdit;
         public string KeyCampo = null;
+        public DatCfgUsuario user;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
 
         public string[] dv = new string[13];
@@ -39,12 +39,12 @@ namespace GAFE
         }
 
 
-        public frmLstArticulos(MsSql Odat, clsStiloTemas NewColor,string perfil, int op = 1)
+        public frmLstArticulos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op = 1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
-            Perfil = perfil;
+            user = DatUsr;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -76,7 +76,7 @@ namespace GAFE
         private void frmLstArticulos_Load(object sender, EventArgs e)
         {
 
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
@@ -117,7 +117,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmCatArticulos art = new frmCatArticulos(db,StiloColor, Perfil);
+            frmRegArticulos art = new frmRegArticulos(db,user,StiloColor);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -128,7 +128,7 @@ namespace GAFE
             {
                 if (AcCOPEdit == 1)
                 {
-                    frmCatArticulos art = new frmCatArticulos(db, StiloColor, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                    frmRegArticulos art = new frmRegArticulos(db,user, StiloColor,  2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                     art.ShowDialog();
                     LlenaGridView();
                 }
@@ -152,7 +152,7 @@ namespace GAFE
         {
             try
             {
-                frmCatArticulos art = new frmCatArticulos(db, StiloColor, Perfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmRegArticulos art = new frmRegArticulos(db, user,StiloColor, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 art.ShowDialog();
             }
             catch (Exception ex)

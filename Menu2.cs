@@ -158,7 +158,7 @@ namespace GAFE
 
         private void CatArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos fm = new frmLstArticulos(db,NewColor, user.CodPerfil);
+            frmLstArticulos fm = new frmLstArticulos(db,user,NewColor);
             Nav(fm, panelContenedor);
         }
 

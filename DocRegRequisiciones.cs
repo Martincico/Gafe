@@ -280,5 +280,43 @@ namespace GAFE
 
             return bandDev;
         }
+
+        public SqlDataAdapter SqlDocCabPrint()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = " SELECT DC.idMov, DC.Documento, DC.Serie, DC.CveDoc, DC.NumDoc," +
+                         "        DC.ClaveAlmacen, DC.FechaExpedicion, DC.ClaveImpuesto,  DC.Impuesto, DC.Descuento, " +
+                         "        DC.SubTotal, DC.Total, DC.CveProveedor,  DC.CveCliente, DC.Observaciones, " +
+                         "        DC.FechaCaptura, DC.FechaModificacion, DC.Autorizado, DC.EsperaAceptacion, DC.DocOrigen, " +
+                         "        DC.Estatus, P.Nombre, P.RFC, P.Calle, P.CP, " +
+                         "        P.Tel1, P.Mail1,  P.Contacto,  P.Tel2, P.Mail2, " +
+                         "        P.Cargo, P.Celular,  GL.Descripcion AS Localidad, GM.Descripcion AS Municipio, " +
+                         "        GE.Descripcion AS Estado, GP.Descripcion AS Pais " +
+                         " FROM DocCab AS DC " +
+                         " INNER JOIN CatProveedores AS P ON DC.CveProveedor = P.CveProveedor " +
+                         " INNER JOIN CatGeografia AS GL ON P.CveLocalidad = GL.id" +
+                         " INNER JOIN CatGeografia AS GM ON GM.id = GL.Padre " +
+                         " INNER JOIN CatGeografia AS GE ON GE.id = GM.Padre " +
+                         " INNER JOIN CatGeografia AS GP ON GP.id = GE.Padre" +
+                         " WHERE DC.idMov = @idMov";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        public SqlDataAdapter SqlDocDetPrint()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = " SELECT DD.idMov, DD.Documento, DD.Serie, DD.Numdoc, DD.ClaveAlmacen, " +
+                         "        DD.Partida, DD.CveArticulo,  DD.Descripcion, DD.Cantidad, DD.CveUmedida1, " +
+                         "        DD.CveImpuesto, DD.ImpuestoValor, DD.Precio, DD.Descuento, DD.PrecioNeto, " +
+                         "        DD.Impuesto, DD.SubTotal, DD.Total, DD.CodAlmacen, DD.FechaModificacion, " +
+                         "        DD.FechaCaptura, DD.EstatusDoc, DD.Autorizado, Alm.Descripcion AS Almacen " +
+                         " FROM DocDet AS DD " +
+                         " INNER JOIN Inv_CatAlmacenes AS Alm ON DD.ClaveAlmacen = Alm.ClaveAlmacen" +
+                         " WHERE DD.idMov = @idMov";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
     }
 }

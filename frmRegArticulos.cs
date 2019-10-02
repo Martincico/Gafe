@@ -16,7 +16,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatArticulos : MetroForm
+    public partial class frmRegArticulos : MetroForm
     {
         private int _Opcion;
         private String _KeyCampo;
@@ -28,19 +28,18 @@ namespace GAFE
         private MsSql db = null;
 
         PuiCatArticulos Art;
-        private string Perfil;
         private clsUtil uT;
         public clsStiloTemas StiloColor;
+        public DatCfgUsuario user;
 
 
-        public frmCatArticulos(MsSql Odat, clsStiloTemas NewColor, string perfil,int op=1, String Key="" )
+        public frmRegArticulos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1, String Key="" )
         {
             InitializeComponent();
             _Opcion = op;
             _KeyCampo = Key;
             db = Odat;
-            Perfil = perfil;
-
+            user = DatUsr;
             StiloColor = NewColor;
             CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
@@ -71,7 +70,7 @@ namespace GAFE
         private void frmCatArticulos_Load(object sender, EventArgs e)
         {
 
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             Art = new PuiCatArticulos(db);
@@ -262,8 +261,8 @@ namespace GAFE
             Art.cmpEsServicio= chkEsServicio.Checked;
             Art.cmpDispVenta= chkDispVenta.Checked;
             Art.cmpObservacion= txtObservaciones.Text;
-            Art.cmpEstatus= chkEstatus.Checked;          
-
+            Art.cmpEstatus= chkEstatus.Checked;
+            Art.cmpCveAlmacen = user.AlmacenUsa;
             if (pbArticulo.Image != null)
             {
                 MemoryStream ms1 = new MemoryStream();

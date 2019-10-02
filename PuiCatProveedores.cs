@@ -19,7 +19,7 @@ namespace GAFE
         private string CP;
         private string Tel1;
         private string Mail1;
-        private string TipoPersona;
+        private int TipoPersona;
         private int Estatus;
         private string Contacto;
         private string Tel2;
@@ -86,7 +86,7 @@ namespace GAFE
             get { return Mail1; }
             set { Mail1 = value; }
         }
-    public string cmpTipoPersona
+    public int cmpTipoPersona
         {
             get { return TipoPersona; }
             set { TipoPersona = value; }
@@ -170,7 +170,7 @@ namespace GAFE
             CP = ObjA[5].ToString();
             Tel1 = ObjA[6].ToString();
             Mail1 = ObjA[7].ToString();
-            TipoPersona = ObjA[8].ToString();
+            TipoPersona = Convert.ToInt32(ObjA[8].ToString());
             if (!int.TryParse(ObjA[9].ToString(), out aux))
                 aux = 0;
             Estatus = aux;
@@ -192,7 +192,7 @@ namespace GAFE
         public SqlDataAdapter BuscaProveedor(string buscar)
         {
             RegCatProveedores OpBsq = new RegCatProveedores(db);
-            return OpBsq.BuscaArticulo(buscar);
+            return OpBsq.BuscaProvedor(buscar);
         }
 
         public DataTable LLenaCboProveedores(int padre = 0)

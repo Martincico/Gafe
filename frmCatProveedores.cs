@@ -99,22 +99,22 @@ namespace GAFE
             txtCP.Text = Prov.cmpCP;
             txtTel1.Text = Prov.cmpTel1;
             txtMail1.Text = Prov.cmpMail1;
-            cboTipoPersona.SelectedText = Prov.cmpTipoPersona;
+            optFisica.Checked = (Prov.cmpTipoPersona == 1) ? true : optMoral.Checked = true;
             txtContacto.Text = Prov.cmpContacto;
             txtTel2.Text = Prov.cmpTel2;
             txtMail2.Text = Prov.cmpMail2;
             txtCargo.Text = Prov.cmpCargo;
             txtCelular.Text = Prov.cmpCelular;
-            cboEstatus.SelectedText = (Prov.cmpEstatus == 1) ? "ACTIVO" : "BAJA";
+            chkEstatus.Checked = (Prov.cmpEstatus == 1) ? true : false;
 
             int Municipio, Estado, Pais;
-            String NomLocal;
+            //String NomLocal;
             PuiCatGeografia geo = new PuiCatGeografia(db);
 
             geo.keyCveGeografia = Prov.cmpCveLocalidad;
             geo.EditarGeografia();
             Municipio = geo.cmpPadre;
-            NomLocal = geo.cmpDescripcion;
+            //NomLocal = geo.cmpDescripcion;
 
             geo.keyCveGeografia = Municipio;
             geo.EditarGeografia();
@@ -131,7 +131,7 @@ namespace GAFE
 
             cboMunicipio.SelectedValue = Municipio;
 
-            cboLocalidad.SelectedText = NomLocal;
+            cboLocalidad.SelectedValue = Prov.cmpCveLocalidad;
            
         }
         private void LlenarProveedor()
@@ -146,8 +146,8 @@ namespace GAFE
             Prov.cmpMail1 = txtMail1.Text;
             if (cboLocalidad.SelectedValue != null)
                 Prov.cmpCveLocalidad = int.Parse(cboLocalidad.SelectedValue.ToString());
-            Prov.cmpTipoPersona = cboTipoPersona.Text;
-            Prov.cmpEstatus = (cboEstatus.Text == "ACTIVO") ? 1 : 0;
+            Prov.cmpTipoPersona = (optFisica.Checked == true) ? 1 : 2;
+            Prov.cmpEstatus = (chkEstatus.Checked == true) ? 1 : 0;
             Prov.cmpContacto = txtContacto.Text;
             Prov.cmpTel2 = txtTel2.Text;
             Prov.cmpMail2 = txtMail2.Text;
@@ -165,7 +165,8 @@ namespace GAFE
             txtRFC.Enabled = Op;
             txtCalle.Enabled = Op;
             cboEstado.Enabled = Op;
-            cboTipoPersona.Enabled = Op;
+            optFisica.Enabled = Op;
+            optMoral.Enabled = Op;
             cboMunicipio.Enabled = Op;
             cboLocalidad.Enabled = Op;
             txtCP.Enabled = Op;
@@ -176,7 +177,7 @@ namespace GAFE
             txtContacto.Enabled = Op;
             txtCelular.Enabled = Op;
             txtCargo.Enabled = Op;
-            cboEstatus.Enabled = Op;
+            chkEstatus.Enabled = Op;
         }
 
         private void cmdCancelar_Click(object sender, EventArgs e)
@@ -272,13 +273,7 @@ namespace GAFE
                 mensaje += "Correo 1: No puede ir vacío. \n";
             if (cboLocalidad.SelectedValue == null)
                 mensaje += "Localidad: Seleccione una localidad. \n";
-            if (cboTipoPersona.SelectedValue == null)
-                mensaje += "Tipo de Persona: Seleccione un Tipo de persona. \n";
-            if (cboEstatus.SelectedValue == null)
-                mensaje += "Estatus: Seleccione un Estatus. \n";
             
-
-
             if (mensaje != "")
             {
                 MessageBoxAdv.Show("Se encontraron los siguientes errores: \n" + mensaje, "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);

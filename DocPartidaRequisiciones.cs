@@ -342,7 +342,7 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos ar = new frmLstArticulos(db, StiloColor, user.CodPerfil, 3);
+            frmLstArticulos ar = new frmLstArticulos(db,user,  StiloColor,3);
             ar.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             ar.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             ar.ShowDialog();
@@ -352,8 +352,11 @@ namespace GAFE
                 txtClaveArticulo.Text = ar.dv[0];
                 txtDescripcion.Text = ar.dv[1];
                 CveImp = ar.dv[10];
-                txtIva.Text = ar.dv[12];
                 CveUmed = ar.dv[8];
+                PuiCatImpuestos Impu = new PuiCatImpuestos(db);
+                Impu.keyCveImpuesto = CveImp;
+                Impu.EditarImpuesto();
+                txtIva.Text = Convert.ToString(Impu.cmpValor);
             }
 
         }

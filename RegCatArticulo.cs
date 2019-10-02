@@ -25,23 +25,6 @@ namespace GAFE
 
         public RegCatArticulo(MsSql Odat) { db = Odat; }
 
-        /*
-        public void Conn()
-        {
-            /*db = new DatSql.MsSql(
-                   ConfigurationSettings.AppSettings.Get("Servidor"),
-                   ConfigurationSettings.AppSettings.Get("Datos"),
-                   ConfigurationSettings.AppSettings.Get("Usuario"),
-                   ConfigurationSettings.AppSettings.Get("Password")
-                   );
-            
-            db = new DatSql.MsSql("SIGMA6\\SQL14", "CtrlAcceso", "sa", "Remolachas1");
-                   
-            if (db.Conectar() < 1)
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    */
-
         public int AddRegArticulo()
         {
             string sql = "INSERT INTO inv_CatArticulos (CveArticulo,  CodigoAlterno,  CodigoBarra,  CodigoSat,  Fecha_Alta,  Descripcion,  CveLinea, " +
@@ -59,11 +42,12 @@ namespace GAFE
         {
             string sql = "Insert into Inv_Existencias (ClaveArticulo, ClaveAlmacen, Cantidad, stockMin, stockMax, CantApartada," +
                          "            CostoPromedio, CostoUltimo, CostoActual) " +
-                         "      values(@ClaveArticulo,@ClaveAlmacen,0,0,0,0,0,0,0)";
+                         " (SELECT @ClaveArticulo,ClaveAlmacen,0,0,0,0,0,0,0 FROM Inv_CatAlmacenes WHERE ESTATUS = 'A') ";
             return db.InsertarRegistro(sql, ArrParametros);
         }
         public int AddRegLstPrecios()
         {
+
             string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo,Precio, FechaModifacion) (SELECT CveLstPrecio, @CveArticulo,0, GETDATE() FROM Inv_LstPreciosMast WHERE ESTATUS = 1) ";
             return db.InsertarRegistro(sql, ArrParametros);
         }

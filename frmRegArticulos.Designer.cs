@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmCatArticulos
+    partial class frmRegArticulos
     {
         /// <summary>
         /// Required designer variable.
@@ -103,7 +103,7 @@
             this.cmdCancelar.Location = new System.Drawing.Point(617, 395);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
-            this.cmdCancelar.TabIndex = 270;
+            this.cmdCancelar.TabIndex = 16;
             this.cmdCancelar.Text = "Cancelar";
             this.cmdCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdCancelar.UseVisualStyleBackColor = false;
@@ -117,7 +117,7 @@
             this.cmdAceptar.Location = new System.Drawing.Point(501, 395);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
-            this.cmdAceptar.TabIndex = 260;
+            this.cmdAceptar.TabIndex = 15;
             this.cmdAceptar.Text = "Aceptar";
             this.cmdAceptar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAceptar.UseVisualStyleBackColor = false;
@@ -237,6 +237,8 @@
             // chkEstatus
             // 
             this.chkEstatus.AutoSize = true;
+            this.chkEstatus.Checked = true;
+            this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.chkEstatus.Location = new System.Drawing.Point(126, 300);
             this.chkEstatus.Name = "chkEstatus";
@@ -263,7 +265,7 @@
             this.cboImpuesto.Location = new System.Drawing.Point(126, 270);
             this.cboImpuesto.Name = "cboImpuesto";
             this.cboImpuesto.Size = new System.Drawing.Size(222, 24);
-            this.cboImpuesto.TabIndex = 1346;
+            this.cboImpuesto.TabIndex = 14;
             this.cboImpuesto.ValueMember = "Clave";
             // 
             // label7
@@ -284,7 +286,7 @@
             this.cboUMedida2.Location = new System.Drawing.Point(486, 210);
             this.cboUMedida2.Name = "cboUMedida2";
             this.cboUMedida2.Size = new System.Drawing.Size(222, 24);
-            this.cboUMedida2.TabIndex = 1344;
+            this.cboUMedida2.TabIndex = 12;
             this.cboUMedida2.ValueMember = "Clave";
             // 
             // label14
@@ -305,7 +307,7 @@
             this.cboUMedidaEquival.Location = new System.Drawing.Point(126, 240);
             this.cboUMedidaEquival.Name = "cboUMedidaEquival";
             this.cboUMedidaEquival.Size = new System.Drawing.Size(147, 24);
-            this.cboUMedidaEquival.TabIndex = 1345;
+            this.cboUMedidaEquival.TabIndex = 13;
             this.cboUMedidaEquival.ValueMember = "Clave";
             // 
             // label13
@@ -326,7 +328,7 @@
             this.cboMarca.Location = new System.Drawing.Point(126, 90);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(222, 24);
-            this.cboMarca.TabIndex = 1348;
+            this.cboMarca.TabIndex = 6;
             this.cboMarca.ValueMember = "Clave";
             // 
             // label8
@@ -347,7 +349,7 @@
             this.cboUMedida1.Location = new System.Drawing.Point(126, 210);
             this.cboUMedida1.Name = "cboUMedida1";
             this.cboUMedida1.Size = new System.Drawing.Size(222, 24);
-            this.cboUMedida1.TabIndex = 1343;
+            this.cboUMedida1.TabIndex = 11;
             this.cboUMedida1.ValueMember = "Clave";
             // 
             // txtClaveArticulo
@@ -358,7 +360,7 @@
             this.txtClaveArticulo.MaxLength = 10;
             this.txtClaveArticulo.Name = "txtClaveArticulo";
             this.txtClaveArticulo.Size = new System.Drawing.Size(147, 22);
-            this.txtClaveArticulo.TabIndex = 1321;
+            this.txtClaveArticulo.TabIndex = 1;
             this.txtClaveArticulo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClaveArticulo_KeyPress_1);
             // 
             // label2
@@ -379,7 +381,7 @@
             this.txtDescripcion.MaxLength = 100;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(582, 22);
-            this.txtDescripcion.TabIndex = 1332;
+            this.txtDescripcion.TabIndex = 5;
             // 
             // label9
             // 
@@ -399,7 +401,7 @@
             this.cboClase3.Location = new System.Drawing.Point(126, 180);
             this.cboClase3.Name = "cboClase3";
             this.cboClase3.Size = new System.Drawing.Size(222, 24);
-            this.cboClase3.TabIndex = 1342;
+            this.cboClase3.TabIndex = 10;
             this.cboClase3.ValueMember = "Clave";
             // 
             // label10
@@ -420,7 +422,7 @@
             this.cboClase2.Location = new System.Drawing.Point(486, 150);
             this.cboClase2.Name = "cboClase2";
             this.cboClase2.Size = new System.Drawing.Size(222, 24);
-            this.cboClase2.TabIndex = 1341;
+            this.cboClase2.TabIndex = 9;
             this.cboClase2.ValueMember = "Clave";
             // 
             // label11
@@ -441,7 +443,7 @@
             this.cboClase1.Location = new System.Drawing.Point(126, 150);
             this.cboClase1.Name = "cboClase1";
             this.cboClase1.Size = new System.Drawing.Size(222, 24);
-            this.cboClase1.TabIndex = 1340;
+            this.cboClase1.TabIndex = 8;
             this.cboClase1.ValueMember = "Clave";
             // 
             // label4
@@ -472,7 +474,7 @@
             this.txtCodigoSAT.MaxLength = 50;
             this.txtCodigoSAT.Name = "txtCodigoSAT";
             this.txtCodigoSAT.Size = new System.Drawing.Size(222, 22);
-            this.txtCodigoSAT.TabIndex = 1330;
+            this.txtCodigoSAT.TabIndex = 4;
             this.txtCodigoSAT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoSAT_KeyPress_1);
             // 
             // label1
@@ -493,7 +495,7 @@
             this.txtCodigoAlterno.MaxLength = 10;
             this.txtCodigoAlterno.Name = "txtCodigoAlterno";
             this.txtCodigoAlterno.Size = new System.Drawing.Size(222, 22);
-            this.txtCodigoAlterno.TabIndex = 1325;
+            this.txtCodigoAlterno.TabIndex = 2;
             this.txtCodigoAlterno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoAlterno_KeyPress_1);
             // 
             // lblCodEmpleado
@@ -524,7 +526,7 @@
             this.cboLinea.Location = new System.Drawing.Point(126, 120);
             this.cboLinea.Name = "cboLinea";
             this.cboLinea.Size = new System.Drawing.Size(222, 24);
-            this.cboLinea.TabIndex = 1331;
+            this.cboLinea.TabIndex = 7;
             this.cboLinea.ValueMember = "Clave";
             // 
             // txtCodigoBarras
@@ -535,7 +537,7 @@
             this.txtCodigoBarras.MaxLength = 20;
             this.txtCodigoBarras.Name = "txtCodigoBarras";
             this.txtCodigoBarras.Size = new System.Drawing.Size(222, 22);
-            this.txtCodigoBarras.TabIndex = 1322;
+            this.txtCodigoBarras.TabIndex = 3;
             this.txtCodigoBarras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoBarras_KeyPress_1);
             // 
             // tabUbicacion
@@ -696,7 +698,7 @@
             this.label15.TabIndex = 1305;
             this.label15.Text = "Última Compra";
             // 
-            // frmCatArticulos
+            // frmRegArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -713,7 +715,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCatArticulos";
+            this.Name = "frmRegArticulos";
             this.ShowIcon = false;
             this.Text = "Artículos";
             this.Load += new System.EventHandler(this.frmCatArticulos_Load);

@@ -53,7 +53,13 @@ namespace GAFE
                          "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta,@EsDeConsigna,@NumRojo,@CveLstPrecio)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
-
+        public int AddRegExistencias()
+        {
+            string sql = "Insert into Inv_Existencias (ClaveArticulo, ClaveAlmacen, Cantidad, stockMin, stockMax, CantApartada," +
+                         "            CostoPromedio, CostoUltimo, CostoActual) " +
+                         " (SELECT CveArticulo,@ClaveAlmacen,0,0,0,0,0,0,0 FROM inv_CatArticulos WHERE ESTATUS = 1) ";
+            return db.InsertarRegistro(sql, ArrParametros);
+        }
 
         public int UpdateAlmacen()
         {

@@ -223,6 +223,16 @@ namespace GAFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logo_emp_rpt {
+            get {
+                object obj = ResourceManager.GetObject("logo_emp_rpt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logotipo {
             get {
                 object obj = ResourceManager.GetObject("Logotipo", resourceCulture);

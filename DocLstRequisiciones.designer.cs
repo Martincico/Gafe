@@ -47,6 +47,7 @@
             this.cmdRestablecer = new System.Windows.Forms.Button();
             this.cmdAutorizarTodo = new System.Windows.Forms.Button();
             this.btnGenerarDoc = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -249,7 +250,7 @@
             this.cmdAutorizarTodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdAutorizarTodo.Image = global::GAFE.Properties.Resources.Check;
             this.cmdAutorizarTodo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAutorizarTodo.Location = new System.Drawing.Point(12, 402);
+            this.cmdAutorizarTodo.Location = new System.Drawing.Point(66, 402);
             this.cmdAutorizarTodo.Name = "cmdAutorizarTodo";
             this.cmdAutorizarTodo.Size = new System.Drawing.Size(38, 36);
             this.cmdAutorizarTodo.TabIndex = 30;
@@ -265,7 +266,7 @@
             this.btnGenerarDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerarDoc.Image = global::GAFE.Properties.Resources.migrar_doc;
             this.btnGenerarDoc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGenerarDoc.Location = new System.Drawing.Point(75, 402);
+            this.btnGenerarDoc.Location = new System.Drawing.Point(110, 402);
             this.btnGenerarDoc.Name = "btnGenerarDoc";
             this.btnGenerarDoc.Size = new System.Drawing.Size(159, 36);
             this.btnGenerarDoc.TabIndex = 31;
@@ -273,6 +274,20 @@
             this.btnGenerarDoc.UseVisualStyleBackColor = false;
             this.btnGenerarDoc.Visible = false;
             this.btnGenerarDoc.Click += new System.EventHandler(this.btnGenerarDoc_Click);
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImprimir.Image = global::GAFE.Properties.Resources.printer;
+            this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImprimir.Location = new System.Drawing.Point(12, 402);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(38, 36);
+            this.btnImprimir.TabIndex = 32;
+            this.btnImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // DocLstRequisiciones
             // 
@@ -284,6 +299,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(796, 441);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnGenerarDoc);
             this.Controls.Add(this.cmdAutorizarTodo);
             this.Controls.Add(this.cmdRestablecer);
@@ -337,5 +353,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idMov;
         private System.Windows.Forms.Button cmdAutorizarTodo;
         private System.Windows.Forms.Button btnGenerarDoc;
+        private System.Windows.Forms.Button btnImprimir;
     }
 }

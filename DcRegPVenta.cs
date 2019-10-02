@@ -139,7 +139,7 @@ namespace GAFE
                 
                 case Keys.F2://Muestra Articulos
                     if(OptPartd == 1)
-                        cmdArticulo_Click(sender, e);
+                        ShowVentArt();
                     else
                         MessageBoxAdv.Show("Busqueda de artículo deshabilitado para esta opción", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
@@ -320,10 +320,48 @@ namespace GAFE
             }
             
         }
-        private void cmdArticulo_Click(object sender, EventArgs e)
+
+        private void ShowVentArt()
         {
-            ShowVentArt();
+
+            frmLstArticulos ar = new frmLstArticulos(db, user, StiloColor, 3);
+            ar.CaptionBarColor = ColorTranslator.FromHtml(NewColor.Encabezado);
+            ar.CaptionForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
+            ar.ShowDialog();
+            IdArt = ar.dv[0];
+            if (IdArt != null)
+            {
+                txtClaveArticulo.Text = ar.dv[0];
+                lblDescArticulo.Text = ar.dv[1];
+                CveImp = ar.dv[10];
+                //txtIva.Text = ar.dv[12];
+                CveUmed = ar.dv[8];
+
+                PuiCatArticulos Art = new PuiCatArticulos(db);
+                Art.keyCveArticulo = ar.dv[0];
+                Art.EditarArticulo();
+
+                if (Art.cmpFoto.Length > 0)
+                {
+                    MemoryStream Mf = new MemoryStream(Art.cmpFoto);
+                    Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
+                    pbArticulo.Image = Image.FromStream(Mf);
+                }
+
+                if (getPrecio() == 1)
+                {
+                    ResetControles(1);
+                    MessageBoxAdv.Show("No es posible su venta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    txtCantidad.Focus();
+                    txtClaveArticulo.Enabled = false;
+                }
+
+            }
         }
+
         private void txtClaveArticulo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -348,9 +386,16 @@ namespace GAFE
                         Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
                         pbArticulo.Image = Image.FromStream(Mf);
                     }
-                    getPrecio();
-                    txtCantidad.Focus();
-                    txtClaveArticulo.Enabled = false;
+                    if (getPrecio() == 1)
+                    {
+                        ResetControles(1);
+                        MessageBoxAdv.Show("No es posible su venta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        txtCantidad.Focus();
+                        txtClaveArticulo.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -360,8 +405,9 @@ namespace GAFE
             }
         }
 
-        private void getPrecio()
+        private int getPrecio()
         {
+            int Err = 0;
             PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
             SqlDataAdapter Datos = null;
             DataSet Ds = new DataSet();
@@ -374,7 +420,7 @@ namespace GAFE
 
             Datos.Fill(Ds);
 
-            if(Ds.Tables[0].Rows.Count>0)
+            if (Ds.Tables[0].Rows.Count > 0)
             {
                 ObjA = Ds.Tables[0].Rows[0].ItemArray;
             }
@@ -385,12 +431,17 @@ namespace GAFE
 
                 Datos = pui.GetPrecioArticulo();
                 Datos.Fill(Ds);
+                if (Ds.Tables[0].Rows.Count > 0)
+                    ObjA = Ds.Tables[0].Rows[0].ItemArray;
+                else
+                    Err = 1;
 
-                ObjA = Ds.Tables[0].Rows[0].ItemArray;
             }
 
+            if(Err == 0)
+                lblPrecioArt.Text = ObjA[4].ToString();
 
-            lblPrecioArt.Text = ObjA[4].ToString();
+            return Err;
 
         }
 
@@ -568,6 +619,8 @@ namespace GAFE
                     }
                 }
 
+                PrintDoc(idmovimiento);
+
                 if (rsp == 0 && Exi == 1)
                 {
                     ResetControles(0);
@@ -584,6 +637,10 @@ namespace GAFE
 
                     isDataSaved = true;
                 }
+
+
+
+
             }
             else
             {
@@ -788,37 +845,7 @@ namespace GAFE
             LLenaGrid();
         }
 
-        private void ShowVentArt()
-        {
-            
-            frmLstArticulos ar = new frmLstArticulos(db, StiloColor, user.CodPerfil, 3);
-            ar.CaptionBarColor = ColorTranslator.FromHtml(NewColor.Encabezado);
-            ar.CaptionForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
-            ar.ShowDialog();
-            IdArt = ar.dv[0];
-            if (IdArt != null)
-            {
-                txtClaveArticulo.Text = ar.dv[0];
-                lblDescArticulo.Text = ar.dv[1];
-                CveImp = ar.dv[10];
-                //txtIva.Text = ar.dv[12];
-                CveUmed = ar.dv[8];
 
-                PuiCatArticulos Art = new PuiCatArticulos(db);
-                Art.keyCveArticulo = ar.dv[0];
-                Art.EditarArticulo();
-
-                if (Art.cmpFoto.Length > 0)
-                {
-                    MemoryStream Mf = new MemoryStream(Art.cmpFoto);
-                    Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
-                    pbArticulo.Image = Image.FromStream(Mf);
-                }
-                getPrecio();
-                txtCantidad.Focus();
-                txtClaveArticulo.Enabled = false;
-            }
-        }
         
         
         protected override void OnPaint(PaintEventArgs e)
@@ -929,6 +956,17 @@ namespace GAFE
                 btnEliminar.Enabled = Opt;
             }
 
+        }
+
+
+        private void PrintDoc(String cv)
+        {
+            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+            rq.keyidMov = cv;
+            DataTable dt = rq.DocDetPrint();
+            fmtoTicket print = new fmtoTicket();
+            String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
+            print.PrintTicket(db, dt, cv, "Farmacias Salinas G", pict, "TICKET VENTA");
         }
     }
 }

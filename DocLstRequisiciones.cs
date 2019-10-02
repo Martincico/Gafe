@@ -469,5 +469,32 @@ namespace GAFE
             }
                 //Do_Something_With_It(dataGridView1.SelectedCells[0].RowIndex);
         }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String cv = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+                rq.keyidMov = cv;
+                DataTable dt = rq.DocCabPrint();
+                fmtoDocumentos print = new fmtoDocumentos();
+                //this.Cursor = Cursors.AppStarting;
+                String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
+
+
+                print.DoctosCab(db,dt,cv,"Farmacias Salinas G", pict, NameDoc);
+                //this.Cursor = Cursors.Default;
+                print.ShowDialog();
+                 
+                                
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+
+        }
     }
 }

@@ -348,7 +348,7 @@
             this.Name = "frmCatLstPrecios";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Catálogo de clases";
+            this.Text = "Listado de precio";
             this.Load += new System.EventHandler(this.frmCatLstPrecios_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

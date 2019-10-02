@@ -18,6 +18,7 @@ namespace GAFE
         private String CodigoSat;
         private DateTime Fecha_Alta;
         private String Descripcion;
+        private String CveAlmacen;
         private int EsInventa;
         private int DispVenta;
         private int EsServicio;
@@ -88,6 +89,13 @@ namespace GAFE
             get { return CodigoSat; }
             set { CodigoSat = value; }
         }
+        public String cmpCveAlmacen
+        {
+            get { return CveAlmacen; }
+            set { CveAlmacen = value; }
+        }
+        
+
         public DateTime cmpFecha_Alta
         {
             get { return Fecha_Alta; }
@@ -232,9 +240,8 @@ namespace GAFE
             CargaParametroMat();
             RegCatArticulo OpRadd = new RegCatArticulo(MatParam, db);
             resp = OpRadd.AddRegArticulo();
-            MatParam = new object[2, 2];
+            MatParam = new object[1, 2];
             MatParam[0, 0] = "ClaveArticulo"; MatParam[0, 1] = CveArticulo;
-            MatParam[1, 0] = "ClaveAlmacen"; MatParam[1, 1] = "100";  //insertar aca clave almacen usuario ***********************************************************
             RegCatArticulo OpRaddExis = new RegCatArticulo(MatParam, db);
             resp = OpRaddExis.AddRegExistencias();
             return resp;
