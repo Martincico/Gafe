@@ -17,7 +17,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmLstInventarioMovtos : MetroForm
+    public partial class MovtosInvLst : MetroForm
     {
         private String TipoDocProv = "MINV"; //MINV aun no sta registrado
         private SqlDataAdapter DatosTbl;
@@ -31,13 +31,13 @@ namespace GAFE
 
         public clsStiloTemas StiloColor;
 
-        public frmLstInventarioMovtos()
+        public MovtosInvLst()
         {
             InitializeComponent();
         }
 
 
-        public frmLstInventarioMovtos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public MovtosInvLst(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
@@ -85,8 +85,37 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, 1, TipoDocProv, user, StiloColor);
-            Ventana.ShowDialog();
+            /*
+            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+            string movimiento = rq.AgregarDocEnBlanco(5000, user.FecServer);
+            //llamar la forma de regdoc
+            if (movimiento.CompareTo("Error") != 0)
+            {
+                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  1, ConfigDoc, movimiento, CveDoc, NameDoc);
+                Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                Rcap.ShowDialog();
+                LlenaGridView();
+            }
+            else
+            {
+                MessageBoxAdv.Show("Existe un error insertar registro", "ERROR "+ NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } 
+
+
+
+            */
+            MovtosInvPui pui = new MovtosInvPui(db);
+            String folMovto = pui.AgregarBlanco(1, user.FecServer);
+            if (folMovto.CompareTo("Error") != 0)
+            {
+                MovtosInvRegistro Ventana = new MovtosInvRegistro(db, 1, TipoDocProv, user, StiloColor, folMovto);
+                Ventana.ShowDialog();
+            }
+            else
+            {
+                MessageBoxAdv.Show("Movimiento Inventario: Ha ocurrido un error.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             LlenaGridView();
         }
 
@@ -94,7 +123,7 @@ namespace GAFE
         {
             try
             {
-                frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, StiloColor, 3, TipoDocProv, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                MovtosInvRegistro Ventana = new MovtosInvRegistro(db, StiloColor, 3, TipoDocProv, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -125,7 +154,7 @@ namespace GAFE
             String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
 
 
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            MovtosInvPui pui = new MovtosInvPui(db);
             DatosTbl = pui.ListarInventarioMovtos(CodProve, AlmOri, CodTipoMov, FIni, FFin);
             DataSet Ds = new DataSet();
 
@@ -140,7 +169,9 @@ namespace GAFE
                 grdView.Columns["TotalDoc"].Visible = false;
                 grdView.Columns["CveTipoMov"].Visible = false;
                 grdView.Columns["NoMovtoTra"].Visible = false;
-                
+                grdView.Columns["DocTra"].Visible = false;
+                grdView.Columns["DocOrigen"].Visible = false;
+
 
                 for (int i = 0; i < grdView.Columns.Count; i++)
                 {
@@ -179,37 +210,58 @@ namespace GAFE
             try
             {
                 String NoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String NoDoc = grdView[1, grdView.CurrentRow.Index].Value.ToString();
                 String IdTipMov = grdView[8, grdView.CurrentRow.Index].Value.ToString();
-                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + NoMov,
-                     "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                String t = grdView[9, grdView.CurrentRow.Index].Value.ToString();
+                if (t.Equals(""))
                 {
-
-                    db.IniciaTrans();
-                    int Rsp = EliminarMov(NoMov, IdTipMov);
-                    String err = "";
-                    if (Rsp < 0)
+                    t = grdView[11, grdView.CurrentRow.Index].Value.ToString();
+                    if (t.Equals(""))
                     {
-                        db.CancelaTrans();
-                        switch (Rsp)
+                        if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + NoDoc,
+                         "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            case -1: err = "Existe un error al eliminar registro"; break;
-                            case -2: err = "Existe un error al afectar existencias de relación"; break;
-                            case -3: err = "Existe un error al afectar existencias"; break;
+
+                            db.IniciaTrans();
+                            int Rsp = EliminarMov(NoMov, IdTipMov);
+                            String err = "";
+                            if (Rsp < 0)
+                            {
+                                db.CancelaTrans();
+                                switch (Rsp)
+                                {
+                                    case -1: err = "Existe un error al eliminar registro"; break;
+                                    case -2: err = "Existe un error al afectar existencias de relación"; break;
+                                    case -3: err = "Existe un error al afectar existencias"; break;
+                                }
+                                MessageBoxAdv.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                db.TerminaTrans();
+                                MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Information);
+                            }
                         }
-                        MessageBoxAdv.Show(err, "Error de eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        db.TerminaTrans();
-                        MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBoxAdv.Show("Se requiere eliminar el documento Compra No: " + t, "Acción no permitida", MessageBoxButtons.OK,
                                             MessageBoxIcon.Information);
                     }
+                }
+                else
+                {
+                    t = grdView[10, grdView.CurrentRow.Index].Value.ToString();
+                    MessageBoxAdv.Show("Proviene de un traspaso No: " + t, "Acción no permitida", MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
                 }
 
                 LlenaGridView();
             }
             catch (Exception ex)
             {
+                db.CancelaTrans();
                 MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
@@ -367,8 +419,9 @@ namespace GAFE
         private int EliminarMov(String NoMov, String IdTipMov)
         {
             int Rsp = -4;
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            
+            MovtosInvPui pui = new MovtosInvPui(db);
+            MovtosInvPui puiRel = new MovtosInvPui(db);
+
             pui.keyNoMovimiento = NoMov;
             pui.EditarInventarioMov();
 
@@ -384,9 +437,11 @@ namespace GAFE
             {
                 if (PuiTM.cmpEsTraspaso == 1)
                 {
-                    PuiCatInventarioMov puiRel = new PuiCatInventarioMov(db);
+                    
 
-                    puiRel.keyNoMovimiento = pui.cmpNoMovtoTra;
+                    puiRel.keyNoMovimiento = NoMov;
+                    puiRel.GetRegMovTraspaso();
+
                     puiRel.EditarInventarioMov();
 
                     PuiCatTipoMovtos PuiTMRel = new PuiCatTipoMovtos(db);
@@ -413,6 +468,8 @@ namespace GAFE
             if (Rsp == 0)
             {
                 Rsp = pui.DelRegCerosSql();
+                if (PuiTM.cmpEsTraspaso == 1)
+                    Rsp = puiRel.DelRegCerosSql();
             }
 
             return Rsp;
@@ -422,7 +479,7 @@ namespace GAFE
         public int DelMigraMov(String DcOrigen)
         {
             int Rsp = -4;
-            PuiCatInventarioMov Del = new PuiCatInventarioMov(db);
+            MovtosInvPui Del = new MovtosInvPui(db);
             Del.cmpDocOrigen = DcOrigen;
             Del.GetIdMov();
             Rsp = EliminarMov(Del.keyNoMovimiento, Del.cmpCveTipoMov);

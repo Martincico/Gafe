@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class AddPartidaInvMovtos
+    partial class MovtosInvPart
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddPartidaInvMovtos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovtosInvPart));
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtIva = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();

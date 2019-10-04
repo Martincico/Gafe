@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmRegInventarioMovtos
+    partial class MovtosInvRegistro
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegInventarioMovtos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovtosInvRegistro));
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.lblTipoMovtos = new System.Windows.Forms.Label();
@@ -112,9 +112,9 @@
             this.lblAlmaDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlmaDest.Location = new System.Drawing.Point(395, 38);
             this.lblAlmaDest.Name = "lblAlmaDest";
-            this.lblAlmaDest.Size = new System.Drawing.Size(112, 15);
+            this.lblAlmaDest.Size = new System.Drawing.Size(100, 15);
             this.lblAlmaDest.TabIndex = 2;
-            this.lblAlmaDest.Text = "Almacén     Destino";
+            this.lblAlmaDest.Text = "Almacén Destino";
             // 
             // lblAlmaOri
             // 
@@ -462,7 +462,7 @@
             this.lblTitFecha.TabIndex = 87;
             this.lblTitFecha.Text = "Fecha";
             // 
-            // frmRegInventarioMovtos
+            // MovtosInvRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -494,7 +494,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmRegInventarioMovtos";
+            this.Name = "MovtosInvRegistro";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de Tipo Movimientos";

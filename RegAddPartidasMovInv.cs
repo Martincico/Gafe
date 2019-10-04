@@ -116,7 +116,7 @@ namespace GAFE
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
              "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovtoTra,DocTra,PartTra) " +
-            "  SELECT @NoPartida,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
+            "  SELECT @NoMovtoTra,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
              "        Cantidad,CantidadPkt,Precio,Descuento,TotalDscto," +
              "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +

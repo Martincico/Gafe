@@ -61,12 +61,21 @@ namespace GAFE
 
             FechaExpedicion.Enabled = (ConfigDoc.EditaFecha == 1)?true:false;
 
-            if (op>=2)
+            
+        }
+
+
+
+        private void DocRegistroRequisicion_Load(object sender, EventArgs e)
+        {
+            LlecboAlmacen();
+
+            if (Opcion >= 2)
             {
                 getRegistro();
-                if(op==3)
+                if (Opcion == 3)
                 {
-                    HD_Botones(3,false);
+                    HD_Botones(3, false);
                 }
             }
             if (ConfigDoc.UsaProveedor == 1)
@@ -77,19 +86,13 @@ namespace GAFE
 
             }
 
-            if(ConfigDoc.SolicitaAutorizar ==1)
+            if (ConfigDoc.SolicitaAutorizar == 1)
             {
-                if(Opcion ==2)
+                if (Opcion == 2)
                     cmdAutorizarTodo.Visible = true;
             }
-        }
 
 
-
-        private void DocRegistroRequisicion_Load(object sender, EventArgs e)
-        {
-            LlecboAlmacen();
-            
         }
 
 
@@ -152,8 +155,8 @@ namespace GAFE
             {
                 DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
                 SetValues(sRq);
-                int _fol = 5000;
-                string _alm = "5000";
+                int _fol = int.Parse(ConfigDoc.Foliador); //5000; // 
+                string _alm = "";
                 string _ser = "";
                 if (ConfigDoc.UsaSerie == 1)
                 {

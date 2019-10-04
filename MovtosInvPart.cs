@@ -14,7 +14,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class AddPartidaInvMovtos : MetroForm
+    public partial class MovtosInvPart : MetroForm
     {
         private int opcion;
         private MsSql db = null;
@@ -65,12 +65,12 @@ namespace GAFE
 
         ClsUtilerias Util = new ClsUtilerias();
 
-        public AddPartidaInvMovtos()
+        public MovtosInvPart()
         {
             InitializeComponent();
         }
 
-        public AddPartidaInvMovtos(MsSql Odat, clsStiloTemas NewColor, DatCfgUsuario DatUsr, String P_modulo, String P_folio, int P_operacion,
+        public MovtosInvPart(MsSql Odat, clsStiloTemas NewColor, DatCfgUsuario DatUsr, String P_modulo, String P_folio, int P_operacion,
                 String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
                  int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, 
                  int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart )

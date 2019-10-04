@@ -9,7 +9,7 @@ using DatSql;
 
 namespace GAFE
 {
-    class PuiCatInventarioMov
+    class MovtosInvPui
     {
         private string NoMovimiento;
         private DateTime FechaMovimiento;
@@ -60,7 +60,7 @@ namespace GAFE
         private MsSql db = null;
 
            
-        public PuiCatInventarioMov(MsSql Odat)
+        public MovtosInvPui(MsSql Odat)
         {
             //MatParam = new object[9,2]; 
             db = Odat;
@@ -258,61 +258,55 @@ namespace GAFE
         }
         #endregion
 
-        public int AgregarBlanco()
+        public string AgregarBlanco(int Foliador, DateTime FechaExp)
         {
-            NoMovimiento = this.GetFolio(NoMovimiento);
+            DocRegRequisiciones rRq = new DocRegRequisiciones(db);
+            NoMovimiento = rRq.getIdMov(Foliador);
+            FechaMovimiento = FechaExp;
+            rRq = null;
+
             object[,] MatParam2 = new object[2, 2];
             MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = NoMovimiento;
             MatParam2[1, 0] = "FechaMovimiento"; MatParam2[1, 1] = FechaMovimiento;
-            RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam2, db);
-            int rsp = OpRadd2.AddRegBlanco();
-            if (rsp == 1)
-                rsp = Convert.ToInt32(NoMovimiento);
-            return rsp;
-        }
+            MovtosInvReg OpRadd2 = new MovtosInvReg(MatParam2, db);
+            if (OpRadd2.AddRegBlanco() > 0)
+                return NoMovimiento;
+            else
+                return "Error";
 
-        public String GetFolio(String fol)
+        }
+        /*
+        public String GetFolio_2(String fol)
         {
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(db);
+            MovtosInvReg OpRadd = new MovtosInvReg(db);
             return OpRadd.GetFolioSql(fol);
         }
-
-        public int AgregarInvMaster(String DcOrigen)
+        */
+        public int AgregarInvMaster(int foliador, string Doc, int op, String DcOrigen)
         {
+            DocRegRequisiciones rRq = new DocRegRequisiciones(db);
+            string[] fd = rRq.getIdDoc(foliador, "", Doc,"");
+            NoDoc = fd[0].ToString();
+            Documento = fd[1];
+            rRq = null;
+
             CargaParametroMat();
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
+            MovtosInvReg OpRadd = new MovtosInvReg(MatParam, db);
             return OpRadd.AddRegInvMaster(DcOrigen);
         }
 
         public int AgregarInvDet()
         {
             CargaParamMatPart();
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParamParti, db);
+            MovtosInvReg OpRadd = new MovtosInvReg(MatParamParti, db);
             return OpRadd.UpdateInvDet();
         }
-        /*
-        public int AddRegInvMasterRel()
-        {
-            CargaParametroMat();
-            RegCatInventarioMov OpRadd = new RegCatInventarioMov(MatParam, db);
-            return OpRadd.AddRegInvMasterRel();
-        }
-        
-        public int ActualizaInventarioMov()
-        {
-            CargaParametroMat();
-            RegCatInventarioMov OpUp = new RegCatInventarioMov(MatParam,db);
-            return OpUp.UpdateInventarioMov();
 
-        }
-
-
-        */
         public int EliminaInventarioMov()
         {
             MatParam = new object[1, 2];
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
-            RegCatInventarioMov OpDel = new RegCatInventarioMov(MatParam, db);
+            MovtosInvReg OpDel = new MovtosInvReg(MatParam, db);
             return OpDel.DeleteInventarioMov();
         }
 
@@ -320,7 +314,7 @@ namespace GAFE
         {
             MatParam = new object[1, 2];
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
-            RegCatInventarioMov OpDel = new RegCatInventarioMov(MatParam, db);
+            MovtosInvReg OpDel = new MovtosInvReg(MatParam, db);
             return OpDel.DelRegCerosSql();
         }
 
@@ -328,7 +322,7 @@ namespace GAFE
         public SqlDataAdapter ListarInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             CargaParametroMat();
-            RegCatInventarioMov OpLst = new RegCatInventarioMov(db);
+            MovtosInvReg OpLst = new MovtosInvReg(db);
             return OpLst.ListInventarioMovtos( CodProve,  CodAlm,  CodTipoMov, FIni, FFin);
         }
 
@@ -337,7 +331,7 @@ namespace GAFE
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
-            RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
+            MovtosInvReg Afe = new MovtosInvReg(MatParAfec, db);
             return Afe.AfectaCostosSql(_CveTipoMov,Op);
         }
 
@@ -346,7 +340,7 @@ namespace GAFE
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
-            RegCatInventarioMov Afe = new RegCatInventarioMov(MatParAfec, db);
+            MovtosInvReg Afe = new MovtosInvReg(MatParAfec, db);
             return Afe.AfectaExistenciasSql(_EntSal, Op);
         }
 
@@ -355,7 +349,7 @@ namespace GAFE
         {
             MatParam = new object[1, 2];
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
-            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParam, db);
+            MovtosInvReg OpEdit = new MovtosInvReg(MatParam, db);
             Datos = OpEdit.RegistroActivo();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
@@ -397,7 +391,7 @@ namespace GAFE
         {
             CargaParamMatAlma();
 
-            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParamAlma, db);
+            MovtosInvReg OpEdit = new MovtosInvReg(MatParamAlma, db);
             Datos = OpEdit.GetParamAlma();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
@@ -417,7 +411,7 @@ namespace GAFE
             object[,] MatParam2 = new object[2, 2];
             MatParam2[0, 0] = "NoMovimiento"; MatParam2[0, 1] = NoMovimiento;
             MatParam2[1, 0] = "IdDoc"; MatParam2[1, 1] = DocOrigen;
-            RegCatInventarioMov OpRadd2 = new RegCatInventarioMov(MatParam2, db);
+            MovtosInvReg OpRadd2 = new MovtosInvReg(MatParam2, db);
             int rsp = OpRadd2.AddPartMigraDoc();
             return rsp;
         }
@@ -427,7 +421,7 @@ namespace GAFE
         { //Obtenemos el IdMov y TipoMov de acuerdo al DocOrigen
             MatParam = new object[1, 2];
             MatParam[0, 0] = "DocOrigen"; MatParam[0, 1] = DocOrigen;
-            RegCatInventarioMov OpEdit = new RegCatInventarioMov(MatParam, db);
+            MovtosInvReg OpEdit = new MovtosInvReg(MatParam, db);
             Datos = OpEdit.GetIdMov();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
@@ -440,25 +434,21 @@ namespace GAFE
 
         }
 
+        public void GetRegMovTraspaso()
+        {//Obtenemos el IdMov del registro del Traspaso
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
+            MovtosInvReg OpEdit = new MovtosInvReg(MatParam, db);
+            Datos = OpEdit.GetRegMovTraspaso();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+            NoMovimiento = ObjA[0].ToString();
+        }
 
 
-        /*
-            public SqlDataAdapter BuscaInventarioMov(string buscar)
-                {
-                    //
-                     MatParam = new object[4, 2];
-                     MatParam[0, 0] = "CodTipoMov"; MatParam[0, 1] = buscar;
-                     MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
-                     MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
-                     MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
-                     RegCatInventarioMov OpBsq = new RegCatInventarioMov(MatParam);/
 
-
-                    //
-                    RegCatInventarioMov OpBsq = new RegCatInventarioMov(db);
-                    return OpBsq.BuscaInventarioMov(buscar);
-                }
-        */
 
         private void CargaParametroMat()
         {

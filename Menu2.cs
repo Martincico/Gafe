@@ -170,7 +170,7 @@ namespace GAFE
 
         private void OpMovInv_Click(object sender, EventArgs e)
         {
-            frmLstInventarioMovtos fm = new frmLstInventarioMovtos(db, user, NewColor);
+            MovtosInvLst fm = new MovtosInvLst(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 

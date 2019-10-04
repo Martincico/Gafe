@@ -115,7 +115,7 @@ namespace GAFE
             clsCfgDocumento cd = new clsCfgDocumento(CveDoc, db);
             ConfigDoc = cd.ConfigDoc();
 
-            idmovimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador), user.FecServer);
+            idmovimiento = rq.AgregarDocEnBlanco(5000, user.FecServer);
             if (!idmovimiento.Equals(""))
             {
                 this.KeyDown += new KeyEventHandler(this.OnKeyDown);
@@ -586,8 +586,8 @@ namespace GAFE
         {
             DocPuiRequisiciones sRq = new DocPuiRequisiciones(db);
             SetValues(sRq);
-            int _fol = 5000;
-            string _alm = "5000";
+            int _fol = int.Parse(ConfigDoc.Foliador); //5000; // 
+            string _alm = "";//"5000";
             string _ser = "";
             int rsp = 0;
 
@@ -596,7 +596,7 @@ namespace GAFE
                 if (ConfigDoc.AfectaInventario == 1)
                 {
                     string strprov = Convert.ToString(cboCliente.SelectedValue);
-                    frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, null, "MINV", user);
+                    MovtosInvRegistro Ventana = new MovtosInvRegistro(db, null, "MINV", user);
 
                     rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, idmovimiento, user.AlmacenUsa);
                     if (rsp != 0)
@@ -626,7 +626,7 @@ namespace GAFE
                     ResetControles(0);
 
                     DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-                    idmovimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador), user.FecServer);
+                    idmovimiento = rq.AgregarDocEnBlanco(5000, user.FecServer);
                     if (!idmovimiento.Equals(""))
                     {
                         this.KeyDown += new KeyEventHandler(this.OnKeyDown);

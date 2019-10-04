@@ -14,15 +14,14 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmRegInventarioMovtos : MetroForm
+    public partial class MovtosInvRegistro : MetroForm
     {
-        private int opcion, folMovto;
-
+        private int opcion ;
+        private String folMovto;
         private SqlDataAdapter DatosTbl;
 
         private String Modulo = "Minv";
         private MsSql db = null;
-        private String Foliador = "1";
 
         public DatCfgUsuario user;
 
@@ -45,12 +44,13 @@ namespace GAFE
 
         public clsStiloTemas StiloColor;
 
-        public frmRegInventarioMovtos()
+        public MovtosInvRegistro()
         {
             InitializeComponent();
         }
 
-        public frmRegInventarioMovtos(MsSql Odat, int Op, String TipoDocInv, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public MovtosInvRegistro(MsSql Odat, int Op, String TipoDocInv, DatCfgUsuario DatUsr, clsStiloTemas NewColor,
+                                 String folMvto)
         {
             InitializeComponent();
             opcion = Op;
@@ -61,39 +61,29 @@ namespace GAFE
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            pui.keyNoMovimiento = Foliador;
-            pui.cmpFechaMovimiento = user.FecServer;
+            lblFecha.Text = Convert.ToString(user.FecServer);
 
-            lblFecha.Text = Convert.ToString(pui.cmpFechaMovimiento);
-            //PENDIENTE Falta agregar los datos del almacen del usuario
-
-            folMovto = pui.AgregarBlanco();
             OcultTitulos(false);
             OpcionControles(true);
 
-            if (folMovto >= 1)
-              {
-                LleCboClaseMov();
-                LlecboAlmaOri(user.AlmacenUsa);
-                OcultProvee(false);
-                OcultAlmDest(false);
-            }
-            else
-            {
-                MessageBoxAdv.Show("Movimiento Inventario: Ha ocurrido un error.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            LleCboClaseMov();
+            LlecboAlmaOri(user.AlmacenUsa);
+            OcultProvee(false);
+            OcultAlmDest(false);
+
+            folMovto = folMvto;
+
         }
 
         //Para Editar
-        public frmRegInventarioMovtos(MsSql Odat, clsStiloTemas NewColor, int Op, String TipoDocInv, String Cod)
+        public MovtosInvRegistro(MsSql Odat, clsStiloTemas NewColor, int Op, String TipoDocInv, String Cod)
         {
             InitializeComponent();
             opcion = Op;
             db = Odat;
             StiloColor = NewColor;
 
-            folMovto = Convert.ToInt32(Cod);
+            folMovto = Cod;
 
             LleCboClaseMov();
             LlenaGridViewPart();
@@ -109,7 +99,7 @@ namespace GAFE
         }
 
         //Para insertar registro relacionado de Documentos
-        public frmRegInventarioMovtos(MsSql Odat, clsStiloTemas NewColor,  String TipoDocInv, DatCfgUsuario DatUsr)
+        public MovtosInvRegistro(MsSql Odat, clsStiloTemas NewColor,  String TipoDocInv, DatCfgUsuario DatUsr)
         {
             InitializeComponent();
             db = Odat;
@@ -117,10 +107,6 @@ namespace GAFE
             user = DatUsr;
             OcultProvee(true);
         }
-
-
-
-
 
         private void frmRegInventarioMovtos_KeyDown(object sender, KeyEventArgs e)
         {
@@ -186,16 +172,16 @@ namespace GAFE
             int rsp = -1;
             //strCboTipoMovInv == String _cveinvmt = Convert.ToString(cboTipoMovtos.SelectedValue);
             String _AlmO  = Convert.ToString(cboAlmaOri.SelectedValue);
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            String FolMov = pui.GetFolio(CfgMovInv.CveFoliador);//_Foliador
-            String DocM = strCboTipoMovInv + _AlmO + folMovto;
+            MovtosInvPui pui = new MovtosInvPui(db);
+            //String FolMov = pui.GetFolio(CfgMovInv.CveFoliador);//_Foliador
+            //String DocM = strCboTipoMovInv + _AlmO + folMovto;
             pui.keyNoMovimiento = Convert.ToString(folMovto);
             pui.cmpCveAlmacenMov = _AlmO;
             pui.cmpCveTipoMov = strCboTipoMovInv;
             pui.cmpEntSal = CfgMovInv.EntSal;//_EntSal
-            pui.cmpNoDoc = FolMov;
+            //pui.cmpNoDoc = FolMov;
             pui.cmpModulo = Modulo;
-            pui.cmpDocumento = DocM;
+            //pui.cmpDocumento = DocM;
             pui.cmpDescuento = Convert.ToDouble(txtDescuento.Text);
             pui.cmpTotalDscto = Convert.ToDouble(txtTotDesc.Text);
             pui.cmpTIva = Convert.ToDouble(txtIva.Text);
@@ -224,7 +210,7 @@ namespace GAFE
                 pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
             }
             db.IniciaTrans();
-            if (pui.AgregarInvMaster(DcOrigen) >= 1)
+            if (pui.AgregarInvMaster(int.Parse(CfgMovInv.CveFoliador),CfgMovInv.CveTipoMov,opcion, DcOrigen) >= 1)
             {
                 if (pui.AgregarInvDet() >= 1)
                 {
@@ -240,22 +226,23 @@ namespace GAFE
                     {
                         if (CfgMovInv.EsTraspaso == 1) //_EsTraspaso
                         {
-                            pui.keyNoMovimiento = Foliador;
-                            pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
+                            //pui.keyNoMovimiento = "1";
+                            //pui.cmpFechaMovimiento = Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", DateTime.Now));
 
-                            int FolMovMaster = pui.AgregarBlanco();
+                            String FolMovMaster = pui.AgregarBlanco(1,user.FecServer);
 
-                            if (FolMovMaster >= 1)
+                            if (FolMovMaster.CompareTo("Error") != 0) 
                             {
-                                String FolMovDoc = pui.GetFolio(CfgMovInvRel.CveFoliador); //_FoliadorRel
+                                //String FolMovDoc = pui.GetFolio(CfgMovInvRel.CveFoliador); //_FoliadorRel
                                 _AlmO = Convert.ToString(cboAlmaDest.SelectedValue);
 
                                 pui.keyNoMovimiento = Convert.ToString(FolMovMaster);
                                 pui.cmpCveAlmacenMov = _AlmO;
                                 pui.cmpCveTipoMov = CfgMovInvRel.CveTipoMov;//_CveTipoMovRel
                                 pui.cmpEntSal = CfgMovInvRel.EntSal;//_EntSalRel
-                                pui.cmpNoDoc = FolMovDoc;
-                                pui.cmpDocumento = strCboTipoMovInv + _AlmO + FolMovMaster;
+                                pui.cmpDocTra = pui.cmpDocumento;
+                                //pui.cmpNoDoc = FolMovDoc;
+                                //pui.cmpDocumento = strCboTipoMovInv + _AlmO + FolMovMaster;
                                 pui.cmpCveAlmacenDes = "";
                                 pui.cmpCveTipoMovDest = "";
                                 pui.cmpEntSalDest = "";
@@ -272,12 +259,11 @@ namespace GAFE
                                 pui.cmpCveUsarioCaptu = user.Usuario;
 
                                 pui.cmpNoMovtoTra = Convert.ToString(folMovto);
-                                pui.cmpDocTra = DocM;
-                                if (pui.AgregarInvMaster("") >= 1)
+                                if (pui.AgregarInvMaster(int.Parse(CfgMovInvRel.CveFoliador),CfgMovInvRel.CveTipoMov,opcion, "") >= 1)
                                 {
                                     PuiAddPartidasMovInv PuiPart = new PuiAddPartidasMovInv(db);
                                     PuiPart.keyNoMovimiento = Convert.ToString(folMovto);
-                                    PuiPart.keyNoPartida = FolMovMaster;
+                                    PuiPart.cmpNoMovtoTra = FolMovMaster;
 
                                     if (PuiPart.MovParttoAlma() >= 1)
                                     {
@@ -289,7 +275,7 @@ namespace GAFE
                                             rpp = pui.AfectaCostos(CfgMovInvRel.CveTipoMov, 1); //_CveTipoMovRel
                                         }
 
-                                        if (pui.AfectaExistencias(CfgMovInvRel.EntSal, 1) >= 1 && rpp == 1) //_EntSalRel
+                                        if (pui.AfectaExistencias(CfgMovInvRel.EntSal, 1) >= 1 && rpp >= 1) //_EntSalRel
                                         {
                                             if (pui.AgregarInvDet() >= 1)
                                                 rsp = 0;//Guardamos
@@ -345,14 +331,17 @@ namespace GAFE
                     //String CodTipMo = Convert.ToString(cboTipoMovtos.SelectedValue);
                     clsCfgTipoMovInv cd = new clsCfgTipoMovInv(strCboTipoMovInv, db);
                     CfgMovInv = cd.ConfigMovInv();
-
+                    lblAlmaOri.Text = "Almacén Origen";
+                    lblAlmaDest.Text = "Almacén Destino";
                     switch (strCboTipoMovInv)
                     {
-                        case "003":
+                        case "003"://Entrada pr traspaso
                                 clsCfgTipoMovInv cdR = new clsCfgTipoMovInv(CfgMovInv.TipoMovRel, db);
                                 CfgMovInvRel = cdR.ConfigMovInv();
+                                lblAlmaDest.Text = "Almacén Origen";
+                                lblAlmaOri.Text = "Almacén Destino";
                             break;
-                        case "502":
+                        case "502"://Salida por traspaso
                                 clsCfgTipoMovInv cdRr = new clsCfgTipoMovInv(CfgMovInv.TipoMovRel, db);
                                 CfgMovInvRel = cdRr.ConfigMovInv(); break;
                         case "001":
@@ -440,7 +429,7 @@ namespace GAFE
         {
             if(ValidaTipoMov()==1)
             {
-                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, StiloColor,user, Modulo, Convert.ToString(folMovto), 1,
+                MovtosInvPart Addp = new MovtosInvPart(db, StiloColor,user, Modulo, Convert.ToString(folMovto), 1,
                     CfgMovInv.CveTipoMov, CfgMovInv.SugiereCosto, CfgMovInv.EditaCosto, CfgMovInv.MuestraCosto, //_CveTipoMov, _SugiereCosto, _EditaCosto, _MuestraCosto,
                     CfgMovInv.SolicitaCosto, CfgMovInv.EsTraspaso, CfgMovInv.EntSal, CfgMovInv.CalculaIva,  //_SolicitaCosto, _EsTraspaso, _EntSal,_CalculaIva, 
                     _AlmNumRojo,_AlmNumRojoDest,0);
@@ -622,7 +611,7 @@ namespace GAFE
             try
             {
                 int Cp = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
-                AddPartidaInvMovtos Addp = new AddPartidaInvMovtos(db, StiloColor,user, Modulo, Convert.ToString(folMovto), 2,
+                MovtosInvPart Addp = new MovtosInvPart(db, StiloColor,user, Modulo, Convert.ToString(folMovto), 2,
                         CfgMovInv.CveTipoMov, CfgMovInv.SugiereCosto, CfgMovInv.EditaCosto, CfgMovInv.MuestraCosto,
                         CfgMovInv.SolicitaCosto, CfgMovInv.EsTraspaso, CfgMovInv.EntSal, CfgMovInv.CalculaIva,
                         _AlmNumRojo, _AlmNumRojoDest, Cp);
@@ -650,7 +639,7 @@ namespace GAFE
         
         private void CargaParamAlma(String CveAlm)
         {
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            MovtosInvPui pui = new MovtosInvPui(db);
             pui.cmpCveAlmacenMov = CveAlm;
             pui.GetParamAlma();
 
@@ -741,7 +730,7 @@ namespace GAFE
                             }
                             if (!rp)
                             {
-                                PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
+                                MovtosInvPui InvMast = new MovtosInvPui(db);
                                 InvMast.keyNoMovimiento = Convert.ToString(folMovto);
                                 InvMast.EliminaInventarioMov();
                             }
@@ -763,7 +752,7 @@ namespace GAFE
 
         private void CargaParamAlmaDest(String CveAlm)
         {
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            MovtosInvPui pui = new MovtosInvPui(db);
             pui.cmpCveAlmacenMov = CveAlm;
             pui.GetParamAlma();
 
@@ -811,7 +800,7 @@ namespace GAFE
 
         private void GetRegistro()
         {
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
+            MovtosInvPui pui = new MovtosInvPui(db);
 
             pui.keyNoMovimiento = Convert.ToString(folMovto);
             pui.EditarInventarioMov();
@@ -837,15 +826,15 @@ namespace GAFE
         public int MigrarDocDetToMovDet(String MInv, String CveProv, String DcOrigen, String Alm)
         {
             int rsp = -1;
-            PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
-            pui.keyNoMovimiento = Foliador;
-            pui.cmpFechaMovimiento = user.FecServer;
+            MovtosInvPui pui = new MovtosInvPui(db);
+            //pui.keyNoMovimiento = "1";
+            //pui.cmpFechaMovimiento = user.FecServer;
 
-            lblFecha.Text = Convert.ToString(pui.cmpFechaMovimiento);
+            lblFecha.Text = Convert.ToString(user.FecServer);
 
-            folMovto = pui.AgregarBlanco();
+            folMovto = pui.AgregarBlanco(1, user.FecServer);
 
-            if (folMovto >= 1)
+            if (folMovto.CompareTo("Error") != 0)//if (movimiento.CompareTo("Error") != 0)
             {
                 LlecboAlmaOri(Alm);
                 OcultProvee(false);

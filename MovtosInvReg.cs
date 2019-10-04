@@ -11,13 +11,13 @@ using System.Windows.Forms;
 
 namespace GAFE
 {
-    class RegCatInventarioMov
+    class MovtosInvReg
     {
         private MsSql db = null;
         private SqlParameter[] ArrParametros;
         //private string ClaveReg;
 
-        public RegCatInventarioMov(object[,] Param, MsSql Odat)
+        public MovtosInvReg(object[,] Param, MsSql Odat)
         {
             ArrParametros = new SqlParameter[Param.GetUpperBound(0) + 1];
             for (int j = 0; j < Param.GetUpperBound(0) + 1; j++)
@@ -26,21 +26,21 @@ namespace GAFE
             db = Odat;
         }
 
-        public RegCatInventarioMov(MsSql Odat) { db = Odat; }
+        public MovtosInvReg(MsSql Odat) { db = Odat; }
 
         public int AddRegBlanco()
         {
-
             string sql = "Insert into Inv_MovtosMaster (NoMovimiento, FechaMovimiento) " +
                          "values( @NoMovimiento,@FechaMovimiento)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
+        /*
         public String GetFolioSql(String Fol)
         {
             return db.GetFolioMov(Int32.Parse(Fol), "");
         }
-
+        */
         public int AddRegInvMaster(String DcOrigen)
         {
             string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
@@ -147,12 +147,6 @@ namespace GAFE
 
         public int AfectaExistenciasSql(String _EntSal, int Op)
         {
-
-
-
-
-
-
             String Opera = (Op == 1) ? (_EntSal.Equals("E")) ? "+" : "-" : (_EntSal.Equals("E")) ? "-" : "+"; //Trae 1 cuando es registro nuevo, 0 cuando se quiere reinvertir
 
             string sql = " UPDATE Inv_Existencias SET  Inv_Existencias.Cantidad = ISNULL(t1.Cantidad,0) " + Opera + " Rsp.Cant" +
@@ -203,7 +197,7 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "SELECT MM.NoMovimiento,MM.Documento,MM.FechaMovimiento,Alm.Descripcion AS Almacen, " +
                          "       TMvto.Descripcion AS TipoMov, Prov.Nombre AS Proveedor, MM.Cancelado,MM.TotalDoc, " +
-                         "        MM.CveTipoMov,MM.NoMovtoTra " +
+                         "        MM.CveTipoMov,MM.NoMovtoTra,MM.DocTra, MM.DocOrigen " +
                          " FROM Inv_MovtosMaster MM " +
                          " INNER JOIN Inv_CatAlmacenes Alm ON Alm.ClaveAlmacen = mm.CveAlmacenMov " +
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
@@ -231,6 +225,16 @@ namespace GAFE
                          "        '','','','','' " +
                          " FROM dbo.DocDet AS DD WHERE DD.idMov = @IdDoc";
             return db.InsertarRegistro(sql, ArrParametros);
+        }
+
+        public SqlDataAdapter GetRegMovTraspaso()
+        {//Obtenemos el IdMov del registro del Traspaso
+            SqlDataAdapter dt = null;
+            string Sql = "Select MM.NoMovimiento "+
+                         "from Inv_MovtosMaster AS MM " +
+                         "where NoMovtoTra = @NoMovimiento";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
         }
 
 

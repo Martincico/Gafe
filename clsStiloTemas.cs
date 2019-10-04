@@ -162,20 +162,19 @@ namespace GAFE
                 // Fondo de color de min y max 
                 color.SystemButtonBackground = ColorTranslator.FromHtml(HoverEncabezado);
 
-                // To set the Close Button back color
-                //color.CloseButtonBackground = ColorTranslator.FromHtml("#e81123");
+            // To set the Close Button back color
+            //color.CloseButtonBackground = ColorTranslator.FromHtml("#e81123");
 
-                //Color de fondo d los submenu
-                //color.DropDownBackColor = ColorTranslator.FromHtml(HoverEncabezado);
+            //Color de fondo d los submenu
+            //color.DropDownBackColor = ColorTranslator.FromHtml(HoverEncabezado);
 
             //TabGroup Customization
 
-                // To set the TabGroup back color
-                //color.TabGroupBackColor = ColorTranslator.FromHtml("#F0E700");
+            // To set the TabGroup back color
+            //color.TabGroupBackColor = ColorTranslator.FromHtml("#F0E700");
 
-                // To set the TabGroup fore color
-                //color.TabGroupForeColor = ColorTranslator.FromHtml("#F0E700");
-
+            // To set the TabGroup fore color
+            //color.TabGroupForeColor = ColorTranslator.FromHtml("#F0E700");
 
             return color;
         }

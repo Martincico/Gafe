@@ -105,7 +105,7 @@ namespace GAFE
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            string movimiento = rq.AgregarDocEnBlanco(int.Parse(ConfigDoc.Foliador),user.FecServer);
+            string movimiento = rq.AgregarDocEnBlanco(5000, user.FecServer);
             //llamar la forma de regdoc
             if (movimiento.CompareTo("Error") != 0)
             {
@@ -171,7 +171,7 @@ namespace GAFE
 
                     if (ConfigDoc.AfectaInventario == 1)
                     {
-                        frmLstInventarioMovtos Ventana = new frmLstInventarioMovtos(db, user, StiloColor);
+                        MovtosInvLst Ventana = new MovtosInvLst(db, user, StiloColor);
                         int Rsp = Ventana.DelMigraMov(idMov);
                         String err = "";
                         if (Rsp < 0)
@@ -344,25 +344,39 @@ namespace GAFE
                 {
                     string IdDocOrg = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                     string strprov = grdView[11, grdView.CurrentRow.Index].Value.ToString();
-                    frmRegInventarioMovtos Ventana = new frmRegInventarioMovtos(db, StiloColor,"MINV", user);
-                
-                    int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDocOrg, Convert.ToString(cboAlmacen.SelectedValue));
-                    if (rsp != 0)
+                    MovtosInvRegistro Ventana = new MovtosInvRegistro(db, StiloColor,"MINV", user);
+                    String cboalm = Convert.ToString(cboAlmacen.SelectedValue);
+                    if (!cboalm.Equals(""))
                     {
-                        string msj = "";
-                        switch (rsp)
+                        if (!cboalm.Equals("0"))
                         {
-                            case 1: msj = "Al guardar cabecero"; break;
-                            case 2: msj = "Al guardar detalle partidas"; break;
-                            case 3: msj = "Al afectar existencias"; break;
-                            case 4: msj = "Traspaso: Registro en blanco"; break;
-                            case 5: msj = "Traspaso: Al guardar cabecero"; break;
-                            case 6: msj = "Traspaso: Al guardar detalle partidas"; break;
-                            case 7: msj = "Traspaso: Al afectar existencias"; break;
-                            case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
-                            default: msj = "Error desconocido"; break;
+                            int rsp = Ventana.MigrarDocDetToMovDet(ConfigDoc.CveTipoMov, strprov, IdDocOrg, cboalm);
+                            if (rsp != 0)
+                            {
+                                string msj = "";
+                                switch (rsp)
+                                {
+                                    case 1: msj = "Al guardar cabecero"; break;
+                                    case 2: msj = "Al guardar detalle partidas"; break;
+                                    case 3: msj = "Al afectar existencias"; break;
+                                    case 4: msj = "Traspaso: Registro en blanco"; break;
+                                    case 5: msj = "Traspaso: Al guardar cabecero"; break;
+                                    case 6: msj = "Traspaso: Al guardar detalle partidas"; break;
+                                    case 7: msj = "Traspaso: Al afectar existencias"; break;
+                                    case 8: msj = "Traspaso: Al actualizar detalle partidas"; break;
+                                    default: msj = "Error desconocido"; break;
+                                }
+                                MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
-                        MessageBoxAdv.Show(msj, "Error al guardar el registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        else
+                        {
+                            MessageBoxAdv.Show("No se puede aplicar para el almacén TODOS", "Error al migrar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBoxAdv.Show("Debe seleccionar almacén correcto", "Error al migrar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
@@ -382,15 +396,15 @@ namespace GAFE
             clsCfgDocumento Ccd = new clsCfgDocumento(ConfigDoc.DocRel, db);
             clsCfgDocumento CfgDocTrans = Ccd.ConfigDoc();
             DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            string movimiento = rq.AgregarDocEnBlanco(int.Parse(CfgDocTrans.Foliador), user.FecServer);
+            string movimiento = rq.AgregarDocEnBlanco(5000, user.FecServer);
             rq.keyidMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
             if (movimiento.CompareTo("Error") != 0)
             {
                 rq.keyidMovNew = movimiento;
                 rq.cmpCveDoc = ConfigDoc.DocRel;
                 rq.cmpDocOrigen = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                int _fol = 5000;
-                string _alm = "5000";
+                int _fol = int.Parse(ConfigDoc.Foliador); //5000; // 
+                string _alm = "";// "5000";
                 string _ser = "";
                 rq.cmpSerie = _ser;
                 if (CfgDocTrans.UsaSerie == 1)

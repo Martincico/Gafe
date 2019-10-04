@@ -1,6 +1,6 @@
 ﻿namespace GAFE
 {
-    partial class frmLstInventarioMovtos
+    partial class MovtosInvLst
     {
         /// <summary>
         /// Required designer variable.

@@ -117,10 +117,16 @@ namespace GAFE
 
         private void cmdCancelar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+        /*
+        private void cmdCancelar_Click(object sender, EventArgs e)
+        {
             LimpiarControles();
             OpcionControles(true);
             this.Close();
         }
+        */
 
         private void Agregar()
         {
@@ -214,30 +220,37 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveTipoMov.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
+            }
+
+            String val = Convert.ToString(cboTipoMov.SelectedValue);
+            if (val.Equals(""))
+            {
+                MessageBoxAdv.Show("Módulo: No puede ir vacío.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dv = false;
             }
 
             return dv;
@@ -271,11 +284,6 @@ namespace GAFE
             txtBotonDocRel.Text = "";
             cboDocRel.SelectedValue = "";
 
-        }
-
-        private void cmdCancelar_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void LleCboTipoMov()
@@ -389,5 +397,6 @@ namespace GAFE
         {
 
         }
+
     }
 }

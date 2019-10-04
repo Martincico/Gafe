@@ -177,6 +177,12 @@
     <Compile Include="fmtoDocumentos.Designer.cs">
       <DependentUpon>fmtoDocumentos.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatParamSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatParamSystem.designer.cs">
+      <DependentUpon>frmCatParamSystem.cs</DependentUpon>
+    </Compile>
     <Compile Include="LstCatViewLstPrecio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,11 +324,11 @@
     <Compile Include="frmCatImpuestos.designer.cs">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLstInventarioMovtos.cs">
+    <Compile Include="MovtosInvLst.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLstInventarioMovtos.designer.cs">
-      <DependentUpon>frmLstInventarioMovtos.cs</DependentUpon>
+    <Compile Include="MovtosInvLst.designer.cs">
+      <DependentUpon>MovtosInvLst.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatLineas.cs">
       <SubType>Form</SubType>
@@ -390,11 +396,11 @@
     <Compile Include="frmLstArticulos.Designer.cs">
       <DependentUpon>frmLstArticulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPartidaInvMovtos.cs">
+    <Compile Include="MovtosInvPart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPartidaInvMovtos.designer.cs">
-      <DependentUpon>AddPartidaInvMovtos.cs</DependentUpon>
+    <Compile Include="MovtosInvPart.designer.cs">
+      <DependentUpon>MovtosInvPart.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegTipoMovtos.cs">
       <SubType>Form</SubType>
@@ -402,11 +408,11 @@
     <Compile Include="frmRegTipoMovtos.designer.cs">
       <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegInventarioMovtos.cs">
+    <Compile Include="MovtosInvRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegInventarioMovtos.Designer.cs">
-      <DependentUpon>frmRegInventarioMovtos.cs</DependentUpon>
+    <Compile Include="MovtosInvRegistro.Designer.cs">
+      <DependentUpon>MovtosInvRegistro.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRepExistencia.cs">
       <SubType>Form</SubType>
@@ -436,6 +442,7 @@
     <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatCfgDocSerie.cs" />
     <Compile Include="PuiCatCfgDocumentos.cs" />
+    <Compile Include="PuiCatParamSystem.cs" />
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
@@ -452,7 +459,7 @@
     <Compile Include="PuiCatAlmacenes.cs" />
     <Compile Include="PuiCatEmpleados.cs" />
     <Compile Include="PuiCatLineas.cs" />
-    <Compile Include="PuiCatInventarioMov.cs" />
+    <Compile Include="MovtosInvPui.cs" />
     <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="PuiSegAccesos.cs" />
@@ -462,6 +469,7 @@
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatCfgDocSerie.cs" />
     <Compile Include="RegCatCfgDocumentos.cs" />
+    <Compile Include="RegCatParamSystem.cs" />
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
@@ -478,7 +486,7 @@
     <Compile Include="RegCatAlmacen.cs" />
     <Compile Include="RegCatEmpleado.cs" />
     <Compile Include="RegCatLinea.cs" />
-    <Compile Include="RegCatInventarioMov.cs" />
+    <Compile Include="MovtosInvReg.cs" />
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
     <Compile Include="RegSegAccesos.cs" />
@@ -495,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fmtoDocumentos.resx">
       <DependentUpon>fmtoDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatParamSystem.resx">
+      <DependentUpon>frmCatParamSystem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LstCatViewLstPrecio.resx">
       <DependentUpon>LstCatViewLstPrecio.cs</DependentUpon>
@@ -568,8 +579,8 @@
     <EmbeddedResource Include="frmCatImpuestos.resx">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLstInventarioMovtos.resx">
-      <DependentUpon>frmLstInventarioMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="MovtosInvLst.resx">
+      <DependentUpon>MovtosInvLst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatLineas.resx">
       <DependentUpon>frmCatLineas.cs</DependentUpon>
@@ -601,14 +612,14 @@
     <EmbeddedResource Include="frmLstArticulos.resx">
       <DependentUpon>frmLstArticulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPartidaInvMovtos.resx">
-      <DependentUpon>AddPartidaInvMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="MovtosInvPart.resx">
+      <DependentUpon>MovtosInvPart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegTipoMovtos.resx">
       <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegInventarioMovtos.resx">
-      <DependentUpon>frmRegInventarioMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="MovtosInvRegistro.resx">
+      <DependentUpon>MovtosInvRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRepExistencia.resx">
       <DependentUpon>frmRepExistencia.cs</DependentUpon>

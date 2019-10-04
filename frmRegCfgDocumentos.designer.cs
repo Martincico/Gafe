@@ -71,7 +71,7 @@
             this.cmdCancelar.Text = "Cancelar";
             this.cmdCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdCancelar.UseVisualStyleBackColor = false;
-            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click_1);
+            this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
             // 
             // cmdAceptar
             // 

@@ -327,7 +327,8 @@ namespace GAFE
 
         public int MovParttoAlma()
         {
-            CargaParamMatKeys();
+            MatParamKeys[0, 0] = "NoMovimiento"; MatParamKeys[0, 1] = NoMovimiento;
+            MatParamKeys[1, 0] = "NoMovtoTra"; MatParamKeys[1, 1] = NoMovtoTra;
 
             RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys,db);
             return OpEdit.MovParttoAlmaSql();
@@ -390,27 +391,6 @@ namespace GAFE
 
         }
 
-
-        /*
-                public int ActualizaPartida()
-                {
-                    CargaParametroMat();
-                    RegAddPartidasMovInv OpUp = new RegAddPartidasMovInv(MatParam,db);
-                    return OpUp.UpdatePartida();
-
-                }
-
-
-
-
-                
-
-                public SqlDataAdapter BuscaPartida(string buscar)
-                {
-                    RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(db);
-                    return OpBsq.BuscaPartida(buscar);
-                }
-        */
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;

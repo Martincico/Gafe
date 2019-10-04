@@ -147,7 +147,7 @@ namespace GAFE
             string Sql = " SELECT LstPD.CveArticulo AS 'Articulo',Art.Descripcion,Art.Modelo,LstPD.Precio,LstPD.FechaModifacion " +
                          " FROM Inv_LstPreciosDet AS LstPD " +
                          " INNER JOIN dbo.inv_CatArticulos AS Art ON LstPD.CveArticulo = Art.CveArticulo " +
-                         " WHERE A.Estatus = 1 AND LstpD.CveLstPrecio  = @CveLstPrecio "+ Wh;
+                         " WHERE Art.Estatus = 1 AND LstpD.CveLstPrecio  = @CveLstPrecio "+ Wh;
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }

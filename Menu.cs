@@ -50,7 +50,12 @@ namespace GAFE
             NewColor.FontColor = reg[2].ToString();
 
             this.ribMenu.Office2016ColorTable.Add(NewColor.StiloTeam());
+            this.PieStatus.MetroColor = ColorTranslator.FromHtml(NewColor.Encabezado);
+            this.PieStatus.ForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
 
+            this.lblUsuario.Text = user.UsrName;
+            this.lblNombre.Text = user.Usuario;
+            //this.PieStatus.stat
 
         }
 
@@ -267,7 +272,7 @@ namespace GAFE
 
         private void MnuMovInventarios_Click(object sender, EventArgs e)
         {
-            frmLstInventarioMovtos fm = new frmLstInventarioMovtos(db, user, NewColor);
+            MovtosInvLst fm = new MovtosInvLst(db, user, NewColor);
             Nav(fm, panelContenedor);
         }
 
@@ -348,6 +353,12 @@ namespace GAFE
         private void CatImpuesto_Click(object sender, EventArgs e)
         {
             frmCatImpuestos fm = new frmCatImpuestos(db, user.CodPerfil);
+            Nav(fm, panelContenedor);
+        }
+
+        private void MnuParamSystem_Click(object sender, EventArgs e)
+        {
+            frmCatParamSystem fm = new frmCatParamSystem(db, user.CodPerfil);
             Nav(fm, panelContenedor);
         }
     }
