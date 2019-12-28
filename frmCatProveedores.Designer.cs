@@ -70,7 +70,7 @@
             // 
             // cmdCancelar
             // 
-            this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,7 +85,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Aceptar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(569, 402);
@@ -199,7 +199,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 18);
             this.label3.TabIndex = 1308;
-            this.label3.Text = "Direccion";
+            this.label3.Text = "Dirección";
             // 
             // label4
             // 
@@ -308,7 +308,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 18);
             this.label8.TabIndex = 1320;
-            this.label8.Text = "Telefono 1";
+            this.label8.Text = "Teléfono 1";
             // 
             // txtTel2
             // 
@@ -328,7 +328,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 18);
             this.label9.TabIndex = 1322;
-            this.label9.Text = "Telefono 2";
+            this.label9.Text = "Teléfono 2";
             // 
             // txtMail2
             // 
@@ -482,6 +482,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;

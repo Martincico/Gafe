@@ -30,10 +30,12 @@ namespace GAFE
         {
             string sql = "Insert into CfgDocumentos (CveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, " +
                          "                          UsaCliente, UsaProveedor, EsInterno, SolicitaAutorizar, " +
-                         "                          AfectaInventario,Estatus,DocRel,txtBotonDocRel) " +
+                         "                          AfectaInventario,Estatus,DocRel,txtBotonDocRel, UsaAlmTmp, " +
+                         "                          UsaAlmDestino,UsaFactura) " +
                          "values(@CveDoc,@Nombre,@CargoAbono,@CveTipoMov,@Foliador,@UsaSerie,@EditaFecha, " +
                          "                          @UsaCliente, @UsaProveedor, @EsInterno,@SolicitaAutorizar, " +
-                         "                          @AfectaInventario,@Estatus, @DocRel,@txtBotonDocRel)";
+                         "                          @AfectaInventario,@Estatus, @DocRel,@txtBotonDocRel,@UsaAlmTmp, " +
+                         "                          @UsaAlmDest, @UsaFactura)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -46,7 +48,9 @@ namespace GAFE
                          "      UsaCliente = @UsaCliente, UsaProveedor = @UsaProveedor," +
                          "      EsInterno = @EsInterno, SolicitaAutorizar =  @SolicitaAutorizar, " +
                          "      AfectaInventario = @AfectaInventario, Estatus= @Estatus," +
-                         "     DocRel = @DocRel,txtBotonDocRel = @txtBotonDocRel " +
+                         "     DocRel = @DocRel,txtBotonDocRel = @txtBotonDocRel," +
+                         "     UsaAlmTmp = @UsaAlmTmp, UsaAlmDestino = @UsaAlmDest," +
+                         "     UsaFactura = @UsaFactura " +
                          " Where CveDoc = @CveDoc";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -71,7 +75,7 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "Select CveDoc,Nombre,CargoAbono,CveTipoMov,Foliador, UsaSerie,EditaFecha, UsaCliente, " +
                          "       UsaProveedor, EsInterno, SolicitaAutorizar, AfectaInventario, Estatus," +
-                         "       DocRel,txtBotonDocRel" +
+                         "       DocRel,txtBotonDocRel, UsaAlmTmp, UsaAlmDestino, UsaFactura" +
                          " FROM CfgDocumentos where CveDoc =@CveDoc";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;

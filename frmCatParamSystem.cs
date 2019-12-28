@@ -19,6 +19,9 @@ namespace GAFE
     public partial class frmCatParamSystem : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int opcion;
         private int idxG;
         private int AcCOPEdit;
@@ -35,13 +38,14 @@ namespace GAFE
         }
 
 
-        public frmCatParamSystem(MsSql Odat, string perfil, int op=1)
+        public frmCatParamSystem(MsSql Odat, DatCfgParamSystem ParamS, string perfil, int op=1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             Perfil = perfil;
-
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -312,7 +316,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtCodParametro.Text))
             {
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "Parámetros del sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);

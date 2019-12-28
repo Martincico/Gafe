@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkSolicitaSucursal = new System.Windows.Forms.CheckBox();
             this.chkInterno = new System.Windows.Forms.CheckBox();
             this.cboCfgCatFoliadores = new System.Windows.Forms.ComboBox();
             this.cboTipoMovRel = new System.Windows.Forms.ComboBox();
@@ -63,6 +64,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.chkSolicitaSucursal);
             this.panel2.Controls.Add(this.chkInterno);
             this.panel2.Controls.Add(this.cboCfgCatFoliadores);
             this.panel2.Controls.Add(this.cboTipoMovRel);
@@ -93,6 +95,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(561, 397);
             this.panel2.TabIndex = 13;
+            // 
+            // chkSolicitaSucursal
+            // 
+            this.chkSolicitaSucursal.AutoSize = true;
+            this.chkSolicitaSucursal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkSolicitaSucursal.Location = new System.Drawing.Point(10, 361);
+            this.chkSolicitaSucursal.Name = "chkSolicitaSucursal";
+            this.chkSolicitaSucursal.Size = new System.Drawing.Size(135, 22);
+            this.chkSolicitaSucursal.TabIndex = 24;
+            this.chkSolicitaSucursal.Text = "Solicita sucursal";
+            this.chkSolicitaSucursal.UseVisualStyleBackColor = true;
+            this.chkSolicitaSucursal.Visible = false;
             // 
             // chkInterno
             // 
@@ -239,7 +253,7 @@
             this.chkEstatus.Checked = true;
             this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEstatus.Location = new System.Drawing.Point(9, 363);
+            this.chkEstatus.Location = new System.Drawing.Point(220, 361);
             this.chkEstatus.Name = "chkEstatus";
             this.chkEstatus.Size = new System.Drawing.Size(67, 22);
             this.chkEstatus.TabIndex = 17;
@@ -375,7 +389,7 @@
             // 
             // cmdCancelar
             // 
-            this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -390,7 +404,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(355, 415);
@@ -406,7 +420,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
@@ -460,5 +474,6 @@
         private System.Windows.Forms.ComboBox cboTipoMovRel;
         private System.Windows.Forms.ComboBox cboCfgCatFoliadores;
         private System.Windows.Forms.CheckBox chkInterno;
+        private System.Windows.Forms.CheckBox chkSolicitaSucursal;
     }
 }

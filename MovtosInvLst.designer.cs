@@ -38,14 +38,14 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lblProveedor = new System.Windows.Forms.Label();
+            this.cboProveedor = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dtFechaFin = new System.Windows.Forms.DateTimePicker();
             this.dtFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.lblAlmaOri = new System.Windows.Forms.Label();
             this.cboAlmaOri = new System.Windows.Forms.ComboBox();
-            this.lblProveedor = new System.Windows.Forms.Label();
-            this.cboProveedor = new System.Windows.Forms.ComboBox();
             this.cmdRestablecer = new System.Windows.Forms.Button();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdImprimir = new System.Windows.Forms.Button();
@@ -87,10 +87,10 @@
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdView.Location = new System.Drawing.Point(4, 135);
+            this.grdView.Location = new System.Drawing.Point(4, 129);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(663, 279);
+            this.grdView.Size = new System.Drawing.Size(663, 287);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
@@ -98,7 +98,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.lblTipoMovtos);
             this.panel1.Controls.Add(this.cboTipoMovtos);
@@ -106,14 +106,14 @@
             this.panel1.Controls.Add(this.txtCodigo);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.lblProveedor);
+            this.panel1.Controls.Add(this.cboProveedor);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtFechaFin);
             this.panel1.Controls.Add(this.dtFechaInicio);
             this.panel1.Controls.Add(this.lblAlmaOri);
             this.panel1.Controls.Add(this.cboAlmaOri);
-            this.panel1.Controls.Add(this.lblProveedor);
-            this.panel1.Controls.Add(this.cboProveedor);
             this.panel1.Controls.Add(this.cmdRestablecer);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
@@ -124,7 +124,7 @@
             // 
             this.lblTipoMovtos.AutoSize = true;
             this.lblTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoMovtos.Location = new System.Drawing.Point(9, 70);
+            this.lblTipoMovtos.Location = new System.Drawing.Point(10, 39);
             this.lblTipoMovtos.Name = "lblTipoMovtos";
             this.lblTipoMovtos.Size = new System.Drawing.Size(108, 16);
             this.lblTipoMovtos.TabIndex = 17;
@@ -134,9 +134,9 @@
             // 
             this.cboTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoMovtos.FormattingEnabled = true;
-            this.cboTipoMovtos.Location = new System.Drawing.Point(141, 67);
+            this.cboTipoMovtos.Location = new System.Drawing.Point(124, 36);
             this.cboTipoMovtos.Name = "cboTipoMovtos";
-            this.cboTipoMovtos.Size = new System.Drawing.Size(264, 24);
+            this.cboTipoMovtos.Size = new System.Drawing.Size(281, 24);
             this.cboTipoMovtos.TabIndex = 18;
             this.cboTipoMovtos.SelectedValueChanged += new System.EventHandler(this.cboTipoMovtos_SelectedValueChanged);
             // 
@@ -144,27 +144,27 @@
             // 
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(264, 96);
+            this.textBox1.Location = new System.Drawing.Point(278, 66);
             this.textBox1.MaxLength = 100;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(84, 22);
+            this.textBox1.Size = new System.Drawing.Size(127, 22);
             this.textBox1.TabIndex = 16;
             // 
             // txtCodigo
             // 
             this.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(141, 96);
+            this.txtCodigo.Location = new System.Drawing.Point(124, 66);
             this.txtCodigo.MaxLength = 100;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(95, 22);
+            this.txtCodigo.Size = new System.Drawing.Size(119, 22);
             this.txtCodigo.TabIndex = 15;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 99);
+            this.label3.Location = new System.Drawing.Point(10, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 16);
             this.label3.TabIndex = 14;
@@ -174,11 +174,31 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(242, 99);
+            this.label4.Location = new System.Drawing.Point(251, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(16, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "a";
+            // 
+            // lblProveedor
+            // 
+            this.lblProveedor.AutoSize = true;
+            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProveedor.Location = new System.Drawing.Point(10, 97);
+            this.lblProveedor.Name = "lblProveedor";
+            this.lblProveedor.Size = new System.Drawing.Size(72, 16);
+            this.lblProveedor.TabIndex = 6;
+            this.lblProveedor.Text = "Proveedor";
+            // 
+            // cboProveedor
+            // 
+            this.cboProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboProveedor.FormattingEnabled = true;
+            this.cboProveedor.Location = new System.Drawing.Point(124, 94);
+            this.cboProveedor.Name = "cboProveedor";
+            this.cboProveedor.Size = new System.Drawing.Size(281, 24);
+            this.cboProveedor.TabIndex = 7;
+            this.cboProveedor.SelectedValueChanged += new System.EventHandler(this.cboProveedor_SelectedValueChanged);
             // 
             // label2
             // 
@@ -224,46 +244,27 @@
             // 
             this.lblAlmaOri.AutoSize = true;
             this.lblAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAlmaOri.Location = new System.Drawing.Point(9, 41);
+            this.lblAlmaOri.Location = new System.Drawing.Point(10, 9);
             this.lblAlmaOri.Name = "lblAlmaOri";
-            this.lblAlmaOri.Size = new System.Drawing.Size(104, 16);
+            this.lblAlmaOri.Size = new System.Drawing.Size(61, 16);
             this.lblAlmaOri.TabIndex = 8;
-            this.lblAlmaOri.Text = "Almacén Origen";
+            this.lblAlmaOri.Text = "Almacén";
             // 
             // cboAlmaOri
             // 
+            this.cboAlmaOri.Enabled = false;
             this.cboAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAlmaOri.FormattingEnabled = true;
-            this.cboAlmaOri.Location = new System.Drawing.Point(141, 38);
+            this.cboAlmaOri.Location = new System.Drawing.Point(124, 6);
             this.cboAlmaOri.Name = "cboAlmaOri";
-            this.cboAlmaOri.Size = new System.Drawing.Size(264, 24);
+            this.cboAlmaOri.Size = new System.Drawing.Size(281, 24);
             this.cboAlmaOri.TabIndex = 9;
             this.cboAlmaOri.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
-            // 
-            // lblProveedor
-            // 
-            this.lblProveedor.AutoSize = true;
-            this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProveedor.Location = new System.Drawing.Point(9, 12);
-            this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(72, 16);
-            this.lblProveedor.TabIndex = 6;
-            this.lblProveedor.Text = "Proveedor";
-            // 
-            // cboProveedor
-            // 
-            this.cboProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboProveedor.FormattingEnabled = true;
-            this.cboProveedor.Location = new System.Drawing.Point(141, 9);
-            this.cboProveedor.Name = "cboProveedor";
-            this.cboProveedor.Size = new System.Drawing.Size(264, 24);
-            this.cboProveedor.TabIndex = 7;
-            this.cboProveedor.SelectedValueChanged += new System.EventHandler(this.cboProveedor_SelectedValueChanged);
             // 
             // cmdRestablecer
             // 
             this.cmdRestablecer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.cmdRestablecer.Image = global::GAFE.Properties.Resources.Cancelar;
+            this.cmdRestablecer.Image = global::GAFE.Properties.Resources.Reiniciar;
             this.cmdRestablecer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.cmdRestablecer.Location = new System.Drawing.Point(566, 25);
             this.cmdRestablecer.Name = "cmdRestablecer";
@@ -301,11 +302,11 @@
             this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdImprimir.UseVisualStyleBackColor = false;
             // 
-            // frmLstInventarioMovtos
+            // MovtosInvLst
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
@@ -322,7 +323,7 @@
             this.MaximumSize = new System.Drawing.Size(685, 500);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(685, 500);
-            this.Name = "frmLstInventarioMovtos";
+            this.Name = "MovtosInvLst";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo movimientos de inventarios";

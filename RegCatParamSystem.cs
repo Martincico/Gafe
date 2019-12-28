@@ -85,5 +85,13 @@ namespace GAFE
             dt = db.SelectDA(Sql);
             return dt;
         }
+
+        public SqlDataAdapter GetHora()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "SELECT CONVERT(date, GETDATE()) 'Fecha', CONVERT(VARCHAR(8), GETDATE(), 108) 'Hora'";
+            dt = db.SelectDA(Sql);
+            return dt;
+        }
     }
 }

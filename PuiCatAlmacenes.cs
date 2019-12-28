@@ -19,8 +19,9 @@ namespace GAFE
         private int EsDeConsigna;
         private int NumRojo;
         private string CveLstPrecio;
+        private string CveSucursal;
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[8, 2];
+        private object[,] MatParam = new object[9, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -83,6 +84,11 @@ namespace GAFE
             set { CveLstPrecio = value; }
         }
 
+        public string cmpCveSucursal
+        {
+            get { return CveSucursal; }
+            set { CveSucursal = value; }
+        }
 
         #endregion
 
@@ -143,9 +149,26 @@ namespace GAFE
             EsDeConsigna = Convert.ToInt32(ObjA[5]);
             NumRojo = Convert.ToInt32(ObjA[6]);
             CveLstPrecio = ObjA[7].ToString();
+            CveSucursal = ObjA[8].ToString();
 
 
         }
+
+        public void GetAlmaPorSuc()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "CveSucursal"; MatParam[0, 1] = ClaveAlmacen;
+            RegCatAlmacen OpEdit = new RegCatAlmacen(MatParam, db);
+            Datos = OpEdit.RegistroActivoPorSucursal();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+            ClaveAlmacen = ObjA[0].ToString();
+
+        }
+
+
 
         public SqlDataAdapter BuscaAlmacen(string buscar)
         {
@@ -160,11 +183,11 @@ namespace GAFE
             return OpBsq.BuscaAlmacen(buscar);
         }
 
-        public DataTable CboInv_CatAlmacenes()
+        public DataTable CboCatAlmacenes(int OcultaInt)
         {
             RegCatAlmacen OpLst = new RegCatAlmacen(db);
             DataSet Cbo = new DataSet();
-            OpLst.CboInv_CatAlmacenes().Fill(Cbo);
+            OpLst.CboCatAlmacenes(OcultaInt).Fill(Cbo);
             return Cbo.Tables[0];
         }
 
@@ -178,6 +201,7 @@ namespace GAFE
             MatParam[5, 0] = "EsDeConsigna"; MatParam[5, 1] = EsDeConsigna;
             MatParam[6, 0] = "NumRojo"; MatParam[6, 1] = NumRojo;
             MatParam[7, 0] = "CveLstPrecio"; MatParam[7, 1] = CveLstPrecio;
+            MatParam[8, 0] = "CveSucursal"; MatParam[8, 1] = CveSucursal;
         }
     }
 }

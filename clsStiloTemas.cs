@@ -14,7 +14,15 @@ namespace GAFE
         public string Encabezado { get; set; }
         public string HoverEncabezado { get; set; }
         public string FontColor { get; set; }
-        
+
+        public string Pant1 { get; set; }
+        public string Pant2 { get; set; }
+        public string Pant3 { get; set; }
+        public string Pant4 { get; set; }
+        public string Pant5 { get; set; }
+
+
+
         public Office2016ColorTable  StiloTeam()
         {
 
@@ -33,10 +41,10 @@ namespace GAFE
             //Backstage customization // Barra lateral
 
                 //To set the BackStageButton Hover color
-                ///color.BackStageItemHoverColor = ColorTranslator.FromHtml("#19478a");
+                //color.BackStageItemHoverColor = ColorTranslator.FromHtml("#478a19");
 
                 // To set the BackStageButton SelectionColor
-                //color.BackStageItemSelectionColor = Color.FromArgb(62, 109, 181);
+                //color.BackStageItemSelectionColor = ColorTranslator.FromHtml("#478a19");
 
                 // To set the BackStageButton ForeColor
                 //color.BackStageItemForeColor = Color.White;
@@ -171,7 +179,7 @@ namespace GAFE
             //TabGroup Customization
 
             // To set the TabGroup back color
-            //color.TabGroupBackColor = ColorTranslator.FromHtml("#F0E700");
+            //color.TabGroupBackColor = ColorTranslator.FromHtml("#478a19");
 
             // To set the TabGroup fore color
             //color.TabGroupForeColor = ColorTranslator.FromHtml("#F0E700");

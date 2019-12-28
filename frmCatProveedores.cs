@@ -20,26 +20,29 @@ namespace GAFE
 {
     public partial class frmCatProveedores : MetroForm
     {
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int _Opcion;
         private String _KeyCampo;
-
-        private SqlDataAdapter DatosTbl;
-        private int opcion;
-        private int idxG;
 
         private MsSql db = null;
 
         PuiCatProveedores Prov;
         private string Perfil;
         private clsUtil uT;
+        public clsStiloTemas StiloColor;
 
-        public frmCatProveedores(MsSql Odat, string perfil, int op = 1, String Key = "")
+        public frmCatProveedores(MsSql Odat, DatCfgParamSystem ParamS, clsStiloTemas NewColor, string perfil, int op = 1, String Key = "")
         {
             InitializeComponent();
             _Opcion = op;
             _KeyCampo = Key;
             db = Odat;
             Perfil = perfil;
+            StiloColor = NewColor;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -110,7 +113,6 @@ namespace GAFE
             int Municipio, Estado, Pais;
             //String NomLocal;
             PuiCatGeografia geo = new PuiCatGeografia(db);
-
             geo.keyCveGeografia = Prov.cmpCveLocalidad;
             geo.EditarGeografia();
             Municipio = geo.cmpPadre;
@@ -244,7 +246,6 @@ namespace GAFE
         {
             Boolean result = true;
             string mensaje = "";
-            ClsUtilerias Util = new ClsUtilerias();
 
             if (String.IsNullOrEmpty(txtClaveProveedor.Text))
                 mensaje += "Código: No puede ir vacío. \n";

@@ -311,7 +311,7 @@
             // btnVer
             // 
             this.btnVer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.btnVer.Image = global::GAFE.Properties.Resources.Nuevo;
+            this.btnVer.Image = global::GAFE.Properties.Resources.UnCheck;
             this.btnVer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVer.Location = new System.Drawing.Point(12, 223);
             this.btnVer.Name = "btnVer";
@@ -325,7 +325,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;

@@ -81,7 +81,6 @@ namespace GAFE
 
         public void EditarClientes()
         {
-            int aux;
             MatParam = new object[1, 2];
             MatParam[0, 0] = "CveCliente"; MatParam[0, 1] = CveCliente;
             RegCatClientes OpEdit = new RegCatClientes(MatParam, db);

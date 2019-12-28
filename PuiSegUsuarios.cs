@@ -121,36 +121,19 @@ namespace GAFE
             Datos = OpEdit.RegistroActivo();
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);
-            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
-
-            Usuario = ObjA[0].ToString();
-            Nombre = ObjA[1].ToString();
-            Password = ObjA[2].ToString();
-            CodPerfil = ObjA[3].ToString();
-        }
-
-
-
-        public Object[] getUsuario()
-        {
-            MatParam = new object[1, 2];
-            MatParam[0, 0] = "Usuario"; MatParam[0, 1] = Usuario;
-            RegSegUsuarios OpEdit = new RegSegUsuarios(MatParam, db);
-            Datos = OpEdit.RegistroActivo();
-            DataSet Ds = new DataSet();
-            Datos.Fill(Ds);
             object[] ObjA = null;
             if (Ds.Tables[0].Rows.Count > 0)
             {
                 ObjA = Ds.Tables[0].Rows[0].ItemArray;
-
                 Usuario = ObjA[0].ToString();
+                Nombre = ObjA[1].ToString();
                 Password = ObjA[2].ToString();
+                CodPerfil = ObjA[3].ToString();
             }
-
-            return ObjA;
-
+            else
+                Usuario = "";
         }
+
 
         public SqlDataAdapter CargaPerfilUsuario()
         {

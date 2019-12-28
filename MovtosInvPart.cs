@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
+using System.Globalization;
+
 using Syncfusion.Windows.Forms;
 
 namespace GAFE
@@ -24,85 +26,68 @@ namespace GAFE
 
         private String PModLlama;
         private String PNoMovimiento;
-        private String PCveTipoMov;
-
 
         private double Cantidad;
         private double Precio;
         private double Descuento;
         private double PNeto;
         private double TotalIva;
+        private double TotalIEPS;
         private double SubTotal;
         private double TotalPartida;
 
+        clsCfgTipoMovInv CfgMovInv;
 
-        private int PSugiereCosto;
-        private int PEditaCosto;
-        private int PMuestraCosto;
-        private int PSolicitaCosto;
-        private int PEsTraspaso;
-        private String PEntSal;
-        private int PCalcIva;
+        clsCfgAlmacen CfgAlma;
+        //clsCfgAlmacen CfgAlmaDest;
 
-
-        private int _AlmNumRojo;
-        private int _AlmNumRojoDest;
         private int ExisNegativa;
-
+        private String PAlmacen;
 
         private double CantInv;
 
-        // PENDIENTE
-        //        private int PermiteExiNegativasOri;
-        //        private int PermiteExiNegativasDest;
-        //        private int ExisNegativa;
-
-
-        private String CveImp = "";
+        private String CveImp = "", CveImpIEPS ="";
+        private String CveUmed = "";
+        private String IdArt = "", CodBa = "";
         public clsStiloTemas StiloColor;
 
         public DatCfgUsuario user;
 
-        ClsUtilerias Util = new ClsUtilerias();
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
 
+        private ToolTip ttPrecio = new ToolTip();
+        private ToolTip ttDescuento = new ToolTip();
+        private ToolTip ttCantidad = new ToolTip();
+        
         public MovtosInvPart()
         {
             InitializeComponent();
         }
 
-        public MovtosInvPart(MsSql Odat, clsStiloTemas NewColor, DatCfgUsuario DatUsr, String P_modulo, String P_folio, int P_operacion,
-                String P_CveTipoMov, int P_SugiereCosto, int P_EditaCosto, int P_MuestraCosto, 
-                 int P_SolicitaCosto, int P_EsTraspaso, String P_EntSal, int P_CalcIva, 
-                 int P_AlmNumRojo, int P_AlmNumRojoDest, int P_CodPart )
+        public MovtosInvPart(MsSql Odat, DatCfgParamSystem ParamS, clsStiloTemas NewColor, DatCfgUsuario DatUsr, String P_modulo, 
+                 String P_folio, int P_operacion,
+                 clsCfgTipoMovInv PCfgMovInv, clsCfgAlmacen PCfgAlma, int P_CodPart, String Almacen )
         {
             InitializeComponent();
             opcion = P_operacion;
             db = Odat;
             user = DatUsr;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             CodPart = P_CodPart;
             StiloColor = NewColor;
             PModLlama = P_modulo; //dependiendo del modulo que llama esta ventana extrae el precio
             PNoMovimiento = P_folio;
 
-            PCveTipoMov = P_CveTipoMov;
-            PSugiereCosto = P_SugiereCosto;
-            PEditaCosto = P_EditaCosto;
-            PMuestraCosto = P_MuestraCosto;
-            PSolicitaCosto = P_SolicitaCosto;
-            PEsTraspaso = P_EsTraspaso;
-            PEntSal = P_EntSal;
-            //PENDIENTE 
-//            this.PermiteExiNegativasOri = P_PermiteExiNegativasOri;
-//            this.PermiteExiNegativasDest = P_PermiteExiNegativasDest;
-            PCalcIva = P_CalcIva;
-            _AlmNumRojo = P_AlmNumRojo;
-            _AlmNumRojoDest = P_AlmNumRojoDest;
+            CfgMovInv = PCfgMovInv;
+            CfgAlma = PCfgAlma;
+            PAlmacen = Almacen;
 
-
-            if (PEditaCosto == 0)
+            if (CfgMovInv.EditaCosto == 0)
                 txtPrecio.Enabled = false;
             
-            if (PMuestraCosto == 1)
+            if (CfgMovInv.MuestraCosto == 1)
             {
                 lblMuesCosto.Visible = true;
                 txtMuesCosto.Visible = true;
@@ -128,17 +113,23 @@ namespace GAFE
             pui.keyNoMovimiento = PNoMovimiento;
             pui.keyNoPartida = CodPart;
             pui.EditarPartida();
-            txtCodigo.Text = pui.cmpCveArticulo;
+            //txtCodigo.Text = pui.cmpCveArticulo;
+            txtCodigo.Text = (ParamSystem.HideCveArt == 1) ? pui.cmpCodigoBarra : pui.cmpCveArticulo;
+
+            IdArt = pui.cmpCveArticulo;
+            CodBa = pui.cmpCodigoBarra;
+
+
             txtDescripcion.Text = pui.cmpDescripcion;
             txtUmedida.Text = pui.cmpCveUMedida;
             BuscarPrecio(pui.cmpCveArticulo);
             txtCantidad.Text = Convert.ToString(pui.cmpCantidad);
             txtDescuento.Text = Convert.ToString(pui.cmpDescuento);
-            txtPrecioNeto.Text = Convert.ToString(pui.cmpTotalDscto);
-            txtSubTotal.Text = Convert.ToString(pui.cmpSubTotal);
-            txtImpuesto.Text = Convert.ToString(pui.cmpTotalIva);
-            txtIva.Text = Convert.ToString(pui.cmpImpuestoValor);
-            txtTotal.Text = Convert.ToString(pui.cmpTotalPartida);
+            txtPrecioNeto.Text =Util.FormtDouDec(pui.cmpTotalDscto); //Convert.ToString(pui.cmpTotalDscto);
+            txtSubTotal.Text = Util.FormtDouDec(pui.cmpSubTotal); //Convert.ToString(pui.cmpSubTotal);
+            txtImpuesto.Text = Util.FormtDouDec(pui.cmpTotalIva);// Convert.ToString(pui.cmpTotalIva);
+            txtCveIVA.Text = Convert.ToString(pui.cmpImpuestoValor);
+            txtTotal.Text = Util.FormtDouDec(pui.cmpTotalPartida);  //Convert.ToString(pui.cmpTotalPartida);
 
         }
 
@@ -169,69 +160,38 @@ namespace GAFE
 
         private void AltaPartida()
         {
-            if (validacion())
-            {
-                PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
-                pui.keyNoMovimiento = PNoMovimiento;
-                pui.keyNoPartida = pui.GetFolioPart(PNoMovimiento);
-                pui.cmpCveAlmacenMov = "";
-                pui.cmpCveTipoMov = PCveTipoMov;
-                pui.cmpEntSal = PEntSal;
-                pui.cmpNoDoc = "";
-                pui.cmpDocumento = "";
-                pui.cmpCveArticulo = txtCodigo.Text;
-                pui.cmpDescripcion = txtDescripcion.Text;
-                pui.cmpCveUMedida = txtUmedida.Text;
-                pui.cmpCantidad = Cantidad;
-                pui.cmpCantidadPkt = Cantidad;
-                pui.cmpPrecio = Precio;
-                pui.cmpDescuento = Descuento;
-                pui.cmpTotalDscto = PNeto;
-                pui.cmpCveImpuesto = CveImp;
-                pui.cmpImpuestoValor = Convert.ToDouble(txtIva.Text);
-                pui.cmpTotalIva = TotalIva;
-                pui.cmpSubTotal = SubTotal;
-                pui.cmpTotalPartida = TotalPartida;
-                pui.cmpFolioDocOrigen = "";
-                pui.cmpFechaMovimiento = user.FecServer;
-                pui.cmpNoMovtoTra = "";
-                pui.cmpDocTra = "";
-                pui.cmpPartTra = "";
-
-                if (pui.AgregarPartida() >= 1)
-                {
-                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information);
-                    this.Close();
-                }
-            }
+            SetValues(1);
         }
 
         private void EditarPartida()
+        {
+            SetValues(0);
+        }
+ 
+        private void SetValues(int NewReg = 1)
         {
             try
             {
                 if (validacion())
                 {
                     PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
-
                     pui.keyNoMovimiento = PNoMovimiento;
-                    pui.keyNoPartida = CodPart;
+                    pui.keyNoPartida = NewReg == 1 ? pui.GetFolioPart(PNoMovimiento) : CodPart;
                     pui.cmpCveAlmacenMov = "";
-                    pui.cmpCveTipoMov = PCveTipoMov;
-                    pui.cmpEntSal = PEntSal;
+                    pui.cmpCveTipoMov = CfgMovInv.CveTipoMov;
+                    pui.cmpEntSal = CfgMovInv.EntSal;
                     pui.cmpNoDoc = "";
                     pui.cmpDocumento = "";
-                    pui.cmpCveArticulo = txtCodigo.Text;
+                    pui.cmpCveArticulo = IdArt;
                     pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpCveUMedida = txtUmedida.Text;
+                    pui.cmpCveUMedida = CveUmed;
                     pui.cmpCantidad = Cantidad;
                     pui.cmpCantidadPkt = Cantidad;
                     pui.cmpPrecio = Precio;
                     pui.cmpDescuento = Descuento;
                     pui.cmpTotalDscto = PNeto;
                     pui.cmpCveImpuesto = CveImp;
-                    pui.cmpImpuestoValor = Convert.ToDouble(txtIva.Text);
+                    pui.cmpImpuestoValor = Convert.ToDouble(txtCveIVA.Text);
                     pui.cmpTotalIva = TotalIva;
                     pui.cmpSubTotal = SubTotal;
                     pui.cmpTotalPartida = TotalPartida;
@@ -241,11 +201,37 @@ namespace GAFE
                     pui.cmpDocTra = "";
                     pui.cmpPartTra = "";
 
-                    if (pui.ActualizaPartida() >= 1)
+                    pui.cmpCveImpIEPS = CveImpIEPS;
+                    pui.cmpImpIEPSValor = Convert.ToDouble(txtCveIESP.Text);
+                    pui.cmpTotalIEPS = TotalIEPS;
+                    pui.cmpCveImpRetIVA = "";
+                    pui.cmpImpRetIVAValor = 0;
+                    pui.cmpTotalRetIVA = 0;
+                    pui.cmpCveImpRetISR = "";
+                    pui.cmpImpRetISRValor = 0;
+                    pui.cmpTotalRetISR = 0;
+                    pui.cmpCveImpOtro = "";
+                    pui.cmpImpValorOtro = 0;
+                    pui.cmpTotalImpOtro = 0;
+
+
+                    if (NewReg == 1)
                     {
-                        MessageBoxAdv.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                        MessageBoxIcon.Information);
-                        this.Close();
+                        if (pui.AgregarPartida() >= 1)
+                        {
+                            MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        if (pui.ActualizaPartida() >= 1)
+                        {
+                            MessageBoxAdv.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information);
+                            this.Close();
+                        }
                     }
                 }
             }
@@ -257,12 +243,7 @@ namespace GAFE
             }
         }
 
-        
 
-        private void cmdCancelar_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         
 
         private void cboCveClsMov_SelectedValueChanged(object sender, EventArgs e)
@@ -276,7 +257,7 @@ namespace GAFE
         {
             PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
             pui.cmpCveArticulo = CveArt;
-            pui.cmpinv_ClaveAlmacen = user.AlmacenUsa;
+            pui.cmpinv_ClaveAlmacen = PAlmacen;
             pui.BuscaPrecio(PModLlama);
             CantInv = pui.cmpinv_Cantidad;
 
@@ -285,7 +266,7 @@ namespace GAFE
             {
                 //FALTA sugiere costo
                 //String sugiere = winpadre.parametros.metcosto;
-                if (PSugiereCosto == 1)
+                if (CfgMovInv.SugiereCosto == 1)
                 {
                     /*
                     switch(Convert.ToInt32(sugiere))
@@ -300,7 +281,7 @@ namespace GAFE
                 else
                     txtPrecio.Text = "0.0";
 
-                if(PMuestraCosto == 1)
+                if(CfgMovInv.MuestraCosto == 1)
                 {
                     /*
                     switch(Convert.ToInt32(sugiere))
@@ -321,6 +302,7 @@ namespace GAFE
         {
             String err = "";
             ValidaCalculos(1);
+            String txtTo = Util.LimpiarTxt(txtTotal.Text);
             if (ErrCalc)
             {
                 if (String.IsNullOrEmpty(txtCodigo.Text))
@@ -344,7 +326,7 @@ namespace GAFE
                 }
 
 
-                if (PSolicitaCosto == 1)
+                if (CfgMovInv.SolicitaCosto == 1)
                 {
                     if (String.IsNullOrEmpty(txtPrecio.Text))
                     {
@@ -361,21 +343,21 @@ namespace GAFE
 
                     }
 
-                    if (String.IsNullOrEmpty(txtTotal.Text))
+                    if (String.IsNullOrEmpty(txtTo))
                     {
                         err = err + "Total: Existe un error calculo.\n";
                         ErrCalc = false;
                     }
                     else
                     {
-                        if (!Util.Decimal(txtTotal.Text))
+                        if (!Util.Decimal(txtTo))
                         {
                             err = err + "Total: Contiene caracteres no validos. Sugiere: 0,000 0.0 0000\n";
                             ErrCalc = false;
                         }
                         else
                         {
-                            double tt = Double.Parse(txtTotal.Text);
+                            double tt = Double.Parse(txtTo);
                             if (tt <= 0)
                             {
                                 err = err + "Total: Existe un error calculo.\n";
@@ -399,16 +381,20 @@ namespace GAFE
         private void ValidaCalculos(int Op)
         {
             
-            String err = "";
+            //String err = "";
             if (String.IsNullOrEmpty(txtCantidad.Text))
             {
                 if (Op == 1)
                 {
-                    err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                    Util.MsjBox(ttCantidad, txtCantidad, "Cantidad", "Cantidad: Contiene caracteres no validos. Sugiere: 0", ToolTipIcon.Error);
+                    //err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                     ErrCalc = false;
                 }
                 else
+                {
                     Cantidad = 0;
+                    ttCantidad.Hide(txtCantidad);
+                }
             }
             else
             {
@@ -416,72 +402,65 @@ namespace GAFE
                 {
                     if (!Util.Decimal(txtCantidad.Text))
                     {
-                        err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0)\n";
+                        Util.MsjBox(ttCantidad, txtCantidad, "Cantidad", "Cantidad: Contiene caracteres no validos. Sugiere: 0", ToolTipIcon.Error);
+                        //err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0)\n";
                         ErrCalc = false;
                     }
                     else
-                        Cantidad = Convert.ToDouble(txtCantidad.Text);
-                }
-                /*
-                else
-                {
-                    if (Op == 1)
                     {
-                        err = err + "Cantidad: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
-                        ErrCalc = false;
+                        Cantidad = Convert.ToDouble(txtCantidad.Text);
+                        ttCantidad.Hide(txtCantidad);
                     }
-                    else
-                        Cantidad = 0;
                 }
-                */
-
             }
 
             if (String.IsNullOrEmpty(txtPrecio.Text))
             {
                 if (Op == 1)
                 {
-                    err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                    Util.MsjBox(ttPrecio, txtPrecio, "Precio", "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000", ToolTipIcon.Error);
+                    //err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                     ErrCalc = false;
                 }
                 else
+                {
                     Precio = 0;
+                    ttPrecio.Hide(txtPrecio);
+                }
             }
             else
             {
                 if (txtPrecio.Text.Length >= 1)
                 {
+                    
                     if (!Util.Decimal(txtPrecio.Text))
                     {
-                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                        new BalloonTip("Error de captura", "Contiene caracteres no validos. Sugiere: 0.0 0000", txtPrecio, BalloonTip.ICON.INFO, 5000);
+                        //err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                         ErrCalc = false;
+
                     }
                     else
+                    {
                         Precio = Convert.ToDouble(txtPrecio.Text);
-                }
-                /*
-                else
-                {
-                    if (!Util.Decimal(txtPrecio.Text))
-                    {
-                        err = err + "Precio: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
-                        ErrCalc = false;
+                        ttPrecio.Hide(txtPrecio);
                     }
-                    else
-                        Precio = 0;
                 }
-                */
             }
 
             if (String.IsNullOrEmpty(txtDescuento.Text))
             {
                 if (Op == 1)
                 {
-                    err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                    Util.MsjBox(ttDescuento, txtDescuento, "Descuento", "Descuento: Contiene caracteres no validos. Sugiere: 0", ToolTipIcon.Error);
+                    //err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                     ErrCalc = false;
                 }
                 else
+                {
                     Descuento = 0;
+                    ttDescuento.Hide(txtDescuento);
+                }
             }
             else
             {
@@ -489,52 +468,44 @@ namespace GAFE
                 {
                     if (!Util.Decimal(txtDescuento.Text))
                     {
-                        err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
+                        Util.MsjBox(ttDescuento, txtDescuento, "Descuento", "Descuento: Contiene caracteres no validos. Sugiere: 0", ToolTipIcon.Error);
+                        //err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
                         ErrCalc = false;
                     }
                     else
-                        Descuento = (Convert.ToDouble(txtDescuento.Text) / 100);
-                }
-                /*
-                else
-                {
-                    if (!Util.Decimal(txtDescuento.Text))
                     {
-                        err = err + "Descuento: Contiene caracteres no validos. Sugiere: 0.0 0000\n";
-                        ErrCalc = false;
+                        Descuento = (Convert.ToDouble(txtDescuento.Text));
+                        ttDescuento.Hide(txtDescuento);
                     }
-                    else
-                        Descuento = 0;
                 }
-                */
-
             }
                 
             if (ErrCalc)
             {
-
+                ttCantidad.Hide(txtCantidad);
                 if (PModLlama.Equals("Minv"))
                 {
-                    if (PEsTraspaso == 1 || PEntSal.Equals("S"))
+                    if (CfgMovInv.EsTraspaso == 1 || CfgMovInv.EntSal.Equals("S"))
                     {
                         if ((CantInv - Cantidad) < 0)
                         {
-                            if (_AlmNumRojo == 1)
+                            if (CfgAlma.NumRojo == 1)
                             {
-                                Cantidad = Convert.ToDouble(txtCantidad.Text);
-                                ExisNegativa = 0;
+                                if (MessageBoxAdv.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                        " Existencia: " + CantInv + "\n" +
+                                        " ¿Desea continuar?",
+                                        "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    ExisNegativa = 0;
+                                }
+                                else
+                                    ExisNegativa = 1;
                             }
                             else
                             {
-                                if (MessageBoxAdv.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
-                                        " Existencia: " + CantInv + " ",
-                                        "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                {
-                                    ExisNegativa = 1;
-                                }
-                                else
-                                    ExisNegativa = 0;
-
+                                ExisNegativa = 1;
+                                Util.MsjBox(ttCantidad, txtCantidad, "Cantidad", "Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                                                   " Existencia: " + CantInv + "\n", ToolTipIcon.Error);
                             }
                         }
                         else
@@ -551,28 +522,35 @@ namespace GAFE
 
                 SubTotal = 0; txtSubTotal.Text = "0.0";
                 PNeto = 0; txtPrecioNeto.Text = "0.0";
-                TotalIva = 0; 
+                TotalIva = 0; TotalIEPS = 0;
                 TotalPartida = 0; txtTotal.Text = "0.0";
 
 
                 //002 eNTRADA - 501 - SALIDA por ajuste de inventario
-                if (!PCveTipoMov.Equals("002") || !PCveTipoMov.Equals("501"))
+                if (!CfgMovInv.CveTipoMov.Equals("002") || !CfgMovInv.CveTipoMov.Equals("501"))
                 {
-                    PNeto = Precio - (Precio * Descuento);
-                    txtPrecioNeto.Text = Convert.ToString(PNeto);
-                    double iva = Convert.ToDouble(txtIva.Text);
 
-                    SubTotal = PNeto * Cantidad;
-                    TotalIva = SubTotal * (iva / 100);
-                    TotalPartida = SubTotal + TotalIva;
+                    SubTotal = Precio * Cantidad;
+                    if (chkCalculaPorcentaje.Checked)
+                        PNeto = (SubTotal * Descuento / 100);
+                    else
+                        PNeto = Descuento;
 
+                    SubTotal = SubTotal - PNeto;
 
                     //PENDIENTE: Valida una matrz y dentro de un else va lo siguiente
-                    if (PCalcIva == 1)
-                        TotalIva = SubTotal * 16 / 100;
+                    if (CfgMovInv.CalculaIva == 1)
+                    {
+                        double iva = Convert.ToDouble(txtCveIVA.Text);
+                        double _iEPS = Convert.ToDouble(txtCveIESP.Text);
+
+                        TotalIEPS = _iEPS > 0 ? SubTotal * (_iEPS / 100) : 0;
+                        SubTotal = SubTotal + TotalIEPS;
+                        TotalIva = iva > 0 ? SubTotal * (iva / 100) : 0;
+                    }
 
                     TotalPartida = SubTotal + TotalIva;
-
+                    SubTotal = SubTotal - TotalIEPS;
 
                 }
                 else
@@ -580,14 +558,11 @@ namespace GAFE
                     CveImp = "";
                 }
 
-                txtSubTotal.Text = Convert.ToString(SubTotal);
-                txtImpuesto.Text = Convert.ToString(TotalIva);
-                txtTotal.Text = Convert.ToString(TotalPartida);
+                txtSubTotal.Text = Util.FormtDouDec(SubTotal); //Convert.ToString(SubTotal);
+                txtImpuesto.Text = Util.FormtDouDec(TotalIva);  //Convert.ToString(TotalIva);
+                txtImpIEPS.Text = Util.FormtDouDec(TotalIEPS);  //Convert.ToString(TotalIva);
+                txtTotal.Text = Util.FormtDouDec(TotalPartida); //Convert.ToString(TotalPartida);
 
-            }
-            else
-            {
-                MessageBoxAdv.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -602,7 +577,7 @@ namespace GAFE
             else
             {
                 if (ch == 13)
-                    cmdAceptar.Focus();
+                    txtDescuento.Focus();
 
                 ErrCalc = true;
             }
@@ -619,7 +594,7 @@ namespace GAFE
             else
             {
                 if (ch == 13)
-                    txtDescuento.Focus();
+                    txtPrecio.Focus();
 
                 ErrCalc = true;
             }
@@ -636,7 +611,7 @@ namespace GAFE
             else
             {
                 if (ch == 13)
-                    txtCantidad.Focus();
+                    cmdAceptar.Focus();
 
                 ErrCalc = true;
             }
@@ -659,7 +634,7 @@ namespace GAFE
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, user, StiloColor, 3);
+            frmLstArticulos art = new frmLstArticulos(db, ParamSystem, user, StiloColor, 3);
             art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
@@ -682,16 +657,47 @@ namespace GAFE
                 }
                 else
                 {
-                    CveImp = art.dv[10];
-                    txtIva.Text = art.dv[12];
-                    txtCodigo.Text = art.dv[0];
+                    if (ParamSystem.HideCveArt == 1)
+                        txtCodigo.Text = art.dv[16];
+                    else
+                        txtCodigo.Text = art.dv[0];
+
+                    IdArt = art.dv[0];
+                    CodBa = art.dv[16];
+                    
                     txtDescripcion.Text = art.dv[1];
-                    txtUmedida.Text = art.dv[8];
+
+                    CveImp = art.dv[10];
+                    txtCveIVA.Text = GetImpuesto(CveImp);
+                    CveUmed = art.dv[8];
+                    txtUmedida.Text = GetUMed();
+                    CveImpIEPS = art.dv[13];
+                    if (!string.IsNullOrEmpty(CveImpIEPS))
+                        txtCveIESP.Text = GetImpuesto(CveImpIEPS);
+
+
                     BuscarPrecio(art.KeyCampo);
                     txtPrecio.Focus();
                 }
             }
         }
+
+        private string GetImpuesto(string CveIm)
+        {
+            PuiCatImpuestos Impu = new PuiCatImpuestos(db);
+            Impu.keyCveImpuesto = CveIm;
+            Impu.EditarImpuesto();
+            return Convert.ToString(Impu.cmpValor);
+        }
+
+        private string GetUMed()
+        {
+            PuiCatUMedidas UM = new PuiCatUMedidas(db);
+            UM.keyCveUMedida = CveUmed;
+            UM.EditarUMedida();
+            return UM.cmpDescripcion;
+        }
+
 
         private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -700,7 +706,7 @@ namespace GAFE
                 PuiCatArticulos Art = new PuiCatArticulos(db);
                 PuiCatImpuestos Impu = new PuiCatImpuestos(db);
                 Art.keyCveArticulo = txtCodigo.Text;
-                if (Art.EditarArticulo() > 0)
+                if (Art.EditarArticulo(ParamSystem.HideCveArt) > 0)
                 {
                     PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
                     pui.keyNoMovimiento = Art.keyCveArticulo;
@@ -719,14 +725,26 @@ namespace GAFE
                     }
                     else
                     {
-                        txtCodigo.Text = Art.keyCveArticulo;
+                        //txtCodigo.Text = Art.keyCveArticulo;
+                        IdArt = Art.keyCveArticulo;
                         txtDescripcion.Text = Art.cmpDescripcion;
+                        CodBa = Art.cmpCodigoBarra;
 
-                        CveImp = Art.Impuesto.keyCveImpuesto;
-                        Impu.keyCveImpuesto = CveImp;
-                        Impu.EditarImpuesto();
-                        txtIva.Text = Convert.ToString(Impu.cmpValor);
-                        txtUmedida.Text = Art.UMedida1.keyCveUMedida;
+                        if (ParamSystem.HideCveArt == 1)
+                            txtCodigo.Text = Art.cmpCodigoBarra;
+                        else
+                            txtCodigo.Text = Art.keyCveArticulo;
+
+
+
+                        CveImp = Art.cmpCveImpuesto;
+                        txtCveIVA.Text = GetImpuesto(CveImp);
+                        CveUmed = Art.cmpCveUMedida1;
+                        txtUmedida.Text = GetUMed();
+                        CveImpIEPS = Art.CveImpIEPS;
+                        if (!string.IsNullOrEmpty(CveImpIEPS))
+                            txtCveIESP.Text = GetImpuesto(CveImpIEPS);
+
                         BuscarPrecio(Art.keyCveArticulo);
                     }
 
@@ -739,12 +757,123 @@ namespace GAFE
             }
         }
 
+        private void txtUmedida_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void txtPrecioNeto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMuesCosto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMuesCosto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtImpuesto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCveIESP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCveIVA_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkCalculaPorcentaje_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidaCalculos(0);
+        }
+
+        private void label6_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtImpuesto_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void LimpiaVar()
         {
+            IdArt = "";
+            CodBa = "";
             txtDescripcion.Text = "";
-            txtImpuesto.Text = "";
+            txtCveIVA.Text = "";
             CveImp = "";
+            CveUmed = "";
+            txtUmedida.Text = "";
+            txtImpIEPS.Text = "";
+            
         }
     }
 }

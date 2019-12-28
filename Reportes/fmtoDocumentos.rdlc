@@ -289,7 +289,7 @@
                   <rd:DefaultName>Nombre</rd:DefaultName>
                   <Top>0.09525cm</Top>
                   <Left>1.88066cm</Left>
-                  <Height>0.6cm</Height>
+                  <Height>0.5cm</Height>
                   <Width>10.53804cm</Width>
                   <Style>
                     <Border>
@@ -297,8 +297,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="RFC">
@@ -321,7 +321,7 @@
                   <rd:DefaultName>RFC</rd:DefaultName>
                   <Top>0.09525cm</Top>
                   <Left>13.81451cm</Left>
-                  <Height>0.6cm</Height>
+                  <Height>0.5cm</Height>
                   <Width>4.03946cm</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
@@ -330,8 +330,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Calle">
@@ -354,8 +354,8 @@
                   <rd:DefaultName>Calle</rd:DefaultName>
                   <Top>0.77639cm</Top>
                   <Left>1.87536cm</Left>
-                  <Height>0.6cm</Height>
-                  <Width>10.54334cm</Width>
+                  <Height>0.5cm</Height>
+                  <Width>10.53804cm</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
@@ -363,8 +363,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="CP">
@@ -387,7 +387,7 @@
                   <rd:DefaultName>CP</rd:DefaultName>
                   <Top>0.77639cm</Top>
                   <Left>13.81908cm</Left>
-                  <Height>0.6cm</Height>
+                  <Height>0.5cm</Height>
                   <Width>1.99729cm</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
@@ -396,8 +396,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Tel1">
@@ -418,9 +418,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Tel1</rd:DefaultName>
-                  <Top>1.44694cm</Top>
-                  <Left>1.87536cm</Left>
-                  <Height>0.6cm</Height>
+                  <Top>1.38575cm</Top>
+                  <Left>1.88066cm</Left>
+                  <Height>0.5cm</Height>
                   <Width>4.04751cm</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
@@ -429,8 +429,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Mail1">
@@ -453,7 +453,7 @@
                   <rd:DefaultName>Mail1</rd:DefaultName>
                   <Top>1.44694cm</Top>
                   <Left>11.24851cm</Left>
-                  <Height>0.6cm</Height>
+                  <Height>0.5cm</Height>
                   <Width>6.60149cm</Width>
                   <ZIndex>5</ZIndex>
                   <Style>
@@ -462,8 +462,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox12">
@@ -485,8 +485,8 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox12</rd:DefaultName>
                   <Top>0.09525cm</Top>
-                  <Left>13.05194cm</Left>
-                  <Height>0.6cm</Height>
+                  <Left>12.79794cm</Left>
+                  <Height>0.5cm</Height>
                   <Width>0.93896cm</Width>
                   <ZIndex>6</ZIndex>
                   <Style>
@@ -495,8 +495,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox13">
@@ -518,8 +518,8 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox12</rd:DefaultName>
                   <Top>0.77639cm</Top>
-                  <Left>13.05194cm</Left>
-                  <Height>0.6cm</Height>
+                  <Left>12.79794cm</Left>
+                  <Height>0.5cm</Height>
                   <Width>0.93896cm</Width>
                   <ZIndex>7</ZIndex>
                   <Style>
@@ -528,8 +528,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox14">
@@ -551,9 +551,9 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox12</rd:DefaultName>
                   <Top>1.44694cm</Top>
-                  <Left>10.25207cm</Left>
-                  <Height>0.6cm</Height>
-                  <Width>1.28292cm</Width>
+                  <Left>10.09332cm</Left>
+                  <Height>0.5cm</Height>
+                  <Width>1.0423cm</Width>
                   <ZIndex>8</ZIndex>
                   <Style>
                     <Border>
@@ -561,8 +561,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox16">
@@ -585,8 +585,8 @@
                   <rd:DefaultName>Textbox16</rd:DefaultName>
                   <Top>0.09525cm</Top>
                   <Left>0.09208cm</Left>
-                  <Height>0.6cm</Height>
-                  <Width>1.865cm</Width>
+                  <Height>0.5cm</Height>
+                  <Width>1.67745cm</Width>
                   <ZIndex>9</ZIndex>
                   <Style>
                     <Border>
@@ -594,8 +594,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox17">
@@ -618,8 +618,8 @@
                   <rd:DefaultName>Textbox16</rd:DefaultName>
                   <Top>0.76961cm</Top>
                   <Left>0.09208cm</Left>
-                  <Height>0.6cm</Height>
-                  <Width>1.865cm</Width>
+                  <Height>0.5cm</Height>
+                  <Width>1.67745cm</Width>
                   <ZIndex>10</ZIndex>
                   <Style>
                     <Border>
@@ -627,8 +627,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
                 <Textbox Name="Textbox18">
@@ -651,8 +651,8 @@
                   <rd:DefaultName>Textbox16</rd:DefaultName>
                   <Top>1.38373cm</Top>
                   <Left>0.09208cm</Left>
-                  <Height>0.6cm</Height>
-                  <Width>1.865cm</Width>
+                  <Height>0.5cm</Height>
+                  <Width>1.67745cm</Width>
                   <ZIndex>11</ZIndex>
                   <Style>
                     <Border>
@@ -660,8 +660,8 @@
                     </Border>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingTop>1pt</PaddingTop>
+                    <PaddingBottom>1pt</PaddingBottom>
                   </Style>
                 </Textbox>
               </ReportItems>
@@ -768,9 +768,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>1.40561cm</Top>
+              <Top>1.56436cm</Top>
               <Left>10.17483cm</Left>
-              <Height>0.6cm</Height>
+              <Height>0.4cm</Height>
               <Width>7.73875cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
@@ -865,8 +865,8 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
+        <PageHeight>27.94cm</PageHeight>
+        <PageWidth>21.59cm</PageWidth>
         <LeftMargin>1.5cm</LeftMargin>
         <RightMargin>1.5cm</RightMargin>
         <TopMargin>1.5cm</TopMargin>

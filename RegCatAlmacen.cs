@@ -49,8 +49,10 @@ namespace GAFE
 
         public int AddRegAlmacen()
         {
-            string sql = "Insert into Inv_CatAlmacenes (ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo, CveLstPrecio) " +
-                         "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta,@EsDeConsigna,@NumRojo,@CveLstPrecio)";
+            string sql = "Insert into Inv_CatAlmacenes (ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta," +
+                         "   EsDeConsigna,NumRojo, CveLstPrecio, CveSucursal) " +
+                         "values(@ClaveAlmacen,@Descripcion,@Estatus,@EsDeCompra,@EsDeVenta," +
+                         "   @EsDeConsigna,@NumRojo,@CveLstPrecio,@CveSucursal)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
         public int AddRegExistencias()
@@ -69,15 +71,22 @@ namespace GAFE
                          "EsDeVenta = @EsDeVenta, " +
                          "EsDeConsigna = @EsDeConsigna, " +
                          "NumRojo = @NumRojo, " +
-                         "CveLstPrecio = @CveLstPrecio " +
+                         "CveLstPrecio = @CveLstPrecio, " +
+                         "CveSucursal = @CveSucursal " +
                          "Where ClaveAlmacen = @ClaveAlmacen";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 
         public int DeleteAlmacen()
         {
+            /*
             string sql = "Delete from Inv_CatAlmacenes where ClaveAlmacen = @ClaveAlmacen";
             return db.UpdateRegistro(sql, ArrParametros);
+            */
+
+            string sql = "Update Inv_CatAlmacenes set Estatus = 'B' " +
+             " Where ClaveAlmacen = @ClaveAlmacen";
+            return db.DeleteRegistro(sql, ArrParametros);
         }
 
         public SqlDataAdapter ListAlmacenes()
@@ -92,8 +101,17 @@ namespace GAFE
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo,CveLstPrecio " +
+            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo,CveLstPrecio, CveSucursal " +
                           "from Inv_CatAlmacenes where ClaveAlmacen =@ClaveAlmacen";
+            dt = db.SelectDA(Sql, ArrParametros);
+            return dt;
+        }
+
+        public SqlDataAdapter RegistroActivoPorSucursal()
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select ClaveAlmacen,Descripcion,Estatus,EsDeCompra,EsDeVenta,EsDeConsigna,NumRojo,CveLstPrecio, CveSucursal " +
+                          "from Inv_CatAlmacenes where CveSucursal =@CveSucursal";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -110,11 +128,12 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter CboInv_CatAlmacenes()
+        public SqlDataAdapter CboCatAlmacenes(int OcultaInt)
         {
             SqlDataAdapter dt = null;
+            
             string Sql = "Select ClaveAlmacen,Descripcion " +
-                         "from Inv_CatAlmacenes where Estatus ='A' ";
+                         "from Inv_CatAlmacenes where Estatus ='A' " + (OcultaInt==1?" AND EsInterno = 0 ":"");
             dt = db.SelectDA(Sql);
             return dt;
         }

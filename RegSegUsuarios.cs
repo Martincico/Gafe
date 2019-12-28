@@ -83,10 +83,10 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = " SELECT Usr.Usuario, Usr.Nombre,Usr.Password,Usr.CodPerfil,UsrCfg.CveAlmacen, " +
                          "        UsrCfg.CambiaAlmacen, Alm.EsDeCompra,Alm.EsDeVenta,Alm.EsDeConsigna,Alm.NumRojo, " +
-                         "        UsrCfg.Fondo,UsrCfg.StiloTema,CONVERT (date, GETDATE()) " +
+                         "        UsrCfg.Fondo,UsrCfg.StiloTema,CONVERT (date, GETDATE()), Alm.CveSucursal " +
                          " FROM dbo.SUsuarios AS Usr " +
-                         " INNER JOIN dbo.SUsuarioConf AS UsrCfg ON UsrCfg.CveUsuario = Usr.Usuario " +
-                         " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON UsrCfg.CveAlmacen = Alm.ClaveAlmacen " +
+                         " INNER JOIN SUsuarioConf AS UsrCfg ON UsrCfg.CveUsuario = Usr.Usuario " +
+                         " INNER JOIN Inv_CatAlmacenes AS Alm ON UsrCfg.CveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE Usr.Usuario = @Usuario";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;

@@ -120,6 +120,21 @@ namespace GAFE
             RegCatParamSystem OpBsq = new RegCatParamSystem(db);
             return OpBsq.BuscaParamSystem(buscar);
         }
+
+        public Object[] GetHora()
+        {
+            RegCatParamSystem OpEdit = new RegCatParamSystem(db);
+            Datos = OpEdit.GetHora();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+            return ObjA;
+
+
+        }
+
         public DataTable CboParamSystem()
         {
             CargaParametroMat();

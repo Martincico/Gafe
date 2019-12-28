@@ -19,6 +19,7 @@ namespace GAFE
     public partial class frmLstCfgDocumentos : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
         public String KeyCampo = null;
 
@@ -34,12 +35,13 @@ namespace GAFE
         }
 
 
-        public frmLstCfgDocumentos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1)
+        public frmLstCfgDocumentos(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             user = DatUsr;
+            ParamSystem = ParamS;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -94,7 +96,7 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegCfgDocumentos art = new frmRegCfgDocumentos(db, user.CodPerfil,1);
+            frmRegCfgDocumentos art = new frmRegCfgDocumentos(db, ParamSystem, user.CodPerfil,1);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -103,13 +105,13 @@ namespace GAFE
         {
             try
             {
-                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, ParamSystem, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                MessageBoxAdv.Show("Tienes que seleccionar un registro. "+ ex.Message,
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -119,13 +121,13 @@ namespace GAFE
         {
             try
             {
-                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, ParamSystem, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                MessageBoxAdv.Show("Tienes que seleccionar un registro. "+ex.Message,
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }

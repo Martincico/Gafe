@@ -19,11 +19,13 @@ namespace GAFE
     public partial class frmCatCfgCatFoliadores : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
         private int idxG;
         //private int AcCOPEdit;
         private MsSql db = null;
         private string Perfil;
+        ClsUtilerias Util;
 
         public frmCatCfgCatFoliadores()
         {
@@ -31,11 +33,13 @@ namespace GAFE
         }
 
 
-        public frmCatCfgCatFoliadores(MsSql Odat, string perfil)
+        public frmCatCfgCatFoliadores(MsSql Odat, DatCfgParamSystem ParamS, string perfil)
         {
             InitializeComponent();
             db = Odat;
             Perfil = perfil;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -292,7 +296,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveClase.Text))
             {                
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);

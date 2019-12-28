@@ -91,18 +91,8 @@ namespace GAFE
                         " INNER JOIN dbo.CatGeografia AS G2 ON G2.id = G1.Padre " +
                         " WHERE P.Estatus = 1 AND (P.CveProveedor like '%" + bsq + "%' OR " +
                         "P.Nombre like '%" + bsq + "%' OR " +
-                        "P.CveProveedor like '%" + bsq + "%' OR " +
-                        "P.Nombre like '%" + bsq + "%' OR " +
                         "P.RFC like '%" + bsq + "%' OR " +
-                        "P.Calle like '%" + bsq + "%' OR " +
-                        "G.Descripcion like '%" + bsq + "%' OR " +
-                        "P.CP like '%" + bsq + "%' OR " +
-                        "P.Mail1 like '%" + bsq + "%' OR " +
-                        "P.Mail2 like '%" + bsq + "%' OR " +
-                        "P.Tel1 like '%" + bsq + "%' OR " +
-                        "P.Contacto like '%" + bsq + "%' OR " +
-                        "P.Cargo like '%" + bsq + "%' OR " +
-                        "P.Tel2 like '%" + bsq + "%')";
+                        "P.Contacto like '%" + bsq + "%' )";
 
             dt = db.SelectDA(Sql);
             return dt;

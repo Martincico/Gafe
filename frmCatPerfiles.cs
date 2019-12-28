@@ -19,6 +19,8 @@ namespace GAFE
     public partial class frmCatPerfiles : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
         private int opcion;
         private int idxG;
         public string KeyCampo;
@@ -31,12 +33,13 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public frmCatPerfiles(MsSql Odat, string perfil)
+        public frmCatPerfiles(MsSql Odat, DatCfgParamSystem ParamS, string perfil)
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
-
+            Perfil = perfil;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -255,7 +258,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtPerfil.Text))
             {
                 MessageBoxAdv.Show("Perfil: No puede ir vacío.", "CatUMedidaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);

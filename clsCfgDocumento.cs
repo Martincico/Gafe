@@ -24,6 +24,10 @@ namespace GAFE
         public int EsInterno;
         public int SolicitaAutorizar;
         public int AfectaInventario;
+        public int UsaAlmTmp;
+        public int UsaAlmDestino;
+        public int DeshabilitaBotones;
+        public int UsaFactura;
         public String DocRel;
         public String txtBotonDocRel;
         
@@ -62,9 +66,13 @@ namespace GAFE
                 Doc.EsInterno = Convert.ToInt32(dr["EsInterno"]);
                 Doc.SolicitaAutorizar = Convert.ToInt32(dr["SolicitaAutorizar"]);
                 Doc.AfectaInventario = Convert.ToInt32(dr["AfectaInventario"]);
+                Doc.UsaAlmTmp = Convert.ToInt32(dr["UsaAlmTmp"]);
+                Doc.UsaAlmDestino = Convert.ToInt32(dr["UsaAlmDestino"]);
                 Doc.Estatus = Convert.ToInt32(dr["Estatus"]);
                 Doc.DocRel = Convert.ToString(dr["DocRel"]);
                 Doc.txtBotonDocRel = Convert.ToString(dr["txtBotonDocRel"]);
+                Doc.DeshabilitaBotones = Convert.ToInt32(dr["DeshabilitaBotones"]);
+                Doc.UsaFactura = Convert.ToInt32(dr["UsaFactura"]);
             }
             dr.Close();
             return Doc;

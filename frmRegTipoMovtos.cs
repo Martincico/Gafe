@@ -18,19 +18,21 @@ namespace GAFE
     {
         private int opcion;
         private MsSql db = null;
-
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
 
         public frmRegTipoMovtos()
         {
             InitializeComponent();
         }
 
-        public frmRegTipoMovtos(MsSql Odat, int Op, String Cod="")
+        public frmRegTipoMovtos(MsSql Odat, DatCfgParamSystem ParamS, int Op, String Cod="")
         {
             InitializeComponent();
             opcion = Op;
             db = Odat;
-
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
@@ -85,6 +87,7 @@ namespace GAFE
             //chkEditaCosto.Checked = pui.cmpPideCentroCosto == 1 ? true : false;
             chkInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
+            chkSolicitaSucursal.Checked = pui.cmpSolicitaSucursal == 1 ? true : false;
 
         }
 
@@ -179,8 +182,8 @@ namespace GAFE
             pui.cmpEsInterno = chkInterno.Checked ? 1 : 0;
             pui.cmpPideCentroCosto = 0;
             pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
-
-            if(opcion==1)
+            pui.cmpSolicitaSucursal = chkSolicitaSucursal.Checked ? 1 : 0;
+            if (opcion==1)
             {
                 db.IniciaTrans();
                 if(pui.AgregarTipoMov()==1)
@@ -196,6 +199,8 @@ namespace GAFE
                         db.CancelaTrans();
 
                 }
+                else
+                    db.CancelaTrans();
             }
             else
                 rsp =pui.ActualizaTipoMov();
@@ -208,7 +213,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -293,7 +297,7 @@ namespace GAFE
             chkCalculaIva.Enabled = Op;
             chkInterno.Enabled = Op;
             chkEstatus.Enabled = Op;
-
+            chkSolicitaSucursal.Enabled = Op;
         }
 
         private void LimpiarControles()

@@ -17,6 +17,10 @@ namespace GAFE
     public partial class frmRegCfgDocumentos : MetroForm
     {
         private MsSql db = null;
+
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int opcion;
         private string Perfil;
 
@@ -30,13 +34,14 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public frmRegCfgDocumentos(MsSql Odat, string perfil, int op, String Cod = "")
+        public frmRegCfgDocumentos(MsSql Odat, DatCfgParamSystem ParamS, string perfil, int op, String Cod = "")
         {
             InitializeComponent();
             opcion = op;
             db = Odat;
             Perfil = perfil;
-
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
@@ -77,6 +82,8 @@ namespace GAFE
             chkEditaFecha.Checked = pui.cmpEditaFecha== 1 ? true : false;
             chkAutoriza.Checked = pui.cmpSolicitaAutorizar == 1 ? true : false;
             chkAfectaInventario.Checked = pui.cmpAfectaInventario == 1 ? true : false;
+            chkAlmDest.Checked = pui.cmpUsaAlmDest == 1 ? true : false;
+            chkAlmTmp.Checked = pui.cmpUsaAlmTmp == 1 ? true : false;
             if (pui.cmpCargoAbono == "C")
             {
                 optCargo.Checked = true;
@@ -99,6 +106,7 @@ namespace GAFE
             }
             chkEsInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
+            chkUsaFactura.Checked = pui.cmpUsaFactura == 1 ? true : false;
 
 
             cboDocRel.SelectedValue = pui.cmpDocRel;
@@ -185,6 +193,10 @@ namespace GAFE
             pui.cmpUsaProvee = optProveedor.Checked ? 1 : 0;
             pui.cmpDocRel = Convert.ToString(cboDocRel.SelectedValue);
             pui.cmptxtBotonDocRel = "";
+            pui.cmpUsaAlmDest = chkAlmDest.Checked ? 1 : 0;
+            pui.cmpUsaAlmTmp = chkAlmTmp.Checked ? 1 : 0;
+            pui.cmpUsaFactura = chkUsaFactura.Checked ? 1 : 0;
+
             if (!pui.cmpDocRel.Equals(""))
                 pui.cmptxtBotonDocRel = txtBotonDocRel.Text;
 
@@ -202,6 +214,8 @@ namespace GAFE
                         db.CancelaTrans();
 
                 }
+                else
+                    db.CancelaTrans();
             }
             else
                 rsp =pui.ActualizaCfgDocumentos();
@@ -217,7 +231,6 @@ namespace GAFE
             
             Boolean dv = true;
             
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -273,7 +286,9 @@ namespace GAFE
             chkEstatus.Enabled = Op;
             cboDocRel.Enabled = Op;
             txtBotonDocRel.Enabled = Op;
-
+            chkAlmTmp.Enabled = Op;
+            chkAlmDest.Enabled = Op;
+            chkUsaFactura.Enabled = Op;
         }
 
         private void LimpiarControles()

@@ -21,6 +21,7 @@ namespace GAFE
         private string CveAlmacenDes;
         private string CveTipoMovDest;
         private string EntSalDest;
+        private string CveSucursal;
         private string Modulo;
         private string TipoDoc;
         private string SerieDoc;
@@ -50,7 +51,7 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[21, 2];
+        private object[,] MatParam = new object[22, 2];
         private object[,] MatParamParti = new object[6, 2];
         private object[,] MatParamAlma = new object[5, 2];
 
@@ -103,6 +104,11 @@ namespace GAFE
         {
             get { return EntSal; }
             set { EntSal = value; }
+        }
+        public string cmpCveSucursal
+        {
+            get { return CveSucursal; }
+            set { CveSucursal = value; }
         }
 
         public string cmpNoDoc
@@ -275,13 +281,7 @@ namespace GAFE
                 return "Error";
 
         }
-        /*
-        public String GetFolio_2(String fol)
-        {
-            MovtosInvReg OpRadd = new MovtosInvReg(db);
-            return OpRadd.GetFolioSql(fol);
-        }
-        */
+
         public int AgregarInvMaster(int foliador, string Doc, int op, String DcOrigen)
         {
             DocRegRequisiciones rRq = new DocRegRequisiciones(db);
@@ -328,11 +328,25 @@ namespace GAFE
 
         public int AfectaCostos(String _CveTipoMov,int Op)
         {
+            int rtn = -1;
             object[,] MatParAfec = new object[2, 2];
             MatParAfec[0, 0] = "NoMovimiento"; MatParAfec[0, 1] = NoMovimiento;
             MatParAfec[1, 0] = "ClaveAlmacen"; MatParAfec[1, 1] = CveAlmacenMov;
             MovtosInvReg Afe = new MovtosInvReg(MatParAfec, db);
-            return Afe.AfectaCostosSql(_CveTipoMov,Op);
+
+            SqlDataAdapter DatosTbl = Afe.RegistroActivoDetalle(NoMovimiento); //CveArticulo,Descripcion,CveUMedida,Cantidad,CantidadPkt,Costo,Precio
+            DataSet ds = new DataSet();
+            DatosTbl.Fill(ds);
+            int cpa = ds.Tables[0].Rows.Count;
+            for (int j = 0; j < cpa;  j++)
+            {
+                object[] row = ds.Tables[0].Rows[j].ItemArray;
+                rtn = Afe.AfectaCostosSql(_CveTipoMov, Op, row[0].ToString(), row[3].ToString(), row[6].ToString());
+                if (rtn < 0)
+                    return -1;
+            }
+
+            return rtn;
         }
 
         public int AfectaExistencias( String _EntSal, int Op)
@@ -383,6 +397,8 @@ namespace GAFE
             NoMovtoTra = ObjA[24].ToString();
             DocTra = ObjA[25].ToString();
             CveClaseTipoMov = ObjA[26].ToString();
+            CveSucursal = ObjA[27].ToString();
+
 
 
         }
@@ -473,6 +489,7 @@ namespace GAFE
             MatParam[18, 0] = "NoMovtoTra"; MatParam[18, 1] = NoMovtoTra;
             MatParam[19, 0] = "DocTra"; MatParam[19, 1] = DocTra;
             MatParam[20, 0] = "DocOrigen"; MatParam[20, 1] = DocOrigen;
+            MatParam[21, 0] = "CveSucursal"; MatParam[21, 1] = CveSucursal;
 
         }
         private void CargaParamMatPart()

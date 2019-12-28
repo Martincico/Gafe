@@ -16,6 +16,8 @@ namespace GAFE
 {
     public partial class frmRegCfgDocSerie : MetroForm
     {
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
         private int opcion;
         private MsSql db = null;
 
@@ -29,16 +31,19 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public frmRegCfgDocSerie(MsSql Odat, DatCfgUsuario DatUsr, int Op, String Alm= "", String TMov = "", String ser= "")
+        public frmRegCfgDocSerie(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, int Op, String TMov = "", String ser= "")
         {
             InitializeComponent();
             opcion = Op;
             db = Odat;
             user = DatUsr;
-
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
+            cboAlmacen.Enabled = user.CambiaAlmacen == 1 ? true : false;
 
             LimpiarControles();
             OpcionControles(true);
@@ -52,13 +57,13 @@ namespace GAFE
                     OpcionControles(true);
                 break;
                 case 2://Edita
-                    get_Campos(Alm,TMov,ser);
+                    get_Campos(user.AlmacenUsa,TMov,ser);
                     txtSerie.Enabled = false;
                     cboAlmacen.Enabled = false;
                     cboTMovtoProv.Enabled = false;
                     break;
                 case 3://Consulta
-                    get_Campos(Alm, TMov, ser);
+                    get_Campos(user.AlmacenUsa, TMov, ser);
                     OpcionControles(false);
                 break;
 
@@ -189,7 +194,6 @@ namespace GAFE
             
             Boolean dv = true;
 
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtSerie.Text))
             {
                 MessageBoxAdv.Show("Serie: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -244,7 +248,7 @@ namespace GAFE
 
         private void OpcionControles(Boolean Op)
         {
-            cboAlmacen.Enabled = Op?(user.CambiaAlmacen == 1?true:false) : false;
+            cboAlmacen.Enabled = (user.CambiaAlmacen == 1? Op : false);
 
             cboTMovtoProv.Enabled = Op;
             txtSerie.Enabled = Op;
@@ -268,9 +272,11 @@ namespace GAFE
         private void LlecboAlmacen()
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboAlmacen.DataSource = lin.CboInv_CatAlmacenes();
+            cboAlmacen.DataSource = lin.CboCatAlmacenes(1);
             cboAlmacen.ValueMember = "ClaveAlmacen";
             cboAlmacen.DisplayMember = "Descripcion";
+
+            cboAlmacen.SelectedValue = user.AlmacenUsa;
         }
       
         private void LlecboCfgDocs()

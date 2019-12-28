@@ -31,7 +31,7 @@ namespace GAFE
         public int AddRegBlanco()
         {
             string sql = "Insert into Inv_MovtosMaster (NoMovimiento, FechaMovimiento) " +
-                         "values( @NoMovimiento,@FechaMovimiento)";
+                         "values( @NoMovimiento, (CONVERT(DATETIME, @FechaMovimiento) + CONVERT(DATETIME, CONVERT(time, GETDATE()))) )";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -43,9 +43,9 @@ namespace GAFE
         */
         public int AddRegInvMaster(String DcOrigen)
         {
-            string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal," +
+            string sql = "Update Inv_MovtosMaster set CveAlmacenMov=@CveAlmacenMov, CveTipoMov=@CveTipoMov, EntSal=@EntSal, CveSucursal = @CveSucursal," +
             "           NoDoc=@NoDoc, Documento=@Documento,CveAlmacenDes=@CveAlmacenDes,CveTipoMovDest=@CveTipoMovDest, EntSalDest=@EntSalDest," +
-            "           Modulo=@Modulo, Descuento=@Descuento," +
+            "           Modulo=@Modulo, Descuento=@Descuento, " +
             "           TotalDscto=@TotalDscto, TIva=@TIva, SubTotal=@SubTotal, TotalDoc=@TotalDoc, CveProveedor=@CveProveedor," +
             "           Cancelado=@Cancelado, CveUsarioCaptu=@CveUsarioCaptu, NoMovtoTra = @NoMovtoTra, DocTra = @DocTra," +
             "           DocOrigen = @DocOrigen " +
@@ -106,43 +106,49 @@ namespace GAFE
             return rsp;
         }
 
-        public int AfectaCostosSql(String _CveTipoMov, int Op)
+        public int AfectaCostosSql(String _CveTipoMov, int Op, String CveArt, String Canti, String Precio)
         {
+            int rtn = -1;
             String Opera = " ";
             String Add_UltPrecio = "";
-            //002 - 501 = Entrada o Salida por ajuste de inventarios
 
             if (Op == 1)
             {
                 Opera = "+";
-                Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = Rsp.Precio ";
+                Add_UltPrecio = Precio;
+
             }
             else
             {
                 Opera = "-";
-                Add_UltPrecio = (_CveTipoMov.Equals("002") || _CveTipoMov.Equals("501")) ? "" : " , Inv_Existencias.CostoUltimo = "; 
-
-                Add_UltPrecio += " ( SELECT TOP 1 Precio " +
+                Add_UltPrecio = " ( SELECT TOP 1 Precio " +
                                 "  FROM Inv_MovtosDetalles " +
-                                "  WHERE CveArticulo = Rsp.CveArticulo " +
+                                "  WHERE CveArticulo = '" + CveArt + "'" +
                                 "    AND CveTipoMov =  '" + _CveTipoMov + "'" +
                                 "    AND NoMovimiento != @NoMovimiento" +
                                 "    AND Cancelado = 1 " +
                                 " ORDER BY CONVERT(INT, NoMovimiento) DESC ) ";
             }
+            String Cp = " ((( ISNULL(Cantidad,0) * ISNULL(CostoPromedio,0))" + Opera + "( "+ Canti + " * " + Precio + " ))/ " +
+                    "          (CASE (ISNULL(Cantidad,0) " + Opera + " " + Canti + ") WHEN 0 THEN 1 ELSE (ISNULL(Cantidad,0) " + Opera + "  " + Canti + ") END))  ";
+
+            String Sql = " UPDATE Inv_Existencias SET    CostoPromedio = "+ Cp + ", " +
+                            "                            CostoUltimo = " + Add_UltPrecio +
+                    "       WHERE ClaveArticulo = '"+ CveArt + "' and ClaveAlmacen = @ClaveAlmacen ";
 
 
-            string sql = " UPDATE Inv_Existencias SET Inv_Existencias.CostoPromedio = Rsp.CtoProm " + Add_UltPrecio +
-                         " FROM Inv_Existencias t1, " +
-                         "      (SELECT MDet.CveArticulo, MDet.CveTipoMov, " +
-                         "          ((( ISNULL(Exis.Cantidad,0) * ISNULL(Exis.CostoPromedio,0))" + Opera + "( MDet.Cantidad * MDet.Precio ))/ " +
-                         "          (CASE (ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad) WHEN 0 THEN 1 ELSE (ISNULL(Exis.Cantidad,0) " + Opera + " MDet.Cantidad) END)) as CtoProm," +
-                         "          MDet.Precio  " +
-                         "       FROM Inv_MovtosDetalles MDet" +
-                         "       INNER JOIN  Inv_Existencias Exis ON MDet.CveArticulo =  Exis.ClaveArticulo and MDet.CveAlmacenMov = Exis.ClaveAlmacen " +
-                         "       WHERE MDet.NoMovimiento = @NoMovimiento AND Cancelado = 1) AS Rsp" +
-                         " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
-            return db.DeleteRegistro(sql, ArrParametros);
+            rtn = db.UpdateRegistro(Sql, ArrParametros);
+
+            if (rtn >= 0)
+            {
+                Sql = " UPDATE Inv_LstPreciosDet SET CostoUltimo = " + Add_UltPrecio +" ,"+
+                    "                                Precio = (CASE WHEN (ISNULL(Porcentaje,0)) = 0 THEN 0 ELSE (( Porcentaje  / 100) * " + Precio + ") + " + Precio +" END)" +
+                    " WHERE CveArticulo = '" + CveArt + "'";
+                rtn = db.UpdateRegistro(Sql, ArrParametros);
+            }
+
+            return rtn;
+            
         }
 
         public int AfectaExistenciasSql(String _EntSal, int Op)
@@ -155,27 +161,39 @@ namespace GAFE
                          "      FROM Inv_MovtosDetalles MDet" +
                          "       WHERE MDet.NoMovimiento = @NoMovimiento AND Cancelado = 1) AS Rsp" +
                          " WHERE t1.ClaveArticulo = Rsp.CveArticulo AND t1.ClaveAlmacen = @ClaveAlmacen";
-            return db.DeleteRegistro(sql, ArrParametros);
+            int r = db.DeleteRegistro(sql, ArrParametros);
+            return r;
         }
 
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select MM.NoMovimiento, MM.FechaMovimiento, MM.CveAlmacenMov, MM.CveTipoMov, MM.EntSal," +
+            string Sql = " Select MM.NoMovimiento, MM.FechaMovimiento, MM.CveAlmacenMov, MM.CveTipoMov, MM.EntSal," +
                          "       MM.NoDoc, MM.Documento, MM.CveAlmacenDes,CveTipoMovDest, MM.EntSalDest," +
                          "       MM.Modulo, MM.TipoDoc, MM.SerieDoc, MM.FolioDocOrigen, MM.Descuento," +
                          "       MM.TotalDscto, MM.TIva, MM.SubTotal, MM.TotalDoc, MM.CveProveedor," +
                          "       MM.CveCliente, MM.Cancelado, MM.CveUsarioCaptu, MM.CveCentroCosto, MM.NoMovtoTra," +
-                         "       MM.DocTra, TM.CveClsMov " +
-                         "from Inv_MovtosMaster AS MM " +
-                         "INNER JOIN Inv_TipoMovtos as TM ON TM.CveTipoMov = MM.CveTipoMov " +
-                         "where NoMovimiento = @NoMovimiento";
+                         "       MM.DocTra, TM.CveClsMov, MM.CveSucursal " +
+                         " from Inv_MovtosMaster AS MM " +
+                         " INNER JOIN Inv_TipoMovtos as TM ON TM.CveTipoMov = MM.CveTipoMov " +
+                         " where NoMovimiento = @NoMovimiento";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-       
-        public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
+        public SqlDataAdapter RegistroActivoDetalle(String NoMovimiento)
+        {
+            SqlDataAdapter dt = null;
+            string Sql = "Select CveArticulo,Descripcion,CveUMedida,Cantidad,CantidadPkt,Costo,Precio " +
+                            "FROM Inv_MovtosDetalles " +
+                            "WHERE NoMovimiento = '"+ NoMovimiento + "' AND Cancelado = 1";
+            dt = db.SelectDA(Sql);
+            return dt;
+        }
+
+
+
+            public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             String StrSql = "";
 
@@ -197,10 +215,11 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "SELECT MM.NoMovimiento,MM.Documento,MM.FechaMovimiento,Alm.Descripcion AS Almacen, " +
                          "       TMvto.Descripcion AS TipoMov, Prov.Nombre AS Proveedor, MM.Cancelado,MM.TotalDoc, " +
-                         "        MM.CveTipoMov,MM.NoMovtoTra,MM.DocTra, MM.DocOrigen " +
+                         "        MM.CveTipoMov,MM.NoMovtoTra,MM.DocTra, MM.DocOrigen, Suc.Nombre as Sucursal " +
                          " FROM Inv_MovtosMaster MM " +
                          " INNER JOIN Inv_CatAlmacenes Alm ON Alm.ClaveAlmacen = mm.CveAlmacenMov " +
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
+                         " LEFT JOIN CatSucursales Suc ON Suc.CveSucursal = MM.CveSucursal " +
                          " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = mm.CveTipoMov" +
                         //" WHERE MM.Cancelado = 1 " + StrSql;
                         " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '"+FIni+"' AND '"+FFin+ "') " +
@@ -214,16 +233,19 @@ namespace GAFE
         {
             string sql = "INSERT INTO Inv_MovtosDetalles ( " +
                          "            NoMovimiento,NoPartida,CveArticulo,Descripcion,Cantidad," +
-                         "            CantidadPkt,CveUMedida,CveImpuesto,ImpuestoValor,Precio," +
+                         "            CantidadPkt,CveUMedida,CveImpuesto,ImpuestoValor,Precio,Costo," +
                          "            Descuento,TotalDscto,TotalIva,SubTotal,TotalPartida," +
                          "            FechaMovimiento, CveAlmacenMov,CveTipoMov,EntSal,NoDoc, " +
                          "            Documento,FolioDocOrigen,NoMovtoTra,DocTra,PartTra ) " +
-                         " SELECT @NoMovimiento, DD.Partida,DD.CveArticulo,DD.Descripcion,DD.Cantidad," +
-                         "        DD.Cantidad,DD.CveUmedida1,DD.CveImpuesto,DD.ImpuestoValor,DD.Precio," +
+                         "(SELECT @NoMovimiento, DD.Partida,DD.CveArticulo,DD.Descripcion,DD.Cantidad," +
+                         "        DD.Cantidad,DD.CveUmedida1,DD.CveImpuesto,DD.ImpuestoValor,DD.Precio,0.0," +
                          "        DD.Descuento,DD.PrecioNeto,DD.Impuesto,DD.SubTotal,DD.Total," +
                          "        DD.FechaModificacion,'','','',''," +
                          "        '','','','','' " +
-                         " FROM dbo.DocDet AS DD WHERE DD.idMov = @IdDoc";
+                         " FROM  DocDet AS DD " +
+                         " INNER JOIN DocCab DC ON DD.idMov = DC.idMov " +
+                         " WHERE DC.EsperaAceptacion = 1  " +
+                         "   AND DD.idMov = @IdDoc)";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 

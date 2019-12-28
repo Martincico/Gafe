@@ -21,6 +21,7 @@ namespace GAFE
     {
         private String TipoDocProv = "MINV"; //MINV aun no sta registrado
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
 
         private MsSql db = null;
         DataTable dt = null;
@@ -37,13 +38,13 @@ namespace GAFE
         }
 
 
-        public MovtosInvLst(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public MovtosInvLst(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
             user = DatUsr;
             StiloColor = NewColor;
-
+            ParamSystem = ParamS;
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -81,35 +82,26 @@ namespace GAFE
             
             LlenaGridView();
 
+
+            if(user.CodPerfil.Equals("Responsable"))
+            {
+                DisableControl(false);
+            }
+            else
+                DisableControl(true);
+
+
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            /*
-            DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
-            string movimiento = rq.AgregarDocEnBlanco(5000, user.FecServer);
-            //llamar la forma de regdoc
-            if (movimiento.CompareTo("Error") != 0)
-            {
-                DocRegistroRequisicion Rcap = new DocRegistroRequisicion(db, user, StiloColor,  1, ConfigDoc, movimiento, CveDoc, NameDoc);
-                Rcap.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-                Rcap.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
-                Rcap.ShowDialog();
-                LlenaGridView();
-            }
-            else
-            {
-                MessageBoxAdv.Show("Existe un error insertar registro", "ERROR "+ NameDoc, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
-
-
-
-            */
             MovtosInvPui pui = new MovtosInvPui(db);
             String folMovto = pui.AgregarBlanco(1, user.FecServer);
             if (folMovto.CompareTo("Error") != 0)
             {
-                MovtosInvRegistro Ventana = new MovtosInvRegistro(db, 1, TipoDocProv, user, StiloColor, folMovto);
+                MovtosInvRegistro Ventana = new MovtosInvRegistro(db, ParamSystem, user, StiloColor, 1, TipoDocProv, folMovto);
+                Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Ventana.ShowDialog();
             }
             else
@@ -123,13 +115,15 @@ namespace GAFE
         {
             try
             {
-                MovtosInvRegistro Ventana = new MovtosInvRegistro(db, StiloColor, 3, TipoDocProv, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                MovtosInvRegistro Ventana = new MovtosInvRegistro(db, ParamSystem, user, StiloColor, 3, TipoDocProv, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                MessageBoxAdv.Show("Tienes que seleccionar un registro. "+ ex.Message,
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -150,9 +144,8 @@ namespace GAFE
             String CodProve = Convert.ToString(cboProveedor.SelectedValue);
             String AlmOri = Convert.ToString(cboAlmaOri.SelectedValue);
             String CodTipoMov = Convert.ToString(cboTipoMovtos.SelectedValue);
-            String FIni = dtFechaInicio.Value.ToString("dd/MM/yyyy");
-            String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
-
+            String FIni = dtFechaInicio.Value.ToString("yyyy/MM/dd");
+            String FFin = dtFechaFin.Value.ToString("yyyy/MM/dd");
 
             MovtosInvPui pui = new MovtosInvPui(db);
             DatosTbl = pui.ListarInventarioMovtos(CodProve, AlmOri, CodTipoMov, FIni, FFin);
@@ -206,7 +199,6 @@ namespace GAFE
 
         private void cmEliminar_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 String NoMov = grdView[0, grdView.CurrentRow.Index].Value.ToString();
@@ -221,13 +213,12 @@ namespace GAFE
                         if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + NoDoc,
                          "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-
-                            db.IniciaTrans();
-                            int Rsp = EliminarMov(NoMov, IdTipMov);
+                            //db.IniciaTrans();
+                            int Rsp = EliminarMov(NoMov, IdTipMov,0);
                             String err = "";
                             if (Rsp < 0)
                             {
-                                db.CancelaTrans();
+                                //db.CancelaTrans();
                                 switch (Rsp)
                                 {
                                     case -1: err = "Existe un error al eliminar registro"; break;
@@ -238,7 +229,7 @@ namespace GAFE
                             }
                             else
                             {
-                                db.TerminaTrans();
+                                //db.TerminaTrans();
                                 MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
                             }
@@ -261,7 +252,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                db.CancelaTrans();
+                //db.CancelaTrans();
                 MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
@@ -270,15 +261,15 @@ namespace GAFE
 
         private void LlecboProveedor()
         {
-            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            dt = lin.CboInv_CatAlmacenes();
+            PuiCatProveedores lin = new PuiCatProveedores(db);
+            dt = lin.LLenaCboProveedores();
             row = dt.NewRow();
-            row["ClaveAlmacen"] = "0";
+            row["Clave"] = "0";
             row["Descripcion"] = "TODOS ";
             dt.Rows.Add(row);
 
             cboProveedor.DataSource = dt;
-            cboProveedor.ValueMember = "ClaveAlmacen";
+            cboProveedor.ValueMember = "Clave";
             cboProveedor.DisplayMember = "Descripcion";
 
             cboProveedor.SelectedValue = "0";
@@ -286,7 +277,7 @@ namespace GAFE
         private void LlecboAlmaOri(String CveUser)
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            dt = lin.CboInv_CatAlmacenes();
+            dt = lin.CboCatAlmacenes(1);
             row = dt.NewRow();
             row["ClaveAlmacen"] = "0";
             row["Descripcion"] = "TODOS ";
@@ -416,9 +407,13 @@ namespace GAFE
             }
         }
 
-        private int EliminarMov(String NoMov, String IdTipMov)
+        private int EliminarMov(String NoMov, String IdTipMov, int VieneLstReq)
         {
             int Rsp = -4;
+
+            if (VieneLstReq==0)
+                db.IniciaTrans();
+
             MovtosInvPui pui = new MovtosInvPui(db);
             MovtosInvPui puiRel = new MovtosInvPui(db);
 
@@ -470,6 +465,14 @@ namespace GAFE
                 Rsp = pui.DelRegCerosSql();
                 if (PuiTM.cmpEsTraspaso == 1)
                     Rsp = puiRel.DelRegCerosSql();
+
+                if (VieneLstReq == 0)
+                    db.TerminaTrans();
+            }
+            else
+            {
+                if (VieneLstReq == 0)
+                    db.CancelaTrans();
             }
 
             return Rsp;
@@ -482,9 +485,20 @@ namespace GAFE
             MovtosInvPui Del = new MovtosInvPui(db);
             Del.cmpDocOrigen = DcOrigen;
             Del.GetIdMov();
-            Rsp = EliminarMov(Del.keyNoMovimiento, Del.cmpCveTipoMov);
+            Rsp = EliminarMov(Del.keyNoMovimiento, Del.cmpCveTipoMov,1);
 
             return Rsp;
         }
+
+        private void DisableControl(Boolean op)
+        {
+            cboAlmaOri.Enabled = op;
+            cboTipoMovtos.Enabled = op;
+            cboProveedor.Enabled = op;
+            cmdAgregar.Enabled = op;
+            cmdConsultar.Enabled = op;
+            cmdEliminar.Enabled = op;
+        }
     }
-}
+
+ }

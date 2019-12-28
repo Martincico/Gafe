@@ -19,6 +19,8 @@ namespace GAFE
     public partial class frmCatUsuarios : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
         private int opcion;
         private int idxG;
         public string KeyCampo;
@@ -33,12 +35,13 @@ namespace GAFE
             InitializeComponent();
             
         }
-        public frmCatUsuarios(MsSql Odat, string perfil)
+        public frmCatUsuarios(MsSql Odat, DatCfgParamSystem ParamS, string perfil)
         {
             InitializeComponent();
             db = Odat;
             sPerfil = perfil;
-
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -314,7 +317,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
                 MessageBoxAdv.Show("Usuario: No puede ir vacío.", "CatUsuarioes", MessageBoxButtons.OK, MessageBoxIcon.Warning);

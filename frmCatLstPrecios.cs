@@ -19,6 +19,9 @@ namespace GAFE
     public partial class frmCatLstPrecios : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int opcion;
         private int idxG;
 
@@ -36,12 +39,15 @@ namespace GAFE
         }
 
 
-        public frmCatLstPrecios(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public frmCatLstPrecios(MsSql Odat, DatCfgUsuario DatUsr, DatCfgParamSystem ParamS,clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
             user = DatUsr;
             StiloColor = NewColor;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
+
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -297,7 +303,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveLstPrecio.Text))
             {                
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "Listas de precios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -404,7 +409,7 @@ namespace GAFE
         {
             try
             { 
-                LstCatViewLstPrecio LPv = new LstCatViewLstPrecio(db, user, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmCatLstPreciosDet LPv = new frmCatLstPreciosDet(db, ParamSystem, user,StiloColor, grdView[0, grdView.CurrentRow.Index].Value.ToString(),"");
                 LPv.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 LPv.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 LPv.ShowDialog();
@@ -415,6 +420,6 @@ namespace GAFE
                 MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
-}
+        }
     }
 }

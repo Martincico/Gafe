@@ -39,8 +39,8 @@ namespace GAFE
 
         public int AddLstPreciosDet()
         {
-            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo, Precio, FechaModifacion) " +
-                        "                        (SELECT @CveLstPrecio, CveArticulo, 0, GETDATE() " +
+            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo, Precio,Porcentaje,CostoUltimo, FechaModifacion) " +
+                        "                        (SELECT @CveLstPrecio, CveArticulo, 0,0,0, GETDATE() " +
                         "                         FROM inv_CatArticulos WHERE Estatus = 1) ";
             return db.InsertarRegistro(sql, ArrParametros);
         }
@@ -95,11 +95,11 @@ namespace GAFE
             dt = db.SelectDA(sql);
             return dt;
         }
-
+/*
         public SqlDataAdapter ListadoPrecioArticulo()
-        {//Llena grid de Articulos en la pestaña de UBICACION
+        {
             SqlDataAdapter dt = null;
-            string Sql = " SELECT LstPM.Nombre, LstPD.FechaModifacion, LstPD.Precio " +
+            string Sql = " SELECT LstPD.CveArticulo AS 'Articulo',Art.Descripcion,LstPD.CostoUltimo , LstPD.Porcentaje, LstPD.Precio " +
                          " FROM Inv_LstPreciosMast AS LstPM " +
                          " INNER JOIN Inv_LstPreciosDet AS LstPD ON LstPD.CveLstPrecio = LstPM.CveLstPrecio " +
                          " INNER JOIN inv_CatArticulos AS A ON A.CveArticulo = LstPD.CveArticulo " +
@@ -110,6 +110,7 @@ namespace GAFE
             return dt;
         }
 
+    */
         public SqlDataAdapter GetPrecioArticulo()
         {//Se usa el GET PRECIO en la pantalla de VENTA
             SqlDataAdapter dt = null;
@@ -133,30 +134,45 @@ namespace GAFE
             return dt;
         }
 
-        public SqlDataAdapter LstArticulo_LstPrecio(String txtArt)
-        {//Llena grid en la pantalla de VIEW lst precios para poder actualizar
+        public SqlDataAdapter LstArticulo_LstPrecio(String CveLstPrecio, String txtArt, int OnlyCod)
+        {    //Llena grid en la pantalla de VIEW lst precios para poder actualizar
+            //Llena grid de Articulos en la pestaña de Listado de precio
             String Wh = "";
             txtArt = txtArt.Trim();
 
+
+            if(!CveLstPrecio.Equals(""))
+            {
+                Wh = " AND LstpD.CveLstPrecio  = '"+CveLstPrecio +"'";
+            }
+
             if(!txtArt.Equals(""))
             {
-                Wh = " AND (LstPD.CveArticulo LIKE '%" + txtArt + "%' OR Art.Descripcion LIKE '%" + txtArt + "%')";
+                if(OnlyCod == 0)
+                    Wh += " AND (LstPD.CveArticulo LIKE '%" + txtArt + "%' OR Art.Descripcion LIKE '%" + txtArt + "%')";
+                else
+                    Wh += " AND LstPD.CveArticulo  = '" + txtArt + "'";
             }
 
             SqlDataAdapter dt = null;
-            string Sql = " SELECT LstPD.CveArticulo AS 'Articulo',Art.Descripcion,Art.Modelo,LstPD.Precio,LstPD.FechaModifacion " +
+            string Sql = " SELECT TOP 800 LstPD.CveArticulo, LstPM.Nombre,Art.Descripcion,LstPD.CostoUltimo , LstPD.Porcentaje, LstPD.Precio, " +
+                         "    LstPD.CveLstPrecio " +
                          " FROM Inv_LstPreciosDet AS LstPD " +
-                         " INNER JOIN dbo.inv_CatArticulos AS Art ON LstPD.CveArticulo = Art.CveArticulo " +
-                         " WHERE Art.Estatus = 1 AND LstpD.CveLstPrecio  = @CveLstPrecio "+ Wh;
-            dt = db.SelectDA(Sql, ArrParametros);
+                         " INNER JOIN Inv_LstPreciosMast AS LstPM ON LstPD.CveLstPrecio = LstPM.CveLstPrecio " +
+                         " INNER JOIN inv_CatArticulos AS Art ON LstPD.CveArticulo = Art.CveArticulo " +
+                         " WHERE Art.Estatus = 1 " + Wh+
+                         " ORDER BY Art.Descripcion";
+
+            dt = db.SelectDA(Sql);
             return dt;
         }
 
         public int UpdLstPrecio_Art()
         {
-            string sql = "Update Inv_LstPreciosDet set FechaModifacion = @FechaModifacion, Precio = @Precio  " +
-                         "Where CveLstPrecio = @CveLstPrecio " +
-                         "AND   CveArticulo  = @CveArticulo";
+            string sql = "Update Inv_LstPreciosDet set Precio = @Precio, Porcentaje = @Porcentaje, " +
+                         "       FechaModifacion = (CONVERT(DATETIME, @FechaModifacion) + CONVERT(DATETIME, CONVERT(time, GETDATE())))" +
+                         " Where CveLstPrecio = @CveLstPrecio " +
+                         "   AND   CveArticulo  = @CveArticulo";
             return db.DeleteRegistro(sql, ArrParametros);
         }
 

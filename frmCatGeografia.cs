@@ -18,7 +18,6 @@ namespace GAFE
 {
     public partial class frmCatGeografia : MetroForm
     {
-        private SqlDataAdapter DatosTbl;
         private int opcion;
         private int _padre;
         private int idxG = -1;
@@ -29,16 +28,22 @@ namespace GAFE
         private string Perfil;
         private clsUtil uT;
 
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         public frmCatGeografia()
         {
             InitializeComponent();
         }
-        public frmCatGeografia(MsSql Odat, string perfil,int op= 1)
+        public frmCatGeografia(MsSql Odat, DatCfgParamSystem ParamS, string perfil,int op= 1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             Perfil = perfil;
+
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -137,7 +142,6 @@ namespace GAFE
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
                 MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);

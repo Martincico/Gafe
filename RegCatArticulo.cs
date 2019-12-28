@@ -27,13 +27,19 @@ namespace GAFE
 
         public int AddRegArticulo()
         {
-            string sql = "INSERT INTO inv_CatArticulos (CveArticulo,  CodigoAlterno,  CodigoBarra,  CodigoSat,  Fecha_Alta,  Descripcion,  CveLinea, " +
-                "CveUMedida1,  CveUMedida2,  UMedidaEquiv2,  EsInventa,  DispVenta,  EsServicio,  DispKit,  EsKit,    Observacion,  Estatus," +
-                "  CveImpuesto, CveClase1,  CveClase2,  CveClase3, Foto, CveMarca ) " +
+            string sql = "INSERT INTO inv_CatArticulos (CveArticulo,  CodigoAlterno,  CodigoBarra,  CodigoSat,  " +
+                " Fecha_Alta,  " +
+                " Descripcion,  CveLinea, " +
+                "CveUMedida1,  CveUMedida2,  UMedidaEquiv2,  EsInventa,  DispVenta,  EsServicio,  DispKit,  EsKit,  RequiereReceta,  Observacion,  Estatus," +
+                "  CveImpuesto, CveImpIEPS, CveImpRetIVA, CveImpRetISR, CveImpOtro, " +
+                " CveClase1,  CveClase2,  CveClase3, Foto, CveMarca ) " +
                 // "Modelo, FecUltCompra,  CveProveedorUlt)" +
-                "VALUES ( @CveArticulo,  @CodigoAlterno,  @CodigoBarra,  @CodigoSat,  @Fecha_Alta,  @Descripcion,  @CveLinea, " +
-                "@CveUMedida1,  @CveUMedida2, @UMedidaEquiv2,  @EsInventa,  @DispVenta,  @EsServicio,  @DispKit,  @EsKit,   @Observacion,  @Estatus,"+
-                "@CveImpuesto, @CveClase1,  @CveClase2,  @CveClase3, @Foto, @CveMarca) ";
+                "VALUES ( @CveArticulo,  @CodigoAlterno,  @CodigoBarra,  @CodigoSat,  " +
+                " (CONVERT(DATETIME, @Fecha_Alta) + CONVERT(DATETIME, CONVERT(time, GETDATE()))) ,  " +
+                " @Descripcion,  @CveLinea, " +
+                "@CveUMedida1,  @CveUMedida2, @UMedidaEquiv2,  @EsInventa,  @DispVenta,  @EsServicio,  @DispKit,  @EsKit, @RequiereReceta,  @Observacion,  @Estatus," +
+                "@CveImpuesto, @CveImpIEPS, @CveImpRetIVA, @CveImpRetISR, @CveImpOtro , " +
+                " @CveClase1,  @CveClase2,  @CveClase3, @Foto, @CveMarca) ";
 
             //"@Modelo, @FecUltCompra,  @CveProveedorUlt)";
             return db.InsertarRegistro(sql, ArrParametros);
@@ -48,7 +54,7 @@ namespace GAFE
         public int AddRegLstPrecios()
         {
 
-            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo,Precio, FechaModifacion) (SELECT CveLstPrecio, @CveArticulo,0, GETDATE() FROM Inv_LstPreciosMast WHERE ESTATUS = 1) ";
+            string sql = " INSERT INTO Inv_LstPreciosDet (CveLstPrecio, CveArticulo,Precio,Porcentaje,CostoUltimo, FechaModifacion) (SELECT CveLstPrecio, @CveArticulo,0,0,0, GETDATE() FROM Inv_LstPreciosMast WHERE ESTATUS = 1) ";
             return db.InsertarRegistro(sql, ArrParametros);
         }
 
@@ -70,11 +76,16 @@ namespace GAFE
                         "DispVenta=@DispVenta,  " +
                         "EsServicio=@EsServicio,  " +
                         "DispKit=@DispKit,  " +
-                        "EsKit=@EsKit,  " +
+                        "EsKit=@EsKit," +
+                        "RequiereReceta =@RequiereReceta,  " +
                         "Foto=@Foto,  " +
                         "Observacion=@Observacion,  " +
                         "Estatus=@Estatus,  " +
-                        "CveImpuesto=@CveImpuesto,  " +                        
+                        "CveImpuesto=@CveImpuesto,  " +
+                        "CveImpIEPS = @CveImpIEPS, " +
+                        "CveImpRetIVA = @CveImpRetIVA, " +
+                        "CveImpRetISR = @CveImpRetISR, " +
+                        "CveImpOtro = @CveImpOtro, " +                        
                         "CveClase1=@CveClase1,  " +
                         "CveClase2=@CveClase2,  " +
                         //"Modelo=@Modelo,  " +
@@ -91,33 +102,20 @@ namespace GAFE
             string sql = "UPDATE inv_CatArticulos SET Estatus = 0 WHERE CveArticulo = @CveArticulo";
             return db.UpdateRegistro(sql, ArrParametros);
         }
-
-        public SqlDataAdapter ListArticulos()
+        
+        public SqlDataAdapter RegistroActivo(int HideCveArt)
         {
             SqlDataAdapter dt = null;
-            string Sql = "SELECT A.CveArticulo AS Clave,A.CodigoBarra AS Codigo,A.Descripcion,A.CodigoSat AS [Codigo SAT],A.Modelo,A.Observacion, " +
-                         "       L.CveLinea, L.Descripcion AS Linea, " +
-                         "       M.CveMarca, M.Descripcion AS Marca, " +
-                         "       C.CveClase, C.Descripcion AS Clase, " +
-                         "       UM.CveUMedida, UM.Descripcion AS UMedida, " +
-                         "       Imp.CveImpuesto, Imp.Tipo, Imp.Valor " +
-                         " FROM dbo.inv_CatArticulos AS A " +
-                         " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
-                         " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
-                         " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
-                         " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
-                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto " +
-                         " WHERE A.Estatus = 1 ";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
 
-        public SqlDataAdapter RegistroActivo()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "  SELECT * " +
+            string Sql = "  SELECT CveArticulo,  CodigoAlterno,  CodigoBarra,  CodigoSat,  Fecha_Alta,  " +
+                                "  Descripcion, Modelo,  CveLinea, CveMarca, CveClase1, " +
+                                "  CveClase2,  CveClase3, CveImpuesto, CveUMedida1,  CveUMedida2, " +
+                                "  UMedidaEquiv2, EsInventa,  DispVenta,  EsServicio,  DispKit, " +
+                                "  EsKit,  FecUltCompra, CveProveedorUlt, Foto, Observacion, " +
+                                "  Estatus, CveImpIEPS, CveImpRetIVA, CveImpRetISR, CveImpOtro, " +
+                                "  RequiereReceta " +
                           " FROM Inv_CatArticulos " +
-                          " WHERE CveArticulo =@CveArticulo AND Estatus = 1 ";
+                          " WHERE Estatus = 1 AND "+(HideCveArt==1? "CodigoBarra = @CveArticulo": " CveArticulo =@CveArticulo ");
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
@@ -125,55 +123,54 @@ namespace GAFE
         public SqlDataAdapter BuscaArticulo(string bsq)
         {
             SqlDataAdapter dt = null;
-            string sql = "SELECT A.CveArticulo AS Clave,A.CodigoBarra AS Codigo,A.Descripcion,A.CodigoSat AS [Codigo SAT],A.Modelo,A.Observacion, " +
-                         "       L.CveLinea, L.Descripcion AS Linea, " +
-                         "       M.CveMarca, M.Descripcion AS Marca, " +
-                         "       C.CveClase, C.Descripcion AS Clase, " +
-                         "       UM.CveUMedida, UM.Descripcion AS UMedida, " +
-                         "       Imp.CveImpuesto, Imp.Tipo, Imp.Valor " +
-                         " FROM dbo.inv_CatArticulos AS A " +
-                         " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
-                         " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
-                         " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
-                         " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
-                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  "+
-                         " where (CveArticulo like '%" + bsq + "%' OR " +
+            String wh = "";
+            if(!bsq.Equals(""))
+            {
+                wh = " AND (CveArticulo like '%" + bsq + "%' OR " +
                         " A.Descripcion  like '%" + bsq + "%' OR " +
                         " CodigoBarra    like '%" + bsq + "%' OR " +
                         " M.Descripcion  like '%" + bsq + "%' OR " +
                         " L.Descripcion  like '%" + bsq + "%' OR " +
                         " C.Descripcion  like '%" + bsq + "%' OR " +
                         " UM.Descripcion like '%" + bsq + "%' OR " +
-                        " CodigoSat like '%" + bsq + "%') AND A.Estatus = 1 ";
+                        " CodigoSat like '%" + bsq + "%') ";
+            }
+
+            string sql = "SELECT TOP 800 A.CveArticulo, " +
+                         "       A.CodigoBarra," +
+                         "       A.Descripcion, " +
+                         "       A.CodigoSat," +
+                         "       UM.CveUMedida, " +
+                         "       UM.Descripcion AS UMedida, " +
+                         "       Imp.CveImpuesto, " +
+                         "       Imp.Tipo, " +
+                         "       Imp.Valor, " +
+                         "       L.CveLinea, " +
+                         "       L.Descripcion AS Linea, " +
+                         "       M.CveMarca, " +
+                         "       M.Descripcion AS Marca, " +
+                         "       C.CveClase, " +
+                         "       C.Descripcion AS Clase, " +
+                         "       A.Modelo," +
+                         "       A.Observacion, " +
+                         "       ImpIep.CveImpuesto AS CveIEPS, " +
+                         "       ImpIep.Tipo AS TipoIEPS, " +
+                         "       ImpIep.Valor AS ValorIEPS" +
+
+                         " FROM dbo.inv_CatArticulos AS A " +
+                         " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
+                         " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
+                         " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
+                         " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
+                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  "+
+                         " LEFT JOIN dbo.Inv_Impuestos AS ImpIep ON A.CveImpIEPS = ImpIep.CveImpuesto  " +
+                         " where  A.Estatus = 1 " +wh+
+                         " Order by Fecha_Alta DESC";
 
 
             dt = db.SelectDA(sql);
             return dt;
         }
-        public SqlDataAdapter ComboImpuesto()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "Select CveImpuesto as Clave,Tipo as Descripcion " +
-                         "from Inv_Impuestos where Estatus=1";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
-        public SqlDataAdapter ComboClase()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "Select CveClase as Clave,Descripcion " +
-                         "from Inv_Clases where Estatus=1";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
-        public SqlDataAdapter ComboMarca()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "Select CveMarca as Clave,Descripcion " +
-                         "from Inv_Marcas where Estatus=1";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
-
+        
     }
 }

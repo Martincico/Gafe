@@ -19,11 +19,12 @@ namespace GAFE
     public partial class frmCatUsuariosCfg : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
         private int idxG;
         public string KeyCampo;
         private MsSql db = null;
-        private string Perfil;
+        public DatCfgUsuario user;
         private clsUtil uT;
 
         public frmCatUsuariosCfg()
@@ -31,11 +32,12 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public frmCatUsuariosCfg(MsSql Odat, string perfil)
+        public frmCatUsuariosCfg(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr)
         {
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
+            ParamSystem = ParamS;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -44,14 +46,13 @@ namespace GAFE
         private void frmCatUsuariosCfg_Load(object sender, EventArgs e)
         {
          
-
             this.Size = this.MinimumSize;
             LlenaGridView();
             LlecboAlmacen();
             LlecboUsuario(1);
             LlecboTema();
             LlecboFondo();
-
+            cboAlmacen.Enabled = user.CambiaAlmacen == 1 ? true : false;
 
         }
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -101,7 +102,7 @@ namespace GAFE
             pui.EditarUsrCfg();
             cboUsuario.SelectedValue = pui.keySUsrCfg;
             cboAlmacen.SelectedValue = pui.cmpCveAlmacen;
-            chkEditaFoli.Checked = pui.cmpCambiaAlmacen == 1? true: false;
+            chkCambiaAlmacen.Checked = pui.cmpCambiaAlmacen == 1? true: false;
             cboFondo.SelectedValue = pui.cmpFondo;
             cboTema.SelectedValue = pui.cmpStiloTema;
 
@@ -239,7 +240,7 @@ namespace GAFE
         {
             pui.keySUsrCfg = cboUsuario.SelectedValue.ToString();
             pui.cmpCveAlmacen = cboAlmacen.SelectedValue.ToString();
-            pui.cmpCambiaAlmacen = (chkEditaFoli.Checked) ? 1 : 0;
+            pui.cmpCambiaAlmacen = (chkCambiaAlmacen.Checked) ? 1 : 0;
             pui.cmpFondo = cboFondo.SelectedValue.ToString();
             pui.cmpStiloTema = cboTema.SelectedValue.ToString();
 
@@ -275,7 +276,7 @@ namespace GAFE
 
             if(!dv)
             {
-                MessageBoxAdv.Show("Se encontraron los siguientes errores: \n", " Configuración de usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Se encontraron los siguientes errores: \n" + msg, " Configuración de usuarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             return dv;
@@ -288,7 +289,7 @@ namespace GAFE
             cboAlmacen.Enabled = Op;
             cboFondo.Enabled = Op;
             cboTema.Enabled = Op;
-            chkEditaFoli.Enabled = Op;
+            chkCambiaAlmacen.Enabled = Op;
         }
 
         private void LimpiarControles()
@@ -313,7 +314,7 @@ namespace GAFE
         private void LlecboAlmacen()
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboAlmacen.DataSource = lin.CboInv_CatAlmacenes();
+            cboAlmacen.DataSource = lin.CboCatAlmacenes(1);
             cboAlmacen.ValueMember = "ClaveAlmacen";
             cboAlmacen.DisplayMember = "Descripcion";
         }
@@ -337,7 +338,7 @@ namespace GAFE
         private void LlecboFondo()
         {
             PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
-            cboFondo.DataSource = lin.CboInv_CatAlmacenes();
+            cboFondo.DataSource = lin.CboCatAlmacenes(1);
             cboFondo.ValueMember = "ClaveAlmacen";
             cboFondo.DisplayMember = "Descripcion";
         }

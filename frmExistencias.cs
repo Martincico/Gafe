@@ -20,14 +20,13 @@ namespace GAFE
     {
 
         private SqlDataAdapter DatosTbl;
-        private int opcion;
-        private int idxG;
+        private DatCfgParamSystem ParamSystem;
 
         private MsSql db = null;
         private clsUtil uT;
 
-        List<clsFillCbo> lp;
-        List<clsFillCbo> ln;
+        //List<clsFillCbo> lp;
+        //List<clsFillCbo> ln;
 
         public DatCfgUsuario user;
         public clsStiloTemas StiloColor;
@@ -38,11 +37,12 @@ namespace GAFE
         }
 
 
-        public frmExistencias(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
+        public frmExistencias(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
             user = DatUsr;
+            ParamSystem = ParamS;
             StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
@@ -63,54 +63,16 @@ namespace GAFE
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
 
+            /*
             up = uT.BuscarIdNodo("1Inv013C");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+            */
 
-            string Sqlstr = " SELECT  ClaveAlmacen,Descripcion FROM Inv_CatAlmacenes WHERE Estatus = 'A'";
-            SqlDataReader dr = db.SelectDR(Sqlstr);
-            lp = new List<clsFillCbo>();
-
-            clsFillCbo Prv1 = new clsFillCbo();
-            Prv1.Id = "";
-            Prv1.Descripcion = "";
-            lp.Add(Prv1);
-
-            while (dr.Read())
-            {
-                clsFillCbo Prv = new clsFillCbo();
-                Prv.Id = Convert.ToString(dr["ClaveAlmacen"]);
-                Prv.Descripcion = Convert.ToString(dr["Descripcion"]);
-                lp.Add(Prv);
-            }
-            dr.Close();
-            cboAlmacen.DataSource = lp;
-            cboAlmacen.ValueMember = "Id";
-            cboAlmacen.DisplayMember = "Descripcion";
-            cboAlmacen.SelectedValue = user.AlmacenUsa;
+            LlecboAlmacen(user.AlmacenUsa);
             cboAlmacen.Enabled = user.CambiaAlmacen == 1 ? true : false;
-
-            string Sqlstr2 = " SELECT CveLinea,Descripcion FROM Inv_Lineas WHERE Estatus = 1";
-            SqlDataReader dr2 = db.SelectDR(Sqlstr2);
-            ln = new List<clsFillCbo>();
-
-            clsFillCbo Rln = new clsFillCbo();
-            Rln.Id = "";
-            Rln.Descripcion = "";
-            ln.Add(Rln);
-
-            while (dr2.Read())
-            {
-                clsFillCbo Rlnc = new clsFillCbo();
-                Rlnc.Id = Convert.ToString(dr2["CveLinea"]);
-                Rlnc.Descripcion = Convert.ToString(dr2["Descripcion"]);
-                ln.Add(Rlnc);
-            }
-            dr2.Close();
-            cboLineas.DataSource = ln;
-            cboLineas.ValueMember = "Id";
-            cboLineas.DisplayMember = "Descripcion";
             
+            LlecboLineas();
             LlenaGridView(0);
         }
 
@@ -118,26 +80,35 @@ namespace GAFE
         private void LlenaGridView(int tieneFiltro)
         {
             PuiExistencias pui = new PuiExistencias(db);
-            DatosTbl = (tieneFiltro == 0) ? pui.ListarExistencias() : pui.BuscaExistencia(txtClaveArticulo.Text,cboAlmacen.SelectedValue.ToString(),
-                                                                              cboLineas.SelectedValue.ToString(),txtBuscar.Text);
+            int OmiteExis0 = chkOmitir0.Checked ? 1 : 0;
+            DatosTbl =pui.BuscaExistencia(txtClaveArticulo.Text,cboAlmacen.SelectedValue.ToString(),
+                                                                              cboLineas.SelectedValue.ToString(),txtBuscar.Text, OmiteExis0);
             DataSet Ds = new DataSet();
-
             try
             {
                 DatosTbl.Fill(Ds);
-                grdView.Rows.Clear();
+                //grdView.Rows.Clear();
+                grdView.DataSource = Ds.Tables[0];
+                grdView.Columns["Cód. Barra"].Frozen = true;//Inmovilizar columna
+                grdView.Columns["Artículo"].Frozen = true;//Inmovilizar columna
 
-                for (int j = 0; j < Ds.Tables[0].Rows.Count; j++)
+                if (ParamSystem.HideCveArt == 1)
                 {
-                    object[] tmp = Ds.Tables[0].Rows[j].ItemArray;
-                    grdView.Rows.Add(tmp);
+                    grdView.Columns["Clave"].Visible = false;
                 }
+                else
+                {
+                    grdView.Columns["Clave"].Frozen = true;//Inmovilizar columna
+                    grdView.Columns["Clave"].Width = 100;
+                }
+
+                lblTotalRegistros.Text = "Total de registros: "+ Ds.Tables[0].Rows.Count;
+
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void cboAlmacen_SelectionChangeCommitted(object sender, EventArgs e)
@@ -147,7 +118,7 @@ namespace GAFE
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos la = new frmLstArticulos(db, user, StiloColor,3);
+            frmLstArticulos la = new frmLstArticulos(db, ParamSystem, user, StiloColor,3);
             la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             la.ShowDialog();
@@ -188,14 +159,17 @@ namespace GAFE
             string Linea = (cboLineas.SelectedValue == null) ? "" : cboLineas.SelectedValue.ToString();
             string Articulo = txtClaveArticulo.Text;
             string Buscar = txtBuscar.Text;
+            int Omit0 = chkOmitir0.Checked?1:0;
+            string NAlmacen = (cboAlmacen.SelectedValue == null) ? "" : cboAlmacen.Text;
+            string NLinea = (cboLineas.SelectedValue == null) ? "" : cboLineas.Text;
+            string NArticulo = txtDscArticulo.Text;
 
-            frmRepExistencia Rep = new frmRepExistencia(Articulo, Almacen, Linea, Buscar, db);
-            Rep.Show();
-            
-        }
 
-        private void cmdBuscar_Click(object sender, EventArgs e)
-        {
+            frmRepExistencia Rep = new frmRepExistencia(Articulo, Almacen, Linea, Buscar, Omit0, "Farmacias Salinas G",
+                                                       NArticulo, NAlmacen, NLinea, user.FecServer,  db);
+            Rep.ShowDialog();
+
+
 
         }
 
@@ -205,6 +179,50 @@ namespace GAFE
             {
                 this.Close();
             }
+        }
+
+        private void LlecboAlmacen(String CveUser)
+        {
+            PuiCatAlmacenes lin = new PuiCatAlmacenes(db);
+            DataTable dt = lin.CboCatAlmacenes(0);
+            DataRow row = dt.NewRow();
+            row["ClaveAlmacen"] = "";
+            row["Descripcion"] = "TODOS ";
+            dt.Rows.Add(row);
+
+            cboAlmacen.DataSource = dt;
+
+            cboAlmacen.ValueMember = "ClaveAlmacen";
+            cboAlmacen.DisplayMember = "Descripcion";
+
+            cboAlmacen.SelectedValue = CveUser;
+        }
+
+        private void LlecboLineas()
+        {
+            PuiCatLineas lin = new PuiCatLineas(db);
+            DataTable dt = lin.CboLinea();
+            DataRow row = dt.NewRow();
+            row["Clave"] = "";
+            row["Descripcion"] = "TODOS ";
+            dt.Rows.Add(row);
+
+            cboLineas.DataSource = dt;
+
+            cboLineas.ValueMember = "Clave";
+            cboLineas.DisplayMember = "Descripcion";
+
+            cboLineas.SelectedValue = "";
+        }
+
+        private void chkOmitir0_CheckedChanged(object sender, EventArgs e)
+        {
+            LlenaGridView(1);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

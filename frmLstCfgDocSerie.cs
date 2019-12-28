@@ -20,6 +20,7 @@ namespace GAFE
     public partial class frmLstCfgDocSerie : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
         public String KeyCampo = null;
 
@@ -35,12 +36,13 @@ namespace GAFE
         }
 
 
-        public frmLstCfgDocSerie(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
+        public frmLstCfgDocSerie(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op =1 )
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             user = DatUsr;
+            ParamSystem = ParamS;
             StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
@@ -50,8 +52,10 @@ namespace GAFE
         
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmRegCfgDocSerie art = new frmRegCfgDocSerie(db, user, 1);
-            art.ShowDialog();
+            frmRegCfgDocSerie Ventana = new frmRegCfgDocSerie(db, ParamSystem, user, 1);
+            Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            Ventana.ShowDialog();
             LlenaGridView();
         }
 
@@ -59,16 +63,17 @@ namespace GAFE
         {
             try
             {
-                String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
                 String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocSerie Ventana = new frmRegCfgDocSerie(db, user, 2, Alm, CodMP, Ser);
+                frmRegCfgDocSerie Ventana = new frmRegCfgDocSerie(db, ParamSystem, user, 2, CodMP, Ser);
+                Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                MessageBoxAdv.Show("Tienes que seleccionar un registro. " + ex.Message,
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -79,16 +84,17 @@ namespace GAFE
         {
             try
             {
-                String Alm = grdView[0, grdView.CurrentRow.Index].Value.ToString();
                 String CodMP = grdView[2, grdView.CurrentRow.Index].Value.ToString();
                 String Ser = grdView[4, grdView.CurrentRow.Index].Value.ToString();
-                frmRegCfgDocSerie Ventana = new frmRegCfgDocSerie(db, user, 3, Alm, CodMP, Ser);
+                frmRegCfgDocSerie Ventana = new frmRegCfgDocSerie(db, ParamSystem, user, 3, CodMP, Ser);
+                Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro ",
+                MessageBoxAdv.Show("Tienes que seleccionar un registro. "+ex.Message,
                     "Error al consultar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }

@@ -84,7 +84,7 @@ namespace GAFE
         public SqlDataAdapter GetParamTema()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select Encabezado,HoverEncabezado,FontColor " +
+            string Sql = "Select Encabezado,HoverEncabezado,FontColor, Pant1, Pant2, Pant3, Pant4, Pant5 " +
                           "from CfgEstilos where CveStilo =@Usuario";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;

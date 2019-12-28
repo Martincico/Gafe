@@ -20,9 +20,13 @@ namespace GAFE
     {
         private SqlDataAdapter DatosTbl;
         private int opcion;
-        private int idxG;
         private int AcCOPEdit;
-        public String KeyCampo = null;
+        public String idxG;
+        public string[] dv = new string[2];
+        private int AcCOPSelec;
+
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
 
         private MsSql db = null;
         private string Perfil;
@@ -35,12 +39,14 @@ namespace GAFE
         }
 
 
-        public frmCatLineas(MsSql Odat, string perfil, int op=1)
+        public frmCatLineas(MsSql Odat, DatCfgParamSystem ParamS, string perfil, int op=0)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             Perfil = perfil;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -71,8 +77,8 @@ namespace GAFE
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv003E");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPSelec = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOPSelec == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv003F");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -86,11 +92,9 @@ namespace GAFE
             cmdSeleccionar.Visible = false;
             if (opcion>3)
             {
-                
-                cmdAceptar.Visible = false;
+                //                cmdAgregar.Visible = false;
                 cmdEliminar.Visible = false;
-                cmdEliminar.Visible = false;
-                cmdConsultar.Visible = true;
+                //                cmdEditar.Visible = false;
                 cmdSeleccionar.Visible = true;
             }
             
@@ -113,7 +117,7 @@ namespace GAFE
                 this.Size = this.MaximumSize;
                 opcion = 2;
 
-                idxG = grdView.CurrentRow.Index;
+                //idxG = grdView.CurrentRow.Index;
 
                 PuiCatLineas pui = new PuiCatLineas(db);
 
@@ -142,7 +146,7 @@ namespace GAFE
             this.Size = this.MaximumSize;
             opcion = 3;
 
-            idxG = grdView.CurrentRow.Index;
+            //idxG = grdView.CurrentRow.Index;
 
             PuiCatLineas pui = new PuiCatLineas(db);
 
@@ -279,22 +283,31 @@ namespace GAFE
         {
             try
             {
-                if (Validar())
+                if (AcCOPEdit == 1)
                 {
-                    PuiCatLineas pui = new PuiCatLineas(db);
-
-                    pui.keyCveLinea = txtClaveLinea.Text;
-                    pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-
-                    if (pui.ActualizaLinea() >= 0)
+                    if (Validar())
                     {
-                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
-                        this.Size = this.MinimumSize;
+                        PuiCatLineas pui = new PuiCatLineas(db);
+
+                        pui.keyCveLinea = txtClaveLinea.Text;
+                        pui.cmpDescripcion = txtDescripcion.Text;
+                        pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+
+                        if (pui.ActualizaLinea() >= 0)
+                        {
+                            MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                                               MessageBoxIcon.Information);
+                            this.Size = this.MinimumSize;
+                        }
+                        LlenaGridView();
+                        //grdView.CurrentRow.Index = idxG;  
                     }
-                    LlenaGridView();
-                    //grdView.CurrentRow.Index = idxG;  
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
                 }
             }
             catch (Exception ex)
@@ -309,7 +322,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveLinea.Text))
             {
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "CatLineaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -375,11 +387,22 @@ namespace GAFE
 
         private void cmdSeleccionar_Click(object sender, EventArgs e)
         {
-
             try
             {
-                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                this.Close();
+                if (AcCOPSelec == 1)
+                {
+                    idxG = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[0] = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[1] = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception ex)
             {

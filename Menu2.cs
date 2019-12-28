@@ -1,48 +1,47 @@
-﻿using Microsoft.Win32;
-using Syncfusion.Windows.Forms.Tools;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
-
-using Syncfusion.Windows.Forms;
-
 using DatSql;
+
 
 namespace GAFE
 {
-    public partial class Menu2 : Syncfusion.Windows.Forms.Tools.RibbonForm
+    public partial class Menu2 : Form
     {
+
         clsUtil ut;
         private MsSql db = null;
         Form Flg;
-        public DatCfgUsuario user;
-        clsStiloTemas NewColor = new clsStiloTemas();
+        private string Perfil;
+
 
         public Menu2()
         {
             InitializeComponent();
         }
+        
 
-        public Menu2(MsSql Odat, Form lg, DatCfgUsuario DatUsr)
+
+        public Menu2(MsSql Odat, Form lg, string perfil)
         {
             InitializeComponent();
             db = Odat;
             Flg = lg;
-            user = DatUsr;
-            ut = new clsUtil(db, user.CodPerfil);
+            Perfil = perfil;
+            ut = new clsUtil(db, Perfil);
             ut.CargaArbolAcceso();
-            SelectTemaUser(user.StiloTema);
-            SelectFondoUser(user.Fondo);
+        }
 
+        private void ribbonButton2_Click(object sender, EventArgs e)
+        {
+            frmCatAlmacenes falm = new frmCatAlmacenes();
+            falm.ShowDialog();
         }
 
         private void Menu2_FormClosed(object sender, FormClosedEventArgs e)
@@ -50,19 +49,24 @@ namespace GAFE
             Flg.Close();
         }
 
+        private void sAsignaPermisos_Click(object sender, EventArgs e)
+        {
+            frmSegAccesos fm = new frmSegAccesos(db);
+            Nav(fm, panelContenedor);
+
+        }
+
         private void Menu2_Load(object sender, EventArgs e)
         {
             try
             {
-                
-
                 clsUsPerfil up = ut.BuscarIdNodo("1Inv");
                 int ModInv = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv00");
                 int CatInve = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv01");
                 int OpeInv = up.Acceso;
-
+                
                 /*
                     Carga la seguridad del modulo de Inventarios.
                  */
@@ -82,24 +86,11 @@ namespace GAFE
                 int CatMarca = up.Acceso;
                 up = ut.BuscarIdNodo("1Inv005");
                 int CatAlm = up.Acceso;
-                up = ut.BuscarIdNodo("1Inv006");
-                int CatGeo = up.Acceso;
-                up = ut.BuscarIdNodo("1Inv009");
-                int CatCla = up.Acceso;
                 
-                up = ut.BuscarIdNodo("1Inv007");
-                int CatProve = up.Acceso;
-                CatProveedores.Enabled = (CatProve == 1) ? true : false;
-                up = ut.BuscarIdNodo("1Inv008");
-                int CatLstPre = up.Acceso;
-                CatListaPrecios.Enabled = (CatLstPre == 1) ? true : false;
-
                 CatArticulo.Enabled = (CatArt == 1) ? true : false;
                 CatUMedidas.Enabled = (CatUMed == 1) ? true : false;
-                CatLineas.Enabled = (CatLinea == 1) ? true : false;
+                CatLineas.Enabled = (CatLinea == 1)  ? true : false;
                 CatMarcas.Enabled = (CatMarca == 1) ? true : false;
-                CatGeografia.Enabled = (CatGeo == 1) ? true : false;
-                CatClase.Enabled = (CatCla == 1) ? true : false;
                 CatAlmacen.Enabled = (CatAlm == 1) ? true : false;
 
                 up = ut.BuscarIdNodo("1Inv011");
@@ -113,250 +104,94 @@ namespace GAFE
                 up = ut.BuscarIdNodo("1Inv013");
                 int Exst = up.Acceso;
                 OpExistencia.Enabled = (Exst == 1) ? true : false;
-                
+
             }
             catch (Exception ex)
             {
 
             }
         }
-
-        private void Nav(MetroForm form, Panel panel)
-        {
-            form.TopLevel = false;
-            panel.Controls.Add(form);
-            panel.Tag = form;
-            form.BringToFront();
-            form.CaptionBarColor = ColorTranslator.FromHtml(NewColor.Encabezado);
-            form.CaptionForeColor = ColorTranslator.FromHtml(NewColor.FontColor);
-            form.Show();
-        }
-
-        private void CatLineas_Click(object sender, EventArgs e)
-        {
-            frmCatLineas fm = new frmCatLineas(db, user.CodPerfil);
-            Nav(fm, panelContenedor);
-        }
         private void CatMarcas_Click(object sender, EventArgs e)
         {
-            frmCatMarcas fm = new frmCatMarcas(db, user.CodPerfil);
+            frmCatMarcas fm = new frmCatMarcas(db, Perfil);
             Nav(fm, panelContenedor);
         }
 
 
         private void CatClase_Click(object sender, EventArgs e)
         {
-            frmCatClases fm = new frmCatClases(db, user.CodPerfil);
+            frmCatClases fm = new frmCatClases(db, Perfil);
             Nav(fm, panelContenedor);
 
         }
+        /*
+        private void AddFormInPanel(object formHijo)
+        {
+            if (this.panelContenedor.Controls.Count > 0)
+                this.panelContenedor.Controls.RemoveAt(0);
+            Form fh = formHijo as Form;
+            fh.TopLevel = false;
+            //fh.FormBorderStyle = FormBorderStyle.None;
+            fh.Dock = DockStyle.Fill;
+
+            this.panelContenedor.Controls.Add(fh);
+            this.panelContenedor.Tag = fh;
+            fh.Show();
+
+        }
+        */
+        
+        private void Nav(Form form, Panel panel)
+        {
+
+            form.TopLevel = false;
+            //panel.Controls.Clear();
+            panel.Controls.Add(form);
+            form.Show();
+            form.StartPosition = FormStartPosition.CenterScreen;
+
+        }
+        private void CatLineas_Click(object sender, EventArgs e)
+        {
+            frmCatLineas fm = new frmCatLineas(db, Perfil);
+            Nav(fm, panelContenedor);
+
+        }
+
         private void CatUMedidas_Click(object sender, EventArgs e)
         {
-            frmCatUMedidas fm = new frmCatUMedidas(db, user.CodPerfil);
+            frmCatUMedidas fm = new frmCatUMedidas(db, Perfil);
             Nav(fm, panelContenedor);
         }
 
         private void CatArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos fm = new frmLstArticulos(db,user,NewColor);
+            frmLstArticulos fm = new frmLstArticulos(db, Perfil);
             Nav(fm, panelContenedor);
         }
 
         private void CatAlmacen_Click(object sender, EventArgs e)
         {
-            frmCatAlmacenes fm = new frmCatAlmacenes(db, user.CodPerfil);
+            frmCatAlmacenes fm = new frmCatAlmacenes(db, Perfil);
             Nav(fm, panelContenedor);
         }
 
         private void OpMovInv_Click(object sender, EventArgs e)
         {
-            MovtosInvLst fm = new MovtosInvLst(db, user, NewColor);
+            frmCatInventarioMovtos fm = new frmCatInventarioMovtos(db, Perfil);
             Nav(fm, panelContenedor);
         }
 
         private void OpKardex_Click(object sender, EventArgs e)
         {
-            frmKardex fm = new frmKardex(db, user, NewColor);
+            frmKardex fm = new frmKardex(db, Perfil);
             Nav(fm, panelContenedor);
         }
 
         private void OpExistencia_Click(object sender, EventArgs e)
         {
-            frmExistencias fm = new frmExistencias(db, user, NewColor);
+            frmExistencias fm = new frmExistencias(db, Perfil);
             Nav(fm, panelContenedor);
-        }
-
-        private void CatGeografia_Click(object sender, EventArgs e)
-        {
-            
-        }
-        
- 
-
-        private void CatsAsignaPer_Click(object sender, EventArgs e)
-        {
-            frmSegAccesos fm = new frmSegAccesos(db);
-            Nav(fm, panelContenedor);
-        }
-
-        private void stilDefault_Click(object sender, EventArgs e)
-        {
-            ActualizaTemaUser("Naranja");
-        }
-
-        private void stilClaro_Click(object sender, EventArgs e)
-        {
-            ActualizaTemaUser("Claro");
-        }
-
-        private void stilNegro_Click(object sender, EventArgs e)
-        {
-            ActualizaTemaUser("Negro");
-        }
-
-        private void stilAzul_Click(object sender, EventArgs e)
-        {
-            ActualizaTemaUser("Azul");
-        }
-        private void ActualizaTemaUser(String team)
-        {
-            int fr = this.panelContenedor.Controls.Count;
-            if (fr > 0)
-            {
-                this.panelContenedor.Controls.Clear();
-            }
-
-            PuiSegUsuarios us = new PuiSegUsuarios(db);
-            us.keySusuario = user.Usuario;
-            us.cmpNombre = team;
-            us.ActTemaUsuario();
-            SelectTemaUser(team);
-
-        }
-        private void SelectTemaUser(String tema)
-        {
-            /*
-            PuiSegUsuarios us = new PuiSegUsuarios(db);
-            us.keySusuario = tema;
-            us.getEstiloUser();
-            NewColor.Encabezado = us.keySusuario;
-            NewColor.HoverEncabezado = us.cmpNombre;
-            NewColor.FontColor = us.cmpPassword;
-            this.ribMenu.Office2016ColorTable.Add(NewColor.StiloTeam());
-
-            //this.ribMenu.RibbonStyle = RibbonStyle.Office2007;
-            //this.ribMenu.Office2016ColorScheme = Office2016ColorScheme.DarkGray;
-            */
-        }
-
-        private void stilVerde_Click(object sender, EventArgs e)
-        {
-            ActualizaTemaUser("Verde");
-        }
-
-        
-
-        private void ribMenu_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void stilRosado_Click(object sender, EventArgs e)
-        {
-            ActualizaTemaUser("Rosa");
-        }
-
-        private void PerFondo1_Click(object sender, EventArgs e)
-        {
-            ActualizaFondoUser("Fondo1");
-        }
-
-        private void PerFondo2_Click(object sender, EventArgs e)
-        {
-            ActualizaFondoUser("Fondo2");
-        }
-
-        private void PerFondo3_Click(object sender, EventArgs e)
-        {
-            ActualizaFondoUser("Fondo3");
-        }
-
-        private void PerFondo4_Click(object sender, EventArgs e)
-        {
-            ActualizaFondoUser("Fondo4");
-        }
-
-        private void PerFondoNone_Click(object sender, EventArgs e)
-        {
-            ActualizaFondoUser("none");
-        }
-
-        private void ActualizaFondoUser(String team)
-        {
-
-
-            PuiSegUsuarios us = new PuiSegUsuarios(db);
-            us.keySusuario = user.Usuario;
-            us.cmpNombre = team;
-            us.ActFondoUsuario();
-            SelectFondoUser(team);
-        }
-
-        private void SelectFondoUser(String tema)
-        {
-            switch (tema)
-            {
-                case "Fondo1": this.panelContenedor.BackgroundImage = global::GAFE.Properties.Resources.Fondo1; break;
-                case "Fondo2": this.panelContenedor.BackgroundImage = global::GAFE.Properties.Resources.Fondo2; break;
-                case "Fondo3": this.panelContenedor.BackgroundImage = global::GAFE.Properties.Resources.Fondo3; break;
-                case "Fondo4": this.panelContenedor.BackgroundImage = global::GAFE.Properties.Resources.Fondo4; break;
-                default: this.panelContenedor.BackgroundImage = null; break;
-            }
-        }
-
-        private void CatProveedores_Click(object sender, EventArgs e)
-        {
-            frmLstProveedores fm = new frmLstProveedores(db, user.CodPerfil);
-            Nav(fm, panelContenedor);
-        }
-
-        private void CatListaPrecios_Click(object sender, EventArgs e)
-        {
-            frmCatLstPrecios fm = new frmCatLstPrecios(db, user, NewColor);
-            Nav(fm, panelContenedor);
-        }
-
-        private void Inv_TipoMov_Click(object sender, EventArgs e)
-        {
-            frmCatTipoMovtos tm = new frmCatTipoMovtos(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
-
-        private void Prov_TipoMov_Click(object sender, EventArgs e)
-        {
-            frmLstCfgDocumentos tm = new frmLstCfgDocumentos(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
-
-        private void Prov_SereDoc_Click(object sender, EventArgs e)
-        {
-            frmLstCfgDocSerie tm = new frmLstCfgDocSerie(db, user, NewColor);
-            Nav(tm, panelContenedor);
-        }
-
-
-        private void MnuCfgFoliadores_Click(object sender, EventArgs e)
-        {
-            frmCatCfgCatFoliadores fm = new frmCatCfgCatFoliadores(db, user.CodPerfil);
-            Nav(fm, panelContenedor);
-        }
-        
-        private void InvMenDocumentos_Click(object sender, EventArgs e)
-        {
-            /*
-            FrmSlcDocumentos fm = new FrmSlcDocumentos(db, user, NewColor);
-            Nav(fm, panelContenedor);
-            */
         }
     }
 }

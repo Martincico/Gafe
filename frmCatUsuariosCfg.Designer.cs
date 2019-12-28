@@ -34,7 +34,7 @@
             this.cboTema = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cboFondo = new System.Windows.Forms.ComboBox();
-            this.chkEditaFoli = new System.Windows.Forms.CheckBox();
+            this.chkCambiaAlmacen = new System.Windows.Forms.CheckBox();
             this.lblAlmaOri = new System.Windows.Forms.Label();
             this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.cmdCancelar = new System.Windows.Forms.Button();
@@ -64,7 +64,7 @@
             this.panel2.Controls.Add(this.cboTema);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.cboFondo);
-            this.panel2.Controls.Add(this.chkEditaFoli);
+            this.panel2.Controls.Add(this.chkCambiaAlmacen);
             this.panel2.Controls.Add(this.lblAlmaOri);
             this.panel2.Controls.Add(this.cboAlmacen);
             this.panel2.Controls.Add(this.cmdCancelar);
@@ -122,16 +122,16 @@
             this.cboFondo.Size = new System.Drawing.Size(264, 26);
             this.cboFondo.TabIndex = 48;
             // 
-            // chkEditaFoli
+            // chkCambiaAlmacen
             // 
-            this.chkEditaFoli.AutoSize = true;
-            this.chkEditaFoli.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEditaFoli.Location = new System.Drawing.Point(95, 136);
-            this.chkEditaFoli.Name = "chkEditaFoli";
-            this.chkEditaFoli.Size = new System.Drawing.Size(92, 22);
-            this.chkEditaFoli.TabIndex = 47;
-            this.chkEditaFoli.Text = "Edita folio";
-            this.chkEditaFoli.UseVisualStyleBackColor = true;
+            this.chkCambiaAlmacen.AutoSize = true;
+            this.chkCambiaAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkCambiaAlmacen.Location = new System.Drawing.Point(95, 136);
+            this.chkCambiaAlmacen.Name = "chkCambiaAlmacen";
+            this.chkCambiaAlmacen.Size = new System.Drawing.Size(138, 22);
+            this.chkCambiaAlmacen.TabIndex = 47;
+            this.chkCambiaAlmacen.Text = "Cambia almacén";
+            this.chkCambiaAlmacen.UseVisualStyleBackColor = true;
             // 
             // lblAlmaOri
             // 
@@ -325,7 +325,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
@@ -376,7 +376,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboFondo;
-        private System.Windows.Forms.CheckBox chkEditaFoli;
+        private System.Windows.Forms.CheckBox chkCambiaAlmacen;
         private System.Windows.Forms.Label lblAlmaOri;
         private System.Windows.Forms.ComboBox cboAlmacen;
         private System.Windows.Forms.Label label3;

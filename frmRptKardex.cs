@@ -29,7 +29,8 @@ namespace GAFE
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
-        public void Kardex(DataTable dt, String Articulo, String Almacen, DateTime FechaIni, DateTime FechaFin)
+        public void Kardex(DataTable dt, String Articulo, String Almacen, DateTime FechaIni, DateTime FechaFin, 
+                           String P_NombreEmpresa, DateTime PFechaImp)
         {
             rptKardex.LocalReport.ReportEmbeddedResource = "GAFE.Reportes.RepKardex.rdlc";
             rptKardex.LocalReport.DataSources.Clear();
@@ -38,6 +39,8 @@ namespace GAFE
             rptKardex.LocalReport.SetParameters(new ReportParameter("FechaIni", FechaIni.ToString("dd/MM/yyy")));
             rptKardex.LocalReport.SetParameters(new ReportParameter("FechaFin", FechaFin.ToString("dd/MM/yyy")));
             rptKardex.LocalReport.SetParameters(new ReportParameter("Almacen", Almacen));
+            rptKardex.LocalReport.SetParameters(new ReportParameter("P_NombreEmpresa", P_NombreEmpresa));
+            rptKardex.LocalReport.SetParameters(new ReportParameter("PFechaImp", PFechaImp.ToString("dd/MM/yyy")));
             rptKardex.SetDisplayMode(DisplayMode.PrintLayout);
             //rptKardex.RefreshReport();
         }

@@ -73,6 +73,16 @@ namespace GAFE.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_caja_dere {
+            get {
+                object obj = ResourceManager.GetObject("bg_caja_dere", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bg_cajas {
             get {
                 object obj = ResourceManager.GetObject("bg_cajas", resourceCulture);
@@ -336,6 +346,16 @@ namespace GAFE.Properties {
         internal static System.Drawing.Bitmap printer {
             get {
                 object obj = ResourceManager.GetObject("printer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Reiniciar {
+            get {
+                object obj = ResourceManager.GetObject("Reiniciar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

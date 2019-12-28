@@ -18,13 +18,12 @@ namespace GAFE
 {
     public partial class frmRegArticulos : MetroForm
     {
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
         private int _Opcion;
         private String _KeyCampo;
 
         private SqlDataAdapter DatosTbl;
-        private int opcion;
-        private int idxG;
-
         private MsSql db = null;
 
         PuiCatArticulos Art;
@@ -32,8 +31,11 @@ namespace GAFE
         public clsStiloTemas StiloColor;
         public DatCfgUsuario user;
 
+        //Variables para los select
+        private string _CveMarc ="",  _CveClas1 = "", _CveClas2 = "", _CveClas3 = "", _CveLin = "", 
+            _CveUMed1 = "", _CveUMed2 = "", _CveUMed3 = "", _CveImp = "", _CveImpIESP = "", _CveRetImp = "", _CveRetImpISR = "";
 
-        public frmRegArticulos(MsSql Odat, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1, String Key="" )
+        public frmRegArticulos(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op=1, String Key="" )
         {
             InitializeComponent();
             _Opcion = op;
@@ -41,8 +43,9 @@ namespace GAFE
             db = Odat;
             user = DatUsr;
             StiloColor = NewColor;
-            CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
-            CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
+
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
@@ -55,15 +58,16 @@ namespace GAFE
                 case 2:
                     this.Text = "Modificando el Articulo con Clave: " + _KeyCampo;
                     cmdAceptar.Text = "Actualizar";
-                    LlenaGridUbiArt();
+                    cmdLstPrecio.Visible = true;
                     break;
                 default:
                     this.Text = "Datos del Articulo con Clave: " + _KeyCampo;
                     cmdAceptar.Text = "Aceptar";
-                    LlenaGridUbiArt();
+                    //LleGridLstPrecio();
                     break;
 
-            }   
+            }
+            dtFechaAlta.Value = user.FecServer;
             
         }
 
@@ -74,52 +78,13 @@ namespace GAFE
             uT.CargaArbolAcceso();
 
             Art = new PuiCatArticulos(db);
-            /*
-
-            clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
-            int AcCOP = (up != null) ? up.Acceso : 0;
-            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001C");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001D");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001E");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001F");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
-            */
-
-            // Combos
-            cboLinea.DataSource = Art.Linea.CboLinea();            
-            cboUMedida1.DataSource = Art.UMedida1.CboUMedida();            
-            cboUMedida2.DataSource = Art.UMedida2.CboUMedida();
-            cboUMedidaEquival.DataSource = Art.UMedidaEquiv.CboUMedida();
-            cboClase1.DataSource = Art.CboClase();
-            cboClase2.DataSource = Art.CboClase();
-            cboClase3.DataSource = Art.CboClase();
-            cboImpuesto.DataSource = Art.CboImpuesto();
-            cboMarca.DataSource = Art.CboMarca();
-
-
 
             //Combos
             if (_Opcion>=2)
             {
                 
                 Art.keyCveArticulo = _KeyCampo;
-                Art.EditarArticulo();
+                Art.EditarArticulo(0);
                 LlenarDatos();
                 txtClaveArticulo.Enabled = false;
                 if (_Opcion == 3)
@@ -132,62 +97,117 @@ namespace GAFE
 
         private Boolean Validar()
         {
+            lblDescArt.ForeColor = Color.Black;
+            lblMarca.ForeColor = Color.Black;
+            lblClase.ForeColor = Color.Black;
+            lblLinea.ForeColor = Color.Black;
+            lblUMed.ForeColor = Color.Black;
+            lblImp.ForeColor = Color.Black;
+            lblCodB.ForeColor = Color.Black;
+            lblCveInterna.ForeColor = Color.Black;
+            lblRetISR.ForeColor = Color.Black;
+            lblRetIVA.ForeColor = Color.Black;
+
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
+            String MsgErr = "";
+
             if (String.IsNullOrEmpty(txtClaveArticulo.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MsgErr += "Clave interna: No puede ir vacío. \n";
                 dv = false;
+                lblCveInterna.ForeColor = Color.Red;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveArticulo.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MsgErr += "Clave interna: Contiene caracteres no validos. \n";
                     dv = false;
+                    lblCveInterna.ForeColor = Color.Red;
                 }
             }
-
+            
             if (String.IsNullOrEmpty(txtCodigoBarras.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MsgErr += "Código de barra: No puede ir vacío. \n";
                 dv = false;
+                lblCodB.ForeColor = Color.Red;
             }
             else
             {
                 if (!Util.LetrasNum(txtCodigoBarras.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MsgErr += "Código de barra: Contiene caracteres no validos. \n";
                     dv = false;
+                    lblCodB.ForeColor = Color.Red;
                 }
             }
-
-            if (String.IsNullOrEmpty(txtCodigoSAT.Text))
-            {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-            else
-            {
-                if (!Util.LetrasNum(txtCodigoSAT.Text))
-                {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dv = false;
-                }
-            }
-
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MsgErr += "Descripción: No puede ir vacío. \n";
                 dv = false;
+                lblDescArt.ForeColor = Color.Red;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MsgErr += "Descripción: Contiene caracteres no validos. \n";
                     dv = false;
+                    lblDescArt.ForeColor = Color.Red;
                 }
+            }
+
+            if (String.IsNullOrEmpty(_CveClas1))
+            {
+                MsgErr += "Clase: No puede ir vacío. \n";
+                dv = false;
+                lblClase.ForeColor = Color.Red;
+            }
+
+            if (String.IsNullOrEmpty(_CveMarc))
+            {
+                MsgErr += "Marca: No puede ir vacío. \n";
+                dv = false;
+                lblMarca.ForeColor = Color.Red;
+            }
+
+            if (String.IsNullOrEmpty(_CveLin))
+            {
+                MsgErr += "Línea: No puede ir vacío. \n";
+                dv = false;
+                lblLinea.ForeColor = Color.Red;
+            }
+
+            if (String.IsNullOrEmpty(_CveUMed1))
+            {
+                MsgErr += "Unidad de medida: No puede ir vacío. \n";
+                dv = false;
+                lblUMed.ForeColor = Color.Red;
+            }
+
+            if (String.IsNullOrEmpty(_CveImp))
+            {
+                MsgErr += "Impuesto: No puede ir vacío. \n";
+                dv = false;
+                lblImp.ForeColor = Color.Red;
+            }
+            
+            if(chkEsServicio.Checked)
+            {
+                Boolean rp = String.IsNullOrEmpty(_CveRetImp) ? (String.IsNullOrEmpty(_CveRetImpISR) ? true : false) : false;
+                if (rp)
+                {
+                    MsgErr += "Debe seleccionar un tipo de retención. \n";
+                    dv = false;
+                    lblRetISR.ForeColor = Color.Red;
+                    lblRetIVA.ForeColor = Color.Red;
+                }
+            }
+
+            if (!dv)
+            {
+                MessageBoxAdv.Show(MsgErr, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -202,25 +222,134 @@ namespace GAFE
             txtCodigoAlterno.Text = Art.cmpCodigoAlterno;
             txtCodigoSAT.Text = Art.cmpCodigoSat;
             dtFechaAlta.Value = Art.cmpFecha_Alta;
-            cboLinea.SelectedValue = Art.Linea.keyCveLinea;
-            cboClase3.SelectedValue = Art.Clase3.keyCveClase;
-            cboClase2.SelectedValue = Art.Clase2.keyCveClase;
-            cboClase1.SelectedValue = Art.Clase1.keyCveClase;
-            cboImpuesto.SelectedValue = Art.Impuesto.keyCveImpuesto;
-            cboMarca.SelectedValue= Art.Marca.keyCveMarca;
+
+
+            
+            if (!string.IsNullOrEmpty(Art.cmpCveLinea))
+            {
+                _CveLin = Art.cmpCveLinea;
+                PuiCatLineas Ln = new PuiCatLineas(db);
+                Ln.keyCveLinea = Art.cmpCveLinea;
+                Ln.EditarLinea();
+                txtLinea.Text = Ln.cmpDescripcion;
+            }
+
+            PuiCatClases cl = new PuiCatClases(db);
+
+            if (!string.IsNullOrEmpty(Art.cmpCveClase1))
+            {
+                _CveClas1 = Art.cmpCveClase1;
+                cl.keyCveClase = Art.cmpCveClase1;
+                cl.EditarClase();
+                txtClase1.Text = cl.cmpDescripcion;
+            }
+
+            if (!string.IsNullOrEmpty(Art.cmpCveClase2))
+            {
+                _CveClas2 = Art.cmpCveClase1;
+                cl.keyCveClase = Art.cmpCveClase2;
+                cl.EditarClase();
+                txtClase2.Text = cl.cmpDescripcion;
+            }
+
+            if (!string.IsNullOrEmpty(Art.cmpCveClase3))
+            {
+                _CveClas3 = Art.cmpCveClase3;
+                cl.keyCveClase = Art.cmpCveClase3;
+                cl.EditarClase();
+                txtClase3.Text = cl.cmpDescripcion;
+            }
+
+            PuiCatImpuestos Im = new PuiCatImpuestos(db);
+
+            if (!string.IsNullOrEmpty(Art.cmpCveImpuesto))
+            {
+                _CveImp = Art.cmpCveImpuesto;
+                Im.keyCveImpuesto = Art.cmpCveImpuesto;
+                Im.EditarImpuesto();
+                txtImpuesto.Text = Im.cmpTipo;
+            }
+
+            if (!string.IsNullOrEmpty(Art.cmpCveImpIEPS))
+            {
+                _CveImpIESP = Art.cmpCveImpuesto;
+                Im.keyCveImpuesto = Art.cmpCveImpuesto;
+                Im.EditarImpuesto();
+                txtImpIESP.Text = Im.cmpTipo;
+            }
+
+            if (!string.IsNullOrEmpty(Art.cmpCveMarca))
+            {
+                _CveMarc = Art.cmpCveMarca;
+                PuiCatMarcas Mc = new PuiCatMarcas(db);
+                Mc.keyCveMarca = Art.cmpCveMarca;
+                Mc.EditarMarcas();
+                txtMarca.Text = Mc.cmpDescripcion;
+            }
+
+
+            PuiCatUMedidas Um = new PuiCatUMedidas(db);
+
+            if (!string.IsNullOrEmpty(Art.cmpCveUMedida1))
+            {
+                _CveUMed1 = Art.cmpCveUMedida1;
+                Um.keyCveUMedida= Art.cmpCveUMedida1;
+                Um.EditarUMedida();
+                txtUMed1.Text = Um.cmpDescripcion;
+            }
+
+            if (!string.IsNullOrEmpty(Art.cmpCveUMedida2))
+            {
+                _CveUMed2 = Art.cmpCveUMedida2;
+                Um.keyCveUMedida = Art.cmpCveUMedida2;
+                Um.EditarUMedida();
+                txtUMed2.Text = Um.cmpDescripcion;
+            }
+            if (!string.IsNullOrEmpty(Art.cmpCveUMedidaEquiv))
+            {
+                _CveUMed3 = Art.cmpCveUMedidaEquiv;
+                Um.keyCveUMedida = Art.cmpCveUMedidaEquiv;
+                Um.EditarUMedida();
+                txtUMed3.Text = Um.cmpDescripcion;
+            }
+
+
+            if (Art.cmpEsServicio)
+            {
+                chkEsServicio.Checked = Art.cmpEsServicio;
+                if (!string.IsNullOrEmpty(Art.cmpCveImpRetISR))
+                {
+                    _CveRetImpISR = Art.cmpCveImpRetISR;
+                    Im.keyCveImpuesto = Art.cmpCveImpRetISR;
+                    Im.EditarImpuesto();
+                    txtRetISR.Text = Im.cmpTipo;
+                }
+                if (!string.IsNullOrEmpty(Art.cmpCveImpRetIVA))
+                {
+                    _CveRetImp = Art.cmpCveImpRetIVA;
+                    Im.keyCveImpuesto = Art.cmpCveImpRetIVA;
+                    Im.EditarImpuesto();
+                    txtRetIVA.Text = Im.cmpTipo;
+                }
+            }
+            else
+            {
+                chkEsServicio.Checked = false;
+            }
+             
             //Art.= cmdModelo.SelectedValue.ToString();
-            cboUMedida1.SelectedValue = Art.UMedida1.keyCveUMedida;
-            cboUMedida2.SelectedValue = Art.UMedida2.keyCveUMedida;
-            cboUMedidaEquival.SelectedValue = Art.UMedidaEquiv.keyCveUMedida;
+
             chkEsInventa.Checked = Art.cmpEsInventa;
             chkEsKit.Checked = Art.cmpEsKit;
             chkDispKit.Checked = Art.cmpDispKit;
-            chkEsServicio.Checked = Art.cmpEsServicio;
+            
             chkDispVenta.Checked = Art.cmpDispVenta;
             txtObservaciones.Text = Art.cmpObservacion;
             chkEstatus.Checked = Art.cmpEstatus;
             txtUltimaCompra.Text = Art.cmpFecUltCompra;
-            if (Art.cmpFoto.Length > 0)
+
+            chkRequiereReceta.Checked = Art.cmpRequiereReceta == 1 ? true : false;
+            if (Art.cmpFoto != null)
             {
                 MemoryStream Mf = new MemoryStream(Art.cmpFoto);
                 Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
@@ -238,31 +367,46 @@ namespace GAFE
             Art.cmpCodigoAlterno= txtCodigoAlterno.Text;
             Art.cmpCodigoSat= txtCodigoSAT.Text;
             Art.cmpFecha_Alta = dtFechaAlta.Value;// Convert.ToDateTime(String.Format("{0:yyyy-MM-dd}", dtFechaAlta.Value));
-            Art.Linea.keyCveLinea= cboLinea.SelectedValue.ToString();
-            if (cboClase3.SelectedValue!=null)
-                Art.Clase3.keyCveClase = cboClase3.SelectedValue.ToString();
-            if (cboClase2.SelectedValue != null)
-                Art.Clase2.keyCveClase = cboClase2.SelectedValue.ToString();
-            if (cboClase1.SelectedValue != null)
-                Art.Clase1.keyCveClase = cboClase1.SelectedValue.ToString();
-            if (cboImpuesto.SelectedValue != null)
-                Art.Impuesto.keyCveImpuesto = cboImpuesto.SelectedValue.ToString();
-            Art.Marca.keyCveMarca= cboMarca.SelectedValue.ToString();
+
+            Art.cmpCveLinea = _CveLin;
+            Art.cmpCveClase1 = _CveClas1;
+            Art.cmpCveClase2 = _CveClas2;
+            Art.cmpCveClase3 = _CveClas3;
+            Art.cmpCveImpuesto = _CveImp;
+            Art.cmpCveImpIEPS = _CveImpIESP;
+            Art.cmpCveMarca = _CveMarc;
+            Art.cmpCveImpOtro = "";
+            Art.cmpCveUMedida1 = _CveUMed1;
+            Art.cmpCveUMedida2 = _CveUMed2 ;
+            Art.cmpCveUMedidaEquiv = _CveUMed3;
+
             //Art.= cmdModelo.SelectedValue.ToString();
-            if (cboUMedida1.SelectedValue != null)
-                Art.UMedida1.keyCveUMedida = cboUMedida1.SelectedValue.ToString();
-            if (cboUMedida2.SelectedValue != null)
-                Art.UMedida2.keyCveUMedida = cboUMedida2.SelectedValue.ToString();
-            if (cboUMedidaEquival.SelectedValue != null)
-                Art.UMedidaEquiv.keyCveUMedida = cboUMedidaEquival.SelectedValue.ToString();
+
+
             Art.cmpEsInventa= chkEsInventa.Checked;
             Art.cmpEsKit= chkEsKit.Checked;
             Art.cmpDispKit= chkDispKit.Checked;
-            Art.cmpEsServicio= chkEsServicio.Checked;
+            //Art.cmpEsServicio= chkEsServicio.Checked;
             Art.cmpDispVenta= chkDispVenta.Checked;
             Art.cmpObservacion= txtObservaciones.Text;
             Art.cmpEstatus= chkEstatus.Checked;
             Art.cmpCveAlmacen = user.AlmacenUsa;
+            Art.cmpRequiereReceta = chkRequiereReceta.Checked ? 1 : 0;
+
+            if (chkEsServicio.Checked)
+            {
+                Art.cmpEsServicio = chkEsServicio.Checked;
+                Art.cmpCveImpRetISR = _CveRetImpISR;
+                Art.cmpCveImpRetIVA = _CveRetImp;
+            }
+            else
+            {
+                Art.cmpEsServicio = false;
+                Art.cmpCveImpRetISR = "";
+                Art.cmpCveImpRetIVA = "";
+            }
+
+
             if (pbArticulo.Image != null)
             {
                 MemoryStream ms1 = new MemoryStream();
@@ -285,16 +429,17 @@ namespace GAFE
             txtCodigoAlterno.Enabled = Op;
             txtCodigoSAT.Enabled = Op;
             dtFechaAlta.Enabled = Op;
-            cboLinea.Enabled = Op;
-            cboClase3.Enabled = Op;
-            cboClase2.Enabled = Op;
-            cboClase1.Enabled = Op;
-            cboImpuesto.Enabled = Op;
-            cboMarca.Enabled = Op;
+            cmdLinea.Enabled = Op;
+            cmdClase3.Enabled = Op;
+            cmdClase2.Enabled = Op;
+            cmdClase1.Enabled = Op;
+            cmdImpuesto.Enabled = Op;
+            cmdImpIESP.Enabled = Op;
+            cmdMarca.Enabled = Op;
             //cboModelo.Enabled = Op;
-            cboUMedida1.Enabled = Op;
-            cboUMedida2.Enabled = Op;
-            cboUMedidaEquival.Enabled = Op;
+            cmdUMed1.Enabled = Op;
+            cmdUMed2.Enabled = Op;
+            cmdUMed3.Enabled = Op;
             chkEsInventa.Enabled = Op;
             chkEsKit.Enabled = Op;
             chkDispKit.Enabled = Op;
@@ -303,6 +448,23 @@ namespace GAFE
             txtObservaciones.Enabled = Op;
             chkEstatus.Enabled = Op;
             cmdFoto.Enabled = Op;
+            //grdLstPrecio.Enabled = Op;
+            chkRequiereReceta.Enabled = Op;
+
+            HabRetImp(Op);
+
+            cmdLinea.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdClase3.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdClase2.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdClase1.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdImpuesto.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdImpIESP.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+
+            cmdMarca.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdUMed1.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdUMed2.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdUMed3.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+
         }
 
 
@@ -370,7 +532,7 @@ namespace GAFE
 
         private void txtCodigoBarras_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ClsUtilerias.LetrasNumeros(e);
+            ClsUtilerias.LetrasNumeros(e,1);
         }
 
         private void txtCodigoBarras_TextChanged(object sender, EventArgs e)
@@ -398,84 +560,227 @@ namespace GAFE
 
         }
 
-        private void label5_Click(object sender, EventArgs e)
+
+        private void chkEsInventa_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label17_Click(object sender, EventArgs e)
+        private void cmdMarca_Click(object sender, EventArgs e)
         {
-
+            frmCatMarcas la = new frmCatMarcas(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveMarc = la.dv[0];
+                txtMarca.Text = la.dv[1];
+            }
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void cmdRetIVA_Click(object sender, EventArgs e)
         {
-
+            frmCatImpuestos la = new frmCatImpuestos(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveRetImp = la.dv[0];
+                txtRetIVA.Text = la.dv[1];
+            }
         }
 
-        private void label14_Click(object sender, EventArgs e)
+        private void cmdRetISR_Click(object sender, EventArgs e)
         {
-
+            frmCatImpuestos la = new frmCatImpuestos(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveRetImpISR = la.dv[0];
+                txtRetISR.Text = la.dv[1];
+            }
         }
 
-        private void cboUMedidaEquival_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmdLstPrecio_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void cboUMedida1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LlenaGridUbiArt()
-        {
-
-            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
-            pui.keyCveLstPrecio = _KeyCampo;
-            DatosTbl = pui.ListadoPrecioArticulo();
-            DataSet Ds = new DataSet();
-
             try
             {
-                DatosTbl.Fill(Ds);
-                grdViewUbicacion.Columns.Clear();
-                grdViewUbicacion.DataSource = Ds.Tables[0];
-                //grdViewUbicacion.Columns["Documento"].Frozen = true;//Inmovilizar columna
-                //grdViewUbicacion.Columns["NoMovimiento"].Visible = false;
-
-                for (int i = 0; i < grdViewUbicacion.Columns.Count; i++)
-                {
-                    grdViewUbicacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
+                frmCatLstPreciosDet LPv = new frmCatLstPreciosDet(db, ParamSystem, user, StiloColor, "", txtClaveArticulo.Text);
+                LPv.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                LPv.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                LPv.ShowDialog();
 
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
             }
+        }
 
+        private void cmdBorrarIEPS_Click(object sender, EventArgs e)
+        {
+            if (MessageBoxAdv.Show("Confirme eliminar impuesto IESP seleccionado " + txtImpIESP.Text,
+                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                _CveImpIESP = "";
+                txtImpIESP.Text = "";
+            }
+        }
+
+        private void cmdLimpiarRetIVA_Click(object sender, EventArgs e)
+        {
+            if (MessageBoxAdv.Show("Confirme eliminar impuesto Ret. IVA seleccionado " + txtRetIVA.Text,
+                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                _CveRetImp = "";
+                txtRetIVA.Text = "";
+            }
+        }
+
+        private void cmdLimpiarRetISR_Click(object sender, EventArgs e)
+        {
+            if (MessageBoxAdv.Show("Confirme eliminar impuesto Ret. ISR seleccionado " + txtRetISR.Text,
+                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                _CveRetImpISR = "";
+                txtRetISR.Text = "";
+            }
+        }
+
+        private void chkEsServicio_CheckedChanged(object sender, EventArgs e)
+        {
+            HabRetImp(chkEsServicio.Checked);
+        }
+        private void HabRetImp(Boolean Op)
+        {
+            cmdRetISR.Enabled = Op;
+            cmdRetIVA.Enabled = Op;
+
+            cmdRetISR.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
+            cmdRetIVA.BackColor = (Op) ? Color.White : Color.FromArgb(234, 234, 234);
 
         }
 
-        private void txtClaveArticulo_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void cmdImpuesto_Click(object sender, EventArgs e)
         {
-            ClsUtilerias.LetrasNumeros(e);
+            frmCatImpuestos la = new frmCatImpuestos(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveImp = la.dv[0];
+                txtImpuesto.Text = la.dv[1];
+            }
         }
 
-        private void txtCodigoBarras_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void cmdImpIESP_Click(object sender, EventArgs e)
         {
-            ClsUtilerias.LetrasNumeros(e);
+            frmCatImpuestos la = new frmCatImpuestos(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveImpIESP = la.dv[0];
+                txtImpIESP.Text = la.dv[1];
+            }
         }
 
-        private void txtCodigoAlterno_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void cmdUMed1_Click(object sender, EventArgs e)
         {
-            ClsUtilerias.LetrasNumeros(e);
+            frmCatUMedidas la = new frmCatUMedidas(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveUMed1 = la.dv[0];
+                txtUMed1.Text = la.dv[1];
+            }
         }
 
-        private void txtCodigoSAT_KeyPress_1(object sender, KeyPressEventArgs e)
+        private void cmdUMed3_Click(object sender, EventArgs e)
         {
-            ClsUtilerias.LetrasNumeros(e);
+            frmCatUMedidas la = new frmCatUMedidas(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveUMed3 = la.dv[0];
+                txtUMed3.Text = la.dv[1];
+            }
+        }
+
+        private void cmdUMed2_Click(object sender, EventArgs e)
+        {
+            frmCatUMedidas la = new frmCatUMedidas(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveUMed2 = la.dv[0];
+                txtUMed2.Text = la.dv[1];
+            }
+        }
+
+        private void cmdLinea_Click(object sender, EventArgs e)
+        {
+            frmCatLineas la = new frmCatLineas(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveLin = la.dv[0];
+                txtLinea.Text = la.dv[1];
+            }
+        }
+
+        private void cmdClase1_Click(object sender, EventArgs e)
+        {
+            frmCatClases la = new frmCatClases(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveClas1 = la.dv[0];
+                txtClase1.Text = la.dv[1];
+            }
+        }
+
+        private void cmdClase2_Click(object sender, EventArgs e)
+        {
+            frmCatClases la = new frmCatClases(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveClas2 = la.dv[0];
+                txtClase2.Text = la.dv[1];
+            }
+        }
+
+        private void cmdClase3_Click(object sender, EventArgs e)
+        {
+            frmCatClases la = new frmCatClases(db, ParamSystem, user.CodPerfil, 4);
+            la.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            la.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+            la.ShowDialog();
+            if (!string.IsNullOrEmpty(la.idxG))
+            {
+                _CveClas3 = la.dv[0];
+                txtClase3.Text = la.dv[1];
+            }
         }
     }
 }

@@ -19,10 +19,16 @@ namespace GAFE
     public partial class frmCatClases : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int opcion;
-        private int idxG;
+
+        public string  idxG;
+        public string[] dv = new string[2];
 
         private int AcCOPEdit;
+        private int AcCOPSelec;
 
         private MsSql db = null;
         private string Perfil;
@@ -36,11 +42,14 @@ namespace GAFE
         }
 
 
-        public frmCatClases(MsSql Odat, string perfil)
+        public frmCatClases(MsSql Odat, DatCfgParamSystem ParamS, string perfil, int opc =0 )
         {
             InitializeComponent();
             db = Odat;
             Perfil = perfil;
+            opcion = opc;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -82,8 +91,8 @@ Minv	Buscar Clases	Operacion		1Inv009
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv009E");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPSelec = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOPSelec == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv009F");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -95,6 +104,14 @@ Minv	Buscar Clases	Operacion		1Inv009
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
+
+            if (opcion >3)
+            {
+                //                cmdAgregar.Visible = false;
+                cmdEliminar.Visible = false;
+                //                cmdEditar.Visible = false;
+                cmdSeleccionar.Visible = true;
+            }
 
         }
 
@@ -232,23 +249,33 @@ Minv	Buscar Clases	Operacion		1Inv009
         {
             try
             {
-                if (Validar())
+                if (AcCOPEdit == 1)
                 {
-                    PuiCatClases pui = new PuiCatClases(db);
-
-                    pui.keyCveClase = txtClaveClase.Text;
-                    pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-
-                    if (pui.ActualizaClase() >= 0)
+                    if (Validar())
                     {
-                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
-                        this.Size = this.MinimumSize;
+                        PuiCatClases pui = new PuiCatClases(db);
+
+                        pui.keyCveClase = txtClaveClase.Text;
+                        pui.cmpDescripcion = txtDescripcion.Text;
+                        pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+
+                        if (pui.ActualizaClase() >= 0)
+                        {
+                            MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                                               MessageBoxIcon.Information);
+                            this.Size = this.MinimumSize;
+                        }
+                        LlenaGridView();
+                        //grdView.CurrentRow.Index = idxG;  
                     }
-                    LlenaGridView();
-                    //grdView.CurrentRow.Index = idxG;  
                 }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
+
             }
             catch (Exception ex)
             {
@@ -262,7 +289,6 @@ Minv	Buscar Clases	Operacion		1Inv009
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveClase.Text))
             {                
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "CatClasees", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -312,12 +338,18 @@ Minv	Buscar Clases	Operacion		1Inv009
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmdEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmdEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmdEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmdEditar_Click(sender, e);
         }
 
         private void grdView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -337,7 +369,7 @@ Minv	Buscar Clases	Operacion		1Inv009
             this.Size = this.MaximumSize;
             opcion = 3;
 
-            idxG = grdView.CurrentRow.Index;
+            //idxG = grdView.CurrentRow.Index;
 
             PuiCatClases pui = new PuiCatClases(db);
 
@@ -354,8 +386,20 @@ Minv	Buscar Clases	Operacion		1Inv009
         {
             try
             {
-                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                this.Close();
+                if (AcCOPSelec == 1)
+                {
+                    idxG = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[0] = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[1] = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception ex)
             {
@@ -374,7 +418,7 @@ Minv	Buscar Clases	Operacion		1Inv009
                 this.Size = this.MaximumSize;
                 opcion = 2;
 
-                idxG = grdView.CurrentRow.Index;
+                //idxG = grdView.CurrentRow.Index;
 
                 PuiCatClases pui = new PuiCatClases(db);
 

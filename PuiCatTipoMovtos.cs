@@ -31,9 +31,10 @@ namespace GAFE
         private int    CalculaIva;
         private int    Estatus;
         private int    EsInterno;
+        private int    SolicitaSucursal;
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[19, 2];
+        private object[,] MatParam = new object[20, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -162,6 +163,13 @@ namespace GAFE
             set { EsInterno = value; }
         }
 
+        public int cmpSolicitaSucursal
+        {
+            get { return SolicitaSucursal; }
+            set { SolicitaSucursal = value; }
+        }
+
+
         #endregion
 
         public int AgregarTipoMov()
@@ -241,6 +249,7 @@ namespace GAFE
             CalculaIva = int.Parse(ObjA[16].ToString());
             EsInterno = int.Parse(ObjA[17].ToString());
             Estatus = int.Parse(ObjA[18].ToString());
+            SolicitaSucursal = int.Parse(ObjA[19].ToString());
         }
 
         public SqlDataAdapter BuscaTipoMov(string buscar)
@@ -278,6 +287,8 @@ namespace GAFE
             MatParam[16, 0] = "CalculaIva"; MatParam[16, 1] = CalculaIva;
             MatParam[17, 0] = "Estatus"; MatParam[17, 1] = Estatus;
             MatParam[18, 0] = "EsInterno"; MatParam[18, 1] = EsInterno;
+            MatParam[19, 0] = "SolicitaSucursal"; MatParam[19, 1] = SolicitaSucursal;
+            
 
         }
     }

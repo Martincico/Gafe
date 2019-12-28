@@ -11,6 +11,9 @@ using System.Data.SqlClient;
 using DatSql;
 using System.Xml;
 using System.IO;
+using System.Globalization;
+
+
 
 using Syncfusion.Windows.Forms;
 
@@ -31,10 +34,18 @@ namespace GAFE
         private String CveDoc;
         private String NameDoc;
 
+        NumberFormatInfo nfi = new CultureInfo("es-MX", false).NumberFormat;
+        private String FmtoDec = "C";
+        private int IntDec;
+
         public DcLstPventas()
         {
             InitializeComponent();
             this.KeyDown += new KeyEventHandler(PressKey);
+
+            IntDec = 2;
+            nfi.CurrencyPositivePattern = IntDec;
+            FmtoDec += Convert.ToString(IntDec);
         }
 
 
@@ -67,7 +78,7 @@ namespace GAFE
         {
             if (keyData == Keys.Escape)
             {
-                dv[0] = "";
+                //dv[0] = "";
                 this.Close();
                 return true;
             }
@@ -106,7 +117,7 @@ namespace GAFE
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
             */
-            
+            //dv[0] = "";
             LlenaGridView();
         }
 
@@ -138,7 +149,7 @@ namespace GAFE
                 {
                     rq.keyidMov = idMov;
                     db.IniciaTrans();
-                    if (rq.EliminaDocumento() >= 1)
+                    if (rq.DelCeroDocumento() >= 1)
                     {
                         MessageBoxAdv.Show("Registro eliminado", "Confirmacion", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
@@ -176,11 +187,11 @@ namespace GAFE
 
         private void LlenaGridView()
         {
-            String FIni = dtFechaInicio.Value.ToString("dd/MM/yyyy");
-            String FFin = dtFechaFin.Value.ToString("dd/MM/yyyy");
+            String FIni = dtFechaInicio.Value.ToString("yyyy/MM/dd");
+            String FFin = dtFechaFin.Value.ToString("yyyy/MM/dd");
 
             DocPuiRequisiciones pui = new DocPuiRequisiciones(db);
-            DatosTbl = pui.ListarDocumentos(user.AlmacenUsa, FIni, FFin, CveDoc);
+            DatosTbl = pui.ListarDocumentos(user.AlmacenUsa, FIni, FFin, CveDoc,"");
             DataSet Ds = new DataSet();
 
             try
@@ -196,6 +207,9 @@ namespace GAFE
                 grdView.Columns["Fec Exp"].Visible = false;
                 grdView.Columns["Impuesto"].Visible = false;
                 grdView.Columns["idMov"].Visible = false;
+                grdView.Columns["cveproveedor"].Visible = false;
+                grdView.Columns["EsperaAceptacion"].Visible = false;
+                grdView.Columns["DocOrigen"].Visible = false;
 
             }
             catch (Exception ex)
@@ -224,6 +238,29 @@ namespace GAFE
             }
         }
 
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String cv = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String cvDoc = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+                String Desc = grdView[8, grdView.CurrentRow.Index].Value.ToString();
+                String Tot = grdView[10, grdView.CurrentRow.Index].Value.ToString();
+                Tot = string.Format(nfi, "{0:C}", Convert.ToDouble(Tot));
+                DocPuiRequisiciones rq = new DocPuiRequisiciones(db);
+                rq.keyidMov = cv;
+                DataTable dt = rq.DocDetPrint();
+                fmtoTicket print = new fmtoTicket();
+                String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
+                print.PrintTicket(db, user, dt, "RE:" + cvDoc, 
+                    Tot, "0", "----", "-----");
 
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+}
     }
 }

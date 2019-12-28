@@ -18,6 +18,7 @@ namespace GAFE
         private string CveDoc;
         private long NumDoc;
         private string ClaveAlmacen;
+        private string CveSucursal;
         private DateTime FechaExpedicion;
         private string ClaveImpuesto;
         private double Impuesto;
@@ -25,9 +26,12 @@ namespace GAFE
         private double SubTotal;
         private double Total;
         private string CveProveedor;
+        private string NoFactura;
         private string CveCliente;
         private string Observaciones;
         private DateTime FechaModificacion;
+        private string UsuarioModi;
+        private string UsuarioCaptura;
         private int Estatus;
         private Boolean Autorizado;
         private int EsperaAceptacion;
@@ -38,9 +42,9 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[19, 2];
-        private object[,] MatParam2 = new object[2, 2];
-        private object[,] MatParTrans = new object[7, 2];
+        private object[,] MatParam = new object[22, 2];
+        private object[,] MatParam2 = new object[3, 2];
+        private object[,] MatParTrans = new object[9, 2];
 
         private SqlDataAdapter Datos;
 
@@ -96,6 +100,11 @@ namespace GAFE
             get { return CveProveedor; }
             set { CveProveedor = value; }
         }
+        public string cmpNoFactura
+        {
+            get { return NoFactura; }
+            set { NoFactura = value; }
+        }
 
         public string cmpCveCliente
         {
@@ -107,6 +116,12 @@ namespace GAFE
         {
             get { return ClaveAlmacen; }
             set { ClaveAlmacen = value; }
+        }
+
+        public string cmpCveSucursal
+        {
+            get { return CveSucursal; }
+            set { CveSucursal = value; }
         }
 
         public DateTime cmpFechaExpedicion
@@ -187,13 +202,26 @@ namespace GAFE
             set { DocOrigen = value; }
         }
 
+        public string cmpUsuarioCaptura
+        {
+            get { return UsuarioCaptura; }
+            set { UsuarioCaptura = value; }
+        }
+
+        public string cmpUsuarioModi
+        {
+            get { return UsuarioModi; }
+            set { UsuarioModi = value; }
+        }
+
         #endregion
 
-        public string AgregarDocEnBlanco(int Foliador, DateTime FechaExp)
+        public string AgregarDocEnBlanco(int Foliador, DateTime FechaExp, String User)
         {
             DocRegRequisiciones rRq = new DocRegRequisiciones(db);
             idMov = rRq.getIdMov(Foliador);
             FechaExpedicion = FechaExp;
+            UsuarioModi = User;
             rRq = null;
             CargaParametroMat2();
             rRq = new DocRegRequisiciones(MatParam2, db);
@@ -264,9 +292,12 @@ namespace GAFE
             cmpObservaciones = ObjA[11].ToString();
             cmpEstatus = Convert.ToInt32(ObjA[12].ToString());
             cmpAutorizado = Boolean.Parse(ObjA[13].ToString());
+            //14 = Nombre Almacen
             cmpCveProveedor = ObjA[15].ToString();
             cmpCveCliente= ObjA[16].ToString();
             cmpEsperaAceptacion = Convert.ToInt32(ObjA[17].ToString());
+            cmpCveSucursal = ObjA[18].ToString();
+            cmpNoFactura = ObjA[19].ToString();
 
         }
 
@@ -281,13 +312,15 @@ namespace GAFE
         {
             MatParam2[0, 0] = "idMov"; MatParam2[0, 1] = idMov;
             MatParam2[1, 0] = "FechaExpedicion"; MatParam2[1, 1] = FechaExpedicion;
+            MatParam2[2, 0] = "UsuarioModi"; MatParam2[2, 1] = UsuarioModi;
+
         }
 
-        public SqlDataAdapter ListarDocumentos(String CodAlm, String FIni, String FFin, String Cvedoc)
+        public SqlDataAdapter ListarDocumentos(String CodAlm, String FIni, String FFin, String Cvedoc, String CvS)
         {
             CargaParametroMat();
             DocRegRequisiciones OpLst = new DocRegRequisiciones(db);
-            return OpLst.ListDocumentos(CodAlm, FIni, FFin, Cvedoc);
+            return OpLst.ListDocumentos(CodAlm, FIni, FFin, Cvedoc, CvS);
         }
 
 
@@ -297,6 +330,15 @@ namespace GAFE
             MatParam[0, 0] = "idMov"; MatParam[0, 1] = idMov;
             DocRegRequisiciones OpDel = new DocRegRequisiciones(MatParam, db);
             return OpDel.DeleteDocumento();
+        }
+
+        public int DelCeroDocumento()
+        {
+            MatParam = new object[2, 2];
+            MatParam[0, 0] = "idMov"; MatParam[0, 1] = idMov;
+            MatParam[1, 0] = "UsuarioModi"; MatParam[1, 1] = UsuarioModi;
+            DocRegRequisiciones OpDel = new DocRegRequisiciones(MatParam, db);
+            return OpDel.DelCeroDocumento();
         }
 
         private void CargaParametroMat()
@@ -320,6 +362,9 @@ namespace GAFE
             MatParam[16, 0] = "Estatus"; MatParam[16, 1] = Estatus;
             MatParam[17, 0] = "Autorizado"; MatParam[17, 1] = Autorizado;
             MatParam[18, 0] = "EsperaAceptacion"; MatParam[18, 1] = EsperaAceptacion;
+            MatParam[19, 0] = "CveSucursal"; MatParam[19, 1] = CveSucursal;
+            MatParam[20, 0] = "UsuarioModi"; MatParam[20, 1] = UsuarioModi;
+            MatParam[21, 0] = "NoFactura"; MatParam[21, 1] = NoFactura;
             
         }
 
@@ -335,7 +380,7 @@ namespace GAFE
             }
         }
 
-        public int GuardarDocTransf(int foliador, string _alm, string Doc, string ser)
+        public int GuardarDocTransf(int foliador, string _alm, string Doc, string ser, int EspAcep)
         {
             DocRegRequisiciones rRq = new DocRegRequisiciones(db);
             string[] fd = rRq.getIdDoc(foliador, _alm, Doc, ser);
@@ -344,7 +389,7 @@ namespace GAFE
             CargaParametroTranfs();
             rRq = null;
             rRq = new DocRegRequisiciones(MatParTrans, db);
-            return rRq.SaveDocTransf();
+            return rRq.SaveDocTransf(EspAcep);
         }
 
         private void CargaParametroTranfs()
@@ -356,6 +401,9 @@ namespace GAFE
             MatParTrans[4, 0] = "CveDoc"; MatParTrans[4, 1] = CveDoc;
             MatParTrans[5, 0] = "NumDoc"; MatParTrans[5, 1] = NumDoc;
             MatParTrans[6, 0] = "DocOrigen"; MatParTrans[6, 1] = DocOrigen;
+            MatParTrans[7, 0] = "ClaveAlmacen"; MatParTrans[7, 1] = ClaveAlmacen;
+            MatParTrans[8, 0] = "UsuarioModi"; MatParTrans[8, 1] = UsuarioModi;
+
         }
 
         public DataTable DocCabPrint()

@@ -26,10 +26,13 @@ namespace GAFE
         private int Estatus;
         private string DocRel;
         private string txtBotonDocRel;
+        private int UsaAlmTmp;
+        private int UsaAlmDest;
+        private int UsaFactura;
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[15, 2];
+        private object[,] MatParam = new object[18, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -85,12 +88,30 @@ namespace GAFE
             get { return EditaFecha; }
             set { EditaFecha = value; }
         }
+        public int cmpUsaFactura
+        {
+            get { return UsaFactura; }
+            set { UsaFactura = value; }
+        }
 
         public int cmpEsInterno
         {
             get { return EsInterno; }
             set { EsInterno = value; }
         }
+
+        public int cmpUsaAlmDest
+        {
+            get { return UsaAlmDest; }
+            set { UsaAlmDest = value; }
+        }
+
+        public int cmpUsaAlmTmp
+        {
+            get { return UsaAlmTmp; }
+            set { UsaAlmTmp = value; }
+        }
+
 
         public int cmpEstatus
         {
@@ -192,6 +213,9 @@ namespace GAFE
             Estatus = int.Parse(ObjA[12].ToString());
             DocRel = ObjA[13].ToString();
             txtBotonDocRel = ObjA[14].ToString();
+            UsaAlmTmp = int.Parse(ObjA[15].ToString());
+            UsaAlmDest = int.Parse(ObjA[16].ToString());
+            UsaFactura = int.Parse(ObjA[17].ToString());
 
 
         }
@@ -236,6 +260,9 @@ namespace GAFE
             MatParam[12, 0] = "Estatus"; MatParam[12, 1] = Estatus;
             MatParam[13, 0] = "DocRel"; MatParam[13, 1] = DocRel;
             MatParam[14, 0] = "txtBotonDocRel"; MatParam[14, 1] = txtBotonDocRel;
+            MatParam[15, 0] = "UsaAlmTmp"; MatParam[15, 1] = UsaAlmTmp;
+            MatParam[16, 0] = "UsaAlmDest"; MatParam[16, 1] = UsaAlmDest;
+            MatParam[17, 0] = "UsaFactura"; MatParam[17, 1] = UsaFactura;
         }
 
     }

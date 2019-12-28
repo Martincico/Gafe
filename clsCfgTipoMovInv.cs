@@ -30,6 +30,8 @@ namespace GAFE
         public int CalculaIva;
         public int Estatus;
         public int EsInterno;
+        public int SolicitaSucursal;
+
 
         private MsSql db = null;
         //private SqlParameter[] ArrParametros;
@@ -73,7 +75,7 @@ namespace GAFE
                 Tm.CalculaIva = Convert.ToInt32(dr["CalculaIva"]);
                 Tm.Estatus = Convert.ToInt32(dr["Estatus"]);
                 Tm.EsInterno = Convert.ToInt32(dr["EsInterno"]);
-
+                Tm.SolicitaSucursal = Convert.ToInt32(dr["SolicitaSucursal"]);
             }
             dr.Close();
             return Tm;

@@ -64,7 +64,8 @@ namespace GAFE
             CargarRegistrosDB();
             PuiSegAccesos Ac = new PuiSegAccesos(db);
             Ac.keySAcceso = cboPerfiles.SelectedValue.ToString();
-           
+            btnActualizaSeg.Enabled = true;
+            btnAsignaSeg.Enabled = false;
             if (Ac.EsAccesoNuevo() == 1)
             {
                 CrearArbol("0", null);
@@ -205,8 +206,8 @@ namespace GAFE
                     MessageBoxIcon.Information);
                 tSeg.Nodes.Clear();
                 btnActualizaSeg.Enabled = false;
-
-           // }
+                btnAsignaSeg.Enabled = true;
+            // }
 
         }
 

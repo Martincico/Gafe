@@ -56,15 +56,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtBotonDocRel = new System.Windows.Forms.TextBox();
+            this.chkAlmTmp = new System.Windows.Forms.CheckBox();
+            this.chkAlmDest = new System.Windows.Forms.CheckBox();
+            this.chkUsaFactura = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdCancelar
             // 
-            this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdCancelar.Location = new System.Drawing.Point(438, 347);
+            this.cmdCancelar.Location = new System.Drawing.Point(435, 384);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 36);
             this.cmdCancelar.TabIndex = 19;
@@ -75,11 +78,11 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAceptar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAceptar.Location = new System.Drawing.Point(333, 347);
+            this.cmdAceptar.Location = new System.Drawing.Point(330, 384);
             this.cmdAceptar.Name = "cmdAceptar";
             this.cmdAceptar.Size = new System.Drawing.Size(94, 36);
             this.cmdAceptar.TabIndex = 18;
@@ -157,7 +160,7 @@
             this.chkEstatus.Checked = true;
             this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEstatus.Location = new System.Drawing.Point(369, 317);
+            this.chkEstatus.Location = new System.Drawing.Point(369, 345);
             this.chkEstatus.Name = "chkEstatus";
             this.chkEstatus.Size = new System.Drawing.Size(67, 22);
             this.chkEstatus.TabIndex = 17;
@@ -372,17 +375,53 @@
             this.txtBotonDocRel.Size = new System.Drawing.Size(214, 24);
             this.txtBotonDocRel.TabIndex = 9;
             // 
+            // chkAlmTmp
+            // 
+            this.chkAlmTmp.AutoSize = true;
+            this.chkAlmTmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAlmTmp.Location = new System.Drawing.Point(10, 345);
+            this.chkAlmTmp.Name = "chkAlmTmp";
+            this.chkAlmTmp.Size = new System.Drawing.Size(146, 22);
+            this.chkAlmTmp.TabIndex = 53;
+            this.chkAlmTmp.Text = "Almacén temporal";
+            this.chkAlmTmp.UseVisualStyleBackColor = true;
+            // 
+            // chkAlmDest
+            // 
+            this.chkAlmDest.AutoSize = true;
+            this.chkAlmDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAlmDest.Location = new System.Drawing.Point(191, 345);
+            this.chkAlmDest.Name = "chkAlmDest";
+            this.chkAlmDest.Size = new System.Drawing.Size(146, 22);
+            this.chkAlmDest.TabIndex = 54;
+            this.chkAlmDest.Text = "Usa almacén dest";
+            this.chkAlmDest.UseVisualStyleBackColor = true;
+            // 
+            // chkUsaFactura
+            // 
+            this.chkUsaFactura.AutoSize = true;
+            this.chkUsaFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkUsaFactura.Location = new System.Drawing.Point(369, 317);
+            this.chkUsaFactura.Name = "chkUsaFactura";
+            this.chkUsaFactura.Size = new System.Drawing.Size(135, 22);
+            this.chkUsaFactura.TabIndex = 55;
+            this.chkUsaFactura.Text = "Requiere factura";
+            this.chkUsaFactura.UseVisualStyleBackColor = true;
+            // 
             // frmRegCfgDocumentos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CancelButton = this.cmdAceptar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(534, 391);
+            this.ClientSize = new System.Drawing.Size(534, 425);
+            this.Controls.Add(this.chkUsaFactura);
+            this.Controls.Add(this.chkAlmDest);
+            this.Controls.Add(this.chkAlmTmp);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtBotonDocRel);
             this.Controls.Add(this.cboDocRel);
@@ -454,5 +493,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtBotonDocRel;
+        private System.Windows.Forms.CheckBox chkAlmTmp;
+        private System.Windows.Forms.CheckBox chkAlmDest;
+        private System.Windows.Forms.CheckBox chkUsaFactura;
     }
 }
