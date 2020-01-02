@@ -19,41 +19,52 @@ namespace GAFE
 {
     public partial class frmKardex : MetroForm
     {
-        private SqlDataAdapter DatosTbl;
-        private int opcion;
-        private int idxG;
-
         private MsSql db = null;
-        private string Perfil;
+        private DatCfgParamSystem ParamSystem;
         private clsUtil uT;
         DataTable dt;
+
+        public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
+
+        private string IdArt = "";
 
         public frmKardex()
         {
             InitializeComponent();
         }
 
-        public frmKardex(MsSql Odat, string perfil)
+        public frmKardex(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor)
         {
             
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
-
+            user = DatUsr;
+            StiloColor = NewColor;
+            ParamSystem = ParamS;
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void cmdArticulo_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, Perfil, 3);
+            frmLstArticulos art = new frmLstArticulos(db, ParamSystem, user,  StiloColor,  3);
+            art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
+
                 PuiCatArticulos arti = new PuiCatArticulos(db);
                 arti.keyCveArticulo = art.KeyCampo;
-                arti.EditarArticulo();
-                txtClaveArticulo.Text = arti.keyCveArticulo;
+                arti.EditarArticulo(0);
+                //txtClaveArticulo.Text = arti.keyCveArticulo;
+                IdArt = arti.keyCveArticulo;
+                if (ParamSystem.HideCveArt == 1)
+                    txtClaveArticulo.Text = arti.cmpCodigoBarra;
+                else
+                    txtClaveArticulo.Text = arti.keyCveArticulo;
+
                 txtDscArticulo.Text = arti.cmpDescripcion;
             }
         }
@@ -61,7 +72,7 @@ namespace GAFE
         private void frmKardex_Load(object sender, EventArgs e)
         {
 
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
 
@@ -74,7 +85,9 @@ namespace GAFE
             cmdImprimir.Enabled = (AcCOP == 1) ? true : false;
 
             PuiCatAlmacenes alm = new PuiCatAlmacenes(db);
-            cboAlmacenes.DataSource = alm.CboInv_CatAlmacenes();
+            cboAlmacenes.DataSource = alm.CboCatAlmacenes(1);
+
+            cboAlmacenes.Enabled = user.CambiaAlmacen == 1 ? true : false;
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
@@ -82,7 +95,7 @@ namespace GAFE
             if (Validar())
             {
                 PuiCatKardex kar = new PuiCatKardex(db);
-                kar.keyCveArticulo = txtClaveArticulo.Text;
+                kar.keyCveArticulo = IdArt; //txtClaveArticulo.Text;
                 kar.cmpCveAlmacenMov = cboAlmacenes.SelectedValue.ToString();
                // kar.cmpFechaIni = dtFechaInicio.Value;
                 //kar.cmpFechaFin = dtFechaFin.Value;
@@ -114,7 +127,7 @@ namespace GAFE
                     row["Total_Saldo"] = CantSaldo * PrecioProm;
                 }
                 
-                DataRow[] dtr = dt.Select("Fecha < #"+dtFechaInicio.Value.ToString("MM/dd/yyyy") +"# OR Fecha > #"+ dtFechaFin.Value.ToString("MM/dd/yyyy")+"#");
+                DataRow[] dtr = dt.Select("Fecha <= #"+dtFechaInicio.Value.ToString("yyyy/MM/dd") +"# AND Fecha >= #"+ dtFechaFin.Value.ToString("yyyy/MM/dd") +"#");
                 foreach (var drow in dtr)
                 {
                     drow.Delete();
@@ -122,6 +135,8 @@ namespace GAFE
                 dt.AcceptChanges();
                 
                 grdView.DataSource = dt;
+                lblTotalRegistros.Text = "Total de registros: " + dt.Rows.Count;
+
                 cmdImprimir.Visible = true;
             }
             
@@ -156,7 +171,7 @@ namespace GAFE
         {
             frmRptKardex print = new frmRptKardex();
             this.Cursor = Cursors.AppStarting;
-            print.Kardex(dt, txtClaveArticulo.Text+" - "+txtDscArticulo.Text, cboAlmacenes.Text, dtFechaInicio.Value, dtFechaFin.Value);
+            print.Kardex(dt, txtClaveArticulo.Text+" - "+txtDscArticulo.Text, cboAlmacenes.Text, dtFechaInicio.Value, dtFechaFin.Value, "FARMACIA SALINAS G", user.FecServer);
             this.Cursor = Cursors.Default;
             print.ShowDialog();
         }
@@ -179,6 +194,14 @@ namespace GAFE
         private void dtFechaFin_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmKardex_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

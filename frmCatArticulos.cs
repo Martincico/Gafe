@@ -12,11 +12,10 @@ using DatSql;
 using System.Xml;
 using System.IO;
 
-using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmCatArticulos : MetroForm
+    public partial class frmCatArticulos : Form
     {
         private int _Opcion;
         private String _KeyCampo;
@@ -39,10 +38,6 @@ namespace GAFE
             _KeyCampo = Key;
             db = Odat;
             Perfil = perfil;
-
-            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
-            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
-
             switch (op)
             {
                 case 1:
@@ -52,16 +47,13 @@ namespace GAFE
                 case 2:
                     this.Text = "Modificando el Articulo con Clave: " + _KeyCampo;
                     cmdAceptar.Text = "Actualizar";
-                    LlenaGridUbiArt();
                     break;
                 default:
                     this.Text = "Datos del Articulo con Clave: " + _KeyCampo;
                     cmdAceptar.Text = "Aceptar";
-                    LlenaGridUbiArt();
                     break;
 
-            }   
-            
+            }            
         }
 
         private void frmCatArticulos_Load(object sender, EventArgs e)
@@ -133,56 +125,56 @@ namespace GAFE
             ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveArticulo.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveArticulo.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtCodigoBarras.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtCodigoBarras.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtCodigoSAT.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Código: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtCodigoSAT.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Código: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Descripción: No puede ir vacío.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Descripción: Contiene caracteres no validos.", "CatArticulos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -315,36 +307,19 @@ namespace GAFE
                 LlenarArticulo();
                 if (_Opcion == 1)
                 {
-                    db.IniciaTrans();
                     if (Art.AgregarArticulo() >= 1)
                     {
-                        if (Art.AddArticulo_LstPrecio() >= 1)
-                        {
-                            db.TerminaTrans();
-                            MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                        MessageBoxIcon.Information);
-                            this.Close();
-                        }
-                        else
-                        {
-                            db.CancelaTrans();
-                            MessageBoxAdv.Show("Existe un problema al registrar en listas.", "Artículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    else
-                    {
-                        db.CancelaTrans();
-                        MessageBoxAdv.Show("Existe un problema al guardar.", "Artículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else if (_Opcion == 2)
                     if (Art.ActualizaArticulo() >= 1)
                     {
-                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBox.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
                                        MessageBoxIcon.Information);
-                        this.Close();
                     }
-                
+                this.Close();
             }
         }
 
@@ -384,76 +359,5 @@ namespace GAFE
         {
             ClsUtilerias.LetrasNumeros(e);
         }
-
-        private void dtFechaAlta_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboUMedidaEquival_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboUMedida1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LlenaGridUbiArt()
-        {
-
-            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
-            pui.keyCveLstPrecio = _KeyCampo;
-            DatosTbl = pui.ListadoPrecioArticulo();
-            DataSet Ds = new DataSet();
-
-            try
-            {
-                DatosTbl.Fill(Ds);
-                grdViewUbicacion.Columns.Clear();
-                grdViewUbicacion.DataSource = Ds.Tables[0];
-                //grdViewUbicacion.Columns["Documento"].Frozen = true;//Inmovilizar columna
-                //grdViewUbicacion.Columns["NoMovimiento"].Visible = false;
-
-                for (int i = 0; i < grdViewUbicacion.Columns.Count; i++)
-                {
-                    grdViewUbicacion.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-        }
-
     }
 }

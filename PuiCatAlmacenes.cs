@@ -18,8 +18,10 @@ namespace GAFE
         private int EsDeVenta;
         private int EsDeConsigna;
         private int NumRojo;
+        private string CveLstPrecio;
+        private string CveSucursal;
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[7, 2];
+        private object[,] MatParam = new object[9, 2];
         private SqlDataAdapter Datos;
 
         private MsSql db = null;
@@ -76,13 +78,33 @@ namespace GAFE
             set { NumRojo = value; }
         }
 
+        public string cmpCveLstPrecio
+        {
+            get { return CveLstPrecio; }
+            set { CveLstPrecio = value; }
+        }
+
+        public string cmpCveSucursal
+        {
+            get { return CveSucursal; }
+            set { CveSucursal = value; }
+        }
+
         #endregion
 
         public int AgregarAlmacen()
         {
+            int resp = 0;
             CargaParametroMat();
             RegCatAlmacen OpRadd = new RegCatAlmacen(MatParam,db);
-            return OpRadd.AddRegAlmacen();
+            resp = OpRadd.AddRegAlmacen();
+
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "ClaveAlmacen"; MatParam[0, 1] = ClaveAlmacen;
+            RegCatAlmacen OpRaddExis = new RegCatAlmacen(MatParam, db);
+            resp = OpRaddExis.AddRegExistencias();
+
+            return resp;
         }
 
         public int ActualizaAlmacen()
@@ -126,9 +148,27 @@ namespace GAFE
             EsDeVenta = Convert.ToInt32(ObjA[4]);
             EsDeConsigna = Convert.ToInt32(ObjA[5]);
             NumRojo = Convert.ToInt32(ObjA[6]);
+            CveLstPrecio = ObjA[7].ToString();
+            CveSucursal = ObjA[8].ToString();
 
 
         }
+
+        public void GetAlmaPorSuc()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "CveSucursal"; MatParam[0, 1] = ClaveAlmacen;
+            RegCatAlmacen OpEdit = new RegCatAlmacen(MatParam, db);
+            Datos = OpEdit.RegistroActivoPorSucursal();
+            DataSet Ds = new DataSet();
+            Datos.Fill(Ds);
+            object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
+
+            ClaveAlmacen = ObjA[0].ToString();
+
+        }
+
+
 
         public SqlDataAdapter BuscaAlmacen(string buscar)
         {
@@ -143,11 +183,11 @@ namespace GAFE
             return OpBsq.BuscaAlmacen(buscar);
         }
 
-        public DataTable CboInv_CatAlmacenes()
+        public DataTable CboCatAlmacenes(int OcultaInt)
         {
             RegCatAlmacen OpLst = new RegCatAlmacen(db);
             DataSet Cbo = new DataSet();
-            OpLst.CboInv_CatAlmacenes().Fill(Cbo);
+            OpLst.CboCatAlmacenes(OcultaInt).Fill(Cbo);
             return Cbo.Tables[0];
         }
 
@@ -160,6 +200,8 @@ namespace GAFE
             MatParam[4, 0] = "EsDeVenta"; MatParam[4, 1] = EsDeVenta;
             MatParam[5, 0] = "EsDeConsigna"; MatParam[5, 1] = EsDeConsigna;
             MatParam[6, 0] = "NumRojo"; MatParam[6, 1] = NumRojo;
+            MatParam[7, 0] = "CveLstPrecio"; MatParam[7, 1] = CveLstPrecio;
+            MatParam[8, 0] = "CveSucursal"; MatParam[8, 1] = CveSucursal;
         }
     }
 }

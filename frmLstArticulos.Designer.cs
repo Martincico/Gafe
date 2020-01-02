@@ -28,29 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdEliminar = new System.Windows.Forms.Button();
             this.cmdEditar = new System.Windows.Forms.Button();
             this.cmdAgregar = new System.Windows.Forms.Button();
             this.grdView = new System.Windows.Forms.DataGridView();
-            this.Clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdSeleccionar = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdConsultar
             // 
+            this.cmdConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdConsultar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(702, 408);
+            this.cmdConsultar.Location = new System.Drawing.Point(691, 6);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
-            this.cmdConsultar.TabIndex = 15;
+            this.cmdConsultar.TabIndex = 6;
             this.cmdConsultar.Text = "Consultar";
             this.cmdConsultar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdConsultar.UseVisualStyleBackColor = false;
@@ -58,12 +62,14 @@
             // 
             // cmdEliminar
             // 
+            this.cmdEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(602, 408);
+            this.cmdEliminar.Location = new System.Drawing.Point(587, 6);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEliminar.TabIndex = 18;
+            this.cmdEliminar.TabIndex = 4;
             this.cmdEliminar.Text = "Eliminar";
             this.cmdEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEliminar.UseVisualStyleBackColor = false;
@@ -71,12 +77,14 @@
             // 
             // cmdEditar
             // 
+            this.cmdEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdEditar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdEditar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEditar.Location = new System.Drawing.Point(502, 408);
+            this.cmdEditar.Location = new System.Drawing.Point(483, 6);
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.Size = new System.Drawing.Size(94, 36);
-            this.cmdEditar.TabIndex = 17;
+            this.cmdEditar.TabIndex = 3;
             this.cmdEditar.Text = "Editar";
             this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEditar.UseVisualStyleBackColor = false;
@@ -84,12 +92,14 @@
             // 
             // cmdAgregar
             // 
+            this.cmdAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(402, 408);
+            this.cmdAgregar.Location = new System.Drawing.Point(379, 6);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
-            this.cmdAgregar.TabIndex = 16;
+            this.cmdAgregar.TabIndex = 2;
             this.cmdAgregar.Text = "Agregar";
             this.cmdAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdAgregar.UseVisualStyleBackColor = false;
@@ -102,38 +112,43 @@
             this.grdView.AllowUserToOrderColumns = true;
             this.grdView.BackgroundColor = System.Drawing.Color.White;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Clave});
-            this.grdView.Location = new System.Drawing.Point(12, 76);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdView.DefaultCellStyle = dataGridViewCellStyle1;
+            this.grdView.Location = new System.Drawing.Point(0, 58);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(776, 326);
-            this.grdView.TabIndex = 19;
+            this.grdView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.grdView.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            this.grdView.RowTemplate.Height = 25;
+            this.grdView.Size = new System.Drawing.Size(800, 334);
+            this.grdView.TabIndex = 1;
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
-            // 
-            // Clave
-            // 
-            this.Clave.DataPropertyName = "Clave";
-            this.Clave.Frozen = true;
-            this.Clave.HeaderText = "Clave";
-            this.Clave.Name = "Clave";
-            this.Clave.ReadOnly = true;
+            this.grdView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.grdView_PreviewKeyDown);
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(3, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(794, 58);
-            this.panel1.TabIndex = 14;
+            this.panel1.Size = new System.Drawing.Size(800, 52);
+            this.panel1.TabIndex = 0;
             // 
             // cmdBuscar
             // 
-            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdBuscar.Location = new System.Drawing.Point(689, 7);
@@ -166,32 +181,45 @@
             // 
             // cmdSeleccionar
             // 
+            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdSeleccionar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdSeleccionar.Location = new System.Drawing.Point(3, 408);
+            this.cmdSeleccionar.Location = new System.Drawing.Point(6, 6);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
-            this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
-            this.cmdSeleccionar.TabIndex = 20;
-            this.cmdSeleccionar.Text = "Seleccionar";
+            this.cmdSeleccionar.Size = new System.Drawing.Size(44, 36);
+            this.cmdSeleccionar.TabIndex = 5;
             this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel2.Controls.Add(this.cmdConsultar);
+            this.panel2.Controls.Add(this.cmdSeleccionar);
+            this.panel2.Controls.Add(this.cmdEliminar);
+            this.panel2.Controls.Add(this.cmdAgregar);
+            this.panel2.Controls.Add(this.cmdEditar);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 398);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 52);
+            this.panel2.TabIndex = 7;
             // 
             // frmLstArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BorderThickness = 0;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cmdSeleccionar);
-            this.Controls.Add(this.cmdConsultar);
-            this.Controls.Add(this.cmdEliminar);
-            this.Controls.Add(this.cmdEditar);
-            this.Controls.Add(this.cmdAgregar);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.grdView);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -204,6 +232,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -220,7 +249,6 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdSeleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Clave;
-        
+        private System.Windows.Forms.Panel panel2;
     }
 }

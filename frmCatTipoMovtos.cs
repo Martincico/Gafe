@@ -25,7 +25,6 @@ namespace GAFE
         private MsSql db = null;
 
         public DatCfgUsuario user;
-        private clsUtil uT;
 
         public clsStiloTemas StiloColor;
 
@@ -197,6 +196,14 @@ namespace GAFE
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void frmCatTipoMovtos_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -22,9 +22,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -46,6 +47,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DatSql">
       <HintPath>..\DatSql\bin\Debug\DatSql.dll</HintPath>
@@ -58,31 +70,31 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common.resources, Version=12.0.0.0, Culture=de, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.resources.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization.resources, Version=12.0.0.0, Culture=de, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.resources.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.3.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design.resources, Version=12.0.0.0, Culture=de, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.resources.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1358.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms.resources, Version=12.0.0.0, Culture=de, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -91,18 +103,20 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Core.WinForms, Version=17.1460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Core.WinForms.17.1.0.49\lib\net46\Syncfusion.Core.WinForms.dll</HintPath>
+    <Reference Include="Syncfusion.Chart.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Chart.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Core.WinForms, Version=17.3460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Core.WinForms.17.3.0.26\lib\net46\Syncfusion.Core.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Diagram.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Diagram.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.Grid.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
-    <Reference Include="Syncfusion.Licensing, Version=17.1460.0.49, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Licensing.17.1.0.49\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    <Reference Include="Syncfusion.Licensing, Version=17.3460.0.26, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Licensing.17.3.0.26\lib\net46\Syncfusion.Licensing.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Base, Version=17.1460.0.49, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>packages\Syncfusion.Shared.Base.17.1.0.49\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
+    <Reference Include="Syncfusion.Shared.Base, Version=17.3460.0.26, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>packages\Syncfusion.Shared.Base.17.3.0.26\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Shared.Windows, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.SpellChecker.Base, Version=17.1460.0.38, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -136,8 +150,18 @@
     <Compile Include="AsignaPorAlmacen.Designer.cs">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </Compile>
+    <Compile Include="BalloonTip.cs" />
+    <Compile Include="clsDate.cs" />
+    <Compile Include="clsCfgAlmacen.cs" />
+    <Compile Include="clsCfgTipoMovInv.cs" />
+    <Compile Include="clsCfgDocSeries.cs" />
     <Compile Include="clsCfgDocumento.cs" />
+    <Compile Include="clsLocalizer.cs" />
+    <Compile Include="clsNum_Letras.cs" />
+    <Compile Include="clsPrinter.cs" />
     <Compile Include="clsStiloTemas.cs" />
+    <Compile Include="DatCfgSystem.cs" />
+    <Compile Include="DatCfgParamSystem.cs" />
     <Compile Include="DatCfgUsuario.cs" />
     <Compile Include="clsEncripta.cs" />
     <Compile Include="clsFillCbo.cs" />
@@ -151,6 +175,48 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosGafe.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DcRegPVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DcRegPVenta.designer.cs">
+      <DependentUpon>DcRegPVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmtoTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmtoTicket.Designer.cs">
+      <DependentUpon>fmtoTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmtoDocumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmtoDocumentos.Designer.cs">
+      <DependentUpon>fmtoDocumentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatParamSystem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatParamSystem.designer.cs">
+      <DependentUpon>frmCatParamSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatSucursales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatSucursales.Designer.cs">
+      <DependentUpon>frmCatSucursales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLstSucursales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLstSucursales.Designer.cs">
+      <DependentUpon>frmLstSucursales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatLstPreciosDet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatLstPreciosDet.Designer.cs">
+      <DependentUpon>frmCatLstPreciosDet.cs</DependentUpon>
     </Compile>
     <Compile Include="DocLstRequisiciones.cs">
       <SubType>Form</SubType>
@@ -173,17 +239,29 @@
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </Compile>
     <Compile Include="DocRegRequisiciones.cs" />
-    <Compile Include="frmLstCfgDocProv.cs">
+    <Compile Include="frmCatUsuariosCfg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLstCfgDocProv.designer.cs">
-      <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
+    <Compile Include="frmCatUsuariosCfg.Designer.cs">
+      <DependentUpon>frmCatUsuariosCfg.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLstCfgTipoMovProv.cs">
+    <Compile Include="DcLstPventas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLstCfgTipoMovProv.designer.cs">
-      <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
+    <Compile Include="DcLstPventas.Designer.cs">
+      <DependentUpon>DcLstPventas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLstCfgDocSerie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLstCfgDocSerie.designer.cs">
+      <DependentUpon>frmLstCfgDocSerie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLstCfgDocumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLstCfgDocumentos.designer.cs">
+      <DependentUpon>frmLstCfgDocumentos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatLstPrecios.cs">
       <SubType>Form</SubType>
@@ -209,17 +287,17 @@
     <Compile Include="frmLstProveedores.Designer.cs">
       <DependentUpon>frmLstProveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegCfgDocProv.cs">
+    <Compile Include="frmRegCfgDocSerie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegCfgDocProv.designer.cs">
-      <DependentUpon>frmRegCfgDocProv.cs</DependentUpon>
+    <Compile Include="frmRegCfgDocSerie.designer.cs">
+      <DependentUpon>frmRegCfgDocSerie.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegCfgTipoMovProv.cs">
+    <Compile Include="frmRegCfgDocumentos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegCfgTipoMovProv.designer.cs">
-      <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
+    <Compile Include="frmRegCfgDocumentos.designer.cs">
+      <DependentUpon>frmRegCfgDocumentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -227,23 +305,17 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmCatAlmacenes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCatAlmacenes.Designer.cs">
       <DependentUpon>frmCatAlmacenes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatArticulos.cs">
+    <Compile Include="frmRegArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCatArticulos.Designer.cs">
-      <DependentUpon>frmCatArticulos.cs</DependentUpon>
+    <Compile Include="frmRegArticulos.Designer.cs">
+      <DependentUpon>frmRegArticulos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatCfgCatFoliadores.cs">
       <SubType>Form</SubType>
@@ -269,11 +341,11 @@
     <Compile Include="frmCatImpuestos.designer.cs">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLstInventarioMovtos.cs">
+    <Compile Include="MovtosInvLst.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLstInventarioMovtos.designer.cs">
-      <DependentUpon>frmLstInventarioMovtos.cs</DependentUpon>
+    <Compile Include="MovtosInvLst.designer.cs">
+      <DependentUpon>MovtosInvLst.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatLineas.cs">
       <SubType>Form</SubType>
@@ -293,11 +365,11 @@
     <Compile Include="frmCatPerfiles.Designer.cs">
       <DependentUpon>frmCatPerfiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCatTipoMovtos.cs">
+    <Compile Include="frmLstTipoMovtos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCatTipoMovtos.designer.cs">
-      <DependentUpon>frmCatTipoMovtos.cs</DependentUpon>
+    <Compile Include="frmLstTipoMovtos.designer.cs">
+      <DependentUpon>frmLstTipoMovtos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCatUMedidas.cs">
       <SubType>Form</SubType>
@@ -341,11 +413,11 @@
     <Compile Include="frmLstArticulos.Designer.cs">
       <DependentUpon>frmLstArticulos.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPartidaInvMovtos.cs">
+    <Compile Include="MovtosInvPart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPartidaInvMovtos.designer.cs">
-      <DependentUpon>AddPartidaInvMovtos.cs</DependentUpon>
+    <Compile Include="MovtosInvPart.designer.cs">
+      <DependentUpon>MovtosInvPart.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegTipoMovtos.cs">
       <SubType>Form</SubType>
@@ -353,11 +425,11 @@
     <Compile Include="frmRegTipoMovtos.designer.cs">
       <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRegInventarioMovtos.cs">
+    <Compile Include="MovtosInvRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRegInventarioMovtos.Designer.cs">
-      <DependentUpon>frmRegInventarioMovtos.cs</DependentUpon>
+    <Compile Include="MovtosInvRegistro.Designer.cs">
+      <DependentUpon>MovtosInvRegistro.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRepExistencia.cs">
       <SubType>Form</SubType>
@@ -385,11 +457,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="PuiBitacoraSistema.cs" />
-    <Compile Include="PuiCatCfgDocProv.cs" />
-    <Compile Include="PuiCatCfgTipoMovProv.cs" />
+    <Compile Include="PuiCatCfgDocSerie.cs" />
+    <Compile Include="PuiCatCfgDocumentos.cs" />
+    <Compile Include="PuiCatParamSystem.cs" />
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
     <Compile Include="PuiCatKardex.cs" />
+    <Compile Include="PuiCatClientes.cs" />
+    <Compile Include="PuiCatSucursales.cs" />
     <Compile Include="PuiCatProveedores.cs" />
     <Compile Include="PuiExistencias.cs" />
     <Compile Include="PuiCatArticulos.cs" />
@@ -402,18 +477,22 @@
     <Compile Include="PuiCatAlmacenes.cs" />
     <Compile Include="PuiCatEmpleados.cs" />
     <Compile Include="PuiCatLineas.cs" />
-    <Compile Include="PuiCatInventarioMov.cs" />
+    <Compile Include="MovtosInvPui.cs" />
     <Compile Include="PuiCatTipoMovtos.cs" />
     <Compile Include="PuiCatUMedidas.cs" />
     <Compile Include="PuiSegAccesos.cs" />
+    <Compile Include="PuiSegUsuarioCfg.cs" />
     <Compile Include="PuiSegPerfiles.cs" />
     <Compile Include="PuiSegUsuarios.cs" />
     <Compile Include="RegBitacoraSistema.cs" />
-    <Compile Include="RegCatCfgDocProv.cs" />
-    <Compile Include="RegCatCfgTipoMovProv.cs" />
+    <Compile Include="RegCatCfgDocSerie.cs" />
+    <Compile Include="RegCatCfgDocumentos.cs" />
+    <Compile Include="RegCatParamSystem.cs" />
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
     <Compile Include="RegCatKardex.cs" />
+    <Compile Include="RegCatClientes.cs" />
+    <Compile Include="RegCatSucursales.cs" />
     <Compile Include="RegCatProveedores.cs" />
     <Compile Include="RegExistencias.cs" />
     <Compile Include="RegCatArticulo.cs" />
@@ -426,16 +505,38 @@
     <Compile Include="RegCatAlmacen.cs" />
     <Compile Include="RegCatEmpleado.cs" />
     <Compile Include="RegCatLinea.cs" />
-    <Compile Include="RegCatInventarioMov.cs" />
+    <Compile Include="MovtosInvReg.cs" />
     <Compile Include="RegCatTipoMov.cs" />
     <Compile Include="RegCatUMedida.cs" />
     <Compile Include="RegSegAccesos.cs" />
+    <Compile Include="RegSegUsuarioCfg.cs" />
     <Compile Include="RegSegPerfiles.cs" />
     <Compile Include="RegSegUsuarios.cs" />
     <Compile Include="RepExistencias.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DcRegPVenta.resx">
+      <DependentUpon>DcRegPVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmtoTicket.resx">
+      <DependentUpon>fmtoTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmtoDocumentos.resx">
+      <DependentUpon>fmtoDocumentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatParamSystem.resx">
+      <DependentUpon>frmCatParamSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatSucursales.resx">
+      <DependentUpon>frmCatSucursales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLstSucursales.resx">
+      <DependentUpon>frmLstSucursales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCatLstPreciosDet.resx">
+      <DependentUpon>frmCatLstPreciosDet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DocLstRequisiciones.resx">
       <DependentUpon>DocLstRequisiciones.cs</DependentUpon>
@@ -446,11 +547,17 @@
     <EmbeddedResource Include="DocRegistroRequisicion.resx">
       <DependentUpon>DocRegistroRequisicion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLstCfgDocProv.resx">
-      <DependentUpon>frmLstCfgDocProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmCatUsuariosCfg.resx">
+      <DependentUpon>frmCatUsuariosCfg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLstCfgTipoMovProv.resx">
-      <DependentUpon>frmLstCfgTipoMovProv.cs</DependentUpon>
+    <EmbeddedResource Include="DcLstPventas.resx">
+      <DependentUpon>DcLstPventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLstCfgDocSerie.resx">
+      <DependentUpon>frmLstCfgDocSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLstCfgDocumentos.resx">
+      <DependentUpon>frmLstCfgDocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatLstPrecios.resx">
       <DependentUpon>frmCatLstPrecios.cs</DependentUpon>
@@ -461,11 +568,11 @@
     <EmbeddedResource Include="frmLstProveedores.resx">
       <DependentUpon>frmLstProveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegCfgDocProv.resx">
-      <DependentUpon>frmRegCfgDocProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmRegCfgDocSerie.resx">
+      <DependentUpon>frmRegCfgDocSerie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegCfgTipoMovProv.resx">
-      <DependentUpon>frmRegCfgTipoMovProv.cs</DependentUpon>
+    <EmbeddedResource Include="frmRegCfgDocumentos.resx">
+      <DependentUpon>frmRegCfgDocumentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSlcEmpresas.resx">
       <DependentUpon>frmSlcEmpresas.cs</DependentUpon>
@@ -476,14 +583,11 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmCatAlmacenes.resx">
       <DependentUpon>frmCatAlmacenes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatArticulos.resx">
-      <DependentUpon>frmCatArticulos.cs</DependentUpon>
+    <EmbeddedResource Include="frmRegArticulos.resx">
+      <DependentUpon>frmRegArticulos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatCfgCatFoliadores.resx">
       <DependentUpon>frmCatCfgCatFoliadores.cs</DependentUpon>
@@ -497,8 +601,8 @@
     <EmbeddedResource Include="frmCatImpuestos.resx">
       <DependentUpon>frmCatImpuestos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLstInventarioMovtos.resx">
-      <DependentUpon>frmLstInventarioMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="MovtosInvLst.resx">
+      <DependentUpon>MovtosInvLst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatLineas.resx">
       <DependentUpon>frmCatLineas.cs</DependentUpon>
@@ -509,8 +613,8 @@
     <EmbeddedResource Include="frmCatPerfiles.resx">
       <DependentUpon>frmCatPerfiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCatTipoMovtos.resx">
-      <DependentUpon>frmCatTipoMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="frmLstTipoMovtos.resx">
+      <DependentUpon>frmLstTipoMovtos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCatUMedidas.resx">
       <DependentUpon>frmCatUMedidas.cs</DependentUpon>
@@ -530,14 +634,14 @@
     <EmbeddedResource Include="frmLstArticulos.resx">
       <DependentUpon>frmLstArticulos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPartidaInvMovtos.resx">
-      <DependentUpon>AddPartidaInvMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="MovtosInvPart.resx">
+      <DependentUpon>MovtosInvPart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegTipoMovtos.resx">
       <DependentUpon>frmRegTipoMovtos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRegInventarioMovtos.resx">
-      <DependentUpon>frmRegInventarioMovtos.cs</DependentUpon>
+    <EmbeddedResource Include="MovtosInvRegistro.resx">
+      <DependentUpon>MovtosInvRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRepExistencia.resx">
       <DependentUpon>frmRepExistencia.cs</DependentUpon>
@@ -553,10 +657,13 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\fmtoDocumentoDet.rdlc" />
+    <EmbeddedResource Include="Reportes\fmtoTicket.rdlc" />
     <EmbeddedResource Include="Reportes\RepExistencias.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\RepKardex.rdlc" />
+    <EmbeddedResource Include="Reportes\fmtoDocumentos.rdlc" />
     <None Include="DatosGafe.xsc">
       <DependentUpon>DatosGafe.xsd</DependentUpon>
     </None>
@@ -629,6 +736,20 @@
     <None Include="Resources\Fondos\Fondo4.png" />
     <None Include="Resources\Fondos\Fondo1.png" />
     <None Include="Resources\Fondos\Fondo2.png" />
+    <None Include="Resources\MnuAlmacen.png" />
+    <None Include="Resources\MnuArticulos.png" />
+    <None Include="Resources\MnuInventario.png" />
+    <None Include="Resources\MnuProveedores.png" />
+    <None Include="Resources\MnuColores.png" />
+    <None Include="Resources\MnuTemas.png" />
+    <None Include="Resources\MnuUsuarios.png" />
+    <None Include="Resources\Check.png" />
+    <None Include="Resources\UnCheck.png" />
+    <None Include="Resources\migrar_doc.png" />
+    <None Include="Resources\bg_cajas.png" />
+    <None Include="Resources\logo_emp_rpt.png" />
+    <None Include="Resources\bg_caja_dere.png" />
+    <None Include="Resources\Reiniciar.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

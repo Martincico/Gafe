@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cmdBuscar = new System.Windows.Forms.Button();
             this.txtBuscar = new System.Windows.Forms.TextBox();
@@ -56,13 +57,13 @@
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 55);
+            this.panel1.Size = new System.Drawing.Size(503, 55);
             this.panel1.TabIndex = 8;
             // 
             // cmdBuscar
@@ -163,14 +164,25 @@
             this.grdView.AllowUserToAddRows = false;
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
+            this.grdView.BackgroundColor = System.Drawing.Color.White;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(12, 62);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdView.DefaultCellStyle = dataGridViewCellStyle1;
+            this.grdView.Location = new System.Drawing.Point(0, 62);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 154);
+            this.grdView.RowTemplate.Height = 29;
+            this.grdView.Size = new System.Drawing.Size(503, 154);
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
@@ -179,14 +191,14 @@
             this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
+            this.CodEmpleado.Width = 230;
             // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
+            this.Nombre.Width = 230;
             // 
             // panel2
             // 
@@ -199,9 +211,9 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveLinea);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(1, 268);
+            this.panel2.Location = new System.Drawing.Point(0, 268);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 135);
+            this.panel2.Size = new System.Drawing.Size(503, 135);
             this.panel2.TabIndex = 14;
             // 
             // cboEstatus
@@ -229,6 +241,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -317,7 +330,8 @@
             this.AcceptButton = this.cmdAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
@@ -340,7 +354,7 @@
             this.MinimumSize = new System.Drawing.Size(515, 300);
             this.Name = "frmCatLineas";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catálogo de lineas";
             this.Load += new System.EventHandler(this.frmCatLineas_Load);
             this.panel1.ResumeLayout(false);

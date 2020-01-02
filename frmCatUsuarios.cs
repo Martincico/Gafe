@@ -19,51 +19,69 @@ namespace GAFE
     public partial class frmCatUsuarios : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
         private int opcion;
         private int idxG;
         public string KeyCampo;
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
+        private string sPerfil;
+        private clsUtil uT;
 
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
+        private int AcCOPEdit, AcCOPSelec;
 
         public frmCatUsuarios()
         {
             InitializeComponent();
             
         }
-        public frmCatUsuarios(MsSql Odat, string perfil)
+        public frmCatUsuarios(MsSql Odat, DatCfgParamSystem ParamS, string perfil)
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
-
+            sPerfil = perfil;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void frmCatUsuarios_Load(object sender, EventArgs e)
         {
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
-            {
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
+
+            uT = new clsUtil(db, sPerfil);
+            uT.CargaArbolAcceso();
+
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv004A");
+            int AcCOP = (up != null) ? up.Acceso : 0;
+            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv004B");
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOPEdit == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv004C");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv004D");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv004F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv004F");
+            AcCOPSelec = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
+
             this.Size = this.MinimumSize;
             LlenaGridView();
-            PuiSegPerfiles puiPerf = new PuiSegPerfiles(db);
-            cboPerfil.DataSource = puiPerf.CboPerfiles();
+
+            LleCboPerfiles();
+
+
             cmdSeleccionar.Visible = false;
             if (opcion > 3)
             {
@@ -93,24 +111,36 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if (AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiSegUsuarios pui = new PuiSegUsuarios(db);
+                PuiSegUsuarios pui = new PuiSegUsuarios(db);
+
+                pui.keySusuario = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarUsuario();
+
+                txtUsuario.Text = pui.keySusuario;
+                txtNombre.Text = pui.cmpNombre;
+                txtPassword.Text = pui.cmpPassword;
+                cboPerfil.SelectedValue = pui.cmpCodPerfil;
+                txtUsuario.Enabled = false;
+                txtNombre.Focus();
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
+
             
-            pui.keySusuario= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarUsuario();
 
-            txtUsuario.Text = pui.keySusuario;
-            txtNombre.Text = pui.cmpNombre;
-            txtPassword.Text = pui.cmpPassword;
-            cboPerfil.SelectedValue = pui.cmpCodPerfil;
-            txtUsuario.Enabled = false;
-            txtNombre.Focus();
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
@@ -264,9 +294,6 @@ namespace GAFE
                     pui.cmpPassword = txtPassword.Text;
                     if (cboPerfil.SelectedValue != null)
                         pui.cmpCodPerfil = cboPerfil.SelectedValue.ToString();
-                    //cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
-                    
-
 
                     if (pui.ActualizaUsuario() >= 0)
                     {
@@ -290,7 +317,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtUsuario.Text))
             {
                 MessageBoxAdv.Show("Usuario: No puede ir vacío.", "CatUsuarioes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -354,7 +380,8 @@ namespace GAFE
             txtUsuario.Text = "";
             txtNombre.Text = "";
             txtPassword.Text = "";
-            cboPerfil.Text = "";
+            //cboPerfil.Text = "";
+            LleCboPerfiles();
         }
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -373,46 +400,37 @@ namespace GAFE
                 cmEditar_Click(sender, e);
         }
 
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
-        }
-
         private void cmdSeleccionar_Click(object sender, EventArgs e)
         {
             try
             {
-                KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                this.Close();
+                if (AcCOPSelec == 1)
+                {
+                    KeyCampo = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                    "Error al editar registro", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
+        }
+
+
+        private void LleCboPerfiles()
+        {
+            PuiSegPerfiles puiPerf = new PuiSegPerfiles(db);
+            cboPerfil.DataSource = puiPerf.CboPerfiles();
+
+            cboPerfil.ValueMember = "Clave";
+            cboPerfil.DisplayMember = "Descripcion";
         }
     }
 }

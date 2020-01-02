@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cboEstatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdConsultar = new System.Windows.Forms.Button();
+            this.cmdSeleccionar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -64,9 +66,9 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtClaveClase);
             this.panel2.Controls.Add(this.lblCodEmpleado);
-            this.panel2.Location = new System.Drawing.Point(1, 268);
+            this.panel2.Location = new System.Drawing.Point(0, 268);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(495, 135);
+            this.panel2.Size = new System.Drawing.Size(503, 138);
             this.panel2.TabIndex = 12;
             // 
             // cboEstatus
@@ -94,6 +96,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCancelar.Location = new System.Drawing.Point(390, 92);
@@ -186,7 +189,7 @@
             this.cmdEditar.Text = "Editar";
             this.cmdEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdEditar.UseVisualStyleBackColor = false;
-            this.cmdEditar.Click += new System.EventHandler(this.cmEditar_Click);
+            this.cmdEditar.Click += new System.EventHandler(this.cmdEditar_Click);
             // 
             // cmdAgregar
             // 
@@ -207,14 +210,26 @@
             this.grdView.AllowUserToAddRows = false;
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
+            this.grdView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.grdView.BackgroundColor = System.Drawing.Color.White;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado,
             this.Nombre});
-            this.grdView.Location = new System.Drawing.Point(12, 62);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdView.DefaultCellStyle = dataGridViewCellStyle1;
+            this.grdView.Location = new System.Drawing.Point(0, 62);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(474, 154);
+            this.grdView.RowTemplate.Height = 29;
+            this.grdView.Size = new System.Drawing.Size(503, 154);
             this.grdView.TabIndex = 8;
             this.grdView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdView_CellContentClick);
             this.grdView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdView_RowHeaderMouseDoubleClick);
@@ -225,24 +240,22 @@
             this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
             // 
             // Nombre
             // 
             this.Nombre.HeaderText = "Nombre";
             this.Nombre.Name = "Nombre";
             this.Nombre.ReadOnly = true;
-            this.Nombre.Width = 350;
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.cmdBuscar);
             this.panel1.Controls.Add(this.txtBuscar);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(495, 55);
+            this.panel1.Size = new System.Drawing.Size(503, 55);
             this.panel1.TabIndex = 7;
             // 
             // cmdBuscar
@@ -291,16 +304,34 @@
             this.cmdConsultar.UseVisualStyleBackColor = false;
             this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
             // 
+            // cmdSeleccionar
+            // 
+            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdSeleccionar.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
+            this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdSeleccionar.Location = new System.Drawing.Point(10, 223);
+            this.cmdSeleccionar.Margin = new System.Windows.Forms.Padding(1);
+            this.cmdSeleccionar.Name = "cmdSeleccionar";
+            this.cmdSeleccionar.Size = new System.Drawing.Size(36, 36);
+            this.cmdSeleccionar.TabIndex = 16;
+            this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cmdSeleccionar.UseVisualStyleBackColor = false;
+            this.cmdSeleccionar.Visible = false;
+            this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
+            // 
             // frmCatClases
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(503, 403);
+            this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cmdEliminar);
@@ -348,5 +379,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CodEmpleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.Button cmdConsultar;
+        private System.Windows.Forms.Button cmdSeleccionar;
     }
 }

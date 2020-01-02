@@ -45,19 +45,20 @@
             // 
             // cmdSeleccionar
             // 
+            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdSeleccionar.Location = new System.Drawing.Point(3, 408);
             this.cmdSeleccionar.Name = "cmdSeleccionar";
-            this.cmdSeleccionar.Size = new System.Drawing.Size(94, 36);
+            this.cmdSeleccionar.Size = new System.Drawing.Size(43, 36);
             this.cmdSeleccionar.TabIndex = 27;
-            this.cmdSeleccionar.Text = "Seleccionar";
             this.cmdSeleccionar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdSeleccionar.UseVisualStyleBackColor = false;
             this.cmdSeleccionar.Click += new System.EventHandler(this.cmdSeleccionar_Click);
             // 
             // cmdConsultar
             // 
+            this.cmdConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdConsultar.Location = new System.Drawing.Point(702, 408);
@@ -71,6 +72,7 @@
             // 
             // cmdEliminar
             // 
+            this.cmdEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEliminar.Location = new System.Drawing.Point(602, 408);
@@ -84,6 +86,7 @@
             // 
             // cmdEditar
             // 
+            this.cmdEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEditar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEditar.Location = new System.Drawing.Point(502, 408);
@@ -97,6 +100,7 @@
             // 
             // cmdAgregar
             // 
+            this.cmdAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAgregar.Location = new System.Drawing.Point(402, 408);
@@ -145,7 +149,7 @@
             // 
             // cmdBuscar
             // 
-            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdBuscar.Location = new System.Drawing.Point(689, 7);
@@ -181,7 +185,7 @@
             this.AcceptButton = this.cmdAgregar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;

@@ -17,9 +17,8 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmInicio : Form    {
+    public partial class frmInicio : MetroForm    {
 
-        DateTime hoy;
         private MsSql db = null;
         private string path;
 
@@ -27,7 +26,9 @@ namespace GAFE
 
         string clave_secreta = "necesitounaprostitutaoatuhermana";
         clsEncripta Seg;
-        public DatCfgUsuario user;
+
+        private int posY = 0;
+        private int posX = 0;
 
         public frmInicio()
         {
@@ -46,9 +47,6 @@ namespace GAFE
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
 
-
-            hoy = DateTime.Now;
-            lblFecha.Text = hoy.ToLongDateString() + " " + hoy.ToShortTimeString();
             LoadCboEmpresas();
             this.KeyPress += new KeyPressEventHandler(this.keypressed);
 
@@ -166,20 +164,27 @@ namespace GAFE
 
                         PuiSegUsuarios us = new PuiSegUsuarios(db);
                         us.keySusuario = txtUsuario.Text;
-                        Object[] reg = us.getUsuario();
-                        if (reg.Length >= 1)
+                        us.EditarUsuario();
+                        if (!us.keySusuario.Equals(""))
                         {
                             if (String.Equals(us.keySusuario, txtUsuario.Text) == true)
                             {
                                 if (String.Equals(us.cmpPassword, txtPassword.Text) == true)
                                 {
-                                    user = new DatCfgUsuario(reg);
-                                    Menu mn = new Menu(db, this, user);
                                     this.Hide();
-                                    mn.Show();
+                                    if (us.cmpCodPerfil == "CAJAS")
+                                    {
+                                        DcRegPVenta Rcap = new DcRegPVenta(db, this, us.keySusuario, 1, "M3001", "PUNTO DE VENTA");
+                                        Rcap.Show();
+                                        
+                                    }
+                                    else
+                                    {
+                                        Menu mn = new Menu(db, this, us.keySusuario, Empresa);
+                                        mn.Show();
+                                        
+                                    }
 
-                                    //MessageBoxAdv.Show("Acceso correcto!!", "Login", MessageBoxButtons.OK,
-                                    //MessageBoxIcon.Exclamation);
                                 }
                                 else
                                 {
@@ -228,6 +233,37 @@ namespace GAFE
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button != MouseButtons.Left)
+            {
+                posX = e.X;
+                posY = e.Y;
+            }
+            else
+            {
+                Left = Left + (e.X - posX);
+                Top = Top + (e.Y - posY);
+            }
+        }
+
+        private void lblMin_MouseHover(object sender, EventArgs e)
+        {
+            lblMin.BackColor = Color.SeaShell;
+            lblMin.ForeColor = Color.Black;
+        }
+
+        private void lblMin_MouseLeave(object sender, EventArgs e)
+        {
+            lblMin.BackColor = Color.Transparent;
+            lblMin.ForeColor = Color.White;
+        }
+
+        private void lblMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

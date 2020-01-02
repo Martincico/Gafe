@@ -83,67 +83,48 @@ namespace GAFE
             return db.UpdateRegistro(sql, ArrParametros);
         }
 
-        public SqlDataAdapter ListExistencias()
-        {
-            SqlDataAdapter dt = null;
-            string Sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
-                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
-                        "Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
-                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
-                                                "join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea ";
-            dt = db.SelectDA(Sql);
-            return dt;
-        }
+
 
         public SqlDataAdapter RegistroActivo()
         {
             SqlDataAdapter dt = null;
             string Sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
-                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
-                        "Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
-                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
-                                                "join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea ";
+                        "        (Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
+                        "        Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
+                        " from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
+                        " join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea " +
+                        " WHERE Ar.Estatus = 1";
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
 
-        public SqlDataAdapter BuscaExistencia(string articulo,string clavealmacen,string linea, string buscar)
+
+        public SqlDataAdapter BuscaExistencia(string articulo,string clavealmacen,string linea, string buscar, int OmiteExis0)
         {
             SqlDataAdapter dt = null;
-            string where = "where ";
-            int usaAnd = 0;
+            string where="";
             if (articulo.Length > 0)
-            {
-                where += "Ex.ClaveArticulo = '" + articulo + "' ";
-                usaAnd = 1;
-            }
+                where += " AND Ex.ClaveArticulo = '" + articulo + "' ";
 
             if (clavealmacen.Length > 0)
-            {
-                where += (usaAnd == 1) ? "AND Ex.ClaveAlmacen = '" + clavealmacen + "' " : "Ex.ClaveAlmacen = '" + clavealmacen + "' ";
-                usaAnd = 1;
-            }
+                where += " AND Ex.ClaveAlmacen = '" + clavealmacen + "' ";
 
             if (linea.Length > 0)
-            {
-                where += (usaAnd == 1) ? "AND Ln.CveLinea = '" + linea + "' " : "Ln.CveLinea = '" + linea + "' ";
-                usaAnd = 1;
-            }
+                where += " AND Ln.CveLinea = '" + linea + "' ";
 
             if (buscar.Length > 0)
-            {
-                where += (usaAnd == 1) ? " AND (Ex.ClaveArticulo like '%" + buscar + "%' OR Ar.Descripcion like '%"+buscar+"%' )" :
-                                         " (Ex.ClaveArticulo like '%" + buscar + "%' OR Ar.Descripcion like '%" + buscar + "%' )";
-                usaAnd = 1;
-            }
-            //where =   (usaAnd == 1) ? "AND Ex.ClaveAlmacen = " + clavealmacen + "' " : "Ex.ClaveAlmacen = '" + clavealmacen + "' ";
+                where += " AND (Ex.ClaveArticulo like '%" + buscar + "%' OR Ar.Descripcion like '%"+buscar+"%' )";
 
-            string sql = "select Ex.ClaveArticulo,Ar.Descripcion,Ln.Descripcion,Ex.ClaveAlmacen,Ex.Cantidad,Ex.CantApartada," +
-                        "(Ex.Cantidad - Ex.CantApartada) as ExTotal, Ex.stockMin,Ex.stockMax,Ex.CostoPromedio," +
-                        "Ex.CostoUltimo,Ex.CostoActual,Ex.Ubicacion " +
-                        "from Inv_Existencias Ex join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
-                                                "join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea ";
-            sql += (usaAnd == 1) ? where : "";
+            where += OmiteExis0 == 0 ? "" : " AND Ex.Cantidad > 0 ";
+
+            string sql = "select Ex.ClaveArticulo as Clave,Ar.CodigoBarra as 'Cód. Barra' ,Ar.Descripcion as 'Artículo',Ln.Descripcion as 'Línea',Alm.Descripcion as 'Almacén',Ex.Cantidad,Ex.CantApartada AS 'Cant. Apartada'," +
+                        "        (Ex.Cantidad - Ex.CantApartada) as 'Existencia', Ex.stockMin as 'Stock mín.',Ex.stockMax as 'Stock max.',Ex.CostoPromedio AS 'Costo Prom.'," +
+                        "        Ex.CostoUltimo as 'Coston últ.',Ex.CostoActual as 'Costo Actual',Ex.Ubicacion as 'Ubicación' " +
+                        " from Inv_Existencias Ex " +
+                        " join inv_CatArticulos Ar on Ex.ClaveArticulo = Ar.CveArticulo " +
+                        " join Inv_Lineas Ln on Ar.CveLinea = Ln.CveLinea " +
+                        " join Inv_CatAlmacenes Alm on Ex.ClaveAlmacen = Alm.ClaveAlmacen " +
+                        " WHERE Ar.Estatus = 1 " + where;
                        
 
             dt = db.SelectDA(sql);

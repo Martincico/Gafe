@@ -302,5 +302,13 @@ namespace GAFE
 
             return dv;
         }
+
+        private void frmSlcEmpresas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

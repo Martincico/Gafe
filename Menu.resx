@@ -129,25 +129,126 @@
   <metadata name="RepInven.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>489, 56</value>
   </metadata>
-  <metadata name="toolStripEx1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>833, 56</value>
-  </metadata>
   <metadata name="ModProveedores.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
   <metadata name="CatProvee.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>726, 56</value>
+    <value>742, 74</value>
   </metadata>
-  <metadata name="MovSeguridad.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="ContInvDocumentos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>607, 46</value>
+  </metadata>
+  <metadata name="CatReportes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>296, 26</value>
+  </metadata>
+  <metadata name="ModClientes.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="CatClientes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>487, 21</value>
+  </metadata>
+  <metadata name="ModGeneral.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="catGeneral.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>23, 42</value>
+  </metadata>
+  <metadata name="ModSeguridad.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value />
   </metadata>
   <metadata name="CatSeguridad.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>142, 56</value>
   </metadata>
-  <metadata name="CatPersonalizar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>591, 56</value>
+  <metadata name="ModConfiguracion.TabGroup" type="System.Resources.ResXNullRef, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value />
+  </metadata>
+  <metadata name="CatConfig.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>787, 40</value>
+  </metadata>
+  <metadata name="CatCfgProveedores.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>20, 66</value>
+  </metadata>
+  <metadata name="CatCfgGeneral.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>749, 3</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>88</value>
+    <value>119</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAIACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAACMuAAAjLgAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0aQAANGkAADRpAAA0aQAANGkCgDR
+        pFQA0aTGANGkxQDRpFIA0aQJANGkAADRpAAA0aQAANCjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0aQAANGkAADRpAAA0aQAANGkCQDR
+        pEkA0aSvANGk8gDRpP8A0aT/ANGk8gDRpK0A0aRHANGkCADRpAAA0aQAANGkAADRowAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0KQAANGkAADRpAAA0aQAANGkCQDR
+        pEoA0aSwANGk9ADRpP8A0aT/ANGk/wDRpP8A0aT/ANGk/wDRpPQA0aSuANGkSADRpAgA0aQAANGkAADR
+        pAAA0aQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA0KQAANGkAADRpAAA0aQAANGkCQDR
+        pEoA0aSwANGk9ADRpP8A0aT/ANGk/wDRpP8A0aT/ANGk/wDRpP8A0aT/ANGk/wDRpP8A0aT0ANGkrwDR
+        pEgA0aQIANGkAADRpAAA0aQAANCjAAAAAAAAAAAAAAAAAAAAAACUnBYALMF6AFuwTAAIzp0AANGkCQDR
+        pEoA0aSwANGk9ADRpP8A0aT/ANGk/wDRpP8A0aT/ANGk2ADRpH8A0aR7ANGk1gDRpP8A0aT/ANGk/wDR
+        pP8A0aT/ANGk9ADRpK8A0aRIANGkCAHQpAAEyaYAAc+kAA60qgAAAAAAqZUCAKSWBwCcmQ4AXbBLCQbP
+        nkoA0aSwANGk9ADRpP8A0aT/ANGk/wDRpP8A0aT/ANGk1ADRpHcA0aQgANGkAADRpAAA0aQdANGkcwDR
+        pNIA0aT+ANGk/wDRpP8A0aT/ANGk/wDRpPQA0aSvANCkSQXGpgkA0KQABMimAAHOpQCqlAEAopcICayU
+        AEuQnhqyE8qS9QDRpf8A0aT/ANGk/wDRpP8A0aT+ANGk0ADRpHEA0aQcANGkAACoxwAAaP4AAGf+AACo
+        xgAA0qQAANGkGgDRpG4A0aTOANGk/QDRpP8A0aT/ANGk/wDRpP8A0aT0Ac+ksALNpUoFxqYJAdCkAKiV
+        A1OqlAGxrJQA9ZibEv8XyY7/ANKl/wDRpP8A0aT8ANGkywDRpGoA0aQYANGlAACfzwAAZ/4AAGb/FQBm
+        /2AAZv9eAGb/EwBn/wAAoc0AANGkAADRpBcA0aRoANGkygDRpPwA0aT/ANGk/wDRpP8A0aT/ANGk9AHP
+        pK8CzaVRq5QA+KuUAP+slAD/mZoR/xjJjf8A0qb7ANGkxgDRpGQA0aQVAM+lAACW1gAAZv8AAGb/GgBm
+        /2wAZv+2AGb/ogBm/6kAZv+3AGb/ZwBm/xYAZv8AAJrTAADRpAAA0aQUANGkYwDRpMUA0aT7ANGk/wDR
+        pP8A0aT/ANGk/wHPpPerlAD/q5QA/6yUAP+cmQ79IcWEwwDTqF4A0aQSAM6nAACP3AAAZv8AAGb/IABm
+        /3YAZv+8AGb/mQBm/zsAZv8YAGb/GQBm/0IAZv+fAGb/uQBm/24AZv8aAGb/AACU2AAA0aQAANGkEgDS
+        pF0EyabJAsyl/wDUo/8A0qT/AdCk/quUAP+rlAD/q5QA/6mVAuuMnx4xTLZbAADGrQAAZ/0BAGb/JQBm
+        /4AAZv/AAGb/lQBm/zUAZv8dAGb/ZwBm/6gAZv+pAGb/ZABm/x0AZv85AGb/lQBm/7kAZv91AGb/HQB9
+        5QAAzacAM2q5AFUmx1REScD8G5qv/wPLpf8A06T+q5QA/6uUAP+rlAD/q5QA6q2TACmqlAEAAGb/AABm
+        /y8AZv/NAGb/lgBm/zIAZv8gAGb/bQBm/6gAZv99AGb/OwBm/zgAZv+XAGb/ygBm/3MAZv8iAGb/MwBm
+        /5UAZv+uAGb/DwBm/wBpAM8AaQDQUGoA0PtjC83/RkXB/yGPsv6rlAD/q5QA/6uUAP+rlADrq5QALKuU
+        AAAAZv8AAGb/QgBm/9AAZv8UAGb/SgBm/68AZv9zAGb/HABm/0UAZv/SAGb/iwBm/zQAZv/IAGb/mQBm
+        /8IAZv83AGb/GQBm/7EAZv8WAGb/AGgAzwBoAM9QaADP+2gAz/9pAND/ZQbO/KuUAP+rlAD/q5QA/6uU
+        AO2rlAAvq5QAAABm/wAAZv9AAGb/zQBm/xQAZv+BAGb/cgBm/xUAZv9fAGb/qQBm/9cAZv+NAGb/NgBm
+        /68AZv8NAGb/nABm/1kAZv8YAGb/rgBm/xYAZv8AaADPAGgAz1FoAM/7aADP/2gAz/9oAM/8q5QA/6uU
+        AP+rlAD/q5QA7quUADGrlAAAAGb/AABm/z8AZv/MAGb/FABm/30AZv/AAGb/pABm/3MAZv8hAGb/EgBm
+        /wUAZv8wAGb/sABm/xIAZv+mAGb/dwBm/x0AZv+uAGb/FgBm/wBoAM8AaADPUWgAz/xoAM//aADP/2gA
+        z/yrlAD/q5QA/6uUAP+rlADwq5QAM6uUAAAAZv8AAGb/PgBm/8wAZv8UAGb/fgBm/6cAZv9pAGb/jgBm
+        /xwAZv8AAGb/AABm/zIAZv+xAGb/OQBm/+sAZv/UAGb/NABm/68AZv8WAGb/AGgAzwBoAM9RaADP/GgA
+        z/9oAM//aADP/KuUAP+rlAD/q5QA/6uUAPGrlAA2q5QAAABm/wAAZv89AGb/ywBm/xQAZv98AGb/cQBm
+        /2oAZv/iAGb/oABm/zEAZv83AGb/ogBm/5MAZv8QAGb/aQBm/4cAZv+KAGb/owBm/w0AZv8AaADPAGgA
+        z1FoAM/8aADP/2gAz/9oAM/8q5QA/6uUAP+rlAD/q5QA8quUADirlAAAAGb/AABm/zwAZv/KAGb/EgBm
+        /3sAZv91AGb/MgBm/1UAZv9eAGb/rABm/6QAZv9RAGb/DgBm/zIAZv+EAGb/owBm/2YAZv89AGb/DQBm
+        /wBoAM8AaADPUWgAz/xoAM//aADP/2gAz/yrlAD/q5QA/6uUAP+rlAD0q5QAO6uUAAAAZv8AAGb/OABm
+        /9MAZv8xAGb/egBm/4AAZv+5AGb/5wBm/08AZv8XAGb/FABm/zoAZv+SAGb/pwBm/10AZv8YAGb/RQBm
+        /74AZv8kAGb/AGgAzwBoAM9RaADP/GgAz/9oAM//aADP/KuUAP+rlAD/q5QA/6uUAPWrlAA+q5QAAABm
+        /wAAZv8NAGb/YwBm/5cAZv/GAGb/dQBm/1EAZv9+AGb/qwBm/58AZv+eAGb/pwBm/1UAZv8WAGb/PgBm
+        /54AZv+4AGb/ZABm/wgAZv8AaADPAGgAz1FoAM/8aADP/2gAz/9oAM/8q5QA/6uUAP+rlAD/q5QA9quU
+        AD+rlAAAF2zcAABm/wAAZv8AAGb/DgBm/0YAZv95AGb/wQBm/5gAZv8gAGb/VABm/00AZv8UAGb/QQBm
+        /6EAZv+3AGb/ZwBm/xYAZv8AAGb/ABRS9QBoAM8AaADPUGgAz/xoAM//aADP/2gAz/yrlAD/q5QA/6uU
+        AP+rlAD5q5QAVauUAACrlAAAsZUAACdxxQAAZv8AAGb/AABm/2EAZv/3AGb/5wBm/5wAZv9IAGb/RwBm
+        /6QAZv+2AGb/ZABm/xQAZv8AAGb/ACw87ABrAM0AaADPAGgAzwBoAM9haADP/WgAz/9oAM//aADP/KuU
+        AP+rlAD/q5QA/6uUAP+rlADfq5QAfquUAB+rlAAAq5QAAKuUAAAAZv8AAGb/CgBm/zsAZv8uAGb/UQBm
+        /68AZv+1AGb/YABm/xIAZv8AAGb/ABlO9ABtAMwAaADPAGgAzwBoAM8iaADPgWgAz+BoAM//aADP/2gA
+        z/9oAM/9q5QA+KuUAP+rlAD/q5QA/6uUAP+rlAD/q5QA1auUAHCrlAAXq5QAALCVAAAAZP8AAGb/AABm
+        /wAAZv8AAGb/DQBm/w4AZv8AAGb/AA9Y+QB9AMMAaADPAGgAzwBoAM8eaADPemgAz9poAM//aADP/2gA
+        z/9oAM//aADP/2gAz/WrlABSq5QAsKuUAPWrlAD/q5QA/6uUAP+rlAD/q5QA/quUAMyrlABjq5QAEauU
+        AACrlAAAqZMDAAJn/AAAZv8AAGb/ABFW+ABfCdQAaADPAGgAzwBoAM8aaADPc2gAz9VoAM//aADP/2gA
+        z/9oAM//aADP/2gAz/RoAM+uaADPUKuUAACrlAAJq5QAS6uUALGrlAD1q5QA/6uUAP+rlAD/q5QA/6uU
+        APyrlADBq5QAVquUAAurlAAAq5QAAKiNCQBoAM8AaADPAGgAzwBoAM8WaADPbGgAz9BoAM//aADP/2gA
+        z/9oAM//aADP/2gAz/RoAM+vaADPSWgAzwhoAM8Aq5QAAKuUAACrlAAAq5QACauUAEurlACxq5QA9auU
+        AP+rlAD/q5QA/6uUAP+rlAD4q5QAtauUAEqrkwEHl2g9AGgAzgBoAM8TaADPZWgAz8toAM/+aADP/2gA
+        z/9oAM//aADP/2gAz/RoAM+vaADPSWgAzwhoAM8AaADPAGgAzwAAAAAAq5QAAKuUAACrlAAAq5QAAKuU
+        AAmrlABKq5QAsauUAPWrlAD/q5QA/6uUAP+rlAD/q5UA9KyXAKibcjBDZwDRXmgAz8ZoAM/8aADP/2gA
+        z/9oAM//aADP/2gAz/RoAM+vaADPSWgAzwhoAM8AaADPAGgAzwBnAM8AAAAAAAAAAAAAAAAAAAAAAKuU
+        AACrlAAAq5QAAKuUAACrlAAJq5QASquUALGrlAD1q5QA/6yWAP+ojQr/lGJG/3Ygo/NoAND6aADP/2gA
+        z/9oAM//aADP/2gAz/RoAM+vaADPSWgAzwhoAM8AaADPAGgAzwBoAM8AAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAACrlAAAq5QAAKuUAACrlAAAq5QACauUAEqrkwGxmGk883oomP9qBMr/ZwDR/2gA
+        z/9oAM//aADP/2gAz/RoAM+vaADPSWgAzwhoAM8AaADPAGgAzwBoAM4AAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqpMAAKuUAACrlAAAqI4JAKKAHAluDrtJZwDTr2gA
+        z/NoAM//aADP/2gAz/JoAM+uaADPSGgAzwhoAM8AaADPAGgAzwBoAM8AAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKqUAACSXUwAnHQtAHIV
+        sgBoAM4KaADPVGgAz8doAM/GaADPU2gAzwloAM8AaADPAGgAzwBoAM4AAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAA/4AB//4AAH/4AAAf4AAAB4AAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAgAAAAeAAAAf4AAAf/gAAf/+AAf8=
+</value>
+  </data>
 </root>

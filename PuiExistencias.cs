@@ -143,11 +143,10 @@ namespace GAFE
             return OpUp.UpdateAsignaPorAlmacen();
         }
 
-        public SqlDataAdapter ListarExistencias()
+        public SqlDataAdapter BuscaExistencia(string Articulo, string Almacen, string linea, string buscar, int OmiteExis0)
         {
-            CargaParametroMat();
-            RegExistencias OpLst = new RegExistencias(db);
-            return OpLst.ListExistencias();
+            RegExistencias OpBsq = new RegExistencias(db);
+            return OpBsq.BuscaExistencia(Articulo, Almacen, linea, buscar, OmiteExis0);
         }
 
         public void EditarExistencia()
@@ -173,18 +172,7 @@ namespace GAFE
             Ubicacion       = ObjA[9].ToString();
         }
 
-        public SqlDataAdapter BuscaExistencia(string Articulo,string Almacen,string linea, string buscar)
-        {
-            /* MatParam = new object[4, 2];
-             MatParam[0, 0] = "CodAlmacen"; MatParam[0, 1] = buscar;
-             MatParam[1, 0] = "Descripcion"; MatParam[1, 1] = buscar;
-             MatParam[2, 0] = "Ubicacion"; MatParam[2, 1] = buscar;
-             MatParam[3, 0] = "Encargado"; MatParam[3, 1] = buscar;
-             RegExistencias OpBsq = new RegExistencias(MatParam);/
-             */
-            RegExistencias OpBsq = new RegExistencias(db);
-            return OpBsq.BuscaExistencia(Articulo,Almacen,linea,buscar);
-        }
+
 
         public DataTable CboInv_CatAlmacenes()
         {

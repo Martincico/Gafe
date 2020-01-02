@@ -23,10 +23,12 @@ namespace GAFE
         private String CveUMedida;
         private Double Cantidad;
         private Double CantidadPkt;
+        private Double Costo;
         private Double Precio;
         private Double Descuento;
         private Double TotalDscto;
         private String CveImpuesto;
+        private Double ImpuestoValor;
         private Double TotalIva;
         private Double SubTotal;
         private Double TotalPartida;
@@ -35,15 +37,33 @@ namespace GAFE
         private String NoMovtoTra;
         private String DocTra;
         private String PartTra;
+        private string CodigoBarra;
+
+        private String CveImpIEPS;
+        private Double ImpIEPSValor;
+        private String CveImpRetIVA;
+        private Double ImpRetIVAValor;
+        private String CveImpRetISR;
+        private Double ImpRetISRValor;
+        private String CveImpOtro;
+        private Double ImpValorOtro;
+        private Double TotalIEPS;
+        private Double TotalRetIVA;
+        private Double TotalRetISR;
+        private Double TotalImpOtro;
+
+
+
+
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[24, 2];
+        private object[,] MatParam = new object[38, 2];
         private object[,] MatParamKeys = new object[2, 2];
-        private object[,] MatParamInvExis = new object[9, 2];
+        //private object[,] MatParamInvExis = new object[9, 2];
         private SqlDataAdapter Datos;
 
 
-        /* Informacion de Inventarios */
+        /* Informacion de Existencias */
         private String inv_ClaveAlmacen;
         private double inv_Cantidad;
         private double inv_stockMin;
@@ -79,6 +99,11 @@ namespace GAFE
             set { NoPartida  = value; }
         }
 
+        public string cmpCodigoBarra
+        {
+            get { return CodigoBarra; }
+            set { CodigoBarra = value; }
+        }
 
         public DateTime cmpFechaMovimiento
         {
@@ -141,6 +166,85 @@ namespace GAFE
             set { CveImpuesto = value; }
         }
 
+        public double cmpImpuestoValor
+        {
+            get { return ImpuestoValor; }
+            set { ImpuestoValor = value; }
+        }
+
+        public string cmpCveImpIEPS
+        {
+            get { return CveImpIEPS; }
+            set { CveImpIEPS = value; }
+        }
+
+        public double cmpImpIEPSValor
+        {
+            get { return ImpIEPSValor; }
+            set { ImpIEPSValor = value; }
+        }
+
+        public double cmpTotalIEPS
+        {
+            get { return TotalIEPS; }
+            set { TotalIEPS = value; }
+        }
+
+        public string cmpCveImpRetIVA
+
+        {
+            get { return CveImpRetIVA; }
+            set { CveImpRetIVA = value; }
+        }
+
+        public double cmpImpRetIVAValor
+        {
+            get { return ImpRetIVAValor; }
+            set { ImpRetIVAValor = value; }
+        }
+
+        public double cmpTotalRetIVA
+        {
+            get { return TotalRetIVA; }
+            set { TotalRetIVA = value; }
+        }
+
+        public string cmpCveImpRetISR
+        {
+            get { return CveImpRetISR; }
+            set { CveImpRetISR = value; }
+        }
+
+        public double cmpImpRetISRValor
+        {
+            get { return ImpRetISRValor; }
+            set { ImpRetISRValor = value; }
+        }
+
+        public double cmpTotalRetISR
+        {
+            get { return TotalRetISR; }
+            set { TotalRetISR = value; }
+        }
+
+        public string cmpCveImpOtro
+
+        {
+            get { return CveImpOtro; }
+            set { CveImpOtro = value; }
+        }
+
+        public double cmpImpValorOtro
+        {
+            get { return ImpValorOtro; }
+            set { ImpValorOtro = value; }
+        }
+
+        public double cmpTotalImpOtro
+        {
+            get { return TotalImpOtro; }
+            set { TotalImpOtro = value; }
+        }
 
         public double cmpDescuento
         {
@@ -194,6 +298,11 @@ namespace GAFE
         {
             get { return CantidadPkt; }
             set { CantidadPkt = value; }
+        }
+        public double cmpCosto
+        {
+            get { return Costo; }
+            set { Costo = value; }
         }
 
         public double cmpPrecio
@@ -321,7 +430,8 @@ namespace GAFE
 
         public int MovParttoAlma()
         {
-            CargaParamMatKeys();
+            MatParamKeys[0, 0] = "NoMovimiento"; MatParamKeys[0, 1] = NoMovimiento;
+            MatParamKeys[1, 0] = "NoMovtoTra"; MatParamKeys[1, 1] = NoMovtoTra;
 
             RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys,db);
             return OpEdit.MovParttoAlmaSql();
@@ -372,38 +482,20 @@ namespace GAFE
             Descuento = Convert.ToDouble(ObjA[13].ToString());
             TotalDscto = Convert.ToDouble(ObjA[14].ToString());
             CveImpuesto = ObjA[15].ToString();
-            TotalIva = Convert.ToDouble(ObjA[16].ToString());
-            SubTotal = Convert.ToDouble(ObjA[17].ToString());
-            TotalPartida = Convert.ToDouble(ObjA[18].ToString());
-            FolioDocOrigen = ObjA[19].ToString();
-            FechaMovimiento = Convert.ToDateTime(ObjA[20].ToString());
-            NoMovtoTra = ObjA[21].ToString();
-            DocTra = ObjA[22].ToString();
-            PartTra = ObjA[23].ToString();
+            ImpuestoValor = Convert.ToDouble(ObjA[16].ToString());
+            TotalIva = Convert.ToDouble(ObjA[17].ToString());
+            SubTotal = Convert.ToDouble(ObjA[18].ToString());
+            TotalPartida = Convert.ToDouble(ObjA[19].ToString());
+            FolioDocOrigen = ObjA[20].ToString();
+            FechaMovimiento = Convert.ToDateTime(ObjA[21].ToString());
+            NoMovtoTra = ObjA[22].ToString();
+            DocTra = ObjA[23].ToString();
+            PartTra = ObjA[24].ToString();
+            Costo = Convert.ToDouble(ObjA[25].ToString());
+            CodigoBarra = ObjA[26].ToString();
 
         }
 
-
-        /*
-                public int ActualizaPartida()
-                {
-                    CargaParametroMat();
-                    RegAddPartidasMovInv OpUp = new RegAddPartidasMovInv(MatParam,db);
-                    return OpUp.UpdatePartida();
-
-                }
-
-
-
-
-                
-
-                public SqlDataAdapter BuscaPartida(string buscar)
-                {
-                    RegAddPartidasMovInv OpBsq = new RegAddPartidasMovInv(db);
-                    return OpBsq.BuscaPartida(buscar);
-                }
-        */
         private void CargaParametroMat()
         {
             MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
@@ -430,6 +522,23 @@ namespace GAFE
             MatParam[21, 0] = "NoMovtoTra"; MatParam[21, 1] = NoMovtoTra;
             MatParam[22, 0] = "DocTra"; MatParam[22, 1] = DocTra;
             MatParam[23, 0] = "PartTra"; MatParam[23, 1] = PartTra;
+            MatParam[24, 0] = "ImpuestoValor"; MatParam[24, 1] = ImpuestoValor;
+            MatParam[25, 0] = "Costo"; MatParam[25, 1] = Costo;
+
+            MatParam[26, 0] = "CveImpIEPS"; MatParam[26, 1] = CveImpIEPS;
+            MatParam[27, 0] = "ImpIEPSValor"; MatParam[27, 1] = ImpIEPSValor;
+            MatParam[28, 0] = "TotalIEPS"; MatParam[28, 1] = TotalIEPS;
+            MatParam[29, 0] = "CveImpRetIVA"; MatParam[29, 1] = CveImpRetIVA;
+            MatParam[30, 0] = "ImpRetIVAValor"; MatParam[30, 1] = ImpRetIVAValor;
+            MatParam[31, 0] = "TotalRetIVA"; MatParam[31, 1] = TotalRetIVA;
+            MatParam[32, 0] = "CveImpRetISR"; MatParam[32, 1] = CveImpRetISR;
+            MatParam[33, 0] = "ImpRetISRValor"; MatParam[33, 1] = ImpRetISRValor;
+            MatParam[34, 0] = "TotalRetISR"; MatParam[34, 1] = TotalRetISR;
+            MatParam[35, 0] = "CveImpOtro"; MatParam[35, 1] = CveImpOtro;
+            MatParam[36, 0] = "ImpValorOtro"; MatParam[36, 1] = ImpValorOtro;
+            MatParam[37, 0] = "TotalImpOtro"; MatParam[37, 1] = TotalImpOtro;
+
+
         }
 
         private void CargaParamMatKeys()
@@ -437,26 +546,14 @@ namespace GAFE
             MatParamKeys[0, 0] = "NoMovimiento"; MatParamKeys[0, 1] = NoMovimiento;
             MatParamKeys[1, 0] = "NoPartida"; MatParamKeys[1, 1] = NoPartida;
         }
-
-        private void CargaParamInnExist()
-        {
-            MatParamInvExis[0, 0] = "CveArticulo"; MatParamInvExis[0, 1] = CveArticulo;
-            MatParamInvExis[1, 0] = "CveAlmacen"; MatParamInvExis[1, 1] = inv_ClaveAlmacen;
-            MatParamInvExis[2, 0] = "Cantidad"; MatParamInvExis[2, 1] = inv_Cantidad;
-            MatParamInvExis[3, 0] = "stockMin"; MatParamInvExis[3, 1] = inv_stockMin;
-            MatParamInvExis[4, 0] = "stockMax"; MatParamInvExis[4, 1] = inv_stockMax;
-            MatParamInvExis[5, 0] = "CantApartada"; MatParamInvExis[5, 1] = inv_CantApartada;
-            MatParamInvExis[6, 0] = "CostoPromedio"; MatParamInvExis[6, 1] = inv_CostoPromedio;
-            MatParamInvExis[7, 0] = "CostoUltimo"; MatParamInvExis[7, 1] = inv_CostoUltimo;
-            MatParamInvExis[8, 0] = "CostoActual"; MatParamInvExis[8, 1] = inv_CostoActual;
-        }
-
+        
 
         public void BuscaPrecio(String PModLlama)
         {
-            CargaParamInnExist();
+            MatParamKeys[0, 0] = "CveArticulo"; MatParamKeys[0, 1] = CveArticulo;
+            MatParamKeys[1, 0] = "CveAlmacen"; MatParamKeys[1, 1] = inv_ClaveAlmacen;
 
-            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamInvExis, db);
+            RegAddPartidasMovInv OpEdit = new RegAddPartidasMovInv(MatParamKeys, db);
             Datos = OpEdit.BusPrecio(PModLlama);
             DataSet Ds = new DataSet();
             Datos.Fill(Ds);

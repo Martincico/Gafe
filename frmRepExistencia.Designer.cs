@@ -39,7 +39,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(703, 435);
+            this.reportViewer1.Size = new System.Drawing.Size(718, 455);
             this.reportViewer1.TabIndex = 0;
             // 
             // panel1
@@ -48,9 +48,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.reportViewer1);
-            this.panel1.Location = new System.Drawing.Point(12, 23);
+            this.panel1.Location = new System.Drawing.Point(-3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(703, 435);
+            this.panel1.Size = new System.Drawing.Size(718, 455);
             this.panel1.TabIndex = 1;
             // 
             // frmRepExistencia
@@ -59,10 +59,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(727, 467);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmRepExistencia";
             this.Text = "frmRepExistencia";
             this.Load += new System.EventHandler(this.frmRepExistencia_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRepExistencia_KeyDown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

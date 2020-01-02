@@ -10,9 +10,11 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
+using Syncfusion.Windows.Forms;
+
 namespace GAFE
 {
-    public partial class AsignaPorAlmacen : Form
+    public partial class AsignaPorAlmacen : MetroForm
     {
         private MsSql db = null;
 
@@ -32,6 +34,9 @@ namespace GAFE
             txtStockMin.Text = stockMin;
             txtStockMax.Text = stockMax;
             db = odb;
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void cmdAceptar_Click(object sender, EventArgs e)

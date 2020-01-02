@@ -19,8 +19,13 @@ namespace GAFE
     public partial class frmCatMarcas : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
         private int opcion;
-        private int idxG;
+        public String idxG;
+        public string[] dv = new string[2];
+        private int AcCOPSelec;
+        private int AcCOPEdit;
 
         private MsSql db = null;
         private string Perfil;
@@ -33,11 +38,17 @@ namespace GAFE
         }
 
 
-        public frmCatMarcas(MsSql Odat, string perfil)
+        public frmCatMarcas(MsSql Odat, DatCfgParamSystem ParamS, string perfil, int opc=0)
         {
             InitializeComponent();
             db = Odat;
             Perfil = perfil;
+            opcion = opc;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
+
+            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
+            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
 
@@ -53,8 +64,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv004B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv004C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -68,9 +79,23 @@ namespace GAFE
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
 
+            up = uT.BuscarIdNodo("1Inv004E");
+            AcCOPSelec = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOPSelec == 1) ? true : false;
+
+            cmdSeleccionar.Visible = false;
+
             this.Size = this.MinimumSize;
             LlenaGridView();
-            
+
+            if (opcion >3)
+            {
+                //                cmdAgregar.Visible = false;
+                cmdEliminar.Visible = false;
+                //                cmdEditar.Visible = false;
+                cmdSeleccionar.Visible = true;
+            }
+
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -83,23 +108,31 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if(AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                //idxG = grdView.CurrentRow.Index;
 
-            PuiCatMarcas pui = new PuiCatMarcas(db);
+                PuiCatMarcas pui = new PuiCatMarcas(db);
 
-            pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarMarcas();
-            txtClaveMarcas.Text = pui.keyCveMarca;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+                pui.keyCveMarca = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarMarcas();
+                txtClaveMarcas.Text = pui.keyCveMarca;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
 
-            txtClaveMarcas.Enabled = false;
-
+                txtClaveMarcas.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }            
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
@@ -109,7 +142,7 @@ namespace GAFE
             this.Size = this.MaximumSize;
             opcion = 3;
 
-            idxG = grdView.CurrentRow.Index;
+            //idxG = grdView.CurrentRow.Index;
 
             PuiCatMarcas pui = new PuiCatMarcas(db);
 
@@ -161,11 +194,6 @@ namespace GAFE
             }
         }
 
-
-
-
-
-
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
 
@@ -193,9 +221,7 @@ namespace GAFE
         }
 
 
-
-
-
+        
         private void LlenaGridView()
         {
             PuiCatMarcas pui = new PuiCatMarcas(db);
@@ -212,6 +238,7 @@ namespace GAFE
                     object[] tmp = Ds.Tables[0].Rows[j].ItemArray;
                     grdView.Rows.Add(tmp);
                 }
+
             }
             catch (Exception ex)
             {
@@ -246,22 +273,31 @@ namespace GAFE
         {
             try
             {
-                if (Validar())
+                if (AcCOPEdit == 1)
                 {
-                    PuiCatMarcas pui = new PuiCatMarcas(db);
-
-                    pui.keyCveMarca = txtClaveMarcas.Text;
-                    pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
-
-                    if (pui.ActualizaMarcas() >= 0)
+                    if (Validar())
                     {
-                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
-                        this.Size = this.MinimumSize;
+                        PuiCatMarcas pui = new PuiCatMarcas(db);
+
+                        pui.keyCveMarca = txtClaveMarcas.Text;
+                        pui.cmpDescripcion = txtDescripcion.Text;
+                        pui.cmpEstatus = chkEstatus.Checked ? 1 : 0;
+
+                        if (pui.ActualizaMarcas() >= 0)
+                        {
+                            MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                                               MessageBoxIcon.Information);
+                            this.Size = this.MinimumSize;
+                        }
+                        LlenaGridView();
+                        //grdView.CurrentRow.Index = idxG;  
                     }
-                    LlenaGridView();
-                    //grdView.CurrentRow.Index = idxG;  
+                }
+                else
+                    {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
                 }
             }
             catch (Exception ex)
@@ -276,7 +312,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveMarcas.Text))
             {
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "CatLineaes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -325,12 +360,18 @@ namespace GAFE
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
         private void txtClaveMarcas_KeyPress(object sender, KeyPressEventArgs e)
@@ -338,5 +379,71 @@ namespace GAFE
             ClsUtilerias.LetrasNumeros(e);
         }
 
+        private void grdView_MouseClick(object sender, MouseEventArgs e)
+        {
+            /*
+            //Checamos click ha sido en el encabezado?
+            if (grdView.HitTest(e.X, e.Y).Type == DataGridViewHitTestType.ColumnHeader)
+            {
+                //creamos un menu
+                ContextMenu mnugrid = new ContextMenu();
+
+                //Agregamos submenus
+                foreach (DataGridViewColumn cols in grdView.Columns)
+                {
+                    MenuItem _items = new MenuItem();
+
+                    _items.Text = cols.HeaderText;
+                    _items.Checked = cols.Visible;
+
+                    //Agregando evento al submenu al click
+                    _items.Click += (obj, ea) =>
+                    {
+                        cols.Visible = !_items.Checked;
+
+                        _items.Checked = cols.Visible;
+
+                        mnugrid.Show(grdView, e.Location);
+                    };
+
+                    mnugrid.MenuItems.Add(_items);
+                }
+
+                //Mostrando menú
+                mnugrid.Show(grdView, e.Location);
+            }
+            */
+        }
+
+        private void cmdSeleccionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (AcCOPSelec == 1)
+                {
+                    idxG = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[0] = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[1] = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void grdView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+        }
     }
 }

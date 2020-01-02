@@ -17,6 +17,11 @@ namespace GAFE
         private int EsDeCosto;
         private int Estatus;
 
+        private DateTime FechaModifacion;
+        private String CveArticulo;
+        private Double Precio;
+        private Double Porcentaje; //Se usa en LstDetPrecio
+
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
         private object[,] MatParam = new object[5, 2];
         private SqlDataAdapter Datos;
@@ -63,6 +68,29 @@ namespace GAFE
             set { EsDeCosto = value; }
         }
 
+        public string cmpCveArticulo
+        {
+            get { return CveArticulo; }
+            set { CveArticulo = value; }
+        }
+
+        public double cmpPrecio
+        {
+            get { return Precio; }
+            set { Precio = value; }
+        }
+
+        public double cmpPorcentaje
+        {
+            get { return Porcentaje; }
+            set { Porcentaje = value; }
+        }
+
+        public DateTime cmpFechaModifacion
+        {
+            get { return FechaModifacion; }
+            set { FechaModifacion = value; }
+        }
 
         #endregion
 
@@ -96,7 +124,7 @@ namespace GAFE
             return OpDel.DeleteLstPrecios();
         }
 
-        public SqlDataAdapter ListarLstPrecioss()
+        public SqlDataAdapter ListarLstPrecios()
         {
             CargaParametroMat();
             RegCatLstPrecios OpLst = new RegCatLstPrecios(db);
@@ -126,7 +154,7 @@ namespace GAFE
             RegCatLstPrecios OpBsq = new RegCatLstPrecios(db);
             return OpBsq.BuscaLstPrecios(buscar);
         }
-
+        /*
         public SqlDataAdapter ListadoPrecioArticulo()
         {
             MatParam = new object[1, 2];
@@ -134,6 +162,16 @@ namespace GAFE
             RegCatLstPrecios OpBsq = new RegCatLstPrecios(MatParam, db);
             return OpBsq.ListadoPrecioArticulo();
         }
+        */
+        public SqlDataAdapter GetPrecioArticulo()
+        {
+            MatParam = new object[2, 2];
+            MatParam[0, 0] = "CveLstPrecio"; MatParam[0, 1] = CveLstPrecio;
+            MatParam[1, 0] = "CveArticulo"; MatParam[1, 1] = CveArticulo;
+            RegCatLstPrecios OpBsq = new RegCatLstPrecios(MatParam, db);
+            return OpBsq.GetPrecioArticulo();
+        }
+
 
         private void CargaParametroMat()
         {
@@ -142,6 +180,33 @@ namespace GAFE
             MatParam[2, 0] = "EsDeVenta"; MatParam[2, 1] = EsDeVenta;
             MatParam[3, 0] = "EsDeCosto"; MatParam[3, 1] = EsDeCosto;
             MatParam[4, 0] = "Estatus"; MatParam[4, 1] = Estatus;
+        }
+
+        public DataTable LLenaCboLstPrecio()
+        {
+            RegCatLstPrecios OpLst = new RegCatLstPrecios(db);
+            DataSet Cbo = new DataSet();
+            OpLst.LLenaCboLstPrecio().Fill(Cbo);
+            return Cbo.Tables[0];
+        }
+
+        public SqlDataAdapter LstArticulo_LstPrecio(String CveLstPrecio, String txtArt, int OnlyCod)
+        {
+            RegCatLstPrecios OpBsq = new RegCatLstPrecios(db);
+            return OpBsq.LstArticulo_LstPrecio(CveLstPrecio, txtArt, OnlyCod);
+        }
+
+        public int UpdLstPrecio_Art()
+        {
+            MatParam = new object[5, 2];
+            MatParam[0, 0] = "CveLstPrecio"; MatParam[0, 1] = CveLstPrecio;
+            MatParam[1, 0] = "CveArticulo"; MatParam[1, 1] = CveArticulo;
+            MatParam[2, 0] = "Precio"; MatParam[2, 1] = Precio;
+            MatParam[3, 0] = "FechaModifacion"; MatParam[3, 1] = FechaModifacion;
+            MatParam[4, 0] = "Porcentaje"; MatParam[4, 1] = Porcentaje;
+
+            RegCatLstPrecios OpDel = new RegCatLstPrecios(MatParam, db);
+            return OpDel.UpdLstPrecio_Art();
         }
     }
 }

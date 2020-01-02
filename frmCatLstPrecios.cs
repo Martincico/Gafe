@@ -19,12 +19,19 @@ namespace GAFE
     public partial class frmCatLstPrecios : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int opcion;
         private int idxG;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
+
+        private int AcCOPEdit;
+
+        public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
 
         public frmCatLstPrecios()
         {
@@ -32,11 +39,15 @@ namespace GAFE
         }
 
 
-        public frmCatLstPrecios(MsSql Odat, string perfil)
+        public frmCatLstPrecios(MsSql Odat, DatCfgUsuario DatUsr, DatCfgParamSystem ParamS,clsStiloTemas NewColor)
         {
             InitializeComponent();
             db = Odat;
-            Perfil = perfil;
+            user = DatUsr;
+            StiloColor = NewColor;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
+
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -47,7 +58,7 @@ namespace GAFE
         private void frmCatLstPrecios_Load(object sender, EventArgs e)
         {
             
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             clsUsPerfil up = uT.BuscarIdNodo("1Inv008A");
@@ -55,8 +66,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv008B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv008C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -65,11 +76,11 @@ namespace GAFE
             up = uT.BuscarIdNodo("1Inv008D");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
-            /*
+            
             up = uT.BuscarIdNodo("1Inv008E");
             AcCOP = (up != null) ? up.Acceso : 0;
-            cmdS.Enabled = (AcCOP == 1) ? true : false;
-            */
+            btnVer.Enabled = (AcCOP == 1) ? true : false;
+            
             up = uT.BuscarIdNodo("1Inv008F");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
@@ -88,6 +99,7 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
+
             LimpiarControles();
             OpcionControles(true);
             this.Size = this.MaximumSize;
@@ -95,17 +107,34 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
+            try
+            {
+                if (AcCOPEdit == 1)
+                {
+                    PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
 
-            pui.keyCveLstPrecio= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLstPrecios();
-            txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
-            txtDescripcion.Text = pui.cmpNombre;
-            chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
-            chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
-            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
-            txtClaveLstPrecio.Enabled = false;
+                    pui.keyCveLstPrecio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EditarLstPrecios();
+                    txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
+                    txtDescripcion.Text = pui.cmpNombre;
+                    chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
+                    chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
+                    chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+                    txtClaveLstPrecio.Enabled = false;
 
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                    "Error al editar registro", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                }
+        }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
 
 
@@ -181,7 +210,7 @@ namespace GAFE
         private void LlenaGridView()
         {
             PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
-            DatosTbl = pui.ListarLstPrecioss();
+            DatosTbl = pui.ListarLstPrecios();
             DataSet Ds = new DataSet();
 
             try
@@ -274,7 +303,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveLstPrecio.Text))
             {                
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "Listas de precios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -355,17 +383,43 @@ namespace GAFE
 
             idxG = grdView.CurrentRow.Index;
 
-            PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
+            try { 
 
-            pui.keyCveLstPrecio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarLstPrecios();
-            txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
-            txtDescripcion.Text = pui.cmpNombre;
-            chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
-            chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
-            chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+                PuiCatLstPrecios pui = new PuiCatLstPrecios(db);
 
-            OpcionControles(false);
+                pui.keyCveLstPrecio = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarLstPrecios();
+                txtClaveLstPrecio.Text = pui.keyCveLstPrecio;
+                txtDescripcion.Text = pui.cmpNombre;
+                chkEsDeCosto.Checked = (pui.cmpEsDeCosto == 1) ? true : false;
+                chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
+                chkEstatus.Checked = (pui.cmpEstatus == 1) ? true : false;
+
+                OpcionControles(false);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
+}
+
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                frmCatLstPreciosDet LPv = new frmCatLstPreciosDet(db, ParamSystem, user,StiloColor, grdView[0, grdView.CurrentRow.Index].Value.ToString(),"");
+                LPv.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                LPv.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                LPv.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

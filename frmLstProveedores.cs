@@ -20,13 +20,16 @@ namespace GAFE
     {
 
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
-        private int idxG;
         public string KeyCampo = null;
+        private int AcCOPEdit;
 
         private MsSql db = null;
-        private string Perfil;
         private clsUtil uT;
+
+        public DatCfgUsuario user;
+        public clsStiloTemas StiloColor;
 
         public string[] dv = new string[3];
 
@@ -35,12 +38,14 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public frmLstProveedores(MsSql Odat, string perfil, int op = 1)
+        public frmLstProveedores(MsSql Odat, DatCfgParamSystem ParamS, DatCfgUsuario DatUsr, clsStiloTemas NewColor, int op = 1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
-            Perfil = perfil;
+            user = DatUsr;
+            ParamSystem = ParamS;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -49,7 +54,7 @@ namespace GAFE
 
     private void frmLstProveedores_Load(object sender, EventArgs e)
         {
-            uT = new clsUtil(db, Perfil);
+            uT = new clsUtil(db, user.CodPerfil);
             uT.CargaArbolAcceso();
 
             clsUsPerfil up = uT.BuscarIdNodo("1Inv007A");
@@ -57,8 +62,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv007B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv007C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -92,7 +97,9 @@ namespace GAFE
 
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            frmCatProveedores art = new frmCatProveedores(db, Perfil);
+            frmCatProveedores art = new frmCatProveedores(db, ParamSystem, StiloColor, user.CodPerfil);
+            art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -101,9 +108,20 @@ namespace GAFE
         {
             try
             {
-                frmCatProveedores art = new frmCatProveedores(db, Perfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
-                art.ShowDialog();
-                LlenaGridView();
+                if (AcCOPEdit == 1)
+                {
+                    frmCatProveedores art = new frmCatProveedores(db, ParamSystem, StiloColor, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                    art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                    art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
+                    art.ShowDialog();
+                    LlenaGridView();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                    "Error al editar registro", MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception ex)
             {
@@ -118,7 +136,9 @@ namespace GAFE
         {
             try
             {
-                frmCatProveedores art = new frmCatProveedores(db, Perfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                frmCatProveedores art = new frmCatProveedores(db, ParamSystem, StiloColor,user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 art.ShowDialog();
             }
             catch (Exception ex)
@@ -180,13 +200,6 @@ namespace GAFE
                 this.Close();
             }
         }
-
-
-
-
-
-
-
 
         private void LlenaGridView()
         {

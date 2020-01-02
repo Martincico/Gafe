@@ -10,11 +10,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
-using Syncfusion.Windows.Forms;
-
 namespace GAFE
 {
-    public partial class frmRegInventarioMovtos : MetroForm
+    public partial class frmRegInventarioMovtos : Form
     {
         private int opcion, folMovto;
 
@@ -83,9 +81,6 @@ namespace GAFE
             opcion = Op;
             db = Odat;
 
-            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
-            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
-
             Foliador = "1";
 
             PuiCatInventarioMov pui = new PuiCatInventarioMov(db);
@@ -107,7 +102,7 @@ namespace GAFE
             }
             else
             {
-                MessageBoxAdv.Show("Movimiento Inventario: Ha ocurrido un error.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Movimiento Inventario: Ha ocurrido un error.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -271,7 +266,7 @@ namespace GAFE
                                         {
                                             if (pui.AgregarInvDet() >= 1)
                                             {
-                                                MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                                                MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                                     MessageBoxIcon.Information);
                                                 db.TerminaTrans();
                                                 isDataSaved = true;
@@ -294,7 +289,7 @@ namespace GAFE
                         }
                         else
                         {
-                            MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                            MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                             db.TerminaTrans();
                             isDataSaved = true;
@@ -433,7 +428,7 @@ namespace GAFE
         {
             cboTipoMovtos.DataSource = null;
             String val = Convert.ToString(cboClaseMov.SelectedValue);
-            //MessageBoxAdv.Show("Error conn" + "----" + val + "----" + cboClaseMov.SelectedIndex);
+            //MessageBox.Show("Error conn" + "----" + val + "----" + cboClaseMov.SelectedIndex);
             LlecboTipoMovtos(val);
             if (cboClaseMov.Text == "TRASPASO")
             {
@@ -507,7 +502,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error al cargar listado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -519,7 +514,7 @@ namespace GAFE
             if (cboClaseMov.SelectedIndex <= 0)
             {
                 sig = 0;
-                MessageBoxAdv.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -527,7 +522,7 @@ namespace GAFE
                 if (cboAlmaOri.SelectedIndex < 0)
                 {
                     sig = 0;
-                    MessageBoxAdv.Show("Almacén Origen es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Almacén Origen es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -539,7 +534,7 @@ namespace GAFE
                         if (AlmOri.Equals(AlmDest))
                         {
                             sig = 0;
-                            MessageBoxAdv.Show("Almacén Origen y Destino: No puede ser el mismo.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Almacén Origen y Destino: No puede ser el mismo.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
 
@@ -548,14 +543,14 @@ namespace GAFE
                         if (cboProveedor.SelectedIndex < 0)
                         {
                             sig = 0;
-                            MessageBoxAdv.Show("Proveedor es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Proveedor es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
 
                     if(cboTipoMovtos.SelectedIndex < 0)
                     {
                         sig = 0;
-                        MessageBoxAdv.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Movimiento es incorrecto.", "InventarioMovimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -568,7 +563,7 @@ namespace GAFE
             
             int Cp = Convert.ToInt32(grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString());
             try { 
-                if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString(),
+                if (MessageBox.Show("Esta seguro de eliminar el registro " + grdViewPart[1, grdViewPart.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
@@ -580,7 +575,7 @@ namespace GAFE
                     else
                     {
                         db.CancelaTrans();
-                        MessageBoxAdv.Show("Existe un error al eliminar registro\n" , "Alerta", MessageBoxButtons.OK,
+                        MessageBox.Show("Existe un error al eliminar registro\n" , "Alerta", MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation);
                     }
                 }
@@ -588,7 +583,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                MessageBox.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
                      MessageBoxIcon.Exclamation);
             }
             LlenaGridViewPart();
@@ -651,7 +646,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -668,7 +663,7 @@ namespace GAFE
                 PuiCatInventarioMov InvMast = new PuiCatInventarioMov(db);
                 if (grdViewPart.RowCount > 0)
                 {
-                    switch (MessageBoxAdv.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    switch (MessageBox.Show(this, "¿Desea guardar cambios?", "Salir del modulo ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                     {
                         case DialogResult.No:
                             break;
@@ -751,7 +746,7 @@ namespace GAFE
             }
             else
             {
-                //MessageBoxAdv.Show("Goodbye.");
+                //MessageBox.Show("Goodbye.");
                 e.Cancel = false;
             }
         }
@@ -768,41 +763,7 @@ namespace GAFE
             _AlmNumRojoDest = pui.cmpNumRojo;
         }
 
-        private void frmRegInventarioMovtos_Load(object sender, EventArgs e)
-        {
-            /*
-            uT = new clsUtil(db, Perfil);
-            uT.CargaArbolAcceso();
-
-            Art = new PuiCatArticulos(db);
-            
-
-            clsUsPerfil up = uT.BuscarIdNodo("1Inv001A");
-            int AcCOP = (up != null) ? up.Acceso : 0;
-            cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001C");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001D");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001E");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
-
-            up = uT.BuscarIdNodo("1Inv001F");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
-            */
-
-        }
+  
 
         private void GetRegistro()
         {

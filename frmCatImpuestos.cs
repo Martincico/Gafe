@@ -19,22 +19,18 @@ namespace GAFE
     public partial class frmCatImpuestos : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         private int opcion;
-        private int idxG;
+        public String idxG;
+        public string[] dv = new string[2];
+        private int AcCOPSelec;
 
         private MsSql db = null;
-        //private string Perfil;
-        //private clsUtil uT;
-
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
+        private string Perfil;
+        private clsUtil uT;
+        private int AcCOPEdit;
 
         public frmCatImpuestos()
         {
@@ -42,11 +38,14 @@ namespace GAFE
         }
 
 
-        public frmCatImpuestos(MsSql Odat, string perfil)
+        public frmCatImpuestos(MsSql Odat, DatCfgParamSystem ParamS, string perfil, int op = 0)
         {
             InitializeComponent();
             db = Odat;
-            // Perfil = perfil;
+            Perfil = perfil;
+            opcion = op;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -56,43 +55,49 @@ namespace GAFE
 
         private void frmCatImpuestos_Load(object sender, EventArgs e)
         {
-            /*
+            
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
 
-            clsUsPerfil up = uT.BuscarIdNodo("1Vis001A");
+            clsUsPerfil up = uT.BuscarIdNodo("1Inv010A");
             int AcCOP = (up != null) ? up.Acceso : 0;
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            up = uT.BuscarIdNodo("1Inv010B");
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001C");
+            up = uT.BuscarIdNodo("1Inv010C");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdEliminar.Enabled = (AcCOP == 1) ? true : false;
 
-            up = uT.BuscarIdNodo("1Vis001D");
+            up = uT.BuscarIdNodo("1Inv010D");
             AcCOP = (up != null) ? up.Acceso : 0;
             cmdConsultar.Enabled = (AcCOP == 1) ? true : false;
 
+            up = uT.BuscarIdNodo("1Inv010F");
+            AcCOP = (up != null) ? up.Acceso : 0;
+            cmdBuscar.Enabled = (AcCOP == 1) ? true : false;
+
+            up = uT.BuscarIdNodo("1Inv010E");
+            AcCOPSelec = (up != null) ? up.Acceso : 0;
+            cmdSeleccionar.Enabled = (AcCOPSelec == 1) ? true : false;
+
 
             this.Size = this.MinimumSize;
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
-            */
-           
-            path = Directory.GetCurrentDirectory();
-            CargaDatosConexion();
-            db = new DatSql.MsSql(Servidor, Datos, Usuario, Password);
-            if (db.Conectar() < 1)
+
+            cmdSeleccionar.Visible = false;
+            if (opcion > 3)
             {
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                //                cmdAgregar.Visible = false;
+                cmdEliminar.Visible = false;
+                //                cmdEditar.Visible = false;
+                cmdSeleccionar.Visible = true;
             }
-            this.Size = this.MinimumSize;
-            LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
+
+
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -105,24 +110,33 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if (AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                //idxG = grdView.CurrentRow.Index;
 
-            PuiCatImpuestos pui = new PuiCatImpuestos(db);
+                PuiCatImpuestos pui = new PuiCatImpuestos(db);
 
-            pui.keyCveImpuesto = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarImpuesto();
-            txtClaveImpuesto.Text = pui.keyCveImpuesto;
-            txtTipo.Text = pui.cmpTipo;
-            txtValor.Text = Convert.ToString(pui.cmpValor);
-            cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
+                pui.keyCveImpuesto = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarImpuesto();
+                txtClaveImpuesto.Text = pui.keyCveImpuesto;
+                txtTipo.Text = pui.cmpTipo;
+                txtValor.Text = Convert.ToString(pui.cmpValor);
+                cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
             
 
-            txtClaveImpuesto.Enabled = false;
+                txtClaveImpuesto.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
 
         }
 
@@ -133,7 +147,7 @@ namespace GAFE
             this.Size = this.MaximumSize;
             opcion = 3;
 
-            idxG = grdView.CurrentRow.Index;
+            //idxG = grdView.CurrentRow.Index;
 
             PuiCatImpuestos pui = new PuiCatImpuestos(db);
 
@@ -273,23 +287,32 @@ namespace GAFE
         {
             try
             {
-                if (Validar())
+                if (AcCOPEdit == 1)
                 {
-                    PuiCatImpuestos pui = new PuiCatImpuestos(db);
-
-                    pui.keyCveImpuesto = txtClaveImpuesto.Text;
-                    pui.cmpTipo = txtTipo.Text;
-                    pui.cmpValor = Convert.ToDouble(txtValor.Text);
-                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
-
-                    if (pui.ActualizaImpuesto() >= 0)
+                    if (Validar())
                     {
-                        MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
-                                           MessageBoxIcon.Information);
-                        this.Size = this.MinimumSize;
+                        PuiCatImpuestos pui = new PuiCatImpuestos(db);
+
+                        pui.keyCveImpuesto = txtClaveImpuesto.Text;
+                        pui.cmpTipo = txtTipo.Text;
+                        pui.cmpValor = Convert.ToDouble(txtValor.Text);
+                        pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "1" : "0";
+
+                        if (pui.ActualizaImpuesto() >= 0)
+                        {
+                            MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
+                                               MessageBoxIcon.Information);
+                            this.Size = this.MinimumSize;
+                        }
+                        LlenaGridView();
+                        //grdView.CurrentRow.Index = idxG;  
                     }
-                    LlenaGridView();
-                    //grdView.CurrentRow.Index = idxG;  
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
                 }
             }
             catch (Exception ex)
@@ -304,7 +327,6 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveImpuesto.Text))
             {                
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "CatImpuestos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -370,47 +392,50 @@ namespace GAFE
 
         private void grdView_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
         private void grdView_DoubleClick(object sender, EventArgs e)
         {
-            cmEditar_Click(sender, e);
+            if (opcion > 3)
+                cmdSeleccionar_Click(sender, e);
+            else
+                cmEditar_Click(sender, e);
         }
 
-
-
-        private void CargaDatosConexion()
-        {
-            System.Xml.XmlDocument xDoc = new XmlDocument();
-            xDoc.Load(path + "\\SrvConfig.xml");
-            XmlNodeList servidores = xDoc.GetElementsByTagName("Servidores");
-
-            XmlNodeList lista =
-            ((XmlElement)servidores[0]).GetElementsByTagName("Servidor");
-
-            foreach (XmlElement nodo in lista)
-            {
-                int i = 0;
-                XmlNodeList nId = nodo.GetElementsByTagName("Id");
-                XmlNodeList nEmpresa = nodo.GetElementsByTagName("Empresa");
-                XmlNodeList nNombre = nodo.GetElementsByTagName("Nombre");
-                XmlNodeList nDatos = nodo.GetElementsByTagName("Datos");
-                XmlNodeList nUsuario = nodo.GetElementsByTagName("Usuario");
-                XmlNodeList nPassword = nodo.GetElementsByTagName("Password");
-
-                Id = nId[i].InnerText;
-                Empresa = nEmpresa[i].InnerText;
-                Servidor = nNombre[i].InnerText;
-                Datos = nDatos[i].InnerText;
-                Usuario = nUsuario[i].InnerText;
-                Password = nPassword[i++].InnerText;
-            }
-        }
 
         private void txtClaveImpuesto_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
+        }
+
+        private void cmdSeleccionar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (AcCOPSelec == 1)
+                {
+                    idxG = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[0] = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    dv[1] = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBoxAdv.Show("No tienes privilegios suficientes",
+                     "Error al editar registro", MessageBoxButtons.OK,
+                         MessageBoxIcon.Exclamation);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

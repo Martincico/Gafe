@@ -110,6 +110,7 @@
             // cmdCancelar
             // 
             this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdCancelar.Location = new System.Drawing.Point(390, 92);
@@ -310,7 +311,7 @@
             // btnVer
             // 
             this.btnVer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.btnVer.Image = global::GAFE.Properties.Resources.Nuevo;
+            this.btnVer.Image = global::GAFE.Properties.Resources.UnCheck;
             this.btnVer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVer.Location = new System.Drawing.Point(12, 223);
             this.btnVer.Name = "btnVer";
@@ -318,12 +319,14 @@
             this.btnVer.TabIndex = 14;
             this.btnVer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVer.UseVisualStyleBackColor = false;
+            this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
             // 
             // frmCatLstPrecios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
@@ -345,7 +348,7 @@
             this.Name = "frmCatLstPrecios";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Catálogo de clases";
+            this.Text = "Listado de precio";
             this.Load += new System.EventHandler(this.frmCatLstPrecios_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

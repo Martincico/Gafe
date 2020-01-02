@@ -19,12 +19,13 @@ namespace GAFE
     public partial class frmCatCfgCatFoliadores : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
         private int idxG;
-
+        //private int AcCOPEdit;
         private MsSql db = null;
         private string Perfil;
-        private clsUtil uT;
+        ClsUtilerias Util;
 
         public frmCatCfgCatFoliadores()
         {
@@ -32,11 +33,13 @@ namespace GAFE
         }
 
 
-        public frmCatCfgCatFoliadores(MsSql Odat, string perfil)
+        public frmCatCfgCatFoliadores(MsSql Odat, DatCfgParamSystem ParamS, string perfil)
         {
             InitializeComponent();
             db = Odat;
             Perfil = perfil;
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -54,8 +57,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Vis001B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Vis001C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -70,11 +73,11 @@ namespace GAFE
             LlenaGridView();
             cboEstatus.SelectedText = "Activo";
             */
-           
-           
+
+
             this.Size = this.MinimumSize;
             LlenaGridView();
-            LleCboClaseMov();
+            LleCboModuloSys();
         }
 
         private void cmdAgregar_Click(object sender, EventArgs e)
@@ -87,24 +90,34 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            //if (AcCOPEdit == 1)
+            //{
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
+                PuiCatCfgCatFoliadores pui = new PuiCatCfgCatFoliadores(db);
 
-            pui.keyCveFoliador= grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarCfgCatFoliador();
-            txtClaveClase.Text = pui.keyCveFoliador;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboCfgModuloSys.SelectedValue = pui.cmpCveModulo;
-            txtUso.Text = pui.cmpUso;
+                pui.keyCveFoliador= grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarCfgCatFoliador();
+                txtClaveClase.Text = pui.keyCveFoliador;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                cboCfgModuloSys.SelectedValue = pui.cmpCveModulo;
+                txtUso.Text = pui.cmpUso;
 
-            txtClaveClase.Enabled = false;
-
+                txtClaveClase.Enabled = false;
+            /*
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
+            */
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
@@ -283,31 +296,30 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtClaveClase.Text))
             {                
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatClasees", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveClase.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción: Contiene caracteres no validos.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
@@ -315,16 +327,23 @@ namespace GAFE
 
             if (String.IsNullOrEmpty(txtUso.Text))
             {
-                MessageBoxAdv.Show("Uso: No puede ir vacío.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Uso: No puede ir vacío.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNumSpa(txtDescripcion.Text))
                 {
-                    MessageBoxAdv.Show("txtUso: Contiene caracteres no validos.", "Cfg Foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("txtUso: Contiene caracteres no validos.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
+            }
+
+            String val = Convert.ToString(cboCfgModuloSys.SelectedValue);
+            if (val.Equals(""))
+            {
+                MessageBoxAdv.Show("Módulo: No puede ir vacío.", "Configuración de foliadores", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dv = false;
             }
 
             return dv;
@@ -365,7 +384,7 @@ namespace GAFE
 
         }
 
-        private void LleCboClaseMov()
+        private void LleCboModuloSys()
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
             cboCfgModuloSys.DataSource = lin.CboCfgModuloSys();

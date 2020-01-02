@@ -44,18 +44,18 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.label1.Location = new System.Drawing.Point(-3, 15);
+            this.label1.Location = new System.Drawing.Point(14, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 18);
+            this.label1.Size = new System.Drawing.Size(41, 18);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Selecciona Perfil";
+            this.label1.Text = "Perfil";
             // 
             // cboPerfiles
             // 
             this.cboPerfiles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboPerfiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.cboPerfiles.FormattingEnabled = true;
-            this.cboPerfiles.Location = new System.Drawing.Point(121, 12);
+            this.cboPerfiles.Location = new System.Drawing.Point(61, 13);
             this.cboPerfiles.Name = "cboPerfiles";
             this.cboPerfiles.Size = new System.Drawing.Size(349, 26);
             this.cboPerfiles.TabIndex = 2;
@@ -64,14 +64,17 @@
             // btnAsignaSeg
             // 
             this.btnAsignaSeg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAsignaSeg.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnAsignaSeg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignaSeg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.btnAsignaSeg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnAsignaSeg.Location = new System.Drawing.Point(491, 7);
+            this.btnAsignaSeg.Image = global::GAFE.Properties.Resources.UnCheck;
+            this.btnAsignaSeg.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAsignaSeg.Location = new System.Drawing.Point(491, 5);
             this.btnAsignaSeg.Name = "btnAsignaSeg";
-            this.btnAsignaSeg.Size = new System.Drawing.Size(184, 36);
+            this.btnAsignaSeg.Size = new System.Drawing.Size(155, 42);
             this.btnAsignaSeg.TabIndex = 3;
-            this.btnAsignaSeg.Text = "Asigna / Modifica Accesos";
+            this.btnAsignaSeg.Text = "Cargar aceesos";
+            this.btnAsignaSeg.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAsignaSeg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAsignaSeg.UseVisualStyleBackColor = false;
             this.btnAsignaSeg.Click += new System.EventHandler(this.btnAsignaSeg_Click);
             // 
@@ -103,16 +106,15 @@
             // 
             // btnActualizaSeg
             // 
-            this.btnActualizaSeg.BackgroundImage = global::GAFE.Properties.Resources.Seleccionar;
             this.btnActualizaSeg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnActualizaSeg.Enabled = false;
             this.btnActualizaSeg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizaSeg.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnActualizaSeg.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.btnActualizaSeg.Location = new System.Drawing.Point(565, 13);
             this.btnActualizaSeg.Name = "btnActualizaSeg";
-            this.btnActualizaSeg.Size = new System.Drawing.Size(116, 89);
+            this.btnActualizaSeg.Size = new System.Drawing.Size(116, 82);
             this.btnActualizaSeg.TabIndex = 1;
             this.btnActualizaSeg.Text = "Actualizar";
-            this.btnActualizaSeg.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnActualizaSeg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnActualizaSeg.UseVisualStyleBackColor = true;
             this.btnActualizaSeg.Click += new System.EventHandler(this.btnActualizaSeg_Click);
@@ -132,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
@@ -149,6 +151,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurando Accesos al sistema";
             this.Load += new System.EventHandler(this.frmSegAccesos_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSegAccesos_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

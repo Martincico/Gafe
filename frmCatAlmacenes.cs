@@ -19,37 +19,32 @@ namespace GAFE
     public partial class frmCatAlmacenes : MetroForm
     {
         private SqlDataAdapter DatosTbl;
+        private DatCfgParamSystem ParamSystem;
         private int opcion;
         private int idxG;
-
+        private int AcCOPEdit;
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
-
-        private string path;
-
-        private string Id;
-        private string Empresa;
-        private string Servidor;
-        private string Datos;
-        private string Usuario;
-        private string Password;
-
-
+        ClsUtilerias Util;
         public frmCatAlmacenes()
         {
             InitializeComponent();
         }
 
 
-        public frmCatAlmacenes(MsSql Odat, string perfil)
+        public frmCatAlmacenes(MsSql Odat, DatCfgParamSystem ParamS, string perfil)
         {
             InitializeComponent();
             db = Odat;
              Perfil = perfil;
+            ParamSystem = ParamS;
+
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
+
         }
 
 
@@ -65,8 +60,8 @@ namespace GAFE
             cmdAgregar.Enabled = (AcCOP == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv005B");
-            AcCOP = (up != null) ? up.Acceso : 0;
-            cmdEditar.Enabled = (AcCOP == 1) ? true : false;
+            AcCOPEdit = (up != null) ? up.Acceso : 0;
+            cmdEditar.Enabled = (AcCOPEdit == 1) ? true : false;
 
             up = uT.BuscarIdNodo("1Inv005C");
             AcCOP = (up != null) ? up.Acceso : 0;
@@ -89,7 +84,8 @@ namespace GAFE
 
             this.Size = this.MinimumSize;
             LlenaGridView();
-            cboEstatus.SelectedText = "Activo";
+            LlecboLstPrecio();
+            LlecboSucursales();
 
         }
 
@@ -103,27 +99,36 @@ namespace GAFE
 
         private void cmEditar_Click(object sender, EventArgs e)
         {
-            LimpiarControles();
-            OpcionControles(true);
-            this.Size = this.MaximumSize;
-            opcion = 2;
+            if (AcCOPEdit == 1)
+            {
+                LimpiarControles();
+                OpcionControles(true);
+                this.Size = this.MaximumSize;
+                opcion = 2;
 
-            idxG = grdView.CurrentRow.Index;
+                idxG = grdView.CurrentRow.Index;
 
-            PuiCatAlmacenes pui = new PuiCatAlmacenes(db);
+                PuiCatAlmacenes pui = new PuiCatAlmacenes(db);
 
-            pui.keyClaveAlmacen = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-            pui.EditarAlmacen();
-            txtClaveAlmacen.Text = pui.keyClaveAlmacen;
-            txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "A") ? "Activo" : "Baja";
-            chkEsDeCompra.Checked = (pui.cmpEsDeCompra == 1) ? true : false;
-            chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
-            chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
-            chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
-
-            txtClaveAlmacen.Enabled = false;
-
+                pui.keyClaveAlmacen = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                pui.EditarAlmacen();
+                txtClaveAlmacen.Text = pui.keyClaveAlmacen;
+                txtDescripcion.Text = pui.cmpDescripcion;
+                chkEstatus.Checked = (pui.cmpEstatus == "A") ? true : false;
+                chkEsDeCompra.Checked = (pui.cmpEsDeCompra == 1) ? true : false;
+                chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
+                chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
+                chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
+                cboLstPrecio.SelectedValue = pui.cmpCveLstPrecio;
+                cboSucursal.SelectedValue = pui.cmpCveSucursal;
+                txtClaveAlmacen.Enabled = false;
+            }
+            else
+            {
+                MessageBoxAdv.Show("No tienes privilegios suficientes",
+                "Error al editar registro", MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+            }
         }
 
         private void cmdConsultar_Click(object sender, EventArgs e)
@@ -141,12 +146,13 @@ namespace GAFE
             pui.EditarAlmacen();
             txtClaveAlmacen.Text = pui.keyClaveAlmacen;
             txtDescripcion.Text = pui.cmpDescripcion;
-            cboEstatus.SelectedText = (pui.cmpEstatus == "A") ? "Activo" : "Baja";
+            chkEstatus.Checked = (pui.cmpEstatus == "A") ? true : false;
             chkEsDeCompra.Checked = (pui.cmpEsDeCompra == 1) ? true : false;
             chkEsDeVenta.Checked = (pui.cmpEsDeVenta == 1) ? true : false;
             chkEsDeConsigna.Checked = (pui.cmpEsDeConsigna == 1) ? true : false;
             chkNumRojo.Checked = (pui.cmpNumRojo == 1) ? true : false;
-
+            cboLstPrecio.SelectedValue = pui.cmpCveLstPrecio;
+            cboSucursal.SelectedValue = pui.cmpCveSucursal;
             OpcionControles(false);
         }
 
@@ -256,11 +262,13 @@ namespace GAFE
                                 
                 pui.keyClaveAlmacen = txtClaveAlmacen.Text;
                 pui.cmpDescripcion = txtDescripcion.Text;
-                pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "A" : "B";
+                pui.cmpEstatus = (chkEstatus.Checked == true) ? "A" : "B";
                 pui.cmpEsDeCompra = (chkEsDeCompra.Checked == true) ? 1 : 0;
                 pui.cmpEsDeVenta = (chkEsDeVenta.Checked == true) ? 1 : 0;
                 pui.cmpEsDeConsigna  = (chkEsDeConsigna.Checked == true) ? 1 : 0;
                 pui.cmpNumRojo =  (chkNumRojo.Checked == true) ? 1 : 0;
+                pui.cmpCveLstPrecio = Convert.ToString(cboLstPrecio.SelectedValue);
+                pui.cmpCveSucursal = Convert.ToString(cboSucursal.SelectedValue);
 
                 if (pui.AgregarAlmacen() >= 1)
                 {
@@ -283,12 +291,13 @@ namespace GAFE
 
                     pui.keyClaveAlmacen = txtClaveAlmacen.Text;
                     pui.cmpDescripcion = txtDescripcion.Text;
-                    pui.cmpEstatus = (cboEstatus.Text == "Activo") ? "A" : "B";
+                    pui.cmpEstatus = (chkEstatus.Checked == true) ? "A" : "B";
                     pui.cmpEsDeCompra = (chkEsDeCompra.Checked == true) ? 1 : 0;
                     pui.cmpEsDeVenta = (chkEsDeVenta.Checked == true) ? 1 : 0;
                     pui.cmpEsDeConsigna = (chkEsDeConsigna.Checked == true) ? 1 : 0;
                     pui.cmpNumRojo = (chkNumRojo.Checked == true) ? 1 : 0;
-
+                    pui.cmpCveLstPrecio = Convert.ToString(cboLstPrecio.SelectedValue);
+                    pui.cmpCveSucursal = Convert.ToString(cboSucursal.SelectedValue);
                     if (pui.ActualizaAlmacen() >= 0)
                     {
                         MessageBoxAdv.Show("Registro Actualizado", "Confirmacion", MessageBoxButtons.OK,
@@ -311,7 +320,7 @@ namespace GAFE
         private Boolean Validar()
         {
             Boolean dv = true;
-            ClsUtilerias Util = new ClsUtilerias();
+            
             if (String.IsNullOrEmpty(txtClaveAlmacen.Text))
             {                
                 MessageBoxAdv.Show("Código: No puede ir vacío.", "CatAlmacenes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -350,18 +359,20 @@ namespace GAFE
         {
             txtClaveAlmacen.Enabled = Op;
             txtDescripcion.Enabled = Op;
-            cboEstatus.Enabled = Op;
+            chkEstatus.Enabled = Op;
             chkEsDeCompra.Enabled = Op;
             chkEsDeVenta.Enabled = Op;
             chkEsDeConsigna.Enabled = Op;
             chkNumRojo.Enabled = Op;
+            cboLstPrecio.Enabled = Op;
+            cboSucursal.Enabled = Op;
         }
 
         private void LimpiarControles()
         {
             txtClaveAlmacen.Text = "";
             txtDescripcion.Text = "";
-            cboEstatus.Text = "";
+            chkEstatus.Checked = true;
             chkEsDeCompra.Checked = false;
             chkEsDeVenta.Checked = false;
             chkEsDeConsigna.Checked = false;
@@ -382,6 +393,23 @@ namespace GAFE
         private void txtClaveAlmacen_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e);
+        }
+
+
+        private void LlecboLstPrecio()
+        {
+            PuiCatLstPrecios lin = new PuiCatLstPrecios(db);
+            cboLstPrecio.DataSource = lin.LLenaCboLstPrecio();
+            cboLstPrecio.ValueMember = "Clave";
+            cboLstPrecio.DisplayMember = "Descripcion";
+        }
+
+        private void LlecboSucursales()
+        {
+            PuiCatSucursales lin = new PuiCatSucursales(db);
+            cboSucursal.DataSource = lin.LLenaCboSucursales();
+            cboSucursal.ValueMember = "Clave";
+            cboSucursal.DisplayMember = "Descripcion";
         }
     }
 }

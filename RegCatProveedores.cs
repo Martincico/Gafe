@@ -25,22 +25,6 @@ namespace GAFE
 
         public RegCatProveedores(MsSql Odat) { db = Odat; }
 
-        /*
-        public void Conn()
-        {
-            /*db = new DatSql.MsSql(
-                   ConfigurationSettings.AppSettings.Get("Servidor"),
-                   ConfigurationSettings.AppSettings.Get("Datos"),
-                   ConfigurationSettings.AppSettings.Get("Usuario"),
-                   ConfigurationSettings.AppSettings.Get("Password")
-                   );
-            
-            db = new DatSql.MsSql("SIGMA6\\SQL14", "CtrlAcceso", "sa", "Remolachas1");
-                   
-            if (db.Conectar() < 1)
-                MessageBoxAdv.Show(db.ErrorDat, "Error conn", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-    */
 
         public int AddRegProveedores()
         {
@@ -90,41 +74,33 @@ namespace GAFE
         public SqlDataAdapter ListProveedores()
         {
             SqlDataAdapter dt = null;
-            string Sql = "SELECT P.CveProveedor, P.Nombre, P.RFC, P.Calle, G.Descripcion AS Localidad, P.CP, P.Tel1, P.Mail1, " +
-                        "P.TipoPersona, IIF(P.Estatus=1,'ACTIVO','BAJA') AS Estatus, P.Contacto, P.Tel2, P.Mail2, P.Cargo, P.Celular " +
-                         "FROM CatProveedores P JOIN CatGeografia G ON P.CveLocalidad = G.id";
+            string Sql = " SELECT P.CveProveedor, P.Nombre,P.Calle,G2.Descripcion,P.RFC,G2.Descripcion as Municipio " +
+                         " FROM dbo.CatProveedores AS P " +
+                         " INNER JOIN dbo.CatGeografia AS G1 ON P.CveLocalidad = G1.id " +
+                         " INNER JOIN dbo.CatGeografia AS G2 ON G2.id = G1.Padre" +
+                         " WHERE P.Estatus = 1";
             dt = db.SelectDA(Sql);
             return dt;
         }
-        public SqlDataAdapter BuscaArticulo(string bsq)
+        public SqlDataAdapter BuscaProvedor(string bsq)
         {
             SqlDataAdapter dt = null;
-            string Sql = "SELECT P.CveProveedor, P.Nombre, P.RFC, P.Calle, G.Descripcion AS Localidad, P.CP, P.Tel1, P.Mail1, " +
-                        "P.TipoPersona, IIF(P.Estatus=1,'ACTIVO','BAJA') AS Estatus, P.Contacto, P.Tel2, P.Mail2, P.Cargo, P.Celular " +
-                        "FROM CatProveedores P " +
-                        "JOIN CatGeografia G ON P.CveLocalidad = G.id " +
-                        "WHERE P.CveProveedor like '%" + bsq + "%' OR " +
-                        "P.Nombre like '%" + bsq + "%' OR " +
-                        "P.CveProveedor like '%" + bsq + "%' OR " +
+            string Sql = "SELECT CveProveedor, P.Nombre,P.Calle,G2.Descripcion,P.RFC,G2.Descripcion as Municipio " +
+                        " FROM dbo.CatProveedores AS P " +
+                        " INNER JOIN dbo.CatGeografia AS G1 ON P.CveLocalidad = G1.id " +
+                        " INNER JOIN dbo.CatGeografia AS G2 ON G2.id = G1.Padre " +
+                        " WHERE P.Estatus = 1 AND (P.CveProveedor like '%" + bsq + "%' OR " +
                         "P.Nombre like '%" + bsq + "%' OR " +
                         "P.RFC like '%" + bsq + "%' OR " +
-                        "P.Calle like '%" + bsq + "%' OR " +
-                        "G.Descripcion like '%" + bsq + "%' OR " +
-                        "P.CP like '%" + bsq + "%' OR " +
-                        "P.Mail1 like '%" + bsq + "%' OR " +
-                        "P.Mail2 like '%" + bsq + "%' OR " +
-                        "P.Tel1 like '%" + bsq + "%' OR " +
-                        "P.Contacto like '%" + bsq + "%' OR " +
-                        "P.Cargo like '%" + bsq + "%' OR " +
-                        "P.Tel2 like '%" + bsq + "%'";
+                        "P.Contacto like '%" + bsq + "%' )";
 
             dt = db.SelectDA(Sql);
             return dt;
         }
-        public SqlDataAdapter ComboProveedores()
+        public SqlDataAdapter LLenaCboProveedores()
         {
             SqlDataAdapter dt = null;
-            string Sql = "Select id as Clave,Nombre as Descripcion " +
+            string Sql = "Select CveProveedor as Clave,Nombre as Descripcion " +
                          "from CatProveedores where Estatus=1";
             dt = db.SelectDA(Sql);
             return dt;

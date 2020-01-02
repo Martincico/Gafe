@@ -17,7 +17,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 { 
-    public partial class frmEmpleados : Form
+    public partial class frmEmpleados : MetroForm
     {
 
         private SqlDataAdapter DatosTbl;

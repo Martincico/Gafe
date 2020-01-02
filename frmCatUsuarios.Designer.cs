@@ -145,7 +145,7 @@
             // 
             // cmdCancelar
             // 
-            this.cmdCancelar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cmdCancelar.Image = global::GAFE.Properties.Resources.Cancelar;
             this.cmdCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,7 +160,7 @@
             // 
             // cmdAceptar
             // 
-            this.cmdAceptar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAceptar.Image = global::GAFE.Properties.Resources.Guardar;
             this.cmdAceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAceptar.Location = new System.Drawing.Point(291, 142);
@@ -261,7 +261,7 @@
             // 
             // cmdBuscar
             // 
-            this.cmdBuscar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdBuscar.Location = new System.Drawing.Point(390, 7);
@@ -293,6 +293,7 @@
             // 
             // cmdSeleccionar
             // 
+            this.cmdSeleccionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdSeleccionar.Image = global::GAFE.Properties.Resources.Seleccionar;
             this.cmdSeleccionar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdSeleccionar.Location = new System.Drawing.Point(9, 223);
@@ -306,7 +307,7 @@
             // 
             // cmdConsultar
             // 
-            this.cmdConsultar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdConsultar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdConsultar.Location = new System.Drawing.Point(403, 223);
@@ -320,7 +321,7 @@
             // 
             // cmdEliminar
             // 
-            this.cmdEliminar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdEliminar.Location = new System.Drawing.Point(303, 223);
@@ -334,7 +335,7 @@
             // 
             // cmEditar
             // 
-            this.cmEditar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmEditar.Location = new System.Drawing.Point(203, 223);
@@ -348,7 +349,7 @@
             // 
             // cmdAgregar
             // 
-            this.cmdAgregar.BackColor = System.Drawing.SystemColors.Control;
+            this.cmdAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdAgregar.Location = new System.Drawing.Point(103, 223);
@@ -365,7 +366,7 @@
             this.AcceptButton = this.cmdAceptar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.CancelButton = this.cmdCancelar;
             this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
             this.CaptionButtonColor = System.Drawing.Color.White;
@@ -387,6 +388,7 @@
             this.MinimumSize = new System.Drawing.Size(515, 300);
             this.Name = "frmCatUsuarios";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Catálogo de usuarios";
             this.Load += new System.EventHandler(this.frmCatUsuarios_Load);
             this.panel2.ResumeLayout(false);

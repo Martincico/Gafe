@@ -372,11 +372,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.CaptionBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(198)))));
-            this.CaptionButtonColor = System.Drawing.Color.White;
-            this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
-            this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(606, 250);
             this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.cmdAceptar);
@@ -386,7 +381,7 @@
             this.Name = "AddPartidaInvMovtos";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registro de partidas";
+            this.Text = "Registro de Tipo Movimientos";
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);

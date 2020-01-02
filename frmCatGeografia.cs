@@ -18,26 +18,32 @@ namespace GAFE
 {
     public partial class frmCatGeografia : MetroForm
     {
-        private SqlDataAdapter DatosTbl;
         private int opcion;
         private int _padre;
         private int idxG = -1;
+        private int AcCOPB = 0;
         private string combo;
 
         private MsSql db = null;
         private string Perfil;
         private clsUtil uT;
 
+        private DatCfgParamSystem ParamSystem;
+        ClsUtilerias Util;
+
         public frmCatGeografia()
         {
             InitializeComponent();
         }
-        public frmCatGeografia(MsSql Odat, string perfil,int op= 1)
+        public frmCatGeografia(MsSql Odat, DatCfgParamSystem ParamS, string perfil,int op= 1)
         {
             InitializeComponent();
             db = Odat;
             opcion = op;
             Perfil = perfil;
+
+            ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -67,10 +73,10 @@ namespace GAFE
 
             uT = new clsUtil(db, Perfil);
             uT.CargaArbolAcceso();
-
+            
             clsUsPerfil up = uT.BuscarIdNodo("1Inv006A");
-            int AcCOP = (up != null) ? up.Acceso : 0;
-            if(AcCOP==1)
+            AcCOPB = (up != null) ? up.Acceso : 0;
+            if(AcCOPB==1)
             {
                 cmdAgregarPais.Enabled = true;
                 cmdAgregarEstado.Enabled = true;
@@ -86,13 +92,13 @@ namespace GAFE
                 cmdEditarLocalidad.Enabled = true;
                 cmdSeleccionar.Enabled = false;
             }
-
+            
 
             up = uT.BuscarIdNodo("1Inv006B");
-            AcCOP = (up != null) ? up.Acceso : 0;
+            int AcCOPS = (up != null) ? up.Acceso : 0;
 
-            cmdSeleccionar.Enabled = (AcCOP == 1) ? true : false;
-
+            cmdSeleccionar.Enabled = (AcCOPS == 1) ? true : false;
+            
             PuiCatGeografia pais = new PuiCatGeografia(db);
             cboPaises.DataSource = pais.ListPaises();
             cboSyncPaises.DataSource = pais.ListPaises();
@@ -136,7 +142,6 @@ namespace GAFE
 
         private void cmdAceptar_Click(object sender, EventArgs e)
         {
-            ClsUtilerias Util = new ClsUtilerias();
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
                 MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatGeo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -205,29 +210,41 @@ namespace GAFE
                         cboEstados.DataSource = pui.ListGeografia(aux);
                         cboEstados.Text = "";
                         cboEstados.Enabled = true;
-                        cmdAgregarEstado.Enabled = true;
-                        cmdEliminarPais.Enabled = true;
-                        cmdEditarPais.Enabled = true;
+                        if (AcCOPB == 1)
+                        {
+                            cmdAgregarEstado.Enabled = true;
+                            cmdEliminarPais.Enabled = true;
+                            cmdEditarPais.Enabled = true;
+                        }
                         break;
                     case "cboEstados":
                         cboMunicipios.DataSource = pui.ListGeografia(aux);
                         cboMunicipios.Enabled = true;
                         cboMunicipios.Text = "";
-                        cmdEliminarEstado.Enabled = true;
-                        cmdAgregarMunicipio.Enabled = true;
-                        cmdEditarEstado.Enabled = true;
+                        if (AcCOPB == 1)
+                        {
+                            cmdEliminarEstado.Enabled = true;
+                            cmdAgregarMunicipio.Enabled = true;
+                            cmdEditarEstado.Enabled = true;
+                        }
                         break;
                     case "cboMunicipios":
                         cboLocalidad.DataSource = pui.ListGeografia(aux);
                         cboLocalidad.Enabled = true;
                         cboLocalidad.Text = "";
-                        cmdEliminarMunicipio.Enabled = true;
-                        cmdAgregarLocalidad.Enabled = true;
-                        cmdEditarMunicipio.Enabled = true;
+                        if (AcCOPB == 1)
+                        {
+                            cmdEliminarMunicipio.Enabled = true;
+                            cmdAgregarLocalidad.Enabled = true;
+                            cmdEditarMunicipio.Enabled = true;
+                        }
                         break;
                     case "cboLocalidad":
-                        cmdEliminarLocalidad.Enabled = true;
-                        cmdEditarLocalidad.Enabled = true;
+                        if (AcCOPB == 1)
+                        {
+                            cmdEliminarLocalidad.Enabled = true;
+                            cmdEditarLocalidad.Enabled = true;
+                        }
                         break;
                 }
             }
@@ -466,6 +483,14 @@ namespace GAFE
             txtDescripcion.Text = pui.cmpDescripcion;
             cboEstatus.SelectedText = (pui.cmpEstatus == "1") ? "Activo" : "Baja";
             idxG = pui.keyCveGeografia;
+        }
+
+        private void frmCatGeografia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

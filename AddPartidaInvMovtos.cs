@@ -10,11 +10,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using DatSql;
 
-using Syncfusion.Windows.Forms;
-
 namespace GAFE
 {
-    public partial class AddPartidaInvMovtos : MetroForm
+    public partial class AddPartidaInvMovtos : Form
     {
         private int opcion;
         private MsSql db = null;
@@ -114,8 +112,6 @@ namespace GAFE
                 GetRegistro();
             }
 
-            MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
-            MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
 
         private void GetRegistro()
@@ -194,7 +190,7 @@ namespace GAFE
 
                 if (pui.AgregarPartida() >= 1)
                 {
-                    MessageBoxAdv.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
+                    MessageBox.Show("Registro agregado", "Confirmacion", MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                     this.Close();
                 }
@@ -236,7 +232,7 @@ namespace GAFE
 
                     if (pui.ActualizaPartida() >= 1)
                     {
-                        MessageBoxAdv.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
+                        MessageBox.Show("Registro actualizado", "Confirmacion", MessageBoxButtons.OK,
                                         MessageBoxIcon.Information);
                         this.Close();
                     }
@@ -244,7 +240,7 @@ namespace GAFE
             }
             catch (Exception ex)
             {
-                MessageBoxAdv.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
+                MessageBox.Show("Tienes que seleccionar un registro \n" + ex.Message + " " + ex.StackTrace.ToString(),
                     "Error al editar", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -265,7 +261,7 @@ namespace GAFE
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
-            frmLstArticulos art = new frmLstArticulos(db, "ADMIN", 3);
+            frmLstArticulos art = new frmLstArticulos(db, "perfil", 3);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
@@ -274,7 +270,7 @@ namespace GAFE
                 pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
                 if (pui.GetDuplicado() >= 1)
                 {
-                    if (MessageBoxAdv.Show("¿Desea agregar mas cantidad? ",
+                    if (MessageBox.Show("¿Desea agregar mas cantidad? ",
                         "El Articulo se encuentra en la lista", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         opcion = 2;
@@ -413,7 +409,7 @@ namespace GAFE
 
                 if (!ErrCalc)
                 {
-                    MessageBoxAdv.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -446,7 +442,6 @@ namespace GAFE
                     else
                         Cantidad = Convert.ToDouble(txtCantidad.Text);
                 }
-                /*
                 else
                 {
                     if (Op == 1)
@@ -457,7 +452,6 @@ namespace GAFE
                     else
                         Cantidad = 0;
                 }
-                */
 
             }
 
@@ -483,7 +477,6 @@ namespace GAFE
                     else
                         Precio = Convert.ToDouble(txtPrecio.Text);
                 }
-                /*
                 else
                 {
                     if (!Util.Decimal(txtPrecio.Text))
@@ -494,7 +487,6 @@ namespace GAFE
                     else
                         Precio = 0;
                 }
-                */
             }
 
             if (String.IsNullOrEmpty(txtDescuento.Text))
@@ -519,7 +511,6 @@ namespace GAFE
                     else
                         Descuento = Convert.ToDouble(txtDescuento.Text);
                 }
-                /*
                 else
                 {
                     if (!Util.Decimal(txtDescuento.Text))
@@ -530,7 +521,6 @@ namespace GAFE
                     else
                         Descuento = 0;
                 }
-                */
 
             }
                 
@@ -550,7 +540,7 @@ namespace GAFE
                             }
                             else
                             {
-                                if (MessageBoxAdv.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                if (MessageBox.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
                                         " Existencia: " + CantInv + " ",
                                         "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
@@ -603,7 +593,7 @@ namespace GAFE
             }
             else
             {
-                MessageBoxAdv.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Contiene error(es):\n" + err, "Error de captura", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

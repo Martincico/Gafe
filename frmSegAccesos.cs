@@ -64,7 +64,8 @@ namespace GAFE
             CargarRegistrosDB();
             PuiSegAccesos Ac = new PuiSegAccesos(db);
             Ac.keySAcceso = cboPerfiles.SelectedValue.ToString();
-           
+            btnActualizaSeg.Enabled = true;
+            btnAsignaSeg.Enabled = false;
             if (Ac.EsAccesoNuevo() == 1)
             {
                 CrearArbol("0", null);
@@ -201,12 +202,12 @@ namespace GAFE
                 {
                     RecorrerRecursivo(n);
                 }
-                MessageBoxAdv.Show("Accesos Asignados al Perfil " + cboPerfiles.SelectedValue.ToString(),"Cinfirmacion",MessageBoxButtons.OK,
+                MessageBoxAdv.Show("Accesos Asignados al Perfil " + cboPerfiles.SelectedValue.ToString(),"Confirmación",MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 tSeg.Nodes.Clear();
                 btnActualizaSeg.Enabled = false;
-
-           // }
+                btnAsignaSeg.Enabled = true;
+            // }
 
         }
 
@@ -242,6 +243,14 @@ namespace GAFE
         {
             tSeg.Nodes.Clear();
             btnActualizaSeg.Enabled = false;
+        }
+
+        private void frmSegAccesos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

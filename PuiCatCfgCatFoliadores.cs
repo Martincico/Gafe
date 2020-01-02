@@ -129,11 +129,11 @@ namespace GAFE
 
         }
 
-        public DataTable cboCfgCatFoliadores()
+        public DataTable cboCfgCatFoliadores(int _EnUso)
         {
             RegCatCfgCatFoliador OpLst = new RegCatCfgCatFoliador(db);
             DataSet Cbo = new DataSet();
-            OpLst.cboCfgCatFoliadores().Fill(Cbo);
+            OpLst.cboCfgCatFoliadores(_EnUso).Fill(Cbo);
             return Cbo.Tables[0];
 
         }

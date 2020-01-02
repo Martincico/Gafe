@@ -68,7 +68,8 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select CveLinea,Descripcion " +
-                         "from Inv_Lineas";
+                         "from Inv_Lineas" +
+                         " order by Descripción ";
             dt = db.SelectDA(Sql);
             return dt;
         }
@@ -88,7 +89,8 @@ namespace GAFE
             string sql = "Select CveLinea,Descripcion " +
                "from Inv_Lineas " +
                "where CveLinea like '%" + bsq + "%' OR " +
-               "Descripcion like '%" + bsq + "%' ";
+               "Descripcion like '%" + bsq + "%' " +
+               " order by Descripción";
 
             dt = db.SelectDA(sql);
             return dt;
@@ -97,7 +99,8 @@ namespace GAFE
         {
             SqlDataAdapter dt = null;
             string Sql = "Select CveLinea as Clave,Descripcion " +
-                         "from Inv_Lineas";
+                         "from Inv_Lineas " +
+                         " order by Descripción";
             dt = db.SelectDA(Sql);
             return dt;
         }
