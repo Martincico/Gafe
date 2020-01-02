@@ -367,7 +367,7 @@
             this.cboCliente.FormattingEnabled = true;
             this.cboCliente.Location = new System.Drawing.Point(85, 16);
             this.cboCliente.Name = "cboCliente";
-            this.cboCliente.Size = new System.Drawing.Size(330, 24);
+            this.cboCliente.Size = new System.Drawing.Size(357, 24);
             this.cboCliente.TabIndex = 8;
             this.cboCliente.SelectedValueChanged += new System.EventHandler(this.cboCliente_SelectedValueChanged);
             // 
