@@ -51,7 +51,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(614, 55);
+            this.panel1.Size = new System.Drawing.Size(545, 55);
             this.panel1.TabIndex = 8;
             // 
             // cmdBuscar
@@ -60,7 +60,7 @@
             this.cmdBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdBuscar.Image = global::GAFE.Properties.Resources.Buscar;
             this.cmdBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdBuscar.Location = new System.Drawing.Point(511, 6);
+            this.cmdBuscar.Location = new System.Drawing.Point(438, 6);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(94, 36);
             this.cmdBuscar.TabIndex = 2;
@@ -74,7 +74,7 @@
             this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.txtBuscar.Location = new System.Drawing.Point(59, 11);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(446, 24);
+            this.txtBuscar.Size = new System.Drawing.Size(373, 24);
             this.txtBuscar.TabIndex = 1;
             // 
             // label1
@@ -93,7 +93,7 @@
             this.cmdConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdConsultar.Image = global::GAFE.Properties.Resources.Consultar;
             this.cmdConsultar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdConsultar.Location = new System.Drawing.Point(521, 348);
+            this.cmdConsultar.Location = new System.Drawing.Point(443, 348);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(94, 36);
             this.cmdConsultar.TabIndex = 9;
@@ -108,7 +108,7 @@
             this.cmdEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdEliminar.Image = global::GAFE.Properties.Resources.Eliminar;
             this.cmdEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEliminar.Location = new System.Drawing.Point(421, 348);
+            this.cmdEliminar.Location = new System.Drawing.Point(343, 348);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(94, 36);
             this.cmdEliminar.TabIndex = 12;
@@ -123,7 +123,7 @@
             this.cmdEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdEditar.Image = global::GAFE.Properties.Resources.Editar;
             this.cmdEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdEditar.Location = new System.Drawing.Point(321, 348);
+            this.cmdEditar.Location = new System.Drawing.Point(243, 348);
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.Size = new System.Drawing.Size(94, 36);
             this.cmdEditar.TabIndex = 11;
@@ -138,7 +138,7 @@
             this.cmdAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cmdAgregar.Image = global::GAFE.Properties.Resources.Nuevo;
             this.cmdAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdAgregar.Location = new System.Drawing.Point(221, 348);
+            this.cmdAgregar.Location = new System.Drawing.Point(143, 348);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(94, 36);
             this.cmdAgregar.TabIndex = 10;
@@ -152,13 +152,14 @@
             this.grdView.AllowUserToAddRows = false;
             this.grdView.AllowUserToDeleteRows = false;
             this.grdView.AllowUserToOrderColumns = true;
+            this.grdView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CodEmpleado});
             this.grdView.Location = new System.Drawing.Point(12, 62);
             this.grdView.Name = "grdView";
             this.grdView.ReadOnly = true;
-            this.grdView.Size = new System.Drawing.Size(596, 280);
+            this.grdView.Size = new System.Drawing.Size(523, 280);
             this.grdView.TabIndex = 13;
             this.grdView.DoubleClick += new System.EventHandler(this.grdView_DoubleClick);
             // 
@@ -167,7 +168,6 @@
             this.CodEmpleado.HeaderText = "Código";
             this.CodEmpleado.Name = "CodEmpleado";
             this.CodEmpleado.ReadOnly = true;
-            this.CodEmpleado.Width = 80;
             // 
             // cmdSeleccionar
             // 
@@ -194,7 +194,7 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionFont = new System.Drawing.Font("Segoe UI", 8.25F);
             this.CaptionForeColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(620, 389);
+            this.ClientSize = new System.Drawing.Size(546, 389);
             this.Controls.Add(this.cmdSeleccionar);
             this.Controls.Add(this.cmdConsultar);
             this.Controls.Add(this.cmdEliminar);

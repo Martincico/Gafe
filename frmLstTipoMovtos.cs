@@ -85,6 +85,8 @@ namespace GAFE
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             frmRegTipoMovtos Ventana = new frmRegTipoMovtos(db, ParamSystem, 1);
+            Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             Ventana.ShowDialog();
             LlenaGridView();
         }
@@ -92,6 +94,8 @@ namespace GAFE
         private void cmEditar_Click(object sender, EventArgs e)
         {
             frmRegTipoMovtos Ventana = new frmRegTipoMovtos(db, ParamSystem, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+            Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             Ventana.ShowDialog();
             LlenaGridView();
         }
@@ -100,6 +104,8 @@ namespace GAFE
         {
             idxG = grdView.CurrentRow.Index;
             frmRegTipoMovtos Ventana = new frmRegTipoMovtos(db, ParamSystem, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+            Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             Ventana.ShowDialog();
             LlenaGridView();
         }

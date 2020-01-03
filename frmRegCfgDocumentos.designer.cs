@@ -101,29 +101,29 @@
             // 
             // cboCfgCatFoliadores
             // 
-            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboCfgCatFoliadores.FormattingEnabled = true;
             this.cboCfgCatFoliadores.Location = new System.Drawing.Point(138, 143);
             this.cboCfgCatFoliadores.Name = "cboCfgCatFoliadores";
-            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(336, 26);
+            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(336, 24);
             this.cboCfgCatFoliadores.TabIndex = 6;
             // 
             // cboTipoMov
             // 
-            this.cboTipoMov.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboTipoMov.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboTipoMov.FormattingEnabled = true;
             this.cboTipoMov.Location = new System.Drawing.Point(138, 109);
             this.cboTipoMov.Name = "cboTipoMov";
-            this.cboTipoMov.Size = new System.Drawing.Size(336, 26);
+            this.cboTipoMov.Size = new System.Drawing.Size(336, 24);
             this.cboTipoMov.TabIndex = 5;
             // 
             // optAbono
             // 
             this.optAbono.AutoSize = true;
-            this.optAbono.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.optAbono.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.optAbono.Location = new System.Drawing.Point(283, 79);
             this.optAbono.Name = "optAbono";
-            this.optAbono.Size = new System.Drawing.Size(69, 22);
+            this.optAbono.Size = new System.Drawing.Size(67, 21);
             this.optAbono.TabIndex = 4;
             this.optAbono.Text = "Abono";
             this.optAbono.UseVisualStyleBackColor = true;
@@ -132,10 +132,10 @@
             // 
             this.optCargo.AutoSize = true;
             this.optCargo.Checked = true;
-            this.optCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.optCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.optCargo.Location = new System.Drawing.Point(138, 79);
             this.optCargo.Name = "optCargo";
-            this.optCargo.Size = new System.Drawing.Size(67, 22);
+            this.optCargo.Size = new System.Drawing.Size(64, 21);
             this.optCargo.TabIndex = 3;
             this.optCargo.TabStop = true;
             this.optCargo.Text = "Cargo";
@@ -145,20 +145,20 @@
             // 
             this.label6.AutoSize = true;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label6.Location = new System.Drawing.Point(7, 112);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 18);
+            this.label6.Size = new System.Drawing.Size(111, 17);
             this.label6.TabIndex = 35;
             this.label6.Text = "Tipo movimiento";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label5.Location = new System.Drawing.Point(7, 146);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 18);
+            this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 36;
             this.label5.Text = "Foliador";
             // 
@@ -167,10 +167,10 @@
             this.chkEstatus.AutoSize = true;
             this.chkEstatus.Checked = true;
             this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkEstatus.Location = new System.Drawing.Point(209, 202);
             this.chkEstatus.Name = "chkEstatus";
-            this.chkEstatus.Size = new System.Drawing.Size(67, 22);
+            this.chkEstatus.Size = new System.Drawing.Size(65, 21);
             this.chkEstatus.TabIndex = 17;
             this.chkEstatus.Text = "Activo";
             this.chkEstatus.UseVisualStyleBackColor = true;
@@ -178,10 +178,10 @@
             // chkEditaFecha
             // 
             this.chkEditaFecha.AutoSize = true;
-            this.chkEditaFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkEditaFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkEditaFecha.Location = new System.Drawing.Point(209, 79);
             this.chkEditaFecha.Name = "chkEditaFecha";
-            this.chkEditaFecha.Size = new System.Drawing.Size(100, 22);
+            this.chkEditaFecha.Size = new System.Drawing.Size(98, 21);
             this.chkEditaFecha.TabIndex = 13;
             this.chkEditaFecha.Text = "Edita fecha";
             this.chkEditaFecha.UseVisualStyleBackColor = true;
@@ -189,10 +189,10 @@
             // chkUsaSerie
             // 
             this.chkUsaSerie.AutoSize = true;
-            this.chkUsaSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkUsaSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkUsaSerie.Location = new System.Drawing.Point(13, 79);
             this.chkUsaSerie.Name = "chkUsaSerie";
-            this.chkUsaSerie.Size = new System.Drawing.Size(90, 22);
+            this.chkUsaSerie.Size = new System.Drawing.Size(87, 21);
             this.chkUsaSerie.TabIndex = 12;
             this.chkUsaSerie.Text = "Usa serie";
             this.chkUsaSerie.UseVisualStyleBackColor = true;
@@ -200,40 +200,40 @@
             // txtDescripcion
             // 
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtDescripcion.Location = new System.Drawing.Point(138, 47);
             this.txtDescripcion.MaxLength = 100;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(391, 24);
+            this.txtDescripcion.Size = new System.Drawing.Size(391, 23);
             this.txtDescripcion.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label2.Location = new System.Drawing.Point(7, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 18);
+            this.label2.Size = new System.Drawing.Size(82, 17);
             this.label2.TabIndex = 26;
             this.label2.Text = "Descripción";
             // 
             // txtClaveTipoMov
             // 
             this.txtClaveTipoMov.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtClaveTipoMov.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtClaveTipoMov.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtClaveTipoMov.Location = new System.Drawing.Point(138, 15);
             this.txtClaveTipoMov.MaxLength = 10;
             this.txtClaveTipoMov.Name = "txtClaveTipoMov";
-            this.txtClaveTipoMov.Size = new System.Drawing.Size(191, 24);
+            this.txtClaveTipoMov.Size = new System.Drawing.Size(191, 23);
             this.txtClaveTipoMov.TabIndex = 1;
             // 
             // lblCodEmpleado
             // 
             this.lblCodEmpleado.AutoSize = true;
-            this.lblCodEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblCodEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblCodEmpleado.Location = new System.Drawing.Point(7, 18);
             this.lblCodEmpleado.Name = "lblCodEmpleado";
-            this.lblCodEmpleado.Size = new System.Drawing.Size(56, 18);
+            this.lblCodEmpleado.Size = new System.Drawing.Size(52, 17);
             this.lblCodEmpleado.TabIndex = 24;
             this.lblCodEmpleado.Text = "Código";
             // 
@@ -242,10 +242,10 @@
             this.chkEsInterno.AutoSize = true;
             this.chkEsInterno.Checked = true;
             this.chkEsInterno.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEsInterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkEsInterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkEsInterno.Location = new System.Drawing.Point(401, 79);
             this.chkEsInterno.Name = "chkEsInterno";
-            this.chkEsInterno.Size = new System.Drawing.Size(94, 22);
+            this.chkEsInterno.Size = new System.Drawing.Size(91, 21);
             this.chkEsInterno.TabIndex = 16;
             this.chkEsInterno.Text = "Es interno";
             this.chkEsInterno.UseVisualStyleBackColor = true;
@@ -253,20 +253,20 @@
             // txtEmail
             // 
             this.txtEmail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtEmail.Location = new System.Drawing.Point(138, 177);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(336, 24);
+            this.txtEmail.Size = new System.Drawing.Size(336, 23);
             this.txtEmail.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label1.Location = new System.Drawing.Point(7, 180);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 18);
+            this.label1.Size = new System.Drawing.Size(93, 17);
             this.label1.TabIndex = 40;
             this.label1.Text = "Enviar correo";
             // 
@@ -275,10 +275,10 @@
             this.chkAutoriza.AutoSize = true;
             this.chkAutoriza.Checked = true;
             this.chkAutoriza.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAutoriza.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAutoriza.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkAutoriza.Location = new System.Drawing.Point(209, 161);
             this.chkAutoriza.Name = "chkAutoriza";
-            this.chkAutoriza.Size = new System.Drawing.Size(160, 22);
+            this.chkAutoriza.Size = new System.Drawing.Size(153, 21);
             this.chkAutoriza.TabIndex = 14;
             this.chkAutoriza.Text = "Solicita autorización";
             this.chkAutoriza.UseVisualStyleBackColor = true;
@@ -288,10 +288,10 @@
             this.chkAfectaInventario.AutoSize = true;
             this.chkAfectaInventario.Checked = true;
             this.chkAfectaInventario.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAfectaInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAfectaInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkAfectaInventario.Location = new System.Drawing.Point(13, 120);
             this.chkAfectaInventario.Name = "chkAfectaInventario";
-            this.chkAfectaInventario.Size = new System.Drawing.Size(135, 22);
+            this.chkAfectaInventario.Size = new System.Drawing.Size(133, 21);
             this.chkAfectaInventario.TabIndex = 15;
             this.chkAfectaInventario.Text = "Afecta inventario";
             this.chkAfectaInventario.UseVisualStyleBackColor = true;
@@ -299,10 +299,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label3.Location = new System.Drawing.Point(10, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 18);
+            this.label3.Size = new System.Drawing.Size(33, 17);
             this.label3.TabIndex = 47;
             this.label3.Text = "Usa";
             // 
@@ -312,6 +312,7 @@
             this.groupBox1.Controls.Add(this.optProveedor);
             this.groupBox1.Controls.Add(this.optCliente);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.groupBox1.Location = new System.Drawing.Point(122, 33);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(294, 32);
@@ -345,11 +346,11 @@
             // 
             // cboDocRel
             // 
-            this.cboDocRel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboDocRel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboDocRel.FormattingEnabled = true;
             this.cboDocRel.Location = new System.Drawing.Point(138, 209);
             this.cboDocRel.Name = "cboDocRel";
-            this.cboDocRel.Size = new System.Drawing.Size(336, 26);
+            this.cboDocRel.Size = new System.Drawing.Size(336, 24);
             this.cboDocRel.TabIndex = 8;
             this.cboDocRel.SelectedIndexChanged += new System.EventHandler(this.cboDocRel_SelectedIndexChanged);
             this.cboDocRel.SelectedValueChanged += new System.EventHandler(this.cboDocRel_SelectedValueChanged);
@@ -357,20 +358,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label4.Location = new System.Drawing.Point(7, 212);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(127, 18);
+            this.label4.Size = new System.Drawing.Size(120, 17);
             this.label4.TabIndex = 50;
             this.label4.Text = "Doc. Relacionado";
             // 
             // chkAlmTmp
             // 
             this.chkAlmTmp.AutoSize = true;
-            this.chkAlmTmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAlmTmp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkAlmTmp.Location = new System.Drawing.Point(13, 161);
             this.chkAlmTmp.Name = "chkAlmTmp";
-            this.chkAlmTmp.Size = new System.Drawing.Size(146, 22);
+            this.chkAlmTmp.Size = new System.Drawing.Size(140, 21);
             this.chkAlmTmp.TabIndex = 53;
             this.chkAlmTmp.Text = "Almacén temporal";
             this.chkAlmTmp.UseVisualStyleBackColor = true;
@@ -378,10 +379,10 @@
             // chkAlmDest
             // 
             this.chkAlmDest.AutoSize = true;
-            this.chkAlmDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkAlmDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkAlmDest.Location = new System.Drawing.Point(209, 120);
             this.chkAlmDest.Name = "chkAlmDest";
-            this.chkAlmDest.Size = new System.Drawing.Size(146, 22);
+            this.chkAlmDest.Size = new System.Drawing.Size(140, 21);
             this.chkAlmDest.TabIndex = 54;
             this.chkAlmDest.Text = "Usa almacén dest";
             this.chkAlmDest.UseVisualStyleBackColor = true;
@@ -389,10 +390,10 @@
             // chkUsaFactura
             // 
             this.chkUsaFactura.AutoSize = true;
-            this.chkUsaFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkUsaFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkUsaFactura.Location = new System.Drawing.Point(401, 120);
             this.chkUsaFactura.Name = "chkUsaFactura";
-            this.chkUsaFactura.Size = new System.Drawing.Size(135, 22);
+            this.chkUsaFactura.Size = new System.Drawing.Size(133, 21);
             this.chkUsaFactura.TabIndex = 55;
             this.chkUsaFactura.Text = "Requiere factura";
             this.chkUsaFactura.UseVisualStyleBackColor = true;
@@ -460,10 +461,10 @@
             // chkMuestraPrecio
             // 
             this.chkMuestraPrecio.AutoSize = true;
-            this.chkMuestraPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkMuestraPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkMuestraPrecio.Location = new System.Drawing.Point(401, 161);
             this.chkMuestraPrecio.Name = "chkMuestraPrecio";
-            this.chkMuestraPrecio.Size = new System.Drawing.Size(126, 22);
+            this.chkMuestraPrecio.Size = new System.Drawing.Size(121, 21);
             this.chkMuestraPrecio.TabIndex = 59;
             this.chkMuestraPrecio.Text = "Muestra precio";
             this.chkMuestraPrecio.UseVisualStyleBackColor = true;
@@ -473,10 +474,10 @@
             this.chkEditaPrecio.AutoSize = true;
             this.chkEditaPrecio.Checked = true;
             this.chkEditaPrecio.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEditaPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.chkEditaPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkEditaPrecio.Location = new System.Drawing.Point(13, 202);
             this.chkEditaPrecio.Name = "chkEditaPrecio";
-            this.chkEditaPrecio.Size = new System.Drawing.Size(105, 22);
+            this.chkEditaPrecio.Size = new System.Drawing.Size(102, 21);
             this.chkEditaPrecio.TabIndex = 58;
             this.chkEditaPrecio.Text = "Edita precio";
             this.chkEditaPrecio.UseVisualStyleBackColor = true;
@@ -484,21 +485,21 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label7.Location = new System.Drawing.Point(10, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 18);
+            this.label7.Size = new System.Drawing.Size(98, 17);
             this.label7.TabIndex = 57;
             this.label7.Text = "Nombre botón";
             // 
             // txtBotonDocRel
             // 
             this.txtBotonDocRel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBotonDocRel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtBotonDocRel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtBotonDocRel.Location = new System.Drawing.Point(141, 6);
             this.txtBotonDocRel.MaxLength = 100;
             this.txtBotonDocRel.Name = "txtBotonDocRel";
-            this.txtBotonDocRel.Size = new System.Drawing.Size(275, 24);
+            this.txtBotonDocRel.Size = new System.Drawing.Size(275, 23);
             this.txtBotonDocRel.TabIndex = 56;
             // 
             // frmRegCfgDocumentos

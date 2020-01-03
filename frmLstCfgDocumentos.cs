@@ -42,6 +42,7 @@ namespace GAFE
             opcion = op;
             user = DatUsr;
             ParamSystem = ParamS;
+            StiloColor = NewColor;
 
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
@@ -97,6 +98,8 @@ namespace GAFE
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             frmRegCfgDocumentos art = new frmRegCfgDocumentos(db, ParamSystem, user.CodPerfil,1);
+            art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+            art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
             LlenaGridView();
         }
@@ -106,6 +109,8 @@ namespace GAFE
             try
             {
                 frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, ParamSystem, user.CodPerfil, 2, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -122,6 +127,8 @@ namespace GAFE
             try
             {
                 frmRegCfgDocumentos Ventana = new frmRegCfgDocumentos(db, ParamSystem, user.CodPerfil, 3, grdView[0, grdView.CurrentRow.Index].Value.ToString());
+                Ventana.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
+                Ventana.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 Ventana.ShowDialog();
                 LlenaGridView();
             }
@@ -140,9 +147,9 @@ namespace GAFE
                 if (MessageBoxAdv.Show("Esta seguro de eliminar el registro " + grdView[0, grdView.CurrentRow.Index].Value.ToString(),
                      "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    PuiCatLineas pui = new PuiCatLineas(db);
-                    pui.keyCveLinea = grdView[0, grdView.CurrentRow.Index].Value.ToString();
-                    pui.EliminaLinea();
+                    PuiCatCfgDocumentos pui = new PuiCatCfgDocumentos(db);
+                    pui.keyCveDoc = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                    pui.EliminaCfgDocumentos();
                     LlenaGridView();
                     this.Size = this.MinimumSize;
                 }

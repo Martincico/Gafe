@@ -35,7 +35,8 @@ namespace GAFE
 
 
 
-        public DocLstRequisiciones(MsSql Odat, DatCfgSystem CfgSys,  DatCfgParamSystem ParaSystem, DatCfgUsuario DatUsr,  clsStiloTemas NewColor, String CveDc, String _NameDoc)
+        public DocLstRequisiciones(MsSql Odat, DatCfgSystem CfgSys,  DatCfgParamSystem ParaSystem, 
+            DatCfgUsuario DatUsr,  clsStiloTemas NewColor, String CveDc, String _NameDoc)
         {
             
             InitializeComponent();
