@@ -35,6 +35,7 @@ namespace GAFE
 
         private String IdArt = "";
         private String CveImp = "";
+        private String CveIEPS = "";
         private String CveUmed = "";
 
         private double CantInv = 0;
@@ -388,7 +389,24 @@ namespace GAFE
                 double Ppre = Convert.ToDouble(ObjA[4]);
                 int rPre = Ppre.CompareTo(0);
                 if (rPre > 0)
+                {
+                    PuiCatImpuestos I = new PuiCatImpuestos(db);
+                    if (!String.IsNullOrEmpty(CveIEPS))
+                    {
+                        I.keyCveImpuesto = CveIEPS;
+                        I.EditarImpuesto();
+                        if (I.cmpValor > 0)
+                            Ppre += Ppre * (I.cmpValor / 100);
+                    }
+                    if (!String.IsNullOrEmpty(CveImp))
+                    {
+                        I.keyCveImpuesto = CveImp;
+                        I.EditarImpuesto();
+                        if (I.cmpValor > 0)
+                            Ppre += Ppre * (I.cmpValor / 100);
+                    }
                     lblPrecioArt.Text = Util.FormtStrDec(ObjA[4].ToString());//ObjA[4].ToString();
+                }
                 else
                     Err = 1;
 
@@ -822,12 +840,12 @@ namespace GAFE
                 if (Art.EditarArticulo(ParamSystem.HideCveArt) > 0)
                 {
                     IdArt = Art.keyCveArticulo;
-                    txtClaveArticulo.Text = Art.keyCveArticulo;
+                    txtClaveArticulo.Text = Art.cmpCodigoBarra;
                     lblDescArticulo.Text = Art.cmpDescripcion;
 
                     CveImp = Art.cmpCveImpuesto;
                     CveUmed = Art.cmpCveUMedida1;
-                    if (Art.cmpFoto.Length > 0)
+                    if (Art.cmpFoto != null)
                     {
                         MemoryStream Mf = new MemoryStream(Art.cmpFoto);
                         Mf.Write(Art.cmpFoto, 0, Art.cmpFoto.Length);
