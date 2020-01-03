@@ -81,69 +81,69 @@
             // lblAlmaOri
             // 
             this.lblAlmaOri.AutoSize = true;
-            this.lblAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblAlmaOri.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblAlmaOri.Location = new System.Drawing.Point(10, 15);
             this.lblAlmaOri.Name = "lblAlmaOri";
-            this.lblAlmaOri.Size = new System.Drawing.Size(113, 18);
+            this.lblAlmaOri.Size = new System.Drawing.Size(109, 17);
             this.lblAlmaOri.TabIndex = 20;
             this.lblAlmaOri.Text = "Almacén Origen";
             // 
             // cboAlmacen
             // 
             this.cboAlmacen.Enabled = false;
-            this.cboAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboAlmacen.FormattingEnabled = true;
             this.cboAlmacen.Location = new System.Drawing.Point(152, 12);
             this.cboAlmacen.Name = "cboAlmacen";
-            this.cboAlmacen.Size = new System.Drawing.Size(264, 26);
+            this.cboAlmacen.Size = new System.Drawing.Size(264, 24);
             this.cboAlmacen.TabIndex = 21;
             // 
             // lblTipoMovtos
             // 
             this.lblTipoMovtos.AutoSize = true;
-            this.lblTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.lblTipoMovtos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblTipoMovtos.Location = new System.Drawing.Point(10, 47);
             this.lblTipoMovtos.Name = "lblTipoMovtos";
-            this.lblTipoMovtos.Size = new System.Drawing.Size(120, 18);
+            this.lblTipoMovtos.Size = new System.Drawing.Size(112, 17);
             this.lblTipoMovtos.TabIndex = 22;
             this.lblTipoMovtos.Text = "Movimiento Prov";
             // 
             // cboTMovtoProv
             // 
-            this.cboTMovtoProv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboTMovtoProv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboTMovtoProv.FormattingEnabled = true;
             this.cboTMovtoProv.Location = new System.Drawing.Point(152, 44);
             this.cboTMovtoProv.Name = "cboTMovtoProv";
-            this.cboTMovtoProv.Size = new System.Drawing.Size(264, 26);
+            this.cboTMovtoProv.Size = new System.Drawing.Size(264, 24);
             this.cboTMovtoProv.TabIndex = 23;
             // 
             // cboCfgCatFoliadores
             // 
-            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.cboCfgCatFoliadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboCfgCatFoliadores.FormattingEnabled = true;
             this.cboCfgCatFoliadores.Location = new System.Drawing.Point(152, 136);
             this.cboCfgCatFoliadores.Name = "cboCfgCatFoliadores";
-            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(336, 26);
+            this.cboCfgCatFoliadores.Size = new System.Drawing.Size(336, 24);
             this.cboCfgCatFoliadores.TabIndex = 39;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label5.Location = new System.Drawing.Point(10, 139);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 18);
+            this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 38;
             this.label5.Text = "Foliador";
             // 
             // txtSerie
             // 
             this.txtSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtSerie.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtSerie.Location = new System.Drawing.Point(152, 76);
             this.txtSerie.MaxLength = 100;
             this.txtSerie.Name = "txtSerie";
-            this.txtSerie.Size = new System.Drawing.Size(134, 24);
+            this.txtSerie.Size = new System.Drawing.Size(134, 23);
             this.txtSerie.TabIndex = 40;
             // 
             // label2
@@ -159,30 +159,30 @@
             // txtDescripcion
             // 
             this.txtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtDescripcion.Location = new System.Drawing.Point(152, 106);
             this.txtDescripcion.MaxLength = 100;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(401, 24);
+            this.txtDescripcion.Size = new System.Drawing.Size(401, 23);
             this.txtDescripcion.TabIndex = 42;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label1.Location = new System.Drawing.Point(10, 109);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 18);
+            this.label1.Size = new System.Drawing.Size(82, 17);
             this.label1.TabIndex = 43;
             this.label1.Text = "Descripción";
             // 
             // chkEditaFoli
             // 
             this.chkEditaFoli.AutoSize = true;
-            this.chkEditaFoli.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEditaFoli.Location = new System.Drawing.Point(152, 228);
+            this.chkEditaFoli.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkEditaFoli.Location = new System.Drawing.Point(13, 238);
             this.chkEditaFoli.Name = "chkEditaFoli";
-            this.chkEditaFoli.Size = new System.Drawing.Size(92, 22);
+            this.chkEditaFoli.Size = new System.Drawing.Size(89, 21);
             this.chkEditaFoli.TabIndex = 44;
             this.chkEditaFoli.Text = "Edita folio";
             this.chkEditaFoli.UseVisualStyleBackColor = true;
@@ -190,52 +190,52 @@
             // txtFmtoImpresion
             // 
             this.txtFmtoImpresion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtFmtoImpresion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtFmtoImpresion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFmtoImpresion.Location = new System.Drawing.Point(152, 168);
             this.txtFmtoImpresion.MaxLength = 80;
             this.txtFmtoImpresion.Name = "txtFmtoImpresion";
-            this.txtFmtoImpresion.Size = new System.Drawing.Size(192, 24);
+            this.txtFmtoImpresion.Size = new System.Drawing.Size(192, 23);
             this.txtFmtoImpresion.TabIndex = 45;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label7.Location = new System.Drawing.Point(10, 171);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 18);
+            this.label7.Size = new System.Drawing.Size(104, 17);
             this.label7.TabIndex = 46;
             this.label7.Text = "Fmto Impresión";
             // 
             // txtNombreImpresora
             // 
             this.txtNombreImpresora.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNombreImpresora.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.txtNombreImpresora.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNombreImpresora.Location = new System.Drawing.Point(152, 198);
             this.txtNombreImpresora.MaxLength = 80;
             this.txtNombreImpresora.Name = "txtNombreImpresora";
-            this.txtNombreImpresora.Size = new System.Drawing.Size(323, 24);
+            this.txtNombreImpresora.Size = new System.Drawing.Size(323, 23);
             this.txtNombreImpresora.TabIndex = 47;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.label3.Location = new System.Drawing.Point(10, 201);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(133, 18);
+            this.label3.Size = new System.Drawing.Size(125, 17);
             this.label3.TabIndex = 48;
             this.label3.Text = "Nombre Impresora";
             // 
             // chkPregImpresion
             // 
             this.chkPregImpresion.AutoSize = true;
-            this.chkPregImpresion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkPregImpresion.Location = new System.Drawing.Point(345, 228);
+            this.chkPregImpresion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkPregImpresion.Location = new System.Drawing.Point(152, 238);
             this.chkPregImpresion.Name = "chkPregImpresion";
-            this.chkPregImpresion.Size = new System.Drawing.Size(143, 22);
+            this.chkPregImpresion.Size = new System.Drawing.Size(138, 21);
             this.chkPregImpresion.TabIndex = 49;
             this.chkPregImpresion.Text = "Pregunta imprimir";
             this.chkPregImpresion.UseVisualStyleBackColor = true;
@@ -245,10 +245,10 @@
             this.chkEstatus.AutoSize = true;
             this.chkEstatus.Checked = true;
             this.chkEstatus.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.chkEstatus.Location = new System.Drawing.Point(152, 256);
+            this.chkEstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkEstatus.Location = new System.Drawing.Point(354, 238);
             this.chkEstatus.Name = "chkEstatus";
-            this.chkEstatus.Size = new System.Drawing.Size(67, 22);
+            this.chkEstatus.Size = new System.Drawing.Size(65, 21);
             this.chkEstatus.TabIndex = 50;
             this.chkEstatus.Text = "Activo";
             this.chkEstatus.UseVisualStyleBackColor = true;

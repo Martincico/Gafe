@@ -39,22 +39,25 @@ namespace GAFE
             LimpiarControles();
             OpcionControles(true);
             LleCboClaseMov();
-            LlecboCfgCatFoliadores();
             switch (opcion)
             {
                 case 1://Nuevo
                     OpcionControles(true);
-                break;
+                    LlecboCfgCatFoliadores(0);
+                    break;
                 case 2://Edita
                     get_Campos(Cod);
                     txtClaveTipoMov.Enabled = false;
+                    LlecboCfgCatFoliadores(1);
+                    cboCfgCatFoliadores.Enabled = false;
                 break;
                 case 3://Consulta
                     get_Campos(Cod);
                     OpcionControles(false);
+                    LlecboCfgCatFoliadores(1);
                     cboTipoMovRel.Enabled = false;
-                break;
-
+                    cboCfgCatFoliadores.Enabled = false;
+                    break;
             }
             
         }
@@ -214,21 +217,21 @@ namespace GAFE
             Boolean dv = true;
             if (String.IsNullOrEmpty(txtClaveTipoMov.Text))
             {
-                MessageBoxAdv.Show("Código: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Código: No puede ir vacío.", "Configuración de tipo de movimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
             {
                 if (!Util.LetrasNum(txtClaveTipoMov.Text))
                 {
-                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Código: Contiene caracteres no validos.", "Configuración de tipo de movimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
             if (String.IsNullOrEmpty(txtDescripcion.Text))
             {
-                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxAdv.Show("Descripción: No puede ir vacío.", "Configuración de tipo de movimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dv = false;
             }
             else
@@ -249,26 +252,25 @@ namespace GAFE
             {
                 if (!Util.LetrasNum(txtDescCorta.Text))
                 {
-                    MessageBoxAdv.Show("Descripción Corta: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Descripción Corta: Contiene caracteres no validos.", "Configuración de tipo de movimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
-
-            if (String.IsNullOrEmpty(cboCfgCatFoliadores.Text))
-            {
-                MessageBoxAdv.Show("Foliador: No puede ir vacío.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dv = false;
-            }
-
+            
             if (!String.IsNullOrEmpty(txtFmtoImpresion.Text))
             {
                 if (!Util.Letras(txtFmtoImpresion.Text))
                 {
-                    MessageBoxAdv.Show("Nombre Fmto Impr: Contiene caracteres no validos.", "CatTipoMovtos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBoxAdv.Show("Nombre Fmto Impr: Contiene caracteres no validos.", "Configuración de tipo de movimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     dv = false;
                 }
             }
 
+            if (string.IsNullOrEmpty(Convert.ToString(cboCfgCatFoliadores.SelectedValue)))
+            {
+                MessageBoxAdv.Show("Foliador: No puede ir vacío.", "Configuración de tipo de movimientos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dv = false;
+            }
 
             return dv;
         }
@@ -328,15 +330,14 @@ namespace GAFE
 
         }
 
-        private void LlecboCfgCatFoliadores()
+        private void LlecboCfgCatFoliadores(int SinUso)
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(0);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(SinUso);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }
-
-
+        
         private void cboCveClsMov_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cboCveClsMov.Text == "TRASPASO")

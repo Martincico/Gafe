@@ -49,21 +49,25 @@ namespace GAFE
             OpcionControles(true);
             LlecboAlmacen();
             LlecboCfgDocs();
-            LlecboCfgCatFoliadores();
+            //LlecboCfgCatFoliadores();
 
             switch (opcion)
             {
                 case 1://Nuevo
                     OpcionControles(true);
-                break;
+                    LlecboCfgCatFoliadores(0);
+               break;
                 case 2://Edita
                     get_Campos(user.AlmacenUsa,TMov,ser);
                     txtSerie.Enabled = false;
                     cboAlmacen.Enabled = false;
                     cboTMovtoProv.Enabled = false;
+                    LlecboCfgCatFoliadores(1);
+                    cboCfgCatFoliadores.Enabled = false;
                     break;
                 case 3://Consulta
                     get_Campos(user.AlmacenUsa, TMov, ser);
+                    LlecboCfgCatFoliadores(1);
                     OpcionControles(false);
                 break;
 
@@ -241,6 +245,12 @@ namespace GAFE
                 }
             }
 
+            if (string.IsNullOrEmpty(Convert.ToString(cboCfgCatFoliadores.SelectedValue)))
+            {
+                MessageBoxAdv.Show("Foliador: No puede ir vacío.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dv = false;
+            }
+
             return dv;
         }
 
@@ -287,10 +297,10 @@ namespace GAFE
             cboTMovtoProv.DisplayMember = "Descripcion";
         }
 
-        private void LlecboCfgCatFoliadores()
+        private void LlecboCfgCatFoliadores(int EnUso)
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(0);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(EnUso);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }
