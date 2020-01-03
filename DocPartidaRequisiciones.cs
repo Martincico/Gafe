@@ -33,18 +33,20 @@ namespace GAFE
         private String CveUmed = "";
         private String Linea = "", Marca = "";
         Boolean ErrCalc = true;
+        clsCfgAlmacen CfgAlma;
 
         private double CantInv = 0;
 
         private int Opcion;
-        
+        private int ExisNegativa;//0 Esta bien -- 1 Es Negativo
+
         public DocPartidaRequisiciones()
         {
             InitializeComponent();
         }
 
         public DocPartidaRequisiciones(MsSql oDat, DatCfgParamSystem ParamS,  DatCfgUsuario DatUsr, clsCfgDocumento CfgDoc,
-            clsStiloTemas NewColor, int op, DocPartidasReq part = null)
+            clsCfgAlmacen PCfgAlma, clsStiloTemas NewColor, int op, DocPartidasReq part = null)
         {
             InitializeComponent();
             StiloColor = NewColor;
@@ -55,6 +57,7 @@ namespace GAFE
             Opcion = op;
             partida = part;
             ConfigDoc = CfgDoc;
+            CfgAlma = PCfgAlma;
         }
 
 
@@ -276,30 +279,67 @@ namespace GAFE
 
             if (ErrCalc)
             {
-                double iva = Convert.ToDouble(txtCveIVA.Text);
-                double _iEPS = Convert.ToDouble(txtCveIESP.Text);
-
-                SubTotal = Precio * Cantidad;
-                
-                if (chkCalculaPorcentaje.Checked)
-                    PNeto = (SubTotal * Descuento / 100);
+                if (ConfigDoc.UsaAlmTmp == 1)
+                {
+                    if ((CantInv - Cantidad) < 0)
+                    {
+                        if (CfgAlma.NumRojo == 1)
+                        {
+                            if (MessageBoxAdv.Show("Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                    " Existencia: " + CantInv + "\n" +
+                                    " ¿Desea continuar?",
+                                    "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                ExisNegativa = 0;
+                            }
+                            else
+                                ExisNegativa = 1;
+                        }
+                        else
+                        {
+                            ExisNegativa = 1;
+                            Util.MsjBox(ttCantidad, txtCantidad, "Cantidad", "Cantidad solicitada es mayor a la existencia del Articulo\n" +
+                                                               " Existencia: " + CantInv + "\n", ToolTipIcon.Error);
+                        }
+                    }
+                    else
+                        ExisNegativa = 0;
+                }
                 else
-                    PNeto = Descuento;
+                {
+                    ExisNegativa = 0;
+                }
 
-                SubTotal = SubTotal - PNeto;
+                if(ExisNegativa == 0)
+                {
+
+                    double iva = Convert.ToDouble(txtCveIVA.Text);
+                    double _iEPS = Convert.ToDouble(txtCveIESP.Text);
+
+                    SubTotal = Precio * Cantidad;
+
+                    if (chkCalculaPorcentaje.Checked)
+                        PNeto = (SubTotal * Descuento / 100);
+                    else
+                        PNeto = Descuento;
+
+                    SubTotal = SubTotal - PNeto;
 
 
-                TotalIEPS = _iEPS > 0 ? SubTotal * (_iEPS / 100) : 0;
-                SubTotal = SubTotal + TotalIEPS;
-                TotalIva = iva > 0 ? SubTotal * (iva / 100) : 0;
-                
-                TotalPartida = SubTotal + TotalIva;
-                SubTotal = SubTotal - TotalIEPS;
+                    TotalIEPS = _iEPS > 0 ? SubTotal * (_iEPS / 100) : 0;
+                    SubTotal = SubTotal + TotalIEPS;
+                    TotalIva = iva > 0 ? SubTotal * (iva / 100) : 0;
 
-                txtImpIEPS.Text = Util.FormtDouDec(TotalIEPS);  //Convert.ToString(TotalIva);
-                txtImpuesto.Text = Util.FormtDouDec(TotalIva);//TotalIva.ToString();
-                txtSubtotal.Text = Util.FormtDouDec(SubTotal); //SubTotal.ToString();
-                txtTotal.Text = Util.FormtDouDec(TotalPartida);//TotalPartida.ToString();
+                    TotalPartida = SubTotal + TotalIva;
+                    SubTotal = SubTotal - TotalIEPS;
+
+                    txtImpIEPS.Text = Util.FormtDouDec(TotalIEPS);  //Convert.ToString(TotalIva);
+                    txtImpuesto.Text = Util.FormtDouDec(TotalIva);//TotalIva.ToString();
+                    txtSubtotal.Text = Util.FormtDouDec(SubTotal); //SubTotal.ToString();
+                    txtTotal.Text = Util.FormtDouDec(TotalPartida);//TotalPartida.ToString();
+
+
+                }
 
             }
          }
@@ -363,6 +403,13 @@ namespace GAFE
                         }
                     }
                 }
+
+                if (ExisNegativa == 1)
+                {
+                    err = err + "La cantidad solicitada es mayor a la exitencia del articulo \n";
+                    ErrCalc = false;
+                }
+
 
                 if (!ErrCalc)
                 {

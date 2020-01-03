@@ -25,6 +25,7 @@ namespace GAFE
 
         private clsCfgDocumento ConfigDoc;
         private clsCfgDocSeries CfgDocSerie;
+        clsCfgAlmacen cfgAlma;
 
         string idmovimiento;
         private MsSql db = null;
@@ -139,6 +140,7 @@ namespace GAFE
             cboAlmacen.DisplayMember = "Descripcion";
 
             cboAlmacen.SelectedValue = user.AlmacenUsa;
+            CargaParamAlma(user.AlmacenUsa);
         }
 
         private void LlecboProveedor()
@@ -296,7 +298,7 @@ namespace GAFE
             if (Valida(0) == 0)
             {
                 DocPartidasReq par = new DocPartidasReq();
-                DocPartidaRequisiciones DP = new DocPartidaRequisiciones(db, ParamSystem, user,ConfigDoc, StiloColor, 1, par);
+                DocPartidaRequisiciones DP = new DocPartidaRequisiciones(db, ParamSystem, user,ConfigDoc,cfgAlma, StiloColor, 1, par);
                 DP.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                 DP.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
                 DP.ShowDialog();
@@ -349,7 +351,7 @@ namespace GAFE
                     int idx = PARTIDAS.IndexOf(pr);
                     PARTIDAS.RemoveAt(idx);
 
-                    DocPartidaRequisiciones prV = new DocPartidaRequisiciones(db, ParamSystem, user, ConfigDoc, StiloColor,2,pr);
+                    DocPartidaRequisiciones prV = new DocPartidaRequisiciones(db, ParamSystem, user, ConfigDoc, cfgAlma, StiloColor,2,pr);
                     prV.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
                     prV.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
 
@@ -660,6 +662,7 @@ namespace GAFE
             {
                 if (!val.Equals("System.Data.DataRowView"))
                 {
+                    CargaParamAlma(val);
                     if (ConfigDoc.UsaSerie == 1)
                     {
                         LlecboSerie(val);
@@ -1018,6 +1021,13 @@ namespace GAFE
         private void txtNoFactura_KeyPress(object sender, KeyPressEventArgs e)
         {
             ClsUtilerias.LetrasNumeros(e, 1);
+        }
+
+        private void CargaParamAlma(String CveAlm)
+        {
+            clsCfgAlmacen cd = new clsCfgAlmacen(db, CveAlm);
+            cfgAlma = cd.ConfigAlmacen();
+
         }
     }
 }
