@@ -326,7 +326,7 @@ namespace GAFE
         private void LlecboCfgCatFoliadores()
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(1);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(0);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }

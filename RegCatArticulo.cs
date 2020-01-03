@@ -155,7 +155,8 @@ namespace GAFE
                          "       A.Observacion, " +
                          "       ImpIep.CveImpuesto AS CveIEPS, " +
                          "       ImpIep.Tipo AS TipoIEPS, " +
-                         "       ImpIep.Valor AS ValorIEPS" +
+                         "       ImpIep.Valor AS ValorIEPS," +
+                         "       A.RequiereReceta" +
 
                          " FROM dbo.inv_CatArticulos AS A " +
                          " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +

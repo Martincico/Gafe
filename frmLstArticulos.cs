@@ -29,7 +29,7 @@ namespace GAFE
         private MsSql db = null;
         private clsUtil uT;
 
-        public string[] dv = new string[17];
+        public string[] dv = new string[18];
 
         public clsStiloTemas StiloColor;
 
@@ -243,6 +243,7 @@ namespace GAFE
                         17 - ImmpIep.CveImpuesto AS CveIEPS, " +
                         18 - ImmpIep.Tipo AS TipoIEPS, " +
                         19 - ImmpIep.Valor AS ValorIEPS" +
+                        20 - RequiereReceta
             */
 
 
@@ -279,6 +280,7 @@ namespace GAFE
             grdView.Columns["CveIEPS"].Visible = false;
             grdView.Columns["TipoIEPS"].Visible = false;
             grdView.Columns["ValorIEPS"].Visible = false;
+            grdView.Columns["RequiereReceta"].Visible = false;
 
         }
 
@@ -330,6 +332,8 @@ namespace GAFE
                     dv[13] = grdView[17, grdView.CurrentRow.Index].Value.ToString();//CveImpuesto IEPS
                     dv[14] = grdView[18, grdView.CurrentRow.Index].Value.ToString();//Desc Tipo IEPS
                     dv[15] = grdView[19, grdView.CurrentRow.Index].Value.ToString();//Valor IEPS
+
+                    dv[17] = grdView[20, grdView.CurrentRow.Index].Value.ToString();//RequiereReceta
 
                     this.Close();
                 }

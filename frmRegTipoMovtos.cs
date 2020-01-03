@@ -70,7 +70,6 @@ namespace GAFE
             txtDescCorta.Text = pui.cmpDescCorta;
             rdbEntrada.Checked = pui.cmpEntSal == "E" ? true : false;
             rdbSalida.Checked = pui.cmpEntSal == "S" ? true : false;
-            //cboCveClsMov.SelectedIndex = GetCboSelectIndex(cboCveClsMov, pui.cmpCveClsMov);
             cboCveClsMov.SelectedValue = pui.cmpCveClsMov;
             cboTipoMovRel.SelectedValue = pui.cmpTipoMovRel;
             cboCfgCatFoliadores.SelectedValue = pui.cmpCveFoliador;
@@ -84,7 +83,7 @@ namespace GAFE
 
             chkSolicitaCosto.Checked = pui.cmpSolicitaCosto == 1 ? true : false;
             chkCalculaIva.Checked = pui.cmpCalculaIva == 1 ? true : false;
-            //chkEditaCosto.Checked = pui.cmpPideCentroCosto == 1 ? true : false;
+            //chkCentroCosto.Checked = pui.cmpPideCentroCosto == 1 ? true : false;
             chkInterno.Checked = pui.cmpEsInterno == 1 ? true : false;
             chkEstatus.Checked = pui.cmpEstatus == 1 ? true : false;
             chkSolicitaSucursal.Checked = pui.cmpSolicitaSucursal == 1 ? true : false;
@@ -332,7 +331,7 @@ namespace GAFE
         private void LlecboCfgCatFoliadores()
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(1);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(0);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }

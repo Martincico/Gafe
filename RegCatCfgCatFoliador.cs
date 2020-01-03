@@ -94,7 +94,7 @@ namespace GAFE
 
         public SqlDataAdapter cboCfgCatFoliadores(int _EnUso)
         {
-            String Str = _EnUso == 1 ? " WHERE EnUso = " + 0: " ";
+            String Str = " WHERE EnUso = "+_EnUso;
             SqlDataAdapter dt = null;
             string Sql = "Select CveFoliador, Descripcion " +
                          "from CfgCatFoliadores "+Str;
