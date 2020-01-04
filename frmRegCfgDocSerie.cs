@@ -58,16 +58,16 @@ namespace GAFE
                     LlecboCfgCatFoliadores(0);
                break;
                 case 2://Edita
+                    LlecboCfgCatFoliadores(1);
                     get_Campos(user.AlmacenUsa,TMov,ser);
                     txtSerie.Enabled = false;
                     cboAlmacen.Enabled = false;
                     cboTMovtoProv.Enabled = false;
-                    LlecboCfgCatFoliadores(1);
                     cboCfgCatFoliadores.Enabled = false;
                     break;
                 case 3://Consulta
-                    get_Campos(user.AlmacenUsa, TMov, ser);
                     LlecboCfgCatFoliadores(1);
+                    get_Campos(user.AlmacenUsa, TMov, ser);
                     OpcionControles(false);
                 break;
 
