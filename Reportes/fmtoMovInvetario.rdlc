@@ -357,7 +357,7 @@
                   <TextRun>
                     <Value>D E T A LL E</Value>
                     <Style>
-                      <FontSize>8pt</FontSize>
+                      <FontSize>7pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>White</Color>
                     </Style>
@@ -369,20 +369,16 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>0.01058cm</Top>
+            <Top>0.04233cm</Top>
             <Left>0.0635cm</Left>
-            <Height>0.6cm</Height>
-            <Width>17.85cm</Width>
+            <Height>0.34976cm</Height>
+            <Width>19.30797cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
               <BackgroundColor>Gray</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
           <Tablix Name="Tablix1">
@@ -392,31 +388,28 @@
                   <Width>0.76938cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.35688cm</Width>
+                  <Width>2.58787cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>7.12975cm</Width>
+                  <Width>7.27674cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.31459cm</Width>
+                  <Width>1.16695cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.07995cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.73516cm</Width>
+                  <Width>1.59828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.73516cm</Width>
+                  <Width>1.59828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.73516cm</Width>
+                  <Width>1.59828cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.78563cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.73516cm</Width>
+                  <Width>1.63828cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -434,7 +427,7 @@
                                 <TextRun>
                                   <Value>No.</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -448,6 +441,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -470,7 +464,7 @@
                                 <TextRun>
                                   <Value>Codigo</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -484,6 +478,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -506,7 +501,7 @@
                                 <TextRun>
                                   <Value>Descripción</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -520,6 +515,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -542,7 +538,7 @@
                                 <TextRun>
                                   <Value>U. Med</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -556,6 +552,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -578,7 +575,7 @@
                                 <TextRun>
                                   <Value>Cant.</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -592,6 +589,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -614,7 +612,7 @@
                                 <TextRun>
                                   <Value>P. U.</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -628,6 +626,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -650,7 +649,7 @@
                                 <TextRun>
                                   <Value>Desc.</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -664,6 +663,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -684,9 +684,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Iva</Value>
+                                  <Value>Impuesto</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -700,42 +700,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
-                            </Border>
-                            <BackgroundColor>Silver</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox19">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>IEPS</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox19</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -758,7 +723,7 @@
                                 <TextRun>
                                   <Value>Total</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -772,6 +737,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <BackgroundColor>Silver</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -799,12 +765,12 @@
                                 <TextRun>
                                   <Value>=Fields!NoPartida.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -812,6 +778,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -820,6 +787,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -833,7 +801,7 @@
                                 <TextRun>
                                   <Value>=Fields!CodigoBarra.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -846,6 +814,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -867,7 +836,7 @@
                                 <TextRun>
                                   <Value>=Fields!Descripcion.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -880,6 +849,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -901,7 +871,7 @@
                                 <TextRun>
                                   <Value>=Fields!CveUmedida.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -914,6 +884,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -933,9 +904,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Cantidad.Value</Value>
+                                  <Value>=CInt(Fields!Cantidad.Value)</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -948,6 +919,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -969,7 +941,8 @@
                                 <TextRun>
                                   <Value>=Fields!Precio.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -982,6 +955,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -994,16 +968,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Descuento">
+                        <Textbox Name="TotalDscto">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Descuento.Value</Value>
+                                  <Value>=Fields!TotalDscto.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1012,10 +987,11 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Descuento</rd:DefaultName>
+                          <rd:DefaultName>TotalDscto</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1035,9 +1011,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!TotalIva.Value</Value>
+                                  <Value>=Fields!TotalIva.Value + Fields!TotalIEPS.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1050,40 +1027,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="TotalIEPS">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!TotalIEPS.Value</Value>
-                                  <Style>
-                                    <FontSize>7pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>TotalIEPS</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1105,7 +1049,8 @@
                                 <TextRun>
                                   <Value>=Fields!SubTotal.Value</Value>
                                   <Style>
-                                    <FontSize>7pt</FontSize>
+                                    <FontSize>6.5pt</FontSize>
+                                    <Format>'$'#,0.00;('$'#,0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1118,6 +1063,7 @@
                           <Style>
                             <Border>
                               <Style>Solid</Style>
+                              <Width>0.5pt</Width>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
@@ -1143,7 +1089,6 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1160,10 +1105,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DSMovtoDetalle</DataSetName>
-            <Top>0.78697cm</Top>
+            <Top>0.43772cm</Top>
             <Left>0.05747cm</Left>
             <Height>1.08812cm</Height>
-            <Width>21.37682cm</Width>
+            <Width>19.31401cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1173,13 +1118,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.83079in</Height>
+        <Height>0.62234in</Height>
         <Style />
       </Body>
-      <Width>9.02106in</Width>
+      <Width>7.69663in</Width>
       <Page>
         <PageHeader>
-          <Height>3.07892cm</Height>
+          <Height>2.68473cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1235,6 +1180,7 @@ First(Fields!TipoMovOrigen.Value, "DSMovtoMaster") &amp; " (DE " &amp;
      ) &amp; ")",
   First(Fields!TipoMovOrigen.Value, "DSMovtoMaster"))</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                         <Color>White</Color>
                       </Style>
@@ -1246,14 +1192,15 @@ First(Fields!TipoMovOrigen.Value, "DSMovtoMaster") &amp; " (DE " &amp;
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>P_NombreDoc</rd:DefaultName>
-              <Top>2.36015cm</Top>
+              <Top>2.04265cm</Top>
               <Left>0.0635cm</Left>
               <Height>0.6cm</Height>
-              <Width>17.7865cm</Width>
+              <Width>15.17918cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>Solid</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <BackgroundColor>Silver</BackgroundColor>
                 <PaddingLeft>2pt</PaddingLeft>
@@ -1287,6 +1234,7 @@ First(Fields!TipoMovOrigen.Value, "DSMovtoMaster") &amp; " (DE " &amp;
                     <TextRun>
                       <Value>=First(Fields!Documento.Value, "DSMovtoMaster")</Value>
                       <Style>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                         <Color>White</Color>
                       </Style>
@@ -1298,14 +1246,15 @@ First(Fields!TipoMovOrigen.Value, "DSMovtoMaster") &amp; " (DE " &amp;
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Documento</rd:DefaultName>
-              <Top>1.64069cm</Top>
-              <Left>12.57561cm</Left>
+              <Top>2.04265cm</Top>
+              <Left>15.41907cm</Left>
               <Height>0.6cm</Height>
-              <Width>5.27439cm</Width>
+              <Width>3.9524cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>Solid</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <BackgroundColor>Gray</BackgroundColor>
                 <PaddingLeft>2pt</PaddingLeft>
@@ -1382,8 +1331,8 @@ First(Fields!TipoMovOrigen.Value, "DSMovtoMaster") &amp; " (DE " &amp;
         </PageFooter>
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>
-        <LeftMargin>1.5cm</LeftMargin>
-        <RightMargin>1.5cm</RightMargin>
+        <LeftMargin>1cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
         <TopMargin>1.5cm</TopMargin>
         <BottomMargin>1.5cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
