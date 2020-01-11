@@ -239,6 +239,7 @@
             // 
             resources.ApplyResources(this.txtSubTotalDesc, "txtSubTotalDesc");
             this.txtSubTotalDesc.Name = "txtSubTotalDesc";
+            this.txtSubTotalDesc.ReadOnly = true;
             // 
             // label6
             // 
@@ -249,6 +250,7 @@
             // 
             resources.ApplyResources(this.txtIVA, "txtIVA");
             this.txtIVA.Name = "txtIVA";
+            this.txtIVA.ReadOnly = true;
             // 
             // label5
             // 
@@ -259,6 +261,7 @@
             // 
             resources.ApplyResources(this.txtIeps, "txtIeps");
             this.txtIeps.Name = "txtIeps";
+            this.txtIeps.ReadOnly = true;
             // 
             // label13
             // 
@@ -269,6 +272,7 @@
             // 
             resources.ApplyResources(this.txtDescuento, "txtDescuento");
             this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
             this.txtDescuento.TextChanged += new System.EventHandler(this.txtDescuento_TextChanged);
             // 
             // cmdAceptar
@@ -299,6 +303,7 @@
             // 
             resources.ApplyResources(this.txtTotal, "txtTotal");
             this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
             // 
             // label11
             // 
@@ -310,6 +315,7 @@
             // 
             resources.ApplyResources(this.txtSubTotal, "txtSubTotal");
             this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.TextChanged += new System.EventHandler(this.txtSubTotal_TextChanged);
             // 
             // label8

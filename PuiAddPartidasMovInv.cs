@@ -25,6 +25,7 @@ namespace GAFE
         private Double CantidadPkt;
         private Double Costo;
         private Double Precio;
+        private int DsctoEsPorcentaje;
         private Double Descuento;
         private Double TotalDscto;
         private String CveImpuesto;
@@ -57,7 +58,7 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[38, 2];
+        private object[,] MatParam = new object[39, 2];
         private object[,] MatParamKeys = new object[2, 2];
         //private object[,] MatParamInvExis = new object[9, 2];
         private SqlDataAdapter Datos;
@@ -97,6 +98,11 @@ namespace GAFE
         {
             get { return NoPartida; }
             set { NoPartida  = value; }
+        }
+        public int cmpDsctoEsPorcentaje
+        {
+            get { return DsctoEsPorcentaje; }
+            set { DsctoEsPorcentaje = value; }
         }
 
         public string cmpCodigoBarra
@@ -493,6 +499,7 @@ namespace GAFE
             PartTra = ObjA[24].ToString();
             Costo = Convert.ToDouble(ObjA[25].ToString());
             CodigoBarra = ObjA[26].ToString();
+            DsctoEsPorcentaje = Convert.ToInt32(ObjA[27].ToString());
 
         }
 
@@ -537,6 +544,7 @@ namespace GAFE
             MatParam[35, 0] = "CveImpOtro"; MatParam[35, 1] = CveImpOtro;
             MatParam[36, 0] = "ImpValorOtro"; MatParam[36, 1] = ImpValorOtro;
             MatParam[37, 0] = "TotalImpOtro"; MatParam[37, 1] = TotalImpOtro;
+            MatParam[38, 0] = "DsctoEsPorcentaje"; MatParam[38, 1] = DsctoEsPorcentaje;
 
 
         }

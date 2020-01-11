@@ -296,11 +296,11 @@
             this.cmdImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdImprimir.Location = new System.Drawing.Point(9, 420);
             this.cmdImprimir.Name = "cmdImprimir";
-            this.cmdImprimir.Size = new System.Drawing.Size(94, 36);
+            this.cmdImprimir.Size = new System.Drawing.Size(42, 36);
             this.cmdImprimir.TabIndex = 9;
-            this.cmdImprimir.Text = "Imprimir";
             this.cmdImprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdImprimir.UseVisualStyleBackColor = false;
+            this.cmdImprimir.Click += new System.EventHandler(this.cmdImprimir_Click);
             // 
             // MovtosInvLst
             // 

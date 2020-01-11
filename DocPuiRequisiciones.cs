@@ -22,6 +22,10 @@ namespace GAFE
         private DateTime FechaExpedicion;
         private string ClaveImpuesto;
         private double Impuesto;
+        private double TotalIEPS;
+        private double TotalRetISR;
+        private double TotalRetiVA;
+        private double TotalImpOtro;
         private double Descuento;
         private double SubTotal;
         private double Total;
@@ -42,7 +46,7 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[22, 2];
+        private object[,] MatParam = new object[26, 2];
         private object[,] MatParam2 = new object[3, 2];
         private object[,] MatParTrans = new object[9, 2];
 
@@ -148,6 +152,27 @@ namespace GAFE
             set { Impuesto = value; }
         }
 
+
+        public double cmpTotalIEPS
+        {
+            get { return TotalIEPS; }
+            set { TotalIEPS = value; }
+        }
+        public double cmpTotalRetISR
+        {
+            get { return TotalRetISR; }
+            set { TotalRetISR = value; }
+        }
+        public double cmpTotalRetiVA
+        {
+            get { return TotalRetiVA; }
+            set { TotalRetiVA = value; }
+        }
+        public double cmpTotalImpOtro
+        {
+            get { return TotalImpOtro; }
+            set { TotalImpOtro = value; }
+        }
         public double cmpDescuento
         {
             get { return Descuento; }
@@ -327,6 +352,13 @@ namespace GAFE
             cmpEsperaAceptacion = Convert.ToInt32(ObjA[17].ToString());
             cmpCveSucursal = ObjA[18].ToString();
             cmpNoFactura = ObjA[19].ToString();
+
+
+            cmpTotalIEPS = double.Parse(ObjA[20].ToString());
+            cmpTotalRetISR = double.Parse(ObjA[21].ToString());
+            cmpTotalRetiVA = double.Parse(ObjA[22].ToString());
+            cmpTotalImpOtro = double.Parse(ObjA[23].ToString());
+
         }
 
 
@@ -395,6 +427,11 @@ namespace GAFE
             MatParam[19, 0] = "CveSucursal"; MatParam[19, 1] = CveSucursal;
             MatParam[20, 0] = "UsuarioModi"; MatParam[20, 1] = UsuarioModi;
             MatParam[21, 0] = "NoFactura"; MatParam[21, 1] = NoFactura;
+            MatParam[22, 0] = "TotalIEPS"; MatParam[22, 1] = TotalIEPS;
+            MatParam[23, 0] = "TotalRetISR"; MatParam[23, 1] = TotalRetISR;
+            MatParam[24, 0] = "TotalRetiVA"; MatParam[24, 1] = TotalRetiVA;
+            MatParam[25, 0] = "TotalImpOtro"; MatParam[25, 1] = TotalImpOtro;
+
             
         }
 

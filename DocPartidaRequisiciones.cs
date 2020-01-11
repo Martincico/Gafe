@@ -95,9 +95,9 @@ namespace GAFE
                     partida.Cantidad = Convert.ToDouble(txtCantidad.Text);
                     partida.CveUmedida1 = CveUmed;
                     partida.CveImpuesto = CveImp;
-                    partida.ImpuestoValor = Convert.ToDouble(Util.LimpiarTxt(txtCveIVA.Text));
+                    partida.ImpuestoValor = Convert.ToDouble(Util.LimpiarTxt(txtValorIVA.Text));
                     partida.CveImpIEPS = CveImpIEPS;
-                    partida.ImpIEPSValor = Convert.ToDouble(Util.LimpiarTxt(txtImpIEPS.Text));
+                    partida.ImpIEPSValor = Convert.ToDouble(Util.LimpiarTxt(txtValorIESP.Text));
                     partida.CveImpRetISR = "";
                     partida.ImpRetISRValor = 0;
                     partida.CveImpRetIVA = "";
@@ -108,7 +108,11 @@ namespace GAFE
                     partida.Marca = Marca;
 
                     partida.Precio = Convert.ToDouble(txtPrecio.Text);
+
+                    partida.DsctoEsPorcentaje = (chkCalculaPorcentaje.Checked) ?1:0;
                     partida.Descuento = Convert.ToDouble(txtDescuento.Text);
+                    partida.TotalDscto = Convert.ToDouble(Util.LimpiarTxt(txtTotalDescuento.Text));
+                    
                     partida.PrecioNeto = Convert.ToDouble(Util.LimpiarTxt(txtPrecioNeto.Text));//Convert.ToDouble(txtPrecioNeto.Text);
                     partida.Impuesto = Convert.ToDouble(Util.LimpiarTxt(txtImpuesto.Text));  //Convert.ToDouble(txtImpuesto.Text);
                     partida.TotalIEPS = Convert.ToDouble(Util.LimpiarTxt(txtImpIEPS.Text));  //Convert.ToDouble(txtImpuesto.Text);
@@ -134,16 +138,18 @@ namespace GAFE
             txtDescripcion.Text = part.Descripcion;
             txtPrecio.Text = part.Precio.ToString();
             txtDescuento.Text = (part.Descuento > 0) ? part.Descuento.ToString() : "0.00";
+            txtTotalDescuento.Text = (part.TotalDscto > 0) ? part.TotalDscto.ToString() : "0.00";
+            chkCalculaPorcentaje.Checked = (part.DsctoEsPorcentaje == 1) ? true : false;
             txtPrecioNeto.Text = Util.FormtDouDec(part.PrecioNeto);//part.PrecioNeto.ToString();
             txtCantidad.Text = part.Cantidad.ToString();
             txtImpuesto.Text = Util.FormtDouDec(part.Impuesto); //part.Impuesto.ToString();
             txtSubtotal.Text = Util.FormtDouDec(part.SubTotal);//part.SubTotal.ToString();
             txtTotal.Text = Util.FormtDouDec(part.Total); //part.Total.ToString();
-            txtCveIVA.Text = part.ImpuestoValor.ToString();
+            txtValorIVA.Text = part.ImpuestoValor.ToString();
 
             CveImpIEPS = part.CveImpIEPS;
             txtImpIEPS.Text = Util.FormtDouDec(part.TotalIEPS); //part.Impuesto.ToString();
-            txtCveIESP.Text = part.ImpIEPSValor.ToString();
+            txtValorIESP.Text = part.ImpIEPSValor.ToString();
 
             Linea = part.Linea;
             Marca = part.Marca;
@@ -313,8 +319,8 @@ namespace GAFE
                 if(ExisNegativa == 0)
                 {
 
-                    double iva = Convert.ToDouble(txtCveIVA.Text);
-                    double _iEPS = Convert.ToDouble(txtCveIESP.Text);
+                    double iva = Convert.ToDouble(txtValorIVA.Text);
+                    double _iEPS = Convert.ToDouble(txtValorIESP.Text);
 
                     SubTotal = Precio * Cantidad;
 
@@ -335,6 +341,7 @@ namespace GAFE
 
                     txtImpIEPS.Text = Util.FormtDouDec(TotalIEPS);  //Convert.ToString(TotalIva);
                     txtImpuesto.Text = Util.FormtDouDec(TotalIva);//TotalIva.ToString();
+                    txtTotalDescuento.Text = Util.FormtDouDec(PNeto); //SubTotal.ToString();
                     txtSubtotal.Text = Util.FormtDouDec(SubTotal); //SubTotal.ToString();
                     txtTotal.Text = Util.FormtDouDec(TotalPartida);//TotalPartida.ToString();
 
@@ -430,6 +437,7 @@ namespace GAFE
             ar.ShowDialog();
             if (!string.IsNullOrEmpty(ar.KeyCampo))
             {
+                LimpiaVar();
                 IdArt = ar.dv[0];
                 if (ParamSystem.HideCveArt == 1)
                     txtClaveArticulo.Text = ar.dv[16];
@@ -440,12 +448,12 @@ namespace GAFE
                 txtDescripcion.Text = ar.dv[1];
 
                 CveImp = ar.dv[10];
-                txtCveIVA.Text = GetImpuesto(CveImp);
+                txtValorIVA.Text = GetImpuesto(CveImp);
                 CveUmed = ar.dv[8];
                 txtUmedida.Text = GetUMed();
                 CveImpIEPS = ar.dv[13];
                 if (!string.IsNullOrEmpty(CveImpIEPS))
-                    txtCveIESP.Text = GetImpuesto(CveImpIEPS);
+                    txtValorIESP.Text = GetImpuesto(CveImpIEPS);
 
                 Linea = ar.dv[3];
                 Marca = ar.dv[5];
@@ -478,6 +486,7 @@ namespace GAFE
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                LimpiaVar();
                 PuiCatArticulos Art = new PuiCatArticulos(db);
                 Art.keyCveArticulo = txtClaveArticulo.Text;
                 if (Art.EditarArticulo(ParamSystem.HideCveArt) > 0)
@@ -495,12 +504,12 @@ namespace GAFE
                     txtDescripcion.Text = Art.cmpDescripcion;
                     
                     CveImp = Art.cmpCveImpuesto;
-                    txtCveIVA.Text = GetImpuesto(CveImp);
+                    txtValorIVA.Text = GetImpuesto(CveImp);
                     CveUmed = Art.cmpCveUMedida1;
                     txtUmedida.Text = GetUMed();
                     CveImpIEPS = Art.cmpCveImpIEPS;
                     if (!string.IsNullOrEmpty(CveImpIEPS))
-                        txtCveIESP.Text = GetImpuesto(CveImpIEPS);
+                        txtValorIESP.Text = GetImpuesto(CveImpIEPS);
 
 
                     Linea = getLinea(Art.cmpCveLinea);
@@ -515,7 +524,6 @@ namespace GAFE
                 }
                 else
                 {
-                    LimpiaVar();
                     MessageBoxAdv.Show("No se encuentra el registro", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -561,12 +569,14 @@ namespace GAFE
             IdArt = "";
             CodBa = "";
             txtDescripcion.Text = "";
-            txtCveIVA.Text = "";
+            txtValorIVA.Text = "0";
             CveImp = "";
-            CveUmed = "";
-            txtUmedida.Text = "";
             txtImpuesto.Text = "";
-            txtCveIESP.Text = "";
+            txtValorIESP.Text = "0";
+            CveImpIEPS = "";
+            txtImpIEPS.Text = "";
+            txtUmedida.Text = "";
+            CveUmed = "";
         }
 
 

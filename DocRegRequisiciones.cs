@@ -16,7 +16,7 @@ namespace GAFE
         private SqlParameter[] ArrParametrosP;
 
         DocPartidasReq cl = new DocPartidasReq();
-        private object[,] MatParamP = new object[33,2];
+        private object[,] MatParamP = new object[35,2];
 
         private List<DocPartidasReq> Partidas;
 
@@ -144,7 +144,9 @@ namespace GAFE
                          "       FechaExpedicion = (CONVERT(DATETIME, @FechaExpedicion) + CONVERT(DATETIME, CONVERT(time, GETDATE()))), " +
                          "       Estatus=@Estatus, UsuarioModi = @UsuarioModi, " +
                          "       Autorizado=@Autorizado, EsperaAceptacion = @EsperaAceptacion," +
-                         "       CveSucursal = @CveSucursal, NoFactura =  @NoFactura " +
+                         "       CveSucursal = @CveSucursal, NoFactura =  @NoFactura," +
+                         "       TotalIEPS = @TotalIEPS, TotalRetISR = @TotalRetISR, " +
+                         "       TotalRetiVA=@TotalRetiVA, TotalImpOtro=@TotalImpOtro" +
                          " WHERE idMov = @idMov";
             db.IniciaTrans();
 
@@ -164,14 +166,14 @@ namespace GAFE
                                   "FechaCaptura,FechaModificacion," +
                                   "        CveImpIEPS, ImpIEPSValor, TotalIEPS, CveImpRetIVA, ImpRetIVAValor, " +
                                  "        TotalRetIVA, CveImpRetISR, ImpRetISRValor, TotalRetISR, CveImpOtro, " +
-                                 "        ImpValorOtro, TotalImpOtro) " +
+                                 "        ImpValorOtro, TotalImpOtro, TotalDscto, DsctoEsPorcentaje ) " +
                              "  values(@idMov,@Documento,@Serie,@Numdoc,@ClaveAlmacen,@Partida,@CveArticulo,@Descripcion,@Cantidad," +
                                        "@CveUmedida1,@CveImpuesto,@ImpuestoValor,@Precio,@Descuento,@PrecioNeto,@Impuesto,@SubTotal,@Total, @Autorizado," +
                                        "(CONVERT(DATETIME, @FechaCaptura) + CONVERT(DATETIME, CONVERT(time, GETDATE())))," +
                                        "(CONVERT(DATETIME, @FechaModificacion) + CONVERT(DATETIME, CONVERT(time, GETDATE()))), "+
                                        "       @CveImpIEPS, @ImpIEPSValor, @TotalIEPS, @CveImpRetIVA, @ImpRetIVAValor, " +
                                     "       @TotalRetIVA, @CveImpRetISR, @ImpRetISRValor, @TotalRetISR, @CveImpOtro, " +
-                                    "       @ImpValorOtro, @TotalImpOtro )";
+                                    "       @ImpValorOtro, @TotalImpOtro, @TotalDscto, @DsctoEsPorcentaje)";
 
                     MatParamP[0, 0] = "idMov"; MatParamP[0, 1] = lst.idMov;
                     MatParamP[1, 0] = "Documento"; MatParamP[1, 1] = lst.Documento;
@@ -186,7 +188,7 @@ namespace GAFE
                     MatParamP[10, 0] = "CveImpuesto"; MatParamP[10, 1] = lst.CveImpuesto;
                     MatParamP[11, 0] = "ImpuestoValor"; MatParamP[11, 1] = lst.ImpuestoValor;
                     MatParamP[12, 0] = "Precio"; MatParamP[12, 1] = lst.Precio;
-                    MatParamP[13, 0] = "Descuento"; MatParamP[13, 1] = lst.Descuento;
+                    MatParamP[13, 0] = "TotalDscto"; MatParamP[13, 1] = lst.TotalDscto;
                     MatParamP[14, 0] = "PrecioNeto"; MatParamP[14, 1] = lst.PrecioNeto;
                     MatParamP[15, 0] = "Impuesto"; MatParamP[15, 1] = lst.Impuesto;
                     MatParamP[16, 0] = "SubTotal"; MatParamP[16, 1] = lst.SubTotal;
@@ -207,6 +209,8 @@ namespace GAFE
                     MatParamP[30, 0] = "CveImpOtro"; MatParamP[30, 1] = lst.CveImpOtro;
                     MatParamP[31, 0] = "ImpValorOtro"; MatParamP[31, 1] = lst.ImpValorOtro;
                     MatParamP[32, 0] = "TotalImpOtro"; MatParamP[32, 1] = lst.TotalImpOtro;
+                    MatParamP[33, 0] = "DsctoEsPorcentaje"; MatParamP[33, 1] = lst.DsctoEsPorcentaje;
+                    MatParamP[34, 0] = "Descuento"; MatParamP[34, 1] = lst.Descuento;
 
 
 
@@ -241,7 +245,8 @@ namespace GAFE
                          "       RM.FechaExpedicion,RM.ClaveImpuesto,RM.Impuesto,RM.Descuento, RM.SubTotal," +
                          "       RM.Total,RM.Observaciones,RM.Estatus,RM.Autorizado," +
                          "       Alm.Descripcion, Rm.CveProveedor, Rm.CveCliente,Rm.EsperaAceptacion,Rm.CveSucursal," +
-                         "      RM.NoFactura " +
+                         "      RM.NoFactura, RM.TotalIEPS , RM.TotalRetISR, " +
+                         "       RM.TotalRetiVA, RM.TotalImpOtro" +
                          " FROM DocCab AS RM " +
                          " INNER JOIN dbo.Inv_CatAlmacenes AS Alm ON RM.ClaveAlmacen = Alm.ClaveAlmacen " +
                          " WHERE RM.idMov = @idMov";
@@ -277,7 +282,7 @@ namespace GAFE
                          "        RD.ImpuestoValor, RD.Precio, RD.Descuento, RD.PrecioNeto, RD.Impuesto, " +
                          "        RD.SubTotal, RD.Total, Art.CveArticulo, Art.Descripcion as DescArticulo," +
                          "        RD.Autorizado,FechaCaptura,FechaModificacion, Art.CodigoBarra, " +
-                         "        RD.CveImpIEPS, RD.ImpIEPSValor, RD.TotalIEPS" +
+                         "        RD.CveImpIEPS, RD.ImpIEPSValor, RD.TotalIEPS, RD.DsctoEsPorcentaje, RD.TotalDscto" +
                          " FROM DocDet AS RD " +
                          " INNER JOIN dbo.inv_CatArticulos AS Art ON RD.CveArticulo = Art.CveArticulo " +
                          " INNER JOIN dbo.Inv_UMedidas AS Umed ON RD.CveUmedida1 = Umed.CveUMedida" +
@@ -301,7 +306,7 @@ namespace GAFE
             int rsp = -1;
 
             string sql = "Update DocDet set Cantidad=0," +
-            "           Precio=0, Descuento= 0,PrecioNeto=0, Impuesto=0, SubTotal=0, " +
+            "           Precio=0, Descuento= 0,PrecioNeto=0, Impuesto=0, SubTotal=0,TotalDscto=0, " +
             "           Total= 0, EstatusDoc=2  " +
             " Where idMov = @idMov";
 
@@ -328,9 +333,12 @@ namespace GAFE
                          "        DocCab.Total = DCI.Total, DocCab.CveProveedor = DCI.CveProveedor, DocCab.Observaciones = DCI.Observaciones," +
                          "        DocCab.FechaModificacion = DCI.FechaModificacion, DocCab.Estatus = DCI.Estatus, DocCab.Autorizado = DCI.Autorizado," +
                          "        DocCab.DocOrigen = @DocOrigen, DocCab.CveSucursal = DCI.CveSucursal, UsuarioModi = @UsuarioModi," +
-                         "        DocCab.NoFactura = DCI.NoFactura   " +
+                         "        DocCab.NoFactura = DCI.NoFactura,   " +
+                         "        DocCab.TotalIEPS = DCI.TotalIEPS, DocCab.TotalRetISR = DCI.TotalRetISR, " +
+                         "        DocCab.TotalRetiVA = DCI.TotalRetiVA, DocCab.TotalImpOtro = DCI.TotalImpOtro " +
                          " FROM  ( SELECT Documento, Serie,	CveDoc, NumDoc, ClaveImpuesto,Impuesto, Descuento, SubTotal, Total," +
-                         "     	          CveProveedor, NoFactura,Observaciones, FechaModificacion, Estatus, Autorizado, CveSucursal " +
+                         "     	          CveProveedor, NoFactura,Observaciones, FechaModificacion, Estatus, Autorizado, CveSucursal,  " +
+                         "        TotalIEPS, TotalRetISR, TotalRetiVA, TotalImpOtro " +
                          "         FROM DocCab WHERE idMov = @idMov) DCI " +
                          " WHERE DocCab.idMov = @idMovNew";
 
@@ -341,14 +349,14 @@ namespace GAFE
                      "                      Impuesto,SubTotal,Total,FechaModificacion,FechaCaptura,EstatusDoc,Autorizado, " +
                      "                      CveImpIEPS, ImpIEPSValor, TotalIEPS, CveImpRetIVA, ImpRetIVAValor, " +
                      "                      TotalRetIVA, CveImpRetISR, ImpRetISRValor, TotalRetISR, CveImpOtro, " +
-                     "                      ImpValorOtro, TotalImpOtro )" +
+                     "                      ImpValorOtro, TotalImpOtro, DsctoEsPorcentaje,TotalDscto )" +
 
                      " SELECT @idMovNew, @Documento, @Serie, @Numdoc, @ClaveAlmacen, Partida, CveArticulo, Descripcion, " +
                      "        Cantidad, CveUmedida1, CveImpuesto, ImpuestoValor, Precio, Descuento, PrecioNeto, " +
                      "        Impuesto, SubTotal, Total,  FechaModificacion, FechaCaptura, EstatusDoc, Autorizado, " +
                      "        CveImpIEPS, ImpIEPSValor, TotalIEPS, CveImpRetIVA, ImpRetIVAValor, " +
                      "        TotalRetIVA, CveImpRetISR, ImpRetISRValor, TotalRetISR, CveImpOtro, " +
-                     "        ImpValorOtro, TotalImpOtro " +
+                     "        ImpValorOtro, TotalImpOtro,DsctoEsPorcentaje,TotalDscto " +
 
                      " FROM   DocDet AS DCI WHERE DCI.idMov = @idMov";
 
@@ -384,7 +392,8 @@ namespace GAFE
                          "        DC.Estatus, P.Nombre, P.RFC, P.Calle, P.CP, " +
                          "        P.Tel1, P.Mail1,  P.Contacto,  P.Tel2, P.Mail2, " +
                          "        P.Cargo, P.Celular,  GL.Descripcion AS Localidad, GM.Descripcion AS Municipio, " +
-                         "        GE.Descripcion AS Estado, GP.Descripcion AS Pais " +
+                         "        GE.Descripcion AS Estado, GP.Descripcion AS Pais, " +
+                         "        DC.TotalIEPS, DC.TotalRetISR, DC.TotalRetiVA, DC.TotalImpOtro " +
                          " FROM DocCab AS DC " +
                          " INNER JOIN CatProveedores AS P ON DC.CveProveedor = P.CveProveedor " +
                          " INNER JOIN CatGeografia AS GL ON P.CveLocalidad = GL.id" +
@@ -406,7 +415,7 @@ namespace GAFE
                          "        DD.FechaCaptura, DD.EstatusDoc, DD.Autorizado, Alm.Descripcion AS Almacen, " +
                          "        DD.CveImpIEPS, DD.ImpIEPSValor, DD.TotalIEPS, DD.CveImpRetIVA, DD.ImpRetIVAValor, " +
                          "        DD.TotalRetIVA, DD.CveImpRetISR, DD.ImpRetISRValor, DD.TotalRetISR, DD.CveImpOtro, " +
-                         "        DD.ImpValorOtro, DD.TotalImpOtro " +
+                         "        DD.ImpValorOtro, DD.TotalImpOtro, DD.TotalDscto, DD.DsctoEsPorcentaje " +
                          " FROM DocDet AS DD " +
                          " INNER JOIN Inv_CatAlmacenes AS Alm ON DD.ClaveAlmacen = Alm.ClaveAlmacen" +
                          " WHERE DD.idMov = @idMov";

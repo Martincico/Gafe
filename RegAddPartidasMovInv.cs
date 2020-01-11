@@ -35,7 +35,7 @@ namespace GAFE
         {
             string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
                          "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
-                         "        Cantidad,CantidadPkt,Costo,Precio,Descuento,TotalDscto," +
+                         "        Cantidad,CantidadPkt,Costo,Precio,Descuento,TotalDscto,DsctoEsPorcentaje," +
                          "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
                          "        NoMovtoTra,DocTra,PartTra," +
                          "        FechaMovimiento," +
@@ -44,7 +44,7 @@ namespace GAFE
                          "        ImpValorOtro, TotalImpOtro) " +
                         " values( @NoMovimiento,@NoPartida,@CveAlmacenMov,@CveTipoMov,@EntSal," +
                          "        @NoDoc,@Documento,@CveArticulo,@Descripcion,@CveUMedida," +
-                         "        @Cantidad,@CantidadPkt,@Costo,@Precio,@Descuento,@TotalDscto," +
+                         "        @Cantidad,@CantidadPkt,@Costo,@Precio,@Descuento,@TotalDscto,@DsctoEsPorcentaje," +
                          "        @CveImpuesto,@ImpuestoValor,@TotalIva,@SubTotal,@TotalPartida,@FolioDocOrigen," +
                          "        @NoMovtoTra,@DocTra,@PartTra, " +
                          "        (CONVERT(DATETIME, @FechaMovimiento) + CONVERT(DATETIME, CONVERT(time, GETDATE())))," +
@@ -64,7 +64,8 @@ namespace GAFE
                          "        FechaMovimiento = @FechaMovimiento,NoMovtoTra = @NoMovtoTra,DocTra = @DocTra,PartTra = @PartTra, " +
                          "        CveImpIEPS = @CveImpIEPS, ImpIEPSValor = @ImpIEPSValor, TotalIEPS = @TotalIEPS, CveImpRetIVA = @CveImpRetIVA, " +
                          "        ImpRetIVAValor = @ImpRetIVAValor, TotalRetIVA = @TotalRetIVA, CveImpRetISR = @CveImpRetISR, ImpRetISRValor = @ImpRetISRValor, " +
-                         "       TotalRetISR = @TotalRetISR, CveImpOtro = @CveImpOtro, ImpValorOtro = @ImpValorOtro, TotalImpOtro = @TotalImpOtro " +
+                         "       TotalRetISR = @TotalRetISR, CveImpOtro = @CveImpOtro, ImpValorOtro = @ImpValorOtro, TotalImpOtro = @TotalImpOtro," +
+                         "       DsctoEsPorcentaje=@DsctoEsPorcentaje " +
                         " Where NoMovimiento = @NoMovimiento AND NoPartida = @NoPartida";
             return db.DeleteRegistro(sql, ArrParametros);
         }
@@ -114,7 +115,7 @@ namespace GAFE
         {//Se usa en otro metodo
             SqlDataAdapter dt = null;
             string Sql = "Select  MD.NoMovimiento,MD.NoPartida,A.CodigoBarra, MD.CveArticulo,MD.Descripcion," +
-                         "        MD.Cantidad,MD.Precio,MD.Descuento," +
+                         "        MD.Cantidad,MD.Precio,MD.TotalDscto," +
                          "        MD.TotalIva, MD.TotalIEPS ," +
                          "        MD.SubTotal,MD.TotalPartida " +
                          " from Inv_MovtosDetalles MD " +
@@ -129,7 +130,7 @@ namespace GAFE
         {
             string sql = "Insert into Inv_MovtosDetalles (NoMovimiento,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
-             "        Cantidad,CantidadPkt,Costo,Precio,Descuento,TotalDscto," +
+             "        Cantidad,CantidadPkt,Costo,Precio,Descuento,TotalDscto,DsctoEsPorcentaje," +
              "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovtoTra,DocTra,PartTra," +
              "        CveImpIEPS, ImpIEPSValor, TotalIEPS, CveImpRetIVA, ImpRetIVAValor, " +
@@ -137,7 +138,7 @@ namespace GAFE
              "        ImpValorOtro, TotalImpOtro) " +
             "  SELECT @NoMovtoTra,NoPartida,CveAlmacenMov,CveTipoMov,EntSal," +
              "        NoDoc,Documento,CveArticulo,Descripcion,CveUMedida," +
-             "        Cantidad,CantidadPkt,Costo,Precio,Descuento,TotalDscto," +
+             "        Cantidad,CantidadPkt,Costo,Precio,Descuento,TotalDscto,DsctoEsPorcentaje," +
              "        CveImpuesto,ImpuestoValor,TotalIva,SubTotal,TotalPartida,FolioDocOrigen," +
              "        FechaMovimiento,NoMovimiento,Documento,NoPartida, " +
              "        CveImpIEPS, ImpIEPSValor, TotalIEPS, CveImpRetIVA, ImpRetIVAValor, " +
@@ -168,7 +169,8 @@ namespace GAFE
                          "        MD.NoDoc,MD.Documento,MD.CveArticulo,MD.Descripcion,MD.CveUMedida," +
                          "        MD.Cantidad,MD.CantidadPkt,MD.Precio,MD.Descuento,MD.TotalDscto," +
                          "        MD.CveImpuesto,MD.ImpuestoValor,MD.TotalIva,MD.SubTotal,MD.TotalPartida,MD.FolioDocOrigen," +
-                         "        MD.FechaMovimiento,MD.NoMovtoTra,MD.DocTra,MD.PartTra,MD.Costo, Art.CodigoBarra" +
+                         "        MD.FechaMovimiento,MD.NoMovtoTra,MD.DocTra,MD.PartTra,MD.Costo, Art.CodigoBarra," +
+                         "        MD.DsctoEsPorcentaje" +
                          " from Inv_MovtosDetalles MD " +
                          " INNER JOIN inv_CatArticulos Art ON Art.CveArticulo  = MD.CveArticulo " +
                          " where MD.NoMovimiento = @NoMovimiento AND MD.NoPartida = @NoPartida AND MD.Cancelado = 1";

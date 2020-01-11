@@ -673,9 +673,9 @@ namespace GAFE
                     break;
             }
             */
-                }
+        }
 
-                private void grdView_SelectionChanged(object sender, EventArgs e)
+        private void grdView_SelectionChanged(object sender, EventArgs e)
         {
 
         }

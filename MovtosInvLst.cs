@@ -153,6 +153,21 @@ namespace GAFE
 
             try
             {
+                /*
+                 *
+                 0.- MM.NoMovimiento
+                1.- MM.Documento
+                2.- MM.FechaMovimiento
+                4.- Alm.Descripcion AS Almacen
+                5.- TMvto.Descripcion AS TipoMov
+                6.- Prov.Nombre AS Proveedor
+                7.- MM.Cancelado,MM.TotalDoc
+                8.- MM.CveTipoMov
+                9.- MM.NoMovtoTra
+                10.- MM.DocTra
+                11.- MM.DocOrigen 
+                12.- Suc.Nombre as Sucursal
+                */
                 DatosTbl.Fill(Ds);
                 grdView.Columns.Clear();
                 grdView.DataSource = Ds.Tables[0];
@@ -501,6 +516,48 @@ namespace GAFE
             cmdAgregar.Enabled = op;
             cmdConsultar.Enabled = op;
             cmdEliminar.Enabled = op;
+        }
+
+        private void cmdImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /*
+                 
+                0.- MM.NoMovimiento
+                1.- MM.Documento
+                2.- MM.FechaMovimiento
+                4.- Alm.Descripcion AS Almacen
+                5.- TMvto.Descripcion AS TipoMov
+                6.- Prov.Nombre AS Proveedor
+                7.- MM.Cancelado,MM.TotalDoc
+                8.- MM.CveTipoMov
+                9.- MM.NoMovtoTra
+                10.- MM.DocTra
+                11.- MM.DocOrigen 
+                12.- Suc.Nombre as Sucursal
+
+                */
+                String cv = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                MovtosInvPui rq = new MovtosInvPui(db);
+                rq.keyNoMovimiento = cv;
+                DataTable dtDetalle = rq.MovInvDetallePrint();
+                DataTable dtMaster = rq.MovInvMasterPrint();
+
+                fmtoMovInventario print = new fmtoMovInventario();
+                String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
+
+
+                print.DoctosCab(db, user, dtMaster, dtDetalle, cv, "Nombre Doc",  pict );
+                print.ShowDialog();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
     }
 

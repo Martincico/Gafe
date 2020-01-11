@@ -47,12 +47,14 @@
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.txtUmedida = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtCveIESP = new System.Windows.Forms.TextBox();
+            this.txtValorIESP = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtCveIVA = new System.Windows.Forms.TextBox();
+            this.txtValorIVA = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.chkCalculaPorcentaje = new System.Windows.Forms.CheckBox();
             this.txtImpIEPS = new System.Windows.Forms.TextBox();
+            this.txtTotalDescuento = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtClaveArticulo
@@ -210,7 +212,7 @@
             // 
             this.txtPrecioNeto.Enabled = false;
             this.txtPrecioNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.txtPrecioNeto.Location = new System.Drawing.Point(128, 167);
+            this.txtPrecioNeto.Location = new System.Drawing.Point(269, 193);
             this.txtPrecioNeto.Name = "txtPrecioNeto";
             this.txtPrecioNeto.Size = new System.Drawing.Size(22, 24);
             this.txtPrecioNeto.TabIndex = 19;
@@ -272,15 +274,15 @@
             this.label8.TabIndex = 93;
             this.label8.Text = "U. Med.";
             // 
-            // txtCveIESP
+            // txtValorIESP
             // 
-            this.txtCveIESP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtCveIESP.Location = new System.Drawing.Point(364, 109);
-            this.txtCveIESP.Name = "txtCveIESP";
-            this.txtCveIESP.ReadOnly = true;
-            this.txtCveIESP.Size = new System.Drawing.Size(57, 22);
-            this.txtCveIESP.TabIndex = 15;
-            this.txtCveIESP.Text = "0";
+            this.txtValorIESP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtValorIESP.Location = new System.Drawing.Point(364, 109);
+            this.txtValorIESP.Name = "txtValorIESP";
+            this.txtValorIESP.ReadOnly = true;
+            this.txtValorIESP.Size = new System.Drawing.Size(57, 22);
+            this.txtValorIESP.TabIndex = 15;
+            this.txtValorIESP.Text = "0";
             // 
             // label1
             // 
@@ -292,16 +294,16 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "IEPS";
             // 
-            // txtCveIVA
+            // txtValorIVA
             // 
-            this.txtCveIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.txtCveIVA.Location = new System.Drawing.Point(364, 134);
-            this.txtCveIVA.Name = "txtCveIVA";
-            this.txtCveIVA.ReadOnly = true;
-            this.txtCveIVA.Size = new System.Drawing.Size(57, 22);
-            this.txtCveIVA.TabIndex = 16;
-            this.txtCveIVA.Text = "0";
-            this.txtCveIVA.TextChanged += new System.EventHandler(this.txtCveIVA_TextChanged);
+            this.txtValorIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtValorIVA.Location = new System.Drawing.Point(364, 134);
+            this.txtValorIVA.Name = "txtValorIVA";
+            this.txtValorIVA.ReadOnly = true;
+            this.txtValorIVA.Size = new System.Drawing.Size(57, 22);
+            this.txtValorIVA.TabIndex = 16;
+            this.txtValorIVA.Text = "0";
+            this.txtValorIVA.TextChanged += new System.EventHandler(this.txtCveIVA_TextChanged);
             // 
             // label7
             // 
@@ -337,6 +339,27 @@
             this.txtImpIEPS.Text = "0";
             this.txtImpIEPS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // txtTotalDescuento
+            // 
+            this.txtTotalDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.txtTotalDescuento.Location = new System.Drawing.Point(101, 164);
+            this.txtTotalDescuento.Name = "txtTotalDescuento";
+            this.txtTotalDescuento.ReadOnly = true;
+            this.txtTotalDescuento.Size = new System.Drawing.Size(99, 22);
+            this.txtTotalDescuento.TabIndex = 106;
+            this.txtTotalDescuento.Text = "0";
+            this.txtTotalDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label5.Location = new System.Drawing.Point(12, 167);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 16);
+            this.label5.TabIndex = 107;
+            this.label5.Text = "Total Desc.";
+            // 
             // DocPartidaRequisiciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,11 +371,13 @@
             this.CaptionButtonHoverColor = System.Drawing.Color.DimGray;
             this.CaptionForeColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(570, 225);
+            this.Controls.Add(this.txtTotalDescuento);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtImpIEPS);
             this.Controls.Add(this.chkCalculaPorcentaje);
-            this.Controls.Add(this.txtCveIESP);
+            this.Controls.Add(this.txtValorIESP);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtCveIVA);
+            this.Controls.Add(this.txtValorIVA);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtUmedida);
             this.Controls.Add(this.label8);
@@ -408,11 +433,13 @@
         private System.Windows.Forms.TextBox txtDescuento;
         private System.Windows.Forms.TextBox txtUmedida;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtCveIESP;
+        private System.Windows.Forms.TextBox txtValorIESP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCveIVA;
+        private System.Windows.Forms.TextBox txtValorIVA;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chkCalculaPorcentaje;
         private System.Windows.Forms.TextBox txtImpIEPS;
+        private System.Windows.Forms.TextBox txtTotalDescuento;
+        private System.Windows.Forms.Label label5;
     }
 }
