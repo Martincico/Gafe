@@ -25,14 +25,15 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public void DoctosCab(MsSql Odat, DatCfgUsuario DatUsr,DataTable dtMaster, DataTable dtDetalle, String IdM, string PNombreDoc, String PImg)
+        public void DoctosCab(MsSql Odat, DatCfgUsuario DatUsr,DataTable dtMaster, DataTable dtDetalle, String IdM, string PNombreDoc, String PImg,
+            String FmtDec)
                                 //String PTotal, String PDescuento, String PEfectivo, String PCambio)
         {
             db = Odat;
             IdMo = IdM;
 
             String PNameEmp = "GRUPO FARMACÉUTICO SALINAS DEL SURESTE SA DE CV";
-            String PDatosSuc = "1A. SUR Y 1A ORIENTE, BARRIO SAN JUAN, OCOZOCOAUTLA, CHIAPAS.";
+         //   String PDatosSuc = "1A. SUR Y 1A ORIENTE, BARRIO SAN JUAN, OCOZOCOAUTLA, CHIAPAS.";
             db = Odat;
             rptViewer.LocalReport.ReportEmbeddedResource = "GAFE.Reportes.fmtoMovInvetario.rdlc";
             rptViewer.LocalReport.DataSources.Clear();
@@ -43,7 +44,7 @@ namespace GAFE
             rptViewer.LocalReport.SetParameters(new ReportParameter("P_NombreDoc", PNombreDoc));
             rptViewer.LocalReport.SetParameters(new ReportParameter("P_NombreEmpresa", PNameEmp));
             rptViewer.LocalReport.SetParameters(new ReportParameter("P_ImgEmpresa", PImg));
-
+            rptViewer.LocalReport.SetParameters(new ReportParameter("FtmoRedondear", FmtDec));
 
 
             /*

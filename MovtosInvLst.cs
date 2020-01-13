@@ -26,7 +26,7 @@ namespace GAFE
         private MsSql db = null;
         DataTable dt = null;
         DataRow row = null;
-
+        ClsUtilerias Util;
         public DatCfgUsuario user;
         private clsUtil uT;
 
@@ -45,6 +45,7 @@ namespace GAFE
             user = DatUsr;
             StiloColor = NewColor;
             ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -548,7 +549,7 @@ namespace GAFE
                 String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
 
 
-                print.DoctosCab(db, user, dtMaster, dtDetalle, cv, "Nombre Doc",  pict );
+                print.DoctosCab(db, user, dtMaster, dtDetalle, cv, "Nombre Doc",  pict, Util.TipoFmtoRedonder());
                 print.ShowDialog();
 
 

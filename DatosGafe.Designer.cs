@@ -3194,11 +3194,19 @@ namespace GAFE {
             
             private global::System.Data.DataColumn columnTIva;
             
+            private global::System.Data.DataColumn columnTotalIEPS;
+            
+            private global::System.Data.DataColumn columnTotalRetIVA;
+            
+            private global::System.Data.DataColumn columnTotalRetISR;
+            
+            private global::System.Data.DataColumn columnTotalImpOtro;
+            
             private global::System.Data.DataColumn columnSubTotal;
             
             private global::System.Data.DataColumn columnTotalDoc;
             
-            private global::System.Data.DataColumn columnObservaciones;
+            private global::System.Data.DataColumn columnObservacion;
             
             private global::System.Data.DataColumn columnCveProveedor;
             
@@ -3407,6 +3415,38 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalIEPSColumn {
+                get {
+                    return this.columnTotalIEPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetIVAColumn {
+                get {
+                    return this.columnTotalRetIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetISRColumn {
+                get {
+                    return this.columnTotalRetISR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalImpOtroColumn {
+                get {
+                    return this.columnTotalImpOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn SubTotalColumn {
                 get {
                     return this.columnSubTotal;
@@ -3423,9 +3463,9 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ObservacionesColumn {
+            public global::System.Data.DataColumn ObservacionColumn {
                 get {
-                    return this.columnObservaciones;
+                    return this.columnObservacion;
                 }
             }
             
@@ -3597,9 +3637,13 @@ namespace GAFE {
                         decimal Descuento, 
                         decimal TotalDscto, 
                         decimal TIva, 
+                        decimal TotalIEPS, 
+                        decimal TotalRetIVA, 
+                        decimal TotalRetISR, 
+                        decimal TotalImpOtro, 
                         decimal SubTotal, 
                         decimal TotalDoc, 
-                        string Observaciones, 
+                        string Observacion, 
                         string CveProveedor, 
                         string CveCliente, 
                         string CveUsuarioCaptu, 
@@ -3634,9 +3678,13 @@ namespace GAFE {
                         Descuento,
                         TotalDscto,
                         TIva,
+                        TotalIEPS,
+                        TotalRetIVA,
+                        TotalRetISR,
+                        TotalImpOtro,
                         SubTotal,
                         TotalDoc,
-                        Observaciones,
+                        Observacion,
                         CveProveedor,
                         CveCliente,
                         CveUsuarioCaptu,
@@ -3691,9 +3739,13 @@ namespace GAFE {
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnTotalDscto = base.Columns["TotalDscto"];
                 this.columnTIva = base.Columns["TIva"];
+                this.columnTotalIEPS = base.Columns["TotalIEPS"];
+                this.columnTotalRetIVA = base.Columns["TotalRetIVA"];
+                this.columnTotalRetISR = base.Columns["TotalRetISR"];
+                this.columnTotalImpOtro = base.Columns["TotalImpOtro"];
                 this.columnSubTotal = base.Columns["SubTotal"];
                 this.columnTotalDoc = base.Columns["TotalDoc"];
-                this.columnObservaciones = base.Columns["Observaciones"];
+                this.columnObservacion = base.Columns["Observacion"];
                 this.columnCveProveedor = base.Columns["CveProveedor"];
                 this.columnCveCliente = base.Columns["CveCliente"];
                 this.columnCveUsuarioCaptu = base.Columns["CveUsuarioCaptu"];
@@ -3749,12 +3801,20 @@ namespace GAFE {
                 base.Columns.Add(this.columnTotalDscto);
                 this.columnTIva = new global::System.Data.DataColumn("TIva", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTIva);
+                this.columnTotalIEPS = new global::System.Data.DataColumn("TotalIEPS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalIEPS);
+                this.columnTotalRetIVA = new global::System.Data.DataColumn("TotalRetIVA", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetIVA);
+                this.columnTotalRetISR = new global::System.Data.DataColumn("TotalRetISR", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetISR);
+                this.columnTotalImpOtro = new global::System.Data.DataColumn("TotalImpOtro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalImpOtro);
                 this.columnSubTotal = new global::System.Data.DataColumn("SubTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSubTotal);
                 this.columnTotalDoc = new global::System.Data.DataColumn("TotalDoc", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotalDoc);
-                this.columnObservaciones = new global::System.Data.DataColumn("Observaciones", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnObservaciones);
+                this.columnObservacion = new global::System.Data.DataColumn("Observacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacion);
                 this.columnCveProveedor = new global::System.Data.DataColumn("CveProveedor", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCveProveedor);
                 this.columnCveCliente = new global::System.Data.DataColumn("CveCliente", typeof(string), null, global::System.Data.MappingType.Element);
@@ -7673,6 +7733,70 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalIEPS {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalIEPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalIEPS\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalIEPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalRetIVA {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalRetIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetIVA\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalRetIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalRetISR {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalRetISRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetISR\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalRetISRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalImpOtro {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalImpOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalImpOtro\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalImpOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal SubTotal {
                 get {
                     try {
@@ -7705,17 +7829,17 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Observaciones {
+            public string Observacion {
                 get {
                     try {
-                        return ((string)(this[this.tableDt_MovtosMaster.ObservacionesColumn]));
+                        return ((string)(this[this.tableDt_MovtosMaster.ObservacionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Observaciones\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Observacion\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDt_MovtosMaster.ObservacionesColumn] = value;
+                    this[this.tableDt_MovtosMaster.ObservacionColumn] = value;
                 }
             }
             
@@ -8163,6 +8287,54 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalIEPSNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalIEPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalIEPSNull() {
+                this[this.tableDt_MovtosMaster.TotalIEPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetIVANull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalRetIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetIVANull() {
+                this[this.tableDt_MovtosMaster.TotalRetIVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetISRNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalRetISRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetISRNull() {
+                this[this.tableDt_MovtosMaster.TotalRetISRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalImpOtroNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalImpOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalImpOtroNull() {
+                this[this.tableDt_MovtosMaster.TotalImpOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSubTotalNull() {
                 return this.IsNull(this.tableDt_MovtosMaster.SubTotalColumn);
             }
@@ -8187,14 +8359,14 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsObservacionesNull() {
-                return this.IsNull(this.tableDt_MovtosMaster.ObservacionesColumn);
+            public bool IsObservacionNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.ObservacionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetObservacionesNull() {
-                this[this.tableDt_MovtosMaster.ObservacionesColumn] = global::System.Convert.DBNull;
+            public void SetObservacionNull() {
+                this[this.tableDt_MovtosMaster.ObservacionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -10,7 +10,7 @@
     <Shape ID="DesignTable:tblDoctosCab" ZOrder="4" X="215" Y="18" Height="28" Width="155" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="520" SplitterPosition="24" />
     <Shape ID="DesignTable:tblDoctosDetalle" ZOrder="3" X="214" Y="84" Height="28" Width="163" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="482" SplitterPosition="24" />
     <Shape ID="DesignTable:Dt_MovtosDetalles" ZOrder="2" X="9" Y="68" Height="28" Width="175" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="292" SplitterPosition="24" />
-    <Shape ID="DesignTable:Dt_MovtosMaster" ZOrder="1" X="398" Y="22" Height="257" Width="169" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="253" />
+    <Shape ID="DesignTable:Dt_MovtosMaster" ZOrder="1" X="398" Y="22" Height="448" Width="169" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="444" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
