@@ -25,8 +25,10 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public void DoctosCab(MsSql Odat, DatCfgUsuario DatUsr,DataTable dtMaster, DataTable dtDetalle, String IdM, string PNombreDoc, String PImg,
-            String FmtDec)
+        public void DoctosCab(MsSql Odat, DatCfgUsuario DatUsr, DataTable dtDetalle, String IdM, String PImg,string PDocumento,
+            String FmtDec, string PEsTraspaso, string PTipoMov, string PEntSal, string PAlmacenOrigen, string PAlmacenDest,
+            string PTotalDscto, string PSubTotal, string PTotalIEPS,string PTIva, string PTotalDoc,
+            string PObservacion)
                                 //String PTotal, String PDescuento, String PEfectivo, String PCambio)
         {
             db = Odat;
@@ -39,30 +41,25 @@ namespace GAFE
             rptViewer.LocalReport.DataSources.Clear();
 
             rptViewer.LocalReport.DataSources.Add(new ReportDataSource("DSMovtoDetalle", dtDetalle));
-            rptViewer.LocalReport.DataSources.Add(new ReportDataSource("DSMovtoMaster", dtMaster));
+            //rptViewer.LocalReport.DataSources.Add(new ReportDataSource("DSMovtoMaster", dtMaster));
 
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_NombreDoc", PNombreDoc));
             rptViewer.LocalReport.SetParameters(new ReportParameter("P_NombreEmpresa", PNameEmp));
             rptViewer.LocalReport.SetParameters(new ReportParameter("P_ImgEmpresa", PImg));
             rptViewer.LocalReport.SetParameters(new ReportParameter("FtmoRedondear", FmtDec));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_EsTraspaso", PEsTraspaso));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_TipoMov", PTipoMov));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_EntSal", PEntSal));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_AlmacenOrigen", PAlmacenOrigen));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_AlmacenDest", PAlmacenDest));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_TotalDscto", PTotalDscto));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_SubTotal", PSubTotal));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_TotalIEPS", PTotalIEPS));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_TIva", PTIva));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_TotalDoc", PTotalDoc));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Observacion", PObservacion));
+            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Documento", PDocumento));
 
 
-            /*
-            
-            
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Sucursal", DatUsr.AlmacenUsa));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Folio", IdM));
-            //rptViewer.LocalReport.SetParameters(new ReportParameter("P_Fecha", PFecha));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Total", PTotal));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Descuento", PDescuento));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Efectivo", PEfectivo));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Cambio", PCambio));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Round", "2"));
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_DatosSuc", PDatosSuc));
-            String LetTotal = ALetra.Convertir(PTotal, 2);
-            rptViewer.LocalReport.SetParameters(new ReportParameter("P_Letras", LetTotal));
-
-    */
 
 
             rptViewer.SetDisplayMode(DisplayMode.PrintLayout);

@@ -155,20 +155,33 @@ namespace GAFE
             try
             {
                 /*
-                 *
-                 0.- MM.NoMovimiento
+                                  0.- MM.NoMovimiento
                 1.- MM.Documento
                 2.- MM.FechaMovimiento
-                4.- Alm.Descripcion AS Almacen
-                5.- TMvto.Descripcion AS TipoMov
-                6.- Prov.Nombre AS Proveedor
-                7.- MM.Cancelado,MM.TotalDoc
+                3.- Alm.Descripcion AS Almacen
+                4.- TMvto.Descripcion AS TipoMov
+                5.- Prov.Nombre AS Proveedor
+                6.- MM.Cancelado,
+                7.- MM.TotalDoc
                 8.- MM.CveTipoMov
                 9.- MM.NoMovtoTra
                 10.- MM.DocTra
                 11.- MM.DocOrigen 
                 12.- Suc.Nombre as Sucursal
-                */
+                13.- AlmacenDest, " +
+                14-- TipoMovDest, " +
+                15.- MM.Descuento, 
+                16.- TotalDscto,
+                17.- TIva,
+                18.- SubTotal,
+                19.- TotalIEPS,
+                20.- TotalRetISR, 
+                21.- TotalRetiVA, 
+                22.- TotalImpOtro,
+                23.- EsTraspaso, 
+                24.- EntSal 
+                25.- MM.Observacion
+                 */
                 DatosTbl.Fill(Ds);
                 grdView.Columns.Clear();
                 grdView.DataSource = Ds.Tables[0];
@@ -180,6 +193,21 @@ namespace GAFE
                 grdView.Columns["NoMovtoTra"].Visible = false;
                 grdView.Columns["DocTra"].Visible = false;
                 grdView.Columns["DocOrigen"].Visible = false;
+
+                grdView.Columns["AlmacenDest"].Visible = false;
+                grdView.Columns["TipoMovDest"].Visible = false;
+                grdView.Columns["Descuento"].Visible = false;
+                grdView.Columns["TotalDscto"].Visible = false;
+                grdView.Columns["TIva"].Visible = false;
+                grdView.Columns["SubTotal"].Visible = false;
+                grdView.Columns["TotalIEPS"].Visible = false;
+                grdView.Columns["TotalRetISR"].Visible = false;
+                grdView.Columns["TotalRetiVA"].Visible = false;
+                grdView.Columns["TotalImpOtro"].Visible = false;
+                grdView.Columns["EsTraspaso"].Visible = false;
+                grdView.Columns["EntSal"].Visible = false;
+                grdView.Columns["Observacion"].Visible = false;
+
 
 
                 for (int i = 0; i < grdView.Columns.Count; i++)
@@ -524,32 +552,64 @@ namespace GAFE
             try
             {
                 /*
-                 
-                0.- MM.NoMovimiento
+                 *
+                 0.- MM.NoMovimiento
                 1.- MM.Documento
                 2.- MM.FechaMovimiento
-                4.- Alm.Descripcion AS Almacen
-                5.- TMvto.Descripcion AS TipoMov
-                6.- Prov.Nombre AS Proveedor
-                7.- MM.Cancelado,MM.TotalDoc
+                3.- Alm.Descripcion AS Almacen
+                4.- TMvto.Descripcion AS TipoMov
+                5.- Prov.Nombre AS Proveedor
+                6.- MM.Cancelado,
+                7.- MM.TotalDoc
                 8.- MM.CveTipoMov
                 9.- MM.NoMovtoTra
                 10.- MM.DocTra
                 11.- MM.DocOrigen 
                 12.- Suc.Nombre as Sucursal
+                13.- AlmacenDest, " +
+                14-- TipoMovDest, " +
+                15.- MM.Descuento, 
+                16.- TotalDscto,
+                17.- TIva,
+                18.- SubTotal,
+                19.- TotalIEPS,
+                20.- TotalRetISR, 
+                21.- TotalRetiVA, 
+                22.- TotalImpOtro,
+                23.- EsTraspaso, 
+                24.- EntSal 
+                25.- MM.Observacion
+                 */
 
-                */
                 String cv = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String PDocumento = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+                String PAlmacenOrigen = grdView[3, grdView.CurrentRow.Index].Value.ToString();
+                String PTipoMov = grdView[4, grdView.CurrentRow.Index].Value.ToString();
+                String PTotalDoc = grdView[7, grdView.CurrentRow.Index].Value.ToString();
+                String PAlmacenDest = grdView[13, grdView.CurrentRow.Index].Value.ToString();
+                String PTotalDscto = grdView[16, grdView.CurrentRow.Index].Value.ToString();
+                String PTIva = grdView[17, grdView.CurrentRow.Index].Value.ToString();
+                String PSubTotal = grdView[18, grdView.CurrentRow.Index].Value.ToString();
+                String PTotalIEPS = grdView[19, grdView.CurrentRow.Index].Value.ToString();
+                String EsTras = grdView[23, grdView.CurrentRow.Index].Value.ToString();
+                String PEntSal = grdView[24, grdView.CurrentRow.Index].Value.ToString();
+                String PObservacion = grdView[25, grdView.CurrentRow.Index].Value.ToString();
+                
+                
+                
+            
                 MovtosInvPui rq = new MovtosInvPui(db);
                 rq.keyNoMovimiento = cv;
                 DataTable dtDetalle = rq.MovInvDetallePrint();
-                DataTable dtMaster = rq.MovInvMasterPrint();
+                //DataTable dtMaster = rq.MovInvMasterPrint();
 
                 fmtoMovInventario print = new fmtoMovInventario();
                 String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
 
 
-                print.DoctosCab(db, user, dtMaster, dtDetalle, cv, "Nombre Doc",  pict, Util.TipoFmtoRedonder());
+                print.DoctosCab(db, user, dtDetalle, cv, pict, PDocumento, Util.TipoFmtoRedonder(),EsTras, PTipoMov, 
+                    PEntSal, PAlmacenOrigen, PAlmacenDest, PTotalDscto, PSubTotal, PTotalIEPS, PTIva, PTotalDoc,
+                    PObservacion);
                 print.ShowDialog();
 
 

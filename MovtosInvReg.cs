@@ -192,7 +192,7 @@ namespace GAFE
 
 
 
-            public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
+        public SqlDataAdapter ListInventarioMovtos(String CodProve, String CodAlm, String CodTipoMov, String FIni, String FFin)
         {
             String StrSql = "";
 
@@ -214,14 +214,19 @@ namespace GAFE
             SqlDataAdapter dt = null;
             string Sql = "SELECT MM.NoMovimiento,MM.Documento,MM.FechaMovimiento,Alm.Descripcion AS Almacen, " +
                          "       TMvto.Descripcion AS TipoMov, Prov.Nombre AS Proveedor, MM.Cancelado,MM.TotalDoc, " +
-                         "        MM.CveTipoMov,MM.NoMovtoTra,MM.DocTra, MM.DocOrigen, Suc.Nombre as Sucursal " +
+                         "        MM.CveTipoMov,MM.NoMovtoTra,MM.DocTra, MM.DocOrigen, Suc.Nombre as Sucursal," +
+                         "       AlmD.Descripcion AS AlmacenDest, " +
+                         "       TMvto.Descripcion AS TipoMovDest, " +
+                         "       MM.Descuento, MM.TotalDscto,MM.TIva,MM.SubTotal," +
+                         "       MM.TotalIEPS, MM.TotalRetISR, MM.TotalRetiVA, MM.TotalImpOtro," +
+                         "       TMvto.EsTraspaso,  MM.EntSal, MM.Observacion " +
                          " FROM Inv_MovtosMaster MM " +
                          " INNER JOIN Inv_CatAlmacenes Alm ON Alm.ClaveAlmacen = mm.CveAlmacenMov " +
                          " LEFT JOIN CatProveedores Prov ON Prov.CveProveedor = mm.CveProveedor " +
                          " LEFT JOIN CatSucursales Suc ON Suc.CveSucursal = MM.CveSucursal " +
                          " INNER JOIN Inv_TipoMovtos TMvto ON TMvto.CveTipoMov = mm.CveTipoMov" +
-                        //" WHERE MM.Cancelado = 1 " + StrSql;
-                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '"+FIni+"' AND '"+FFin+ "') " +
+                         " LEFT JOIN Inv_CatAlmacenes AS AlmD ON AlmD.ClaveAlmacen = MM.CveAlmacenDes  " +
+                        " WHERE (CONVERT(date,MM.FechaMovimiento) BETWEEN '" +FIni+"' AND '"+FFin+ "') " +
                         "   AND TMvto.EsInterno = 0 " +
                         "   AND MM.Cancelado = 1" + StrSql;
             dt = db.SelectDA(Sql);
@@ -304,7 +309,7 @@ namespace GAFE
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
-
+        /*
         public SqlDataAdapter SqlMovInvMastPrint()
         {
             SqlDataAdapter dt = null;
@@ -328,7 +333,7 @@ namespace GAFE
             dt = db.SelectDA(Sql, ArrParametros);
             return dt;
         }
-
+        */
 
     }
 

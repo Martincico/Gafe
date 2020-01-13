@@ -556,7 +556,7 @@ namespace GAFE
             OpLst.SqlMovInvDetPrint().Fill(Cbo);
             return Cbo.Tables[0];
         }
-
+        /*
         public DataTable MovInvMasterPrint()
         {
             MatParam = new object[1, 2];
@@ -566,6 +566,7 @@ namespace GAFE
             OpLst.SqlMovInvMastPrint().Fill(Cbo);
             return Cbo.Tables[0];
         }
+        */
 
     }
 }
