@@ -200,11 +200,23 @@
     <Compile Include="frmCatParamSystem.designer.cs">
       <DependentUpon>frmCatParamSystem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCatDoctores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCatDoctores.Designer.cs">
+      <DependentUpon>frmCatDoctores.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCatSucursales.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCatSucursales.Designer.cs">
       <DependentUpon>frmCatSucursales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLstDoctores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLstDoctores.Designer.cs">
+      <DependentUpon>frmLstDoctores.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLstSucursales.cs">
       <SubType>Form</SubType>
@@ -459,6 +471,7 @@
     <Compile Include="PuiBitacoraSistema.cs" />
     <Compile Include="PuiCatCfgDocSerie.cs" />
     <Compile Include="PuiCatCfgDocumentos.cs" />
+    <Compile Include="PuiCatDoctores.cs" />
     <Compile Include="PuiCatParamSystem.cs" />
     <Compile Include="PuiCatLstPrecios.cs" />
     <Compile Include="PuiCatGeografia.cs" />
@@ -487,6 +500,7 @@
     <Compile Include="RegBitacoraSistema.cs" />
     <Compile Include="RegCatCfgDocSerie.cs" />
     <Compile Include="RegCatCfgDocumentos.cs" />
+    <Compile Include="RegCatDoctores.cs" />
     <Compile Include="RegCatParamSystem.cs" />
     <Compile Include="RegCatLstPrecios.cs" />
     <Compile Include="RegCatGeografia.cs" />
@@ -529,8 +543,14 @@
     <EmbeddedResource Include="frmCatParamSystem.resx">
       <DependentUpon>frmCatParamSystem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCatDoctores.resx">
+      <DependentUpon>frmCatDoctores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCatSucursales.resx">
       <DependentUpon>frmCatSucursales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLstDoctores.resx">
+      <DependentUpon>frmLstDoctores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLstSucursales.resx">
       <DependentUpon>frmLstSucursales.cs</DependentUpon>

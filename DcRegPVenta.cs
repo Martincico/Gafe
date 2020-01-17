@@ -299,7 +299,7 @@ namespace GAFE
             IdArt = ar.dv[0];
             if (IdArt != null)
             {
-                txtClaveArticulo.Text = ar.dv[0];
+                txtClaveArticulo.Text = ar.dv[16];
                 lblDescArticulo.Text = ar.dv[1];
                 CveImp = ar.dv[10];
                 CveUmed = ar.dv[8];
