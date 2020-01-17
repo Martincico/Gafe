@@ -176,6 +176,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosGafe.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DcPtoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DcPtoVenta.designer.cs">
+      <DependentUpon>DcPtoVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="DcRegPVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -522,6 +528,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DcPtoVenta.resx">
+      <DependentUpon>DcPtoVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DcRegPVenta.resx">
       <DependentUpon>DcRegPVenta.cs</DependentUpon>

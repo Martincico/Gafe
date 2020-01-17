@@ -17,7 +17,7 @@ using Syncfusion.Windows.Forms;
 
 namespace GAFE
 {
-    public partial class frmInicio : MetroForm    {
+    public partial class frmInicio : Form    {
 
         private MsSql db = null;
         private string path;
@@ -174,7 +174,7 @@ namespace GAFE
                                     this.Hide();
                                     if (us.cmpCodPerfil == "CAJAS")
                                     {
-                                        DcRegPVenta Rcap = new DcRegPVenta(db, this, us.keySusuario, 1, "M3001", "PUNTO DE VENTA");
+                                        DcPtoVenta Rcap = new DcPtoVenta(db, this, us.keySusuario, 1, "M3001", "PUNTO DE VENTA");
                                         Rcap.Show();
                                         
                                     }

@@ -426,6 +426,11 @@ namespace GAFE
             RegCatArticulo OpBsq = new RegCatArticulo(db);
             return OpBsq.BuscaArticulo(buscar);
         }
+        public SqlDataAdapter BuscaArticuloVenta(string buscar, string alm, string LstP)
+        {
+            RegCatArticulo OpBsq = new RegCatArticulo(db);
+            return OpBsq.BuscaArticuloVenta(buscar, alm, LstP);
+        }
         
         private void CargaParametroMat()
         {

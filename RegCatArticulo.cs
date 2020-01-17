@@ -156,7 +156,8 @@ namespace GAFE
                          "       ImpIep.CveImpuesto AS CveIEPS, " +
                          "       ImpIep.Tipo AS TipoIEPS, " +
                          "       ImpIep.Valor AS ValorIEPS," +
-                         "       A.RequiereReceta" +
+                         "       A.RequiereReceta," +
+                         "       A.Foto" +
 
                          " FROM dbo.inv_CatArticulos AS A " +
                          " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
@@ -172,6 +173,61 @@ namespace GAFE
             dt = db.SelectDA(sql);
             return dt;
         }
-        
+
+        public SqlDataAdapter BuscaArticuloVenta(string bsq, string Alm, string LstP)
+        {
+            SqlDataAdapter dt = null;
+            String wh = "";
+            if (!bsq.Equals(""))
+            {
+                wh = " AND (A.CveArticulo = '" + bsq + "' OR " +
+                        " A.Descripcion  like '%" + bsq + "%' OR " +
+                        " A.CodigoBarra    = '" + bsq + "' OR " +
+                        " A.CodigoSat like '%" + bsq + "%') ";
+            }
+
+            string sql = "SELECT TOP 800 A.CveArticulo, " +
+                         "       A.CodigoBarra," +
+                         "       A.Descripcion, " +
+                         "       A.CodigoSat," +
+                         "       UM.CveUMedida, " +
+                         "       UM.Descripcion AS UMedida, " +
+                         "       Imp.CveImpuesto, " +
+                         "       Imp.Tipo, " +
+                         "       Imp.Valor, " +
+                         "       L.CveLinea, " +
+                         "       L.Descripcion AS Linea, " +
+                         "       M.CveMarca, " +
+                         "       M.Descripcion AS Marca, " +
+                         "       C.CveClase, " +
+                         "       C.Descripcion AS Clase, " +
+                         "       A.Modelo," +
+                         "       A.Observacion, " +
+                         "       ImpIep.CveImpuesto AS CveIEPS, " +
+                         "       ImpIep.Tipo AS TipoIEPS, " +
+                         "       ImpIep.Valor AS ValorIEPS," +
+                         "       A.RequiereReceta," +
+                         "       LstP.Precio, " +
+                         "      (Exis.Cantidad - Exis.CantApartada) as Existencia," +
+                         "       A.Foto" +
+
+                         " FROM dbo.inv_CatArticulos AS A " +
+                         " INNER JOIN dbo.Inv_Lineas AS L ON A.CveLinea = L.CveLinea " +
+                         " INNER JOIN dbo.Inv_Clases AS C ON A.CveClase1 = C.CveClase " +
+                         " INNER JOIN dbo.Inv_UMedidas AS UM ON A.CveUMedida1 = UM.CveUMedida " +
+                         " INNER JOIN dbo.Inv_Marcas AS M ON A.CveMarca = M.CveMarca " +
+                         " INNER JOIN dbo.Inv_Impuestos AS Imp ON A.CveImpuesto = Imp.CveImpuesto  " +
+                         " LEFT JOIN dbo.Inv_Impuestos AS ImpIep ON A.CveImpIEPS = ImpIep.CveImpuesto" +
+                         " INNER JOIN dbo.Inv_LstPreciosDet AS LstP ON LstP.CveArticulo = A.CveArticulo AND LstP.CveLstPrecio = '"+LstP+"'" +
+                         " INNER JOIN dbo.Inv_Existencias AS Exis ON A.CveArticulo = Exis.ClaveArticulo AND  Exis.ClaveAlmacen = '"+ Alm + "' " +
+                         " where  A.Estatus = 1 " + wh +
+                         " Order by Fecha_Alta DESC";
+            
+            dt = db.SelectDA(sql);
+            return dt;
+        }
+
+
+
     }
 }
