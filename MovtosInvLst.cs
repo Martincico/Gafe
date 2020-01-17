@@ -26,7 +26,7 @@ namespace GAFE
         private MsSql db = null;
         DataTable dt = null;
         DataRow row = null;
-
+        ClsUtilerias Util;
         public DatCfgUsuario user;
         private clsUtil uT;
 
@@ -45,6 +45,7 @@ namespace GAFE
             user = DatUsr;
             StiloColor = NewColor;
             ParamSystem = ParamS;
+            Util = new ClsUtilerias(ParamSystem.NumDec);
             MessageBoxAdv.Office2016Theme = Office2016Theme.Colorful;
             MessageBoxAdv.MessageBoxStyle = MessageBoxAdv.Style.Office2016;
         }
@@ -153,6 +154,34 @@ namespace GAFE
 
             try
             {
+                /*
+                                  0.- MM.NoMovimiento
+                1.- MM.Documento
+                2.- MM.FechaMovimiento
+                3.- Alm.Descripcion AS Almacen
+                4.- TMvto.Descripcion AS TipoMov
+                5.- Prov.Nombre AS Proveedor
+                6.- MM.Cancelado,
+                7.- MM.TotalDoc
+                8.- MM.CveTipoMov
+                9.- MM.NoMovtoTra
+                10.- MM.DocTra
+                11.- MM.DocOrigen 
+                12.- Suc.Nombre as Sucursal
+                13.- AlmacenDest, " +
+                14-- TipoMovDest, " +
+                15.- MM.Descuento, 
+                16.- TotalDscto,
+                17.- TIva,
+                18.- SubTotal,
+                19.- TotalIEPS,
+                20.- TotalRetISR, 
+                21.- TotalRetiVA, 
+                22.- TotalImpOtro,
+                23.- EsTraspaso, 
+                24.- EntSal 
+                25.- MM.Observacion
+                 */
                 DatosTbl.Fill(Ds);
                 grdView.Columns.Clear();
                 grdView.DataSource = Ds.Tables[0];
@@ -164,6 +193,21 @@ namespace GAFE
                 grdView.Columns["NoMovtoTra"].Visible = false;
                 grdView.Columns["DocTra"].Visible = false;
                 grdView.Columns["DocOrigen"].Visible = false;
+
+                grdView.Columns["AlmacenDest"].Visible = false;
+                grdView.Columns["TipoMovDest"].Visible = false;
+                grdView.Columns["Descuento"].Visible = false;
+                grdView.Columns["TotalDscto"].Visible = false;
+                grdView.Columns["TIva"].Visible = false;
+                grdView.Columns["SubTotal"].Visible = false;
+                grdView.Columns["TotalIEPS"].Visible = false;
+                grdView.Columns["TotalRetISR"].Visible = false;
+                grdView.Columns["TotalRetiVA"].Visible = false;
+                grdView.Columns["TotalImpOtro"].Visible = false;
+                grdView.Columns["EsTraspaso"].Visible = false;
+                grdView.Columns["EntSal"].Visible = false;
+                grdView.Columns["Observacion"].Visible = false;
+
 
 
                 for (int i = 0; i < grdView.Columns.Count; i++)
@@ -501,6 +545,80 @@ namespace GAFE
             cmdAgregar.Enabled = op;
             cmdConsultar.Enabled = op;
             cmdEliminar.Enabled = op;
+        }
+
+        private void cmdImprimir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                /*
+                 *
+                 0.- MM.NoMovimiento
+                1.- MM.Documento
+                2.- MM.FechaMovimiento
+                3.- Alm.Descripcion AS Almacen
+                4.- TMvto.Descripcion AS TipoMov
+                5.- Prov.Nombre AS Proveedor
+                6.- MM.Cancelado,
+                7.- MM.TotalDoc
+                8.- MM.CveTipoMov
+                9.- MM.NoMovtoTra
+                10.- MM.DocTra
+                11.- MM.DocOrigen 
+                12.- Suc.Nombre as Sucursal
+                13.- AlmacenDest, " +
+                14-- TipoMovDest, " +
+                15.- MM.Descuento, 
+                16.- TotalDscto,
+                17.- TIva,
+                18.- SubTotal,
+                19.- TotalIEPS,
+                20.- TotalRetISR, 
+                21.- TotalRetiVA, 
+                22.- TotalImpOtro,
+                23.- EsTraspaso, 
+                24.- EntSal 
+                25.- MM.Observacion
+                 */
+
+                String cv = grdView[0, grdView.CurrentRow.Index].Value.ToString();
+                String PDocumento = grdView[1, grdView.CurrentRow.Index].Value.ToString();
+                String PAlmacenOrigen = grdView[3, grdView.CurrentRow.Index].Value.ToString();
+                String PTipoMov = grdView[4, grdView.CurrentRow.Index].Value.ToString();
+                String PTotalDoc = grdView[7, grdView.CurrentRow.Index].Value.ToString();
+                String PAlmacenDest = grdView[13, grdView.CurrentRow.Index].Value.ToString();
+                String PTotalDscto = grdView[16, grdView.CurrentRow.Index].Value.ToString();
+                String PTIva = grdView[17, grdView.CurrentRow.Index].Value.ToString();
+                String PSubTotal = grdView[18, grdView.CurrentRow.Index].Value.ToString();
+                String PTotalIEPS = grdView[19, grdView.CurrentRow.Index].Value.ToString();
+                String EsTras = grdView[23, grdView.CurrentRow.Index].Value.ToString();
+                String PEntSal = grdView[24, grdView.CurrentRow.Index].Value.ToString();
+                String PObservacion = grdView[25, grdView.CurrentRow.Index].Value.ToString();
+                
+                
+                
+            
+                MovtosInvPui rq = new MovtosInvPui(db);
+                rq.keyNoMovimiento = cv;
+                DataTable dtDetalle = rq.MovInvDetallePrint();
+                //DataTable dtMaster = rq.MovInvMasterPrint();
+
+                fmtoMovInventario print = new fmtoMovInventario();
+                String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
+
+
+                print.DoctosCab(db, user, dtDetalle, cv, pict, PDocumento, Util.TipoFmtoRedonder(),EsTras, PTipoMov, 
+                    PEntSal, PAlmacenOrigen, PAlmacenDest, PTotalDscto, PSubTotal, PTotalIEPS, PTIva, PTotalDoc,
+                    PObservacion);
+                print.ShowDialog();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBoxAdv.Show("Tienes que seleccionar un registro\n" + ex.Message, "Alerta", MessageBoxButtons.OK,
+                     MessageBoxIcon.Exclamation);
+            }
         }
     }
 

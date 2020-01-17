@@ -157,10 +157,10 @@
             // 
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(215, 39);
+            this.textBox1.Location = new System.Drawing.Point(229, 39);
             this.textBox1.MaxLength = 100;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(115, 22);
+            this.textBox1.Size = new System.Drawing.Size(137, 22);
             this.textBox1.TabIndex = 27;
             // 
             // txtCodigo
@@ -170,7 +170,7 @@
             this.txtCodigo.Location = new System.Drawing.Point(66, 39);
             this.txtCodigo.MaxLength = 100;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(121, 22);
+            this.txtCodigo.Size = new System.Drawing.Size(135, 22);
             this.txtCodigo.TabIndex = 26;
             // 
             // label3
@@ -187,7 +187,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(193, 42);
+            this.label4.Location = new System.Drawing.Point(207, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(16, 16);
             this.label4.TabIndex = 23;
@@ -240,7 +240,7 @@
             this.cboAlmacen.FormattingEnabled = true;
             this.cboAlmacen.Location = new System.Drawing.Point(66, 9);
             this.cboAlmacen.Name = "cboAlmacen";
-            this.cboAlmacen.Size = new System.Drawing.Size(264, 24);
+            this.cboAlmacen.Size = new System.Drawing.Size(300, 24);
             this.cboAlmacen.TabIndex = 20;
             this.cboAlmacen.SelectedValueChanged += new System.EventHandler(this.cboAlmaOri_SelectedValueChanged);
             // 

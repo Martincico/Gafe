@@ -29,6 +29,10 @@ namespace GAFE
         private double Descuento;
         private double TotalDscto;
         private double TIva;
+        private double TotalIEPS;
+        private double TotalRetISR;
+        private double TotalRetiVA;
+        private double TotalImpOtro;
         private double SubTotal;
         private double TotalDoc;
         private string CveProveedor;
@@ -39,6 +43,7 @@ namespace GAFE
         private string NoMovtoTra;
         private string DocTra;
         private string DocOrigen;
+        private string Observacion;
 
         //Se usa en consultar
         private string CveClaseTipoMov;
@@ -51,7 +56,7 @@ namespace GAFE
 
 
         //matriz para Almacenar el contenido de la tabla (NomParam,ValorParam)
-        private object[,] MatParam = new object[22, 2];
+        private object[,] MatParam = new object[27, 2];
         private object[,] MatParamParti = new object[6, 2];
         private object[,] MatParamAlma = new object[5, 2];
 
@@ -88,6 +93,11 @@ namespace GAFE
             set { CveAlmacenMov = value; }
         }
 
+        public string cmpObservacion
+        {
+            get { return Observacion; }
+            set { Observacion = value; }
+        }
         public string cmpCveClaseTipoMov
         {
             get { return CveClaseTipoMov; }
@@ -181,6 +191,26 @@ namespace GAFE
         {
             get { return TIva; }
             set { TIva = value; }
+        }
+        public double cmpTotalIEPS
+        {
+            get { return TotalIEPS; }
+            set { TotalIEPS = value; }
+        }
+        public double cmpTotalRetISR
+        {
+            get { return TotalRetISR; }
+            set { TotalRetISR = value; }
+        }
+        public double cmpTotalRetiVA
+        {
+            get { return TotalRetiVA; }
+            set { TotalRetiVA = value; }
+        }
+        public double cmpTotalImpOtro
+        {
+            get { return TotalImpOtro; }
+            set { TotalImpOtro = value; }
         }
 
         public double cmpSubTotal
@@ -490,6 +520,11 @@ namespace GAFE
             MatParam[19, 0] = "DocTra"; MatParam[19, 1] = DocTra;
             MatParam[20, 0] = "DocOrigen"; MatParam[20, 1] = DocOrigen;
             MatParam[21, 0] = "CveSucursal"; MatParam[21, 1] = CveSucursal;
+            MatParam[22, 0] = "TotalIEPS"; MatParam[22, 1] = TotalIEPS;
+            MatParam[23, 0] = "TotalRetISR"; MatParam[23, 1] = TotalRetISR;
+            MatParam[24, 0] = "TotalRetiVA"; MatParam[24, 1] = TotalRetiVA;
+            MatParam[25, 0] = "TotalImpOtro"; MatParam[25, 1] = TotalImpOtro;
+            MatParam[26, 0] = "Observacion"; MatParam[26, 1] = Observacion;
 
         }
         private void CargaParamMatPart()
@@ -512,7 +547,26 @@ namespace GAFE
             MatParamAlma[4, 0] = "NumRojo"; MatParamAlma[4, 1] = NumRojo;
         }
 
-
+        public DataTable MovInvDetallePrint()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
+            MovtosInvReg OpLst = new MovtosInvReg(MatParam, db);
+            DataSet Cbo = new DataSet();
+            OpLst.SqlMovInvDetPrint().Fill(Cbo);
+            return Cbo.Tables[0];
+        }
+        /*
+        public DataTable MovInvMasterPrint()
+        {
+            MatParam = new object[1, 2];
+            MatParam[0, 0] = "NoMovimiento"; MatParam[0, 1] = NoMovimiento;
+            MovtosInvReg OpLst = new MovtosInvReg(MatParam, db);
+            DataSet Cbo = new DataSet();
+            OpLst.SqlMovInvMastPrint().Fill(Cbo);
+            return Cbo.Tables[0];
+        }
+        */
 
     }
 }

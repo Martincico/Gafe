@@ -244,6 +244,7 @@ namespace GAFE
                         18 - ImmpIep.Tipo AS TipoIEPS, " +
                         19 - ImmpIep.Valor AS ValorIEPS" +
                         20 - RequiereReceta
+                        21.- Foto
             */
 
 
@@ -281,7 +282,8 @@ namespace GAFE
             grdView.Columns["TipoIEPS"].Visible = false;
             grdView.Columns["ValorIEPS"].Visible = false;
             grdView.Columns["RequiereReceta"].Visible = false;
-
+            grdView.Columns["Foto"].Visible = false;
+            //grdView.RowTemplate.Height = 50;
         }
 
 

@@ -125,14 +125,16 @@ namespace GAFE
             BuscarPrecio(pui.cmpCveArticulo);
             txtCantidad.Text = Convert.ToString(pui.cmpCantidad);
             txtDescuento.Text = Convert.ToString(pui.cmpDescuento);
+            txtTotalDescuento.Text = Convert.ToString(pui.cmpTotalDscto);
+            chkCalculaPorcentaje.Checked = pui.cmpTotalDscto == 1 ? true : false;
             txtPrecioNeto.Text =Util.FormtDouDec(pui.cmpTotalDscto); //Convert.ToString(pui.cmpTotalDscto);
             txtSubTotal.Text = Util.FormtDouDec(pui.cmpSubTotal); //Convert.ToString(pui.cmpSubTotal);
             txtImpuesto.Text = Util.FormtDouDec(pui.cmpTotalIva);// Convert.ToString(pui.cmpTotalIva);
-            txtCveIVA.Text = Convert.ToString(pui.cmpImpuestoValor);
+            txtValorIVA.Text = Convert.ToString(pui.cmpImpuestoValor);
             txtTotal.Text = Util.FormtDouDec(pui.cmpTotalPartida);  //Convert.ToString(pui.cmpTotalPartida);
 
             CveImpIEPS = pui.cmpCveImpIEPS;
-            txtCveIESP.Text = Convert.ToString(pui.cmpImpIEPSValor);
+            txtValorIEPS.Text = Convert.ToString(pui.cmpImpIEPSValor);
             TotalIEPS = pui.cmpTotalIEPS;
             
 
@@ -195,8 +197,9 @@ namespace GAFE
                     pui.cmpPrecio = Precio;
                     pui.cmpDescuento = Descuento;
                     pui.cmpTotalDscto = PNeto;
+                    pui.cmpDsctoEsPorcentaje = chkCalculaPorcentaje.Checked ? 1 : 0;
                     pui.cmpCveImpuesto = CveImp;
-                    pui.cmpImpuestoValor = Convert.ToDouble(txtCveIVA.Text);
+                    pui.cmpImpuestoValor = Convert.ToDouble(txtValorIVA.Text);
                     pui.cmpTotalIva = TotalIva;
                     pui.cmpSubTotal = SubTotal;
                     pui.cmpTotalPartida = TotalPartida;
@@ -207,7 +210,7 @@ namespace GAFE
                     pui.cmpPartTra = "";
 
                     pui.cmpCveImpIEPS = CveImpIEPS;
-                    pui.cmpImpIEPSValor = Convert.ToDouble(txtCveIESP.Text);
+                    pui.cmpImpIEPSValor = Convert.ToDouble(txtValorIEPS.Text);
                     pui.cmpTotalIEPS = TotalIEPS;
                     pui.cmpCveImpRetIVA = "";
                     pui.cmpImpRetIVAValor = 0;
@@ -546,8 +549,8 @@ namespace GAFE
                     //PENDIENTE: Valida una matrz y dentro de un else va lo siguiente
                     if (CfgMovInv.CalculaIva == 1)
                     {
-                        double iva = Convert.ToDouble(txtCveIVA.Text);
-                        double _iEPS = Convert.ToDouble(txtCveIESP.Text);
+                        double iva = Convert.ToDouble(txtValorIVA.Text);
+                        double _iEPS = Convert.ToDouble(txtValorIEPS.Text);
 
                         TotalIEPS = _iEPS > 0 ? SubTotal * (_iEPS / 100) : 0;
                         SubTotal = SubTotal + TotalIEPS;
@@ -563,6 +566,7 @@ namespace GAFE
                     CveImp = "";
                 }
 
+                txtTotalDescuento.Text = Util.FormtDouDec(PNeto);//Convert.ToString(SubTotal);
                 txtSubTotal.Text = Util.FormtDouDec(SubTotal); //Convert.ToString(SubTotal);
                 txtImpuesto.Text = Util.FormtDouDec(TotalIva);  //Convert.ToString(TotalIva);
                 txtImpIEPS.Text = Util.FormtDouDec(TotalIEPS);  //Convert.ToString(TotalIva);
@@ -639,12 +643,14 @@ namespace GAFE
 
         private void btnBuscarArt_Click(object sender, EventArgs e)
         {
+
             frmLstArticulos art = new frmLstArticulos(db, ParamSystem, user, StiloColor, 3);
             art.CaptionBarColor = ColorTranslator.FromHtml(StiloColor.Encabezado);
             art.CaptionForeColor = ColorTranslator.FromHtml(StiloColor.FontColor);
             art.ShowDialog();
             if (!string.IsNullOrEmpty(art.KeyCampo))
             {
+                LimpiaVar();
                 PuiAddPartidasMovInv pui = new PuiAddPartidasMovInv(db);
                 pui.keyNoMovimiento = art.KeyCampo;
                 pui.keyNoPartida = Convert.ToInt32(PNoMovimiento);
@@ -673,12 +679,12 @@ namespace GAFE
                     txtDescripcion.Text = art.dv[1];
 
                     CveImp = art.dv[10];
-                    txtCveIVA.Text = GetImpuesto(CveImp);
+                    txtValorIVA.Text = GetImpuesto(CveImp);
                     CveUmed = art.dv[8];
                     txtUmedida.Text = GetUMed();
                     CveImpIEPS = art.dv[13];
                     if (!string.IsNullOrEmpty(CveImpIEPS))
-                        txtCveIESP.Text = GetImpuesto(CveImpIEPS);
+                        txtValorIEPS.Text = GetImpuesto(CveImpIEPS);
 
 
                     BuscarPrecio(art.KeyCampo);
@@ -708,6 +714,7 @@ namespace GAFE
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
+                LimpiaVar();
                 PuiCatArticulos Art = new PuiCatArticulos(db);
                 PuiCatImpuestos Impu = new PuiCatImpuestos(db);
                 Art.keyCveArticulo = txtCodigo.Text;
@@ -743,12 +750,13 @@ namespace GAFE
 
 
                         CveImp = Art.cmpCveImpuesto;
-                        txtCveIVA.Text = GetImpuesto(CveImp);
+                        txtValorIVA.Text = GetImpuesto(CveImp);
                         CveUmed = Art.cmpCveUMedida1;
                         txtUmedida.Text = GetUMed();
                         CveImpIEPS = Art.CveImpIEPS;
+
                         if (!string.IsNullOrEmpty(CveImpIEPS))
-                            txtCveIESP.Text = GetImpuesto(CveImpIEPS);
+                            txtValorIEPS.Text = GetImpuesto(CveImpIEPS);
 
                         BuscarPrecio(Art.keyCveArticulo);
                     }
@@ -757,7 +765,6 @@ namespace GAFE
                 else
                 {
                     MessageBoxAdv.Show("No se encuentra el registro", "Error de busqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    LimpiaVar();
                 }
             }
         }
@@ -873,12 +880,14 @@ namespace GAFE
             IdArt = "";
             CodBa = "";
             txtDescripcion.Text = "";
-            txtCveIVA.Text = "";
+            txtValorIVA.Text = "0";
             CveImp = "";
-            CveUmed = "";
-            txtUmedida.Text = "";
+            txtImpuesto.Text = "";
+            txtValorIEPS.Text = "0";
+            CveImpIEPS = "";
             txtImpIEPS.Text = "";
-            
+            txtUmedida.Text = "";
+            CveUmed = "";
         }
     }
 }

@@ -673,9 +673,9 @@ namespace GAFE
                     break;
             }
             */
-                }
+        }
 
-                private void grdView_SelectionChanged(object sender, EventArgs e)
+        private void grdView_SelectionChanged(object sender, EventArgs e)
         {
 
         }
@@ -743,7 +743,7 @@ namespace GAFE
                 String pict = Convert.ToString(GAFE.Properties.Resources.Editar);
 
 
-                print.DoctosCab(db, dt, cv, "Farmacias Salinas G", pict, NameDoc);
+                print.DoctosCab(db, dt, cv, "Farmacias Salinas G", pict, NameDoc,Util.TipoFmtoRedonder());
                 //this.Cursor = Cursors.Default;
                 print.ShowDialog();
 

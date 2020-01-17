@@ -48,18 +48,22 @@ namespace GAFE
             LimpiarControles();
             OpcionControles(true);
             LleCboTipoMov();
-            LlecboCfgCatFoliadores();
             LlecboCfgDocumentosRel();
             switch (opcion)
             {
                 case 1://Nuevo
                     OpcionControles(true);
+                    LlecboCfgCatFoliadores(0);
                 break;
                 case 2://Edita
+                    LlecboCfgCatFoliadores(1);
                     get_Campos(Cod);
                     txtClaveTipoMov.Enabled = false;
+                    
+                    cboCfgCatFoliadores.Enabled = false;
                 break;
                 case 3://Consulta
+                    LlecboCfgCatFoliadores(1);
                     get_Campos(Cod);
                     OpcionControles(false);
                     cboTipoMov.Enabled = false;
@@ -268,6 +272,12 @@ namespace GAFE
                 dv = false;
             }
 
+            if(string.IsNullOrEmpty(Convert.ToString(cboCfgCatFoliadores.SelectedValue)))
+            {
+                MessageBoxAdv.Show("Foliador: No puede ir vacío.", "Configuración de documentos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dv = false;
+            }
+
             return dv;
         }
 
@@ -293,6 +303,7 @@ namespace GAFE
             chkUsaFactura.Enabled = Op;
             chkEditaPrecio.Enabled = Op;
             chkMuestraPrecio.Enabled = Op;
+            txtEmail.Enabled = Op;
         }
 
         private void LimpiarControles()
@@ -323,10 +334,10 @@ namespace GAFE
             cboTipoMov.SelectedValue = 0;
         }
 
-        private void LlecboCfgCatFoliadores()
+        private void LlecboCfgCatFoliadores(int EnUso)
         {
             PuiCatCfgCatFoliadores lin = new PuiCatCfgCatFoliadores(db);
-            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(0);
+            cboCfgCatFoliadores.DataSource = lin.cboCfgCatFoliadores(EnUso);
             cboCfgCatFoliadores.ValueMember = "CveFoliador";
             cboCfgCatFoliadores.DisplayMember = "Descripcion";
         }

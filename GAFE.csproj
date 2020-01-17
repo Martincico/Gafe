@@ -176,11 +176,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DatosGafe.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DcPtoVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DcPtoVenta.designer.cs">
+      <DependentUpon>DcPtoVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="DcRegPVenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DcRegPVenta.designer.cs">
       <DependentUpon>DcRegPVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmtoMovInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmtoMovInventario.Designer.cs">
+      <DependentUpon>fmtoMovInventario.cs</DependentUpon>
     </Compile>
     <Compile Include="fmtoTicket.cs">
       <SubType>Form</SubType>
@@ -531,8 +543,14 @@
     <EmbeddedResource Include="AsignaPorAlmacen.resx">
       <DependentUpon>AsignaPorAlmacen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DcPtoVenta.resx">
+      <DependentUpon>DcPtoVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DcRegPVenta.resx">
       <DependentUpon>DcRegPVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmtoMovInventario.resx">
+      <DependentUpon>fmtoMovInventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmtoTicket.resx">
       <DependentUpon>fmtoTicket.cs</DependentUpon>
@@ -678,6 +696,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\fmtoDocumentoDet.rdlc" />
+    <EmbeddedResource Include="Reportes\fmtoMovInvetario.rdlc" />
     <EmbeddedResource Include="Reportes\fmtoTicket.rdlc" />
     <EmbeddedResource Include="Reportes\RepExistencias.rdlc">
       <SubType>Designer</SubType>

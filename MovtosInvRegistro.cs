@@ -182,6 +182,10 @@ namespace GAFE
                 pui.cmpDescuento = Convert.ToDouble(Util.LimpiarTxt(txtDescuento.Text));
                 //            pui.cmpTotalDscto = Convert.ToDouble(txtTotDesc.Text);
                 pui.cmpTIva = Convert.ToDouble(Util.LimpiarTxt(txtIVA.Text));
+                pui.cmpTotalIEPS = Convert.ToDouble(Util.LimpiarTxt(txtIeps.Text));
+                pui.cmpTotalRetISR = 0;
+                pui.cmpTotalRetiVA = 0;
+                pui.cmpTotalImpOtro = 0;
                 pui.cmpSubTotal = Convert.ToDouble(Util.LimpiarTxt(txtSubTotal.Text));
                 pui.cmpTotalDoc = Convert.ToDouble(Util.LimpiarTxt(txtTotal.Text));
                 pui.cmpCveProveedor = CodProve;
@@ -194,6 +198,7 @@ namespace GAFE
                 pui.cmpDocTra = "";
                 pui.cmpDocOrigen = DcOrigen;
                 pui.cmpCveSucursal = CvSuc;
+                pui.cmpObservacion = txtObservaciones.Text.Trim();
                 if (CfgMovInv.EsTraspaso == 1)//  _EsTraspaso 
                 {
                     pui.cmpCveAlmacenDes = Convert.ToString(cboAlmaDest.SelectedValue);
@@ -243,13 +248,17 @@ namespace GAFE
                                         pui.cmpDescuento = Convert.ToDouble(Util.LimpiarTxt(txtDescuento.Text));
                                         //            pui.cmpTotalDscto = Convert.ToDouble(txtTotDesc.Text);
                                         pui.cmpTIva = Convert.ToDouble(Util.LimpiarTxt(txtIVA.Text));
+                                        pui.cmpTotalIEPS = Convert.ToDouble(Util.LimpiarTxt(txtIeps.Text));
+                                        pui.cmpTotalRetISR = 0;
+                                        pui.cmpTotalRetiVA = 0;
+                                        pui.cmpTotalImpOtro = 0;
                                         pui.cmpSubTotal = Convert.ToDouble(Util.LimpiarTxt(txtSubTotal.Text));
                                         pui.cmpTotalDoc = Convert.ToDouble(Util.LimpiarTxt(txtTotal.Text));
                                         
                                         pui.cmpCveProveedor = CodProve;
                                         pui.cmpCancelado = 1;
                                         pui.cmpCveUsarioCaptu = user.Usuario;
-
+                                        pui.cmpObservacion = txtObservaciones.Text.Trim();
                                         pui.cmpNoMovtoTra = Convert.ToString(folMovto);
                                         if (pui.AgregarInvMaster(int.Parse(CfgMovInvRel.CveFoliador), CfgMovInvRel.CveTipoMov, opcion, "") >= 1)
                                         {
@@ -511,14 +520,10 @@ namespace GAFE
                     grdViewPart.Columns["CveArticulo"].HeaderText = "Clave";
                 }
 
-
-
-
-
                 grdViewPart.Columns["Precio"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
                 grdViewPart.Columns["Precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                grdViewPart.Columns["Descuento"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
-                grdViewPart.Columns["Descuento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                grdViewPart.Columns["TotalDscto"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
+                grdViewPart.Columns["TotalDscto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdViewPart.Columns["TotalIva"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
                 grdViewPart.Columns["TotalIva"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 grdViewPart.Columns["TotalIEPS"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
@@ -638,7 +643,7 @@ namespace GAFE
             double TotalPartida = 0;
             foreach (DataGridViewRow row in grdViewPart.Rows)
             {
-                Descuento = Descuento + Convert.ToDouble(Util.LimpiarTxt(row.Cells["Descuento"].Value.ToString()));
+                Descuento = Descuento + Convert.ToDouble(Util.LimpiarTxt(row.Cells["TotalDscto"].Value.ToString()));
 //                TotalDesc = TotalDesc + Convert.ToDouble(Util.LimpiarTxt(row.Cells["TotalDscto"].Value.ToString()));
                 TotalIva = TotalIva + Convert.ToDouble(Util.LimpiarTxt(row.Cells["TotalIva"].Value.ToString()));
                 TotalIEPS = TotalIEPS + Convert.ToDouble(Util.LimpiarTxt(row.Cells["TotalIEPS"].Value.ToString()));
@@ -880,7 +885,6 @@ namespace GAFE
 
                 pui.keyNoMovimiento = Convert.ToString(folMovto);
                 pui.cmpDocOrigen = DcOrigen;
-
                 rsp = pui.AddPartMigraDoc();
                 if (rsp > 0)
                 {
@@ -914,7 +918,7 @@ namespace GAFE
             txtDescuento.Text = Util.FormtDouDec(rq.cmpDescuento);
             //txtTotDesc.Text = "0";
             txtIVA.Text = Util.FormtDouDec(rq.cmpImpuesto);
-            //txtIeps.Text = Convert.ToString(rq.cmp);
+            txtIeps.Text = Convert.ToString(rq.cmpTotalIEPS);
             txtSubTotal.Text = Util.FormtDouDec(rq.cmpSubTotal);
             txtTotal.Text =Util.FormtDouDec(rq.cmpTotal);
 

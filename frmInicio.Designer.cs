@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Syncfusion.Windows.Forms.CaptionImage captionImage1 = new Syncfusion.Windows.Forms.CaptionImage();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicio));
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdAceptar = new System.Windows.Forms.Button();
@@ -51,7 +50,7 @@
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(94, 34);
             this.cmdCancelar.TabIndex = 5;
-            this.cmdCancelar.Text = "Cancelar";
+            this.cmdCancelar.Text = "Salir     ";
             this.cmdCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cmdCancelar.UseVisualStyleBackColor = false;
             this.cmdCancelar.Click += new System.EventHandler(this.cmdCancelar_Click);
@@ -164,14 +163,10 @@
             this.BackColor = System.Drawing.Color.DimGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.CancelButton = this.cmdCancelar;
-            captionImage1.Image = global::GAFE.Properties.Resources.Logotipo;
-            captionImage1.Name = "CaptionImage1";
-            this.CaptionImages.Add(captionImage1);
             this.ClientSize = new System.Drawing.Size(411, 205);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.IconAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(466, 241);

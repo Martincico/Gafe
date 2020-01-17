@@ -24,7 +24,8 @@ namespace GAFE
             InitializeComponent();
         }
 
-        public void DoctosCab(MsSql Odat, DataTable dt,String IdM,  String PNameEmp, String PImg, String PNameDoc)
+        public void DoctosCab(MsSql Odat, DataTable dt,String IdM,  String PNameEmp, String PImg, String PNameDoc,
+            String FmtDec)
         {
             db = Odat;
             IdMo = IdM;
@@ -37,6 +38,7 @@ namespace GAFE
             rptDocumentos.LocalReport.SetParameters(new ReportParameter("P_NombreEmpresa", PNameEmp));
             rptDocumentos.LocalReport.SetParameters(new ReportParameter("P_NombreDoc", PNameDoc));
             rptDocumentos.LocalReport.SetParameters(new ReportParameter("P_ImgEmpresa",  PImg));
+            rptDocumentos.LocalReport.SetParameters(new ReportParameter("FtmoRedondear", FmtDec));
             rptDocumentos.SetDisplayMode(DisplayMode.PrintLayout);
             //rptKardex.RefreshReport();
         }

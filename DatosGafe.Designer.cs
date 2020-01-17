@@ -30,6 +30,10 @@ namespace GAFE {
         
         private tblDoctosDetalleDataTable tabletblDoctosDetalle;
         
+        private Dt_MovtosDetallesDataTable tableDt_MovtosDetalles;
+        
+        private Dt_MovtosMasterDataTable tableDt_MovtosMaster;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -66,6 +70,12 @@ namespace GAFE {
                 }
                 if ((ds.Tables["tblDoctosDetalle"] != null)) {
                     base.Tables.Add(new tblDoctosDetalleDataTable(ds.Tables["tblDoctosDetalle"]));
+                }
+                if ((ds.Tables["Dt_MovtosDetalles"] != null)) {
+                    base.Tables.Add(new Dt_MovtosDetallesDataTable(ds.Tables["Dt_MovtosDetalles"]));
+                }
+                if ((ds.Tables["Dt_MovtosMaster"] != null)) {
+                    base.Tables.Add(new Dt_MovtosMasterDataTable(ds.Tables["Dt_MovtosMaster"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -112,6 +122,26 @@ namespace GAFE {
         public tblDoctosDetalleDataTable tblDoctosDetalle {
             get {
                 return this.tabletblDoctosDetalle;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public Dt_MovtosDetallesDataTable Dt_MovtosDetalles {
+            get {
+                return this.tableDt_MovtosDetalles;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public Dt_MovtosMasterDataTable Dt_MovtosMaster {
+            get {
+                return this.tableDt_MovtosMaster;
             }
         }
         
@@ -191,6 +221,12 @@ namespace GAFE {
                 if ((ds.Tables["tblDoctosDetalle"] != null)) {
                     base.Tables.Add(new tblDoctosDetalleDataTable(ds.Tables["tblDoctosDetalle"]));
                 }
+                if ((ds.Tables["Dt_MovtosDetalles"] != null)) {
+                    base.Tables.Add(new Dt_MovtosDetallesDataTable(ds.Tables["Dt_MovtosDetalles"]));
+                }
+                if ((ds.Tables["Dt_MovtosMaster"] != null)) {
+                    base.Tables.Add(new Dt_MovtosMasterDataTable(ds.Tables["Dt_MovtosMaster"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -242,6 +278,18 @@ namespace GAFE {
                     this.tabletblDoctosDetalle.InitVars();
                 }
             }
+            this.tableDt_MovtosDetalles = ((Dt_MovtosDetallesDataTable)(base.Tables["Dt_MovtosDetalles"]));
+            if ((initTable == true)) {
+                if ((this.tableDt_MovtosDetalles != null)) {
+                    this.tableDt_MovtosDetalles.InitVars();
+                }
+            }
+            this.tableDt_MovtosMaster = ((Dt_MovtosMasterDataTable)(base.Tables["Dt_MovtosMaster"]));
+            if ((initTable == true)) {
+                if ((this.tableDt_MovtosMaster != null)) {
+                    this.tableDt_MovtosMaster.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -258,6 +306,10 @@ namespace GAFE {
             base.Tables.Add(this.tabletblDoctosCab);
             this.tabletblDoctosDetalle = new tblDoctosDetalleDataTable();
             base.Tables.Add(this.tabletblDoctosDetalle);
+            this.tableDt_MovtosDetalles = new Dt_MovtosDetallesDataTable();
+            base.Tables.Add(this.tableDt_MovtosDetalles);
+            this.tableDt_MovtosMaster = new Dt_MovtosMasterDataTable();
+            base.Tables.Add(this.tableDt_MovtosMaster);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -275,6 +327,18 @@ namespace GAFE {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializetblDoctosDetalle() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeDt_MovtosDetalles() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeDt_MovtosMaster() {
             return false;
         }
         
@@ -341,6 +405,12 @@ namespace GAFE {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void tblDoctosDetalleRowChangeEventHandler(object sender, tblDoctosDetalleRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void Dt_MovtosDetallesRowChangeEventHandler(object sender, Dt_MovtosDetallesRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void Dt_MovtosMasterRowChangeEventHandler(object sender, Dt_MovtosMasterRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1518,6 +1588,22 @@ namespace GAFE {
             
             private global::System.Data.DataColumn columnImpuestoValor;
             
+            private global::System.Data.DataColumn columnCveImpIEPS;
+            
+            private global::System.Data.DataColumn columnImpIEPSValor;
+            
+            private global::System.Data.DataColumn columnCveImpRetIVA;
+            
+            private global::System.Data.DataColumn columnImpRetIVAValor;
+            
+            private global::System.Data.DataColumn columnCveImpRetISR;
+            
+            private global::System.Data.DataColumn columnImpRetISRValor;
+            
+            private global::System.Data.DataColumn columnCveImpOtro;
+            
+            private global::System.Data.DataColumn columnImpValorOtro;
+            
             private global::System.Data.DataColumn columnPrecio;
             
             private global::System.Data.DataColumn columnDescuento;
@@ -1525,6 +1611,14 @@ namespace GAFE {
             private global::System.Data.DataColumn columnPrecioNeto;
             
             private global::System.Data.DataColumn columnImpuesto;
+            
+            private global::System.Data.DataColumn columnTotalIEPS;
+            
+            private global::System.Data.DataColumn columnTotalRetISR;
+            
+            private global::System.Data.DataColumn columnTotalRetIVA;
+            
+            private global::System.Data.DataColumn columnTotalImpOtro;
             
             private global::System.Data.DataColumn columnSubTotal;
             
@@ -1671,6 +1765,70 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpIEPSColumn {
+                get {
+                    return this.columnCveImpIEPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpIEPSValorColumn {
+                get {
+                    return this.columnImpIEPSValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpRetIVAColumn {
+                get {
+                    return this.columnCveImpRetIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpRetIVAValorColumn {
+                get {
+                    return this.columnImpRetIVAValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpRetISRColumn {
+                get {
+                    return this.columnCveImpRetISR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpRetISRValorColumn {
+                get {
+                    return this.columnImpRetISRValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpOtroColumn {
+                get {
+                    return this.columnCveImpOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpValorOtroColumn {
+                get {
+                    return this.columnImpValorOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn PrecioColumn {
                 get {
                     return this.columnPrecio;
@@ -1698,6 +1856,38 @@ namespace GAFE {
             public global::System.Data.DataColumn ImpuestoColumn {
                 get {
                     return this.columnImpuesto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalIEPSColumn {
+                get {
+                    return this.columnTotalIEPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetISRColumn {
+                get {
+                    return this.columnTotalRetISR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetIVAColumn {
+                get {
+                    return this.columnTotalRetIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalImpOtroColumn {
+                get {
+                    return this.columnTotalImpOtro;
                 }
             }
             
@@ -1807,10 +1997,22 @@ namespace GAFE {
                         string CveUmedida1, 
                         string CveImpuesto, 
                         decimal ImpuestoValor, 
+                        string CveImpIEPS, 
+                        decimal ImpIEPSValor, 
+                        string CveImpRetIVA, 
+                        decimal ImpRetIVAValor, 
+                        string CveImpRetISR, 
+                        decimal ImpRetISRValor, 
+                        string CveImpOtro, 
+                        decimal ImpValorOtro, 
                         decimal Precio, 
                         decimal Descuento, 
                         decimal PrecioNeto, 
-                        decimal Impuesto, 
+                        string Impuesto, 
+                        string TotalIEPS, 
+                        string TotalRetISR, 
+                        string TotalRetIVA, 
+                        decimal TotalImpOtro, 
                         decimal SubTotal, 
                         decimal Total, 
                         System.DateTime FechaModificacion, 
@@ -1832,10 +2034,22 @@ namespace GAFE {
                         CveUmedida1,
                         CveImpuesto,
                         ImpuestoValor,
+                        CveImpIEPS,
+                        ImpIEPSValor,
+                        CveImpRetIVA,
+                        ImpRetIVAValor,
+                        CveImpRetISR,
+                        ImpRetISRValor,
+                        CveImpOtro,
+                        ImpValorOtro,
                         Precio,
                         Descuento,
                         PrecioNeto,
                         Impuesto,
+                        TotalIEPS,
+                        TotalRetISR,
+                        TotalRetIVA,
+                        TotalImpOtro,
                         SubTotal,
                         Total,
                         FechaModificacion,
@@ -1877,10 +2091,22 @@ namespace GAFE {
                 this.columnCveUmedida1 = base.Columns["CveUmedida1"];
                 this.columnCveImpuesto = base.Columns["CveImpuesto"];
                 this.columnImpuestoValor = base.Columns["ImpuestoValor"];
+                this.columnCveImpIEPS = base.Columns["CveImpIEPS"];
+                this.columnImpIEPSValor = base.Columns["ImpIEPSValor"];
+                this.columnCveImpRetIVA = base.Columns["CveImpRetIVA"];
+                this.columnImpRetIVAValor = base.Columns["ImpRetIVAValor"];
+                this.columnCveImpRetISR = base.Columns["CveImpRetISR"];
+                this.columnImpRetISRValor = base.Columns["ImpRetISRValor"];
+                this.columnCveImpOtro = base.Columns["CveImpOtro"];
+                this.columnImpValorOtro = base.Columns["ImpValorOtro"];
                 this.columnPrecio = base.Columns["Precio"];
                 this.columnDescuento = base.Columns["Descuento"];
                 this.columnPrecioNeto = base.Columns["PrecioNeto"];
                 this.columnImpuesto = base.Columns["Impuesto"];
+                this.columnTotalIEPS = base.Columns["TotalIEPS"];
+                this.columnTotalRetISR = base.Columns["TotalRetISR"];
+                this.columnTotalRetIVA = base.Columns["TotalRetIVA"];
+                this.columnTotalImpOtro = base.Columns["TotalImpOtro"];
                 this.columnSubTotal = base.Columns["SubTotal"];
                 this.columnTotal = base.Columns["Total"];
                 this.columnFechaModificacion = base.Columns["FechaModificacion"];
@@ -1917,14 +2143,38 @@ namespace GAFE {
                 base.Columns.Add(this.columnCveImpuesto);
                 this.columnImpuestoValor = new global::System.Data.DataColumn("ImpuestoValor", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImpuestoValor);
+                this.columnCveImpIEPS = new global::System.Data.DataColumn("CveImpIEPS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpIEPS);
+                this.columnImpIEPSValor = new global::System.Data.DataColumn("ImpIEPSValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpIEPSValor);
+                this.columnCveImpRetIVA = new global::System.Data.DataColumn("CveImpRetIVA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpRetIVA);
+                this.columnImpRetIVAValor = new global::System.Data.DataColumn("ImpRetIVAValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpRetIVAValor);
+                this.columnCveImpRetISR = new global::System.Data.DataColumn("CveImpRetISR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpRetISR);
+                this.columnImpRetISRValor = new global::System.Data.DataColumn("ImpRetISRValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpRetISRValor);
+                this.columnCveImpOtro = new global::System.Data.DataColumn("CveImpOtro", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpOtro);
+                this.columnImpValorOtro = new global::System.Data.DataColumn("ImpValorOtro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpValorOtro);
                 this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrecio);
                 this.columnDescuento = new global::System.Data.DataColumn("Descuento", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescuento);
                 this.columnPrecioNeto = new global::System.Data.DataColumn("PrecioNeto", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPrecioNeto);
-                this.columnImpuesto = new global::System.Data.DataColumn("Impuesto", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnImpuesto = new global::System.Data.DataColumn("Impuesto", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImpuesto);
+                this.columnTotalIEPS = new global::System.Data.DataColumn("TotalIEPS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalIEPS);
+                this.columnTotalRetISR = new global::System.Data.DataColumn("TotalRetISR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetISR);
+                this.columnTotalRetIVA = new global::System.Data.DataColumn("TotalRetIVA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetIVA);
+                this.columnTotalImpOtro = new global::System.Data.DataColumn("TotalImpOtro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalImpOtro);
                 this.columnSubTotal = new global::System.Data.DataColumn("SubTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSubTotal);
                 this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -2025,6 +2275,1662 @@ namespace GAFE {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "tblDoctosDetalleDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class Dt_MovtosDetallesDataTable : global::System.Data.TypedTableBase<Dt_MovtosDetallesRow> {
+            
+            private global::System.Data.DataColumn columnNoMovimiento;
+            
+            private global::System.Data.DataColumn columnNoPartida;
+            
+            private global::System.Data.DataColumn columnCveAlmacenMov;
+            
+            private global::System.Data.DataColumn columnCveTipoMov;
+            
+            private global::System.Data.DataColumn columnEntSal;
+            
+            private global::System.Data.DataColumn columnNoDoc;
+            
+            private global::System.Data.DataColumn columnDocumento;
+            
+            private global::System.Data.DataColumn columnCveArticulo;
+            
+            private global::System.Data.DataColumn columnDescripcion;
+            
+            private global::System.Data.DataColumn columnCveUmedida;
+            
+            private global::System.Data.DataColumn columnCveImpuesto;
+            
+            private global::System.Data.DataColumn columnImpuestoValor;
+            
+            private global::System.Data.DataColumn columnCveImpIEPS;
+            
+            private global::System.Data.DataColumn columnImpIEPSValor;
+            
+            private global::System.Data.DataColumn columnCveImpRetIVA;
+            
+            private global::System.Data.DataColumn columnImpRetIVAValor;
+            
+            private global::System.Data.DataColumn columnCveImpRetISR;
+            
+            private global::System.Data.DataColumn columnImpRetISRValor;
+            
+            private global::System.Data.DataColumn columnCveImpOtro;
+            
+            private global::System.Data.DataColumn columnImpValorOtro;
+            
+            private global::System.Data.DataColumn columnCantidad;
+            
+            private global::System.Data.DataColumn columnCantidadPkt;
+            
+            private global::System.Data.DataColumn columnCosto;
+            
+            private global::System.Data.DataColumn columnPrecio;
+            
+            private global::System.Data.DataColumn columnDescuento;
+            
+            private global::System.Data.DataColumn columnTotalDscto;
+            
+            private global::System.Data.DataColumn columnTotalIva;
+            
+            private global::System.Data.DataColumn columnTotalIEPS;
+            
+            private global::System.Data.DataColumn columnTotalRetIVA;
+            
+            private global::System.Data.DataColumn columnTotalRetISR;
+            
+            private global::System.Data.DataColumn columnTotalImpOtro;
+            
+            private global::System.Data.DataColumn columnSubTotal;
+            
+            private global::System.Data.DataColumn columnTotalPartida;
+            
+            private global::System.Data.DataColumn columnFolioDocOrigen;
+            
+            private global::System.Data.DataColumn columnFechaMovimiento;
+            
+            private global::System.Data.DataColumn columnNoMovtoTra;
+            
+            private global::System.Data.DataColumn columnDocTra;
+            
+            private global::System.Data.DataColumn columnPartTra;
+            
+            private global::System.Data.DataColumn columnCancelado;
+            
+            private global::System.Data.DataColumn columnCodigoBarra;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosDetallesDataTable() {
+                this.TableName = "Dt_MovtosDetalles";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal Dt_MovtosDetallesDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected Dt_MovtosDetallesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoMovimientoColumn {
+                get {
+                    return this.columnNoMovimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoPartidaColumn {
+                get {
+                    return this.columnNoPartida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveAlmacenMovColumn {
+                get {
+                    return this.columnCveAlmacenMov;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveTipoMovColumn {
+                get {
+                    return this.columnCveTipoMov;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EntSalColumn {
+                get {
+                    return this.columnEntSal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoDocColumn {
+                get {
+                    return this.columnNoDoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DocumentoColumn {
+                get {
+                    return this.columnDocumento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveArticuloColumn {
+                get {
+                    return this.columnCveArticulo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DescripcionColumn {
+                get {
+                    return this.columnDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveUmedidaColumn {
+                get {
+                    return this.columnCveUmedida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpuestoColumn {
+                get {
+                    return this.columnCveImpuesto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpuestoValorColumn {
+                get {
+                    return this.columnImpuestoValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpIEPSColumn {
+                get {
+                    return this.columnCveImpIEPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpIEPSValorColumn {
+                get {
+                    return this.columnImpIEPSValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpRetIVAColumn {
+                get {
+                    return this.columnCveImpRetIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpRetIVAValorColumn {
+                get {
+                    return this.columnImpRetIVAValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpRetISRColumn {
+                get {
+                    return this.columnCveImpRetISR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpRetISRValorColumn {
+                get {
+                    return this.columnImpRetISRValor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveImpOtroColumn {
+                get {
+                    return this.columnCveImpOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ImpValorOtroColumn {
+                get {
+                    return this.columnImpValorOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CantidadColumn {
+                get {
+                    return this.columnCantidad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CantidadPktColumn {
+                get {
+                    return this.columnCantidadPkt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CostoColumn {
+                get {
+                    return this.columnCosto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PrecioColumn {
+                get {
+                    return this.columnPrecio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DescuentoColumn {
+                get {
+                    return this.columnDescuento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalDsctoColumn {
+                get {
+                    return this.columnTotalDscto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalIvaColumn {
+                get {
+                    return this.columnTotalIva;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalIEPSColumn {
+                get {
+                    return this.columnTotalIEPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetIVAColumn {
+                get {
+                    return this.columnTotalRetIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetISRColumn {
+                get {
+                    return this.columnTotalRetISR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalImpOtroColumn {
+                get {
+                    return this.columnTotalImpOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SubTotalColumn {
+                get {
+                    return this.columnSubTotal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalPartidaColumn {
+                get {
+                    return this.columnTotalPartida;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FolioDocOrigenColumn {
+                get {
+                    return this.columnFolioDocOrigen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FechaMovimientoColumn {
+                get {
+                    return this.columnFechaMovimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoMovtoTraColumn {
+                get {
+                    return this.columnNoMovtoTra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DocTraColumn {
+                get {
+                    return this.columnDocTra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PartTraColumn {
+                get {
+                    return this.columnPartTra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CanceladoColumn {
+                get {
+                    return this.columnCancelado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CodigoBarraColumn {
+                get {
+                    return this.columnCodigoBarra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosDetallesRow this[int index] {
+                get {
+                    return ((Dt_MovtosDetallesRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosDetallesRowChangeEventHandler Dt_MovtosDetallesRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosDetallesRowChangeEventHandler Dt_MovtosDetallesRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosDetallesRowChangeEventHandler Dt_MovtosDetallesRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosDetallesRowChangeEventHandler Dt_MovtosDetallesRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddDt_MovtosDetallesRow(Dt_MovtosDetallesRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosDetallesRow AddDt_MovtosDetallesRow(
+                        string NoMovimiento, 
+                        int NoPartida, 
+                        string CveAlmacenMov, 
+                        string CveTipoMov, 
+                        string EntSal, 
+                        string NoDoc, 
+                        string Documento, 
+                        string CveArticulo, 
+                        string Descripcion, 
+                        string CveUmedida, 
+                        string CveImpuesto, 
+                        decimal ImpuestoValor, 
+                        string CveImpIEPS, 
+                        decimal ImpIEPSValor, 
+                        string CveImpRetIVA, 
+                        decimal ImpRetIVAValor, 
+                        string CveImpRetISR, 
+                        decimal ImpRetISRValor, 
+                        string CveImpOtro, 
+                        decimal ImpValorOtro, 
+                        decimal Cantidad, 
+                        decimal CantidadPkt, 
+                        decimal Costo, 
+                        decimal Precio, 
+                        decimal Descuento, 
+                        decimal TotalDscto, 
+                        decimal TotalIva, 
+                        decimal TotalIEPS, 
+                        decimal TotalRetIVA, 
+                        decimal TotalRetISR, 
+                        decimal TotalImpOtro, 
+                        decimal SubTotal, 
+                        decimal TotalPartida, 
+                        string FolioDocOrigen, 
+                        System.DateTime FechaMovimiento, 
+                        string NoMovtoTra, 
+                        string DocTra, 
+                        string PartTra, 
+                        int Cancelado, 
+                        string CodigoBarra) {
+                Dt_MovtosDetallesRow rowDt_MovtosDetallesRow = ((Dt_MovtosDetallesRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        NoMovimiento,
+                        NoPartida,
+                        CveAlmacenMov,
+                        CveTipoMov,
+                        EntSal,
+                        NoDoc,
+                        Documento,
+                        CveArticulo,
+                        Descripcion,
+                        CveUmedida,
+                        CveImpuesto,
+                        ImpuestoValor,
+                        CveImpIEPS,
+                        ImpIEPSValor,
+                        CveImpRetIVA,
+                        ImpRetIVAValor,
+                        CveImpRetISR,
+                        ImpRetISRValor,
+                        CveImpOtro,
+                        ImpValorOtro,
+                        Cantidad,
+                        CantidadPkt,
+                        Costo,
+                        Precio,
+                        Descuento,
+                        TotalDscto,
+                        TotalIva,
+                        TotalIEPS,
+                        TotalRetIVA,
+                        TotalRetISR,
+                        TotalImpOtro,
+                        SubTotal,
+                        TotalPartida,
+                        FolioDocOrigen,
+                        FechaMovimiento,
+                        NoMovtoTra,
+                        DocTra,
+                        PartTra,
+                        Cancelado,
+                        CodigoBarra};
+                rowDt_MovtosDetallesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDt_MovtosDetallesRow);
+                return rowDt_MovtosDetallesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                Dt_MovtosDetallesDataTable cln = ((Dt_MovtosDetallesDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new Dt_MovtosDetallesDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnNoMovimiento = base.Columns["NoMovimiento"];
+                this.columnNoPartida = base.Columns["NoPartida"];
+                this.columnCveAlmacenMov = base.Columns["CveAlmacenMov"];
+                this.columnCveTipoMov = base.Columns["CveTipoMov"];
+                this.columnEntSal = base.Columns["EntSal"];
+                this.columnNoDoc = base.Columns["NoDoc"];
+                this.columnDocumento = base.Columns["Documento"];
+                this.columnCveArticulo = base.Columns["CveArticulo"];
+                this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnCveUmedida = base.Columns["CveUmedida"];
+                this.columnCveImpuesto = base.Columns["CveImpuesto"];
+                this.columnImpuestoValor = base.Columns["ImpuestoValor"];
+                this.columnCveImpIEPS = base.Columns["CveImpIEPS"];
+                this.columnImpIEPSValor = base.Columns["ImpIEPSValor"];
+                this.columnCveImpRetIVA = base.Columns["CveImpRetIVA"];
+                this.columnImpRetIVAValor = base.Columns["ImpRetIVAValor"];
+                this.columnCveImpRetISR = base.Columns["CveImpRetISR"];
+                this.columnImpRetISRValor = base.Columns["ImpRetISRValor"];
+                this.columnCveImpOtro = base.Columns["CveImpOtro"];
+                this.columnImpValorOtro = base.Columns["ImpValorOtro"];
+                this.columnCantidad = base.Columns["Cantidad"];
+                this.columnCantidadPkt = base.Columns["CantidadPkt"];
+                this.columnCosto = base.Columns["Costo"];
+                this.columnPrecio = base.Columns["Precio"];
+                this.columnDescuento = base.Columns["Descuento"];
+                this.columnTotalDscto = base.Columns["TotalDscto"];
+                this.columnTotalIva = base.Columns["TotalIva"];
+                this.columnTotalIEPS = base.Columns["TotalIEPS"];
+                this.columnTotalRetIVA = base.Columns["TotalRetIVA"];
+                this.columnTotalRetISR = base.Columns["TotalRetISR"];
+                this.columnTotalImpOtro = base.Columns["TotalImpOtro"];
+                this.columnSubTotal = base.Columns["SubTotal"];
+                this.columnTotalPartida = base.Columns["TotalPartida"];
+                this.columnFolioDocOrigen = base.Columns["FolioDocOrigen"];
+                this.columnFechaMovimiento = base.Columns["FechaMovimiento"];
+                this.columnNoMovtoTra = base.Columns["NoMovtoTra"];
+                this.columnDocTra = base.Columns["DocTra"];
+                this.columnPartTra = base.Columns["PartTra"];
+                this.columnCancelado = base.Columns["Cancelado"];
+                this.columnCodigoBarra = base.Columns["CodigoBarra"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnNoMovimiento = new global::System.Data.DataColumn("NoMovimiento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoMovimiento);
+                this.columnNoPartida = new global::System.Data.DataColumn("NoPartida", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoPartida);
+                this.columnCveAlmacenMov = new global::System.Data.DataColumn("CveAlmacenMov", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveAlmacenMov);
+                this.columnCveTipoMov = new global::System.Data.DataColumn("CveTipoMov", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveTipoMov);
+                this.columnEntSal = new global::System.Data.DataColumn("EntSal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEntSal);
+                this.columnNoDoc = new global::System.Data.DataColumn("NoDoc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoDoc);
+                this.columnDocumento = new global::System.Data.DataColumn("Documento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDocumento);
+                this.columnCveArticulo = new global::System.Data.DataColumn("CveArticulo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveArticulo);
+                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion);
+                this.columnCveUmedida = new global::System.Data.DataColumn("CveUmedida", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveUmedida);
+                this.columnCveImpuesto = new global::System.Data.DataColumn("CveImpuesto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpuesto);
+                this.columnImpuestoValor = new global::System.Data.DataColumn("ImpuestoValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpuestoValor);
+                this.columnCveImpIEPS = new global::System.Data.DataColumn("CveImpIEPS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpIEPS);
+                this.columnImpIEPSValor = new global::System.Data.DataColumn("ImpIEPSValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpIEPSValor);
+                this.columnCveImpRetIVA = new global::System.Data.DataColumn("CveImpRetIVA", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpRetIVA);
+                this.columnImpRetIVAValor = new global::System.Data.DataColumn("ImpRetIVAValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpRetIVAValor);
+                this.columnCveImpRetISR = new global::System.Data.DataColumn("CveImpRetISR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpRetISR);
+                this.columnImpRetISRValor = new global::System.Data.DataColumn("ImpRetISRValor", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpRetISRValor);
+                this.columnCveImpOtro = new global::System.Data.DataColumn("CveImpOtro", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveImpOtro);
+                this.columnImpValorOtro = new global::System.Data.DataColumn("ImpValorOtro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImpValorOtro);
+                this.columnCantidad = new global::System.Data.DataColumn("Cantidad", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidad);
+                this.columnCantidadPkt = new global::System.Data.DataColumn("CantidadPkt", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidadPkt);
+                this.columnCosto = new global::System.Data.DataColumn("Costo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCosto);
+                this.columnPrecio = new global::System.Data.DataColumn("Precio", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrecio);
+                this.columnDescuento = new global::System.Data.DataColumn("Descuento", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescuento);
+                this.columnTotalDscto = new global::System.Data.DataColumn("TotalDscto", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalDscto);
+                this.columnTotalIva = new global::System.Data.DataColumn("TotalIva", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalIva);
+                this.columnTotalIEPS = new global::System.Data.DataColumn("TotalIEPS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalIEPS);
+                this.columnTotalRetIVA = new global::System.Data.DataColumn("TotalRetIVA", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetIVA);
+                this.columnTotalRetISR = new global::System.Data.DataColumn("TotalRetISR", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetISR);
+                this.columnTotalImpOtro = new global::System.Data.DataColumn("TotalImpOtro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalImpOtro);
+                this.columnSubTotal = new global::System.Data.DataColumn("SubTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubTotal);
+                this.columnTotalPartida = new global::System.Data.DataColumn("TotalPartida", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalPartida);
+                this.columnFolioDocOrigen = new global::System.Data.DataColumn("FolioDocOrigen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFolioDocOrigen);
+                this.columnFechaMovimiento = new global::System.Data.DataColumn("FechaMovimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaMovimiento);
+                this.columnNoMovtoTra = new global::System.Data.DataColumn("NoMovtoTra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoMovtoTra);
+                this.columnDocTra = new global::System.Data.DataColumn("DocTra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDocTra);
+                this.columnPartTra = new global::System.Data.DataColumn("PartTra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPartTra);
+                this.columnCancelado = new global::System.Data.DataColumn("Cancelado", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCancelado);
+                this.columnCodigoBarra = new global::System.Data.DataColumn("CodigoBarra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodigoBarra);
+                this.columnNoMovimiento.Caption = "IdMov";
+                this.columnCveAlmacenMov.Caption = "Documento";
+                this.columnCveUmedida.Caption = "CveUmedida1";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosDetallesRow NewDt_MovtosDetallesRow() {
+                return ((Dt_MovtosDetallesRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new Dt_MovtosDetallesRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(Dt_MovtosDetallesRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.Dt_MovtosDetallesRowChanged != null)) {
+                    this.Dt_MovtosDetallesRowChanged(this, new Dt_MovtosDetallesRowChangeEvent(((Dt_MovtosDetallesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.Dt_MovtosDetallesRowChanging != null)) {
+                    this.Dt_MovtosDetallesRowChanging(this, new Dt_MovtosDetallesRowChangeEvent(((Dt_MovtosDetallesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.Dt_MovtosDetallesRowDeleted != null)) {
+                    this.Dt_MovtosDetallesRowDeleted(this, new Dt_MovtosDetallesRowChangeEvent(((Dt_MovtosDetallesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.Dt_MovtosDetallesRowDeleting != null)) {
+                    this.Dt_MovtosDetallesRowDeleting(this, new Dt_MovtosDetallesRowChangeEvent(((Dt_MovtosDetallesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveDt_MovtosDetallesRow(Dt_MovtosDetallesRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DatosGafe ds = new DatosGafe();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "Dt_MovtosDetallesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class Dt_MovtosMasterDataTable : global::System.Data.TypedTableBase<Dt_MovtosMasterRow> {
+            
+            private global::System.Data.DataColumn columnNoMovimiento;
+            
+            private global::System.Data.DataColumn columnFechaMovimiento;
+            
+            private global::System.Data.DataColumn columnCveAlmcenMov;
+            
+            private global::System.Data.DataColumn columnCveTipoMov;
+            
+            private global::System.Data.DataColumn columnEntSal;
+            
+            private global::System.Data.DataColumn columnCveSucursal;
+            
+            private global::System.Data.DataColumn columnNoDoc;
+            
+            private global::System.Data.DataColumn columnDocumento;
+            
+            private global::System.Data.DataColumn columnCveAlmacenDes;
+            
+            private global::System.Data.DataColumn columnCveTipoMovDest;
+            
+            private global::System.Data.DataColumn columnEntSalDest;
+            
+            private global::System.Data.DataColumn columnModulo;
+            
+            private global::System.Data.DataColumn columnTipoDoc;
+            
+            private global::System.Data.DataColumn columnSerieDoc;
+            
+            private global::System.Data.DataColumn columnFolioDocOrigen;
+            
+            private global::System.Data.DataColumn columnDescuento;
+            
+            private global::System.Data.DataColumn columnTotalDscto;
+            
+            private global::System.Data.DataColumn columnTIva;
+            
+            private global::System.Data.DataColumn columnTotalIEPS;
+            
+            private global::System.Data.DataColumn columnTotalRetIVA;
+            
+            private global::System.Data.DataColumn columnTotalRetISR;
+            
+            private global::System.Data.DataColumn columnTotalImpOtro;
+            
+            private global::System.Data.DataColumn columnSubTotal;
+            
+            private global::System.Data.DataColumn columnTotalDoc;
+            
+            private global::System.Data.DataColumn columnObservacion;
+            
+            private global::System.Data.DataColumn columnCveProveedor;
+            
+            private global::System.Data.DataColumn columnCveCliente;
+            
+            private global::System.Data.DataColumn columnCveUsuarioCaptu;
+            
+            private global::System.Data.DataColumn columnCveCentroCosto;
+            
+            private global::System.Data.DataColumn columnNoMovtoTra;
+            
+            private global::System.Data.DataColumn columnDcoTra;
+            
+            private global::System.Data.DataColumn columnDocOrigen;
+            
+            private global::System.Data.DataColumn columnCancelado;
+            
+            private global::System.Data.DataColumn columnAlmacenOrigen;
+            
+            private global::System.Data.DataColumn columnTipoMovOrigen;
+            
+            private global::System.Data.DataColumn columnTippMovDesCortaO;
+            
+            private global::System.Data.DataColumn columnEsTraspasoO;
+            
+            private global::System.Data.DataColumn columnAlmacenDest;
+            
+            private global::System.Data.DataColumn columnTipoMovDest;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosMasterDataTable() {
+                this.TableName = "Dt_MovtosMaster";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal Dt_MovtosMasterDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected Dt_MovtosMasterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoMovimientoColumn {
+                get {
+                    return this.columnNoMovimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FechaMovimientoColumn {
+                get {
+                    return this.columnFechaMovimiento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveAlmcenMovColumn {
+                get {
+                    return this.columnCveAlmcenMov;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveTipoMovColumn {
+                get {
+                    return this.columnCveTipoMov;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EntSalColumn {
+                get {
+                    return this.columnEntSal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveSucursalColumn {
+                get {
+                    return this.columnCveSucursal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoDocColumn {
+                get {
+                    return this.columnNoDoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DocumentoColumn {
+                get {
+                    return this.columnDocumento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveAlmacenDesColumn {
+                get {
+                    return this.columnCveAlmacenDes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveTipoMovDestColumn {
+                get {
+                    return this.columnCveTipoMovDest;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EntSalDestColumn {
+                get {
+                    return this.columnEntSalDest;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ModuloColumn {
+                get {
+                    return this.columnModulo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TipoDocColumn {
+                get {
+                    return this.columnTipoDoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SerieDocColumn {
+                get {
+                    return this.columnSerieDoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FolioDocOrigenColumn {
+                get {
+                    return this.columnFolioDocOrigen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DescuentoColumn {
+                get {
+                    return this.columnDescuento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalDsctoColumn {
+                get {
+                    return this.columnTotalDscto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TIvaColumn {
+                get {
+                    return this.columnTIva;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalIEPSColumn {
+                get {
+                    return this.columnTotalIEPS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetIVAColumn {
+                get {
+                    return this.columnTotalRetIVA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalRetISRColumn {
+                get {
+                    return this.columnTotalRetISR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalImpOtroColumn {
+                get {
+                    return this.columnTotalImpOtro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SubTotalColumn {
+                get {
+                    return this.columnSubTotal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalDocColumn {
+                get {
+                    return this.columnTotalDoc;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ObservacionColumn {
+                get {
+                    return this.columnObservacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveProveedorColumn {
+                get {
+                    return this.columnCveProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveClienteColumn {
+                get {
+                    return this.columnCveCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveUsuarioCaptuColumn {
+                get {
+                    return this.columnCveUsuarioCaptu;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CveCentroCostoColumn {
+                get {
+                    return this.columnCveCentroCosto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn NoMovtoTraColumn {
+                get {
+                    return this.columnNoMovtoTra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DcoTraColumn {
+                get {
+                    return this.columnDcoTra;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DocOrigenColumn {
+                get {
+                    return this.columnDocOrigen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CanceladoColumn {
+                get {
+                    return this.columnCancelado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AlmacenOrigenColumn {
+                get {
+                    return this.columnAlmacenOrigen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TipoMovOrigenColumn {
+                get {
+                    return this.columnTipoMovOrigen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TippMovDesCortaOColumn {
+                get {
+                    return this.columnTippMovDesCortaO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EsTraspasoOColumn {
+                get {
+                    return this.columnEsTraspasoO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AlmacenDestColumn {
+                get {
+                    return this.columnAlmacenDest;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TipoMovDestColumn {
+                get {
+                    return this.columnTipoMovDest;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosMasterRow this[int index] {
+                get {
+                    return ((Dt_MovtosMasterRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosMasterRowChangeEventHandler Dt_MovtosMasterRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosMasterRowChangeEventHandler Dt_MovtosMasterRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosMasterRowChangeEventHandler Dt_MovtosMasterRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event Dt_MovtosMasterRowChangeEventHandler Dt_MovtosMasterRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddDt_MovtosMasterRow(Dt_MovtosMasterRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosMasterRow AddDt_MovtosMasterRow(
+                        string NoMovimiento, 
+                        System.DateTime FechaMovimiento, 
+                        string CveAlmcenMov, 
+                        string CveTipoMov, 
+                        string EntSal, 
+                        string CveSucursal, 
+                        string NoDoc, 
+                        string Documento, 
+                        string CveAlmacenDes, 
+                        string CveTipoMovDest, 
+                        string EntSalDest, 
+                        string Modulo, 
+                        string TipoDoc, 
+                        string SerieDoc, 
+                        string FolioDocOrigen, 
+                        decimal Descuento, 
+                        decimal TotalDscto, 
+                        decimal TIva, 
+                        decimal TotalIEPS, 
+                        decimal TotalRetIVA, 
+                        decimal TotalRetISR, 
+                        decimal TotalImpOtro, 
+                        decimal SubTotal, 
+                        decimal TotalDoc, 
+                        string Observacion, 
+                        string CveProveedor, 
+                        string CveCliente, 
+                        string CveUsuarioCaptu, 
+                        string CveCentroCosto, 
+                        string NoMovtoTra, 
+                        string DcoTra, 
+                        string DocOrigen, 
+                        int Cancelado, 
+                        string AlmacenOrigen, 
+                        string TipoMovOrigen, 
+                        string TippMovDesCortaO, 
+                        int EsTraspasoO, 
+                        string AlmacenDest, 
+                        string TipoMovDest) {
+                Dt_MovtosMasterRow rowDt_MovtosMasterRow = ((Dt_MovtosMasterRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        NoMovimiento,
+                        FechaMovimiento,
+                        CveAlmcenMov,
+                        CveTipoMov,
+                        EntSal,
+                        CveSucursal,
+                        NoDoc,
+                        Documento,
+                        CveAlmacenDes,
+                        CveTipoMovDest,
+                        EntSalDest,
+                        Modulo,
+                        TipoDoc,
+                        SerieDoc,
+                        FolioDocOrigen,
+                        Descuento,
+                        TotalDscto,
+                        TIva,
+                        TotalIEPS,
+                        TotalRetIVA,
+                        TotalRetISR,
+                        TotalImpOtro,
+                        SubTotal,
+                        TotalDoc,
+                        Observacion,
+                        CveProveedor,
+                        CveCliente,
+                        CveUsuarioCaptu,
+                        CveCentroCosto,
+                        NoMovtoTra,
+                        DcoTra,
+                        DocOrigen,
+                        Cancelado,
+                        AlmacenOrigen,
+                        TipoMovOrigen,
+                        TippMovDesCortaO,
+                        EsTraspasoO,
+                        AlmacenDest,
+                        TipoMovDest};
+                rowDt_MovtosMasterRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDt_MovtosMasterRow);
+                return rowDt_MovtosMasterRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                Dt_MovtosMasterDataTable cln = ((Dt_MovtosMasterDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new Dt_MovtosMasterDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnNoMovimiento = base.Columns["NoMovimiento"];
+                this.columnFechaMovimiento = base.Columns["FechaMovimiento"];
+                this.columnCveAlmcenMov = base.Columns["CveAlmcenMov"];
+                this.columnCveTipoMov = base.Columns["CveTipoMov"];
+                this.columnEntSal = base.Columns["EntSal"];
+                this.columnCveSucursal = base.Columns["CveSucursal"];
+                this.columnNoDoc = base.Columns["NoDoc"];
+                this.columnDocumento = base.Columns["Documento"];
+                this.columnCveAlmacenDes = base.Columns["CveAlmacenDes"];
+                this.columnCveTipoMovDest = base.Columns["CveTipoMovDest"];
+                this.columnEntSalDest = base.Columns["EntSalDest"];
+                this.columnModulo = base.Columns["Modulo"];
+                this.columnTipoDoc = base.Columns["TipoDoc"];
+                this.columnSerieDoc = base.Columns["SerieDoc"];
+                this.columnFolioDocOrigen = base.Columns["FolioDocOrigen"];
+                this.columnDescuento = base.Columns["Descuento"];
+                this.columnTotalDscto = base.Columns["TotalDscto"];
+                this.columnTIva = base.Columns["TIva"];
+                this.columnTotalIEPS = base.Columns["TotalIEPS"];
+                this.columnTotalRetIVA = base.Columns["TotalRetIVA"];
+                this.columnTotalRetISR = base.Columns["TotalRetISR"];
+                this.columnTotalImpOtro = base.Columns["TotalImpOtro"];
+                this.columnSubTotal = base.Columns["SubTotal"];
+                this.columnTotalDoc = base.Columns["TotalDoc"];
+                this.columnObservacion = base.Columns["Observacion"];
+                this.columnCveProveedor = base.Columns["CveProveedor"];
+                this.columnCveCliente = base.Columns["CveCliente"];
+                this.columnCveUsuarioCaptu = base.Columns["CveUsuarioCaptu"];
+                this.columnCveCentroCosto = base.Columns["CveCentroCosto"];
+                this.columnNoMovtoTra = base.Columns["NoMovtoTra"];
+                this.columnDcoTra = base.Columns["DcoTra"];
+                this.columnDocOrigen = base.Columns["DocOrigen"];
+                this.columnCancelado = base.Columns["Cancelado"];
+                this.columnAlmacenOrigen = base.Columns["AlmacenOrigen"];
+                this.columnTipoMovOrigen = base.Columns["TipoMovOrigen"];
+                this.columnTippMovDesCortaO = base.Columns["TippMovDesCortaO"];
+                this.columnEsTraspasoO = base.Columns["EsTraspasoO"];
+                this.columnAlmacenDest = base.Columns["AlmacenDest"];
+                this.columnTipoMovDest = base.Columns["TipoMovDest"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnNoMovimiento = new global::System.Data.DataColumn("NoMovimiento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoMovimiento);
+                this.columnFechaMovimiento = new global::System.Data.DataColumn("FechaMovimiento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaMovimiento);
+                this.columnCveAlmcenMov = new global::System.Data.DataColumn("CveAlmcenMov", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveAlmcenMov);
+                this.columnCveTipoMov = new global::System.Data.DataColumn("CveTipoMov", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveTipoMov);
+                this.columnEntSal = new global::System.Data.DataColumn("EntSal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEntSal);
+                this.columnCveSucursal = new global::System.Data.DataColumn("CveSucursal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveSucursal);
+                this.columnNoDoc = new global::System.Data.DataColumn("NoDoc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoDoc);
+                this.columnDocumento = new global::System.Data.DataColumn("Documento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDocumento);
+                this.columnCveAlmacenDes = new global::System.Data.DataColumn("CveAlmacenDes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveAlmacenDes);
+                this.columnCveTipoMovDest = new global::System.Data.DataColumn("CveTipoMovDest", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveTipoMovDest);
+                this.columnEntSalDest = new global::System.Data.DataColumn("EntSalDest", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEntSalDest);
+                this.columnModulo = new global::System.Data.DataColumn("Modulo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnModulo);
+                this.columnTipoDoc = new global::System.Data.DataColumn("TipoDoc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoDoc);
+                this.columnSerieDoc = new global::System.Data.DataColumn("SerieDoc", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSerieDoc);
+                this.columnFolioDocOrigen = new global::System.Data.DataColumn("FolioDocOrigen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFolioDocOrigen);
+                this.columnDescuento = new global::System.Data.DataColumn("Descuento", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescuento);
+                this.columnTotalDscto = new global::System.Data.DataColumn("TotalDscto", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalDscto);
+                this.columnTIva = new global::System.Data.DataColumn("TIva", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTIva);
+                this.columnTotalIEPS = new global::System.Data.DataColumn("TotalIEPS", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalIEPS);
+                this.columnTotalRetIVA = new global::System.Data.DataColumn("TotalRetIVA", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetIVA);
+                this.columnTotalRetISR = new global::System.Data.DataColumn("TotalRetISR", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalRetISR);
+                this.columnTotalImpOtro = new global::System.Data.DataColumn("TotalImpOtro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalImpOtro);
+                this.columnSubTotal = new global::System.Data.DataColumn("SubTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSubTotal);
+                this.columnTotalDoc = new global::System.Data.DataColumn("TotalDoc", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalDoc);
+                this.columnObservacion = new global::System.Data.DataColumn("Observacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacion);
+                this.columnCveProveedor = new global::System.Data.DataColumn("CveProveedor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveProveedor);
+                this.columnCveCliente = new global::System.Data.DataColumn("CveCliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveCliente);
+                this.columnCveUsuarioCaptu = new global::System.Data.DataColumn("CveUsuarioCaptu", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveUsuarioCaptu);
+                this.columnCveCentroCosto = new global::System.Data.DataColumn("CveCentroCosto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCveCentroCosto);
+                this.columnNoMovtoTra = new global::System.Data.DataColumn("NoMovtoTra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNoMovtoTra);
+                this.columnDcoTra = new global::System.Data.DataColumn("DcoTra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDcoTra);
+                this.columnDocOrigen = new global::System.Data.DataColumn("DocOrigen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDocOrigen);
+                this.columnCancelado = new global::System.Data.DataColumn("Cancelado", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCancelado);
+                this.columnAlmacenOrigen = new global::System.Data.DataColumn("AlmacenOrigen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAlmacenOrigen);
+                this.columnTipoMovOrigen = new global::System.Data.DataColumn("TipoMovOrigen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoMovOrigen);
+                this.columnTippMovDesCortaO = new global::System.Data.DataColumn("TippMovDesCortaO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTippMovDesCortaO);
+                this.columnEsTraspasoO = new global::System.Data.DataColumn("EsTraspasoO", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEsTraspasoO);
+                this.columnAlmacenDest = new global::System.Data.DataColumn("AlmacenDest", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAlmacenDest);
+                this.columnTipoMovDest = new global::System.Data.DataColumn("TipoMovDest", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoMovDest);
+                this.columnNoMovimiento.Caption = "IdMov";
+                this.columnCveAlmcenMov.Caption = "ClaveAlmacen";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosMasterRow NewDt_MovtosMasterRow() {
+                return ((Dt_MovtosMasterRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new Dt_MovtosMasterRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(Dt_MovtosMasterRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.Dt_MovtosMasterRowChanged != null)) {
+                    this.Dt_MovtosMasterRowChanged(this, new Dt_MovtosMasterRowChangeEvent(((Dt_MovtosMasterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.Dt_MovtosMasterRowChanging != null)) {
+                    this.Dt_MovtosMasterRowChanging(this, new Dt_MovtosMasterRowChangeEvent(((Dt_MovtosMasterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.Dt_MovtosMasterRowDeleted != null)) {
+                    this.Dt_MovtosMasterRowDeleted(this, new Dt_MovtosMasterRowChangeEvent(((Dt_MovtosMasterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.Dt_MovtosMasterRowDeleting != null)) {
+                    this.Dt_MovtosMasterRowDeleting(this, new Dt_MovtosMasterRowChangeEvent(((Dt_MovtosMasterRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveDt_MovtosMasterRow(Dt_MovtosMasterRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DatosGafe ds = new DatosGafe();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "Dt_MovtosMasterDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3591,6 +5497,136 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpIEPS {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.CveImpIEPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpIEPS\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.CveImpIEPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpIEPSValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabletblDoctosDetalle.ImpIEPSValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpIEPSValor\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.ImpIEPSValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpRetIVA {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.CveImpRetIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpRetIVA\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.CveImpRetIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpRetIVAValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabletblDoctosDetalle.ImpRetIVAValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpRetIVAValor\' de la tabla \'tblDoctosDetalle\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.ImpRetIVAValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpRetISR {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.CveImpRetISRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpRetISR\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.CveImpRetISRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpRetISRValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabletblDoctosDetalle.ImpRetISRValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpRetISRValor\' de la tabla \'tblDoctosDetalle\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.ImpRetISRValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpOtro {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.CveImpOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpOtro\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.CveImpOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpValorOtro {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabletblDoctosDetalle.ImpValorOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpValorOtro\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.ImpValorOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal Precio {
                 get {
                     try {
@@ -3639,10 +5675,10 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal Impuesto {
+            public string Impuesto {
                 get {
                     try {
-                        return ((decimal)(this[this.tabletblDoctosDetalle.ImpuestoColumn]));
+                        return ((string)(this[this.tabletblDoctosDetalle.ImpuestoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("El valor de la columna \'Impuesto\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
@@ -3650,6 +5686,70 @@ namespace GAFE {
                 }
                 set {
                     this[this.tabletblDoctosDetalle.ImpuestoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TotalIEPS {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.TotalIEPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalIEPS\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.TotalIEPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TotalRetISR {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.TotalRetISRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetISR\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.TotalRetISRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TotalRetIVA {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblDoctosDetalle.TotalRetIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetIVA\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.TotalRetIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalImpOtro {
+                get {
+                    try {
+                        return ((decimal)(this[this.tabletblDoctosDetalle.TotalImpOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalImpOtro\' de la tabla \'tblDoctosDetalle\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblDoctosDetalle.TotalImpOtroColumn] = value;
                 }
             }
             
@@ -3912,6 +6012,102 @@ namespace GAFE {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpIEPSNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.CveImpIEPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpIEPSNull() {
+                this[this.tabletblDoctosDetalle.CveImpIEPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpIEPSValorNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.ImpIEPSValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpIEPSValorNull() {
+                this[this.tabletblDoctosDetalle.ImpIEPSValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpRetIVANull() {
+                return this.IsNull(this.tabletblDoctosDetalle.CveImpRetIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpRetIVANull() {
+                this[this.tabletblDoctosDetalle.CveImpRetIVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpRetIVAValorNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.ImpRetIVAValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpRetIVAValorNull() {
+                this[this.tabletblDoctosDetalle.ImpRetIVAValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpRetISRNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.CveImpRetISRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpRetISRNull() {
+                this[this.tabletblDoctosDetalle.CveImpRetISRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpRetISRValorNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.ImpRetISRValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpRetISRValorNull() {
+                this[this.tabletblDoctosDetalle.ImpRetISRValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpOtroNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.CveImpOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpOtroNull() {
+                this[this.tabletblDoctosDetalle.CveImpOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpValorOtroNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.ImpValorOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpValorOtroNull() {
+                this[this.tabletblDoctosDetalle.ImpValorOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsPrecioNull() {
                 return this.IsNull(this.tabletblDoctosDetalle.PrecioColumn);
             }
@@ -3956,6 +6152,54 @@ namespace GAFE {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetImpuestoNull() {
                 this[this.tabletblDoctosDetalle.ImpuestoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalIEPSNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.TotalIEPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalIEPSNull() {
+                this[this.tabletblDoctosDetalle.TotalIEPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetISRNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.TotalRetISRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetISRNull() {
+                this[this.tabletblDoctosDetalle.TotalRetISRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetIVANull() {
+                return this.IsNull(this.tabletblDoctosDetalle.TotalRetIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetIVANull() {
+                this[this.tabletblDoctosDetalle.TotalRetIVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalImpOtroNull() {
+                return this.IsNull(this.tabletblDoctosDetalle.TotalImpOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalImpOtroNull() {
+                this[this.tabletblDoctosDetalle.TotalImpOtroColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4040,6 +6284,2257 @@ namespace GAFE {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetAlmacenNull() {
                 this[this.tabletblDoctosDetalle.AlmacenColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class Dt_MovtosDetallesRow : global::System.Data.DataRow {
+            
+            private Dt_MovtosDetallesDataTable tableDt_MovtosDetalles;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal Dt_MovtosDetallesRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDt_MovtosDetalles = ((Dt_MovtosDetallesDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NoMovimiento {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.NoMovimientoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoMovimiento\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.NoMovimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int NoPartida {
+                get {
+                    try {
+                        return ((int)(this[this.tableDt_MovtosDetalles.NoPartidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoPartida\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.NoPartidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveAlmacenMov {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveAlmacenMovColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveAlmacenMov\' de la tabla \'Dt_MovtosDetalles\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveAlmacenMovColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveTipoMov {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveTipoMovColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveTipoMov\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveTipoMovColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string EntSal {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.EntSalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EntSal\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.EntSalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NoDoc {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.NoDocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoDoc\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.NoDocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Documento {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.DocumentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Documento\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.DocumentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveArticulo {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveArticuloColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveArticulo\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveArticuloColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Descripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.DescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descripcion\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveUmedida {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveUmedidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveUmedida\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveUmedidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpuesto {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveImpuestoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpuesto\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveImpuestoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpuestoValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.ImpuestoValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpuestoValor\' de la tabla \'Dt_MovtosDetalles\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.ImpuestoValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpIEPS {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveImpIEPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpIEPS\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveImpIEPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpIEPSValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.ImpIEPSValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpIEPSValor\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.ImpIEPSValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpRetIVA {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveImpRetIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpRetIVA\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveImpRetIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpRetIVAValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.ImpRetIVAValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpRetIVAValor\' de la tabla \'Dt_MovtosDetalles\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.ImpRetIVAValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpRetISR {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveImpRetISRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpRetISR\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveImpRetISRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpRetISRValor {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.ImpRetISRValorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpRetISRValor\' de la tabla \'Dt_MovtosDetalles\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.ImpRetISRValorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveImpOtro {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CveImpOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveImpOtro\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CveImpOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ImpValorOtro {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.ImpValorOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ImpValorOtro\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.ImpValorOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Cantidad {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.CantidadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cantidad\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CantidadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal CantidadPkt {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.CantidadPktColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CantidadPkt\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CantidadPktColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Costo {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.CostoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Costo\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CostoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Precio {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.PrecioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Precio\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.PrecioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Descuento {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.DescuentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descuento\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.DescuentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalDscto {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalDsctoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalDscto\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalDsctoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalIva {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalIvaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalIva\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalIvaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalIEPS {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalIEPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalIEPS\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalIEPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalRetIVA {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalRetIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetIVA\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalRetIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalRetISR {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalRetISRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetISR\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalRetISRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalImpOtro {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalImpOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalImpOtro\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalImpOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal SubTotal {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.SubTotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SubTotal\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.SubTotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalPartida {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosDetalles.TotalPartidaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalPartida\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.TotalPartidaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FolioDocOrigen {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.FolioDocOrigenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FolioDocOrigen\' de la tabla \'Dt_MovtosDetalles\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.FolioDocOrigenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime FechaMovimiento {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDt_MovtosDetalles.FechaMovimientoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaMovimiento\' de la tabla \'Dt_MovtosDetalles\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.FechaMovimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NoMovtoTra {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.NoMovtoTraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoMovtoTra\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.NoMovtoTraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DocTra {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.DocTraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DocTra\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.DocTraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PartTra {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.PartTraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PartTra\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.PartTraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Cancelado {
+                get {
+                    try {
+                        return ((int)(this[this.tableDt_MovtosDetalles.CanceladoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cancelado\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CanceladoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CodigoBarra {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosDetalles.CodigoBarraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CodigoBarra\' de la tabla \'Dt_MovtosDetalles\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosDetalles.CodigoBarraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoMovimientoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.NoMovimientoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoMovimientoNull() {
+                this[this.tableDt_MovtosDetalles.NoMovimientoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoPartidaNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.NoPartidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoPartidaNull() {
+                this[this.tableDt_MovtosDetalles.NoPartidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveAlmacenMovNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveAlmacenMovColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveAlmacenMovNull() {
+                this[this.tableDt_MovtosDetalles.CveAlmacenMovColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveTipoMovNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveTipoMovColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveTipoMovNull() {
+                this[this.tableDt_MovtosDetalles.CveTipoMovColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEntSalNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.EntSalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEntSalNull() {
+                this[this.tableDt_MovtosDetalles.EntSalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoDocNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.NoDocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoDocNull() {
+                this[this.tableDt_MovtosDetalles.NoDocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDocumentoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.DocumentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDocumentoNull() {
+                this[this.tableDt_MovtosDetalles.DocumentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveArticuloNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveArticuloColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveArticuloNull() {
+                this[this.tableDt_MovtosDetalles.CveArticuloColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDescripcionNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.DescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDescripcionNull() {
+                this[this.tableDt_MovtosDetalles.DescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveUmedidaNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveUmedidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveUmedidaNull() {
+                this[this.tableDt_MovtosDetalles.CveUmedidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpuestoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveImpuestoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpuestoNull() {
+                this[this.tableDt_MovtosDetalles.CveImpuestoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpuestoValorNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.ImpuestoValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpuestoValorNull() {
+                this[this.tableDt_MovtosDetalles.ImpuestoValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpIEPSNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveImpIEPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpIEPSNull() {
+                this[this.tableDt_MovtosDetalles.CveImpIEPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpIEPSValorNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.ImpIEPSValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpIEPSValorNull() {
+                this[this.tableDt_MovtosDetalles.ImpIEPSValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpRetIVANull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveImpRetIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpRetIVANull() {
+                this[this.tableDt_MovtosDetalles.CveImpRetIVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpRetIVAValorNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.ImpRetIVAValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpRetIVAValorNull() {
+                this[this.tableDt_MovtosDetalles.ImpRetIVAValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpRetISRNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveImpRetISRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpRetISRNull() {
+                this[this.tableDt_MovtosDetalles.CveImpRetISRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpRetISRValorNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.ImpRetISRValorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpRetISRValorNull() {
+                this[this.tableDt_MovtosDetalles.ImpRetISRValorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveImpOtroNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CveImpOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveImpOtroNull() {
+                this[this.tableDt_MovtosDetalles.CveImpOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsImpValorOtroNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.ImpValorOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetImpValorOtroNull() {
+                this[this.tableDt_MovtosDetalles.ImpValorOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCantidadNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CantidadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCantidadNull() {
+                this[this.tableDt_MovtosDetalles.CantidadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCantidadPktNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CantidadPktColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCantidadPktNull() {
+                this[this.tableDt_MovtosDetalles.CantidadPktColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCostoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CostoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCostoNull() {
+                this[this.tableDt_MovtosDetalles.CostoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPrecioNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.PrecioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPrecioNull() {
+                this[this.tableDt_MovtosDetalles.PrecioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDescuentoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.DescuentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDescuentoNull() {
+                this[this.tableDt_MovtosDetalles.DescuentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalDsctoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalDsctoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalDsctoNull() {
+                this[this.tableDt_MovtosDetalles.TotalDsctoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalIvaNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalIvaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalIvaNull() {
+                this[this.tableDt_MovtosDetalles.TotalIvaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalIEPSNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalIEPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalIEPSNull() {
+                this[this.tableDt_MovtosDetalles.TotalIEPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetIVANull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalRetIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetIVANull() {
+                this[this.tableDt_MovtosDetalles.TotalRetIVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetISRNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalRetISRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetISRNull() {
+                this[this.tableDt_MovtosDetalles.TotalRetISRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalImpOtroNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalImpOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalImpOtroNull() {
+                this[this.tableDt_MovtosDetalles.TotalImpOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSubTotalNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.SubTotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSubTotalNull() {
+                this[this.tableDt_MovtosDetalles.SubTotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalPartidaNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.TotalPartidaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalPartidaNull() {
+                this[this.tableDt_MovtosDetalles.TotalPartidaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFolioDocOrigenNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.FolioDocOrigenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFolioDocOrigenNull() {
+                this[this.tableDt_MovtosDetalles.FolioDocOrigenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFechaMovimientoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.FechaMovimientoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFechaMovimientoNull() {
+                this[this.tableDt_MovtosDetalles.FechaMovimientoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoMovtoTraNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.NoMovtoTraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoMovtoTraNull() {
+                this[this.tableDt_MovtosDetalles.NoMovtoTraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDocTraNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.DocTraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDocTraNull() {
+                this[this.tableDt_MovtosDetalles.DocTraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPartTraNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.PartTraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPartTraNull() {
+                this[this.tableDt_MovtosDetalles.PartTraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCanceladoNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CanceladoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCanceladoNull() {
+                this[this.tableDt_MovtosDetalles.CanceladoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCodigoBarraNull() {
+                return this.IsNull(this.tableDt_MovtosDetalles.CodigoBarraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCodigoBarraNull() {
+                this[this.tableDt_MovtosDetalles.CodigoBarraColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class Dt_MovtosMasterRow : global::System.Data.DataRow {
+            
+            private Dt_MovtosMasterDataTable tableDt_MovtosMaster;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal Dt_MovtosMasterRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableDt_MovtosMaster = ((Dt_MovtosMasterDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NoMovimiento {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.NoMovimientoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoMovimiento\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.NoMovimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime FechaMovimiento {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableDt_MovtosMaster.FechaMovimientoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaMovimiento\' de la tabla \'Dt_MovtosMaster\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.FechaMovimientoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveAlmcenMov {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveAlmcenMovColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveAlmcenMov\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveAlmcenMovColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveTipoMov {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveTipoMovColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveTipoMov\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveTipoMovColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string EntSal {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.EntSalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EntSal\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.EntSalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveSucursal {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveSucursalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveSucursal\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveSucursalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NoDoc {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.NoDocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoDoc\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.NoDocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Documento {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.DocumentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Documento\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.DocumentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveAlmacenDes {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveAlmacenDesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveAlmacenDes\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveAlmacenDesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveTipoMovDest {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveTipoMovDestColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveTipoMovDest\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveTipoMovDestColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string EntSalDest {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.EntSalDestColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EntSalDest\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.EntSalDestColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Modulo {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.ModuloColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Modulo\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.ModuloColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TipoDoc {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.TipoDocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TipoDoc\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TipoDocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SerieDoc {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.SerieDocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SerieDoc\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.SerieDocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FolioDocOrigen {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.FolioDocOrigenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FolioDocOrigen\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.FolioDocOrigenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Descuento {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.DescuentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descuento\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.DescuentoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalDscto {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalDsctoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalDscto\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalDsctoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TIva {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TIvaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TIva\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TIvaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalIEPS {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalIEPSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalIEPS\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalIEPSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalRetIVA {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalRetIVAColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetIVA\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalRetIVAColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalRetISR {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalRetISRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalRetISR\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalRetISRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalImpOtro {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalImpOtroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalImpOtro\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalImpOtroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal SubTotal {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.SubTotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SubTotal\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.SubTotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal TotalDoc {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDt_MovtosMaster.TotalDocColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TotalDoc\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TotalDocColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Observacion {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.ObservacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Observacion\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.ObservacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveProveedor {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveProveedor\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveCliente {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveClienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveCliente\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveUsuarioCaptu {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveUsuarioCaptuColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveUsuarioCaptu\' de la tabla \'Dt_MovtosMaster\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveUsuarioCaptuColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CveCentroCosto {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.CveCentroCostoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CveCentroCosto\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CveCentroCostoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string NoMovtoTra {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.NoMovtoTraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NoMovtoTra\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.NoMovtoTraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DcoTra {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.DcoTraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DcoTra\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.DcoTraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string DocOrigen {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.DocOrigenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DocOrigen\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.DocOrigenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Cancelado {
+                get {
+                    try {
+                        return ((int)(this[this.tableDt_MovtosMaster.CanceladoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cancelado\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.CanceladoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AlmacenOrigen {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.AlmacenOrigenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'AlmacenOrigen\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.AlmacenOrigenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TipoMovOrigen {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.TipoMovOrigenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TipoMovOrigen\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TipoMovOrigenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TippMovDesCortaO {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.TippMovDesCortaOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TippMovDesCortaO\' de la tabla \'Dt_MovtosMaster\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TippMovDesCortaOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int EsTraspasoO {
+                get {
+                    try {
+                        return ((int)(this[this.tableDt_MovtosMaster.EsTraspasoOColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EsTraspasoO\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.EsTraspasoOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AlmacenDest {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.AlmacenDestColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'AlmacenDest\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.AlmacenDestColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string TipoMovDest {
+                get {
+                    try {
+                        return ((string)(this[this.tableDt_MovtosMaster.TipoMovDestColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TipoMovDest\' de la tabla \'Dt_MovtosMaster\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDt_MovtosMaster.TipoMovDestColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoMovimientoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.NoMovimientoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoMovimientoNull() {
+                this[this.tableDt_MovtosMaster.NoMovimientoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFechaMovimientoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.FechaMovimientoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFechaMovimientoNull() {
+                this[this.tableDt_MovtosMaster.FechaMovimientoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveAlmcenMovNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveAlmcenMovColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveAlmcenMovNull() {
+                this[this.tableDt_MovtosMaster.CveAlmcenMovColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveTipoMovNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveTipoMovColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveTipoMovNull() {
+                this[this.tableDt_MovtosMaster.CveTipoMovColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEntSalNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.EntSalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEntSalNull() {
+                this[this.tableDt_MovtosMaster.EntSalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveSucursalNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveSucursalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveSucursalNull() {
+                this[this.tableDt_MovtosMaster.CveSucursalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoDocNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.NoDocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoDocNull() {
+                this[this.tableDt_MovtosMaster.NoDocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDocumentoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.DocumentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDocumentoNull() {
+                this[this.tableDt_MovtosMaster.DocumentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveAlmacenDesNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveAlmacenDesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveAlmacenDesNull() {
+                this[this.tableDt_MovtosMaster.CveAlmacenDesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveTipoMovDestNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveTipoMovDestColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveTipoMovDestNull() {
+                this[this.tableDt_MovtosMaster.CveTipoMovDestColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEntSalDestNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.EntSalDestColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEntSalDestNull() {
+                this[this.tableDt_MovtosMaster.EntSalDestColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsModuloNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.ModuloColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetModuloNull() {
+                this[this.tableDt_MovtosMaster.ModuloColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTipoDocNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TipoDocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTipoDocNull() {
+                this[this.tableDt_MovtosMaster.TipoDocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSerieDocNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.SerieDocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSerieDocNull() {
+                this[this.tableDt_MovtosMaster.SerieDocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFolioDocOrigenNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.FolioDocOrigenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFolioDocOrigenNull() {
+                this[this.tableDt_MovtosMaster.FolioDocOrigenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDescuentoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.DescuentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDescuentoNull() {
+                this[this.tableDt_MovtosMaster.DescuentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalDsctoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalDsctoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalDsctoNull() {
+                this[this.tableDt_MovtosMaster.TotalDsctoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTIvaNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TIvaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTIvaNull() {
+                this[this.tableDt_MovtosMaster.TIvaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalIEPSNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalIEPSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalIEPSNull() {
+                this[this.tableDt_MovtosMaster.TotalIEPSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetIVANull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalRetIVAColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetIVANull() {
+                this[this.tableDt_MovtosMaster.TotalRetIVAColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalRetISRNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalRetISRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalRetISRNull() {
+                this[this.tableDt_MovtosMaster.TotalRetISRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalImpOtroNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalImpOtroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalImpOtroNull() {
+                this[this.tableDt_MovtosMaster.TotalImpOtroColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSubTotalNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.SubTotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSubTotalNull() {
+                this[this.tableDt_MovtosMaster.SubTotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalDocNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TotalDocColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalDocNull() {
+                this[this.tableDt_MovtosMaster.TotalDocColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsObservacionNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.ObservacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetObservacionNull() {
+                this[this.tableDt_MovtosMaster.ObservacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveProveedorNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveProveedorNull() {
+                this[this.tableDt_MovtosMaster.CveProveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveClienteNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveClienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveClienteNull() {
+                this[this.tableDt_MovtosMaster.CveClienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveUsuarioCaptuNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveUsuarioCaptuColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveUsuarioCaptuNull() {
+                this[this.tableDt_MovtosMaster.CveUsuarioCaptuColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCveCentroCostoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CveCentroCostoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCveCentroCostoNull() {
+                this[this.tableDt_MovtosMaster.CveCentroCostoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsNoMovtoTraNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.NoMovtoTraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetNoMovtoTraNull() {
+                this[this.tableDt_MovtosMaster.NoMovtoTraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDcoTraNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.DcoTraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDcoTraNull() {
+                this[this.tableDt_MovtosMaster.DcoTraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDocOrigenNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.DocOrigenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDocOrigenNull() {
+                this[this.tableDt_MovtosMaster.DocOrigenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCanceladoNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.CanceladoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCanceladoNull() {
+                this[this.tableDt_MovtosMaster.CanceladoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAlmacenOrigenNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.AlmacenOrigenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAlmacenOrigenNull() {
+                this[this.tableDt_MovtosMaster.AlmacenOrigenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTipoMovOrigenNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TipoMovOrigenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTipoMovOrigenNull() {
+                this[this.tableDt_MovtosMaster.TipoMovOrigenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTippMovDesCortaONull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TippMovDesCortaOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTippMovDesCortaONull() {
+                this[this.tableDt_MovtosMaster.TippMovDesCortaOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEsTraspasoONull() {
+                return this.IsNull(this.tableDt_MovtosMaster.EsTraspasoOColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEsTraspasoONull() {
+                this[this.tableDt_MovtosMaster.EsTraspasoOColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAlmacenDestNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.AlmacenDestColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAlmacenDestNull() {
+                this[this.tableDt_MovtosMaster.AlmacenDestColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTipoMovDestNull() {
+                return this.IsNull(this.tableDt_MovtosMaster.TipoMovDestColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTipoMovDestNull() {
+                this[this.tableDt_MovtosMaster.TipoMovDestColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4131,6 +8626,74 @@ namespace GAFE {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tblDoctosDetalleRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class Dt_MovtosDetallesRowChangeEvent : global::System.EventArgs {
+            
+            private Dt_MovtosDetallesRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosDetallesRowChangeEvent(Dt_MovtosDetallesRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosDetallesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class Dt_MovtosMasterRowChangeEvent : global::System.EventArgs {
+            
+            private Dt_MovtosMasterRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosMasterRowChangeEvent(Dt_MovtosMasterRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Dt_MovtosMasterRow Row {
                 get {
                     return this.eventRow;
                 }

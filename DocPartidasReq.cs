@@ -21,7 +21,7 @@ namespace GAFE
         public string Descripcion { get; set; }
         public double Cantidad { get; set; }
         public double Precio { get; set; }
-        public double Descuento { get; set; }
+        public double TotalDscto { get; set; }
         public double PrecioNeto { get; set; }
         public double SubTotal { get; set; }
         public double Impuesto { get; set; }
@@ -49,6 +49,8 @@ namespace GAFE
         public double ImpValorOtro { get; set; }
         public double TotalImpOtro { get; set; }
 
+        public int DsctoEsPorcentaje { get; set; }
+        public double Descuento  { get; set; }
 
 
     }

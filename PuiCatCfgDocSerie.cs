@@ -137,16 +137,16 @@ namespace GAFE
             object[] ObjA = Ds.Tables[0].Rows[0].ItemArray;
 
             CveAlmacen = ObjA[0].ToString();
-            CveDoc = ObjA[0].ToString();
-            Serie = ObjA[0].ToString();
-            Descripcion = ObjA[0].ToString();
-            CodFoliador = ObjA[0].ToString();
-            EditaFolio = int.Parse(ObjA[0].ToString());
-            FmtoImpresion = ObjA[0].ToString();
-            NoCopiasImp = int.Parse(ObjA[0].ToString());
-            NombImpresora = ObjA[0].ToString();
-            PregImpresion = int.Parse(ObjA[0].ToString());
-            Estatus = int.Parse(ObjA[0].ToString());
+            CveDoc = ObjA[1].ToString();
+            Serie = ObjA[2].ToString();
+            Descripcion = ObjA[3].ToString();
+            CodFoliador = ObjA[4].ToString();
+            EditaFolio = int.Parse(ObjA[5].ToString());
+            FmtoImpresion = ObjA[6].ToString();
+            NoCopiasImp = int.Parse(ObjA[7].ToString());
+            NombImpresora = ObjA[8].ToString();
+            PregImpresion = int.Parse(ObjA[9].ToString());
+            Estatus = int.Parse(ObjA[10].ToString());
         }
 
         public SqlDataAdapter BuscaCfgDocSerie(string buscar)

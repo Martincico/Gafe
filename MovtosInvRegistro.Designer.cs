@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblFolio = new System.Windows.Forms.TextBox();
             this.lblTitFolio = new System.Windows.Forms.Label();
@@ -156,7 +156,7 @@
             // 
             this.lblProveedor.AutoSize = true;
             this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblProveedor.Location = new System.Drawing.Point(424, 60);
+            this.lblProveedor.Location = new System.Drawing.Point(411, 60);
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(56, 13);
             this.lblProveedor.TabIndex = 92;
@@ -176,7 +176,7 @@
             // 
             this.lblAlmaDest.AutoSize = true;
             this.lblAlmaDest.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblAlmaDest.Location = new System.Drawing.Point(424, 60);
+            this.lblAlmaDest.Location = new System.Drawing.Point(411, 60);
             this.lblAlmaDest.Name = "lblAlmaDest";
             this.lblAlmaDest.Size = new System.Drawing.Size(85, 13);
             this.lblAlmaDest.TabIndex = 94;
@@ -318,15 +318,15 @@
             this.grdViewPart.AllowUserToOrderColumns = true;
             this.grdViewPart.BackgroundColor = System.Drawing.Color.White;
             this.grdViewPart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdViewPart.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdViewPart.DefaultCellStyle = dataGridViewCellStyle1;
             this.grdViewPart.Location = new System.Drawing.Point(43, 88);
             this.grdViewPart.Name = "grdViewPart";
             this.grdViewPart.ReadOnly = true;
@@ -371,6 +371,7 @@
             this.txtSubTotalDesc.TabIndex = 51;
             this.txtSubTotalDesc.Text = "0";
             this.txtSubTotalDesc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSubTotalDesc.Visible = false;
             // 
             // label6
             // 
@@ -382,13 +383,14 @@
             this.label6.Size = new System.Drawing.Size(90, 13);
             this.label6.TabIndex = 50;
             this.label6.Text = "SubTotal c/desc.";
+            this.label6.Visible = false;
             // 
             // txtIVA
             // 
-            this.txtIVA.Enabled = false;
             this.txtIVA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.txtIVA.Location = new System.Drawing.Point(562, 48);
             this.txtIVA.Name = "txtIVA";
+            this.txtIVA.ReadOnly = true;
             this.txtIVA.Size = new System.Drawing.Size(115, 20);
             this.txtIVA.TabIndex = 49;
             this.txtIVA.Text = "0";
@@ -407,10 +409,10 @@
             // 
             // txtIeps
             // 
-            this.txtIeps.Enabled = false;
             this.txtIeps.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.txtIeps.Location = new System.Drawing.Point(562, 8);
             this.txtIeps.Name = "txtIeps";
+            this.txtIeps.ReadOnly = true;
             this.txtIeps.Size = new System.Drawing.Size(115, 20);
             this.txtIeps.TabIndex = 47;
             this.txtIeps.Text = "0";
@@ -432,6 +434,7 @@
             this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.txtDescuento.Location = new System.Drawing.Point(395, 49);
             this.txtDescuento.Name = "txtDescuento";
+            this.txtDescuento.ReadOnly = true;
             this.txtDescuento.Size = new System.Drawing.Size(115, 20);
             this.txtDescuento.TabIndex = 45;
             this.txtDescuento.Text = "0";
@@ -450,10 +453,10 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.txtTotal.Location = new System.Drawing.Point(560, 83);
             this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(131, 20);
             this.txtTotal.TabIndex = 43;
             this.txtTotal.Text = "0";
@@ -472,10 +475,10 @@
             // 
             // txtSubTotal
             // 
-            this.txtSubTotal.Enabled = false;
             this.txtSubTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.txtSubTotal.Location = new System.Drawing.Point(395, 8);
             this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(115, 20);
             this.txtSubTotal.TabIndex = 41;
             this.txtSubTotal.Text = "0";

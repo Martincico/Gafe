@@ -208,7 +208,7 @@ namespace GAFE
             return String.Format(nfi, "{0:C" + NumDec + "}", txt);
         }
 
-        public String TipoFmtoRedonder() //Para los grid
+        public String TipoFmtoRedonder() //Para los grid, Se manda como parametro en los reportes
         {
             return "C" + NumDec;
         }

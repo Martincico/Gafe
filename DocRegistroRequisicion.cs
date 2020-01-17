@@ -246,7 +246,6 @@ namespace GAFE
             }
             sRq.cmpNumDoc = Convert.ToInt64(txtNumDoc.Text);
             sRq.cmpCveDoc = CveDoc;
-
             sRq.cmpClaveAlmacen = cboAlmacen.SelectedValue.ToString();
             
             sRq.cmpCveSucursal =  (ConfigDoc.UsaAlmDestino == 1)? cboSucursal.SelectedValue.ToString():"";
@@ -257,6 +256,10 @@ namespace GAFE
             sRq.cmpUsuarioModi = user.Usuario;
             sRq.cmpClaveImpuesto = "";
             sRq.cmpImpuesto = Convert.ToDouble(Util.LimpiarTxt(txtIVA.Text));
+            sRq.cmpTotalIEPS = Convert.ToDouble(Util.LimpiarTxt(txtIeps.Text));
+            sRq.cmpTotalRetISR = 0;
+            sRq.cmpTotalRetiVA = 0;
+            sRq.cmpTotalImpOtro = 0;
             sRq.cmpDescuento = Convert.ToDouble(Util.LimpiarTxt(txtDescuento.Text));
             sRq.cmpSubTotal = Convert.ToDouble(Util.LimpiarTxt(txtSubTotal.Text));
             sRq.cmpTotal = Convert.ToDouble(Util.LimpiarTxt(txtTotal.Text));
@@ -453,6 +456,8 @@ namespace GAFE
                 partida.ImpuestoValor = Convert.ToDouble(row["ImpuestoValor"].ToString());
                 partida.Precio = Convert.ToDouble(row["Precio"].ToString());
                 partida.Descuento = Convert.ToDouble(row["Descuento"].ToString());
+                partida.TotalDscto = Convert.ToDouble(row["TotalDscto"].ToString());
+                partida.DsctoEsPorcentaje = Convert.ToInt32(row["DsctoEsPorcentaje"].ToString());
                 partida.PrecioNeto = Convert.ToDouble(row["PrecioNeto"].ToString());
                 partida.Impuesto = Convert.ToDouble(row["Impuesto"].ToString());
                 partida.SubTotal = Convert.ToDouble(row["SubTotal"].ToString());
@@ -678,7 +683,7 @@ namespace GAFE
 
         private void LLenaGrid()
         {
-            double subTotal = 0, impuesto = 0, impIEPS = 0, total = 0;
+            double subTotal = 0, impuesto = 0, impIEPS = 0, total = 0, Descuento = 0;
 
             grdViewD.DataSource = null;
             grdViewD.DataSource = PARTIDAS;
@@ -724,8 +729,8 @@ namespace GAFE
             grdViewD.Columns["SubTotal"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
             grdViewD.Columns["Precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             grdViewD.Columns["Precio"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
-            grdViewD.Columns["Descuento"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            grdViewD.Columns["Descuento"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
+            grdViewD.Columns["TotalDscto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            grdViewD.Columns["TotalDscto"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
             grdViewD.Columns["Impuesto"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             grdViewD.Columns["Impuesto"].DefaultCellStyle.Format = Util.TipoFmtoRedonder();
             grdViewD.Columns["TotalIEPS"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -748,20 +753,25 @@ namespace GAFE
             grdViewD.Columns["CveImpOtro"].Visible = false;
             grdViewD.Columns["ImpValorOtro"].Visible = false;
             grdViewD.Columns["TotalImpOtro"].Visible = false;
-            
+
+            grdViewD.Columns["Descuento"].Visible = false;
+            grdViewD.Columns["DsctoEsPorcentaje"].Visible = false;
+
             for (int i = 0; i < PARTIDAS.Count; i++)
             {
                 subTotal = subTotal + PARTIDAS[i].SubTotal;
                 impuesto = impuesto + PARTIDAS[i].Impuesto;
                 impIEPS = impIEPS + PARTIDAS[i].TotalIEPS;
+                Descuento = Descuento + PARTIDAS[i].TotalDscto;
                 total = total + PARTIDAS[i].Total;
             }
-            double descuento = Convert.ToDouble(Util.LimpiarTxt(txtDescuento.Text));
+            //double descuento = Convert.ToDouble(Util.LimpiarTxt(txtDescuento.Text));
             
             txtSubTotal.Text = Util.FormtDouDec(subTotal);
             txtIVA.Text = Util.FormtDouDec(impuesto);
             txtIeps.Text = Util.FormtDouDec(impIEPS);
-            txtTotal.Text = Util.FormtDouDec(total-descuento);
+            txtDescuento.Text = Util.FormtDouDec(Descuento);
+            txtTotal.Text = Util.FormtDouDec(total);
 
             Calculos(0);
         }
@@ -985,9 +995,9 @@ namespace GAFE
 
             if (ErrCalc)
             { 
-
-                Total = SubTotal - Descuento;
                 /*
+                Total = SubTotal - Descuento;
+                
                 if (Descuento > 0)
                 {
                     TotalIEPS = _iEPS > 0 ? SubTotal * (_iEPS / 100) : 0;
@@ -998,7 +1008,7 @@ namespace GAFE
                     SubTotal = SubTotal - TotalIEPS;
 
                 }
-                */
+                
                 if (Total >= 0)
                 {
                     ttTotal.Hide(txtTotal);
@@ -1009,6 +1019,7 @@ namespace GAFE
                     Util.MsjBox(ttTotal, txtTotal, "Descuento", "Descuento: Contiene caracteres no validos. Sugiere: 0", ToolTipIcon.Error);
                     ErrCalc = false;
                 }
+                */
 
             }
         }
